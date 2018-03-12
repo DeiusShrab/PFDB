@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace PFHelper.Classes
 {
-    public class CombatEffect
+    public class CombatEffectItem
     {
         public int Rounds { get; set; }
         public string Effect { get; set; }

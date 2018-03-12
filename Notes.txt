@@ -1,0 +1,3 @@
+CreatureInfoBrowser
+On first page-load, add the loaded info to a local memory item. Like a dictionary or something. Always check this cache item before loading from the web.
+Also cap it at like ten items to prevent memory leaks.

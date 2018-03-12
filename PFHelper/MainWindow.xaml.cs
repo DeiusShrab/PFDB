@@ -24,11 +24,11 @@ namespace PFHelper
     public partial class MainWindow : Window
     {
         public ObservableCollection<CombatGridItem> _combatGridItems;
-        private List<CombatEffect> combatEffects;
+        private List<CombatEffectItem> combatEffects;
 
         public MainWindow()
         {
-            combatEffects = new List<CombatEffect>();
+            combatEffects = new List<CombatEffectItem>();
             _combatGridItems = new ObservableCollection<CombatGridItem>
             {
                 new CombatGridItem()
