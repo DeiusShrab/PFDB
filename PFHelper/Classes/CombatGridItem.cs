@@ -20,5 +20,9 @@ namespace PFHelper.Classes
         public int Will { get; set; }
         public int Subd { get; set; }
         public string Note { get; set; }
+        public string ACTooltip
+        {
+            get { return $"Touch {ACTouch}\nFlat {ACFlat}"; }
+        }
     }
 }

@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.Data;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -22,15 +23,34 @@ namespace PFHelper
     /// </summary>
     public partial class MainWindow : Window
     {
-        public ObservableCollection<CombatGridItem> combatGridItems;
+        public ObservableCollection<CombatGridItem> _combatGridItems;
         private List<CombatEffect> combatEffects;
 
         public MainWindow()
         {
             combatEffects = new List<CombatEffect>();
-            combatGridItems = new ObservableCollection<CombatGridItem>();
+            _combatGridItems = new ObservableCollection<CombatGridItem>
+            {
+                new CombatGridItem()
+                {
+                    AC = 14,
+                    ACFlat = 13,
+                    ACTouch = 11,
+                    Fort = 2,
+                    HP = 10,
+                    Init = 11,
+                    Name = "Test PC",
+                    Note = "Test",
+                    PC = true,
+                    Ref = 1,
+                    Subd = 0,
+                    Will = 2
+                }
+            };
 
             InitializeComponent();
+
+            CombatGrid.ItemsSource = _combatGridItems;
         }
     }
 }

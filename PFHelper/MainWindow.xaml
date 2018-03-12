@@ -4,15 +4,21 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:PFHelper"
+        xmlns:me="clr-namespace:PFHelper.Classes"
         xmlns:xctk="http://schemas.xceed.com/wpf/xaml/toolkit"
         mc:Ignorable="d"
         Title="MainWindow" Height="900" Width="1600">
-    <Grid>
+    <Window.Resources>
+        <ObjectDataProvider x:Key="CombatDataProvider"
+                            ObjectType="{x:Type me:CombatGridItem}"
+                            MethodName="GetCombatGridItems" />
+    </Window.Resources>
+    <Grid DataContext="{Binding Source={StaticResource CombatDataProvider}}">
         <Grid.ColumnDefinitions>
             <ColumnDefinition/>
         </Grid.ColumnDefinitions>
         <Label Content="YEAR 000000 AA, Season of Earth, Month of Embers, Day 00" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top" FontFamily="Old English Text MT" FontSize="48"/>
-        <Label Content="000000 / 00 / 00" HorizontalAlignment="Left" Margin="1005,91,0,0" VerticalAlignment="Top" FontSize="16"/>
+        <Label HorizontalAlignment="Left" Margin="993,86,0,0" VerticalAlignment="Top" FontSize="16"/>
         <Button Content="NEXT DAY" HorizontalAlignment="Left" Margin="1216,84,0,0" VerticalAlignment="Top" Width="75" Height="47"/>
         <Button Content="Add Days" HorizontalAlignment="Left" Margin="1136,111,0,0" VerticalAlignment="Top" Width="75"/>
         <xctk:IntegerUpDown Value="0" HorizontalAlignment="Left" Margin="1136,86,0,0" VerticalAlignment="Top" Width="75" />
@@ -28,7 +34,7 @@
         <Button Content="Next Weather" HorizontalAlignment="Left" Margin="684,86,0,0" VerticalAlignment="Top" Width="85"/>
         <Label Content="Rations:" HorizontalAlignment="Left" Margin="1136,136,0,0" VerticalAlignment="Top"/>
         <Label Content="999" HorizontalAlignment="Left" Margin="1216,136,0,0" VerticalAlignment="Top" FontSize="18" Height="49" Width="75"/>
-        <TextBox HorizontalAlignment="Left" Height="23" Margin="1136,162,0,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="52"/>
+        <TextBox HorizontalAlignment="Left" Height="23" Margin="1136,162,0,0" TextWrapping="Wrap" Text="000" VerticalAlignment="Top" Width="52"/>
         <xctk:ButtonSpinner HorizontalAlignment="Left" Margin="1190,136,0,0" VerticalAlignment="Top" Height="49"/>
         <CheckBox Content="∞" HorizontalAlignment="Left" Margin="1220,170,0,0" VerticalAlignment="Top"/>
         <ListBox HorizontalAlignment="Left" Height="121" Margin="1462,190,0,0" VerticalAlignment="Top" Width="120"/>
@@ -86,7 +92,6 @@
             <TabItem Header="Combat">
                 <Grid Background="#FFE5E5E5">
                     <WebBrowser HorizontalAlignment="Left" Height="621" Margin="875,10,0,0" VerticalAlignment="Top" Width="441"/>
-                    <DataGrid HorizontalAlignment="Left" Height="346" Margin="10,260,0,0" VerticalAlignment="Top" Width="860" ItemsSource="{Binding combatGridItems}" AutoGenerateColumns="True"/>
                     <Button Content="Sort" HorizontalAlignment="Left" Margin="10,611,0,0" VerticalAlignment="Top" Width="75"/>
                     <Button Content="Duplicate" HorizontalAlignment="Left" Margin="90,611,0,0" VerticalAlignment="Top" Width="75"/>
                     <Button Content="Delete" HorizontalAlignment="Left" Margin="170,611,0,0" VerticalAlignment="Top" Width="75"/>
@@ -95,11 +100,52 @@
                     <Label Content="00" HorizontalAlignment="Left" Margin="85,10,0,0" VerticalAlignment="Top" FontSize="16" FontWeight="Bold"/>
                     <Button Content="Next Turn &gt;" HorizontalAlignment="Left" Margin="132,10,0,0" VerticalAlignment="Top" Width="101" Height="31"/>
                     <Button Content="Next Round ==&gt;" HorizontalAlignment="Left" Margin="238,10,0,0" VerticalAlignment="Top" Width="101" Height="31"/>
-                    <TextBox HorizontalAlignment="Left" Height="23" Margin="10,72,0,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="27"/>
+                    <TextBox HorizontalAlignment="Left" Height="23" Margin="10,72,0,0" TextWrapping="Wrap" Text="00" VerticalAlignment="Top" Width="27" TextChanged="TextBox_TextChanged"/>
                     <Label Content="Init" HorizontalAlignment="Left" Margin="10,46,0,0" VerticalAlignment="Top"/>
+                    <DataGrid x:Name="CombatGrid" HorizontalAlignment="Left" Height="506" Margin="10,100,0,0" VerticalAlignment="Top" Width="600" AutoGenerateColumns="False">
+                        <DataGrid.Columns>
+                            <DataGridTextColumn Binding="{Binding Init}" Header="Init"/>
+                            <DataGridTextColumn Binding="{Binding Name}" Header="Name"/>
+                            <DataGridTextColumn Binding="{Binding HP}" Header="HP"/>
+                            <DataGridTemplateColumn Header="AC">
+                                <DataGridTemplateColumn.CellTemplate>
+                                    <DataTemplate>
+                                        <TextBlock Text="{Binding AC}" ToolTip="{Binding ACTooltip}">
+                                        </TextBlock>
+                                    </DataTemplate>
+                                </DataGridTemplateColumn.CellTemplate>
+                            </DataGridTemplateColumn>
+                            <DataGridTextColumn Binding="{Binding Fort}" Header="Fort"/>
+                            <DataGridTextColumn Binding="{Binding Ref}" Header="Ref"/>
+                            <DataGridTextColumn Binding="{Binding Will}" Header="Will"/>
+                            <DataGridTextColumn Binding="{Binding Subd}" Header="Subd"/>
+                            <DataGridTextColumn Binding="{Binding Note}" Header="Note"/>
+                        </DataGrid.Columns>
+                    </DataGrid>
+                    <DataGrid x:Name="CombatEffects" HorizontalAlignment="Left" Height="506" Margin="615,100,0,0" VerticalAlignment="Top" Width="255"/>
+                    <TextBox HorizontalAlignment="Left" Height="23" Margin="42,72,0,0" TextWrapping="Wrap" Text="Big Ugly Monster II" VerticalAlignment="Top" Width="153" TextChanged="TextBox_TextChanged"/>
+                    <Label Content="Name" HorizontalAlignment="Left" Margin="42,46,0,0" VerticalAlignment="Top"/>
+                    <Label Content="PC?" HorizontalAlignment="Left" Margin="200,46,0,0" VerticalAlignment="Top"/>
+                    <Label Content="Touch" HorizontalAlignment="Left" Margin="265,46,0,0" VerticalAlignment="Top"/>
+                    <Label Content="AC" HorizontalAlignment="Left" Margin="235,46,0,0" VerticalAlignment="Top"/>
+                    <Label Content="Flat" HorizontalAlignment="Left" Margin="311,46,0,0" VerticalAlignment="Top"/>
+                    <Label Content="Fort" HorizontalAlignment="Left" Margin="345,46,0,0" VerticalAlignment="Top"/>
+                    <Label Content="Ref" HorizontalAlignment="Left" Margin="381,46,0,0" VerticalAlignment="Top"/>
+                    <Label Content="Will" HorizontalAlignment="Left" Margin="413,46,0,0" VerticalAlignment="Top"/>
+                    <Label Content="Notes" HorizontalAlignment="Left" Margin="448,46,0,0" VerticalAlignment="Top"/>
+                    <TextBox HorizontalAlignment="Left" Height="23" Margin="236,72,0,0" TextWrapping="Wrap" Text="22" VerticalAlignment="Top" Width="22" TextChanged="TextBox_TextChanged"/>
+                    <CheckBox Content="" HorizontalAlignment="Left" Margin="206,75,0,0" VerticalAlignment="Top"/>
+                    <TextBox HorizontalAlignment="Left" Height="23" Margin="275,72,0,0" TextWrapping="Wrap" Text="22" VerticalAlignment="Top" Width="22" TextChanged="TextBox_TextChanged"/>
+                    <TextBox HorizontalAlignment="Left" Height="23" Margin="314,72,0,0" TextWrapping="Wrap" Text="22" VerticalAlignment="Top" Width="22" TextChanged="TextBox_TextChanged"/>
+                    <TextBox HorizontalAlignment="Left" Height="23" Margin="349,72,0,0" TextWrapping="Wrap" Text="22" VerticalAlignment="Top" Width="22" TextChanged="TextBox_TextChanged"/>
+                    <TextBox HorizontalAlignment="Left" Height="23" Margin="384,72,0,0" TextWrapping="Wrap" Text="22" VerticalAlignment="Top" Width="22" TextChanged="TextBox_TextChanged"/>
+                    <TextBox HorizontalAlignment="Left" Height="23" Margin="417,72,0,0" TextWrapping="Wrap" Text="22" VerticalAlignment="Top" Width="22" TextChanged="TextBox_TextChanged"/>
+                    <TextBox HorizontalAlignment="Left" Height="23" Margin="448,72,0,0" TextWrapping="Wrap" Text="E's a big ugly one he is" VerticalAlignment="Top" Width="162" TextChanged="TextBox_TextChanged"/>
                 </Grid>
             </TabItem>
         </TabControl>
+        <Label Content="Wed, Emb 00" HorizontalAlignment="Left" Margin="1007,120,0,0" VerticalAlignment="Top" FontSize="16"/>
+        <Label Content="000000 / 00 / 00" HorizontalAlignment="Left" Margin="1005,84,0,0" VerticalAlignment="Top" FontSize="16"/>
 
     </Grid>
 </Window>
