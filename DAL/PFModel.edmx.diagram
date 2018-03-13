@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="c45978989cea4588b101b361d98057cd" Name="Diagram1">
+        <EntityTypeShape EntityType="PFDBModel.Bestiary" Width="1.5" PointX="0.75" PointY="0.75" />
+        <EntityTypeShape EntityType="PFDBModel.BestiaryDetail" Width="1.5" PointX="2.75" PointY="0.75" />
+        <EntityTypeShape EntityType="PFDBModel.BestiaryEnvironment" Width="1.5" PointX="2.75" PointY="3.75" />
+        <EntityTypeShape EntityType="PFDBModel.BestiaryFeat" Width="1.5" PointX="4.75" PointY="0.75" />
+        <EntityTypeShape EntityType="PFDBModel.BestiaryLanguage" Width="1.5" PointX="4.75" PointY="3.75" />
+        <EntityTypeShape EntityType="PFDBModel.BestiarySkill" Width="1.5" PointX="6.75" PointY="0.75" />
+        <EntityTypeShape EntityType="PFDBModel.BestiarySubType" Width="1.5" PointX="2.75" PointY="6.75" />
+        <EntityTypeShape EntityType="PFDBModel.BestiaryType" Width="1.5" PointX="6.75" PointY="3.75" />
+        <EntityTypeShape EntityType="PFDBModel.Continent" Width="1.5" PointX="4.75" PointY="6.75" />
+        <EntityTypeShape EntityType="PFDBModel.ContinentWeather" Width="1.5" PointX="6.75" PointY="6.75" />
+        <EntityTypeShape EntityType="PFDBModel.Environment" Width="1.5" PointX="8.75" PointY="0.75" />
+        <EntityTypeShape EntityType="PFDBModel.Faction" Width="1.5" PointX="8.75" PointY="3.75" />
+        <EntityTypeShape EntityType="PFDBModel.Feat" Width="1.5" PointX="8.75" PointY="7.75" />
+        <EntityTypeShape EntityType="PFDBModel.Language" Width="1.5" PointX="2.75" PointY="9.75" />
+        <EntityTypeShape EntityType="PFDBModel.Location" Width="1.5" PointX="4.75" PointY="9.75" />
+        <EntityTypeShape EntityType="PFDBModel.MagicItem" Width="1.5" PointX="10.75" PointY="0.75" />
+        <EntityTypeShape EntityType="PFDBModel.MonsterSpawn" Width="1.5" PointX="10.75" PointY="11.75" />
+        <EntityTypeShape EntityType="PFDBModel.Month" Width="1.5" PointX="12.75" PointY="0.75" />
+        <EntityTypeShape EntityType="PFDBModel.NPC" Width="1.5" PointX="12.75" PointY="3.75" />
+        <EntityTypeShape EntityType="PFDBModel.NPCDetail" Width="1.5" PointX="2.75" PointY="13.75" />
+        <EntityTypeShape EntityType="PFDBModel.Season" Width="1.5" PointX="4.75" PointY="13.75" />
+        <EntityTypeShape EntityType="PFDBModel.Spell" Width="1.5" PointX="14.75" PointY="0.75" />
+        <EntityTypeShape EntityType="PFDBModel.SpellDetail" Width="1.5" PointX="16.75" PointY="0.75" />
+        <EntityTypeShape EntityType="PFDBModel.Territory" Width="1.5" PointX="2.75" PointY="16.75" />
+        <EntityTypeShape EntityType="PFDBModel.Weather" Width="1.5" PointX="16.75" PointY="3.75" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

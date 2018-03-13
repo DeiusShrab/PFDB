@@ -1,0 +1,1861 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="PFDBModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="Bestiary">
+          <Key>
+            <PropertyRef Name="BestiaryId" />
+          </Key>
+          <Property Name="BestiaryId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name" Type="varchar" MaxLength="50" />
+          <Property Name="CR" Type="int" />
+          <Property Name="XP" Type="int" />
+          <Property Name="Race" Type="varchar" MaxLength="50" />
+          <Property Name="Class" Type="varchar" MaxLength="50" />
+          <Property Name="Alignment" Type="varchar" MaxLength="50" />
+          <Property Name="Size" Type="varchar" MaxLength="20" />
+          <Property Name="Type" Type="varchar" MaxLength="100" />
+          <Property Name="SubType" Type="varchar" MaxLength="100" />
+          <Property Name="Init" Type="int" />
+          <Property Name="Senses" Type="varchar" MaxLength="200" />
+          <Property Name="Aura" Type="varchar" MaxLength="150" />
+          <Property Name="AC" Type="varchar" MaxLength="150" />
+          <Property Name="ACMods" Type="varchar" MaxLength="150" />
+          <Property Name="HP" Type="int" />
+          <Property Name="HD" Type="varchar" MaxLength="50" />
+          <Property Name="HPMods" Type="varchar" MaxLength="100" />
+          <Property Name="Fortitude" Type="int" />
+          <Property Name="Reflex" Type="int" />
+          <Property Name="Will" Type="int" />
+          <Property Name="SaveMods" Type="varchar" MaxLength="100" />
+          <Property Name="DefensiveAbilities" Type="varchar" MaxLength="100" />
+          <Property Name="DR" Type="varchar" MaxLength="100" />
+          <Property Name="Immune" Type="varchar" MaxLength="200" />
+          <Property Name="Resist" Type="varchar" MaxLength="150" />
+          <Property Name="SR" Type="int" />
+          <Property Name="Weaknesses" Type="varchar" MaxLength="100" />
+          <Property Name="Speed" Type="varchar" MaxLength="100" />
+          <Property Name="SpeedMod" Type="varchar" MaxLength="100" />
+          <Property Name="Melee" Type="varchar" MaxLength="500" />
+          <Property Name="Ranged" Type="varchar" MaxLength="250" />
+          <Property Name="Space" Type="varchar" MaxLength="50" />
+          <Property Name="Reach" Type="varchar" MaxLength="100" />
+          <Property Name="SpecialAttacks" Type="varchar" MaxLength="500" />
+          <Property Name="SpellLikeAbilities" Type="varchar(max)" />
+          <Property Name="SpellsKnown" Type="varchar(max)" />
+          <Property Name="SpellsPrepared" Type="varchar(max)" />
+          <Property Name="SpellDomains" Type="varchar" MaxLength="50" />
+          <Property Name="AbilityScores" Type="varchar" MaxLength="100" />
+          <Property Name="AbilityScoreMods" Type="varchar" MaxLength="50" />
+          <Property Name="BaseAtk" Type="int" />
+          <Property Name="CMB" Type="int" />
+          <Property Name="CMD" Type="int" />
+          <Property Name="Feats" Type="varchar(max)" />
+          <Property Name="Skills" Type="varchar(max)" />
+          <Property Name="RacialMods" Type="varchar" MaxLength="250" />
+          <Property Name="Languages" Type="varchar" MaxLength="250" />
+          <Property Name="SQ" Type="varchar" MaxLength="500" />
+          <Property Name="Environment" Type="varchar" MaxLength="150" />
+          <Property Name="Organization" Type="varchar" MaxLength="500" />
+          <Property Name="Treasure" Type="varchar(max)" />
+          <Property Name="DescriptionVisual" Type="varchar(max)" />
+          <Property Name="Group" Type="varchar" MaxLength="50" />
+          <Property Name="IsTemplate" Type="bit" />
+          <Property Name="SpecialAbilities" Type="varchar(max)" />
+          <Property Name="Gender" Type="varchar" MaxLength="25" />
+          <Property Name="Bloodline" Type="varchar" MaxLength="25" />
+          <Property Name="ProhibitedSchools" Type="varchar" MaxLength="50" />
+          <Property Name="BeforeCombat" Type="varchar" MaxLength="25" />
+          <Property Name="DuringCombat" Type="varchar" MaxLength="250" />
+          <Property Name="Morale" Type="varchar" MaxLength="150" />
+          <Property Name="Gear" Type="varchar" MaxLength="250" />
+          <Property Name="OtherGear" Type="varchar" MaxLength="200" />
+          <Property Name="Vulnerability" Type="varchar" MaxLength="25" />
+          <Property Name="Note" Type="varchar" MaxLength="100" />
+          <Property Name="CharacterFlag" Type="bit" />
+          <Property Name="CompanionFlag" Type="bit" />
+          <Property Name="Fly" Type="bit" />
+          <Property Name="Climb" Type="bit" />
+          <Property Name="Burrow" Type="bit" />
+          <Property Name="Swim" Type="bit" />
+          <Property Name="Land" Type="bit" />
+          <Property Name="TemplatesApplied" Type="varchar" MaxLength="50" />
+          <Property Name="OffenseNote" Type="varchar" MaxLength="100" />
+          <Property Name="BaseStatistics" Type="varchar" MaxLength="500" />
+          <Property Name="ExtractsPrepared" Type="varchar" MaxLength="250" />
+          <Property Name="AgeCategory" Type="varchar" MaxLength="25" />
+          <Property Name="DontUseRacialHD" Type="bit" />
+          <Property Name="VariantParent" Type="varchar" MaxLength="25" />
+          <Property Name="Mystery" Type="varchar" MaxLength="25" />
+          <Property Name="ClassArchetypes" Type="varchar" MaxLength="25" />
+          <Property Name="Patron" Type="varchar" MaxLength="25" />
+          <Property Name="CompanionFamiliarLink" Type="varchar" MaxLength="25" />
+          <Property Name="FocusedSchool" Type="varchar" MaxLength="25" />
+          <Property Name="Traits" Type="varchar" MaxLength="25" />
+          <Property Name="AlternateNameForm" Type="varchar" MaxLength="50" />
+          <Property Name="StatisticsNote" Type="varchar" MaxLength="100" />
+          <Property Name="LinkText" Type="varchar" MaxLength="50" />
+          <Property Name="UniqueMonster" Type="bit" />
+          <Property Name="MR" Type="int" />
+          <Property Name="Mythic" Type="bit" />
+          <Property Name="MT" Type="int" />
+          <Property Name="ACTouch" Type="int" />
+          <Property Name="ACFlat" Type="int" />
+          <Property Name="STR" Type="int" />
+          <Property Name="DEX" Type="int" />
+          <Property Name="CON" Type="int" />
+          <Property Name="WIS" Type="int" />
+          <Property Name="INT" Type="int" />
+          <Property Name="CHA" Type="int" />
+        </EntityType>
+        <EntityType Name="BestiaryDetail">
+          <Key>
+            <PropertyRef Name="BestiaryId" />
+          </Key>
+          <Property Name="BestiaryId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="MonsterSource" Type="varchar" MaxLength="100" />
+          <Property Name="Source" Type="varchar" MaxLength="50" />
+          <Property Name="Description" Type="varchar(max)" />
+          <Property Name="FullText" Type="varchar(max)" />
+        </EntityType>
+        <EntityType Name="BestiaryEnvironment">
+          <Key>
+            <PropertyRef Name="BestiaryId" />
+            <PropertyRef Name="EnvironmentId" />
+          </Key>
+          <Property Name="BestiaryId" Type="int" Nullable="false" />
+          <Property Name="EnvironmentId" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="BestiaryFeat">
+          <Key>
+            <PropertyRef Name="BestiaryId" />
+            <PropertyRef Name="FeatId" />
+          </Key>
+          <Property Name="BestiaryId" Type="int" Nullable="false" />
+          <Property Name="FeatId" Type="int" Nullable="false" />
+          <Property Name="Notes" Type="varchar" MaxLength="100" />
+        </EntityType>
+        <EntityType Name="BestiaryLanguage">
+          <Key>
+            <PropertyRef Name="BestiaryId" />
+            <PropertyRef Name="LanguageId" />
+          </Key>
+          <Property Name="BestiaryId" Type="int" Nullable="false" />
+          <Property Name="LanguageId" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="BestiarySkill">
+          <Key>
+            <PropertyRef Name="BestiaryId" />
+            <PropertyRef Name="SkillId" />
+          </Key>
+          <Property Name="BestiaryId" Type="int" Nullable="false" />
+          <Property Name="SkillId" Type="int" Nullable="false" />
+          <Property Name="Bonus" Type="int" Nullable="false" />
+          <Property Name="Notes" Type="varchar" MaxLength="100" />
+        </EntityType>
+        <EntityType Name="BestiarySubType">
+          <Key>
+            <PropertyRef Name="BestiaryId" />
+            <PropertyRef Name="BestiaryTypeId" />
+          </Key>
+          <Property Name="BestiaryId" Type="int" Nullable="false" />
+          <Property Name="BestiaryTypeId" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="BestiaryType">
+          <Key>
+            <PropertyRef Name="BestiaryTypeId" />
+          </Key>
+          <Property Name="BestiaryTypeId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name" Type="varchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Continent">
+          <Key>
+            <PropertyRef Name="ContinentId" />
+          </Key>
+          <Property Name="ContinentId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name" Type="varchar" MaxLength="50" />
+          <Property Name="IsUnderground" Type="bit" />
+          <Property Name="IsWater" Type="bit" />
+          <Property Name="PrimaryLanguage" Type="varchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="ContinentWeather">
+          <Key>
+            <PropertyRef Name="CWID" />
+          </Key>
+          <Property Name="CWID" Type="int" Nullable="false" />
+          <Property Name="ContinentId" Type="int" Nullable="false" />
+          <Property Name="WeatherId" Type="int" Nullable="false" />
+          <Property Name="SeasonId" Type="int" Nullable="false" />
+          <Property Name="ExtraWeight" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Environment">
+          <Key>
+            <PropertyRef Name="EnvironmentId" />
+          </Key>
+          <Property Name="EnvironmentId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="Temperature" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="Notes" Type="varchar" MaxLength="100" />
+          <Property Name="TravelSpeed" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Faction">
+          <Key>
+            <PropertyRef Name="FactionId" />
+          </Key>
+          <Property Name="FactionId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ContinentId" Type="int" />
+          <Property Name="Name" Type="varchar" MaxLength="100" />
+          <Property Name="Language" Type="varchar" MaxLength="100" />
+          <Property Name="Parent Faction" Type="int" />
+          <Property Name="Primary Race" Type="varchar" MaxLength="100" />
+          <Property Name="Type" Type="varchar" MaxLength="100" />
+        </EntityType>
+        <EntityType Name="Feat">
+          <Key>
+            <PropertyRef Name="FeatId" />
+          </Key>
+          <Property Name="FeatId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name" Type="varchar" MaxLength="50" />
+          <Property Name="Type_" Type="varchar" MaxLength="25" />
+          <Property Name="Description" Type="varchar" MaxLength="500" />
+          <Property Name="Prerequisites" Type="varchar(max)" />
+          <Property Name="PrerequisiteFeats" Type="varchar" MaxLength="200" />
+          <Property Name="Benefit" Type="varchar(max)" />
+          <Property Name="Normal" Type="varchar" MaxLength="500" />
+          <Property Name="Special" Type="varchar" MaxLength="750" />
+          <Property Name="Source" Type="varchar" MaxLength="50" />
+          <Property Name="Fulltext" Type="varchar(max)" />
+          <Property Name="Teamwork" Type="bit" />
+          <Property Name="Critical" Type="bit" />
+          <Property Name="Grit" Type="bit" />
+          <Property Name="Style" Type="bit" />
+          <Property Name="Performance" Type="bit" />
+          <Property Name="Racial" Type="bit" />
+          <Property Name="CompanionFamiliar" Type="bit" />
+          <Property Name="RaceName" Type="varchar" MaxLength="50" />
+          <Property Name="Note" Type="varchar" MaxLength="500" />
+          <Property Name="Goal" Type="varchar(max)" />
+          <Property Name="CompletionBenefit" Type="varchar(max)" />
+          <Property Name="Multiples" Type="bit" />
+          <Property Name="SuggestedTraits" Type="varchar" MaxLength="100" />
+          <Property Name="PrerequisiteSkills" Type="varchar" MaxLength="250" />
+          <Property Name="Panache" Type="bit" />
+          <Property Name="Betrayal" Type="bit" />
+          <Property Name="Targeting" Type="bit" />
+          <Property Name="Esoteric" Type="bit" />
+          <Property Name="Stare" Type="bit" />
+          <Property Name="WeaponMastery" Type="bit" />
+          <Property Name="ItemMastery" Type="bit" />
+          <Property Name="ArmorMastery" Type="bit" />
+          <Property Name="ShieldMastery" Type="bit" />
+          <Property Name="BloodHex" Type="bit" />
+        </EntityType>
+        <EntityType Name="Language">
+          <Key>
+            <PropertyRef Name="LanguageId" />
+          </Key>
+          <Property Name="LanguageId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="Notes" Type="varchar" MaxLength="100" />
+        </EntityType>
+        <EntityType Name="Location">
+          <Key>
+            <PropertyRef Name="Locationid" />
+          </Key>
+          <Property Name="Locationid" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ContinentId" Type="int" />
+          <Property Name="Name" Type="varchar" MaxLength="100" />
+          <Property Name="GridX" Type="int" Nullable="false" />
+          <Property Name="GridY" Type="int" Nullable="false" />
+          <Property Name="FactionId" Type="int" />
+          <Property Name="TerritoryId" Type="int" />
+        </EntityType>
+        <EntityType Name="MagicItem">
+          <Key>
+            <PropertyRef Name="MagicItemId" />
+          </Key>
+          <Property Name="MagicItemId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name" Type="varchar" MaxLength="100" />
+          <Property Name="Aura" Type="varchar" MaxLength="100" />
+          <Property Name="CL" Type="int" />
+          <Property Name="Slot" Type="varchar" MaxLength="50" />
+          <Property Name="Price" Type="varchar" MaxLength="50" />
+          <Property Name="Weight" Type="varchar" MaxLength="50" />
+          <Property Name="Description" Type="varchar(max)" />
+          <Property Name="Requirements" Type="varchar" MaxLength="500" />
+          <Property Name="Cost" Type="varchar" MaxLength="150" />
+          <Property Name="Group_" Type="varchar" MaxLength="25" />
+          <Property Name="Source" Type="varchar" MaxLength="50" />
+          <Property Name="AL" Type="varchar" MaxLength="50" />
+          <Property Name="Int" Type="int" />
+          <Property Name="Wis" Type="int" />
+          <Property Name="Cha" Type="int" />
+          <Property Name="Ego" Type="int" />
+          <Property Name="Communication" Type="varchar" MaxLength="50" />
+          <Property Name="Senses" Type="varchar" MaxLength="100" />
+          <Property Name="Powers" Type="varchar" MaxLength="250" />
+          <Property Name="MagicItems" Type="varchar" MaxLength="250" />
+          <Property Name="FullText" Type="varchar(max)" />
+          <Property Name="Destruction" Type="varchar(max)" />
+          <Property Name="MinorArtifact" Type="bit" />
+          <Property Name="MajorArtifact" Type="bit" />
+          <Property Name="Abjuration" Type="bit" />
+          <Property Name="Conjuration" Type="bit" />
+          <Property Name="Divination" Type="bit" />
+          <Property Name="Enchantment" Type="bit" />
+          <Property Name="Evocation" Type="bit" />
+          <Property Name="Necromancy" Type="bit" />
+          <Property Name="Transmutation" Type="bit" />
+          <Property Name="AuraStrength" Type="varchar" MaxLength="25" />
+          <Property Name="WeightValue" Type="float" />
+          <Property Name="PriceValue" Type="int" />
+          <Property Name="CostValue" Type="int" />
+          <Property Name="Languages" Type="varchar" MaxLength="50" />
+          <Property Name="BaseItem" Type="varchar" MaxLength="150" />
+          <Property Name="LinkText" Type="varchar" MaxLength="50" />
+          <Property Name="Mythic" Type="bit" />
+          <Property Name="LegendaryWeapon" Type="bit" />
+          <Property Name="Illusion" Type="bit" />
+          <Property Name="Universal" Type="bit" />
+          <Property Name="Scaling" Type="varchar" MaxLength="25" />
+        </EntityType>
+        <EntityType Name="MonsterSpawn">
+          <Key>
+            <PropertyRef Name="SpawnId" />
+          </Key>
+          <Property Name="SpawnId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Continent" Type="int" />
+          <Property Name="Season" Type="int" />
+          <Property Name="BestiaryId" Type="int" />
+        </EntityType>
+        <EntityType Name="Month">
+          <Key>
+            <PropertyRef Name="MonthId" />
+          </Key>
+          <Property Name="MonthId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name" Type="varchar" MaxLength="50" />
+          <Property Name="Season" Type="int" />
+          <Property Name="Days" Type="int" />
+        </EntityType>
+        <EntityType Name="NPC">
+          <Key>
+            <PropertyRef Name="NPCID" />
+          </Key>
+          <Property Name="NPCID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name" Type="varchar" MaxLength="100" />
+          <Property Name="CR" Type="int" />
+          <Property Name="XP" Type="int" />
+          <Property Name="Race" Type="varchar" MaxLength="100" />
+          <Property Name="Class_" Type="varchar" MaxLength="100" />
+          <Property Name="Alignment" Type="varchar" MaxLength="25" />
+          <Property Name="Size_" Type="varchar" MaxLength="25" />
+          <Property Name="Type_" Type="varchar" MaxLength="50" />
+          <Property Name="SubType_" Type="varchar" MaxLength="100" />
+          <Property Name="Init" Type="int" />
+          <Property Name="Senses" Type="varchar" MaxLength="150" />
+          <Property Name="Aura" Type="varchar" MaxLength="150" />
+          <Property Name="AC" Type="varchar" MaxLength="50" />
+          <Property Name="ACMods" Type="varchar" MaxLength="150" />
+          <Property Name="HP" Type="int" />
+          <Property Name="HD" Type="varchar" MaxLength="100" />
+          <Property Name="HPMods" Type="varchar" MaxLength="100" />
+          <Property Name="Saves" Type="varchar" MaxLength="200" />
+          <Property Name="Fort" Type="int" />
+          <Property Name="Ref_" Type="int" />
+          <Property Name="Will" Type="int" />
+          <Property Name="SaveMods" Type="varchar" MaxLength="150" />
+          <Property Name="DefensiveAbilities" Type="varchar" MaxLength="200" />
+          <Property Name="DR" Type="varchar" MaxLength="100" />
+          <Property Name="Immune" Type="varchar" MaxLength="250" />
+          <Property Name="Resist" Type="varchar" MaxLength="100" />
+          <Property Name="SR" Type="varchar" MaxLength="50" />
+          <Property Name="Weaknesses" Type="varchar" MaxLength="100" />
+          <Property Name="Speed" Type="varchar" MaxLength="100" />
+          <Property Name="SpeedMod" Type="varchar" MaxLength="100" />
+          <Property Name="Melee" Type="varchar" MaxLength="500" />
+          <Property Name="Ranged" Type="varchar" MaxLength="250" />
+          <Property Name="Space_" Type="varchar" MaxLength="25" />
+          <Property Name="Reach" Type="varchar" MaxLength="50" />
+          <Property Name="SpecialAttacks" Type="varchar" MaxLength="500" />
+          <Property Name="SpellLikeAbilities" Type="varchar" MaxLength="700" />
+          <Property Name="SpellsKnown" Type="varchar(max)" />
+          <Property Name="SpellsPrepared" Type="varchar(max)" />
+          <Property Name="SpellDomains" Type="varchar" MaxLength="100" />
+          <Property Name="AbilityScores" Type="varchar" MaxLength="100" />
+          <Property Name="AbilityScoreMods" Type="varchar" MaxLength="25" />
+          <Property Name="BaseAtk" Type="int" />
+          <Property Name="CMB" Type="int" />
+          <Property Name="CMD" Type="int" />
+          <Property Name="Feats" Type="varchar(max)" />
+          <Property Name="Skills" Type="varchar(max)" />
+          <Property Name="RacialMods" Type="varchar" MaxLength="200" />
+          <Property Name="Languages" Type="varchar" MaxLength="500" />
+          <Property Name="SQ" Type="varchar" MaxLength="500" />
+          <Property Name="Environment" Type="varchar" MaxLength="25" />
+          <Property Name="Treasure" Type="varchar" MaxLength="25" />
+          <Property Name="Organization" Type="varchar" MaxLength="25" />
+          <Property Name="DescriptionVisual" Type="varchar" MaxLength="150" />
+          <Property Name="Group_" Type="varchar" MaxLength="25" />
+          <Property Name="Source" Type="varchar" MaxLength="50" />
+          <Property Name="IsTemplate" Type="bit" />
+          <Property Name="SpecialAbilities" Type="varchar(max)" />
+          <Property Name="Gender" Type="varchar" MaxLength="25" />
+          <Property Name="Bloodline" Type="varchar" MaxLength="50" />
+          <Property Name="ProhibitedSchools" Type="varchar" MaxLength="50" />
+          <Property Name="BeforeCombat" Type="varchar(max)" />
+          <Property Name="DuringCombat" Type="varchar(max)" />
+          <Property Name="Morale" Type="varchar(max)" />
+          <Property Name="Gear" Type="varchar(max)" />
+          <Property Name="OtherGear" Type="varchar(max)" />
+          <Property Name="Vulnerability" Type="varchar" MaxLength="25" />
+          <Property Name="Note" Type="varchar" MaxLength="250" />
+          <Property Name="CharacterFlag" Type="bit" />
+          <Property Name="CompanionFlag" Type="bit" />
+          <Property Name="Fly" Type="bit" />
+          <Property Name="Climb" Type="bit" />
+          <Property Name="Burrow" Type="bit" />
+          <Property Name="Swim" Type="bit" />
+          <Property Name="Land" Type="bit" />
+          <Property Name="TemplatesApplied" Type="varchar" MaxLength="50" />
+          <Property Name="OffenseNote" Type="varchar" MaxLength="150" />
+          <Property Name="BaseStatistics" Type="varchar(max)" />
+          <Property Name="ExtractsPrepared" Type="varchar" MaxLength="500" />
+          <Property Name="AgeCategory" Type="varchar" MaxLength="25" />
+          <Property Name="Mystery" Type="varchar" MaxLength="100" />
+          <Property Name="ClassArchetypes" Type="varchar" MaxLength="100" />
+          <Property Name="Patron" Type="varchar" MaxLength="50" />
+          <Property Name="CompanionFamiliarLink" Type="varchar" MaxLength="25" />
+          <Property Name="FocusedSchool" Type="varchar" MaxLength="25" />
+          <Property Name="Traits" Type="varchar" MaxLength="100" />
+          <Property Name="AlternateNameForm" Type="varchar" MaxLength="50" />
+          <Property Name="LinkText" Type="varchar" MaxLength="50" />
+          <Property Name="UniqueMonster" Type="bit" />
+          <Property Name="ThassilonianSpecialization" Type="varchar" MaxLength="50" />
+          <Property Name="Variant" Type="bit" />
+          <Property Name="MR" Type="int" />
+          <Property Name="Mythic" Type="bit" />
+          <Property Name="MT" Type="int" />
+          <Property Name="Spirit" Type="varchar" MaxLength="25" />
+          <Property Name="PsychicMagic" Type="varchar" MaxLength="25" />
+          <Property Name="KineticistWildTalents" Type="varchar" MaxLength="500" />
+          <Property Name="Implements" Type="varchar(max)" />
+          <Property Name="PsychicDiscipline" Type="varchar" MaxLength="25" />
+        </EntityType>
+        <EntityType Name="NPCDetail">
+          <Key>
+            <PropertyRef Name="NPCID" />
+          </Key>
+          <Property Name="NPCID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="MonsterSource" Type="varchar" MaxLength="250" />
+          <Property Name="Description" Type="varchar(max)" />
+          <Property Name="FullText" Type="varchar(max)" />
+        </EntityType>
+        <EntityType Name="Season">
+          <Key>
+            <PropertyRef Name="SeasonId" />
+          </Key>
+          <Property Name="SeasonId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name" Type="varchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="Spell">
+          <Key>
+            <PropertyRef Name="SpellId" />
+          </Key>
+          <Property Name="SpellId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name" Type="varchar" MaxLength="50" />
+          <Property Name="School" Type="varchar" MaxLength="25" />
+          <Property Name="SubSchool" Type="varchar" MaxLength="25" />
+          <Property Name="Descriptor" Type="varchar" MaxLength="50" />
+          <Property Name="SpellLevel" Type="varchar" MaxLength="200" />
+          <Property Name="CastingTime" Type="varchar" MaxLength="50" />
+          <Property Name="Components" Type="varchar" MaxLength="200" />
+          <Property Name="CostlyComponents" Type="bit" />
+          <Property Name="Range" Type="varchar" MaxLength="100" />
+          <Property Name="Area" Type="varchar" MaxLength="100" />
+          <Property Name="Effect" Type="varchar" MaxLength="200" />
+          <Property Name="Targets" Type="varchar" MaxLength="200" />
+          <Property Name="Duration" Type="varchar" MaxLength="100" />
+          <Property Name="Dismissable" Type="bit" />
+          <Property Name="Shapeable" Type="bit" />
+          <Property Name="SavingThrow" Type="varchar" MaxLength="100" />
+          <Property Name="SpellResistance" Type="varchar" MaxLength="50" />
+          <Property Name="Source" Type="varchar" MaxLength="50" />
+          <Property Name="Verbal" Type="bit" />
+          <Property Name="Somatic" Type="bit" />
+          <Property Name="Material" Type="bit" />
+          <Property Name="Focus" Type="bit" />
+          <Property Name="DivineFocus" Type="bit" />
+          <Property Name="Sor" Type="int" />
+          <Property Name="Wiz" Type="int" />
+          <Property Name="Cleric" Type="int" />
+          <Property Name="Druid" Type="int" />
+          <Property Name="Ranger" Type="int" />
+          <Property Name="Bard" Type="int" />
+          <Property Name="Paladin" Type="int" />
+          <Property Name="Alchemist" Type="int" />
+          <Property Name="Summoner" Type="int" />
+          <Property Name="Witch" Type="int" />
+          <Property Name="Inquisitor" Type="int" />
+          <Property Name="Oracle" Type="int" />
+          <Property Name="Antipaladin" Type="int" />
+          <Property Name="Magus" Type="int" />
+          <Property Name="Adept" Type="int" />
+          <Property Name="Deity" Type="varchar" MaxLength="25" />
+          <Property Name="SLALevel" Type="int" />
+          <Property Name="Domain" Type="varchar" MaxLength="100" />
+          <Property Name="ShortDescription" Type="varchar" MaxLength="250" />
+          <Property Name="Acid" Type="bit" />
+          <Property Name="Air" Type="bit" />
+          <Property Name="Chaotic" Type="bit" />
+          <Property Name="Cold" Type="bit" />
+          <Property Name="Curse" Type="bit" />
+          <Property Name="Darkness" Type="bit" />
+          <Property Name="Death" Type="bit" />
+          <Property Name="Disease" Type="bit" />
+          <Property Name="Earth" Type="bit" />
+          <Property Name="Electricity" Type="bit" />
+          <Property Name="Emotion" Type="bit" />
+          <Property Name="Evil" Type="bit" />
+          <Property Name="Fear" Type="bit" />
+          <Property Name="Fire" Type="bit" />
+          <Property Name="Force" Type="bit" />
+          <Property Name="Good" Type="bit" />
+          <Property Name="LanguageDependent" Type="bit" />
+          <Property Name="Lawful" Type="bit" />
+          <Property Name="Light" Type="bit" />
+          <Property Name="MindAffecting" Type="bit" />
+          <Property Name="Pain" Type="bit" />
+          <Property Name="Poison" Type="bit" />
+          <Property Name="Shadow" Type="bit" />
+          <Property Name="Sonic" Type="bit" />
+          <Property Name="Water" Type="bit" />
+          <Property Name="LinkText" Type="varchar" MaxLength="50" />
+          <Property Name="MaterialCost" Type="int" />
+          <Property Name="Bloodline" Type="varchar" MaxLength="150" />
+          <Property Name="Patron" Type="varchar" MaxLength="100" />
+          <Property Name="MythicText" Type="varchar(max)" />
+          <Property Name="Augmented" Type="varchar" MaxLength="500" />
+          <Property Name="Mythic" Type="bit" />
+          <Property Name="BloodRager" Type="int" />
+          <Property Name="Shaman" Type="int" />
+          <Property Name="Psychic" Type="int" />
+          <Property Name="Medium" Type="int" />
+          <Property Name="Mesmerist" Type="int" />
+          <Property Name="Occultist" Type="int" />
+          <Property Name="Spiritualist" Type="int" />
+          <Property Name="Skald" Type="int" />
+          <Property Name="Investigator" Type="int" />
+          <Property Name="Hunter" Type="int" />
+          <Property Name="HauntStatistics" Type="varchar" MaxLength="250" />
+        </EntityType>
+        <EntityType Name="SpellDetail">
+          <Key>
+            <PropertyRef Name="SpellId" />
+          </Key>
+          <Property Name="SpellId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Description" Type="varchar(max)" />
+          <Property Name="DescriptionFormatted" Type="varchar(max)" />
+          <Property Name="FullText" Type="varchar(max)" />
+        </EntityType>
+        <EntityType Name="Territory">
+          <Key>
+            <PropertyRef Name="TerritoryId" />
+          </Key>
+          <Property Name="TerritoryId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ContinentId" Type="int" />
+          <Property Name="Factionid" Type="int" />
+          <Property Name="Name" Type="varchar" MaxLength="100" />
+        </EntityType>
+        <EntityType Name="Weather">
+          <Key>
+            <PropertyRef Name="WeatherId" />
+          </Key>
+          <Property Name="WeatherId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Description" Type="varchar" MaxLength="1000" />
+          <Property Name="Duration" Type="int" Nullable="false" />
+          <Property Name="NextWeather" Type="int" Nullable="false" />
+          <Property Name="Weight" Type="int" Nullable="false" />
+          <Property Name="HeatDanger" Type="bit" Nullable="false" />
+          <Property Name="HeatLethal" Type="bit" Nullable="false" />
+          <Property Name="ColdDanger" Type="bit" Nullable="false" />
+          <Property Name="ColdLethal" Type="bit" Nullable="false" />
+          <Property Name="HighWind" Type="bit" Nullable="false" />
+          <Property Name="VisionObscured" Type="bit" Nullable="false" />
+          <Property Name="Effects" Type="varchar" MaxLength="1000" />
+          <Property Name="Name" Type="varchar" MaxLength="100" Nullable="false" />
+        </EntityType>
+        <EntityContainer Name="PFDBModelStoreContainer">
+          <EntitySet Name="Bestiary" EntityType="Self.Bestiary" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="BestiaryDetail" EntityType="Self.BestiaryDetail" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="BestiaryEnvironment" EntityType="Self.BestiaryEnvironment" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="BestiaryFeat" EntityType="Self.BestiaryFeat" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="BestiaryLanguage" EntityType="Self.BestiaryLanguage" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="BestiarySkill" EntityType="Self.BestiarySkill" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="BestiarySubType" EntityType="Self.BestiarySubType" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="BestiaryType" EntityType="Self.BestiaryType" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Continent" EntityType="Self.Continent" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="ContinentWeather" EntityType="Self.ContinentWeather" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Environment" EntityType="Self.Environment" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Faction" EntityType="Self.Faction" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Feat" EntityType="Self.Feat" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Language" EntityType="Self.Language" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Location" EntityType="Self.Location" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="MagicItem" EntityType="Self.MagicItem" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="MonsterSpawn" EntityType="Self.MonsterSpawn" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Month" EntityType="Self.Month" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="NPC" EntityType="Self.NPC" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="NPCDetail" EntityType="Self.NPCDetail" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Season" EntityType="Self.Season" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Spell" EntityType="Self.Spell" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="SpellDetail" EntityType="Self.SpellDetail" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Territory" EntityType="Self.Territory" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Weather" EntityType="Self.Weather" Schema="dbo" store:Type="Tables" />
+        </EntityContainer>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="PFDBModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityContainer Name="PFDBEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Bestiaries" EntityType="PFDBModel.Bestiary" />
+          <EntitySet Name="BestiaryDetails" EntityType="PFDBModel.BestiaryDetail" />
+          <EntitySet Name="BestiaryEnvironments" EntityType="PFDBModel.BestiaryEnvironment" />
+          <EntitySet Name="BestiaryFeats" EntityType="PFDBModel.BestiaryFeat" />
+          <EntitySet Name="BestiaryLanguages" EntityType="PFDBModel.BestiaryLanguage" />
+          <EntitySet Name="BestiarySkills" EntityType="PFDBModel.BestiarySkill" />
+          <EntitySet Name="BestiarySubTypes" EntityType="PFDBModel.BestiarySubType" />
+          <EntitySet Name="BestiaryTypes" EntityType="PFDBModel.BestiaryType" />
+          <EntitySet Name="Continents" EntityType="PFDBModel.Continent" />
+          <EntitySet Name="ContinentWeathers" EntityType="PFDBModel.ContinentWeather" />
+          <EntitySet Name="Environments" EntityType="PFDBModel.Environment" />
+          <EntitySet Name="Factions" EntityType="PFDBModel.Faction" />
+          <EntitySet Name="Feats" EntityType="PFDBModel.Feat" />
+          <EntitySet Name="Languages" EntityType="PFDBModel.Language" />
+          <EntitySet Name="Locations" EntityType="PFDBModel.Location" />
+          <EntitySet Name="MagicItems" EntityType="PFDBModel.MagicItem" />
+          <EntitySet Name="MonsterSpawns" EntityType="PFDBModel.MonsterSpawn" />
+          <EntitySet Name="Months" EntityType="PFDBModel.Month" />
+          <EntitySet Name="NPCs" EntityType="PFDBModel.NPC" />
+          <EntitySet Name="NPCDetails" EntityType="PFDBModel.NPCDetail" />
+          <EntitySet Name="Seasons" EntityType="PFDBModel.Season" />
+          <EntitySet Name="Spells" EntityType="PFDBModel.Spell" />
+          <EntitySet Name="SpellDetails" EntityType="PFDBModel.SpellDetail" />
+          <EntitySet Name="Territories" EntityType="PFDBModel.Territory" />
+          <EntitySet Name="Weathers" EntityType="PFDBModel.Weather" />
+        </EntityContainer>
+        <EntityType Name="Bestiary">
+          <Key>
+            <PropertyRef Name="BestiaryId" />
+          </Key>
+          <Property Name="BestiaryId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="CR" Type="Int32" />
+          <Property Name="XP" Type="Int32" />
+          <Property Name="Race" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Class" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Alignment" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Size" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="Type" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="SubType" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="Init" Type="Int32" />
+          <Property Name="Senses" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+          <Property Name="Aura" Type="String" MaxLength="150" FixedLength="false" Unicode="false" />
+          <Property Name="AC" Type="String" MaxLength="150" FixedLength="false" Unicode="false" />
+          <Property Name="ACMods" Type="String" MaxLength="150" FixedLength="false" Unicode="false" />
+          <Property Name="HP" Type="Int32" />
+          <Property Name="HD" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="HPMods" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="Fortitude" Type="Int32" />
+          <Property Name="Reflex" Type="Int32" />
+          <Property Name="Will" Type="Int32" />
+          <Property Name="SaveMods" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="DefensiveAbilities" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="DR" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="Immune" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+          <Property Name="Resist" Type="String" MaxLength="150" FixedLength="false" Unicode="false" />
+          <Property Name="SR" Type="Int32" />
+          <Property Name="Weaknesses" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="Speed" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="SpeedMod" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="Melee" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
+          <Property Name="Ranged" Type="String" MaxLength="250" FixedLength="false" Unicode="false" />
+          <Property Name="Space" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Reach" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="SpecialAttacks" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
+          <Property Name="SpellLikeAbilities" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="SpellsKnown" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="SpellsPrepared" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="SpellDomains" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="AbilityScores" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="AbilityScoreMods" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="BaseAtk" Type="Int32" />
+          <Property Name="CMB" Type="Int32" />
+          <Property Name="CMD" Type="Int32" />
+          <Property Name="Feats" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="Skills" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="RacialMods" Type="String" MaxLength="250" FixedLength="false" Unicode="false" />
+          <Property Name="Languages" Type="String" MaxLength="250" FixedLength="false" Unicode="false" />
+          <Property Name="SQ" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
+          <Property Name="Environment" Type="String" MaxLength="150" FixedLength="false" Unicode="false" />
+          <Property Name="Organization" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
+          <Property Name="Treasure" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="DescriptionVisual" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="Group" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="IsTemplate" Type="Boolean" />
+          <Property Name="SpecialAbilities" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="Gender" Type="String" MaxLength="25" FixedLength="false" Unicode="false" />
+          <Property Name="Bloodline" Type="String" MaxLength="25" FixedLength="false" Unicode="false" />
+          <Property Name="ProhibitedSchools" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="BeforeCombat" Type="String" MaxLength="25" FixedLength="false" Unicode="false" />
+          <Property Name="DuringCombat" Type="String" MaxLength="250" FixedLength="false" Unicode="false" />
+          <Property Name="Morale" Type="String" MaxLength="150" FixedLength="false" Unicode="false" />
+          <Property Name="Gear" Type="String" MaxLength="250" FixedLength="false" Unicode="false" />
+          <Property Name="OtherGear" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+          <Property Name="Vulnerability" Type="String" MaxLength="25" FixedLength="false" Unicode="false" />
+          <Property Name="Note" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="CharacterFlag" Type="Boolean" />
+          <Property Name="CompanionFlag" Type="Boolean" />
+          <Property Name="Fly" Type="Boolean" />
+          <Property Name="Climb" Type="Boolean" />
+          <Property Name="Burrow" Type="Boolean" />
+          <Property Name="Swim" Type="Boolean" />
+          <Property Name="Land" Type="Boolean" />
+          <Property Name="TemplatesApplied" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="OffenseNote" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="BaseStatistics" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
+          <Property Name="ExtractsPrepared" Type="String" MaxLength="250" FixedLength="false" Unicode="false" />
+          <Property Name="AgeCategory" Type="String" MaxLength="25" FixedLength="false" Unicode="false" />
+          <Property Name="DontUseRacialHD" Type="Boolean" />
+          <Property Name="VariantParent" Type="String" MaxLength="25" FixedLength="false" Unicode="false" />
+          <Property Name="Mystery" Type="String" MaxLength="25" FixedLength="false" Unicode="false" />
+          <Property Name="ClassArchetypes" Type="String" MaxLength="25" FixedLength="false" Unicode="false" />
+          <Property Name="Patron" Type="String" MaxLength="25" FixedLength="false" Unicode="false" />
+          <Property Name="CompanionFamiliarLink" Type="String" MaxLength="25" FixedLength="false" Unicode="false" />
+          <Property Name="FocusedSchool" Type="String" MaxLength="25" FixedLength="false" Unicode="false" />
+          <Property Name="Traits" Type="String" MaxLength="25" FixedLength="false" Unicode="false" />
+          <Property Name="AlternateNameForm" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="StatisticsNote" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="LinkText" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="UniqueMonster" Type="Boolean" />
+          <Property Name="MR" Type="Int32" />
+          <Property Name="Mythic" Type="Boolean" />
+          <Property Name="MT" Type="Int32" />
+          <Property Name="ACTouch" Type="Int32" />
+          <Property Name="ACFlat" Type="Int32" />
+          <Property Name="STR" Type="Int32" />
+          <Property Name="DEX" Type="Int32" />
+          <Property Name="CON" Type="Int32" />
+          <Property Name="WIS" Type="Int32" />
+          <Property Name="INT" Type="Int32" />
+          <Property Name="CHA" Type="Int32" />
+        </EntityType>
+        <EntityType Name="BestiaryDetail">
+          <Key>
+            <PropertyRef Name="BestiaryId" />
+          </Key>
+          <Property Name="BestiaryId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="MonsterSource" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="Source" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Description" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="FullText" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="BestiaryEnvironment">
+          <Key>
+            <PropertyRef Name="BestiaryId" />
+            <PropertyRef Name="EnvironmentId" />
+          </Key>
+          <Property Name="BestiaryId" Type="Int32" Nullable="false" />
+          <Property Name="EnvironmentId" Type="Int32" Nullable="false" />
+        </EntityType>
+        <EntityType Name="BestiaryFeat">
+          <Key>
+            <PropertyRef Name="BestiaryId" />
+            <PropertyRef Name="FeatId" />
+          </Key>
+          <Property Name="BestiaryId" Type="Int32" Nullable="false" />
+          <Property Name="FeatId" Type="Int32" Nullable="false" />
+          <Property Name="Notes" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="BestiaryLanguage">
+          <Key>
+            <PropertyRef Name="BestiaryId" />
+            <PropertyRef Name="LanguageId" />
+          </Key>
+          <Property Name="BestiaryId" Type="Int32" Nullable="false" />
+          <Property Name="LanguageId" Type="Int32" Nullable="false" />
+        </EntityType>
+        <EntityType Name="BestiarySkill">
+          <Key>
+            <PropertyRef Name="BestiaryId" />
+            <PropertyRef Name="SkillId" />
+          </Key>
+          <Property Name="BestiaryId" Type="Int32" Nullable="false" />
+          <Property Name="SkillId" Type="Int32" Nullable="false" />
+          <Property Name="Bonus" Type="Int32" Nullable="false" />
+          <Property Name="Notes" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="BestiarySubType">
+          <Key>
+            <PropertyRef Name="BestiaryId" />
+            <PropertyRef Name="BestiaryTypeId" />
+          </Key>
+          <Property Name="BestiaryId" Type="Int32" Nullable="false" />
+          <Property Name="BestiaryTypeId" Type="Int32" Nullable="false" />
+        </EntityType>
+        <EntityType Name="BestiaryType">
+          <Key>
+            <PropertyRef Name="BestiaryTypeId" />
+          </Key>
+          <Property Name="BestiaryTypeId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="Continent">
+          <Key>
+            <PropertyRef Name="ContinentId" />
+          </Key>
+          <Property Name="ContinentId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="IsUnderground" Type="Boolean" />
+          <Property Name="IsWater" Type="Boolean" />
+          <Property Name="PrimaryLanguage" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="ContinentWeather">
+          <Key>
+            <PropertyRef Name="CWID" />
+          </Key>
+          <Property Name="CWID" Type="Int32" Nullable="false" />
+          <Property Name="ContinentId" Type="Int32" Nullable="false" />
+          <Property Name="WeatherId" Type="Int32" Nullable="false" />
+          <Property Name="SeasonId" Type="Int32" Nullable="false" />
+          <Property Name="ExtraWeight" Type="Int32" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Environment">
+          <Key>
+            <PropertyRef Name="EnvironmentId" />
+          </Key>
+          <Property Name="EnvironmentId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Temperature" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Notes" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="TravelSpeed" Type="Int32" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Faction">
+          <Key>
+            <PropertyRef Name="FactionId" />
+          </Key>
+          <Property Name="FactionId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ContinentId" Type="Int32" />
+          <Property Name="Name" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="Language" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="Parent_Faction" Type="Int32" />
+          <Property Name="Primary_Race" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="Type" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="Feat">
+          <Key>
+            <PropertyRef Name="FeatId" />
+          </Key>
+          <Property Name="FeatId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Type_" Type="String" MaxLength="25" FixedLength="false" Unicode="false" />
+          <Property Name="Description" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
+          <Property Name="Prerequisites" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="PrerequisiteFeats" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+          <Property Name="Benefit" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="Normal" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
+          <Property Name="Special" Type="String" MaxLength="750" FixedLength="false" Unicode="false" />
+          <Property Name="Source" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Fulltext" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="Teamwork" Type="Boolean" />
+          <Property Name="Critical" Type="Boolean" />
+          <Property Name="Grit" Type="Boolean" />
+          <Property Name="Style" Type="Boolean" />
+          <Property Name="Performance" Type="Boolean" />
+          <Property Name="Racial" Type="Boolean" />
+          <Property Name="CompanionFamiliar" Type="Boolean" />
+          <Property Name="RaceName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Note" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
+          <Property Name="Goal" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="CompletionBenefit" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="Multiples" Type="Boolean" />
+          <Property Name="SuggestedTraits" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="PrerequisiteSkills" Type="String" MaxLength="250" FixedLength="false" Unicode="false" />
+          <Property Name="Panache" Type="Boolean" />
+          <Property Name="Betrayal" Type="Boolean" />
+          <Property Name="Targeting" Type="Boolean" />
+          <Property Name="Esoteric" Type="Boolean" />
+          <Property Name="Stare" Type="Boolean" />
+          <Property Name="WeaponMastery" Type="Boolean" />
+          <Property Name="ItemMastery" Type="Boolean" />
+          <Property Name="ArmorMastery" Type="Boolean" />
+          <Property Name="ShieldMastery" Type="Boolean" />
+          <Property Name="BloodHex" Type="Boolean" />
+        </EntityType>
+        <EntityType Name="Language">
+          <Key>
+            <PropertyRef Name="LanguageId" />
+          </Key>
+          <Property Name="LanguageId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Notes" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="Location">
+          <Key>
+            <PropertyRef Name="Locationid" />
+          </Key>
+          <Property Name="Locationid" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ContinentId" Type="Int32" />
+          <Property Name="Name" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="GridX" Type="Int32" Nullable="false" />
+          <Property Name="GridY" Type="Int32" Nullable="false" />
+          <Property Name="FactionId" Type="Int32" />
+          <Property Name="TerritoryId" Type="Int32" />
+        </EntityType>
+        <EntityType Name="MagicItem">
+          <Key>
+            <PropertyRef Name="MagicItemId" />
+          </Key>
+          <Property Name="MagicItemId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="Aura" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="CL" Type="Int32" />
+          <Property Name="Slot" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Price" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Weight" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Description" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="Requirements" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
+          <Property Name="Cost" Type="String" MaxLength="150" FixedLength="false" Unicode="false" />
+          <Property Name="Group_" Type="String" MaxLength="25" FixedLength="false" Unicode="false" />
+          <Property Name="Source" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="AL" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Int" Type="Int32" />
+          <Property Name="Wis" Type="Int32" />
+          <Property Name="Cha" Type="Int32" />
+          <Property Name="Ego" Type="Int32" />
+          <Property Name="Communication" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Senses" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="Powers" Type="String" MaxLength="250" FixedLength="false" Unicode="false" />
+          <Property Name="MagicItems" Type="String" MaxLength="250" FixedLength="false" Unicode="false" />
+          <Property Name="FullText" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="Destruction" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="MinorArtifact" Type="Boolean" />
+          <Property Name="MajorArtifact" Type="Boolean" />
+          <Property Name="Abjuration" Type="Boolean" />
+          <Property Name="Conjuration" Type="Boolean" />
+          <Property Name="Divination" Type="Boolean" />
+          <Property Name="Enchantment" Type="Boolean" />
+          <Property Name="Evocation" Type="Boolean" />
+          <Property Name="Necromancy" Type="Boolean" />
+          <Property Name="Transmutation" Type="Boolean" />
+          <Property Name="AuraStrength" Type="String" MaxLength="25" FixedLength="false" Unicode="false" />
+          <Property Name="WeightValue" Type="Double" />
+          <Property Name="PriceValue" Type="Int32" />
+          <Property Name="CostValue" Type="Int32" />
+          <Property Name="Languages" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="BaseItem" Type="String" MaxLength="150" FixedLength="false" Unicode="false" />
+          <Property Name="LinkText" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Mythic" Type="Boolean" />
+          <Property Name="LegendaryWeapon" Type="Boolean" />
+          <Property Name="Illusion" Type="Boolean" />
+          <Property Name="Universal" Type="Boolean" />
+          <Property Name="Scaling" Type="String" MaxLength="25" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="MonsterSpawn">
+          <Key>
+            <PropertyRef Name="SpawnId" />
+          </Key>
+          <Property Name="SpawnId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Continent" Type="Int32" />
+          <Property Name="Season" Type="Int32" />
+          <Property Name="BestiaryId" Type="Int32" />
+        </EntityType>
+        <EntityType Name="Month">
+          <Key>
+            <PropertyRef Name="MonthId" />
+          </Key>
+          <Property Name="MonthId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Season" Type="Int32" />
+          <Property Name="Days" Type="Int32" />
+        </EntityType>
+        <EntityType Name="NPC">
+          <Key>
+            <PropertyRef Name="NPCID" />
+          </Key>
+          <Property Name="NPCID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="CR" Type="Int32" />
+          <Property Name="XP" Type="Int32" />
+          <Property Name="Race" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="Class_" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="Alignment" Type="String" MaxLength="25" FixedLength="false" Unicode="false" />
+          <Property Name="Size_" Type="String" MaxLength="25" FixedLength="false" Unicode="false" />
+          <Property Name="Type_" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="SubType_" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="Init" Type="Int32" />
+          <Property Name="Senses" Type="String" MaxLength="150" FixedLength="false" Unicode="false" />
+          <Property Name="Aura" Type="String" MaxLength="150" FixedLength="false" Unicode="false" />
+          <Property Name="AC" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="ACMods" Type="String" MaxLength="150" FixedLength="false" Unicode="false" />
+          <Property Name="HP" Type="Int32" />
+          <Property Name="HD" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="HPMods" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="Saves" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+          <Property Name="Fort" Type="Int32" />
+          <Property Name="Ref_" Type="Int32" />
+          <Property Name="Will" Type="Int32" />
+          <Property Name="SaveMods" Type="String" MaxLength="150" FixedLength="false" Unicode="false" />
+          <Property Name="DefensiveAbilities" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+          <Property Name="DR" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="Immune" Type="String" MaxLength="250" FixedLength="false" Unicode="false" />
+          <Property Name="Resist" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="SR" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Weaknesses" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="Speed" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="SpeedMod" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="Melee" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
+          <Property Name="Ranged" Type="String" MaxLength="250" FixedLength="false" Unicode="false" />
+          <Property Name="Space_" Type="String" MaxLength="25" FixedLength="false" Unicode="false" />
+          <Property Name="Reach" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="SpecialAttacks" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
+          <Property Name="SpellLikeAbilities" Type="String" MaxLength="700" FixedLength="false" Unicode="false" />
+          <Property Name="SpellsKnown" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="SpellsPrepared" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="SpellDomains" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="AbilityScores" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="AbilityScoreMods" Type="String" MaxLength="25" FixedLength="false" Unicode="false" />
+          <Property Name="BaseAtk" Type="Int32" />
+          <Property Name="CMB" Type="Int32" />
+          <Property Name="CMD" Type="Int32" />
+          <Property Name="Feats" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="Skills" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="RacialMods" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+          <Property Name="Languages" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
+          <Property Name="SQ" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
+          <Property Name="Environment" Type="String" MaxLength="25" FixedLength="false" Unicode="false" />
+          <Property Name="Treasure" Type="String" MaxLength="25" FixedLength="false" Unicode="false" />
+          <Property Name="Organization" Type="String" MaxLength="25" FixedLength="false" Unicode="false" />
+          <Property Name="DescriptionVisual" Type="String" MaxLength="150" FixedLength="false" Unicode="false" />
+          <Property Name="Group_" Type="String" MaxLength="25" FixedLength="false" Unicode="false" />
+          <Property Name="Source" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="IsTemplate" Type="Boolean" />
+          <Property Name="SpecialAbilities" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="Gender" Type="String" MaxLength="25" FixedLength="false" Unicode="false" />
+          <Property Name="Bloodline" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="ProhibitedSchools" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="BeforeCombat" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="DuringCombat" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="Morale" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="Gear" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="OtherGear" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="Vulnerability" Type="String" MaxLength="25" FixedLength="false" Unicode="false" />
+          <Property Name="Note" Type="String" MaxLength="250" FixedLength="false" Unicode="false" />
+          <Property Name="CharacterFlag" Type="Boolean" />
+          <Property Name="CompanionFlag" Type="Boolean" />
+          <Property Name="Fly" Type="Boolean" />
+          <Property Name="Climb" Type="Boolean" />
+          <Property Name="Burrow" Type="Boolean" />
+          <Property Name="Swim" Type="Boolean" />
+          <Property Name="Land" Type="Boolean" />
+          <Property Name="TemplatesApplied" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="OffenseNote" Type="String" MaxLength="150" FixedLength="false" Unicode="false" />
+          <Property Name="BaseStatistics" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="ExtractsPrepared" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
+          <Property Name="AgeCategory" Type="String" MaxLength="25" FixedLength="false" Unicode="false" />
+          <Property Name="Mystery" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="ClassArchetypes" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="Patron" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="CompanionFamiliarLink" Type="String" MaxLength="25" FixedLength="false" Unicode="false" />
+          <Property Name="FocusedSchool" Type="String" MaxLength="25" FixedLength="false" Unicode="false" />
+          <Property Name="Traits" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="AlternateNameForm" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="LinkText" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="UniqueMonster" Type="Boolean" />
+          <Property Name="ThassilonianSpecialization" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Variant" Type="Boolean" />
+          <Property Name="MR" Type="Int32" />
+          <Property Name="Mythic" Type="Boolean" />
+          <Property Name="MT" Type="Int32" />
+          <Property Name="Spirit" Type="String" MaxLength="25" FixedLength="false" Unicode="false" />
+          <Property Name="PsychicMagic" Type="String" MaxLength="25" FixedLength="false" Unicode="false" />
+          <Property Name="KineticistWildTalents" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
+          <Property Name="Implements" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="PsychicDiscipline" Type="String" MaxLength="25" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="NPCDetail">
+          <Key>
+            <PropertyRef Name="NPCID" />
+          </Key>
+          <Property Name="NPCID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="MonsterSource" Type="String" MaxLength="250" FixedLength="false" Unicode="false" />
+          <Property Name="Description" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="FullText" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="Season">
+          <Key>
+            <PropertyRef Name="SeasonId" />
+          </Key>
+          <Property Name="SeasonId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="Spell">
+          <Key>
+            <PropertyRef Name="SpellId" />
+          </Key>
+          <Property Name="SpellId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="School" Type="String" MaxLength="25" FixedLength="false" Unicode="false" />
+          <Property Name="SubSchool" Type="String" MaxLength="25" FixedLength="false" Unicode="false" />
+          <Property Name="Descriptor" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="SpellLevel" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+          <Property Name="CastingTime" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Components" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+          <Property Name="CostlyComponents" Type="Boolean" />
+          <Property Name="Range" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="Area" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="Effect" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+          <Property Name="Targets" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+          <Property Name="Duration" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="Dismissable" Type="Boolean" />
+          <Property Name="Shapeable" Type="Boolean" />
+          <Property Name="SavingThrow" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="SpellResistance" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Source" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Verbal" Type="Boolean" />
+          <Property Name="Somatic" Type="Boolean" />
+          <Property Name="Material" Type="Boolean" />
+          <Property Name="Focus" Type="Boolean" />
+          <Property Name="DivineFocus" Type="Boolean" />
+          <Property Name="Sor" Type="Int32" />
+          <Property Name="Wiz" Type="Int32" />
+          <Property Name="Cleric" Type="Int32" />
+          <Property Name="Druid" Type="Int32" />
+          <Property Name="Ranger" Type="Int32" />
+          <Property Name="Bard" Type="Int32" />
+          <Property Name="Paladin" Type="Int32" />
+          <Property Name="Alchemist" Type="Int32" />
+          <Property Name="Summoner" Type="Int32" />
+          <Property Name="Witch" Type="Int32" />
+          <Property Name="Inquisitor" Type="Int32" />
+          <Property Name="Oracle" Type="Int32" />
+          <Property Name="Antipaladin" Type="Int32" />
+          <Property Name="Magus" Type="Int32" />
+          <Property Name="Adept" Type="Int32" />
+          <Property Name="Deity" Type="String" MaxLength="25" FixedLength="false" Unicode="false" />
+          <Property Name="SLALevel" Type="Int32" />
+          <Property Name="Domain" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="ShortDescription" Type="String" MaxLength="250" FixedLength="false" Unicode="false" />
+          <Property Name="Acid" Type="Boolean" />
+          <Property Name="Air" Type="Boolean" />
+          <Property Name="Chaotic" Type="Boolean" />
+          <Property Name="Cold" Type="Boolean" />
+          <Property Name="Curse" Type="Boolean" />
+          <Property Name="Darkness" Type="Boolean" />
+          <Property Name="Death" Type="Boolean" />
+          <Property Name="Disease" Type="Boolean" />
+          <Property Name="Earth" Type="Boolean" />
+          <Property Name="Electricity" Type="Boolean" />
+          <Property Name="Emotion" Type="Boolean" />
+          <Property Name="Evil" Type="Boolean" />
+          <Property Name="Fear" Type="Boolean" />
+          <Property Name="Fire" Type="Boolean" />
+          <Property Name="Force" Type="Boolean" />
+          <Property Name="Good" Type="Boolean" />
+          <Property Name="LanguageDependent" Type="Boolean" />
+          <Property Name="Lawful" Type="Boolean" />
+          <Property Name="Light" Type="Boolean" />
+          <Property Name="MindAffecting" Type="Boolean" />
+          <Property Name="Pain" Type="Boolean" />
+          <Property Name="Poison" Type="Boolean" />
+          <Property Name="Shadow" Type="Boolean" />
+          <Property Name="Sonic" Type="Boolean" />
+          <Property Name="Water" Type="Boolean" />
+          <Property Name="LinkText" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="MaterialCost" Type="Int32" />
+          <Property Name="Bloodline" Type="String" MaxLength="150" FixedLength="false" Unicode="false" />
+          <Property Name="Patron" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="MythicText" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="Augmented" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
+          <Property Name="Mythic" Type="Boolean" />
+          <Property Name="BloodRager" Type="Int32" />
+          <Property Name="Shaman" Type="Int32" />
+          <Property Name="Psychic" Type="Int32" />
+          <Property Name="Medium" Type="Int32" />
+          <Property Name="Mesmerist" Type="Int32" />
+          <Property Name="Occultist" Type="Int32" />
+          <Property Name="Spiritualist" Type="Int32" />
+          <Property Name="Skald" Type="Int32" />
+          <Property Name="Investigator" Type="Int32" />
+          <Property Name="Hunter" Type="Int32" />
+          <Property Name="HauntStatistics" Type="String" MaxLength="250" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="SpellDetail">
+          <Key>
+            <PropertyRef Name="SpellId" />
+          </Key>
+          <Property Name="SpellId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Description" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="DescriptionFormatted" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="FullText" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="Territory">
+          <Key>
+            <PropertyRef Name="TerritoryId" />
+          </Key>
+          <Property Name="TerritoryId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ContinentId" Type="Int32" />
+          <Property Name="Factionid" Type="Int32" />
+          <Property Name="Name" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="Weather">
+          <Key>
+            <PropertyRef Name="WeatherId" />
+          </Key>
+          <Property Name="WeatherId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Description" Type="String" MaxLength="1000" FixedLength="false" Unicode="false" />
+          <Property Name="Duration" Type="Int32" Nullable="false" />
+          <Property Name="NextWeather" Type="Int32" Nullable="false" />
+          <Property Name="Weight" Type="Int32" Nullable="false" />
+          <Property Name="HeatDanger" Type="Boolean" Nullable="false" />
+          <Property Name="HeatLethal" Type="Boolean" Nullable="false" />
+          <Property Name="ColdDanger" Type="Boolean" Nullable="false" />
+          <Property Name="ColdLethal" Type="Boolean" Nullable="false" />
+          <Property Name="HighWind" Type="Boolean" Nullable="false" />
+          <Property Name="VisionObscured" Type="Boolean" Nullable="false" />
+          <Property Name="Effects" Type="String" MaxLength="1000" FixedLength="false" Unicode="false" />
+          <Property Name="Name" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
+        </EntityType>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="PFDBModelStoreContainer" CdmEntityContainer="PFDBEntities">
+          <EntitySetMapping Name="Bestiaries">
+            <EntityTypeMapping TypeName="PFDBModel.Bestiary">
+              <MappingFragment StoreEntitySet="Bestiary">
+                <ScalarProperty Name="CHA" ColumnName="CHA" />
+                <ScalarProperty Name="INT" ColumnName="INT" />
+                <ScalarProperty Name="WIS" ColumnName="WIS" />
+                <ScalarProperty Name="CON" ColumnName="CON" />
+                <ScalarProperty Name="DEX" ColumnName="DEX" />
+                <ScalarProperty Name="STR" ColumnName="STR" />
+                <ScalarProperty Name="ACFlat" ColumnName="ACFlat" />
+                <ScalarProperty Name="ACTouch" ColumnName="ACTouch" />
+                <ScalarProperty Name="MT" ColumnName="MT" />
+                <ScalarProperty Name="Mythic" ColumnName="Mythic" />
+                <ScalarProperty Name="MR" ColumnName="MR" />
+                <ScalarProperty Name="UniqueMonster" ColumnName="UniqueMonster" />
+                <ScalarProperty Name="LinkText" ColumnName="LinkText" />
+                <ScalarProperty Name="StatisticsNote" ColumnName="StatisticsNote" />
+                <ScalarProperty Name="AlternateNameForm" ColumnName="AlternateNameForm" />
+                <ScalarProperty Name="Traits" ColumnName="Traits" />
+                <ScalarProperty Name="FocusedSchool" ColumnName="FocusedSchool" />
+                <ScalarProperty Name="CompanionFamiliarLink" ColumnName="CompanionFamiliarLink" />
+                <ScalarProperty Name="Patron" ColumnName="Patron" />
+                <ScalarProperty Name="ClassArchetypes" ColumnName="ClassArchetypes" />
+                <ScalarProperty Name="Mystery" ColumnName="Mystery" />
+                <ScalarProperty Name="VariantParent" ColumnName="VariantParent" />
+                <ScalarProperty Name="DontUseRacialHD" ColumnName="DontUseRacialHD" />
+                <ScalarProperty Name="AgeCategory" ColumnName="AgeCategory" />
+                <ScalarProperty Name="ExtractsPrepared" ColumnName="ExtractsPrepared" />
+                <ScalarProperty Name="BaseStatistics" ColumnName="BaseStatistics" />
+                <ScalarProperty Name="OffenseNote" ColumnName="OffenseNote" />
+                <ScalarProperty Name="TemplatesApplied" ColumnName="TemplatesApplied" />
+                <ScalarProperty Name="Land" ColumnName="Land" />
+                <ScalarProperty Name="Swim" ColumnName="Swim" />
+                <ScalarProperty Name="Burrow" ColumnName="Burrow" />
+                <ScalarProperty Name="Climb" ColumnName="Climb" />
+                <ScalarProperty Name="Fly" ColumnName="Fly" />
+                <ScalarProperty Name="CompanionFlag" ColumnName="CompanionFlag" />
+                <ScalarProperty Name="CharacterFlag" ColumnName="CharacterFlag" />
+                <ScalarProperty Name="Note" ColumnName="Note" />
+                <ScalarProperty Name="Vulnerability" ColumnName="Vulnerability" />
+                <ScalarProperty Name="OtherGear" ColumnName="OtherGear" />
+                <ScalarProperty Name="Gear" ColumnName="Gear" />
+                <ScalarProperty Name="Morale" ColumnName="Morale" />
+                <ScalarProperty Name="DuringCombat" ColumnName="DuringCombat" />
+                <ScalarProperty Name="BeforeCombat" ColumnName="BeforeCombat" />
+                <ScalarProperty Name="ProhibitedSchools" ColumnName="ProhibitedSchools" />
+                <ScalarProperty Name="Bloodline" ColumnName="Bloodline" />
+                <ScalarProperty Name="Gender" ColumnName="Gender" />
+                <ScalarProperty Name="SpecialAbilities" ColumnName="SpecialAbilities" />
+                <ScalarProperty Name="IsTemplate" ColumnName="IsTemplate" />
+                <ScalarProperty Name="Group" ColumnName="Group" />
+                <ScalarProperty Name="DescriptionVisual" ColumnName="DescriptionVisual" />
+                <ScalarProperty Name="Treasure" ColumnName="Treasure" />
+                <ScalarProperty Name="Organization" ColumnName="Organization" />
+                <ScalarProperty Name="Environment" ColumnName="Environment" />
+                <ScalarProperty Name="SQ" ColumnName="SQ" />
+                <ScalarProperty Name="Languages" ColumnName="Languages" />
+                <ScalarProperty Name="RacialMods" ColumnName="RacialMods" />
+                <ScalarProperty Name="Skills" ColumnName="Skills" />
+                <ScalarProperty Name="Feats" ColumnName="Feats" />
+                <ScalarProperty Name="CMD" ColumnName="CMD" />
+                <ScalarProperty Name="CMB" ColumnName="CMB" />
+                <ScalarProperty Name="BaseAtk" ColumnName="BaseAtk" />
+                <ScalarProperty Name="AbilityScoreMods" ColumnName="AbilityScoreMods" />
+                <ScalarProperty Name="AbilityScores" ColumnName="AbilityScores" />
+                <ScalarProperty Name="SpellDomains" ColumnName="SpellDomains" />
+                <ScalarProperty Name="SpellsPrepared" ColumnName="SpellsPrepared" />
+                <ScalarProperty Name="SpellsKnown" ColumnName="SpellsKnown" />
+                <ScalarProperty Name="SpellLikeAbilities" ColumnName="SpellLikeAbilities" />
+                <ScalarProperty Name="SpecialAttacks" ColumnName="SpecialAttacks" />
+                <ScalarProperty Name="Reach" ColumnName="Reach" />
+                <ScalarProperty Name="Space" ColumnName="Space" />
+                <ScalarProperty Name="Ranged" ColumnName="Ranged" />
+                <ScalarProperty Name="Melee" ColumnName="Melee" />
+                <ScalarProperty Name="SpeedMod" ColumnName="SpeedMod" />
+                <ScalarProperty Name="Speed" ColumnName="Speed" />
+                <ScalarProperty Name="Weaknesses" ColumnName="Weaknesses" />
+                <ScalarProperty Name="SR" ColumnName="SR" />
+                <ScalarProperty Name="Resist" ColumnName="Resist" />
+                <ScalarProperty Name="Immune" ColumnName="Immune" />
+                <ScalarProperty Name="DR" ColumnName="DR" />
+                <ScalarProperty Name="DefensiveAbilities" ColumnName="DefensiveAbilities" />
+                <ScalarProperty Name="SaveMods" ColumnName="SaveMods" />
+                <ScalarProperty Name="Will" ColumnName="Will" />
+                <ScalarProperty Name="Reflex" ColumnName="Reflex" />
+                <ScalarProperty Name="Fortitude" ColumnName="Fortitude" />
+                <ScalarProperty Name="HPMods" ColumnName="HPMods" />
+                <ScalarProperty Name="HD" ColumnName="HD" />
+                <ScalarProperty Name="HP" ColumnName="HP" />
+                <ScalarProperty Name="ACMods" ColumnName="ACMods" />
+                <ScalarProperty Name="AC" ColumnName="AC" />
+                <ScalarProperty Name="Aura" ColumnName="Aura" />
+                <ScalarProperty Name="Senses" ColumnName="Senses" />
+                <ScalarProperty Name="Init" ColumnName="Init" />
+                <ScalarProperty Name="SubType" ColumnName="SubType" />
+                <ScalarProperty Name="Type" ColumnName="Type" />
+                <ScalarProperty Name="Size" ColumnName="Size" />
+                <ScalarProperty Name="Alignment" ColumnName="Alignment" />
+                <ScalarProperty Name="Class" ColumnName="Class" />
+                <ScalarProperty Name="Race" ColumnName="Race" />
+                <ScalarProperty Name="XP" ColumnName="XP" />
+                <ScalarProperty Name="CR" ColumnName="CR" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="BestiaryId" ColumnName="BestiaryId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="BestiaryDetails">
+            <EntityTypeMapping TypeName="PFDBModel.BestiaryDetail">
+              <MappingFragment StoreEntitySet="BestiaryDetail">
+                <ScalarProperty Name="FullText" ColumnName="FullText" />
+                <ScalarProperty Name="Description" ColumnName="Description" />
+                <ScalarProperty Name="Source" ColumnName="Source" />
+                <ScalarProperty Name="MonsterSource" ColumnName="MonsterSource" />
+                <ScalarProperty Name="BestiaryId" ColumnName="BestiaryId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="BestiaryEnvironments">
+            <EntityTypeMapping TypeName="PFDBModel.BestiaryEnvironment">
+              <MappingFragment StoreEntitySet="BestiaryEnvironment">
+                <ScalarProperty Name="EnvironmentId" ColumnName="EnvironmentId" />
+                <ScalarProperty Name="BestiaryId" ColumnName="BestiaryId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="BestiaryFeats">
+            <EntityTypeMapping TypeName="PFDBModel.BestiaryFeat">
+              <MappingFragment StoreEntitySet="BestiaryFeat">
+                <ScalarProperty Name="Notes" ColumnName="Notes" />
+                <ScalarProperty Name="FeatId" ColumnName="FeatId" />
+                <ScalarProperty Name="BestiaryId" ColumnName="BestiaryId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="BestiaryLanguages">
+            <EntityTypeMapping TypeName="PFDBModel.BestiaryLanguage">
+              <MappingFragment StoreEntitySet="BestiaryLanguage">
+                <ScalarProperty Name="LanguageId" ColumnName="LanguageId" />
+                <ScalarProperty Name="BestiaryId" ColumnName="BestiaryId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="BestiarySkills">
+            <EntityTypeMapping TypeName="PFDBModel.BestiarySkill">
+              <MappingFragment StoreEntitySet="BestiarySkill">
+                <ScalarProperty Name="Notes" ColumnName="Notes" />
+                <ScalarProperty Name="Bonus" ColumnName="Bonus" />
+                <ScalarProperty Name="SkillId" ColumnName="SkillId" />
+                <ScalarProperty Name="BestiaryId" ColumnName="BestiaryId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="BestiarySubTypes">
+            <EntityTypeMapping TypeName="PFDBModel.BestiarySubType">
+              <MappingFragment StoreEntitySet="BestiarySubType">
+                <ScalarProperty Name="BestiaryTypeId" ColumnName="BestiaryTypeId" />
+                <ScalarProperty Name="BestiaryId" ColumnName="BestiaryId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="BestiaryTypes">
+            <EntityTypeMapping TypeName="PFDBModel.BestiaryType">
+              <MappingFragment StoreEntitySet="BestiaryType">
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="BestiaryTypeId" ColumnName="BestiaryTypeId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Continents">
+            <EntityTypeMapping TypeName="PFDBModel.Continent">
+              <MappingFragment StoreEntitySet="Continent">
+                <ScalarProperty Name="PrimaryLanguage" ColumnName="PrimaryLanguage" />
+                <ScalarProperty Name="IsWater" ColumnName="IsWater" />
+                <ScalarProperty Name="IsUnderground" ColumnName="IsUnderground" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="ContinentId" ColumnName="ContinentId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ContinentWeathers">
+            <EntityTypeMapping TypeName="PFDBModel.ContinentWeather">
+              <MappingFragment StoreEntitySet="ContinentWeather">
+                <ScalarProperty Name="ExtraWeight" ColumnName="ExtraWeight" />
+                <ScalarProperty Name="SeasonId" ColumnName="SeasonId" />
+                <ScalarProperty Name="WeatherId" ColumnName="WeatherId" />
+                <ScalarProperty Name="ContinentId" ColumnName="ContinentId" />
+                <ScalarProperty Name="CWID" ColumnName="CWID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Environments">
+            <EntityTypeMapping TypeName="PFDBModel.Environment">
+              <MappingFragment StoreEntitySet="Environment">
+                <ScalarProperty Name="TravelSpeed" ColumnName="TravelSpeed" />
+                <ScalarProperty Name="Notes" ColumnName="Notes" />
+                <ScalarProperty Name="Temperature" ColumnName="Temperature" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="EnvironmentId" ColumnName="EnvironmentId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Factions">
+            <EntityTypeMapping TypeName="PFDBModel.Faction">
+              <MappingFragment StoreEntitySet="Faction">
+                <ScalarProperty Name="Type" ColumnName="Type" />
+                <ScalarProperty Name="Primary_Race" ColumnName="Primary Race" />
+                <ScalarProperty Name="Parent_Faction" ColumnName="Parent Faction" />
+                <ScalarProperty Name="Language" ColumnName="Language" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="ContinentId" ColumnName="ContinentId" />
+                <ScalarProperty Name="FactionId" ColumnName="FactionId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Feats">
+            <EntityTypeMapping TypeName="PFDBModel.Feat">
+              <MappingFragment StoreEntitySet="Feat">
+                <ScalarProperty Name="BloodHex" ColumnName="BloodHex" />
+                <ScalarProperty Name="ShieldMastery" ColumnName="ShieldMastery" />
+                <ScalarProperty Name="ArmorMastery" ColumnName="ArmorMastery" />
+                <ScalarProperty Name="ItemMastery" ColumnName="ItemMastery" />
+                <ScalarProperty Name="WeaponMastery" ColumnName="WeaponMastery" />
+                <ScalarProperty Name="Stare" ColumnName="Stare" />
+                <ScalarProperty Name="Esoteric" ColumnName="Esoteric" />
+                <ScalarProperty Name="Targeting" ColumnName="Targeting" />
+                <ScalarProperty Name="Betrayal" ColumnName="Betrayal" />
+                <ScalarProperty Name="Panache" ColumnName="Panache" />
+                <ScalarProperty Name="PrerequisiteSkills" ColumnName="PrerequisiteSkills" />
+                <ScalarProperty Name="SuggestedTraits" ColumnName="SuggestedTraits" />
+                <ScalarProperty Name="Multiples" ColumnName="Multiples" />
+                <ScalarProperty Name="CompletionBenefit" ColumnName="CompletionBenefit" />
+                <ScalarProperty Name="Goal" ColumnName="Goal" />
+                <ScalarProperty Name="Note" ColumnName="Note" />
+                <ScalarProperty Name="RaceName" ColumnName="RaceName" />
+                <ScalarProperty Name="CompanionFamiliar" ColumnName="CompanionFamiliar" />
+                <ScalarProperty Name="Racial" ColumnName="Racial" />
+                <ScalarProperty Name="Performance" ColumnName="Performance" />
+                <ScalarProperty Name="Style" ColumnName="Style" />
+                <ScalarProperty Name="Grit" ColumnName="Grit" />
+                <ScalarProperty Name="Critical" ColumnName="Critical" />
+                <ScalarProperty Name="Teamwork" ColumnName="Teamwork" />
+                <ScalarProperty Name="Fulltext" ColumnName="Fulltext" />
+                <ScalarProperty Name="Source" ColumnName="Source" />
+                <ScalarProperty Name="Special" ColumnName="Special" />
+                <ScalarProperty Name="Normal" ColumnName="Normal" />
+                <ScalarProperty Name="Benefit" ColumnName="Benefit" />
+                <ScalarProperty Name="PrerequisiteFeats" ColumnName="PrerequisiteFeats" />
+                <ScalarProperty Name="Prerequisites" ColumnName="Prerequisites" />
+                <ScalarProperty Name="Description" ColumnName="Description" />
+                <ScalarProperty Name="Type_" ColumnName="Type_" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="FeatId" ColumnName="FeatId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Languages">
+            <EntityTypeMapping TypeName="PFDBModel.Language">
+              <MappingFragment StoreEntitySet="Language">
+                <ScalarProperty Name="Notes" ColumnName="Notes" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="LanguageId" ColumnName="LanguageId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Locations">
+            <EntityTypeMapping TypeName="PFDBModel.Location">
+              <MappingFragment StoreEntitySet="Location">
+                <ScalarProperty Name="TerritoryId" ColumnName="TerritoryId" />
+                <ScalarProperty Name="FactionId" ColumnName="FactionId" />
+                <ScalarProperty Name="GridY" ColumnName="GridY" />
+                <ScalarProperty Name="GridX" ColumnName="GridX" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="ContinentId" ColumnName="ContinentId" />
+                <ScalarProperty Name="Locationid" ColumnName="Locationid" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="MagicItems">
+            <EntityTypeMapping TypeName="PFDBModel.MagicItem">
+              <MappingFragment StoreEntitySet="MagicItem">
+                <ScalarProperty Name="Scaling" ColumnName="Scaling" />
+                <ScalarProperty Name="Universal" ColumnName="Universal" />
+                <ScalarProperty Name="Illusion" ColumnName="Illusion" />
+                <ScalarProperty Name="LegendaryWeapon" ColumnName="LegendaryWeapon" />
+                <ScalarProperty Name="Mythic" ColumnName="Mythic" />
+                <ScalarProperty Name="LinkText" ColumnName="LinkText" />
+                <ScalarProperty Name="BaseItem" ColumnName="BaseItem" />
+                <ScalarProperty Name="Languages" ColumnName="Languages" />
+                <ScalarProperty Name="CostValue" ColumnName="CostValue" />
+                <ScalarProperty Name="PriceValue" ColumnName="PriceValue" />
+                <ScalarProperty Name="WeightValue" ColumnName="WeightValue" />
+                <ScalarProperty Name="AuraStrength" ColumnName="AuraStrength" />
+                <ScalarProperty Name="Transmutation" ColumnName="Transmutation" />
+                <ScalarProperty Name="Necromancy" ColumnName="Necromancy" />
+                <ScalarProperty Name="Evocation" ColumnName="Evocation" />
+                <ScalarProperty Name="Enchantment" ColumnName="Enchantment" />
+                <ScalarProperty Name="Divination" ColumnName="Divination" />
+                <ScalarProperty Name="Conjuration" ColumnName="Conjuration" />
+                <ScalarProperty Name="Abjuration" ColumnName="Abjuration" />
+                <ScalarProperty Name="MajorArtifact" ColumnName="MajorArtifact" />
+                <ScalarProperty Name="MinorArtifact" ColumnName="MinorArtifact" />
+                <ScalarProperty Name="Destruction" ColumnName="Destruction" />
+                <ScalarProperty Name="FullText" ColumnName="FullText" />
+                <ScalarProperty Name="MagicItems" ColumnName="MagicItems" />
+                <ScalarProperty Name="Powers" ColumnName="Powers" />
+                <ScalarProperty Name="Senses" ColumnName="Senses" />
+                <ScalarProperty Name="Communication" ColumnName="Communication" />
+                <ScalarProperty Name="Ego" ColumnName="Ego" />
+                <ScalarProperty Name="Cha" ColumnName="Cha" />
+                <ScalarProperty Name="Wis" ColumnName="Wis" />
+                <ScalarProperty Name="Int" ColumnName="Int" />
+                <ScalarProperty Name="AL" ColumnName="AL" />
+                <ScalarProperty Name="Source" ColumnName="Source" />
+                <ScalarProperty Name="Group_" ColumnName="Group_" />
+                <ScalarProperty Name="Cost" ColumnName="Cost" />
+                <ScalarProperty Name="Requirements" ColumnName="Requirements" />
+                <ScalarProperty Name="Description" ColumnName="Description" />
+                <ScalarProperty Name="Weight" ColumnName="Weight" />
+                <ScalarProperty Name="Price" ColumnName="Price" />
+                <ScalarProperty Name="Slot" ColumnName="Slot" />
+                <ScalarProperty Name="CL" ColumnName="CL" />
+                <ScalarProperty Name="Aura" ColumnName="Aura" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="MagicItemId" ColumnName="MagicItemId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="MonsterSpawns">
+            <EntityTypeMapping TypeName="PFDBModel.MonsterSpawn">
+              <MappingFragment StoreEntitySet="MonsterSpawn">
+                <ScalarProperty Name="BestiaryId" ColumnName="BestiaryId" />
+                <ScalarProperty Name="Season" ColumnName="Season" />
+                <ScalarProperty Name="Continent" ColumnName="Continent" />
+                <ScalarProperty Name="SpawnId" ColumnName="SpawnId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Months">
+            <EntityTypeMapping TypeName="PFDBModel.Month">
+              <MappingFragment StoreEntitySet="Month">
+                <ScalarProperty Name="Days" ColumnName="Days" />
+                <ScalarProperty Name="Season" ColumnName="Season" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="MonthId" ColumnName="MonthId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="NPCs">
+            <EntityTypeMapping TypeName="PFDBModel.NPC">
+              <MappingFragment StoreEntitySet="NPC">
+                <ScalarProperty Name="PsychicDiscipline" ColumnName="PsychicDiscipline" />
+                <ScalarProperty Name="Implements" ColumnName="Implements" />
+                <ScalarProperty Name="KineticistWildTalents" ColumnName="KineticistWildTalents" />
+                <ScalarProperty Name="PsychicMagic" ColumnName="PsychicMagic" />
+                <ScalarProperty Name="Spirit" ColumnName="Spirit" />
+                <ScalarProperty Name="MT" ColumnName="MT" />
+                <ScalarProperty Name="Mythic" ColumnName="Mythic" />
+                <ScalarProperty Name="MR" ColumnName="MR" />
+                <ScalarProperty Name="Variant" ColumnName="Variant" />
+                <ScalarProperty Name="ThassilonianSpecialization" ColumnName="ThassilonianSpecialization" />
+                <ScalarProperty Name="UniqueMonster" ColumnName="UniqueMonster" />
+                <ScalarProperty Name="LinkText" ColumnName="LinkText" />
+                <ScalarProperty Name="AlternateNameForm" ColumnName="AlternateNameForm" />
+                <ScalarProperty Name="Traits" ColumnName="Traits" />
+                <ScalarProperty Name="FocusedSchool" ColumnName="FocusedSchool" />
+                <ScalarProperty Name="CompanionFamiliarLink" ColumnName="CompanionFamiliarLink" />
+                <ScalarProperty Name="Patron" ColumnName="Patron" />
+                <ScalarProperty Name="ClassArchetypes" ColumnName="ClassArchetypes" />
+                <ScalarProperty Name="Mystery" ColumnName="Mystery" />
+                <ScalarProperty Name="AgeCategory" ColumnName="AgeCategory" />
+                <ScalarProperty Name="ExtractsPrepared" ColumnName="ExtractsPrepared" />
+                <ScalarProperty Name="BaseStatistics" ColumnName="BaseStatistics" />
+                <ScalarProperty Name="OffenseNote" ColumnName="OffenseNote" />
+                <ScalarProperty Name="TemplatesApplied" ColumnName="TemplatesApplied" />
+                <ScalarProperty Name="Land" ColumnName="Land" />
+                <ScalarProperty Name="Swim" ColumnName="Swim" />
+                <ScalarProperty Name="Burrow" ColumnName="Burrow" />
+                <ScalarProperty Name="Climb" ColumnName="Climb" />
+                <ScalarProperty Name="Fly" ColumnName="Fly" />
+                <ScalarProperty Name="CompanionFlag" ColumnName="CompanionFlag" />
+                <ScalarProperty Name="CharacterFlag" ColumnName="CharacterFlag" />
+                <ScalarProperty Name="Note" ColumnName="Note" />
+                <ScalarProperty Name="Vulnerability" ColumnName="Vulnerability" />
+                <ScalarProperty Name="OtherGear" ColumnName="OtherGear" />
+                <ScalarProperty Name="Gear" ColumnName="Gear" />
+                <ScalarProperty Name="Morale" ColumnName="Morale" />
+                <ScalarProperty Name="DuringCombat" ColumnName="DuringCombat" />
+                <ScalarProperty Name="BeforeCombat" ColumnName="BeforeCombat" />
+                <ScalarProperty Name="ProhibitedSchools" ColumnName="ProhibitedSchools" />
+                <ScalarProperty Name="Bloodline" ColumnName="Bloodline" />
+                <ScalarProperty Name="Gender" ColumnName="Gender" />
+                <ScalarProperty Name="SpecialAbilities" ColumnName="SpecialAbilities" />
+                <ScalarProperty Name="IsTemplate" ColumnName="IsTemplate" />
+                <ScalarProperty Name="Source" ColumnName="Source" />
+                <ScalarProperty Name="Group_" ColumnName="Group_" />
+                <ScalarProperty Name="DescriptionVisual" ColumnName="DescriptionVisual" />
+                <ScalarProperty Name="Organization" ColumnName="Organization" />
+                <ScalarProperty Name="Treasure" ColumnName="Treasure" />
+                <ScalarProperty Name="Environment" ColumnName="Environment" />
+                <ScalarProperty Name="SQ" ColumnName="SQ" />
+                <ScalarProperty Name="Languages" ColumnName="Languages" />
+                <ScalarProperty Name="RacialMods" ColumnName="RacialMods" />
+                <ScalarProperty Name="Skills" ColumnName="Skills" />
+                <ScalarProperty Name="Feats" ColumnName="Feats" />
+                <ScalarProperty Name="CMD" ColumnName="CMD" />
+                <ScalarProperty Name="CMB" ColumnName="CMB" />
+                <ScalarProperty Name="BaseAtk" ColumnName="BaseAtk" />
+                <ScalarProperty Name="AbilityScoreMods" ColumnName="AbilityScoreMods" />
+                <ScalarProperty Name="AbilityScores" ColumnName="AbilityScores" />
+                <ScalarProperty Name="SpellDomains" ColumnName="SpellDomains" />
+                <ScalarProperty Name="SpellsPrepared" ColumnName="SpellsPrepared" />
+                <ScalarProperty Name="SpellsKnown" ColumnName="SpellsKnown" />
+                <ScalarProperty Name="SpellLikeAbilities" ColumnName="SpellLikeAbilities" />
+                <ScalarProperty Name="SpecialAttacks" ColumnName="SpecialAttacks" />
+                <ScalarProperty Name="Reach" ColumnName="Reach" />
+                <ScalarProperty Name="Space_" ColumnName="Space_" />
+                <ScalarProperty Name="Ranged" ColumnName="Ranged" />
+                <ScalarProperty Name="Melee" ColumnName="Melee" />
+                <ScalarProperty Name="SpeedMod" ColumnName="SpeedMod" />
+                <ScalarProperty Name="Speed" ColumnName="Speed" />
+                <ScalarProperty Name="Weaknesses" ColumnName="Weaknesses" />
+                <ScalarProperty Name="SR" ColumnName="SR" />
+                <ScalarProperty Name="Resist" ColumnName="Resist" />
+                <ScalarProperty Name="Immune" ColumnName="Immune" />
+                <ScalarProperty Name="DR" ColumnName="DR" />
+                <ScalarProperty Name="DefensiveAbilities" ColumnName="DefensiveAbilities" />
+                <ScalarProperty Name="SaveMods" ColumnName="SaveMods" />
+                <ScalarProperty Name="Will" ColumnName="Will" />
+                <ScalarProperty Name="Ref_" ColumnName="Ref_" />
+                <ScalarProperty Name="Fort" ColumnName="Fort" />
+                <ScalarProperty Name="Saves" ColumnName="Saves" />
+                <ScalarProperty Name="HPMods" ColumnName="HPMods" />
+                <ScalarProperty Name="HD" ColumnName="HD" />
+                <ScalarProperty Name="HP" ColumnName="HP" />
+                <ScalarProperty Name="ACMods" ColumnName="ACMods" />
+                <ScalarProperty Name="AC" ColumnName="AC" />
+                <ScalarProperty Name="Aura" ColumnName="Aura" />
+                <ScalarProperty Name="Senses" ColumnName="Senses" />
+                <ScalarProperty Name="Init" ColumnName="Init" />
+                <ScalarProperty Name="SubType_" ColumnName="SubType_" />
+                <ScalarProperty Name="Type_" ColumnName="Type_" />
+                <ScalarProperty Name="Size_" ColumnName="Size_" />
+                <ScalarProperty Name="Alignment" ColumnName="Alignment" />
+                <ScalarProperty Name="Class_" ColumnName="Class_" />
+                <ScalarProperty Name="Race" ColumnName="Race" />
+                <ScalarProperty Name="XP" ColumnName="XP" />
+                <ScalarProperty Name="CR" ColumnName="CR" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="NPCID" ColumnName="NPCID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="NPCDetails">
+            <EntityTypeMapping TypeName="PFDBModel.NPCDetail">
+              <MappingFragment StoreEntitySet="NPCDetail">
+                <ScalarProperty Name="FullText" ColumnName="FullText" />
+                <ScalarProperty Name="Description" ColumnName="Description" />
+                <ScalarProperty Name="MonsterSource" ColumnName="MonsterSource" />
+                <ScalarProperty Name="NPCID" ColumnName="NPCID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Seasons">
+            <EntityTypeMapping TypeName="PFDBModel.Season">
+              <MappingFragment StoreEntitySet="Season">
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="SeasonId" ColumnName="SeasonId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Spells">
+            <EntityTypeMapping TypeName="PFDBModel.Spell">
+              <MappingFragment StoreEntitySet="Spell">
+                <ScalarProperty Name="HauntStatistics" ColumnName="HauntStatistics" />
+                <ScalarProperty Name="Hunter" ColumnName="Hunter" />
+                <ScalarProperty Name="Investigator" ColumnName="Investigator" />
+                <ScalarProperty Name="Skald" ColumnName="Skald" />
+                <ScalarProperty Name="Spiritualist" ColumnName="Spiritualist" />
+                <ScalarProperty Name="Occultist" ColumnName="Occultist" />
+                <ScalarProperty Name="Mesmerist" ColumnName="Mesmerist" />
+                <ScalarProperty Name="Medium" ColumnName="Medium" />
+                <ScalarProperty Name="Psychic" ColumnName="Psychic" />
+                <ScalarProperty Name="Shaman" ColumnName="Shaman" />
+                <ScalarProperty Name="BloodRager" ColumnName="BloodRager" />
+                <ScalarProperty Name="Mythic" ColumnName="Mythic" />
+                <ScalarProperty Name="Augmented" ColumnName="Augmented" />
+                <ScalarProperty Name="MythicText" ColumnName="MythicText" />
+                <ScalarProperty Name="Patron" ColumnName="Patron" />
+                <ScalarProperty Name="Bloodline" ColumnName="Bloodline" />
+                <ScalarProperty Name="MaterialCost" ColumnName="MaterialCost" />
+                <ScalarProperty Name="LinkText" ColumnName="LinkText" />
+                <ScalarProperty Name="Water" ColumnName="Water" />
+                <ScalarProperty Name="Sonic" ColumnName="Sonic" />
+                <ScalarProperty Name="Shadow" ColumnName="Shadow" />
+                <ScalarProperty Name="Poison" ColumnName="Poison" />
+                <ScalarProperty Name="Pain" ColumnName="Pain" />
+                <ScalarProperty Name="MindAffecting" ColumnName="MindAffecting" />
+                <ScalarProperty Name="Light" ColumnName="Light" />
+                <ScalarProperty Name="Lawful" ColumnName="Lawful" />
+                <ScalarProperty Name="LanguageDependent" ColumnName="LanguageDependent" />
+                <ScalarProperty Name="Good" ColumnName="Good" />
+                <ScalarProperty Name="Force" ColumnName="Force" />
+                <ScalarProperty Name="Fire" ColumnName="Fire" />
+                <ScalarProperty Name="Fear" ColumnName="Fear" />
+                <ScalarProperty Name="Evil" ColumnName="Evil" />
+                <ScalarProperty Name="Emotion" ColumnName="Emotion" />
+                <ScalarProperty Name="Electricity" ColumnName="Electricity" />
+                <ScalarProperty Name="Earth" ColumnName="Earth" />
+                <ScalarProperty Name="Disease" ColumnName="Disease" />
+                <ScalarProperty Name="Death" ColumnName="Death" />
+                <ScalarProperty Name="Darkness" ColumnName="Darkness" />
+                <ScalarProperty Name="Curse" ColumnName="Curse" />
+                <ScalarProperty Name="Cold" ColumnName="Cold" />
+                <ScalarProperty Name="Chaotic" ColumnName="Chaotic" />
+                <ScalarProperty Name="Air" ColumnName="Air" />
+                <ScalarProperty Name="Acid" ColumnName="Acid" />
+                <ScalarProperty Name="ShortDescription" ColumnName="ShortDescription" />
+                <ScalarProperty Name="Domain" ColumnName="Domain" />
+                <ScalarProperty Name="SLALevel" ColumnName="SLALevel" />
+                <ScalarProperty Name="Deity" ColumnName="Deity" />
+                <ScalarProperty Name="Adept" ColumnName="Adept" />
+                <ScalarProperty Name="Magus" ColumnName="Magus" />
+                <ScalarProperty Name="Antipaladin" ColumnName="Antipaladin" />
+                <ScalarProperty Name="Oracle" ColumnName="Oracle" />
+                <ScalarProperty Name="Inquisitor" ColumnName="Inquisitor" />
+                <ScalarProperty Name="Witch" ColumnName="Witch" />
+                <ScalarProperty Name="Summoner" ColumnName="Summoner" />
+                <ScalarProperty Name="Alchemist" ColumnName="Alchemist" />
+                <ScalarProperty Name="Paladin" ColumnName="Paladin" />
+                <ScalarProperty Name="Bard" ColumnName="Bard" />
+                <ScalarProperty Name="Ranger" ColumnName="Ranger" />
+                <ScalarProperty Name="Druid" ColumnName="Druid" />
+                <ScalarProperty Name="Cleric" ColumnName="Cleric" />
+                <ScalarProperty Name="Wiz" ColumnName="Wiz" />
+                <ScalarProperty Name="Sor" ColumnName="Sor" />
+                <ScalarProperty Name="DivineFocus" ColumnName="DivineFocus" />
+                <ScalarProperty Name="Focus" ColumnName="Focus" />
+                <ScalarProperty Name="Material" ColumnName="Material" />
+                <ScalarProperty Name="Somatic" ColumnName="Somatic" />
+                <ScalarProperty Name="Verbal" ColumnName="Verbal" />
+                <ScalarProperty Name="Source" ColumnName="Source" />
+                <ScalarProperty Name="SpellResistance" ColumnName="SpellResistance" />
+                <ScalarProperty Name="SavingThrow" ColumnName="SavingThrow" />
+                <ScalarProperty Name="Shapeable" ColumnName="Shapeable" />
+                <ScalarProperty Name="Dismissable" ColumnName="Dismissable" />
+                <ScalarProperty Name="Duration" ColumnName="Duration" />
+                <ScalarProperty Name="Targets" ColumnName="Targets" />
+                <ScalarProperty Name="Effect" ColumnName="Effect" />
+                <ScalarProperty Name="Area" ColumnName="Area" />
+                <ScalarProperty Name="Range" ColumnName="Range" />
+                <ScalarProperty Name="CostlyComponents" ColumnName="CostlyComponents" />
+                <ScalarProperty Name="Components" ColumnName="Components" />
+                <ScalarProperty Name="CastingTime" ColumnName="CastingTime" />
+                <ScalarProperty Name="SpellLevel" ColumnName="SpellLevel" />
+                <ScalarProperty Name="Descriptor" ColumnName="Descriptor" />
+                <ScalarProperty Name="SubSchool" ColumnName="SubSchool" />
+                <ScalarProperty Name="School" ColumnName="School" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="SpellId" ColumnName="SpellId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="SpellDetails">
+            <EntityTypeMapping TypeName="PFDBModel.SpellDetail">
+              <MappingFragment StoreEntitySet="SpellDetail">
+                <ScalarProperty Name="FullText" ColumnName="FullText" />
+                <ScalarProperty Name="DescriptionFormatted" ColumnName="DescriptionFormatted" />
+                <ScalarProperty Name="Description" ColumnName="Description" />
+                <ScalarProperty Name="SpellId" ColumnName="SpellId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Territories">
+            <EntityTypeMapping TypeName="PFDBModel.Territory">
+              <MappingFragment StoreEntitySet="Territory">
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Factionid" ColumnName="Factionid" />
+                <ScalarProperty Name="ContinentId" ColumnName="ContinentId" />
+                <ScalarProperty Name="TerritoryId" ColumnName="TerritoryId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Weathers">
+            <EntityTypeMapping TypeName="PFDBModel.Weather">
+              <MappingFragment StoreEntitySet="Weather">
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Effects" ColumnName="Effects" />
+                <ScalarProperty Name="VisionObscured" ColumnName="VisionObscured" />
+                <ScalarProperty Name="HighWind" ColumnName="HighWind" />
+                <ScalarProperty Name="ColdLethal" ColumnName="ColdLethal" />
+                <ScalarProperty Name="ColdDanger" ColumnName="ColdDanger" />
+                <ScalarProperty Name="HeatLethal" ColumnName="HeatLethal" />
+                <ScalarProperty Name="HeatDanger" ColumnName="HeatDanger" />
+                <ScalarProperty Name="Weight" ColumnName="Weight" />
+                <ScalarProperty Name="NextWeather" ColumnName="NextWeather" />
+                <ScalarProperty Name="Duration" ColumnName="Duration" />
+                <ScalarProperty Name="Description" ColumnName="Description" />
+                <ScalarProperty Name="WeatherId" ColumnName="WeatherId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>
