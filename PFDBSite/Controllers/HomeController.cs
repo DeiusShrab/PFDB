@@ -10,8 +10,6 @@ namespace PFDBSite.Controllers
 {
     public class HomeController : Controller
     {
-        private int i = 0;
-
         public IActionResult Index()
         {
             return View();
@@ -34,13 +32,6 @@ namespace PFDBSite.Controllers
         public IActionResult Error()
         {
             return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
-        }
-
-        [HttpGet("{val}", Name = "Test")]
-        public IActionResult Test(string val)
-        {
-            var obj = new TestModel() { numValue = i++, strValue = val };
-            return new ObjectResult(obj);
         }
     }
 }
