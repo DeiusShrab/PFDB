@@ -82,6 +82,8 @@
     </Compile>
     <Compile Include="Classes\CombatEffect.cs" />
     <Compile Include="Classes\CombatGridItem.cs" />
+    <Compile Include="Classes\DiceRollResult.cs" />
+    <Compile Include="Classes\FantasyDate.cs" />
     <Compile Include="MainWindow.xaml.cs">
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>

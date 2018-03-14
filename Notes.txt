@@ -1,3 +1,31 @@
 CreatureInfoBrowser
 On first page-load, add the loaded info to a local memory item. Like a dictionary or something. Always check this cache item before loading from the web.
 Also cap it at like ten items to prevent memory leaks.
+[BrowserCacheItem] MonsterId, LastUsed, MonsterText
+
+Continent-Terrain
+Use for automatic encounter chances, tie an encounter % to each one
+When encounter is rolled, randomize Time list. List can then be adjusted if needed before grabbing monsters.
+
+Plane
+Used for things like other planes and planets (and the moon). Overrides all other encounter selectors when set to something besides 'Prime Material'
+
+[Time]
+TimeId
+Name
+IsDay
+
+Times: Morning, Afternoon, Evening, First Watch, Second Watch, Third Watch
+(For the current game, treat them all as awake during third watch and half of them awake during first and second)
+
+Travel Time (Notebook, not app)
+Add modifiers like +1 for Ring of Sustenance (less sleep)
+
+Combat Tracker
+Skip entries with 0 or lower Init on Next Turn
+
+[Month] needs an Abbreviation column
+
+[Holiday] HolidayId, Month, Day, Continent, StartingYear(?), YearsBetween(?) (last two for 10-year, 100-year, etc celebrations)
+
+Calendar on the PFSite where PCs can mark upcoming dates and see holiday celebrations
