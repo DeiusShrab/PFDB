@@ -5,6 +5,8 @@ VisualStudioVersion = 15.0.27428.1
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PFHelper", "PFHelper\PFHelper.csproj", "{596844E9-53A2-4DCE-BCD0-3174D25D8C8F}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DBConnect", "DBConnect\DBConnect.csproj", "{0C3CAB3F-CD2E-4EAD-815E-4AE425864D0B}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -15,6 +17,10 @@ Global
 		{596844E9-53A2-4DCE-BCD0-3174D25D8C8F}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{596844E9-53A2-4DCE-BCD0-3174D25D8C8F}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{596844E9-53A2-4DCE-BCD0-3174D25D8C8F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{0C3CAB3F-CD2E-4EAD-815E-4AE425864D0B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0C3CAB3F-CD2E-4EAD-815E-4AE425864D0B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0C3CAB3F-CD2E-4EAD-815E-4AE425864D0B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0C3CAB3F-CD2E-4EAD-815E-4AE425864D0B}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

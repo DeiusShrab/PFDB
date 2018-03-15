@@ -1,3 +1,10 @@
+TODO AT HOME
+- Get a sample set of Bestiary entries (and related entries)
+- Run the Transformer (when ready)
+
+[Bestiary] NPCs
+Add a new column for IsNPC (or use an existing one) and have it set for intelligent beings that might interact with the party instead of fight them
+
 CreatureInfoBrowser
 On first page-load, add the loaded info to a local memory item. Like a dictionary or something. Always check this cache item before loading from the web.
 Also cap it at like ten items to prevent memory leaks.

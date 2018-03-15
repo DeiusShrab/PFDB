@@ -1,0 +1,24 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+using DBConnect.DBModels;
+
+namespace PFHelper.Classes
+{
+    class SaveObject
+    {
+        public List<CombatEffectItem> CombatEffects { get; set; }
+        public List<CombatGridItem> CombatGridItems { get; set; }
+        public FantasyDate Date { get; set; }
+        public Weather Weather { get; set; }
+        public int Apl { get; set; }
+        public bool Rations { get; set; }
+        public bool CbxInfRations { get; set; }
+        public bool CbxGroup { get; set; }
+        public bool CbxZone { get; set; }
+        public bool CbxTime { get; set; }
+        public bool CbxNpc { get; set; }
+    }
+}

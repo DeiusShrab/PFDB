@@ -6,9 +6,9 @@ using System.Threading.Tasks;
 
 namespace PFHelper.Classes
 {
-    public class DiceRollResult
+    public class DisplayResult
     {
         public int Result { get; set; }
-        public string MathString { get; set; }
+        public string Display { get; set; }
     }
 }

@@ -35,6 +35,10 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />
+    <Reference Include="System.Configuration" />
+    <Reference Include="System.Configuration.ConfigurationManager, Version=4.0.0.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Configuration.ConfigurationManager.4.4.1\lib\net461\System.Configuration.ConfigurationManager.dll</HintPath>
+    </Reference>
     <Reference Include="System.Data" />
     <Reference Include="System.Xml" />
     <Reference Include="Microsoft.CSharp" />
@@ -82,8 +86,10 @@
     </Compile>
     <Compile Include="Classes\CombatEffect.cs" />
     <Compile Include="Classes\CombatGridItem.cs" />
-    <Compile Include="Classes\DiceRollResult.cs" />
+    <Compile Include="Classes\DisplayResult.cs" />
     <Compile Include="Classes\FantasyDate.cs" />
+    <Compile Include="Classes\DisplayValues.cs" />
+    <Compile Include="Classes\SaveObject.cs" />
     <Compile Include="MainWindow.xaml.cs">
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
@@ -114,7 +120,15 @@
     </None>
   </ItemGroup>
   <ItemGroup>
-    <None Include="App.config" />
+    <None Include="App.config">
+      <SubType>Designer</SubType>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\DBConnect\DBConnect.csproj">
+      <Project>{0C3CAB3F-CD2E-4EAD-815E-4AE425864D0B}</Project>
+      <Name>DBConnect</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

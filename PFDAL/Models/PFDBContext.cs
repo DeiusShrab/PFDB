@@ -37,7 +37,7 @@ namespace PFDAL.Models
         {
             if (!optionsBuilder.IsConfigured)
             {
-                optionsBuilder.UseSqlServer(Configuration.GetConnectionString(""));
+                optionsBuilder.UseSqlServer(ConfigurationManager.ConnectionStrings["PFDB"].ConnectionString);
             }
         }
 

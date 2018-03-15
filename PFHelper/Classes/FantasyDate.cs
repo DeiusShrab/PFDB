@@ -19,6 +19,18 @@ namespace PFHelper.Classes
         private int MonthsInYear;
         private int DaysInMonth;
 
+        public FantasyDate()
+        {
+            MonthsInYear = 12;
+            DaysInMonth = 28;
+        }
+
+        public FantasyDate(int monthsInYear, int daysInMonth)
+        {
+            MonthsInYear = monthsInYear;
+            DaysInMonth = daysInMonth;
+        }
+
         public FantasyDate AddDays(int d)
         {
             if (d >= 0)
