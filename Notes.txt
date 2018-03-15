@@ -1,6 +1,7 @@
 CreatureInfoBrowser
 On first page-load, add the loaded info to a local memory item. Like a dictionary or something. Always check this cache item before loading from the web.
 Also cap it at like ten items to prevent memory leaks.
+<<<<<<< Updated upstream
 [BrowserCacheItem] MonsterId, LastUsed, MonsterText
 
 Continent-Terrain
@@ -29,3 +30,11 @@ Skip entries with 0 or lower Init on Next Turn
 [Holiday] HolidayId, Month, Day, Continent, StartingYear(?), YearsBetween(?) (last two for 10-year, 100-year, etc celebrations)
 
 Calendar on the PFSite where PCs can mark upcoming dates and see holiday celebrations
+=======
+
+PFDAL
+Dot Net Core, not Dot Net
+
+PFSite
+Also dot net core
+>>>>>>> Stashed changes
