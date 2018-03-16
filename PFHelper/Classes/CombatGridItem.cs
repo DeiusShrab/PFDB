@@ -45,5 +45,22 @@ namespace PFHelper.Classes
             Subd = 0;
             Note = string.Empty;
         }
+
+        public CombatGridItem(CombatGridItem copy)
+        {
+            BestiaryId = copy.BestiaryId;
+            Init = copy.Init;
+            Name = copy.Name;
+            PC = copy.PC;
+            HP = copy.HP;
+            AC = copy.AC;
+            ACTouch = copy.ACTouch;
+            ACFlat = copy.ACFlat;
+            Fort = copy.Fort;
+            Ref = copy.Ref;
+            Will = copy.Will;
+            Subd = copy.Subd;
+            Note = copy.Note;
+        }
     }
 }

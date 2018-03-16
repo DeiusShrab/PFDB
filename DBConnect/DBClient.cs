@@ -12,10 +12,16 @@ namespace DBConnect
 
         public static RandomEncounterResult GetEncounters(RandomEncounterRequest request)
         {
-            var ret = new RandomEncounterResult();
             var list = new List<RandomEncounterItem>() {
                 new RandomEncounterItem(){ Name="Derpsaur", Cr=1, BestiaryId=9999 }
             };
+
+            var ret = new RandomEncounterResult
+            {
+                EncounterItems = list,
+                Success = true
+            };
+
 
             // API Call for GetEncounter
 

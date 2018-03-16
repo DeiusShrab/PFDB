@@ -224,8 +224,8 @@ namespace PFHelper
 
         public ObservableCollection<CombatGridItem> combatGridItems;
         public ObservableCollection<DisplayResult> randomEncounterItems;
-        private List<CombatEffectItem> combatEffects;
-        private List<DisplayValues> encounterResults;
+        private ObservableCollection<CombatEffectItem> combatEffects;
+        private ObservableCollection<DisplayValues> encounterResults;
         
         private Random random;
         private FantasyDate date;
@@ -237,7 +237,9 @@ namespace PFHelper
 
         public MainWindow()
         {
-            combatEffects = new List<CombatEffectItem>();
+            encounterResults = new ObservableCollection<DisplayValues>();
+            randomEncounterItems = new ObservableCollection<DisplayResult>();
+            combatEffects = new ObservableCollection<CombatEffectItem>();
             combatGridItems = new ObservableCollection<CombatGridItem>
             {
                 new CombatGridItem()
@@ -269,14 +271,19 @@ namespace PFHelper
             LbxD8.SelectedValuePath = LbxEncounterCreatures.SelectedValuePath = "Result";
             LbxD10.DisplayMemberPath = LbxEncounterCreatures.DisplayMemberPath = "Display";
             LbxD10.SelectedValuePath = LbxEncounterCreatures.SelectedValuePath = "Result";
-            LbxD12.SelectedValuePath = LbxEncounterCreatures.SelectedValuePath = "Result";
             LbxD12.DisplayMemberPath = LbxEncounterCreatures.DisplayMemberPath = "Display";
+            LbxD12.SelectedValuePath = LbxEncounterCreatures.SelectedValuePath = "Result";
 
-            var c = ConfigurationManager.ConnectionStrings.Count;
+            LbxEncounterCreatures.DisplayMemberPath = "Display";
+            LbxEncounterCreatures.SelectedValuePath = "Result";
+            LbxEncounterCRs.DisplayMemberPath = "Display";
+            LbxEncounterCRs.SelectedValuePath = "Values";
 
             DgCombatGrid.ItemsSource = combatGridItems;
             DgCombatEffects.ItemsSource = combatEffects;
             LbxEncounterCreatures.ItemsSource = randomEncounterItems;
+            LbxEncounterCRs.ItemsSource = encounterResults;
+
             random = new Random();
             date = new FantasyDate();
 
@@ -324,12 +331,12 @@ namespace PFHelper
         private void GenEncounters()
         {
             var difficulty = new string[] { "[E] ", "[M] ", "[H] " };
-            encounterResults = new List<DisplayValues>();
+            encounterResults = new ObservableCollection<DisplayValues>();
             GenMysterious();
             LblChanceEncounter.Content = random.Next(100).ToString("D2");
             LblChanceNPC.Content = random.Next(100).ToString("D2");
-            int apl = 1;
-            int.TryParse(TxtAPL.Text, out apl);
+            if (!int.TryParse(TxtAPL.Text, out int apl))
+                apl = 1;
 
             apl--;
 
@@ -445,8 +452,14 @@ namespace PFHelper
         {
             var req = new RandomEncounterRequest
             {
-                Crs = crs
+                Crs = crs,
+                Group = EncounterGroup,
+                Npc = EncounterNPC,
+                ContinentId = EncounterZone ? ContinentId : 0,
+                TerrainId = EncounterZone ? TerrainId : 0,
+                TimeId = EncounterTime ? TimeId : 0
             };
+
             var result = DBClient.GetEncounters(req);
             if (result.Success)
             {
@@ -659,6 +672,27 @@ namespace PFHelper
             };
 
             combatEffects.Add(cef);
+        }
+
+        private void BtnCombatSort_Click(object sender, RoutedEventArgs e)
+        {
+            combatGridItems = new ObservableCollection<CombatGridItem>(combatGridItems.OrderBy(x => x.Init));
+        }
+
+        private void BtnCombatDuplicate_Click(object sender, RoutedEventArgs e)
+        {
+            if (DgCombatGrid.SelectedItem != null)
+            {
+                combatGridItems.Add(new CombatGridItem((CombatGridItem)DgCombatGrid.SelectedItem));
+            }
+        }
+
+        private void BtnCombatDelete_Click(object sender, RoutedEventArgs e)
+        {
+            if (DgCombatGrid.SelectedItem != null)
+            {
+                combatGridItems.Remove((CombatGridItem)DgCombatGrid.SelectedItem);
+            }
         }
     }
 }
