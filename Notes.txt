@@ -1,14 +1,19 @@
 TODO AT HOME
-- Get a sample set of Bestiary entries (and related entries)
-- Run the Transformer (when ready)
+- Get a count of non-null entries for each column. Consider moving low-pop columns to separate tables.
+- Run the Transformer (first pass)
+	FIRST - write up Alter scripts for the first three entries to return them to their original status
+- Check interaction between [Bestiary].Environment, Feat, Language, Skill and new tables
+
+Remove columns from [Bestiary]:
+Mythic bool
 
 [Bestiary] NPCs
-Add a new column for IsNPC (or use an existing one) and have it set for intelligent beings that might interact with the party instead of fight them
+Use the CharacterFlag column for NPCs, and have it set for intelligent beings that might interact with the party instead of fight them
 
 CreatureInfoBrowser
 On first page-load, add the loaded info to a local memory item. Like a dictionary or something. Always check this cache item before loading from the web.
 Also cap it at like ten items to prevent memory leaks.
-<<<<<<< Updated upstream
+
 [BrowserCacheItem] MonsterId, LastUsed, MonsterText
 
 Continent-Terrain
@@ -28,6 +33,7 @@ Times: Morning, Afternoon, Evening, First Watch, Second Watch, Third Watch
 
 Travel Time (Notebook, not app)
 Add modifiers like +1 for Ring of Sustenance (less sleep)
++1 for on-road, adjust base travel accordingly
 
 Combat Tracker
 Skip entries with 0 or lower Init on Next Turn
@@ -44,4 +50,3 @@ Dot Net Core, not Dot Net
 
 PFSite
 Also dot net core
->>>>>>> Stashed changes

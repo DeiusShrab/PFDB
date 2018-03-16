@@ -1,4 +1,7 @@
 ﻿using System;
+using System.Linq;
+using System.Text.RegularExpressions;
+using PFDAL.Models;
 
 namespace PFDALTest
 {
@@ -16,7 +19,8 @@ namespace PFDALTest
                         Test();
                         break;
                     case 2:
-                        UpdateBestiary();
+                        Console.WriteLine("Not Yet Ready");
+                        //UpdateBestiary();
                         break;
                 }
             }
@@ -48,8 +52,200 @@ namespace PFDALTest
         // Menu 2
         private static void UpdateBestiary()
         {
-            Console.WriteLine("Not Yet Ready");
-            return;
+            int i = 0;
+            var context = new PFDBContext();
+            foreach (var b in context.Bestiary)
+            {
+                // ALL - get rid of NULL as often as possible
+
+                // AbilityScores - split
+                // Str 12, Dex 14, Con 13, Int 9, Wis 10, Cha 9
+                // Handle creatures with no Con, Int, etc like undead or plants
+                foreach (var item in b.AbilityScores.Split(','))
+                {
+                    var stat = item.Trim();
+                    if (stat.StartsWith("Str", StringComparison.InvariantCultureIgnoreCase))
+                    {
+                        if (int.TryParse(Regex.Match(b.Hd, @"d+").ToString(), out int val))
+                            b.Str = val;
+                    }
+                    else if (stat.StartsWith("Dex", StringComparison.InvariantCultureIgnoreCase))
+                    {
+                        if (int.TryParse(Regex.Match(b.Hd, @"d+").ToString(), out int val))
+                            b.Dex = val;
+                    }
+                    else if (stat.StartsWith("Con", StringComparison.InvariantCultureIgnoreCase))
+                    {
+                        if (int.TryParse(Regex.Match(b.Hd, @"d+").ToString(), out int val))
+                            b.Con = val;
+                    }
+                    else if (stat.StartsWith("Int", StringComparison.InvariantCultureIgnoreCase))
+                    {
+                        if (int.TryParse(Regex.Match(b.Hd, @"d+").ToString(), out int val))
+                            b.Int = val;
+                    }
+                    else if (stat.StartsWith("Wis", StringComparison.InvariantCultureIgnoreCase))
+                    {
+                        if (int.TryParse(Regex.Match(b.Hd, @"d+").ToString(), out int val))
+                            b.Wis = val;
+                    }
+                    else if (stat.StartsWith("Cha", StringComparison.InvariantCultureIgnoreCase))
+                    {
+                        if (int.TryParse(Regex.Match(b.Hd, @"d+").ToString(), out int val))
+                            b.Cha = val;
+                    }
+                }
+
+                if (!b.Str.HasValue)
+                    b.Str = 0;
+                if (!b.Dex.HasValue)
+                    b.Dex = 0;
+                if (!b.Con.HasValue)
+                    b.Con = 0;
+                if (!b.Int.HasValue)
+                    b.Int = 0;
+                if (!b.Wis.HasValue)
+                    b.Wis = 0;
+                if (!b.Cha.HasValue)
+                    b.Cha = 0;
+
+                b.AbilityScores = null;
+
+                // AC - split, make sure AC is an int
+                // 17, touch 17, flat-footed 12
+                foreach (var item in b.Ac.Split(','))
+                {
+                    var ac = item.Trim();
+                    if (ac.StartsWith("touch"))
+                    {
+                        if (int.TryParse(Regex.Match(b.Hd, @"d+").ToString(), out int val))
+                            b.Actouch = val;
+                    }
+                    else if (ac.StartsWith("flat"))
+                    {
+                        if (int.TryParse(Regex.Match(b.Hd, @"d+").ToString(), out int val))
+                            b.Acflat = val;
+                    }
+                    else
+                    {
+                        if (int.TryParse(Regex.Match(b.Hd, @"d+").ToString(), out int val))
+                            b.Ac = val.ToString();
+                    }
+                }
+
+                // HD - remove parenthesis, make sure it's in AdB+C format
+                b.Hd = b.Hd.Replace("(", "").Replace(")", "");
+                if (!b.Hd.Contains("d"))
+                    b.Hd = "1d" + b.Hd;
+                if (!b.Hd.Contains("+") && !b.Hd.Contains("-"))
+                    b.Hd = b.Hd + "+0";
+
+                if (!b.BaseAtk.HasValue)
+                    b.BaseAtk = 0;
+
+                // Speed - split, make sure base speed is an int
+                // WAIT UNTIL ALT SPEEDS CHANGED TO INT
+                // Burrow, Climb, Fly, Land, Swim
+                //b.Speed;
+
+                if (!b.CharacterFlag.HasValue)
+                    b.CharacterFlag = false;
+
+                if (!b.Cmb.HasValue)
+                    b.Cmd = 10 + b.BaseAtk.Value + GetAbilityMod(b.Str.Value);
+
+                if (!b.Cmd.HasValue)
+                    b.Cmd = 10 + b.BaseAtk.Value + GetAbilityMod(b.Str.Value) + GetAbilityMod(b.Dex.Value);
+
+                if (!b.CompanionFlag.HasValue)
+                    b.CompanionFlag = false;
+
+                if (!b.Cr.HasValue)
+                {
+                    int cr = -10;
+                    int.TryParse(Regex.Match(b.Hd, @"d+").ToString(), out cr);
+                    b.Cr = cr;
+                }
+
+                if (!b.DontUseRacialHd.HasValue)
+                    b.DontUseRacialHd = false;
+
+                if (!b.Fortitude.HasValue)
+                    b.Fortitude = GetAbilityMod(b.Con.Value);
+
+                if (!b.Hp.HasValue)
+                    b.Hp = 0;
+
+                if (!b.Init.HasValue)
+                    b.Init = GetAbilityMod(b.Dex.Value);
+
+                if (!b.IsTemplate.HasValue)
+                    b.IsTemplate = false;
+
+                if (!b.Mr.HasValue)
+                    b.Mr = 0;
+
+                if (!b.Mt.HasValue)
+                    b.Mt = 0;
+
+                if (!b.Reflex.HasValue)
+                    b.Reflex = GetAbilityMod(b.Dex.Value);
+
+                if (!b.Sr.HasValue)
+                    b.Sr = 0;
+
+                if (!b.UniqueMonster.HasValue)
+                    b.UniqueMonster = false;
+
+                if (!b.Will.HasValue)
+                    b.Will = GetAbilityMod(b.Wis.Value);
+
+                if (!b.Xp.HasValue)
+                    b.Xp = 0;
+
+                context.SaveChanges();
+
+                // Subtype - split, add entries in BestiarySubtype
+                // (chaotic, evil, extraplanar)
+                if (!string.IsNullOrWhiteSpace(b.SubType))
+                {
+                    foreach (var item in b.SubType.Replace("(","").Replace(")","").Split(','))
+                    {
+                        if (!context.BestiaryType.Any(x => x.Name.Equals(item, StringComparison.InvariantCultureIgnoreCase)))
+                        {
+                            context.BestiaryType.Add(new BestiaryType() { Name = item });
+                            context.SaveChanges();
+                        }
+
+                        var bType = context.BestiaryType.First(x => x.Name.Equals(item, StringComparison.InvariantCultureIgnoreCase));
+                        context.BestiarySubType.Add(new BestiarySubType() { BestiaryId = b.BestiaryId, BestiaryTypeId = bType.BestiaryTypeId });
+                        context.SaveChanges();
+                    }
+
+                    b.SubType = null;
+                }
+
+                // Environment
+
+                // Feat
+                // Improved Initiative, Iron Will, Lightning Reflexes, Skill Focus (Perception)
+
+                // Language
+
+                // Skill
+
+                // TESTING
+                if (i++ == 3)
+                    break;
+            }
+        }
+
+        private static int GetAbilityMod(int score)
+        {
+            if (score > 0)
+                return (int)Math.Floor((score - 10) / 2.0);
+            else
+                return 0;
         }
     }
 }
