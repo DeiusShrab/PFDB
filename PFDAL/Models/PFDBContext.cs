@@ -32,7 +32,7 @@ namespace PFDAL.Models
         public virtual DbSet<SpellDetail> SpellDetail { get; set; }
         public virtual DbSet<Territory> Territory { get; set; }
         public virtual DbSet<Weather> Weather { get; set; }
-
+        
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
             if (!optionsBuilder.IsConfigured)

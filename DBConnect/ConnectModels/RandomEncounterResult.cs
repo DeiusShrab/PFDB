@@ -8,6 +8,7 @@ namespace DBConnect.ConnectModels
     {
         public List<RandomEncounterItem> EncounterItems { get; set; }
         public bool Success { get; set; }
+        public string Message { get; set; }
     }
 
     public class RandomEncounterItem
