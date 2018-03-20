@@ -23,15 +23,16 @@ namespace PFDBSite.Controllers
             return new ObjectResult(context.Continent.ToList());
         }
 
+        [HttpGet("Seasons")]
+        public IActionResult GetAllSeasons()
+        {
+            return new ObjectResult(context.Season.ToList());
+        }
+
         [HttpPost("Encounter")]
         public IActionResult GenRandomEncounter([FromBody] RandomEncounterRequest request)
         {
-            var ret = new RandomEncounterResult();
-            ret.Success = false;
-
-            ret = helperRandom.GenerateRandomEncounters(request);
-
-            return new ObjectResult(ret);
+            return new ObjectResult(helperRandom.GenerateRandomEncounters(request));
         }
     }
 }

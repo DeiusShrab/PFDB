@@ -1,8 +1,17 @@
 TODO AT HOME
-- Get a count of non-null entries for each column. Consider moving low-pop columns to separate tables.
+- Add tables for Terrain, Time, Plane. Add them to the Model.
+- Update MonsterSpawn tables to include new tables, make BestiaryId non-null
+- Make sure all Bestiary entries have a MonsterSpawn entry, even if it's all nulls
+- Write sproc for GenerateRandomEncounters
+
+- Write up Alter scripts for the first three entries to return them to their original status after Transform
 - Run the Transformer (first pass)
-	FIRST - write up Alter scripts for the first three entries to return them to their original status
+- Verify that Transformer worked. If it did, run for entire db.
+
+- Get a count of non-null entries for each column. Make sure the column is not nullable if there are 0 null entries.
+- Consider moving low-pop columns to separate tables.
 - Check interaction between [Bestiary].Environment, Feat, Language, Skill and new tables
+- Write up (or pseudocode) Transformer code to split them up
 
 Remove columns from [Bestiary]:
 Mythic bool

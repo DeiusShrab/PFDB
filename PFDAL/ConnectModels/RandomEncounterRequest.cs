@@ -12,5 +12,6 @@ namespace PFDAL.ConnectModels
         public int ContinentId { get; set; }
         public int TerrainId { get; set; }
         public int TimeId { get; set; }
+        public int SeasonId { get; set; }
     }
 }

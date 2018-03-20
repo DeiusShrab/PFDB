@@ -18,9 +18,12 @@ namespace PFDBSite.Helpers
         {
             var encounterList = new List<RandomEncounterItem>();
             var groupMon = new List<Bestiary>();
-            var validSpawns = context.Bestiary.Where(x => x.CompanionFlag == request.Npc);
-            
-            var paramContinent = new SqlParameter("@ContinentId", request.ContinentId);
+            var validSpawns = from s in context.MonsterSpawn
+                              join b in context.Bestiary on s.BestiaryId equals b.BestiaryId
+                              where (s.Continent == request.ContinentId || request.ContinentId == 0)
+                                  && (s.Season == request.SeasonId || request.SeasonId == 0)
+                                  && b.CharacterFlag == request.Npc
+                              select b;
 
             foreach (var cr in request.Crs)
             {

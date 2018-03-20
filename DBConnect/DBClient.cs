@@ -58,9 +58,14 @@ namespace DBConnect
 
         public static List<Continent> GetContinents()
         {
+            // API Call
             return new List<Continent>();
         }
 
-        
+        public static List<Season> GetSeasons()
+        {
+            // API Call
+            return new List<Season>();
+        }
     }
 }

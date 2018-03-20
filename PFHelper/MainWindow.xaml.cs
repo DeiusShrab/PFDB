@@ -114,6 +114,17 @@ namespace PFHelper
         }
         private int _combatRound;
 
+        public int RationsLeft
+        {
+            get { return _rationsLeft; }
+            set
+            {
+                _rationsLeft = value;
+                LblRationsLeft.Content = _rationsLeft.ToString();
+            }
+        }
+        private int _rationsLeft;
+
         private int CgiInit
         {
             get
@@ -222,13 +233,17 @@ namespace PFHelper
 
         #region Data Properties
 
-        public ObservableCollection<CombatGridItem> combatGridItems;
-        public ObservableCollection<DisplayResult> randomEncounterItems;
+        private ObservableCollection<CombatGridItem> combatGridItems;
+        private ObservableCollection<DisplayResult> randomEncounterItems;
         private ObservableCollection<CombatEffectItem> combatEffects;
         private ObservableCollection<DisplayValues> encounterResults;
+
+        private List<Continent> continents;
+        private List<Season> seasons;
         
         private Random random;
-        private FantasyDate date;
+        private FantasyDate CurrentDate;
+        private Weather CurrentWeather;
         private string saveDataPath = Path.Combine(System.Environment.CurrentDirectory, "pfdat.dat");
 
         #endregion
@@ -237,6 +252,12 @@ namespace PFHelper
 
         public MainWindow()
         {
+            if (!LoadDBData())
+            {
+                MessageBox.Show("ERROR - Failed to connect to server");
+                Close();
+            }
+
             encounterResults = new ObservableCollection<DisplayValues>();
             randomEncounterItems = new ObservableCollection<DisplayResult>();
             combatEffects = new ObservableCollection<CombatEffectItem>();
@@ -285,7 +306,7 @@ namespace PFHelper
             LbxEncounterCRs.ItemsSource = encounterResults;
 
             random = new Random();
-            date = new FantasyDate();
+            CurrentDate = new FantasyDate();
 
             if (File.Exists(saveDataPath))
                 LoadSavedData();
@@ -297,14 +318,87 @@ namespace PFHelper
 
         #region Methods
 
+        private bool LoadDBData()
+        {
+            var ret = true;
+
+            try
+            {
+                continents = DBClient.GetContinents();
+                seasons = DBClient.GetSeasons();
+            }
+            catch
+            {
+                ret = false;
+            }
+
+            return ret;
+        }
+
         private void LoadSavedData()
         {
+            if (File.Exists(saveDataPath))
+            {
+                var saveObject = Newtonsoft.Json.JsonConvert.DeserializeObject<SaveObject>(File.ReadAllText(saveDataPath));
 
+                TxtAPL.Text = saveObject.Apl.ToString();
+
+                EncounterGroup = saveObject.CbxGroup;
+                EncounterNPC = saveObject.CbxNpc;
+                EncounterTime = saveObject.CbxTime;
+                EncounterZone = saveObject.CbxZone;
+                RationsInfinite = saveObject.CbxInfRations;
+
+                RationsLeft = saveObject.Rations;
+                CurrentDate = saveObject.Date;
+                CurrentWeather = saveObject.Weather;
+
+                combatEffects = new ObservableCollection<CombatEffectItem>(saveObject.CombatEffects);
+                combatGridItems = new ObservableCollection<CombatGridItem>(saveObject.CombatGridItems);
+            }
         }
 
         private void SaveData()
         {
+            var saveObject = new SaveObject();
+
+            if (int.TryParse(TxtAPL.Text, out int apl))
+                saveObject.Apl = apl;
+
+            saveObject.CbxGroup = EncounterGroup;
+            saveObject.CbxNpc = EncounterNPC;
+            saveObject.CbxTime = EncounterTime;
+            saveObject.CbxZone = EncounterZone;
+            saveObject.CbxInfRations = RationsInfinite;
+
+            saveObject.Rations = RationsLeft;
+            saveObject.Date = CurrentDate;
+            saveObject.Weather = CurrentWeather;
+
+            saveObject.CombatEffects = combatEffects.ToList();
+            saveObject.CombatGridItems = combatGridItems.ToList();
             
+            File.WriteAllText(saveDataPath, Newtonsoft.Json.JsonConvert.SerializeObject(saveObject));
+        }
+
+        private void ClearCombatAdd()
+        {
+            TxtCombatName.Clear();
+            TxtCombatAC.Clear();
+            TxtCombatFlat.Clear();
+            TxtCombatTouch.Clear();
+            TxtCombatFort.Clear();
+            TxtCombatRef.Clear();
+            TxtCombatWill.Clear();
+            TxtCombatHP.Clear();
+            TxtCombatInit.Clear();
+            CgiPC = false;
+        }
+
+        private void ClearCombatEffectAdd()
+        {
+            TxtCombatEffect.Clear();
+            IntCombatEffectRounds.Value = null;
         }
 
         private List<DisplayResult> DiceRoll(int d, int num, int add, bool addPos)
@@ -529,23 +623,6 @@ namespace PFHelper
             }
         }
 
-        private void CombatEnd()
-        {
-            CombatRound = 0;
-            combatEffects.Clear();
-
-            var removeItems = new List<CombatGridItem>();
-            foreach (var item in combatGridItems)
-            {
-                if (!item.PC)
-                    removeItems.Add(item);
-            }
-            foreach (var item in removeItems)
-            {
-                combatGridItems.Remove(item);
-            }
-        }
-
         #endregion
 
         #region Events
@@ -640,7 +717,19 @@ namespace PFHelper
 
         private void BtnCombatEnd_Click(object sender, RoutedEventArgs e)
         {
-            CombatEnd();
+            CombatRound = 0;
+            combatEffects.Clear();
+
+            var removeItems = new List<CombatGridItem>();
+            foreach (var item in combatGridItems)
+            {
+                if (!item.PC)
+                    removeItems.Add(item);
+            }
+            foreach (var item in removeItems)
+            {
+                combatGridItems.Remove(item);
+            }
         }
 
         private void BtnCombatAddNew_Click(object sender, RoutedEventArgs e)
@@ -661,6 +750,8 @@ namespace PFHelper
             };
 
             combatGridItems.Add(cgi);
+
+            ClearCombatAdd();
         }
 
         private void BtnCombatAddEffect_Click(object sender, RoutedEventArgs e)
@@ -672,6 +763,8 @@ namespace PFHelper
             };
 
             combatEffects.Add(cef);
+
+            ClearCombatEffectAdd();
         }
 
         private void BtnCombatSort_Click(object sender, RoutedEventArgs e)
@@ -692,6 +785,28 @@ namespace PFHelper
             if (DgCombatGrid.SelectedItem != null)
             {
                 combatGridItems.Remove((CombatGridItem)DgCombatGrid.SelectedItem);
+            }
+        }
+
+        private void Window_Closing(object sender, System.ComponentModel.CancelEventArgs e)
+        {
+            SaveData();
+        }
+
+        private void CommandSave_Executed(object sender, System.Windows.Input.ExecutedRoutedEventArgs e)
+        {
+            SaveData();
+        }
+
+        private void BtnCombatClearAll_Click(object sender, RoutedEventArgs e)
+        {
+            if (MessageBox.Show("Are you sure you want to Clear All?") == MessageBoxResult.OK)
+            {
+                combatEffects.Clear();
+                combatGridItems.Clear();
+                ClearCombatAdd();
+                ClearCombatEffectAdd();
+                CombatRound = 1;
             }
         }
     }
