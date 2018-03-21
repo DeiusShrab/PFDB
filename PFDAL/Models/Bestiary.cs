@@ -106,5 +106,12 @@ namespace PFDAL.Models
         public int? Wis { get; set; }
         public int? Int { get; set; }
         public int? Cha { get; set; }
+        public BestiaryDetail BestiaryDetail { get; set; }
+        public List<BestiaryFeat> BestiaryFeats { get; set; }
+        public List<BestiarySkill> BestiarySkills { get; set; }
+        public List<BestiaryLanguage> BestiaryLanguages { get; set; }
+        public List<BestiarySubType> BestiarySubTypes { get; set; }
+        public List<BestiaryEnvironment> BestiaryEnvironments { get; set; }
+        public BestiaryType BestiaryType { get; set; }
     }
 }
