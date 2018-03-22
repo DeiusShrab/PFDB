@@ -234,6 +234,11 @@ namespace PFDALTest
 
                 // Skill
 
+                // Spawn
+                context.MonsterSpawn.Add(new MonsterSpawn() { BestiaryId = b.BestiaryId });
+
+                context.SaveChanges();
+
                 // TESTING
                 if (i++ == 3)
                     break;
