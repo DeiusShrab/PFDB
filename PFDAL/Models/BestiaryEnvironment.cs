@@ -8,5 +8,6 @@ namespace PFDAL.Models
     {
         public int BestiaryId { get; set; }
         public int EnvironmentId { get; set; }
+        public string Notes { get; set; }
     }
 }

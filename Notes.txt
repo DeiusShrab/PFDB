@@ -1,4 +1,6 @@
 TODO AT HOME
+- GET THE FIRST VERSION OF THE SITE UP WITH THE API
+
 - Add tables for Terrain, Time, Plane. Add them to the Model.
 - Update MonsterSpawn tables to include new tables, make BestiaryId non-null
 - Make sure all Bestiary entries have a MonsterSpawn entry, even if it's all nulls

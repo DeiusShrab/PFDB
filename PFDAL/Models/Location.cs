@@ -12,5 +12,7 @@ namespace PFDAL.Models
         public int GridY { get; set; }
         public int? FactionId { get; set; }
         public int? TerritoryId { get; set; }
+        public int TerrainId { get; set; }
+        public int EnvironmentId { get; set; }
     }
 }

@@ -226,13 +226,142 @@ namespace PFDALTest
                 }
 
                 // Environment
+                if (!string.IsNullOrWhiteSpace(b.Environment))
+                {
+                    foreach (var environment in b.Environment.Split(','))
+                    {
+                        string envName = environment.Trim();
+                        string notes = null;
+                        if (envName.Contains("("))
+                        {
+                            notes = envName.Split('(')[1].TrimEnd(')');
+                            envName = envName.Split('(')[0].Trim();
+                        }
+
+                        if (!context.Environment.Select(x => x.Name.ToLower()).Contains(envName.ToLower()))
+                        {
+                            context.Environment.Add(new PFDAL.Models.Environment()
+                            {
+                                Name = envName
+                            });
+                            context.SaveChanges();
+                        }
+
+                        var e = new BestiaryEnvironment
+                        {
+                            BestiaryId = b.BestiaryId,
+                            EnvironmentId = context.Environment.FirstOrDefault(x => envName.Equals(x.Name, StringComparison.InvariantCultureIgnoreCase))?.EnvironmentId ?? 0,
+                            Notes = notes
+                        };
+
+                        context.BestiaryEnvironment.Add(e);
+                    }
+                }
 
                 // Feat
                 // Improved Initiative, Iron Will, Lightning Reflexes, Skill Focus (Perception)
+                if (!string.IsNullOrWhiteSpace(b.Feats))
+                {
+                    foreach (var feat in b.Feats.Split(','))
+                    {
+                        string featName = feat.Trim();
+                        string notes = null;
+                        if (featName.Contains("("))
+                        {
+                            notes = featName.Split('(')[1].TrimEnd(')');
+                            featName = featName.Split('(')[0].Trim();
+                        }
+                        if (featName.EndsWith('B'))
+                            featName = featName.Substring(0, feat.Length - 1);
+                        var f = new BestiaryFeat
+                        {
+                            BestiaryId = b.BestiaryId,
+                            FeatId = context.Feat.FirstOrDefault(x => featName.Equals(x.Name, StringComparison.InvariantCultureIgnoreCase))?.FeatId ?? 0,
+                            Notes = notes
+                        };
 
-                // Language
+                        context.BestiaryFeat.Add(f);
+                    }
+                }
 
                 // Skill
+                if (!string.IsNullOrWhiteSpace(b.Skills))
+                {
+                    foreach (var skill in b.Skills.Split(','))
+                    {
+                        string skillName = skill.Trim();
+                        string notes = null;
+                        int bonus = 0;
+
+                        if (skillName.Contains("("))
+                        {
+                            notes = skillName.Split('(')[1].TrimEnd(')');
+                            skillName = skillName.Split('(')[0].Trim();
+                        }
+
+                        if (skillName.Contains("+"))
+                        {
+                            bonus = Convert.ToInt32(skillName.Split('+')[1]);
+                            skillName = skillName.Split('+')[0].Trim();
+                        }
+                        else if (skillName.Contains("-"))
+                        {
+                            bonus = Convert.ToInt32(skillName.Split('-')[1]);
+                            skillName = skillName.Split('-')[0].Trim();
+                        }
+
+                        if (!context.Skill.Select(x => x.Name.ToLower()).Contains(skillName.ToLower()))
+                        {
+                            context.Skill.Add(new Skill()
+                            {
+                                Name = skillName
+                            });
+                            context.SaveChanges();
+                        }
+
+                        var s = new BestiarySkill
+                        {
+                            BestiaryId = b.BestiaryId,
+                            SkillId = context.Skill.FirstOrDefault(x => skillName.Equals(x.Name, StringComparison.InvariantCultureIgnoreCase))?.SkillId ?? 0,
+                            Notes = notes
+                        };
+
+                        context.BestiarySkill.Add(s);
+                    }
+                }
+
+                // Language
+                if (!string.IsNullOrWhiteSpace(b.Languages))
+                {
+                    foreach (var language in b.Languages.Split(new string[] { ",", ";" }, StringSplitOptions.RemoveEmptyEntries))
+                    {
+                        string langName = language.Trim();
+                        string notes = null;
+                        if (langName.Contains("("))
+                        {
+                            notes = langName.Split('(')[1].TrimEnd(')');
+                            langName = langName.Split('(')[0].Trim();
+                        }
+
+                        if (!context.Skill.Select(x => x.Name.ToLower()).Contains(langName.ToLower()))
+                        {
+                            context.Skill.Add(new Skill()
+                            {
+                                Name = langName
+                            });
+                            context.SaveChanges();
+                        }
+
+                        var l = new BestiaryLanguage
+                        {
+                            BestiaryId = b.BestiaryId,
+                            LanguageId = context.Language.FirstOrDefault(x => langName.Equals(x.Name, StringComparison.InvariantCultureIgnoreCase))?.LanguageId ?? 0,
+                            Notes = notes
+                        };
+
+                        context.BestiaryLanguage.Add(l);
+                    }
+                }
 
                 // Spawn
                 context.MonsterSpawn.Add(new MonsterSpawn() { BestiaryId = b.BestiaryId });

@@ -17,20 +17,18 @@ namespace PFDBSite.Controllers
         public PFDBContext context = new PFDBContext();
         private RandomHelper helperRandom = new RandomHelper();
 
-        [HttpGet("Continents")]
-        public IActionResult GetAllContinents()
+        public IActionResult Continents()
         {
             return new ObjectResult(context.Continent.ToList());
         }
-
-        [HttpGet("Seasons")]
-        public IActionResult GetAllSeasons()
+        
+        public IActionResult Seasons()
         {
             return new ObjectResult(context.Season.ToList());
         }
 
-        [HttpPost("Encounter")]
-        public IActionResult GenRandomEncounter([FromBody] RandomEncounterRequest request)
+        [HttpPost]
+        public IActionResult RandomEncounter([FromBody] RandomEncounterRequest request)
         {
             return new ObjectResult(helperRandom.GenerateRandomEncounters(request));
         }
