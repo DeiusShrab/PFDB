@@ -1,3 +1,7 @@
+TODO AT WORK
+- Split out the Skills, Environments, and Languages from the tester. They need to be added to the DB before separating them.
+- Update PFDBContext.OnModelCreating to use the new IDs for BestiaryItems
+
 TODO AT HOME
 - GET THE FIRST VERSION OF THE SITE UP WITH THE API
 

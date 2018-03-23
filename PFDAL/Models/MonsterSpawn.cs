@@ -7,8 +7,8 @@ namespace PFDAL.Models
     {
         public int SpawnId { get; set; }
         public int BestiaryId { get; set; }
-        public int? Continent { get; set; }
-        public int? Season { get; set; }
+        public int? ContinentId { get; set; }
+        public int? SeasonId { get; set; }
         public int? TimeId { get; set; }
         public int? TerrainId { get; set; }
     }
