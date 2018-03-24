@@ -454,7 +454,6 @@ namespace PFDAL.Models
                   .IsUnicode(false);
 
         entity.Property(e => e.Temperature)
-                  .IsRequired()
                   .HasMaxLength(50)
                   .IsUnicode(false);
       });
@@ -545,7 +544,7 @@ namespace PFDAL.Models
       {
         entity.Property(e => e.Name)
                   .IsRequired()
-                  .HasMaxLength(50)
+                  .HasMaxLength(100)
                   .IsUnicode(false);
 
         entity.Property(e => e.Notes)

@@ -1,4 +1,5 @@
 TODO AT WORK
+Environment - remove " or " from the beginning of all entries, remove ")" from all entries
 
 TODO AT HOME
 - Run the Transformer

@@ -19,8 +19,7 @@ namespace PFDALTest
             Test();
             break;
           case 2:
-            Console.WriteLine("Perform step 3 first");
-            //UpdateBestiary();
+            UpdateBestiary();
             break;
           case 3:
             PopulateTables();
@@ -249,60 +248,64 @@ namespace PFDALTest
       foreach (var b in bList)
       {
         var context = new PFDBContext();
-        // Subtype - split, add entries in BestiarySubtype
+        // Subtype - COMPLETE
         // (chaotic, evil, extraplanar)
-        if (!string.IsNullOrWhiteSpace(b.SubType))
-        {
-          foreach (var item in b.SubType.Replace("(", "").Replace(")", "").Split(','))
-          {
-            if (!context.BestiaryType.Any(x => x.Name.Equals(item, StringComparison.InvariantCultureIgnoreCase)))
-            {
-              context.BestiaryType.Add(new BestiaryType() { Name = item });
-              context.SaveChanges();
-            }
+        //if (!string.IsNullOrWhiteSpace(b.SubType))
+        //{
+        //  foreach (var item in b.SubType.Replace("(", "").Replace(")", "").Split(','))
+        //  {
+        //    if (!context.BestiaryType.Any(x => x.Name.Equals(item.Trim(), StringComparison.InvariantCultureIgnoreCase)))
+        //    {
+        //      context.BestiaryType.Add(new BestiaryType() { Name = item.Trim() });
+        //      context.SaveChanges();
+        //    }
 
-            var bType = context.BestiaryType.First(x => x.Name.Equals(item, StringComparison.InvariantCultureIgnoreCase));
-            context.BestiarySubType.Add(new BestiarySubType() { BestiaryId = b.BestiaryId, BestiaryTypeId = bType.BestiaryTypeId });
-            context.SaveChanges();
-          }
+        //    var bType = context.BestiaryType.First(x => x.Name.Equals(item.Trim(), StringComparison.InvariantCultureIgnoreCase));
+        //    context.BestiarySubType.Add(new BestiarySubType() { BestiaryId = b.BestiaryId, BestiaryTypeId = bType.BestiaryTypeId });
+        //    context.SaveChanges();
+        //  }
 
-          b.SubType = null;
-        }
+        //  b.SubType = null;
+        //}
 
-        // Environment
-        if (!string.IsNullOrWhiteSpace(b.Environment))
-        {
-          foreach (var environment in b.Environment.Split(','))
-          {
-            string envName = environment.Trim();
-            string notes = null;
-            if (envName.Contains("("))
-            {
-              notes = envName.Split('(')[1].TrimEnd(')');
-              envName = envName.Split('(')[0].Trim();
-            }
+        // Environment - ALMOST COMPLETE
+        //if (!string.IsNullOrWhiteSpace(b.Environment))
+        //{
+        //  foreach (var environment in b.Environment.Split(','))
+        //  {
+        //    string envName = environment.Trim();
+        //    string notes = null;
+        //    if (envName.Contains("("))
+        //    {
+        //      notes = envName.Split('(')[1].TrimEnd(')');
+        //      envName = envName.Split('(')[0].Trim();
+        //    }
 
-            if (!context.Environment.Select(x => x.Name.ToLower()).Contains(envName.ToLower()))
-            {
-              context.Environment.Add(new PFDAL.Models.Environment()
-              {
-                Name = envName
-              });
-              context.SaveChanges();
-            }
+        //    if (!context.Environment.Select(x => x.Name.ToLower()).Contains(envName.ToLower()))
+        //    {
+        //      context.Environment.Add(new PFDAL.Models.Environment()
+        //      {
+        //        Name = envName,
+        //        Notes = null,
+        //        Temperature = string.Empty,
+        //        TravelSpeed = 0
+        //      });
+        //      context.SaveChanges();
+        //    }
 
-            var e = new BestiaryEnvironment
-            {
-              BestiaryId = b.BestiaryId,
-              EnvironmentId = context.Environment.FirstOrDefault(x => envName.Equals(x.Name, StringComparison.InvariantCultureIgnoreCase))?.EnvironmentId ?? 0,
-              Notes = notes
-            };
+        //    var e = new BestiaryEnvironment
+        //    {
+        //      BestiaryId = b.BestiaryId,
+        //      EnvironmentId = context.Environment.FirstOrDefault(x => envName.Equals(x.Name, StringComparison.InvariantCultureIgnoreCase))?.EnvironmentId ?? 0,
+        //      Notes = notes
+        //    };
 
-            context.BestiaryEnvironment.Add(e);
-            context.SaveChanges();
-          }
-        }
-        // Skill
+        //    context.BestiaryEnvironment.Add(e);
+        //    context.SaveChanges();
+        //  }
+        //}
+
+        // Skill - NEEDS WORK
         if (!string.IsNullOrWhiteSpace(b.Skills))
         {
           foreach (var skill in b.Skills.Split(','))
@@ -319,7 +322,12 @@ namespace PFDALTest
 
             if (skillName.Contains("+"))
             {
-              bonus = Convert.ToInt32(skillName.Split('+')[1]);
+              var skillsplit = skillName.Split('+');
+              if (skillsplit[1].Contains(" "))
+                bonus = Convert.ToInt32(skillsplit[1].Split(' ')[0]);
+              else
+                bonus = Convert.ToInt32(skillsplit[1]);
+
               skillName = skillName.Split('+')[0].Trim();
             }
             else if (skillName.Contains("-"))
@@ -334,7 +342,7 @@ namespace PFDALTest
               {
                 Name = skillName,
                 Description = "UPDATE ME",
-                TrainedOnly = false
+                TrainedOnly = false                
               });
               context.SaveChanges();
             }
@@ -351,39 +359,40 @@ namespace PFDALTest
           }
         }
 
-        // Language
-        if (!string.IsNullOrWhiteSpace(b.Languages))
-        {
-          foreach (var language in b.Languages.Split(new string[] { ",", ";" }, StringSplitOptions.RemoveEmptyEntries))
-          {
-            string langName = language.Trim();
-            string notes = null;
-            if (langName.Contains("("))
-            {
-              notes = langName.Split('(')[1].TrimEnd(')');
-              langName = langName.Split('(')[0].Trim();
-            }
+        // Language - COMPLETE
+        //if (!string.IsNullOrWhiteSpace(b.Languages))
+        //{
+        //  foreach (var language in b.Languages.Split(new string[] { ",", ";" }, StringSplitOptions.RemoveEmptyEntries))
+        //  {
+        //    string langName = language.Trim();
+        //    string notes = null;
+        //    if (langName.Contains("("))
+        //    {
+        //      notes = langName.Split('(')[1].TrimEnd(')');
+        //      langName = langName.Split('(')[0].Trim();
+        //    }
 
-            if (!context.Language.Select(x => x.Name.ToLower()).Contains(langName.ToLower()))
-            {
-              context.Language.Add(new Language()
-              {
-                Name = langName
-              });
-              context.SaveChanges();
-            }
+        //    if (!context.Language.Select(x => x.Name.ToLower()).Contains(langName.ToLower()))
+        //    {
+        //      context.Language.Add(new Language()
+        //      {
+        //        Name = langName,
+        //        Notes = null
+        //      });
+        //      context.SaveChanges();
+        //    }
 
-            var l = new BestiaryLanguage
-            {
-              BestiaryId = b.BestiaryId,
-              LanguageId = context.Language.FirstOrDefault(x => langName.Equals(x.Name, StringComparison.InvariantCultureIgnoreCase))?.LanguageId ?? 0,
-              Notes = notes
-            };
+        //    var l = new BestiaryLanguage
+        //    {
+        //      BestiaryId = b.BestiaryId,
+        //      LanguageId = context.Language.FirstOrDefault(x => langName.Equals(x.Name, StringComparison.InvariantCultureIgnoreCase))?.LanguageId ?? 0,
+        //      Notes = notes
+        //    };
 
-            context.BestiaryLanguage.Add(l);
-            context.SaveChanges();
-          }
-        }
+        //    context.BestiaryLanguage.Add(l);
+        //    context.SaveChanges();
+        //  }
+        //}
       }
     }
 
