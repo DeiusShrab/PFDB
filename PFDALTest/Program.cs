@@ -56,158 +56,197 @@ namespace PFDALTest
     // Menu 2
     private static void UpdateBestiary()
     {
+      var context = new PFDBContext();
+      //int i = 0;
+      int[] idList = { 473, 474, 475, 476, 477, 478 };
+      var bList = new PFDBContext().Bestiary.Where(x => idList.Contains(x.BestiaryId));
+      foreach (var z in bList)
+      {
+        try
+        {
+          if (string.IsNullOrWhiteSpace(z.AbilityScores))
+            continue;
+
+          var b = context.Bestiary.First(x => x.BestiaryId == z.BestiaryId);
+
+          // AbilityScores - split
+          // Str 12, Dex 14, Con 13, Int 9, Wis 10, Cha 9
+          // Handle creatures with no Con, Int, etc like undead or plants
+          foreach (var item in b.AbilityScores.Split(','))
+          {
+            var stat = item.Trim();
+            if (stat.StartsWith("Str", StringComparison.InvariantCultureIgnoreCase))
+            {
+              if (int.TryParse(Regex.Match(stat, "[0-9]+").ToString(), out int val))
+                b.Str = val;
+            }
+            else if (stat.StartsWith("Dex", StringComparison.InvariantCultureIgnoreCase))
+            {
+              if (int.TryParse(Regex.Match(stat, "[0-9]+").ToString(), out int val))
+                b.Dex = val;
+            }
+            else if (stat.StartsWith("Con", StringComparison.InvariantCultureIgnoreCase))
+            {
+              if (int.TryParse(Regex.Match(stat, "[0-9]+").ToString(), out int val))
+                b.Con = val;
+            }
+            else if (stat.StartsWith("Int", StringComparison.InvariantCultureIgnoreCase))
+            {
+              if (int.TryParse(Regex.Match(stat, "[0-9]+").ToString(), out int val))
+                b.Int = val;
+            }
+            else if (stat.StartsWith("Wis", StringComparison.InvariantCultureIgnoreCase))
+            {
+              if (int.TryParse(Regex.Match(stat, "[0-9]+").ToString(), out int val))
+                b.Wis = val;
+            }
+            else if (stat.StartsWith("Cha", StringComparison.InvariantCultureIgnoreCase))
+            {
+              if (int.TryParse(Regex.Match(stat, "[0-9]+").ToString(), out int val))
+                b.Cha = val;
+            }
+          }
+
+          if (!b.Str.HasValue)
+            b.Str = 0;
+          if (!b.Dex.HasValue)
+            b.Dex = 0;
+          if (!b.Con.HasValue)
+            b.Con = 0;
+          if (!b.Int.HasValue)
+            b.Int = 0;
+          if (!b.Wis.HasValue)
+            b.Wis = 0;
+          if (!b.Cha.HasValue)
+            b.Cha = 0;
+
+          b.AbilityScores = null;
+
+          // AC - split, make sure AC is an int
+          // 17, touch 17, flat-footed 12
+          foreach (var item in b.Ac.Split(','))
+          {
+            var ac = item.Trim();
+            if (ac.StartsWith("touch"))
+            {
+              if (int.TryParse(Regex.Match(ac, "[0-9]+").ToString(), out int val))
+                b.Actouch = val;
+            }
+            else if (ac.StartsWith("flat"))
+            {
+              if (int.TryParse(Regex.Match(ac, "[0-9]+").ToString(), out int val))
+                b.Acflat = val;
+            }
+            else
+            {
+              if (int.TryParse(Regex.Match(ac, "[0-9]+").ToString(), out int val))
+                b.Ac = val.ToString();
+            }
+          }
+
+          // HD - remove parenthesis, make sure it's in AdB+C format
+          b.Hd = b.Hd.Replace("(", "").Replace(")", "");
+          if (!b.Hd.Contains("d"))
+            b.Hd = "1d" + b.Hd;
+          if (!b.Hd.Contains("+") && !b.Hd.Contains("-"))
+            b.Hd = b.Hd + "+0";
+
+          if (!b.BaseAtk.HasValue)
+            b.BaseAtk = 0;
+
+          // Speed - split, make sure base speed is an int
+          // WAIT UNTIL ALT SPEEDS CHANGED TO INT
+          // Burrow, Climb, Fly, Land, Swim
+          //b.Speed;
+
+          if (!b.CharacterFlag.HasValue)
+            b.CharacterFlag = false;
+
+          if (!b.Cmb.HasValue)
+            b.Cmd = b.BaseAtk.Value + GetAbilityMod(b.Str.Value);
+
+          if (!b.Cmd.HasValue)
+            b.Cmd = 10 + b.BaseAtk.Value + GetAbilityMod(b.Str.Value) + GetAbilityMod(b.Dex.Value);
+
+          if (!b.CompanionFlag.HasValue)
+            b.CompanionFlag = false;
+
+          if (!b.Cr.HasValue)
+          {
+            int cr = -10;
+            int.TryParse(Regex.Match(b.Hd, "[0-9]+").ToString(), out cr);
+            b.Cr = cr;
+          }
+
+          if (!b.DontUseRacialHd.HasValue)
+            b.DontUseRacialHd = false;
+
+          if (!b.Fortitude.HasValue)
+            b.Fortitude = GetAbilityMod(b.Con.Value);
+
+          if (!b.Hp.HasValue)
+            b.Hp = 0;
+
+          if (!b.Init.HasValue)
+            b.Init = GetAbilityMod(b.Dex.Value);
+
+          if (!b.IsTemplate.HasValue)
+            b.IsTemplate = false;
+
+          if (!b.Mr.HasValue)
+            b.Mr = 0;
+
+          if (!b.Mt.HasValue)
+            b.Mt = 0;
+
+          if (!b.Reflex.HasValue)
+            b.Reflex = GetAbilityMod(b.Dex.Value);
+
+          if (!b.Sr.HasValue)
+            b.Sr = 0;
+
+          if (!b.UniqueMonster.HasValue)
+            b.UniqueMonster = false;
+
+          if (!b.Will.HasValue)
+            b.Will = GetAbilityMod(b.Wis.Value);
+
+          if (!b.Xp.HasValue)
+            b.Xp = 0;
+
+          // Spawn
+          context.MonsterSpawn.Add(new MonsterSpawn() { BestiaryId = b.BestiaryId });
+
+          //if (i++ >= 5)
+          //{
+            context.SaveChanges();
+            context.Dispose();
+            context = new PFDBContext();
+            //i = 0;
+            Console.WriteLine("Finished BID " + b.BestiaryId.ToString());
+          //}
+        }
+        catch (Exception ex)
+        {
+          Console.WriteLine($"[{z.BestiaryId}] - {ex.Message}");
+          if (ex.InnerException != null)
+            Console.WriteLine("InnerException: " + ex.InnerException.Message);
+
+          context.Dispose();
+          context = new PFDBContext();
+        }
+      }
+
+      context.SaveChanges();
+    }
+
+    // Menu 3
+    private static void PopulateTables()
+    {
       var bList = new PFDBContext().Bestiary.Select(x => x);
       foreach (var b in bList)
       {
-        if (string.IsNullOrWhiteSpace(b.AbilityScores))
-          continue;
-
         var context = new PFDBContext();
-
-        // AbilityScores - split
-        // Str 12, Dex 14, Con 13, Int 9, Wis 10, Cha 9
-        // Handle creatures with no Con, Int, etc like undead or plants
-        foreach (var item in b.AbilityScores.Split(','))
-        {
-          var stat = item.Trim();
-          if (stat.StartsWith("Str", StringComparison.InvariantCultureIgnoreCase))
-          {
-            if (int.TryParse(Regex.Match(stat, "[0-9]+").ToString(), out int val))
-              b.Str = val;
-          }
-          else if (stat.StartsWith("Dex", StringComparison.InvariantCultureIgnoreCase))
-          {
-            if (int.TryParse(Regex.Match(stat, "[0-9]+").ToString(), out int val))
-              b.Dex = val;
-          }
-          else if (stat.StartsWith("Con", StringComparison.InvariantCultureIgnoreCase))
-          {
-            if (int.TryParse(Regex.Match(stat, "[0-9]+").ToString(), out int val))
-              b.Con = val;
-          }
-          else if (stat.StartsWith("Int", StringComparison.InvariantCultureIgnoreCase))
-          {
-            if (int.TryParse(Regex.Match(stat, "[0-9]+").ToString(), out int val))
-              b.Int = val;
-          }
-          else if (stat.StartsWith("Wis", StringComparison.InvariantCultureIgnoreCase))
-          {
-            if (int.TryParse(Regex.Match(stat, "[0-9]+").ToString(), out int val))
-              b.Wis = val;
-          }
-          else if (stat.StartsWith("Cha", StringComparison.InvariantCultureIgnoreCase))
-          {
-            if (int.TryParse(Regex.Match(stat, "[0-9]+").ToString(), out int val))
-              b.Cha = val;
-          }
-        }
-
-        if (!b.Str.HasValue)
-          b.Str = 0;
-        if (!b.Dex.HasValue)
-          b.Dex = 0;
-        if (!b.Con.HasValue)
-          b.Con = 0;
-        if (!b.Int.HasValue)
-          b.Int = 0;
-        if (!b.Wis.HasValue)
-          b.Wis = 0;
-        if (!b.Cha.HasValue)
-          b.Cha = 0;
-
-        b.AbilityScores = null;
-
-        // AC - split, make sure AC is an int
-        // 17, touch 17, flat-footed 12
-        foreach (var item in b.Ac.Split(','))
-        {
-          var ac = item.Trim();
-          if (ac.StartsWith("touch"))
-          {
-            if (int.TryParse(Regex.Match(ac, "[0-9]+").ToString(), out int val))
-              b.Actouch = val;
-          }
-          else if (ac.StartsWith("flat"))
-          {
-            if (int.TryParse(Regex.Match(ac, "[0-9]+").ToString(), out int val))
-              b.Acflat = val;
-          }
-          else
-          {
-            if (int.TryParse(Regex.Match(ac, "[0-9]+").ToString(), out int val))
-              b.Ac = val.ToString();
-          }
-        }
-
-        // HD - remove parenthesis, make sure it's in AdB+C format
-        b.Hd = b.Hd.Replace("(", "").Replace(")", "");
-        if (!b.Hd.Contains("d"))
-          b.Hd = "1d" + b.Hd;
-        if (!b.Hd.Contains("+") && !b.Hd.Contains("-"))
-          b.Hd = b.Hd + "+0";
-
-        if (!b.BaseAtk.HasValue)
-          b.BaseAtk = 0;
-
-        // Speed - split, make sure base speed is an int
-        // WAIT UNTIL ALT SPEEDS CHANGED TO INT
-        // Burrow, Climb, Fly, Land, Swim
-        //b.Speed;
-
-        if (!b.CharacterFlag.HasValue)
-          b.CharacterFlag = false;
-
-        if (!b.Cmb.HasValue)
-          b.Cmd = b.BaseAtk.Value + GetAbilityMod(b.Str.Value);
-
-        if (!b.Cmd.HasValue)
-          b.Cmd = 10 + b.BaseAtk.Value + GetAbilityMod(b.Str.Value) + GetAbilityMod(b.Dex.Value);
-
-        if (!b.CompanionFlag.HasValue)
-          b.CompanionFlag = false;
-
-        if (!b.Cr.HasValue)
-        {
-          int cr = -10;
-          int.TryParse(Regex.Match(b.Hd, "[0-9]+").ToString(), out cr);
-          b.Cr = cr;
-        }
-
-        if (!b.DontUseRacialHd.HasValue)
-          b.DontUseRacialHd = false;
-
-        if (!b.Fortitude.HasValue)
-          b.Fortitude = GetAbilityMod(b.Con.Value);
-
-        if (!b.Hp.HasValue)
-          b.Hp = 0;
-
-        if (!b.Init.HasValue)
-          b.Init = GetAbilityMod(b.Dex.Value);
-
-        if (!b.IsTemplate.HasValue)
-          b.IsTemplate = false;
-
-        if (!b.Mr.HasValue)
-          b.Mr = 0;
-
-        if (!b.Mt.HasValue)
-          b.Mt = 0;
-
-        if (!b.Reflex.HasValue)
-          b.Reflex = GetAbilityMod(b.Dex.Value);
-
-        if (!b.Sr.HasValue)
-          b.Sr = 0;
-
-        if (!b.UniqueMonster.HasValue)
-          b.UniqueMonster = false;
-
-        if (!b.Will.HasValue)
-          b.Will = GetAbilityMod(b.Wis.Value);
-
-        if (!b.Xp.HasValue)
-          b.Xp = 0;
 
         // Feat
         // Improved Initiative, Iron Will, Lightning Reflexes, Skill Focus (Perception)
@@ -235,19 +274,6 @@ namespace PFDALTest
           }
         }
 
-        // Spawn
-        context.MonsterSpawn.Add(new MonsterSpawn() { BestiaryId = b.BestiaryId });
-        context.SaveChanges();
-      }
-    }
-
-    // Menu 3
-    private static void PopulateTables()
-    {
-      var bList = new PFDBContext().Bestiary.Select(x => x);
-      foreach (var b in bList)
-      {
-        var context = new PFDBContext();
         // Subtype - COMPLETE
         // (chaotic, evil, extraplanar)
         //if (!string.IsNullOrWhiteSpace(b.SubType))
@@ -342,7 +368,7 @@ namespace PFDALTest
               {
                 Name = skillName,
                 Description = "UPDATE ME",
-                TrainedOnly = false                
+                TrainedOnly = false
               });
               context.SaveChanges();
             }
