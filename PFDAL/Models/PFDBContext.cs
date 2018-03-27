@@ -1,12 +1,13 @@
 ﻿using System;
-using System.Configuration;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata;
+using System.IO;
 
 namespace PFDAL.Models
 {
   public partial class PFDBContext : DbContext
   {
+
     public virtual DbSet<Bestiary> Bestiary { get; set; }
     public virtual DbSet<BestiaryDetail> BestiaryDetail { get; set; }
     public virtual DbSet<BestiaryEnvironment> BestiaryEnvironment { get; set; }
@@ -41,7 +42,7 @@ namespace PFDAL.Models
     {
       if (!optionsBuilder.IsConfigured)
       {
-        optionsBuilder.UseSqlServer(ConfigurationManager.ConnectionStrings["PFDB"].ConnectionString);
+        optionsBuilder.UseSqlServer("Server=192.168.1.150;Database=PFDB;User Id=sa;Password=kAE5sIBdyEpbpUmAWIGv");
       }
     }
 

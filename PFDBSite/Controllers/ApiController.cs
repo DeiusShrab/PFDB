@@ -11,7 +11,6 @@ using PFDBSite.Helpers;
 namespace PFDBSite.Controllers
 {
     [Produces("application/json")]
-    [Route("api")]
     public class ApiController : Controller
     {
         public PFDBContext context = new PFDBContext();
