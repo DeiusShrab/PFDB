@@ -72,7 +72,7 @@ namespace DBConnect
 
     public static List<Continent> GetContinents()
     {
-      List<Continent> ret = null;
+      List<Continent> ret = new List<Continent>();
 
       var response = client.GetAsync(API_ADDR + "Continents").Result;
       if (response.IsSuccessStatusCode)
@@ -86,7 +86,7 @@ namespace DBConnect
 
     public static List<Season> GetSeasons()
     {
-      List<Season> ret = null;
+      List<Season> ret = new List<Season>();
 
       var response = client.GetAsync(API_ADDR + "Seasons").Result;
       if (response.IsSuccessStatusCode)

@@ -2,8 +2,7 @@ TODO AT WORK
 Environment - remove " or " from the beginning of all entries, remove ")" from all entries
 
 TODO AT HOME
-- Run the Transformer
-- GET THE FIRST VERSION OF THE SITE UP WITH THE API
+Set up site as main site instead of /pfdb/, remove old index and such
 
 - Create MVC detail pages for Bestiary, Continent, etc using auto-scaffolding
 - Write sproc for GenerateRandomEncounters
