@@ -1,13 +1,11 @@
-﻿using System;
-using Microsoft.EntityFrameworkCore;
+﻿using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata;
-using System.IO;
+using PFDAL.Models;
 
-namespace PFDAL.Models
+namespace PFDAL
 {
-  public partial class PFDBContext : DbContext
+  public partial class PFDBContext : DbContext, IPFDBContext
   {
-
     public virtual DbSet<Bestiary> Bestiary { get; set; }
     public virtual DbSet<BestiaryDetail> BestiaryDetail { get; set; }
     public virtual DbSet<BestiaryEnvironment> BestiaryEnvironment { get; set; }
@@ -40,10 +38,10 @@ namespace PFDAL.Models
 
     protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
     {
-      if (!optionsBuilder.IsConfigured)
-      {
-        optionsBuilder.UseSqlServer("Server=192.168.1.150;Database=PFDB;User Id=sa;Password=kAE5sIBdyEpbpUmAWIGv");
-      }
+        if (!optionsBuilder.IsConfigured)
+        {
+          optionsBuilder.UseSqlServer("Server=192.168.1.150;Database=PFDB;User Id=sa;Password=kAE5sIBdyEpbpUmAWIGv");
+        }
     }
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)

@@ -8,7 +8,7 @@ using PFDBSite.Models;
 
 namespace PFDBSite.Controllers
 {
-    public class HomeController : Controller
+    public class HomeController : PFDBController
     {
         public IActionResult Index()
         {

@@ -4,18 +4,23 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using PFDAL;
 using PFDAL.ConnectModels;
-using PFDAL.Models;
 using PFDBSite.Helpers;
 
 namespace PFDBSite.Controllers
 {
   [Produces("application/json")]
   [Route("api")]
-  public class ApiController : Controller
+  public class ApiController : PFDBController
   {
-    public PFDBContext context = new PFDBContext();
-    private RandomHelper helperRandom = new RandomHelper();
+    public IPFDBContext context = PFDAL.PFDAL.GetContext(Configuration["WorkingEnvironment"]);
+    private RandomHelper helperRandom;
+
+    public ApiController()
+    {
+      helperRandom = new RandomHelper(context);
+    }
 
     [HttpGet("Continents")]
     public IActionResult Continents()
