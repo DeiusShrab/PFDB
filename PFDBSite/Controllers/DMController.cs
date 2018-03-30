@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Text;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using PFDAL;
@@ -22,23 +23,82 @@ namespace PFDBSite.Controllers
     }
 
     [Route("Bestiary")]
-    public IActionResult Bestiary()
+    public IActionResult Bestiary(string sortOrder)
     {
-      return View("BestiaryIndex.aspx", context.Bestiary);
-      //var list = context.Bestiary.Select(x => new BestiaryListItem()
+      //var bestiaryList = context.Bestiary.Select(x => new BestiaryListItem()
       //{
       //  Name = x.Name,
-      //  Cr = ParseCR(x.Cr ?? 0),
-      //  Ac = x.Ac,
+      //  CrDisplay = ParseCR(x.Cr ?? 0),
+      //  Type = GetBestiaryType(x.BestiaryId),
+      //  SubType = GetBestiarySubTypes(x.BestiaryId),
+      //  Cr = x.Cr ?? 0,
       //  BestiaryId = x.BestiaryId
-      //}).ToList();
-      //return View("Bestiary/Index.aspx", new BestiaryListModel(list));
+      //});
+      var bestiaryList = new List<BestiaryListItem>()
+      {
+        new BestiaryListItem()
+        {
+          Name = "Testbeast",
+          CrDisplay = "1",
+          Type = "Test",
+          SubType = "Test, Test",
+          Cr = 1,
+          BestiaryId = 1
+        },
+        new BestiaryListItem()
+        {
+          Name = "Testbeast2",
+          CrDisplay = "3",
+          Type = "Test",
+          SubType = "Test, Test",
+          Cr = 3,
+          BestiaryId = 2
+        },
+        new BestiaryListItem()
+        {
+          Name = "Testbeast3",
+          CrDisplay = "5",
+          Type = "Test",
+          SubType = "Test, Test",
+          Cr = 5,
+          BestiaryId = 3
+        }
+      }.OrderBy(x => x.BestiaryId); // TESTING
+
+      ViewBag.NameSortParm = string.IsNullOrEmpty(sortOrder) ? "name_desc" : "";
+      ViewBag.CrSortParm = sortOrder == "cr" ? "cr_desc" : "cr";
+      ViewBag.TypeSortParm = sortOrder == "type" ? "type_desc" : "type";
+
+      switch (sortOrder)
+      {
+        case "cr_desc":
+          bestiaryList = bestiaryList.OrderByDescending(x => x.Cr);
+          break;
+        case "cr":
+          bestiaryList = bestiaryList.OrderBy(x => x.Cr);
+          break;
+        case "type_desc":
+          bestiaryList = bestiaryList.OrderByDescending(x => x.Type);
+          break;
+        case "type":
+          bestiaryList = bestiaryList.OrderBy(x => x.Type);
+          break;
+        case "name_desc":
+          bestiaryList = bestiaryList.OrderByDescending(x => x.Name);
+          break;
+        default:
+          bestiaryList = bestiaryList.OrderBy(x => x.Name);
+          break;
+      }
+
+      return View("BestiaryIndex.aspx", new BestiaryListModel(bestiaryList));
     }
 
     [Route("Bestiary/{bestiaryId:int}")]
     public IActionResult Bestiary(int bestiaryId)
     {
-      var bestiary = context.Bestiary.FirstOrDefault(x => x.BestiaryId == bestiaryId);
+      //var bestiary = context.Bestiary.FirstOrDefault(x => x.BestiaryId == bestiaryId);
+      var bestiary = new Bestiary(); // TESTING
       if (bestiary != null)
         return View("BestiaryEdit.aspx", bestiary);
 
@@ -66,6 +126,46 @@ namespace PFDBSite.Controllers
         default:
           return cr.ToString();
       }
+    }
+
+    private string GetBestiaryType(int bestiaryId)
+    {
+      var ret = string.Empty;
+
+      var bestiary = context.Bestiary.FirstOrDefault(x => x.BestiaryId == bestiaryId);
+      if (bestiary != null)
+      {
+        var type = context.BestiaryType.FirstOrDefault(x => x.BestiaryTypeId.ToString() == bestiary.Type);
+        if (type != null)
+        {
+          ret = type.Name;
+        }
+      }
+
+      return ret;
+    }
+
+    private string GetBestiarySubTypes(int bestiaryId)
+    {
+      var sb = new StringBuilder();
+
+      var types = context.BestiarySubType.Where(x => x.BestiaryId == bestiaryId);
+      if (types != null)
+      {
+        foreach (var item in types)
+        {
+          var type = context.BestiaryType.FirstOrDefault(x => x.BestiaryTypeId == item.BestiaryTypeId);
+          if (type != null)
+          {
+            sb.Append(type.Name + ", ");
+          }
+        }
+      }
+
+      if (sb.Length > 0)
+        sb.Remove(sb.Length - 2, 2);
+
+      return sb.ToString();
     }
 
     #endregion
