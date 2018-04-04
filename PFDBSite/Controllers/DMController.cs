@@ -19,11 +19,11 @@ namespace PFDBSite.Controllers
 
     public IActionResult Index()
     {
-      return View();
+      return View("DMIndex");
     }
 
     [Route("Bestiary")]
-    public IActionResult Bestiary(string sortOrder)
+    public IActionResult Bestiary(string sortOrder, string searchString)
     {
       //var bestiaryList = context.Bestiary.Select(x => new BestiaryListItem()
       //{
@@ -63,7 +63,17 @@ namespace PFDBSite.Controllers
           Cr = 5,
           BestiaryId = 3
         }
-      }.OrderBy(x => x.BestiaryId); // TESTING
+      }.OrderBy(x => x.Name); // TESTING
+
+      // Make this more efficient
+      // Also consider using a *prefix for searching by type
+      if (!string.IsNullOrWhiteSpace(searchString))
+      {
+        bestiaryList = bestiaryList.Where(x => x.Name.ToLower().Contains(searchString.ToLower())
+          || x.Type.ToLower().Contains(searchString.ToLower())
+          || x.SubType.ToLower().Contains(searchString.ToLower())
+          ).OrderBy(x => x.Name);
+      }
 
       ViewBag.NameSortParm = string.IsNullOrEmpty(sortOrder) ? "name_desc" : "";
       ViewBag.CrSortParm = sortOrder == "cr" ? "cr_desc" : "cr";
@@ -86,21 +96,27 @@ namespace PFDBSite.Controllers
         case "name_desc":
           bestiaryList = bestiaryList.OrderByDescending(x => x.Name);
           break;
-        default:
-          bestiaryList = bestiaryList.OrderBy(x => x.Name);
-          break;
       }
 
-      return View("BestiaryIndex.aspx", new BestiaryListModel(bestiaryList));
+      return View("BestiaryIndex", bestiaryList);
     }
 
     [Route("Bestiary/{bestiaryId:int}")]
-    public IActionResult Bestiary(int bestiaryId)
+    public IActionResult BestiaryEdit(int bestiaryId)
     {
       //var bestiary = context.Bestiary.FirstOrDefault(x => x.BestiaryId == bestiaryId);
-      var bestiary = new Bestiary(); // TESTING
+      var bestiary = new Bestiary()
+      {
+        Name = "Testbeast",
+        Hp = 10,
+        Type = "Test",
+        SubType = "Test, Test",
+        Cr = 1,
+        BestiaryId = 1
+      }; // TESTING
+
       if (bestiary != null)
-        return View("BestiaryEdit.aspx", bestiary);
+        return View("BestiaryEdit", bestiary);
 
       return new NotFoundResult();
     }

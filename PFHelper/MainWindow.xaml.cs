@@ -334,6 +334,22 @@ namespace PFHelper
         combatEffects = new ObservableCollection<CombatEffectItem>(saveObject.CombatEffects);
         combatGridItems = new ObservableCollection<CombatGridItem>(saveObject.CombatGridItems);
       }
+      else
+      {
+        TxtAPL.Text = "1";
+        EncounterGroup = true;
+        EncounterNPC = false;
+        EncounterTime = false;
+        EncounterZone = true;
+        RationsInfinite = false;
+
+        RationsLeft = 60;
+        CurrentDate = new FantasyDate() { Year = 10000, Month = 1, Day = 1 };
+        CurrentWeather = new Weather();
+
+        combatEffects = new ObservableCollection<CombatEffectItem>();
+        combatGridItems = new ObservableCollection<CombatGridItem>();
+      }
     }
 
     private void SaveData()
