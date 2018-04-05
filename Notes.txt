@@ -1,11 +1,9 @@
 TODO AT WORK
-Environment - remove " or " from the beginning of all entries, remove ")" from all entries
 
 TODO AT HOME
 Set up site as main site instead of /pfdb/, remove old index and such
+Add nice links to Plex, etc instead of lame text posts
 
-- Create MVC detail pages for Bestiary, Continent, etc using auto-scaffolding
-- Write sproc for GenerateRandomEncounters
 - Get a count of non-null entries for each column. Make sure the column is not nullable if there are 0 null entries.
 - Consider moving low-pop columns to separate tables.
 - Check interaction between [Bestiary].Environment, Feat, Language, Skill and new tables
@@ -16,12 +14,7 @@ Mythic bool
 
 [Bestiary] NPCs
 Use the CharacterFlag column for NPCs, and have it set for intelligent beings that might interact with the party instead of fight them
-
-CreatureInfoBrowser
-On first page-load, add the loaded info to a local memory item. Like a dictionary or something. Always check this cache item before loading from the web.
-Also cap it at like ten items to prevent memory leaks.
-
-[BrowserCacheItem] MonsterId, LastUsed, MonsterText
+Dump the NPC table into the Bestiary table with appropriate transformations and this flag set
 
 Continent-Terrain
 Use for automatic encounter chances, tie an encounter % to each one
@@ -49,11 +42,6 @@ Skip entries with 0 or lower Init on Next Turn
 
 [Holiday] HolidayId, Month, Day, Continent, StartingYear(?), YearsBetween(?) (last two for 10-year, 100-year, etc celebrations)
 
+Demon's Day - anniversary of The Altering, last day of the year, stronger effects on multiples of 10 (e.g. year xx1000 will be more intense than year xxx100, which will be more intense than xxxx10)
+
 Calendar on the PFSite where PCs can mark upcoming dates and see holiday celebrations
-=======
-
-PFDAL
-Dot Net Core, not Dot Net
-
-PFSite
-Also dot net core

@@ -7,7 +7,7 @@
         xmlns:me="clr-namespace:PFHelper.Classes"
         xmlns:xctk="http://schemas.xceed.com/wpf/xaml/toolkit"
         mc:Ignorable="d"
-        Title="MainWindow" Height="900" Width="1600" Closing="Window_Closing">
+        Title="PFHelper" Height="900" Width="1600" Closing="Window_Closing">
     <Window.Resources>
         <ObjectDataProvider x:Key="CombatDataProvider"
                             ObjectType="{x:Type me:CombatGridItem}" />

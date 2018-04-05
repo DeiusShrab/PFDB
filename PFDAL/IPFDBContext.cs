@@ -1,12 +1,23 @@
-﻿using System.Collections.Generic;
-using System.Text;
+﻿using System;
+using System.Collections.Generic;
+using System.Diagnostics;
+using System.Runtime.CompilerServices;
+using System.Threading;
+using System.Threading.Tasks;
+using JetBrains.Annotations;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore.ChangeTracking;
+using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Internal;
+using Microsoft.EntityFrameworkCore.Metadata;
 using PFDAL.Models;
 
 namespace PFDAL
 {
-  public interface IPFDBContext
+  public interface IPFDBContext : IDisposable
   {
+    #region DBSets
+
     DbSet<Bestiary> Bestiary { get; set; }
     DbSet<BestiaryDetail> BestiaryDetail { get; set; }
     DbSet<BestiaryEnvironment> BestiaryEnvironment { get; set; }
@@ -17,7 +28,7 @@ namespace PFDAL
     DbSet<BestiaryType> BestiaryType { get; set; }
     DbSet<Continent> Continent { get; set; }
     DbSet<ContinentWeather> ContinentWeather { get; set; }
-    DbSet<Environment> Environment { get; set; }
+    DbSet<Models.Environment> Environment { get; set; }
     DbSet<Faction> Faction { get; set; }
     DbSet<Feat> Feat { get; set; }
     DbSet<Language> Language { get; set; }
@@ -36,5 +47,14 @@ namespace PFDAL
     DbSet<Time> Time { get; set; }
     DbSet<Plane> Plane { get; set; }
     DbSet<Skill> Skill { get; set; }
+
+    #endregion
+
+    #region DB Functions
+
+    int SaveChanges();
+    int SaveChanges(bool acceptAllChangesOnSuccess);
+
+    #endregion
   }
 }

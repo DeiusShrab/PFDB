@@ -7,6 +7,8 @@ namespace PFDALTest
 {
   class Program
   {
+    // Split string by comma UNLESS that comma is within parentheses
+    private static string REGEX_SPLIT = @"(?:\s)?([^,\r\n\s(][^,\r\n(]*(?<dq>\()?(?(dq)[^\(\r\n]+\)[^\(\)\r\n,]*))";
     static void Main(string[] args)
     {
       int menu = -1;
@@ -19,10 +21,14 @@ namespace PFDALTest
             Test();
             break;
           case 2:
-            UpdateBestiary();
+            //UpdateBestiary();
+            Console.WriteLine("Complete");
             break;
           case 3:
             PopulateTables();
+            break;
+          case 4:
+            UpdateTables();
             break;
         }
       }
@@ -49,24 +55,21 @@ namespace PFDALTest
     // Menu 1
     private static void Test()
     {
-      var context = new PFDBContext();
+      var context = PFDAL.PFDAL.GetContext();
       Console.WriteLine(context.Bestiary.First().Name);
     }
 
     // Menu 2
     private static void UpdateBestiary()
     {
-      var context = new PFDBContext();
+      var context = PFDAL.PFDAL.GetContext();
       //int i = 0;
       int[] idList = { 473, 474, 475, 476, 477, 478 };
-      var bList = new PFDBContext().Bestiary.Where(x => idList.Contains(x.BestiaryId));
+      var bList = PFDAL.PFDAL.GetContext().Bestiary.Where(x => idList.Contains(x.BestiaryId));
       foreach (var z in bList)
       {
         try
         {
-          if (string.IsNullOrWhiteSpace(z.AbilityScores))
-            continue;
-
           var b = context.Bestiary.First(x => x.BestiaryId == z.BestiaryId);
 
           // AbilityScores - split
@@ -124,9 +127,9 @@ namespace PFDALTest
 
           // AC - split, make sure AC is an int
           // 17, touch 17, flat-footed 12
-          foreach (var item in b.Ac.Split(','))
+          foreach (Match item in Regex.Matches(b.Ac, REGEX_SPLIT))
           {
-            var ac = item.Trim();
+            var ac = item.Groups[1].Value;
             if (ac.StartsWith("touch"))
             {
               if (int.TryParse(Regex.Match(ac, "[0-9]+").ToString(), out int val))
@@ -219,11 +222,11 @@ namespace PFDALTest
 
           //if (i++ >= 5)
           //{
-            context.SaveChanges();
-            context.Dispose();
-            context = new PFDBContext();
-            //i = 0;
-            Console.WriteLine("Finished BID " + b.BestiaryId.ToString());
+          context.SaveChanges();
+          context.Dispose();
+          context = PFDAL.PFDAL.GetContext();
+          //i = 0;
+          Console.WriteLine("Finished BID " + b.BestiaryId.ToString());
           //}
         }
         catch (Exception ex)
@@ -233,7 +236,7 @@ namespace PFDALTest
             Console.WriteLine("InnerException: " + ex.InnerException.Message);
 
           context.Dispose();
-          context = new PFDBContext();
+          context = PFDAL.PFDAL.GetContext();
         }
       }
 
@@ -243,30 +246,30 @@ namespace PFDALTest
     // Menu 3
     private static void PopulateTables()
     {
-      var bList = new PFDBContext().Bestiary.Select(x => x);
+      var bList = PFDAL.PFDAL.GetContext().Bestiary.Select(x => x);
       foreach (var b in bList)
       {
-        var context = new PFDBContext();
+        var context = PFDAL.PFDAL.GetContext();
 
         // Feat
         // Improved Initiative, Iron Will, Lightning Reflexes, Skill Focus (Perception)
         if (!string.IsNullOrWhiteSpace(b.Feats))
         {
-          foreach (var feat in b.Feats.Split(','))
+          foreach (Match m in Regex.Matches(b.Feats, REGEX_SPLIT))
           {
-            string featName = feat.Trim();
+            string feat = m.Groups[1].Value;
             string notes = null;
-            if (featName.Contains("("))
+            if (feat.Contains("("))
             {
-              notes = featName.Split('(')[1].TrimEnd(')');
-              featName = featName.Split('(')[0].Trim();
+              notes = feat.Split('(')[1].TrimEnd(')');
+              feat = feat.Split('(')[0].Trim();
             }
-            if (featName.EndsWith('B'))
-              featName = featName.Substring(0, feat.Length - 1);
+            if (feat.EndsWith('B'))
+              feat = feat.Substring(0, feat.Length - 1);
             var f = new BestiaryFeat
             {
               BestiaryId = b.BestiaryId,
-              FeatId = context.Feat.FirstOrDefault(x => featName.Equals(x.Name, StringComparison.InvariantCultureIgnoreCase))?.FeatId ?? 0,
+              FeatId = context.Feat.FirstOrDefault(x => feat.Equals(x.Name, StringComparison.InvariantCultureIgnoreCase))?.FeatId ?? 0,
               Notes = notes
             };
 
@@ -334,39 +337,42 @@ namespace PFDALTest
         // Skill - NEEDS WORK
         if (!string.IsNullOrWhiteSpace(b.Skills))
         {
-          foreach (var skill in b.Skills.Split(','))
+          foreach (Match m in Regex.Matches(b.Skills, REGEX_SPLIT))
           {
-            string skillName = skill.Trim();
+            string skill = m.Groups[1].Value;
             string notes = null;
             int bonus = 0;
 
-            if (skillName.Contains("("))
+            if (skill.Contains("("))
             {
-              notes = skillName.Split('(')[1].TrimEnd(')');
-              skillName = skillName.Split('(')[0].Trim();
+              var idxA = skill.IndexOf('(') + 1;
+              var idxB = skill.LastIndexOf(')');
+              notes = skill.Substring(idxA, idxB - idxA);
+              var newName = skill.Substring(0, --idxA) + skill.Substring(++idxB, skill.Length - idxB); // -- and ++ to make sure parentheses are dropped
+              skill = newName.Trim();
             }
 
-            if (skillName.Contains("+"))
+            if (skill.Contains("+"))
             {
-              var skillsplit = skillName.Split('+');
+              var skillsplit = skill.Split('+');
               if (skillsplit[1].Contains(" "))
                 bonus = Convert.ToInt32(skillsplit[1].Split(' ')[0]);
               else
                 bonus = Convert.ToInt32(skillsplit[1]);
 
-              skillName = skillName.Split('+')[0].Trim();
+              skill = skill.Split('+')[0].Trim();
             }
-            else if (skillName.Contains("-"))
+            else if (skill.Contains("-"))
             {
-              bonus = Convert.ToInt32(skillName.Split('-')[1]);
-              skillName = skillName.Split('-')[0].Trim();
+              bonus = Convert.ToInt32(skill.Split('-')[1]) * -1;
+              skill = skill.Split('-')[0].Trim();
             }
 
-            if (!context.Skill.Select(x => x.Name.ToLower()).Contains(skillName.ToLower()))
+            if (!context.Skill.Select(x => x.Name.ToLower()).Contains(skill.ToLower()))
             {
               context.Skill.Add(new Skill()
               {
-                Name = skillName,
+                Name = skill,
                 Description = "UPDATE ME",
                 TrainedOnly = false
               });
@@ -376,7 +382,7 @@ namespace PFDALTest
             var s = new BestiarySkill
             {
               BestiaryId = b.BestiaryId,
-              SkillId = context.Skill.FirstOrDefault(x => skillName.Equals(x.Name, StringComparison.InvariantCultureIgnoreCase))?.SkillId ?? 0,
+              SkillId = context.Skill.FirstOrDefault(x => skill.Equals(x.Name, StringComparison.InvariantCultureIgnoreCase))?.SkillId ?? 0,
               Notes = notes
             };
 
@@ -419,6 +425,18 @@ namespace PFDALTest
         //    context.SaveChanges();
         //  }
         //}
+      }
+    }
+
+    // Menu 4
+    private static void UpdateTables()
+    {
+      foreach (var env in PFDAL.PFDAL.GetContext().Environment)
+      {
+        var context = PFDAL.PFDAL.GetContext();
+        var e = context.Environment.First(x => x.EnvironmentId == env.EnvironmentId);
+        e.Name = e.Name.Replace("\"", "").Replace(")", "").Trim();
+        context.SaveChanges();
       }
     }
 
