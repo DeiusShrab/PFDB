@@ -11,7 +11,7 @@ namespace DBConnect
     private const string API_ADDR = @"http://zratsewk.duckdns.org/pfdb/api/";
     private static int MAX_CACHE_SIZE = 32;
     private static readonly HttpClient client = new HttpClient();
-    private static DBCache<BestiaryDetail> DetailCache = new DBCache<BestiaryDetail>();
+    private static DBCache<BestiaryDetail> DetailCache = new DBCache<BestiaryDetail>(MAX_CACHE_SIZE);
 
     #region Queries
 

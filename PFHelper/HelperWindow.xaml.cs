@@ -8,7 +8,6 @@ using System.Text;
 using System.Windows;
 using System.Windows.Media;
 using DBConnect;
-using DBConnect.CommonModels;
 using DBConnect.ConnectModels;
 using DBConnect.DBModels;
 using PFHelper.Classes;
@@ -16,9 +15,9 @@ using PFHelper.Classes;
 namespace PFHelper
 {
   /// <summary>
-  /// Interaction logic for MainWindow.xaml
+  /// Interaction logic for HelperWindow.xaml
   /// </summary>
-  public partial class MainWindow : Window
+  public partial class HelperWindow : Window
   {
     #region Interface Properties
 
@@ -239,6 +238,7 @@ namespace PFHelper
     private ObservableCollection<DisplayResult> continentList;
     private ObservableCollection<CombatEffectItem> combatEffects;
     private ObservableCollection<DisplayValues> encounterResults;
+    private ObservableCollection<DisplayResult> creatureInfos;
 
     private List<Continent> continents;
     private List<Season> seasons;
@@ -247,12 +247,14 @@ namespace PFHelper
     private FantasyDate CurrentDate;
     private Weather CurrentWeather;
     private string saveDataPath = Path.Combine(System.Environment.CurrentDirectory, "pfdat.dat");
+    private string selectedCombatMonsterHtml;
+    private int selectedCombatMonsterId;
 
     #endregion
 
     #region Constructor
 
-    public MainWindow()
+    public HelperWindow()
     {
       InitializeComponent();
 
@@ -266,6 +268,7 @@ namespace PFHelper
       combatEffects = new ObservableCollection<CombatEffectItem>();
       combatGridItems = new ObservableCollection<CombatGridItem>();
       continentList = new ObservableCollection<DisplayResult>();
+      creatureInfos = new ObservableCollection<DisplayResult>();
       
       foreach (var item in continents)
       {
@@ -273,15 +276,16 @@ namespace PFHelper
       }
 
       LbxD20.DisplayMemberPath = LbxD4.DisplayMemberPath = LbxD6.DisplayMemberPath = LbxD8.DisplayMemberPath = LbxD10.DisplayMemberPath = LbxD12.DisplayMemberPath
-        = LbxEncounterCreatures.DisplayMemberPath = LbxEncounterCRs.DisplayMemberPath = LbxContinent.DisplayMemberPath = "Display";
+        = LbxEncounterCreatures.DisplayMemberPath = LbxEncounterCRs.DisplayMemberPath = LbxContinent.DisplayMemberPath = LbxCreatureInfo.DisplayMemberPath = "Display";
       LbxD20.SelectedValuePath = LbxD4.SelectedValuePath = LbxD6.SelectedValuePath = LbxD8.SelectedValuePath = LbxD10.SelectedValuePath = LbxD12.SelectedValuePath
-        = LbxEncounterCreatures.SelectedValuePath = LbxEncounterCRs.SelectedValuePath = LbxContinent.SelectedValuePath = "Result";
+        = LbxEncounterCreatures.SelectedValuePath = LbxEncounterCRs.SelectedValuePath = LbxContinent.SelectedValuePath = LbxCreatureInfo.SelectedValuePath = "Result";
 
       DgCombatGrid.ItemsSource = combatGridItems;
       DgCombatEffects.ItemsSource = combatEffects;
       LbxEncounterCreatures.ItemsSource = randomEncounterItems;
       LbxEncounterCRs.ItemsSource = encounterResults;
       LbxContinent.ItemsSource = continentList;
+      LbxCreatureInfo.ItemsSource = creatureInfos;
 
       random = new Random();
       CurrentDate = new FantasyDate();
@@ -595,6 +599,20 @@ namespace PFHelper
           var b = DBClient.GetBestiary(item.Result);
           combatGridItems.Add(new CombatGridItem(b));
         }
+
+        AddCreatureToCreatureInfo();
+      }
+    }
+
+    private void AddCreatureToCreatureInfo()
+    {
+      if (LbxEncounterCreatures.SelectedItems != null)
+      {
+        foreach (DisplayResult item in LbxEncounterCreatures.SelectedItems)
+        {
+          if (!creatureInfos.Select(x => x.Result).Contains(item.Result))
+            creatureInfos.Add(item);
+        }
       }
     }
 
@@ -694,7 +712,8 @@ namespace PFHelper
 
     private void LbxEncounterCreatures_MouseDoubleClick(object sender, System.Windows.Input.MouseButtonEventArgs e)
     {
-      AddCreatureToCombat();
+      AddCreatureToCreatureInfo();
+      HelperTabs.SelectedIndex = 2;
     }
 
     private void LbxEncounterCRs_MouseDoubleClick(object sender, System.Windows.Input.MouseButtonEventArgs e)
@@ -802,6 +821,25 @@ namespace PFHelper
         ClearCombatAdd();
         ClearCombatEffectAdd();
         CombatRound = 1;
+      }
+    }
+
+    private void LbxCreatureInfo_MouseDoubleClick(object sender, System.Windows.Input.MouseButtonEventArgs e)
+    {
+      if (LbxCreatureInfo.SelectedItem != null)
+      {
+        var selectedItem = (DisplayResult)LbxCreatureInfo.SelectedItem;
+        if (selectedCombatMonsterId != selectedItem.Result)
+        {
+          selectedCombatMonsterId = selectedItem.Result;
+          var desc = DBClient.GetBestiaryDetail(selectedCombatMonsterId);
+          if (desc != null)
+            selectedCombatMonsterHtml = desc.FullText;
+          else
+            selectedCombatMonsterHtml = "<html><body><h1>NOT FOUND</h1></body></html>";
+
+          BrowserCreature.NavigateToString(selectedCombatMonsterHtml);
+        }
       }
     }
   }
