@@ -42,8 +42,8 @@ namespace PFDBSite.Helpers
         }
         else
         {
-          var monList = validSpawns.Where(x => x.Cr == cr);
-          mon = monList.ElementAt(random.Next(monList.Count()));
+          var monList = validSpawns.Where(x => x.Cr == cr).ToList();
+          mon = monList.ElementAt(random.Next(monList.Count));
         }
 
         if (mon != null)

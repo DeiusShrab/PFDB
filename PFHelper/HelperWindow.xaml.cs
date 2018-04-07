@@ -257,6 +257,7 @@ namespace PFHelper
     public HelperWindow()
     {
       InitializeComponent();
+      this.DataContext = this;
 
       if (!LoadDBData())
       {
@@ -276,9 +277,12 @@ namespace PFHelper
       }
 
       LbxD20.DisplayMemberPath = LbxD4.DisplayMemberPath = LbxD6.DisplayMemberPath = LbxD8.DisplayMemberPath = LbxD10.DisplayMemberPath = LbxD12.DisplayMemberPath
-        = LbxEncounterCreatures.DisplayMemberPath = LbxEncounterCRs.DisplayMemberPath = LbxContinent.DisplayMemberPath = LbxCreatureInfo.DisplayMemberPath = "Display";
+        = LbxEncounterCreatures.DisplayMemberPath = LbxContinent.DisplayMemberPath = LbxCreatureInfo.DisplayMemberPath = "Display";
       LbxD20.SelectedValuePath = LbxD4.SelectedValuePath = LbxD6.SelectedValuePath = LbxD8.SelectedValuePath = LbxD10.SelectedValuePath = LbxD12.SelectedValuePath
-        = LbxEncounterCreatures.SelectedValuePath = LbxEncounterCRs.SelectedValuePath = LbxContinent.SelectedValuePath = LbxCreatureInfo.SelectedValuePath = "Result";
+        = LbxEncounterCreatures.SelectedValuePath = LbxContinent.SelectedValuePath = LbxCreatureInfo.SelectedValuePath = "Result";
+
+      LbxEncounterCRs.DisplayMemberPath = "Display";
+      LbxEncounterCRs.SelectedValuePath = "Values";
 
       DgCombatGrid.ItemsSource = combatGridItems;
       DgCombatEffects.ItemsSource = combatEffects;
@@ -331,6 +335,7 @@ namespace PFHelper
         EncounterTime = saveObject.CbxTime;
         EncounterZone = saveObject.CbxZone;
         RationsInfinite = saveObject.CbxInfRations;
+        ContinentId = saveObject.ContinentId;
 
         RationsLeft = saveObject.Rations;
         CurrentDate = saveObject.Date;
@@ -369,6 +374,7 @@ namespace PFHelper
       saveObject.CbxTime = EncounterTime;
       saveObject.CbxZone = EncounterZone;
       saveObject.CbxInfRations = RationsInfinite;
+      saveObject.ContinentId = ContinentId;
 
       saveObject.Rations = RationsLeft;
       saveObject.Date = CurrentDate;
@@ -424,7 +430,7 @@ namespace PFHelper
     private void GenEncounters()
     {
       var difficulty = new string[] { "[E] ", "[M] ", "[H] " };
-      encounterResults = new ObservableCollection<DisplayValues>();
+      encounterResults.Clear();
       GenMysterious();
       LblChanceEncounter.Content = random.Next(100).ToString("D2");
       LblChanceNPC.Content = random.Next(100).ToString("D2");
@@ -466,36 +472,11 @@ namespace PFHelper
           var sb = new StringBuilder();
           foreach (var c in cr)
           {
-            switch (c)
-            {
-              case (-4):
-                sb.Append("1/8");
-                sb.Append(", ");
-                break;
-              case (-3):
-                sb.Append("1/6");
-                sb.Append(", ");
-                break;
-              case (-2):
-                sb.Append("1/4");
-                sb.Append(", ");
-                break;
-              case (-1):
-                sb.Append("1/3");
-                sb.Append(", ");
-                break;
-              case (0):
-                sb.Append("1/2");
-                sb.Append(", ");
-                break;
-              default:
-                sb.Append(c);
-                sb.Append(", ");
-                break;
-            }
+            sb.Append(ParseCR(c));
+            sb.Append(", ");
           }
           sb.Remove(sb.Length - 2, 2);
-          encounterResults.Add(new DisplayValues() { Display = difficulty[t] + sb.ToString(), Values = CRs });
+          encounterResults.Add(new DisplayValues() { Display = difficulty[t] + sb.ToString(), Values = cr });
         }
         apl++;
       }

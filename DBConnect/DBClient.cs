@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.Net.Http;
+using System.Text;
 using DBConnect.ConnectModels;
 using DBConnect.DBModels;
 using Newtonsoft.Json;
@@ -8,7 +9,8 @@ namespace DBConnect
 {
   public static class DBClient
   {
-    private const string API_ADDR = @"http://zratsewk.duckdns.org/pfdb/api/";
+    //private const string API_ADDR = @"http://zratsewk.duckdns.org/pfdb/api/";
+    private const string API_ADDR = @"http://localhost:51923/api/";
     private static int MAX_CACHE_SIZE = 32;
     private static readonly HttpClient client = new HttpClient();
     private static DBCache<BestiaryDetail> DetailCache = new DBCache<BestiaryDetail>(MAX_CACHE_SIZE);
@@ -21,8 +23,8 @@ namespace DBConnect
       {
         Success = false
       };
-
-      var response = client.PostAsync(API_ADDR + "RandomEncounter", new StringContent(JsonConvert.SerializeObject(request))).Result;
+      var body = JsonConvert.SerializeObject(request);
+      var response = client.PostAsync(API_ADDR + "RandomEncounter", new StringContent(body, Encoding.UTF8, "application/json")).Result;
       if (response.IsSuccessStatusCode)
       {
         var content = response.Content;

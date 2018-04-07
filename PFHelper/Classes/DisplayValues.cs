@@ -9,6 +9,6 @@ namespace PFHelper.Classes
     public class DisplayValues
     {
         public string Display { get; set; }
-        public List<int[]> Values { get; set; }
+        public int[] Values { get; set; }
     }
 }

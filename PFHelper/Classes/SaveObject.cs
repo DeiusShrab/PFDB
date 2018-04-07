@@ -7,18 +7,19 @@ using DBConnect.DBModels;
 
 namespace PFHelper.Classes
 {
-    class SaveObject
-    {
-        public List<CombatEffectItem> CombatEffects { get; set; }
-        public List<CombatGridItem> CombatGridItems { get; set; }
-        public FantasyDate Date { get; set; }
-        public Weather Weather { get; set; }
-        public int Apl { get; set; }
-        public int Rations { get; set; }
-        public bool CbxInfRations { get; set; }
-        public bool CbxGroup { get; set; }
-        public bool CbxZone { get; set; }
-        public bool CbxTime { get; set; }
-        public bool CbxNpc { get; set; }
-    }
+  class SaveObject
+  {
+    public List<CombatEffectItem> CombatEffects { get; set; }
+    public List<CombatGridItem> CombatGridItems { get; set; }
+    public FantasyDate Date { get; set; }
+    public Weather Weather { get; set; }
+    public int Apl { get; set; }
+    public int Rations { get; set; }
+    public int ContinentId { get; set; }
+    public bool CbxInfRations { get; set; }
+    public bool CbxGroup { get; set; }
+    public bool CbxZone { get; set; }
+    public bool CbxTime { get; set; }
+    public bool CbxNpc { get; set; }
+  }
 }

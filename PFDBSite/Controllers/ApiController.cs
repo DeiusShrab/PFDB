@@ -4,6 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using Newtonsoft.Json;
 using PFDAL;
 using PFDAL.ConnectModels;
 using PFDBSite.Helpers;
@@ -22,34 +23,37 @@ namespace PFDBSite.Controllers
       helperRandom = new RandomHelper(context);
     }
 
-    [HttpGet("Continents")]
-    public IActionResult Continents()
+    [HttpGet("Continent")]
+    public IActionResult ContinentList()
     {
-      return new ObjectResult(context.Continent.ToList());
+      return new JsonResult(context.Continent.ToList());
     }
 
-    [HttpGet("Seasons")]
-    public IActionResult Seasons()
+    [HttpGet("Season")]
+    public IActionResult SeasonList()
     {
-      return new ObjectResult(context.Season.ToList());
+      return new JsonResult(context.Season.ToList());
     }
 
     [HttpPost("RandomEncounter")]
     public IActionResult RandomEncounter([FromBody] RandomEncounterRequest request)
     {
-      return new ObjectResult(helperRandom.GenerateRandomEncounters(request));
+      if (request == null)
+        return BadRequest();
+
+      return new JsonResult(helperRandom.GenerateRandomEncounters(request));
     }
 
     [HttpGet("bestiary/{bestiaryId:int}")]
     public IActionResult Bestiary(int bestiaryId)
     {
-      return new ObjectResult(context.Bestiary.FirstOrDefault(x => x.BestiaryId == bestiaryId));
+      return new JsonResult(context.Bestiary.FirstOrDefault(x => x.BestiaryId == bestiaryId));
     }
 
     [HttpGet("bestiarydetail/{bestiaryId:int}")]
     public IActionResult BestiaryDetail(int bestiaryId)
     {
-      return new ObjectResult(context.BestiaryDetail.FirstOrDefault(x => x.BestiaryId == bestiaryId));
+      return new JsonResult(context.BestiaryDetail.FirstOrDefault(x => x.BestiaryId == bestiaryId));
     }
   }
 }
