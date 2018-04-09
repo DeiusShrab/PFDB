@@ -44,6 +44,14 @@ namespace PFDBSite.Controllers
       return new JsonResult(helperRandom.GenerateRandomEncounters(request));
     }
 
+    public IActionResult RandomWeatherTable([FromBody] RandomWeatherRequest request)
+    {
+      if (request == null)
+        return BadRequest();
+
+      return new JsonResult(helperRandom.GenerateRandomWeatherTable(request));
+    }
+
     [HttpGet("bestiary/{bestiaryId:int}")]
     public IActionResult Bestiary(int bestiaryId)
     {

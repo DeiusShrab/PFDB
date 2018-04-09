@@ -25,15 +25,7 @@ namespace PFDBSite.Controllers
     [Route("Bestiary")]
     public IActionResult Bestiary(string sortOrder, string searchString)
     {
-      //var bestiaryList = context.Bestiary.Select(x => new BestiaryListItem()
-      //{
-      //  Name = x.Name,
-      //  CrDisplay = ParseCR(x.Cr ?? 0),
-      //  Type = GetBestiaryType(x.BestiaryId),
-      //  SubType = GetBestiarySubTypes(x.BestiaryId),
-      //  Cr = x.Cr ?? 0,
-      //  BestiaryId = x.BestiaryId
-      //});
+#if DEBUG
       var bestiaryList = new List<BestiaryListItem>()
       {
         new BestiaryListItem()
@@ -63,7 +55,18 @@ namespace PFDBSite.Controllers
           Cr = 5,
           BestiaryId = 3
         }
-      }.OrderBy(x => x.Name); // TESTING
+      }.OrderBy(x => x.Name);
+#else
+      var bestiaryList = context.Bestiary.Select(x => new BestiaryListItem()
+      {
+        Name = x.Name,
+        CrDisplay = ParseCR(x.Cr ?? 0),
+        Type = GetBestiaryType(x.BestiaryId),
+        SubType = GetBestiarySubTypes(x.BestiaryId),
+        Cr = x.Cr ?? 0,
+        BestiaryId = x.BestiaryId
+      });
+#endif
 
       // Make this more efficient
       // Also consider using a *prefix for searching by type
@@ -104,7 +107,7 @@ namespace PFDBSite.Controllers
     [Route("Bestiary/{bestiaryId:int}")]
     public IActionResult BestiaryEdit(int bestiaryId)
     {
-      //var bestiary = context.Bestiary.FirstOrDefault(x => x.BestiaryId == bestiaryId);
+#if DEBUG
       var bestiary = new Bestiary()
       {
         Name = "Testbeast",
@@ -114,6 +117,9 @@ namespace PFDBSite.Controllers
         Cr = 1,
         BestiaryId = 1
       }; // TESTING
+#else
+      var bestiary = context.Bestiary.FirstOrDefault(x => x.BestiaryId == bestiaryId);
+#endif
 
       if (bestiary != null)
         return View("BestiaryEdit", bestiary);
@@ -121,9 +127,9 @@ namespace PFDBSite.Controllers
       return new NotFoundResult();
     }
 
-    #endregion
+#endregion
 
-    #region Private Methods
+#region Private Methods
 
     private string ParseCR(int cr)
     {
@@ -184,6 +190,6 @@ namespace PFDBSite.Controllers
       return sb.ToString();
     }
 
-    #endregion
+#endregion
   }
 }

@@ -60,5 +60,25 @@ namespace PFDBSite.Helpers
         Success = encounterList.Any()
       };
     }
+
+    public RandomWeatherResult GenerateRandomWeatherTable(RandomWeatherRequest request)
+    {
+      var ret = new RandomWeatherResult()
+      {
+        ContinentId = request.ContinentId,
+        SeasonId = request.SeasonId
+      };
+
+      var validWeathers = from c in context.ContinentWeather
+                          join w in context.Weather on c.WeatherId equals w.WeatherId
+                          where (c.ContinentId == request.ContinentId || c.ContinentId == 0)
+                              && (c.SeasonId == request.SeasonId || c.SeasonId == 0)
+                          select w;
+
+      ret.WeatherList = validWeathers.ToList();
+      ret.Success = true;
+
+      return ret;
+    }
   }
 }
