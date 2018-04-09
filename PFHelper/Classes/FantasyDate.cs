@@ -15,6 +15,10 @@ namespace PFHelper.Classes
     {
       get { return (Month - 1) % MonthsInSeason; }
     }
+    public virtual string ShortDate
+    {
+      get { return Year.ToString() + "-" + Month.ToString() + "-" + Day.ToString(); }
+    }
 
     private int MonthsInYear;
     private int DaysInMonth;
@@ -71,5 +75,24 @@ namespace PFHelper.Classes
       return this;
     }
 
+    public ulong ToNumDate()
+    {
+      // yy...yymmdd
+
+      ulong ret = (ulong)Day;
+      ret += 100 * (ulong)Month;
+      ret += 10000 * (ulong)Year;
+
+      return ret;
+    }
+
+    public FantasyDate FromNumDate(ulong fromDate)
+    {
+      Day = Convert.ToInt32(fromDate % 100);
+      Month = Convert.ToInt32((fromDate / 100) % 100);
+      Year = Convert.ToInt32(fromDate / 10000);
+
+      return this;
+    }
   }
 }

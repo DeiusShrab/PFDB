@@ -14,4 +14,17 @@ namespace DBConnect.ConnectModels
     public int TimeId { get; set; }
     public int SeasonId { get; set; }
   }
+  public class RandomEncounterResult
+  {
+    public List<RandomEncounterItem> EncounterItems { get; set; }
+    public bool Success { get; set; }
+    public string Message { get; set; }
+  }
+
+  public class RandomEncounterItem
+  {
+    public string Name { get; set; }
+    public int Cr { get; set; }
+    public int BestiaryId { get; set; }
+  }
 }

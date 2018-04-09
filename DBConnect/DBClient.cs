@@ -9,11 +9,20 @@ namespace DBConnect
 {
   public static class DBClient
   {
-    //private const string API_ADDR = @"http://zratsewk.duckdns.org/pfdb/api/";
-    private const string API_ADDR = @"http://localhost:51923/api/";
+
+    private static readonly string API_ADDR;
     private static int MAX_CACHE_SIZE = 32;
     private static readonly HttpClient client = new HttpClient();
     private static DBCache<BestiaryDetail> DetailCache = new DBCache<BestiaryDetail>(MAX_CACHE_SIZE);
+
+    static DBClient()
+    {
+#if DEBUG
+      API_ADDR = @"http://localhost:51923/api/";
+#else
+      API_ADDR = @"http://zratsewk.duckdns.org/pfdb/api/";
+#endif
+    }
 
     #region Queries
 
@@ -23,12 +32,31 @@ namespace DBConnect
       {
         Success = false
       };
+
       var body = JsonConvert.SerializeObject(request);
       var response = client.PostAsync(API_ADDR + "RandomEncounter", new StringContent(body, Encoding.UTF8, "application/json")).Result;
       if (response.IsSuccessStatusCode)
       {
         var content = response.Content;
         ret = JsonConvert.DeserializeObject<RandomEncounterResult>(content.ReadAsStringAsync().Result);
+      }
+
+      return ret;
+    }
+
+    public static RandomWeatherResult GetRandomWeatherList(RandomWeatherRequest request)
+    {
+      var ret = new RandomWeatherResult
+      {
+        Success = false
+      };
+
+      var body = JsonConvert.SerializeObject(request);
+      var response = client.PostAsync(API_ADDR + "RandomWeather", new StringContent(body, Encoding.UTF8, "application/json")).Result;
+      if (response.IsSuccessStatusCode)
+      {
+        var content = response.Content;
+        ret = JsonConvert.DeserializeObject<RandomWeatherResult>(content.ReadAsStringAsync().Result);
       }
 
       return ret;
@@ -131,6 +159,20 @@ namespace DBConnect
       {
         var content = response.Content;
         ret = JsonConvert.DeserializeObject<SpellDetail>(content.ReadAsStringAsync().Result);
+      }
+
+      return ret;
+    }
+
+    public static Weather GetWeather(int weatherId)
+    {
+      Weather ret = null;
+
+      var response = client.GetAsync(API_ADDR + "Weather/" + weatherId.ToString()).Result;
+      if (response.IsSuccessStatusCode)
+      {
+        var content = response.Content;
+        ret = JsonConvert.DeserializeObject<Weather>(content.ReadAsStringAsync().Result);
       }
 
       return ret;
@@ -261,6 +303,20 @@ namespace DBConnect
       {
         var content = response.Content;
         ret = JsonConvert.DeserializeObject<List<ContinentWeather>>(content.ReadAsStringAsync().Result);
+      }
+
+      return ret;
+    }
+
+    public static List<TrackedEvent> GetTrackedEvents()
+    {
+      List<TrackedEvent> ret = new List<TrackedEvent>();
+
+      var response = client.GetAsync(API_ADDR + "Event").Result;
+      if (response.IsSuccessStatusCode)
+      {
+        var content = response.Content;
+        ret = JsonConvert.DeserializeObject<List<TrackedEvent>>(content.ReadAsStringAsync().Result);
       }
 
       return ret;
@@ -486,6 +542,34 @@ namespace DBConnect
         var content = response.Content;
         ret = JsonConvert.DeserializeObject<List<Weather>>(content.ReadAsStringAsync().Result);
       }
+
+      return ret;
+    }
+
+    #endregion
+
+    #region Updates
+
+    public static bool AddEvent(TrackedEvent evt)
+    {
+      var ret = false;
+
+      var body = JsonConvert.SerializeObject(evt);
+      var response = client.PostAsync(API_ADDR + "Event", new StringContent(body, Encoding.UTF8, "application/json")).Result;
+      if (response.IsSuccessStatusCode)
+        ret = true;
+
+      return ret;
+    }
+
+    public static bool UpdateEvent(TrackedEvent evt)
+    {
+      var ret = false;
+
+      var body = JsonConvert.SerializeObject(evt);
+      var response = client.PostAsync(API_ADDR + "Event/" + evt.TrackedEventId.ToString(), new StringContent(body, Encoding.UTF8, "application/json")).Result;
+      if (response.IsSuccessStatusCode)
+        ret = true;
 
       return ret;
     }

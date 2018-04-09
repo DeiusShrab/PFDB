@@ -229,6 +229,21 @@ namespace PFHelper
       set { TxtCombatEffect.Text = value; }
     }
 
+    private int RationsAdjust
+    {
+      get
+      {
+        int ret = 1;
+        int.TryParse(TxtRations.Text, out ret);
+        return ret;
+      }
+    }
+
+    private int DaysAdjust
+    {
+      get { return IntAddDays.Value ?? 0; }
+    }
+
     #endregion
 
     #region Data Properties
@@ -240,9 +255,12 @@ namespace PFHelper
     private ObservableCollection<DisplayValues> encounterResults;
     private ObservableCollection<DisplayResult> creatureInfos;
 
+    private List<TrackedEvent> trackedEvents;
     private List<Continent> continents;
     private List<Season> seasons;
+    private List<Month> months;
 
+    private RandomWeatherResult weatherResult;
     private Random random;
     private FantasyDate CurrentDate;
     private Weather CurrentWeather;
@@ -298,6 +316,8 @@ namespace PFHelper
         LoadSavedData();
       else
         SaveData();
+
+      ReloadWeatherTable();
     }
 
     #endregion
@@ -312,6 +332,8 @@ namespace PFHelper
       {
         continents = DBClient.GetContinents();
         seasons = DBClient.GetSeasons();
+        months = DBClient.GetMonths();
+        trackedEvents = DBClient.GetTrackedEvents();
       }
       catch (Exception ex)
       {
@@ -617,6 +639,76 @@ namespace PFHelper
       }
     }
 
+    private void AddDays(int i)
+    {
+      var s = CurrentDate.Season;
+      CurrentDate.AddDays(i);
+      NextWeather(i);
+      UpdateDate();
+
+      if (s != CurrentDate.Season)
+        ReloadWeatherTable();
+    }
+
+    private void NextWeather(int d = 1)
+    {
+      while (d >= 0)
+      {
+        if (CurrentWeather.Duration >= d)
+        {
+          CurrentWeather.Duration -= d;
+          d = -1;
+        }
+        else
+        {
+          d -= CurrentWeather.Duration;
+          if (CurrentWeather.NextWeather > 0)
+          {
+            if (weatherResult.WeatherList.Select(x => x.WeatherId).Contains(CurrentWeather.NextWeather))
+              CurrentWeather = weatherResult.WeatherList.First(x => x.WeatherId == CurrentWeather.NextWeather);
+            else
+              CurrentWeather = DBClient.GetWeather(CurrentWeather.NextWeather);
+          }
+          else
+            CurrentWeather = GetRandomWeather();
+        }
+      }
+    }
+
+    private Weather GetRandomWeather()
+    {
+      if (ContinentId != weatherResult.ContinentId || CurrentDate.Season != weatherResult.SeasonId)
+        ReloadWeatherTable();
+
+      return weatherResult.WeatherList[random.Next(weatherResult.WeatherList.Count)];
+    }
+
+    private void AddRations(int r)
+    {
+      RationsLeft += r;
+      if (RationsLeft <= 0)
+      {
+        RationsLeft = 0;
+        MessageBox.Show("Out of rations!");
+      }
+    }
+
+    private void UpdateDate()
+    {
+      LblGrandDate.Content = $"YEAR {CurrentDate.Year} AA, Season of {seasons[CurrentDate.Month - 1].Name}, Month of {months[CurrentDate.Month - 1].Name}, Day {CurrentDate.Day}";
+    }
+
+    private void ReloadWeatherTable()
+    {
+      var reqWeather = new RandomWeatherRequest()
+      {
+        ContinentId = ContinentId,
+        SeasonId = CurrentDate.Season
+      };
+
+      weatherResult = DBClient.GetRandomWeatherList(reqWeather);
+    }
+
     #endregion
 
     #region Events
@@ -628,8 +720,6 @@ namespace PFHelper
 
       LblAvgD20.Content = diceList.Average(x => x.Result);
     }
-
-    #endregion
 
     private void BtnRollD4_Click(object sender, RoutedEventArgs e)
     {
@@ -823,5 +913,30 @@ namespace PFHelper
         }
       }
     }
+
+    private void BtnNextDay_Click(object sender, RoutedEventArgs e)
+    {
+      AddDays(1);
+      NextWeather();
+      GenEncounters();
+    }
+
+    private void BtnAddDays_Click(object sender, RoutedEventArgs e)
+    {
+      AddDays(DaysAdjust);
+    }
+
+    private void SpinRations_Spin(object sender, Xceed.Wpf.Toolkit.SpinEventArgs e)
+    {
+      AddRations(RationsAdjust * (e.Direction == Xceed.Wpf.Toolkit.SpinDirection.Increase ? 1 : -1));
+      TxtRations.Clear();
+    }
+
+    private void BtnNextWeather_Click(object sender, RoutedEventArgs e)
+    {
+      NextWeather();
+    }
+
+    #endregion
   }
 }

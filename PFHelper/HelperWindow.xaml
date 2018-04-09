@@ -26,8 +26,8 @@
         </Grid.ColumnDefinitions>
         <Label x:Name="LblGrandDate" Content="YEAR 000000 AA, Season of Earth, Month of Embers, Day 00" HorizontalAlignment="Left" Margin="10,21,0,0" VerticalAlignment="Top" FontFamily="Old English Text MT" FontSize="36"/>
         <Label HorizontalAlignment="Left" Margin="675,82,0,0" VerticalAlignment="Top" FontSize="16"/>
-        <Button x:Name="BtnNextDay" Content="NEXT DAY" HorizontalAlignment="Left" Margin="898,80,0,0" VerticalAlignment="Top" Width="75" Height="47"/>
-        <Button x:Name="BtnAddDays" Content="Add Days" HorizontalAlignment="Left" Margin="818,107,0,0" VerticalAlignment="Top" Width="75"/>
+        <Button x:Name="BtnNextDay" Content="NEXT DAY" HorizontalAlignment="Left" Margin="898,80,0,0" VerticalAlignment="Top" Width="75" Height="47" Click="BtnNextDay_Click"/>
+        <Button x:Name="BtnAddDays" Content="Add Days" HorizontalAlignment="Left" Margin="818,107,0,0" VerticalAlignment="Top" Width="75" Click="BtnAddDays_Click"/>
         <xctk:IntegerUpDown x:Name="IntAddDays" Value="0" HorizontalAlignment="Left" Margin="818,82,0,0" VerticalAlignment="Top" Width="75" />
         <ListBox x:Name="LbxD20" HorizontalAlignment="Left" Height="100" Margin="1226,26,0,0" VerticalAlignment="Top" Width="120"/>
         <Button x:Name="BtnRollD20" Content="Roll D20s" HorizontalAlignment="Left" Margin="1111,49,0,0" VerticalAlignment="Top" Width="110" Click="BtnRollD20_Click"/>
@@ -38,11 +38,11 @@
         <Label x:Name="LblCurrentWeather" Content="Meteor Storm!" HorizontalAlignment="Left" Margin="561,79,0,0" VerticalAlignment="Top"/>
         <Label Content="Moon Phase:" HorizontalAlignment="Left" Margin="478,110,0,0" VerticalAlignment="Top"/>
         <Label x:Name="LblMoonPhase" Content="MOON MOON" HorizontalAlignment="Left" Margin="561,110,0,0" VerticalAlignment="Top"/>
-        <Button x:Name="BtnNextWeather" Content="Next Weather" HorizontalAlignment="Left" Margin="366,82,0,0" VerticalAlignment="Top" Width="85"/>
+        <Button x:Name="BtnNextWeather" Content="Next Weather" HorizontalAlignment="Left" Margin="366,82,0,0" VerticalAlignment="Top" Width="85" Click="BtnNextWeather_Click"/>
         <Label Content="Rations:" HorizontalAlignment="Left" Margin="818,132,0,0" VerticalAlignment="Top"/>
         <Label x:Name="LblRationsLeft" Content="00" HorizontalAlignment="Left" Margin="898,132,0,0" VerticalAlignment="Top" FontSize="18" Height="49" Width="75"/>
         <TextBox x:Name="TxtRations" HorizontalAlignment="Left" Height="23" Margin="818,158,0,0" TextWrapping="Wrap" Text="000" VerticalAlignment="Top" Width="52"/>
-        <xctk:ButtonSpinner x:Name="SpinRations" HorizontalAlignment="Left" Margin="872,132,0,0" VerticalAlignment="Top" Height="49"/>
+        <xctk:ButtonSpinner x:Name="SpinRations" HorizontalAlignment="Left" Margin="872,132,0,0" VerticalAlignment="Top" Height="49" Spin="SpinRations_Spin"/>
         <CheckBox x:Name="CbxRationsInfinite" Content="∞" HorizontalAlignment="Left" Margin="902,166,0,0" VerticalAlignment="Top"/>
         <ListBox x:Name="LbxD4" HorizontalAlignment="Left" Height="100" Margin="1226,131,0,0" VerticalAlignment="Top" Width="120"/>
         <Button x:Name="BtnRollD4" Content="Roll D4s" HorizontalAlignment="Left" Margin="1111,159,0,0" VerticalAlignment="Top" Width="110" Click="BtnRollD4_Click"/>
