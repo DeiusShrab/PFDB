@@ -5,7 +5,7 @@ namespace DBConnect.DBModels
 {
   public partial class Location
   {
-    public int Locationid { get; set; }
+    public int LocationId { get; set; }
     public int? ContinentId { get; set; }
     public string Name { get; set; }
     public int GridX { get; set; }

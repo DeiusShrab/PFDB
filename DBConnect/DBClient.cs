@@ -9,7 +9,8 @@ namespace DBConnect
 {
   public static class DBClient
   {
-
+    public static string JWT_KEY = "a";
+    public static string JWT_ISSUER = "https://zratsewk.duckdns.org";
     private static readonly string API_ADDR;
     private static int MAX_CACHE_SIZE = 32;
     private static readonly HttpClient client = new HttpClient();
@@ -20,7 +21,7 @@ namespace DBConnect
 #if DEBUG
       API_ADDR = @"http://localhost:51923/api/";
 #else
-      API_ADDR = @"http://zratsewk.duckdns.org/pfdb/api/";
+      API_ADDR = @"https://zratsewk.duckdns.org/pfdb/api/";
 #endif
     }
 
@@ -182,11 +183,11 @@ namespace DBConnect
 
     #region Lists
 
-    public static List<ListItemResult> GetBestiaryList()
+    public static List<ListItemResult> GetList(string listType)
     {
       var ret = new List<ListItemResult>();
 
-      var response = client.GetAsync(API_ADDR + "Bestiary").Result;
+      var response = client.GetAsync(API_ADDR + "List/" + listType).Result;
       if (response.IsSuccessStatusCode)
       {
         var content = response.Content;
@@ -195,6 +196,10 @@ namespace DBConnect
 
       return ret;
     }
+
+    #endregion
+
+    #region Get All
 
     public static List<BestiaryEnvironment> GetBestiaryEnvironments()
     {
@@ -312,7 +317,7 @@ namespace DBConnect
     {
       List<TrackedEvent> ret = new List<TrackedEvent>();
 
-      var response = client.GetAsync(API_ADDR + "Event").Result;
+      var response = client.GetAsync(API_ADDR + "TrackedEvent").Result;
       if (response.IsSuccessStatusCode)
       {
         var content = response.Content;
@@ -345,20 +350,6 @@ namespace DBConnect
       {
         var content = response.Content;
         ret = JsonConvert.DeserializeObject<List<Faction>>(content.ReadAsStringAsync().Result);
-      }
-
-      return ret;
-    }
-
-    public static List<ListItemResult> GetFeatList()
-    {
-      var ret = new List<ListItemResult>();
-
-      var response = client.GetAsync(API_ADDR + "Feat").Result;
-      if (response.IsSuccessStatusCode)
-      {
-        var content = response.Content;
-        ret = JsonConvert.DeserializeObject<List<ListItemResult>>(content.ReadAsStringAsync().Result);
       }
 
       return ret;
@@ -462,34 +453,6 @@ namespace DBConnect
       return ret;
     }
 
-    public static List<ListItemResult> GetSkillList()
-    {
-      var ret = new List<ListItemResult>();
-
-      var response = client.GetAsync(API_ADDR + "Skill").Result;
-      if (response.IsSuccessStatusCode)
-      {
-        var content = response.Content;
-        ret = JsonConvert.DeserializeObject<List<ListItemResult>>(content.ReadAsStringAsync().Result);
-      }
-
-      return ret;
-    }
-
-    public static List<ListItemResult> GetSpellList()
-    {
-      var ret = new List<ListItemResult>();
-
-      var response = client.GetAsync(API_ADDR + "Spell").Result;
-      if (response.IsSuccessStatusCode)
-      {
-        var content = response.Content;
-        ret = JsonConvert.DeserializeObject<List<ListItemResult>>(content.ReadAsStringAsync().Result);
-      }
-
-      return ret;
-    }
-
     public static List<Terrain> GetTerrains()
     {
       List<Terrain> ret = new List<Terrain>();
@@ -548,26 +511,678 @@ namespace DBConnect
 
     #endregion
 
-    #region Updates
+    #region Create
 
-    public static bool AddEvent(TrackedEvent evt)
+    public static bool CreateBestiary(Bestiary obj)
     {
       var ret = false;
 
-      var body = JsonConvert.SerializeObject(evt);
-      var response = client.PostAsync(API_ADDR + "Event", new StringContent(body, Encoding.UTF8, "application/json")).Result;
+      var body = JsonConvert.SerializeObject(obj);
+      var response = client.PostAsync(API_ADDR + "Bestiary", new StringContent(body, Encoding.UTF8, "application/json")).Result;
       if (response.IsSuccessStatusCode)
         ret = true;
 
       return ret;
     }
 
-    public static bool UpdateEvent(TrackedEvent evt)
+    public static bool CreateBestiaryDetail(BestiaryDetail obj)
     {
       var ret = false;
 
-      var body = JsonConvert.SerializeObject(evt);
-      var response = client.PostAsync(API_ADDR + "Event/" + evt.TrackedEventId.ToString(), new StringContent(body, Encoding.UTF8, "application/json")).Result;
+      var body = JsonConvert.SerializeObject(obj);
+      var response = client.PostAsync(API_ADDR + "BestiaryDetail", new StringContent(body, Encoding.UTF8, "application/json")).Result;
+      if (response.IsSuccessStatusCode)
+        ret = true;
+
+      return ret;
+    }
+
+    public static bool CreateBestiaryEnvironment(BestiaryEnvironment obj)
+    {
+      var ret = false;
+
+      var body = JsonConvert.SerializeObject(obj);
+      var response = client.PostAsync(API_ADDR + "BestiaryEnvironment", new StringContent(body, Encoding.UTF8, "application/json")).Result;
+      if (response.IsSuccessStatusCode)
+        ret = true;
+
+      return ret;
+    }
+
+    public static bool CreateBestiaryFeat(BestiaryFeat obj)
+    {
+      var ret = false;
+
+      var body = JsonConvert.SerializeObject(obj);
+      var response = client.PostAsync(API_ADDR + "BestiaryFeat", new StringContent(body, Encoding.UTF8, "application/json")).Result;
+      if (response.IsSuccessStatusCode)
+        ret = true;
+
+      return ret;
+    }
+
+    public static bool CreateBestiaryLanguage(BestiaryLanguage obj)
+    {
+      var ret = false;
+
+      var body = JsonConvert.SerializeObject(obj);
+      var response = client.PostAsync(API_ADDR + "BestiaryLanguage", new StringContent(body, Encoding.UTF8, "application/json")).Result;
+      if (response.IsSuccessStatusCode)
+        ret = true;
+
+      return ret;
+    }
+
+    public static bool CreateBestiarySkill(BestiarySkill obj)
+    {
+      var ret = false;
+
+      var body = JsonConvert.SerializeObject(obj);
+      var response = client.PostAsync(API_ADDR + "BestiarySkill", new StringContent(body, Encoding.UTF8, "application/json")).Result;
+      if (response.IsSuccessStatusCode)
+        ret = true;
+
+      return ret;
+    }
+
+    public static bool CreateBestiarySubType(BestiarySubType obj)
+    {
+      var ret = false;
+
+      var body = JsonConvert.SerializeObject(obj);
+      var response = client.PostAsync(API_ADDR + "BestiarySubType", new StringContent(body, Encoding.UTF8, "application/json")).Result;
+      if (response.IsSuccessStatusCode)
+        ret = true;
+
+      return ret;
+    }
+
+    public static bool CreateBestiaryType(BestiaryType obj)
+    {
+      var ret = false;
+
+      var body = JsonConvert.SerializeObject(obj);
+      var response = client.PostAsync(API_ADDR + "BestiaryType", new StringContent(body, Encoding.UTF8, "application/json")).Result;
+      if (response.IsSuccessStatusCode)
+        ret = true;
+
+      return ret;
+    }
+
+    public static bool CreateContinent(Continent obj)
+    {
+      var ret = false;
+
+      var body = JsonConvert.SerializeObject(obj);
+      var response = client.PostAsync(API_ADDR + "Continent", new StringContent(body, Encoding.UTF8, "application/json")).Result;
+      if (response.IsSuccessStatusCode)
+        ret = true;
+
+      return ret;
+    }
+
+    public static bool CreateContinentWeather(ContinentWeather obj)
+    {
+      var ret = false;
+
+      var body = JsonConvert.SerializeObject(obj);
+      var response = client.PostAsync(API_ADDR + "ContinentWeather", new StringContent(body, Encoding.UTF8, "application/json")).Result;
+      if (response.IsSuccessStatusCode)
+        ret = true;
+
+      return ret;
+    }
+
+    public static bool CreateEnvironment(Environment obj)
+    {
+      var ret = false;
+
+      var body = JsonConvert.SerializeObject(obj);
+      var response = client.PostAsync(API_ADDR + "Environment", new StringContent(body, Encoding.UTF8, "application/json")).Result;
+      if (response.IsSuccessStatusCode)
+        ret = true;
+
+      return ret;
+    }
+
+    public static bool CreateFaction(Faction obj)
+    {
+      var ret = false;
+
+      var body = JsonConvert.SerializeObject(obj);
+      var response = client.PostAsync(API_ADDR + "Faction", new StringContent(body, Encoding.UTF8, "application/json")).Result;
+      if (response.IsSuccessStatusCode)
+        ret = true;
+
+      return ret;
+    }
+
+    public static bool CreateFeat(Feat obj)
+    {
+      var ret = false;
+
+      var body = JsonConvert.SerializeObject(obj);
+      var response = client.PostAsync(API_ADDR + "Feat", new StringContent(body, Encoding.UTF8, "application/json")).Result;
+      if (response.IsSuccessStatusCode)
+        ret = true;
+
+      return ret;
+    }
+
+    public static bool CreateLanguage(Language obj)
+    {
+      var ret = false;
+
+      var body = JsonConvert.SerializeObject(obj);
+      var response = client.PostAsync(API_ADDR + "Language", new StringContent(body, Encoding.UTF8, "application/json")).Result;
+      if (response.IsSuccessStatusCode)
+        ret = true;
+
+      return ret;
+    }
+
+    public static bool CreateLocation(Location obj)
+    {
+      var ret = false;
+
+      var body = JsonConvert.SerializeObject(obj);
+      var response = client.PostAsync(API_ADDR + "Location", new StringContent(body, Encoding.UTF8, "application/json")).Result;
+      if (response.IsSuccessStatusCode)
+        ret = true;
+
+      return ret;
+    }
+
+    public static bool CreateMagicItem(MagicItem obj)
+    {
+      var ret = false;
+
+      var body = JsonConvert.SerializeObject(obj);
+      var response = client.PostAsync(API_ADDR + "MagicItem", new StringContent(body, Encoding.UTF8, "application/json")).Result;
+      if (response.IsSuccessStatusCode)
+        ret = true;
+
+      return ret;
+    }
+
+    public static bool CreateMonsterSpawn(MonsterSpawn obj)
+    {
+      var ret = false;
+
+      var body = JsonConvert.SerializeObject(obj);
+      var response = client.PostAsync(API_ADDR + "MonsterSpawn", new StringContent(body, Encoding.UTF8, "application/json")).Result;
+      if (response.IsSuccessStatusCode)
+        ret = true;
+
+      return ret;
+    }
+
+    public static bool CreateMonth(Month obj)
+    {
+      var ret = false;
+
+      var body = JsonConvert.SerializeObject(obj);
+      var response = client.PostAsync(API_ADDR + "Month", new StringContent(body, Encoding.UTF8, "application/json")).Result;
+      if (response.IsSuccessStatusCode)
+        ret = true;
+
+      return ret;
+    }
+
+    public static bool CreateSeason(Season obj)
+    {
+      var ret = false;
+
+      var body = JsonConvert.SerializeObject(obj);
+      var response = client.PostAsync(API_ADDR + "Season", new StringContent(body, Encoding.UTF8, "application/json")).Result;
+      if (response.IsSuccessStatusCode)
+        ret = true;
+
+      return ret;
+    }
+
+    public static bool CreateSpell(Spell obj)
+    {
+      var ret = false;
+
+      var body = JsonConvert.SerializeObject(obj);
+      var response = client.PostAsync(API_ADDR + "Spell", new StringContent(body, Encoding.UTF8, "application/json")).Result;
+      if (response.IsSuccessStatusCode)
+        ret = true;
+
+      return ret;
+    }
+
+    public static bool CreateSpellDetail(SpellDetail obj)
+    {
+      var ret = false;
+
+      var body = JsonConvert.SerializeObject(obj);
+      var response = client.PostAsync(API_ADDR + "SpellDetail", new StringContent(body, Encoding.UTF8, "application/json")).Result;
+      if (response.IsSuccessStatusCode)
+        ret = true;
+
+      return ret;
+    }
+
+    public static bool CreateTerritory(Territory obj)
+    {
+      var ret = false;
+
+      var body = JsonConvert.SerializeObject(obj);
+      var response = client.PostAsync(API_ADDR + "Territory", new StringContent(body, Encoding.UTF8, "application/json")).Result;
+      if (response.IsSuccessStatusCode)
+        ret = true;
+
+      return ret;
+    }
+
+    public static bool CreateWeather(Weather obj)
+    {
+      var ret = false;
+
+      var body = JsonConvert.SerializeObject(obj);
+      var response = client.PostAsync(API_ADDR + "Weather", new StringContent(body, Encoding.UTF8, "application/json")).Result;
+      if (response.IsSuccessStatusCode)
+        ret = true;
+
+      return ret;
+    }
+
+    public static bool CreateTerrain(Terrain obj)
+    {
+      var ret = false;
+
+      var body = JsonConvert.SerializeObject(obj);
+      var response = client.PostAsync(API_ADDR + "Terrain", new StringContent(body, Encoding.UTF8, "application/json")).Result;
+      if (response.IsSuccessStatusCode)
+        ret = true;
+
+      return ret;
+    }
+
+    public static bool CreateTime(Time obj)
+    {
+      var ret = false;
+
+      var body = JsonConvert.SerializeObject(obj);
+      var response = client.PostAsync(API_ADDR + "Time", new StringContent(body, Encoding.UTF8, "application/json")).Result;
+      if (response.IsSuccessStatusCode)
+        ret = true;
+
+      return ret;
+    }
+
+    public static bool CreateTrackedEvent(TrackedEvent obj)
+    {
+      var ret = false;
+
+      var body = JsonConvert.SerializeObject(obj);
+      var response = client.PostAsync(API_ADDR + "TrackedEvent", new StringContent(body, Encoding.UTF8, "application/json")).Result;
+      if (response.IsSuccessStatusCode)
+        ret = true;
+
+      return ret;
+    }
+
+    public static bool CreatePlane(Plane obj)
+    {
+      var ret = false;
+
+      var body = JsonConvert.SerializeObject(obj);
+      var response = client.PostAsync(API_ADDR + "Plane", new StringContent(body, Encoding.UTF8, "application/json")).Result;
+      if (response.IsSuccessStatusCode)
+        ret = true;
+
+      return ret;
+    }
+
+    public static bool CreateSkill(Skill obj)
+    {
+      var ret = false;
+
+      var body = JsonConvert.SerializeObject(obj);
+      var response = client.PostAsync(API_ADDR + "Skill", new StringContent(body, Encoding.UTF8, "application/json")).Result;
+      if (response.IsSuccessStatusCode)
+        ret = true;
+
+      return ret;
+    }
+
+    #endregion
+
+    #region Update
+
+    public static bool UpdateBestiary(Bestiary obj)
+    {
+      var ret = false;
+
+      var body = JsonConvert.SerializeObject(obj);
+      var response = client.PostAsync(API_ADDR + "Bestiary/" + obj.BestiaryId.ToString(), new StringContent(body, Encoding.UTF8, "application/json")).Result;
+      if (response.IsSuccessStatusCode)
+        ret = true;
+
+      return ret;
+    }
+
+    public static bool UpdateBestiaryDetail(BestiaryDetail obj)
+    {
+      var ret = false;
+
+      var body = JsonConvert.SerializeObject(obj);
+      var response = client.PostAsync(API_ADDR + "BestiaryDetail/" + obj.BestiaryId.ToString(), new StringContent(body, Encoding.UTF8, "application/json")).Result;
+      if (response.IsSuccessStatusCode)
+        ret = true;
+
+      return ret;
+    }
+
+    public static bool UpdateBestiaryEnvironment(BestiaryEnvironment obj)
+    {
+      var ret = false;
+
+      var body = JsonConvert.SerializeObject(obj);
+      var response = client.PostAsync(API_ADDR + "BestiaryEnvironment/" + obj.BestiaryEnvironmentId.ToString(), new StringContent(body, Encoding.UTF8, "application/json")).Result;
+      if (response.IsSuccessStatusCode)
+        ret = true;
+
+      return ret;
+    }
+
+    public static bool UpdateBestiaryFeat(BestiaryFeat obj)
+    {
+      var ret = false;
+
+      var body = JsonConvert.SerializeObject(obj);
+      var response = client.PostAsync(API_ADDR + "BestiaryFeat/" + obj.BestiaryFeatId.ToString(), new StringContent(body, Encoding.UTF8, "application/json")).Result;
+      if (response.IsSuccessStatusCode)
+        ret = true;
+
+      return ret;
+    }
+
+    public static bool UpdateBestiaryLanguage(BestiaryLanguage obj)
+    {
+      var ret = false;
+
+      var body = JsonConvert.SerializeObject(obj);
+      var response = client.PostAsync(API_ADDR + "BestiaryLanguage/" + obj.BestiaryLanguageId.ToString(), new StringContent(body, Encoding.UTF8, "application/json")).Result;
+      if (response.IsSuccessStatusCode)
+        ret = true;
+
+      return ret;
+    }
+
+    public static bool UpdateBestiarySkill(BestiarySkill obj)
+    {
+      var ret = false;
+
+      var body = JsonConvert.SerializeObject(obj);
+      var response = client.PostAsync(API_ADDR + "BestiarySkill/" + obj.BestiarySkillId.ToString(), new StringContent(body, Encoding.UTF8, "application/json")).Result;
+      if (response.IsSuccessStatusCode)
+        ret = true;
+
+      return ret;
+    }
+
+    public static bool UpdateBestiarySubType(BestiarySubType obj)
+    {
+      var ret = false;
+
+      var body = JsonConvert.SerializeObject(obj);
+      var response = client.PostAsync(API_ADDR + "BestiarySubType/" + obj.BestiarySubTypeId.ToString(), new StringContent(body, Encoding.UTF8, "application/json")).Result;
+      if (response.IsSuccessStatusCode)
+        ret = true;
+
+      return ret;
+    }
+
+    public static bool UpdateBestiaryType(BestiaryType obj)
+    {
+      var ret = false;
+
+      var body = JsonConvert.SerializeObject(obj);
+      var response = client.PostAsync(API_ADDR + "BestiaryType/" + obj.BestiaryTypeId.ToString(), new StringContent(body, Encoding.UTF8, "application/json")).Result;
+      if (response.IsSuccessStatusCode)
+        ret = true;
+
+      return ret;
+    }
+
+    public static bool UpdateContinent(Continent obj)
+    {
+      var ret = false;
+
+      var body = JsonConvert.SerializeObject(obj);
+      var response = client.PostAsync(API_ADDR + "Continent/" + obj.ContinentId.ToString(), new StringContent(body, Encoding.UTF8, "application/json")).Result;
+      if (response.IsSuccessStatusCode)
+        ret = true;
+
+      return ret;
+    }
+
+    public static bool UpdateContinentWeather(ContinentWeather obj)
+    {
+      var ret = false;
+
+      var body = JsonConvert.SerializeObject(obj);
+      var response = client.PostAsync(API_ADDR + "ContinentWeather/" + obj.Cwid.ToString(), new StringContent(body, Encoding.UTF8, "application/json")).Result;
+      if (response.IsSuccessStatusCode)
+        ret = true;
+
+      return ret;
+    }
+
+    public static bool UpdateEnvironment(Environment obj)
+    {
+      var ret = false;
+
+      var body = JsonConvert.SerializeObject(obj);
+      var response = client.PostAsync(API_ADDR + "Environment/" + obj.EnvironmentId.ToString(), new StringContent(body, Encoding.UTF8, "application/json")).Result;
+      if (response.IsSuccessStatusCode)
+        ret = true;
+
+      return ret;
+    }
+
+    public static bool UpdateFaction(Faction obj)
+    {
+      var ret = false;
+
+      var body = JsonConvert.SerializeObject(obj);
+      var response = client.PostAsync(API_ADDR + "Faction/" + obj.FactionId.ToString(), new StringContent(body, Encoding.UTF8, "application/json")).Result;
+      if (response.IsSuccessStatusCode)
+        ret = true;
+
+      return ret;
+    }
+
+    public static bool UpdateFeat(Feat obj)
+    {
+      var ret = false;
+
+      var body = JsonConvert.SerializeObject(obj);
+      var response = client.PostAsync(API_ADDR + "Feat/" + obj.FeatId.ToString(), new StringContent(body, Encoding.UTF8, "application/json")).Result;
+      if (response.IsSuccessStatusCode)
+        ret = true;
+
+      return ret;
+    }
+
+    public static bool UpdateLanguage(Language obj)
+    {
+      var ret = false;
+
+      var body = JsonConvert.SerializeObject(obj);
+      var response = client.PostAsync(API_ADDR + "Language/" + obj.LanguageId.ToString(), new StringContent(body, Encoding.UTF8, "application/json")).Result;
+      if (response.IsSuccessStatusCode)
+        ret = true;
+
+      return ret;
+    }
+
+    public static bool UpdateLocation(Location obj)
+    {
+      var ret = false;
+
+      var body = JsonConvert.SerializeObject(obj);
+      var response = client.PostAsync(API_ADDR + "Location/" + obj.LocationId.ToString(), new StringContent(body, Encoding.UTF8, "application/json")).Result;
+      if (response.IsSuccessStatusCode)
+        ret = true;
+
+      return ret;
+    }
+
+    public static bool UpdateMagicItem(MagicItem obj)
+    {
+      var ret = false;
+
+      var body = JsonConvert.SerializeObject(obj);
+      var response = client.PostAsync(API_ADDR + "MagicItem/" + obj.MagicItemId.ToString(), new StringContent(body, Encoding.UTF8, "application/json")).Result;
+      if (response.IsSuccessStatusCode)
+        ret = true;
+
+      return ret;
+    }
+
+    public static bool UpdateMonsterSpawn(MonsterSpawn obj)
+    {
+      var ret = false;
+
+      var body = JsonConvert.SerializeObject(obj);
+      var response = client.PostAsync(API_ADDR + "MonsterSpawn/" + obj.SpawnId.ToString(), new StringContent(body, Encoding.UTF8, "application/json")).Result;
+      if (response.IsSuccessStatusCode)
+        ret = true;
+
+      return ret;
+    }
+
+    public static bool UpdateMonth(Month obj)
+    {
+      var ret = false;
+
+      var body = JsonConvert.SerializeObject(obj);
+      var response = client.PostAsync(API_ADDR + "Month/" + obj.MonthId.ToString(), new StringContent(body, Encoding.UTF8, "application/json")).Result;
+      if (response.IsSuccessStatusCode)
+        ret = true;
+
+      return ret;
+    }
+
+    public static bool UpdateSeason(Season obj)
+    {
+      var ret = false;
+
+      var body = JsonConvert.SerializeObject(obj);
+      var response = client.PostAsync(API_ADDR + "Season/" + obj.SeasonId.ToString(), new StringContent(body, Encoding.UTF8, "application/json")).Result;
+      if (response.IsSuccessStatusCode)
+        ret = true;
+
+      return ret;
+    }
+
+    public static bool UpdateSpell(Spell obj)
+    {
+      var ret = false;
+
+      var body = JsonConvert.SerializeObject(obj);
+      var response = client.PostAsync(API_ADDR + "Spell/" + obj.SpellId.ToString(), new StringContent(body, Encoding.UTF8, "application/json")).Result;
+      if (response.IsSuccessStatusCode)
+        ret = true;
+
+      return ret;
+    }
+
+    public static bool UpdateSpellDetail(SpellDetail obj)
+    {
+      var ret = false;
+
+      var body = JsonConvert.SerializeObject(obj);
+      var response = client.PostAsync(API_ADDR + "SpellDetail/" + obj.SpellId.ToString(), new StringContent(body, Encoding.UTF8, "application/json")).Result;
+      if (response.IsSuccessStatusCode)
+        ret = true;
+
+      return ret;
+    }
+
+    public static bool UpdateTerritory(Territory obj)
+    {
+      var ret = false;
+
+      var body = JsonConvert.SerializeObject(obj);
+      var response = client.PostAsync(API_ADDR + "Territory/" + obj.TerritoryId.ToString(), new StringContent(body, Encoding.UTF8, "application/json")).Result;
+      if (response.IsSuccessStatusCode)
+        ret = true;
+
+      return ret;
+    }
+
+    public static bool UpdateWeather(Weather obj)
+    {
+      var ret = false;
+
+      var body = JsonConvert.SerializeObject(obj);
+      var response = client.PostAsync(API_ADDR + "Weather/" + obj.WeatherId.ToString(), new StringContent(body, Encoding.UTF8, "application/json")).Result;
+      if (response.IsSuccessStatusCode)
+        ret = true;
+
+      return ret;
+    }
+
+    public static bool UpdateTerrain(Terrain obj)
+    {
+      var ret = false;
+
+      var body = JsonConvert.SerializeObject(obj);
+      var response = client.PostAsync(API_ADDR + "Terrain/" + obj.TerrainId.ToString(), new StringContent(body, Encoding.UTF8, "application/json")).Result;
+      if (response.IsSuccessStatusCode)
+        ret = true;
+
+      return ret;
+    }
+
+    public static bool UpdateTime(Time obj)
+    {
+      var ret = false;
+
+      var body = JsonConvert.SerializeObject(obj);
+      var response = client.PostAsync(API_ADDR + "Time/" + obj.TimeId.ToString(), new StringContent(body, Encoding.UTF8, "application/json")).Result;
+      if (response.IsSuccessStatusCode)
+        ret = true;
+
+      return ret;
+    }
+
+    public static bool UpdateTrackedEvent(TrackedEvent obj)
+    {
+      var ret = false;
+
+      var body = JsonConvert.SerializeObject(obj);
+      var response = client.PostAsync(API_ADDR + "TrackedEvent/" + obj.TrackedEventId.ToString(), new StringContent(body, Encoding.UTF8, "application/json")).Result;
+      if (response.IsSuccessStatusCode)
+        ret = true;
+
+      return ret;
+    }
+
+    public static bool UpdatePlane(Plane obj)
+    {
+      var ret = false;
+
+      var body = JsonConvert.SerializeObject(obj);
+      var response = client.PostAsync(API_ADDR + "Plane/" + obj.PlaneId.ToString(), new StringContent(body, Encoding.UTF8, "application/json")).Result;
+      if (response.IsSuccessStatusCode)
+        ret = true;
+
+      return ret;
+    }
+
+    public static bool UpdateSkill(Skill obj)
+    {
+      var ret = false;
+
+      var body = JsonConvert.SerializeObject(obj);
+      var response = client.PostAsync(API_ADDR + "Skill/" + obj.SkillId.ToString(), new StringContent(body, Encoding.UTF8, "application/json")).Result;
       if (response.IsSuccessStatusCode)
         ret = true;
 

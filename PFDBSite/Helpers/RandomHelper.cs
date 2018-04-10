@@ -4,9 +4,9 @@ using System.Data.SqlClient;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.EntityFrameworkCore;
-using PFDAL;
-using PFDAL.ConnectModels;
-using PFDAL.Models;
+using DBConnect;
+using DBConnect.ConnectModels;
+using DBConnect.DBModels;
 
 namespace PFDBSite.Helpers
 {

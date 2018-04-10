@@ -244,6 +244,11 @@ namespace PFHelper
       get { return IntAddDays.Value ?? 0; }
     }
 
+    private string MoonPhase
+    {
+      set { LblMoonPhase.Content = value; }
+    }
+
     #endregion
 
     #region Data Properties
@@ -288,7 +293,7 @@ namespace PFHelper
       combatGridItems = new ObservableCollection<CombatGridItem>();
       continentList = new ObservableCollection<DisplayResult>();
       creatureInfos = new ObservableCollection<DisplayResult>();
-      
+
       foreach (var item in continents)
       {
         continentList.Add(new DisplayResult() { Display = item.Name, Result = item.ContinentId });
@@ -641,17 +646,22 @@ namespace PFHelper
 
     private void AddDays(int i)
     {
-      var s = CurrentDate.Season;
       CurrentDate.AddDays(i);
       NextWeather(i);
       UpdateDate();
-
-      if (s != CurrentDate.Season)
-        ReloadWeatherTable();
     }
 
     private void NextWeather(int d = 1)
     {
+      if (ContinentId != weatherResult.ContinentId)
+      {
+        ReloadWeatherTable();
+        CurrentWeather = GetRandomWeather();
+        CurrentWeather.Duration = random.Next(CurrentWeather.Duration);
+      }
+      else if (CurrentDate.Season != weatherResult.SeasonId)
+        ReloadWeatherTable();
+
       while (d >= 0)
       {
         if (CurrentWeather.Duration >= d)
@@ -677,10 +687,8 @@ namespace PFHelper
 
     private Weather GetRandomWeather()
     {
-      if (ContinentId != weatherResult.ContinentId || CurrentDate.Season != weatherResult.SeasonId)
-        ReloadWeatherTable();
-
-      return weatherResult.WeatherList[random.Next(weatherResult.WeatherList.Count)];
+      var initialWeathers = weatherResult.WeatherList.Where(x => x.ParentWeatherId == 0);
+      return initialWeathers.ElementAt(random.Next(initialWeathers.Count()));
     }
 
     private void AddRations(int r)
@@ -696,6 +704,25 @@ namespace PFHelper
     private void UpdateDate()
     {
       LblGrandDate.Content = $"YEAR {CurrentDate.Year} AA, Season of {seasons[CurrentDate.Month - 1].Name}, Month of {months[CurrentDate.Month - 1].Name}, Day {CurrentDate.Day}";
+
+      if (CurrentDate.Day <= 3 && CurrentDate.Day > 0)
+        MoonPhase = "FULL MOON";
+      else if (CurrentDate.Day <= 7)
+        MoonPhase = "Waning Gibbous";
+      else if (CurrentDate.Day <= 10)
+        MoonPhase = "Last Quarter";
+      else if (CurrentDate.Day <= 14)
+        MoonPhase = "Waning Crescent";
+      else if (CurrentDate.Day <= 17)
+        MoonPhase = "NEW MOON";
+      else if (CurrentDate.Day <= 21)
+        MoonPhase = "Waxing Crescent";
+      else if (CurrentDate.Day <= 24)
+        MoonPhase = "First Quarter";
+      else if (CurrentDate.Day <= 28)
+        MoonPhase = "Waxing Gibbous";
+      else
+        MoonPhase = "MOON MOON";
     }
 
     private void ReloadWeatherTable()
@@ -934,7 +961,10 @@ namespace PFHelper
 
     private void BtnNextWeather_Click(object sender, RoutedEventArgs e)
     {
-      NextWeather();
+      if (ContinentId != weatherResult.ContinentId || CurrentDate.Season != weatherResult.SeasonId)
+        CurrentWeather = GetRandomWeather();
+      else
+        NextWeather();
     }
 
     #endregion

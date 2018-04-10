@@ -1,9 +1,18 @@
 TODO AT WORK
+Manually set weather
+https://auth0.com/blog/securing-asp-dot-net-core-2-applications-with-jwts/
 
 TODO AT HOME
+Update DB to match DBModels
 Set up site as main site instead of /pfdb/, remove old index and such
+Set up HTTPS and require a token to access the api
 Add nice links to Plex, etc instead of lame text posts
+Get the got-dang MAPS UP
+	Touch them up first with more locations and proper city names
+	Remember that maps only show "major" locations, small towns and villages won't be there
+Update PFDBSite, test PFHelper
 
+DB STUFF
 - Get a count of non-null entries for each column. Make sure the column is not nullable if there are 0 null entries.
 - Consider moving low-pop columns to separate tables.
 - Check interaction between [Bestiary].Environment, Feat, Language, Skill and new tables
@@ -36,7 +45,10 @@ Add modifiers like +1 for Ring of Sustenance (less sleep)
 +1 for on-road, adjust base travel accordingly
 
 Combat Tracker
-Skip entries with 0 or lower Init on Next Turn
+Some kind of turn tracker (color row differently?)
+Skip entries with 0 initiative
+Math in rows (-hp, +hp)
+Color rows with dead monsters (grey) or players (red)
 
 [Month] needs an Abbreviation column
 

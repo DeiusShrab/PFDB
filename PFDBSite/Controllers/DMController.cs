@@ -4,8 +4,8 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
-using PFDAL;
-using PFDAL.Models;
+using DBConnect;
+using DBConnect.DBModels;
 using PFDBSite.Models;
 
 namespace PFDBSite.Controllers
@@ -13,7 +13,7 @@ namespace PFDBSite.Controllers
   [Route("DM")]
   public class DMController : PFDBController
   {
-    public IPFDBContext context = PFDAL.PFDAL.GetContext(Configuration["WorkingEnvironment"]);
+    public IPFDBContext context = PFDAL.GetContext(Configuration["WorkingEnvironment"]);
 
     #region HTTP Methods
 

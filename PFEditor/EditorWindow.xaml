@@ -5,12 +5,12 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:PFEditor"
         mc:Ignorable="d"
-        Title="PFEditor" Height="900" Width="1600">
+        Title="PFEditor" Height="728" Width="1366">
     <Grid>
-        <TabControl HorizontalAlignment="Left" Height="833" Margin="10,26,0,0" VerticalAlignment="Top" Width="1572">
+        <TabControl HorizontalAlignment="Left" Height="677" Margin="10,10,0,0" VerticalAlignment="Top" Width="1338">
             <TabItem Header="Bestiary" Margin="-2,-2,-2,0">
                 <Grid Background="#FFE5E5E5">
-                    <TabControl HorizontalAlignment="Left" Height="785" Margin="10,10,0,0" VerticalAlignment="Top" Width="1546">
+                    <TabControl HorizontalAlignment="Left" Height="604" Margin="195,10,0,0" VerticalAlignment="Top" Width="1127">
                         <TabItem Header="General" Margin="-2,-2,-2,0">
                             <Grid Background="#FFE5E5E5"/>
                         </TabItem>
@@ -24,22 +24,32 @@
                             <Grid Background="#FFE5E5E5"/>
                         </TabItem>
                     </TabControl>
+                    <ListBox x:Name="LbxBestiary" HorizontalAlignment="Left" Height="629" Margin="10,10,0,0" VerticalAlignment="Top" Width="180"/>
+                    <Button Content="Add New" HorizontalAlignment="Left" Margin="195,619,0,0" VerticalAlignment="Top" Width="75"/>
+                    <Button Content="Save" HorizontalAlignment="Left" Margin="1247,619,0,0" VerticalAlignment="Top" Width="75"/>
+                    <Button Content="Clear" HorizontalAlignment="Left" Margin="1167,619,0,0" VerticalAlignment="Top" Width="75"/>
                 </Grid>
             </TabItem>
             <TabItem Header="MonsterSpawn" Margin="-2,-2,-2,0">
                 <Grid Background="#FFE5E5E5">
-                    <ListBox x:Name="LbxMSBestiary" HorizontalAlignment="Left" Height="785" Margin="10,10,0,0" VerticalAlignment="Top" Width="193"/>
-                    <DataGrid HorizontalAlignment="Left" Height="464" Margin="208,331,0,0" VerticalAlignment="Top" Width="1348"/>
+                    <ListBox x:Name="LbxMSBestiary" HorizontalAlignment="Left" Height="629" Margin="10,10,0,0" VerticalAlignment="Top" Width="180"/>
+                    <DataGrid HorizontalAlignment="Left" Height="278" Margin="195,361,0,0" VerticalAlignment="Top" Width="1127"/>
                 </Grid>
             </TabItem>
             <TabItem Header="Continent" Margin="-2,-2,-2,0">
-                <Grid Background="#FFE5E5E5"/>
+                <Grid Background="#FFE5E5E5">
+                    <ListBox x:Name="LbxContinent" HorizontalAlignment="Left" Height="629" Margin="10,10,0,0" VerticalAlignment="Top" Width="180"/>
+                </Grid>
             </TabItem>
             <TabItem Header="Terrain" Margin="-2,-2,-2,0">
-                <Grid Background="#FFE5E5E5"/>
+                <Grid Background="#FFE5E5E5">
+                    <ListBox x:Name="LbxTerrain" HorizontalAlignment="Left" Height="629" Margin="10,10,0,0" VerticalAlignment="Top" Width="180"/>
+                </Grid>
             </TabItem>
             <TabItem Header="Weather" Margin="-2,-2,-2,0">
-                <Grid Background="#FFE5E5E5"/>
+                <Grid Background="#FFE5E5E5">
+                    <ListBox x:Name="LbxWeather" HorizontalAlignment="Left" Height="629" Margin="10,10,0,0" VerticalAlignment="Top" Width="180"/>
+                </Grid>
             </TabItem>
             <TabItem Header="Environment" Margin="-2,-2,-2,0">
                 <Grid Background="#FFE5E5E5"/>
@@ -47,12 +57,16 @@
             <TabItem Header="Location" Margin="-2,-2,-2,0">
                 <Grid Background="#FFE5E5E5"/>
             </TabItem>
+            <TabItem Header="Misc" Margin="-2,-2,-2,0">
+                <Grid Background="#FFE5E5E5">
+                    <Label Content="Time" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top"/>
+                    <Label Content="Plane" HorizontalAlignment="Left" Margin="10,41,0,0" VerticalAlignment="Top"/>
+                </Grid>
+            </TabItem>
+            <TabItem Header="Faction/Territory" Margin="-2,-2,-2,0">
+                <Grid Background="#FFE5E5E5"/>
+            </TabItem>
         </TabControl>
-        <Menu HorizontalAlignment="Left" Height="20" Margin="0,1,0,0" VerticalAlignment="Top" Width="1592">
-            <MenuItem x:Name="FileMenuItem" Header="File" Height="20" Width="35">
-                <MenuItem Header="Save" HorizontalAlignment="Left" Height="20" Width="140" InputGestureText="Ctrl+S"/>
-            </MenuItem>
-        </Menu>
 
     </Grid>
 </Window>
