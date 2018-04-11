@@ -1,9 +1,13 @@
 TODO AT WORK
 Manually set weather
+Lock weather (prevent duration from advancing, for perma-storms)
 https://auth0.com/blog/securing-asp-dot-net-core-2-applications-with-jwts/
 
 TODO AT HOME
 Update DB to match DBModels
+Add user/pw for PFDBSite so I don't have to use sa
+Backup DB somehow
+Generate code-first for updated DB stuff
 Set up site as main site instead of /pfdb/, remove old index and such
 Set up HTTPS and require a token to access the api
 Add nice links to Plex, etc instead of lame text posts

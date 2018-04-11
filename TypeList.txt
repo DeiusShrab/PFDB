@@ -16,13 +16,13 @@ Location
 MagicItem
 MonsterSpawn
 Month
+Plane
 Season
+Skill
 Spell
 SpellDetail
-Territory
-Weather
 Terrain
+Territory
 Time
 TrackedEvent
-Plane
-Skill
+Weather

@@ -13,6 +13,7 @@ namespace PFHelper.Classes
     public List<CombatGridItem> CombatGridItems { get; set; }
     public FantasyDate Date { get; set; }
     public Weather Weather { get; set; }
+    public string ApiPass { get; set; }
     public int Apl { get; set; }
     public int Rations { get; set; }
     public int ContinentId { get; set; }

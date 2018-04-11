@@ -993,11 +993,33 @@ namespace DBConnect
                   .IsUnicode(false);
       });
 
+      modelBuilder.Entity<Plane>(entity =>
+      {
+        entity.HasKey(e => e.PlaneId);
+
+        entity.Property(e => e.Name)
+              .IsUnicode(false)
+              .HasMaxLength(100);
+      });
+
       modelBuilder.Entity<Season>(entity =>
       {
         entity.Property(e => e.Name)
                   .HasMaxLength(50)
                   .IsUnicode(false);
+      });
+
+      modelBuilder.Entity<Skill>(entity =>
+      {
+        entity.HasKey(e => e.SkillId);
+
+        entity.Property(e => e.Name)
+              .IsUnicode(false)
+              .HasMaxLength(100);
+
+        entity.Property(e => e.Description)
+              .IsUnicode(false)
+              .HasMaxLength(1000);
       });
 
       modelBuilder.Entity<Spell>(entity =>
@@ -1110,11 +1132,46 @@ namespace DBConnect
         entity.Property(e => e.FullText).IsUnicode(false);
       });
 
+      modelBuilder.Entity<Terrain>(entity =>
+      {
+        entity.HasKey(e => e.TerrainId);
+
+        entity.Property(e => e.Name)
+              .IsUnicode(false)
+              .HasMaxLength(100);
+
+        entity.Property(e => e.Description)
+              .IsUnicode(false)
+              .HasMaxLength(500);
+      });
+
       modelBuilder.Entity<Territory>(entity =>
       {
         entity.Property(e => e.Name)
                   .HasMaxLength(100)
                   .IsUnicode(false);
+      });
+
+      modelBuilder.Entity<Time>(entity =>
+      {
+        entity.HasKey(e => e.TimeId);
+
+        entity.Property(e => e.Name)
+              .IsUnicode(false)
+              .HasMaxLength(100);
+      });
+
+      modelBuilder.Entity<TrackedEvent>(entity =>
+      {
+        entity.HasKey(e => e.TrackedEventId);
+
+        entity.Property(e => e.Name)
+              .IsUnicode(false)
+              .HasMaxLength(100);
+
+        entity.Property(e => e.Notes)
+              .IsUnicode(false)
+              .HasMaxLength(1000);
       });
 
       modelBuilder.Entity<Weather>(entity =>

@@ -19,5 +19,6 @@ namespace DBConnect.DBModels
     public string Effects { get; set; }
     public string Name { get; set; }
     public int ParentWeatherId { get; set; }
+    public bool RandomDuration { get; set; }
   }
 }

@@ -12,16 +12,11 @@ namespace PFDBSite.Helpers
 {
   public class RandomHelper
   {
-    public IPFDBContext context;
     private Random random = new Random();
-
-    public RandomHelper(IPFDBContext _context)
-    {
-      context = _context;
-    }
 
     public RandomEncounterResult GenerateRandomEncounters(RandomEncounterRequest request)
     {
+      var context = PFDAL.GetContext();
       var encounterList = new List<RandomEncounterItem>();
       var groupMon = new List<Bestiary>();
       var validSpawns = from s in context.MonsterSpawn
@@ -63,6 +58,7 @@ namespace PFDBSite.Helpers
 
     public RandomWeatherResult GenerateRandomWeatherTable(RandomWeatherRequest request)
     {
+      var context = PFDAL.GetContext();
       var ret = new RandomWeatherResult()
       {
         ContinentId = request.ContinentId,

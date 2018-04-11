@@ -1,20 +1,28 @@
 ﻿using System.Collections.Generic;
 using System.Net.Http;
 using System.Text;
+using System.Timers;
 using DBConnect.ConnectModels;
 using DBConnect.DBModels;
 using Newtonsoft.Json;
+using Newtonsoft.Json.Linq;
 
 namespace DBConnect
 {
   public static class DBClient
   {
-    public static string JWT_KEY = "a";
+    public static string JWT_KEY = "ayy lmao ayy lmao ayy lmao ayy lmao";
     public static string JWT_ISSUER = "https://zratsewk.duckdns.org";
+    public static string API_USER = "PFHelper";
+    public static string API_PASS = "PFHelper";
     private static readonly string API_ADDR;
     private static int MAX_CACHE_SIZE = 32;
     private static readonly HttpClient client = new HttpClient();
     private static DBCache<BestiaryDetail> DetailCache = new DBCache<BestiaryDetail>(MAX_CACHE_SIZE);
+
+    private static string API_TOKEN;
+    private static System.DateTime TOKEN_DATE;
+    private static Timer ApiTimer;
 
     static DBClient()
     {
@@ -23,6 +31,32 @@ namespace DBConnect
 #else
       API_ADDR = @"https://zratsewk.duckdns.org/pfdb/api/";
 #endif
+      RefreshToken();
+    }
+
+    private static void RefreshToken()
+    {
+      var body = "{" + $"'username': '{API_USER}', 'password': '{API_PASS}'" + "}";
+      var response = client.PostAsync(API_ADDR + "GetToken/pls", new StringContent(body, Encoding.UTF8, "application/json")).Result;
+      if (response.IsSuccessStatusCode)
+      {
+        var content = response.Content;
+        var token = JsonConvert.DeserializeObject<JObject>(content.ReadAsStringAsync().Result);
+        if (token.ContainsKey("token") && token["token"].HasValues)
+        {
+          API_TOKEN = token["token"].Value<string>();
+          TOKEN_DATE = System.DateTime.Now;
+          client.DefaultRequestHeaders.Authorization = new System.Net.Http.Headers.AuthenticationHeaderValue("Bearer", API_TOKEN);
+          ApiTimer = new Timer(System.TimeSpan.FromHours(12).TotalMilliseconds);
+          ApiTimer.Elapsed += ApiTimer_Elapsed;
+          ApiTimer.Start();
+        }
+      }
+    }
+
+    private static void ApiTimer_Elapsed(object sender, ElapsedEventArgs e)
+    {
+      RefreshToken();
     }
 
     #region Queries
