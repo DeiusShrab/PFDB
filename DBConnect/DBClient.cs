@@ -24,6 +24,8 @@ namespace DBConnect
     private static System.DateTime TOKEN_DATE;
     private static Timer ApiTimer;
 
+    #region Constructor and Token
+
     static DBClient()
     {
 #if DEBUG
@@ -59,7 +61,23 @@ namespace DBConnect
       RefreshToken();
     }
 
+    #endregion
+
     #region Queries
+
+    public static List<ListItemResult> GetList(string listType)
+    {
+      var ret = new List<ListItemResult>();
+
+      var response = client.GetAsync(API_ADDR + "List/" + listType).Result;
+      if (response.IsSuccessStatusCode)
+      {
+        var content = response.Content;
+        ret = JsonConvert.DeserializeObject<List<ListItemResult>>(content.ReadAsStringAsync().Result);
+      }
+
+      return ret;
+    }
 
     public static RandomEncounterResult GetEncounters(RandomEncounterRequest request)
     {
@@ -101,11 +119,11 @@ namespace DBConnect
 
     #region Details
 
-    public static Bestiary GetBestiary(int bestiaryId)
+    public static Bestiary GetBestiary(int BestiaryId)
     {
       Bestiary ret = null;
 
-      var response = client.GetAsync(API_ADDR + "Bestiary/" + bestiaryId.ToString()).Result;
+      var response = client.GetAsync(API_ADDR + "Bestiary/" + BestiaryId.ToString()).Result;
       if (response.IsSuccessStatusCode)
       {
         var content = response.Content;
@@ -118,18 +136,18 @@ namespace DBConnect
     /// <summary>
     /// Gets a BestiaryDetail object from the server
     /// </summary>
-    /// <param name="bestiaryId">the id of the object</param>
+    /// <param name="BestiaryId">the id of the object</param>
     /// <param name="forceRetrieve">For PFEditor use, if true, the cache will be skipped</param>
     /// <returns></returns>
-    public static BestiaryDetail GetBestiaryDetail(int bestiaryId, bool forceRetrieve = false)
+    public static BestiaryDetail GetBestiaryDetail(int BestiaryId, bool forceRetrieve = false)
     {
       BestiaryDetail ret = null;
 
-      if (!forceRetrieve && DetailCache.ContainsKey(bestiaryId))
-        ret = DetailCache[bestiaryId];
+      if (!forceRetrieve && DetailCache.ContainsKey(BestiaryId))
+        ret = DetailCache[BestiaryId];
       else
       {
-        var response = client.GetAsync(API_ADDR + "BestiaryDetail/" + bestiaryId.ToString()).Result;
+        var response = client.GetAsync(API_ADDR + "BestiaryDetail/" + BestiaryId.ToString()).Result;
         if (response.IsSuccessStatusCode)
         {
           var content = response.Content;
@@ -137,17 +155,157 @@ namespace DBConnect
         }
 
         if (!forceRetrieve && ret != null)
-          DetailCache.Add(bestiaryId, ret);
+          DetailCache.Add(BestiaryId, ret);
       }
 
       return ret;
     }
 
-    public static Feat GetFeat(int featId)
+    public static BestiaryEnvironment GetBestiaryEnvironment(int BestiaryEnvironmentId)
+    {
+      BestiaryEnvironment ret = null;
+
+      var response = client.GetAsync(API_ADDR + "BestiaryEnvironment/" + BestiaryEnvironmentId.ToString()).Result;
+      if (response.IsSuccessStatusCode)
+      {
+        var content = response.Content;
+        ret = JsonConvert.DeserializeObject<BestiaryEnvironment>(content.ReadAsStringAsync().Result);
+      }
+
+      return ret;
+    }
+
+    public static BestiaryFeat GetBestiaryFeat(int BestiaryFeatId)
+    {
+      BestiaryFeat ret = null;
+
+      var response = client.GetAsync(API_ADDR + "BestiaryFeat/" + BestiaryFeatId.ToString()).Result;
+      if (response.IsSuccessStatusCode)
+      {
+        var content = response.Content;
+        ret = JsonConvert.DeserializeObject<BestiaryFeat>(content.ReadAsStringAsync().Result);
+      }
+
+      return ret;
+    }
+
+    public static BestiaryLanguage GetBestiaryLanguage(int BestiaryLanguageId)
+    {
+      BestiaryLanguage ret = null;
+
+      var response = client.GetAsync(API_ADDR + "BestiaryLanguage/" + BestiaryLanguageId.ToString()).Result;
+      if (response.IsSuccessStatusCode)
+      {
+        var content = response.Content;
+        ret = JsonConvert.DeserializeObject<BestiaryLanguage>(content.ReadAsStringAsync().Result);
+      }
+
+      return ret;
+    }
+
+    public static BestiarySkill GetBestiarySkill(int BestiarySkillId)
+    {
+      BestiarySkill ret = null;
+
+      var response = client.GetAsync(API_ADDR + "BestiarySkill/" + BestiarySkillId.ToString()).Result;
+      if (response.IsSuccessStatusCode)
+      {
+        var content = response.Content;
+        ret = JsonConvert.DeserializeObject<BestiarySkill>(content.ReadAsStringAsync().Result);
+      }
+
+      return ret;
+    }
+
+    public static BestiarySubType GetBestiarySubType(int BestiarySubTypeId)
+    {
+      BestiarySubType ret = null;
+
+      var response = client.GetAsync(API_ADDR + "BestiarySubType/" + BestiarySubTypeId.ToString()).Result;
+      if (response.IsSuccessStatusCode)
+      {
+        var content = response.Content;
+        ret = JsonConvert.DeserializeObject<BestiarySubType>(content.ReadAsStringAsync().Result);
+      }
+
+      return ret;
+    }
+
+    public static BestiaryType GetBestiaryType(int BestiaryTypeId)
+    {
+      BestiaryType ret = null;
+
+      var response = client.GetAsync(API_ADDR + "BestiaryType/" + BestiaryTypeId.ToString()).Result;
+      if (response.IsSuccessStatusCode)
+      {
+        var content = response.Content;
+        ret = JsonConvert.DeserializeObject<BestiaryType>(content.ReadAsStringAsync().Result);
+      }
+
+      return ret;
+    }
+
+    public static Continent GetContinent(int ContinentId)
+    {
+      Continent ret = null;
+
+      var response = client.GetAsync(API_ADDR + "Continent/" + ContinentId.ToString()).Result;
+      if (response.IsSuccessStatusCode)
+      {
+        var content = response.Content;
+        ret = JsonConvert.DeserializeObject<Continent>(content.ReadAsStringAsync().Result);
+      }
+
+      return ret;
+    }
+
+    public static ContinentWeather GetContinentWeather(int ContinentWeatherId)
+    {
+      ContinentWeather ret = null;
+
+      var response = client.GetAsync(API_ADDR + "ContinentWeather/" + ContinentWeatherId.ToString()).Result;
+      if (response.IsSuccessStatusCode)
+      {
+        var content = response.Content;
+        ret = JsonConvert.DeserializeObject<ContinentWeather>(content.ReadAsStringAsync().Result);
+      }
+
+      return ret;
+    }
+
+    public static Environment GetEnvironment(int EnvironmentId)
+    {
+      Environment ret = null;
+
+      var response = client.GetAsync(API_ADDR + "Environment/" + EnvironmentId.ToString()).Result;
+      if (response.IsSuccessStatusCode)
+      {
+        var content = response.Content;
+        ret = JsonConvert.DeserializeObject<Environment>(content.ReadAsStringAsync().Result);
+      }
+
+      return ret;
+    }
+
+    public static Faction GetFaction(int FactionId)
+    {
+      Faction ret = null;
+
+      var response = client.GetAsync(API_ADDR + "Faction/" + FactionId.ToString()).Result;
+      if (response.IsSuccessStatusCode)
+      {
+        var content = response.Content;
+        ret = JsonConvert.DeserializeObject<Faction>(content.ReadAsStringAsync().Result);
+      }
+
+      return ret;
+    }
+
+    public static Feat GetFeat(int FeatId)
     {
       Feat ret = null;
 
-      var response = client.GetAsync(API_ADDR + "Feat/" + featId.ToString()).Result;
+      var response = client.GetAsync(API_ADDR + "Feat/" + FeatId.ToString()).Result;
       if (response.IsSuccessStatusCode)
       {
         var content = response.Content;
@@ -157,11 +315,109 @@ namespace DBConnect
       return ret;
     }
 
-    public static Skill GetSkill(int skillId)
+    public static Language GetLanguage(int LanguageId)
+    {
+      Language ret = null;
+
+      var response = client.GetAsync(API_ADDR + "Language/" + LanguageId.ToString()).Result;
+      if (response.IsSuccessStatusCode)
+      {
+        var content = response.Content;
+        ret = JsonConvert.DeserializeObject<Language>(content.ReadAsStringAsync().Result);
+      }
+
+      return ret;
+    }
+
+    public static Location GetLocation(int LocationId)
+    {
+      Location ret = null;
+
+      var response = client.GetAsync(API_ADDR + "Location/" + LocationId.ToString()).Result;
+      if (response.IsSuccessStatusCode)
+      {
+        var content = response.Content;
+        ret = JsonConvert.DeserializeObject<Location>(content.ReadAsStringAsync().Result);
+      }
+
+      return ret;
+    }
+
+    public static MagicItem GetMagicItem(int MagicItemId)
+    {
+      MagicItem ret = null;
+
+      var response = client.GetAsync(API_ADDR + "MagicItem/" + MagicItemId.ToString()).Result;
+      if (response.IsSuccessStatusCode)
+      {
+        var content = response.Content;
+        ret = JsonConvert.DeserializeObject<MagicItem>(content.ReadAsStringAsync().Result);
+      }
+
+      return ret;
+    }
+
+    public static MonsterSpawn GetMonsterSpawn(int SpawnId)
+    {
+      MonsterSpawn ret = null;
+
+      var response = client.GetAsync(API_ADDR + "MonsterSpawn/" + SpawnId.ToString()).Result;
+      if (response.IsSuccessStatusCode)
+      {
+        var content = response.Content;
+        ret = JsonConvert.DeserializeObject<MonsterSpawn>(content.ReadAsStringAsync().Result);
+      }
+
+      return ret;
+    }
+
+    public static Month GetMonth(int MonthId)
+    {
+      Month ret = null;
+
+      var response = client.GetAsync(API_ADDR + "Month/" + MonthId.ToString()).Result;
+      if (response.IsSuccessStatusCode)
+      {
+        var content = response.Content;
+        ret = JsonConvert.DeserializeObject<Month>(content.ReadAsStringAsync().Result);
+      }
+
+      return ret;
+    }
+
+    public static Plane GetPlane(int PlaneId)
+    {
+      Plane ret = null;
+
+      var response = client.GetAsync(API_ADDR + "Plane/" + PlaneId.ToString()).Result;
+      if (response.IsSuccessStatusCode)
+      {
+        var content = response.Content;
+        ret = JsonConvert.DeserializeObject<Plane>(content.ReadAsStringAsync().Result);
+      }
+
+      return ret;
+    }
+
+    public static Season GetSeason(int SeasonId)
+    {
+      Season ret = null;
+
+      var response = client.GetAsync(API_ADDR + "Season/" + SeasonId.ToString()).Result;
+      if (response.IsSuccessStatusCode)
+      {
+        var content = response.Content;
+        ret = JsonConvert.DeserializeObject<Season>(content.ReadAsStringAsync().Result);
+      }
+
+      return ret;
+    }
+
+    public static Skill GetSkill(int SkillId)
     {
       Skill ret = null;
 
-      var response = client.GetAsync(API_ADDR + "Skill/" + skillId.ToString()).Result;
+      var response = client.GetAsync(API_ADDR + "Skill/" + SkillId.ToString()).Result;
       if (response.IsSuccessStatusCode)
       {
         var content = response.Content;
@@ -171,11 +427,11 @@ namespace DBConnect
       return ret;
     }
 
-    public static Spell GetSpell(int spellId)
+    public static Spell GetSpell(int SpellId)
     {
       Spell ret = null;
 
-      var response = client.GetAsync(API_ADDR + "Spell/" + spellId.ToString()).Result;
+      var response = client.GetAsync(API_ADDR + "Spell/" + SpellId.ToString()).Result;
       if (response.IsSuccessStatusCode)
       {
         var content = response.Content;
@@ -185,11 +441,11 @@ namespace DBConnect
       return ret;
     }
 
-    public static SpellDetail GetSpellDetail(int spellId)
+    public static SpellDetail GetSpellDetail(int SpellId)
     {
       SpellDetail ret = null;
 
-      var response = client.GetAsync(API_ADDR + "SpellDetail/" + spellId.ToString()).Result;
+      var response = client.GetAsync(API_ADDR + "SpellDetail/" + SpellId.ToString()).Result;
       if (response.IsSuccessStatusCode)
       {
         var content = response.Content;
@@ -199,11 +455,67 @@ namespace DBConnect
       return ret;
     }
 
-    public static Weather GetWeather(int weatherId)
+    public static Terrain GetTerrain(int TerrainId)
+    {
+      Terrain ret = null;
+
+      var response = client.GetAsync(API_ADDR + "Terrain/" + TerrainId.ToString()).Result;
+      if (response.IsSuccessStatusCode)
+      {
+        var content = response.Content;
+        ret = JsonConvert.DeserializeObject<Terrain>(content.ReadAsStringAsync().Result);
+      }
+
+      return ret;
+    }
+
+    public static Territory GetTerritory(int TerritoryId)
+    {
+      Territory ret = null;
+
+      var response = client.GetAsync(API_ADDR + "Territory/" + TerritoryId.ToString()).Result;
+      if (response.IsSuccessStatusCode)
+      {
+        var content = response.Content;
+        ret = JsonConvert.DeserializeObject<Territory>(content.ReadAsStringAsync().Result);
+      }
+
+      return ret;
+    }
+
+    public static Time GetTime(int TimeId)
+    {
+      Time ret = null;
+
+      var response = client.GetAsync(API_ADDR + "Time/" + TimeId.ToString()).Result;
+      if (response.IsSuccessStatusCode)
+      {
+        var content = response.Content;
+        ret = JsonConvert.DeserializeObject<Time>(content.ReadAsStringAsync().Result);
+      }
+
+      return ret;
+    }
+
+    public static TrackedEvent GetTrackedEvent(int TrackedEventId)
+    {
+      TrackedEvent ret = null;
+
+      var response = client.GetAsync(API_ADDR + "TrackedEvent/" + TrackedEventId.ToString()).Result;
+      if (response.IsSuccessStatusCode)
+      {
+        var content = response.Content;
+        ret = JsonConvert.DeserializeObject<TrackedEvent>(content.ReadAsStringAsync().Result);
+      }
+
+      return ret;
+    }
+
+    public static Weather GetWeather(int WeatherId)
     {
       Weather ret = null;
 
-      var response = client.GetAsync(API_ADDR + "Weather/" + weatherId.ToString()).Result;
+      var response = client.GetAsync(API_ADDR + "Weather/" + WeatherId.ToString()).Result;
       if (response.IsSuccessStatusCode)
       {
         var content = response.Content;
@@ -213,23 +525,6 @@ namespace DBConnect
       return ret;
     }
 
-    #endregion
-
-    #region Lists
-
-    public static List<ListItemResult> GetList(string listType)
-    {
-      var ret = new List<ListItemResult>();
-
-      var response = client.GetAsync(API_ADDR + "List/" + listType).Result;
-      if (response.IsSuccessStatusCode)
-      {
-        var content = response.Content;
-        ret = JsonConvert.DeserializeObject<List<ListItemResult>>(content.ReadAsStringAsync().Result);
-      }
-
-      return ret;
-    }
 
     #endregion
 
@@ -892,7 +1187,7 @@ namespace DBConnect
       var ret = false;
 
       var body = JsonConvert.SerializeObject(obj);
-      var response = client.PostAsync(API_ADDR + "Bestiary/" + obj.BestiaryId.ToString(), new StringContent(body, Encoding.UTF8, "application/json")).Result;
+      var response = client.PutAsync(API_ADDR + "Bestiary/" + obj.BestiaryId.ToString(), new StringContent(body, Encoding.UTF8, "application/json")).Result;
       if (response.IsSuccessStatusCode)
         ret = true;
 
@@ -904,7 +1199,7 @@ namespace DBConnect
       var ret = false;
 
       var body = JsonConvert.SerializeObject(obj);
-      var response = client.PostAsync(API_ADDR + "BestiaryDetail/" + obj.BestiaryId.ToString(), new StringContent(body, Encoding.UTF8, "application/json")).Result;
+      var response = client.PutAsync(API_ADDR + "BestiaryDetail/" + obj.BestiaryId.ToString(), new StringContent(body, Encoding.UTF8, "application/json")).Result;
       if (response.IsSuccessStatusCode)
         ret = true;
 
@@ -916,7 +1211,7 @@ namespace DBConnect
       var ret = false;
 
       var body = JsonConvert.SerializeObject(obj);
-      var response = client.PostAsync(API_ADDR + "BestiaryEnvironment/" + obj.BestiaryEnvironmentId.ToString(), new StringContent(body, Encoding.UTF8, "application/json")).Result;
+      var response = client.PutAsync(API_ADDR + "BestiaryEnvironment/" + obj.BestiaryEnvironmentId.ToString(), new StringContent(body, Encoding.UTF8, "application/json")).Result;
       if (response.IsSuccessStatusCode)
         ret = true;
 
@@ -928,7 +1223,7 @@ namespace DBConnect
       var ret = false;
 
       var body = JsonConvert.SerializeObject(obj);
-      var response = client.PostAsync(API_ADDR + "BestiaryFeat/" + obj.BestiaryFeatId.ToString(), new StringContent(body, Encoding.UTF8, "application/json")).Result;
+      var response = client.PutAsync(API_ADDR + "BestiaryFeat/" + obj.BestiaryFeatId.ToString(), new StringContent(body, Encoding.UTF8, "application/json")).Result;
       if (response.IsSuccessStatusCode)
         ret = true;
 
@@ -940,7 +1235,7 @@ namespace DBConnect
       var ret = false;
 
       var body = JsonConvert.SerializeObject(obj);
-      var response = client.PostAsync(API_ADDR + "BestiaryLanguage/" + obj.BestiaryLanguageId.ToString(), new StringContent(body, Encoding.UTF8, "application/json")).Result;
+      var response = client.PutAsync(API_ADDR + "BestiaryLanguage/" + obj.BestiaryLanguageId.ToString(), new StringContent(body, Encoding.UTF8, "application/json")).Result;
       if (response.IsSuccessStatusCode)
         ret = true;
 
@@ -952,7 +1247,7 @@ namespace DBConnect
       var ret = false;
 
       var body = JsonConvert.SerializeObject(obj);
-      var response = client.PostAsync(API_ADDR + "BestiarySkill/" + obj.BestiarySkillId.ToString(), new StringContent(body, Encoding.UTF8, "application/json")).Result;
+      var response = client.PutAsync(API_ADDR + "BestiarySkill/" + obj.BestiarySkillId.ToString(), new StringContent(body, Encoding.UTF8, "application/json")).Result;
       if (response.IsSuccessStatusCode)
         ret = true;
 
@@ -964,7 +1259,7 @@ namespace DBConnect
       var ret = false;
 
       var body = JsonConvert.SerializeObject(obj);
-      var response = client.PostAsync(API_ADDR + "BestiarySubType/" + obj.BestiarySubTypeId.ToString(), new StringContent(body, Encoding.UTF8, "application/json")).Result;
+      var response = client.PutAsync(API_ADDR + "BestiarySubType/" + obj.BestiarySubTypeId.ToString(), new StringContent(body, Encoding.UTF8, "application/json")).Result;
       if (response.IsSuccessStatusCode)
         ret = true;
 
@@ -976,7 +1271,7 @@ namespace DBConnect
       var ret = false;
 
       var body = JsonConvert.SerializeObject(obj);
-      var response = client.PostAsync(API_ADDR + "BestiaryType/" + obj.BestiaryTypeId.ToString(), new StringContent(body, Encoding.UTF8, "application/json")).Result;
+      var response = client.PutAsync(API_ADDR + "BestiaryType/" + obj.BestiaryTypeId.ToString(), new StringContent(body, Encoding.UTF8, "application/json")).Result;
       if (response.IsSuccessStatusCode)
         ret = true;
 
@@ -988,7 +1283,7 @@ namespace DBConnect
       var ret = false;
 
       var body = JsonConvert.SerializeObject(obj);
-      var response = client.PostAsync(API_ADDR + "Continent/" + obj.ContinentId.ToString(), new StringContent(body, Encoding.UTF8, "application/json")).Result;
+      var response = client.PutAsync(API_ADDR + "Continent/" + obj.ContinentId.ToString(), new StringContent(body, Encoding.UTF8, "application/json")).Result;
       if (response.IsSuccessStatusCode)
         ret = true;
 
@@ -1000,7 +1295,7 @@ namespace DBConnect
       var ret = false;
 
       var body = JsonConvert.SerializeObject(obj);
-      var response = client.PostAsync(API_ADDR + "ContinentWeather/" + obj.Cwid.ToString(), new StringContent(body, Encoding.UTF8, "application/json")).Result;
+      var response = client.PutAsync(API_ADDR + "ContinentWeather/" + obj.Cwid.ToString(), new StringContent(body, Encoding.UTF8, "application/json")).Result;
       if (response.IsSuccessStatusCode)
         ret = true;
 
@@ -1012,7 +1307,7 @@ namespace DBConnect
       var ret = false;
 
       var body = JsonConvert.SerializeObject(obj);
-      var response = client.PostAsync(API_ADDR + "Environment/" + obj.EnvironmentId.ToString(), new StringContent(body, Encoding.UTF8, "application/json")).Result;
+      var response = client.PutAsync(API_ADDR + "Environment/" + obj.EnvironmentId.ToString(), new StringContent(body, Encoding.UTF8, "application/json")).Result;
       if (response.IsSuccessStatusCode)
         ret = true;
 
@@ -1024,7 +1319,7 @@ namespace DBConnect
       var ret = false;
 
       var body = JsonConvert.SerializeObject(obj);
-      var response = client.PostAsync(API_ADDR + "Faction/" + obj.FactionId.ToString(), new StringContent(body, Encoding.UTF8, "application/json")).Result;
+      var response = client.PutAsync(API_ADDR + "Faction/" + obj.FactionId.ToString(), new StringContent(body, Encoding.UTF8, "application/json")).Result;
       if (response.IsSuccessStatusCode)
         ret = true;
 
@@ -1036,7 +1331,7 @@ namespace DBConnect
       var ret = false;
 
       var body = JsonConvert.SerializeObject(obj);
-      var response = client.PostAsync(API_ADDR + "Feat/" + obj.FeatId.ToString(), new StringContent(body, Encoding.UTF8, "application/json")).Result;
+      var response = client.PutAsync(API_ADDR + "Feat/" + obj.FeatId.ToString(), new StringContent(body, Encoding.UTF8, "application/json")).Result;
       if (response.IsSuccessStatusCode)
         ret = true;
 
@@ -1048,7 +1343,7 @@ namespace DBConnect
       var ret = false;
 
       var body = JsonConvert.SerializeObject(obj);
-      var response = client.PostAsync(API_ADDR + "Language/" + obj.LanguageId.ToString(), new StringContent(body, Encoding.UTF8, "application/json")).Result;
+      var response = client.PutAsync(API_ADDR + "Language/" + obj.LanguageId.ToString(), new StringContent(body, Encoding.UTF8, "application/json")).Result;
       if (response.IsSuccessStatusCode)
         ret = true;
 
@@ -1060,7 +1355,7 @@ namespace DBConnect
       var ret = false;
 
       var body = JsonConvert.SerializeObject(obj);
-      var response = client.PostAsync(API_ADDR + "Location/" + obj.LocationId.ToString(), new StringContent(body, Encoding.UTF8, "application/json")).Result;
+      var response = client.PutAsync(API_ADDR + "Location/" + obj.LocationId.ToString(), new StringContent(body, Encoding.UTF8, "application/json")).Result;
       if (response.IsSuccessStatusCode)
         ret = true;
 
@@ -1072,7 +1367,7 @@ namespace DBConnect
       var ret = false;
 
       var body = JsonConvert.SerializeObject(obj);
-      var response = client.PostAsync(API_ADDR + "MagicItem/" + obj.MagicItemId.ToString(), new StringContent(body, Encoding.UTF8, "application/json")).Result;
+      var response = client.PutAsync(API_ADDR + "MagicItem/" + obj.MagicItemId.ToString(), new StringContent(body, Encoding.UTF8, "application/json")).Result;
       if (response.IsSuccessStatusCode)
         ret = true;
 
@@ -1084,7 +1379,7 @@ namespace DBConnect
       var ret = false;
 
       var body = JsonConvert.SerializeObject(obj);
-      var response = client.PostAsync(API_ADDR + "MonsterSpawn/" + obj.SpawnId.ToString(), new StringContent(body, Encoding.UTF8, "application/json")).Result;
+      var response = client.PutAsync(API_ADDR + "MonsterSpawn/" + obj.SpawnId.ToString(), new StringContent(body, Encoding.UTF8, "application/json")).Result;
       if (response.IsSuccessStatusCode)
         ret = true;
 
@@ -1096,7 +1391,7 @@ namespace DBConnect
       var ret = false;
 
       var body = JsonConvert.SerializeObject(obj);
-      var response = client.PostAsync(API_ADDR + "Month/" + obj.MonthId.ToString(), new StringContent(body, Encoding.UTF8, "application/json")).Result;
+      var response = client.PutAsync(API_ADDR + "Month/" + obj.MonthId.ToString(), new StringContent(body, Encoding.UTF8, "application/json")).Result;
       if (response.IsSuccessStatusCode)
         ret = true;
 
@@ -1108,7 +1403,7 @@ namespace DBConnect
       var ret = false;
 
       var body = JsonConvert.SerializeObject(obj);
-      var response = client.PostAsync(API_ADDR + "Season/" + obj.SeasonId.ToString(), new StringContent(body, Encoding.UTF8, "application/json")).Result;
+      var response = client.PutAsync(API_ADDR + "Season/" + obj.SeasonId.ToString(), new StringContent(body, Encoding.UTF8, "application/json")).Result;
       if (response.IsSuccessStatusCode)
         ret = true;
 
@@ -1120,7 +1415,7 @@ namespace DBConnect
       var ret = false;
 
       var body = JsonConvert.SerializeObject(obj);
-      var response = client.PostAsync(API_ADDR + "Spell/" + obj.SpellId.ToString(), new StringContent(body, Encoding.UTF8, "application/json")).Result;
+      var response = client.PutAsync(API_ADDR + "Spell/" + obj.SpellId.ToString(), new StringContent(body, Encoding.UTF8, "application/json")).Result;
       if (response.IsSuccessStatusCode)
         ret = true;
 
@@ -1132,7 +1427,7 @@ namespace DBConnect
       var ret = false;
 
       var body = JsonConvert.SerializeObject(obj);
-      var response = client.PostAsync(API_ADDR + "SpellDetail/" + obj.SpellId.ToString(), new StringContent(body, Encoding.UTF8, "application/json")).Result;
+      var response = client.PutAsync(API_ADDR + "SpellDetail/" + obj.SpellId.ToString(), new StringContent(body, Encoding.UTF8, "application/json")).Result;
       if (response.IsSuccessStatusCode)
         ret = true;
 
@@ -1144,7 +1439,7 @@ namespace DBConnect
       var ret = false;
 
       var body = JsonConvert.SerializeObject(obj);
-      var response = client.PostAsync(API_ADDR + "Territory/" + obj.TerritoryId.ToString(), new StringContent(body, Encoding.UTF8, "application/json")).Result;
+      var response = client.PutAsync(API_ADDR + "Territory/" + obj.TerritoryId.ToString(), new StringContent(body, Encoding.UTF8, "application/json")).Result;
       if (response.IsSuccessStatusCode)
         ret = true;
 
@@ -1156,7 +1451,7 @@ namespace DBConnect
       var ret = false;
 
       var body = JsonConvert.SerializeObject(obj);
-      var response = client.PostAsync(API_ADDR + "Weather/" + obj.WeatherId.ToString(), new StringContent(body, Encoding.UTF8, "application/json")).Result;
+      var response = client.PutAsync(API_ADDR + "Weather/" + obj.WeatherId.ToString(), new StringContent(body, Encoding.UTF8, "application/json")).Result;
       if (response.IsSuccessStatusCode)
         ret = true;
 
@@ -1168,7 +1463,7 @@ namespace DBConnect
       var ret = false;
 
       var body = JsonConvert.SerializeObject(obj);
-      var response = client.PostAsync(API_ADDR + "Terrain/" + obj.TerrainId.ToString(), new StringContent(body, Encoding.UTF8, "application/json")).Result;
+      var response = client.PutAsync(API_ADDR + "Terrain/" + obj.TerrainId.ToString(), new StringContent(body, Encoding.UTF8, "application/json")).Result;
       if (response.IsSuccessStatusCode)
         ret = true;
 
@@ -1180,7 +1475,7 @@ namespace DBConnect
       var ret = false;
 
       var body = JsonConvert.SerializeObject(obj);
-      var response = client.PostAsync(API_ADDR + "Time/" + obj.TimeId.ToString(), new StringContent(body, Encoding.UTF8, "application/json")).Result;
+      var response = client.PutAsync(API_ADDR + "Time/" + obj.TimeId.ToString(), new StringContent(body, Encoding.UTF8, "application/json")).Result;
       if (response.IsSuccessStatusCode)
         ret = true;
 
@@ -1192,7 +1487,7 @@ namespace DBConnect
       var ret = false;
 
       var body = JsonConvert.SerializeObject(obj);
-      var response = client.PostAsync(API_ADDR + "TrackedEvent/" + obj.TrackedEventId.ToString(), new StringContent(body, Encoding.UTF8, "application/json")).Result;
+      var response = client.PutAsync(API_ADDR + "TrackedEvent/" + obj.TrackedEventId.ToString(), new StringContent(body, Encoding.UTF8, "application/json")).Result;
       if (response.IsSuccessStatusCode)
         ret = true;
 
@@ -1204,7 +1499,7 @@ namespace DBConnect
       var ret = false;
 
       var body = JsonConvert.SerializeObject(obj);
-      var response = client.PostAsync(API_ADDR + "Plane/" + obj.PlaneId.ToString(), new StringContent(body, Encoding.UTF8, "application/json")).Result;
+      var response = client.PutAsync(API_ADDR + "Plane/" + obj.PlaneId.ToString(), new StringContent(body, Encoding.UTF8, "application/json")).Result;
       if (response.IsSuccessStatusCode)
         ret = true;
 
@@ -1216,7 +1511,7 @@ namespace DBConnect
       var ret = false;
 
       var body = JsonConvert.SerializeObject(obj);
-      var response = client.PostAsync(API_ADDR + "Skill/" + obj.SkillId.ToString(), new StringContent(body, Encoding.UTF8, "application/json")).Result;
+      var response = client.PutAsync(API_ADDR + "Skill/" + obj.SkillId.ToString(), new StringContent(body, Encoding.UTF8, "application/json")).Result;
       if (response.IsSuccessStatusCode)
         ret = true;
 

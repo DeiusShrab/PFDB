@@ -13,8 +13,6 @@ namespace PFDBSite.Controllers
   [Route("DM")]
   public class DMController : PFDBController
   {
-    public IPFDBContext context = PFDAL.GetContext(Configuration["WorkingEnvironment"]);
-
     #region HTTP Methods
 
     public IActionResult Index()
@@ -23,7 +21,7 @@ namespace PFDBSite.Controllers
     }
 
     [Route("Bestiary")]
-    public IActionResult Bestiary(string sortOrder, string searchString)
+    public IActionResult Bestiary(string sortOrder, string searchString, bool searchByType)
     {
 #if DEBUG
       var bestiaryList = new List<BestiaryListItem>()
@@ -57,6 +55,7 @@ namespace PFDBSite.Controllers
         }
       }.OrderBy(x => x.Name);
 #else
+      var context = PFDAL.GetContext(Configuration["WorkingEnvironment"]);
       var bestiaryList = context.Bestiary.Select(x => new BestiaryListItem()
       {
         Name = x.Name,
@@ -72,10 +71,10 @@ namespace PFDBSite.Controllers
       // Also consider using a *prefix for searching by type
       if (!string.IsNullOrWhiteSpace(searchString))
       {
-        bestiaryList = bestiaryList.Where(x => x.Name.ToLower().Contains(searchString.ToLower())
-          || x.Type.ToLower().Contains(searchString.ToLower())
-          || x.SubType.ToLower().Contains(searchString.ToLower())
-          ).OrderBy(x => x.Name);
+        if (searchByType)
+          bestiaryList = bestiaryList.Where(x => x.Type.ToLower().Contains(searchString.ToLower()) || x.SubType.ToLower().Contains(searchString.ToLower())).OrderBy(x => x.Name);
+        else
+          bestiaryList = bestiaryList.Where(x => x.Name.ToLower().Contains(searchString.ToLower())).OrderBy(x => x.Name);
       }
 
       ViewBag.NameSortParm = string.IsNullOrEmpty(sortOrder) ? "name_desc" : "";
@@ -118,6 +117,7 @@ namespace PFDBSite.Controllers
         BestiaryId = 1
       }; // TESTING
 #else
+      var context = PFDAL.GetContext(Configuration["WorkingEnvironment"]);
       var bestiary = context.Bestiary.FirstOrDefault(x => x.BestiaryId == bestiaryId);
 #endif
 
@@ -127,9 +127,9 @@ namespace PFDBSite.Controllers
       return new NotFoundResult();
     }
 
-#endregion
+    #endregion
 
-#region Private Methods
+    #region Private Methods
 
     private string ParseCR(int cr)
     {
@@ -153,6 +153,7 @@ namespace PFDBSite.Controllers
     private string GetBestiaryType(int bestiaryId)
     {
       var ret = string.Empty;
+      var context = PFDAL.GetContext(Configuration["WorkingEnvironment"]);
 
       var bestiary = context.Bestiary.FirstOrDefault(x => x.BestiaryId == bestiaryId);
       if (bestiary != null)
@@ -170,6 +171,7 @@ namespace PFDBSite.Controllers
     private string GetBestiarySubTypes(int bestiaryId)
     {
       var sb = new StringBuilder();
+      var context = PFDAL.GetContext(Configuration["WorkingEnvironment"]);
 
       var types = context.BestiarySubType.Where(x => x.BestiaryId == bestiaryId);
       if (types != null)
@@ -190,6 +192,6 @@ namespace PFDBSite.Controllers
       return sb.ToString();
     }
 
-#endregion
+    #endregion
   }
 }
