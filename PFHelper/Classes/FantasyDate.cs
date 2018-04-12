@@ -75,22 +75,20 @@ namespace PFHelper.Classes
       return this;
     }
 
-    public ulong ToNumDate()
+    public string ToNumDate()
     {
       // yy...yymmdd
 
-      ulong ret = (ulong)Day;
-      ret += 100 * (ulong)Month;
-      ret += 10000 * (ulong)Year;
+      var ret = $"{Year.ToString()}{Month.ToString("D2")}{Day.ToString("D2")}";
 
       return ret;
     }
 
-    public FantasyDate FromNumDate(ulong fromDate)
+    public FantasyDate FromNumDate(string fromDate)
     {
-      Day = Convert.ToInt32(fromDate % 100);
-      Month = Convert.ToInt32((fromDate / 100) % 100);
-      Year = Convert.ToInt32(fromDate / 10000);
+      Day = Convert.ToInt32(fromDate.Substring(fromDate.Length - 2, 2));
+      Month = Convert.ToInt32(fromDate.Substring(fromDate.Length - 4, 2));
+      Year = Convert.ToInt32(fromDate.Substring(0, fromDate.Length - 4));
 
       return this;
     }

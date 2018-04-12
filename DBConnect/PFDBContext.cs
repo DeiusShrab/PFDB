@@ -63,9 +63,7 @@ namespace DBConnect
                   .IsUnicode(false);
 
         entity.Property(e => e.Ac)
-                  .HasColumnName("AC")
-                  .HasMaxLength(150)
-                  .IsUnicode(false);
+                  .HasColumnName("AC");
 
         entity.Property(e => e.Acflat).HasColumnName("ACFlat");
 

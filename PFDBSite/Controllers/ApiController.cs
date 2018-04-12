@@ -23,10 +23,12 @@ namespace PFDBSite.Controllers
   public class ApiController : PFDBController
   {
     private RandomHelper helperRandom;
+    private QueryHelper helperQuery;
 
     public ApiController()
     {
       helperRandom = new RandomHelper();
+      helperQuery = new QueryHelper();
     }
 
     [HttpPost]
@@ -112,12 +114,39 @@ namespace PFDBSite.Controllers
       return new JsonResult(helperRandom.GenerateRandomEncounters(request));
     }
 
+    [HttpPost("RandomWeather")]
     public IActionResult RandomWeatherTable([FromBody] RandomWeatherRequest request)
     {
       if (request == null)
         return BadRequest();
 
       return new JsonResult(helperRandom.GenerateRandomWeatherTable(request));
+    }
+
+    [HttpPost("FantasyDate")]
+    public IActionResult UpdateFantasyDate([FromBody] string newDate)
+    {
+      if (string.IsNullOrWhiteSpace(newDate))
+        return BadRequest();
+
+      // Store the current date in the DB or something
+      // Campaign table?
+      return Ok();
+    }
+
+    [HttpPost("LookupSpell")]
+    public IActionResult LookupSpells([FromBody] SpellLookupRequest request)
+    {
+      if (request == null)
+        return BadRequest();
+
+      return new JsonResult(helperQuery.SpellLookup(request));
+    }
+
+    [HttpGet("FantasyDate")]
+    public IActionResult GetFantasyDate()
+    {
+      return Ok("11110101");
     }
 
     #endregion

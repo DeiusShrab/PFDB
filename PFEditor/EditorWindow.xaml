@@ -1,9 +1,11 @@
-﻿<Window x:Class="PFEditor.EditorWindow"
+﻿<Window
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:controls="clr-namespace:PFEditor.Controls"
         xmlns:local="clr-namespace:PFEditor"
+        xmlns:xctk="http://schemas.xceed.com/wpf/xaml/toolkit" xmlns:Controls="clr-namespace:System.Windows.Controls;assembly=System.Windows.Controls.Input.Toolkit" x:Class="PFEditor.EditorWindow"
         mc:Ignorable="d"
         Title="PFEditor" Height="728" Width="1366">
     <Grid>
@@ -12,28 +14,231 @@
                 <Grid Background="#FFE5E5E5">
                     <TabControl HorizontalAlignment="Left" Height="604" Margin="195,10,0,0" VerticalAlignment="Top" Width="1127">
                         <TabItem Header="General" Margin="-2,-2,-2,0">
-                            <Grid Background="#FFE5E5E5"/>
+                            <Grid Background="#FFE5E5E5">
+                                <Label Content="BID" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top"/>
+                                <Label x:Name="Lbl_Bes_BestiaryId" Content="0000" HorizontalAlignment="Left" Margin="46,10,0,0" VerticalAlignment="Top"/>
+                                <Label Content="Name" HorizontalAlignment="Left" Margin="10,40,0,0" VerticalAlignment="Top" Height="27"/>
+                                <TextBox x:Name="Txt_Bes_Name" HorizontalAlignment="Left" Height="23" Margin="59,44,0,0" TextWrapping="Wrap" Text="Mighty Longname the Unpronounceable" VerticalAlignment="Top" Width="253"/>
+                                <Label Content="Race" HorizontalAlignment="Left" Margin="10,68,0,0" VerticalAlignment="Top" Height="27"/>
+                                <TextBox x:Name="Txt_Bes_Race" HorizontalAlignment="Left" Height="23" Margin="59,72,0,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="253"/>
+                                <Label Content="Type" HorizontalAlignment="Left" Margin="10,96,0,0" VerticalAlignment="Top" Height="27"/>
+                                <Label Content="SubType(s)" HorizontalAlignment="Left" Margin="317,96,0,0" VerticalAlignment="Top" Height="27"/>
+                                <TextBox x:Name="Txt_Bes_SubType" HorizontalAlignment="Left" Height="23" Margin="389,100,0,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="253"/>
+                                <Label Content="CR" HorizontalAlignment="Left" Margin="317,40,0,0" VerticalAlignment="Top" Height="27"/>
+                                <TextBox x:Name="Txt_Bes_CR" HorizontalAlignment="Left" Height="23" Margin="347,44,0,0" TextWrapping="Wrap" Text="1/8" VerticalAlignment="Top" Width="33"/>
+                                <Label Content="XP" HorizontalAlignment="Left" Margin="385,40,0,0" VerticalAlignment="Top" Height="27"/>
+                                <TextBox x:Name="Txt_Bes_XP" HorizontalAlignment="Left" Height="23" Margin="414,44,0,0" TextWrapping="Wrap" Text="819200" VerticalAlignment="Top" Width="62"/>
+                                <Label Content="Size" HorizontalAlignment="Left" Margin="481,40,0,0" VerticalAlignment="Top" Height="27"/>
+                                <TextBox x:Name="Txt_Bes_Size" HorizontalAlignment="Left" Height="23" Margin="517,44,0,0" TextWrapping="Wrap" Text="Gargantuan" VerticalAlignment="Top" Width="82"/>
+                                <Label Content="Alignment" HorizontalAlignment="Left" Margin="604,40,0,0" VerticalAlignment="Top" Height="27"/>
+                                <TextBox x:Name="Txt_Bes_Align" HorizontalAlignment="Left" Height="23" Margin="674,44,0,0" TextWrapping="Wrap" Text="Chaotic Neutral" VerticalAlignment="Top" Width="106"/>
+                                <Label Content="Class" HorizontalAlignment="Left" Margin="317,68,0,0" VerticalAlignment="Top" Height="27"/>
+                                <TextBox x:Name="Txt_Bes_Class" HorizontalAlignment="Left" Height="23" Margin="389,72,0,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="253"/>
+                                <Label Content="Archetype" HorizontalAlignment="Left" Margin="647,68,0,0" VerticalAlignment="Top" Height="27"/>
+                                <TextBox x:Name="Txt_Bes_Archetype" HorizontalAlignment="Left" Height="23" Margin="716,72,0,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="253"/>
+                                <Label Content="Gender" HorizontalAlignment="Left" Margin="785,40,0,0" VerticalAlignment="Top" Height="27"/>
+                                <TextBox x:Name="Txt_Bes_Gender" HorizontalAlignment="Left" Height="23" Margin="839,44,0,0" TextWrapping="Wrap" Text="Attack Helicopter" VerticalAlignment="Top" Width="100"/>
+                                <Controls:AutoCompleteBox x:Name="ATxt_Bes_Type" HorizontalAlignment="Left" Margin="59,100,0,0" VerticalAlignment="Top" Width="253"/>
+                                <Label Content="Init" HorizontalAlignment="Left" Margin="27,153,0,0" VerticalAlignment="Top" Height="27"/>
+                                <TextBox x:Name="Txt_Bes_Init" HorizontalAlignment="Left" Height="23" Margin="59,157,0,0" TextWrapping="Wrap" Text="12" VerticalAlignment="Top" Width="33"/>
+                                <Label Content="AC" HorizontalAlignment="Left" Margin="97,153,0,0" VerticalAlignment="Top" Height="27"/>
+                                <TextBox x:Name="Txt_Bes_AC" HorizontalAlignment="Left" Height="23" Margin="127,157,0,0" TextWrapping="Wrap" Text="12" VerticalAlignment="Top" Width="33"/>
+                                <Label Content="Touch" HorizontalAlignment="Left" Margin="165,152,0,0" VerticalAlignment="Top" Height="27"/>
+                                <TextBox x:Name="Txt_Bes_ACTouch" HorizontalAlignment="Left" Height="23" Margin="211,157,0,0" TextWrapping="Wrap" Text="12" VerticalAlignment="Top" Width="33"/>
+                                <Label Content="HD" HorizontalAlignment="Left" Margin="402,152,0,0" VerticalAlignment="Top" Height="27"/>
+                                <Label Content="HP" HorizontalAlignment="Left" Margin="321,152,0,0" VerticalAlignment="Top" Height="27"/>
+                                <Label Content="Flat" HorizontalAlignment="Left" Margin="249,153,0,0" VerticalAlignment="Top" Height="27"/>
+                                <TextBox x:Name="Txt_Bes_HD" HorizontalAlignment="Left" Height="23" Margin="429,157,0,0" TextWrapping="Wrap" Text="20d20+200" VerticalAlignment="Top" Width="83"/>
+                                <TextBox x:Name="Txt_Bes_HP" HorizontalAlignment="Left" Height="23" Margin="351,157,0,0" TextWrapping="Wrap" Text="120" VerticalAlignment="Top" Width="46"/>
+                                <TextBox x:Name="Txt_Bes_ACFlat" HorizontalAlignment="Left" Height="23" Margin="283,157,0,0" TextWrapping="Wrap" Text="12" VerticalAlignment="Top" Width="33"/>
+                                <Label Content="Fort" HorizontalAlignment="Left" Margin="23,181,0,0" VerticalAlignment="Top" Height="27"/>
+                                <TextBox x:Name="Txt_Bes_Fort" HorizontalAlignment="Left" Height="23" Margin="59,185,0,0" TextWrapping="Wrap" Text="12" VerticalAlignment="Top" Width="33"/>
+                                <Label Content="Ref" HorizontalAlignment="Left" Margin="97,181,0,0" VerticalAlignment="Top" Height="27"/>
+                                <TextBox x:Name="Txt_Bes_Ref" HorizontalAlignment="Left" Height="23" Margin="127,185,0,0" TextWrapping="Wrap" Text="12" VerticalAlignment="Top" Width="33"/>
+                                <Label Content="Will" HorizontalAlignment="Left" Margin="165,180,0,0" VerticalAlignment="Top" Height="27"/>
+                                <TextBox x:Name="Txt_Bes_Will" HorizontalAlignment="Left" Height="23" Margin="211,185,0,0" TextWrapping="Wrap" Text="12" VerticalAlignment="Top" Width="33"/>
+                                <Label Content="CMD" HorizontalAlignment="Left" Margin="402,180,0,0" VerticalAlignment="Top" Height="27"/>
+                                <Label Content="CMB" HorizontalAlignment="Left" Margin="321,180,0,0" VerticalAlignment="Top" Height="27"/>
+                                <Label Content="BAB" HorizontalAlignment="Left" Margin="249,181,0,0" VerticalAlignment="Top" Height="27"/>
+                                <TextBox x:Name="Txt_Bes_CMD" HorizontalAlignment="Left" Height="23" Margin="444,185,0,0" TextWrapping="Wrap" Text="20" VerticalAlignment="Top" Width="36"/>
+                                <TextBox x:Name="Txt_Bes_CMB" HorizontalAlignment="Left" Height="23" Margin="361,185,0,0" TextWrapping="Wrap" Text="20" VerticalAlignment="Top" Width="36"/>
+                                <TextBox x:Name="Txt_Bes_BAB" HorizontalAlignment="Left" Height="23" Margin="283,185,0,0" TextWrapping="Wrap" Text="12" VerticalAlignment="Top" Width="33"/>
+                                <Label Content="Speed" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="599,128,0,0"/>
+                                <Label Content="Land" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="599,154,0,0"/>
+                                <TextBox x:Name="Txt_Bes_SpdLand" HorizontalAlignment="Left" Height="23" Margin="635,157,0,0" TextWrapping="Wrap" Text="120" VerticalAlignment="Top" Width="32"/>
+                                <Label Content="Burrow" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="867,154,0,0"/>
+                                <TextBox x:Name="Txt_Bes_SpdBurrow" HorizontalAlignment="Left" Height="23" Margin="915,157,0,0" TextWrapping="Wrap" Text="120" VerticalAlignment="Top" Width="32"/>
+                                <Label Content="Swim" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="797,154,0,0"/>
+                                <TextBox x:Name="Txt_Bes_SpdSwim" HorizontalAlignment="Left" Height="23" Margin="835,157,0,0" TextWrapping="Wrap" Text="120" VerticalAlignment="Top" Width="32"/>
+                                <Label Content="Climb" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="724,154,0,0"/>
+                                <TextBox x:Name="Txt_Bes_SpdClimb" HorizontalAlignment="Left" Height="23" Margin="765,157,0,0" TextWrapping="Wrap" Text="120" VerticalAlignment="Top" Width="32"/>
+                                <Label Content="Fly" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="667,154,0,0"/>
+                                <TextBox x:Name="Txt_Bes_SpdFly" HorizontalAlignment="Left" Height="23" Margin="692,157,0,0" TextWrapping="Wrap" Text="120" VerticalAlignment="Top" Width="32"/>
+                                <Label Content="STR" HorizontalAlignment="Left" Margin="23,126,0,0" VerticalAlignment="Top" Height="27"/>
+                                <TextBox x:Name="Txt_Bes_STR" HorizontalAlignment="Left" Height="23" Margin="59,130,0,0" TextWrapping="Wrap" Text="12" VerticalAlignment="Top" Width="33"/>
+                                <Label Content="DEX" HorizontalAlignment="Left" Margin="97,126,0,0" VerticalAlignment="Top" Height="27"/>
+                                <TextBox x:Name="Txt_Bes_DEX" HorizontalAlignment="Left" Height="23" Margin="127,130,0,0" TextWrapping="Wrap" Text="12" VerticalAlignment="Top" Width="33"/>
+                                <Label Content="CON" HorizontalAlignment="Left" Margin="165,126,0,0" VerticalAlignment="Top" Height="27"/>
+                                <TextBox x:Name="Txt_Bes_CON" HorizontalAlignment="Left" Height="23" Margin="211,130,0,0" TextWrapping="Wrap" Text="12" VerticalAlignment="Top" Width="33"/>
+                                <Label Content="CHA" HorizontalAlignment="Left" Margin="402,125,0,0" VerticalAlignment="Top" Height="27"/>
+                                <Label Content="INT" HorizontalAlignment="Left" Margin="321,125,0,0" VerticalAlignment="Top" Height="27"/>
+                                <Label Content="WIS" HorizontalAlignment="Left" Margin="249,126,0,0" VerticalAlignment="Top" Height="27"/>
+                                <TextBox x:Name="Txt_Bes_CHA" HorizontalAlignment="Left" Height="23" Margin="444,130,0,0" TextWrapping="Wrap" Text="20" VerticalAlignment="Top" Width="36"/>
+                                <TextBox x:Name="Txt_Bes_INT" HorizontalAlignment="Left" Height="23" Margin="361,130,0,0" TextWrapping="Wrap" Text="20" VerticalAlignment="Top" Width="36"/>
+                                <TextBox x:Name="Txt_Bes_WIS" HorizontalAlignment="Left" Height="23" Margin="283,130,0,0" TextWrapping="Wrap" Text="12" VerticalAlignment="Top" Width="33"/>
+                                <Label Content="Melee" HorizontalAlignment="Left" Margin="10,389,0,0" VerticalAlignment="Top" Height="27"/>
+                                <TextBox x:Name="Txt_Bes_Melee" HorizontalAlignment="Left" Height="150" Margin="10,416,0,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="302"/>
+                                <Label Content="Ranged" HorizontalAlignment="Left" Margin="317,389,0,0" VerticalAlignment="Top" Height="27"/>
+                                <TextBox x:Name="Txt_Bes_Ranged" HorizontalAlignment="Left" Height="150" Margin="317,416,0,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="325"/>
+                                <Label Content="Special" HorizontalAlignment="Left" Margin="647,389,0,0" VerticalAlignment="Top" Height="27"/>
+                                <TextBox x:Name="Txt_Bes_Special" HorizontalAlignment="Left" Height="150" Margin="647,416,0,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="322"/>
+                            </Grid>
                         </TabItem>
-                        <TabItem Header="Skills/Feats" Margin="-2,-2,-2,0">
-                            <Grid Background="#FFE5E5E5"/>
+                        <TabItem Header="Abilities" Margin="-2,-2,-2,0">
+                            <Grid Background="#FFE5E5E5">
+                                <ListBox x:Name="Lbx_Bes_FeatsAll" HorizontalAlignment="Left" Height="500" Margin="10,66,0,0" VerticalAlignment="Top" Width="150"/>
+                                <TextBox x:Name="Txt_Bes_FeatSearch" HorizontalAlignment="Left" Height="23" Margin="174,10,0,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="187"/>
+                                <ListBox x:Name="Lbx_Bes_FeatsAssigned" HorizontalAlignment="Left" Height="500" Margin="211,66,0,0" VerticalAlignment="Top" Width="150"/>
+                                <Button x:Name="BtnB_AddFeat" Content="Add&gt;" HorizontalAlignment="Left" Margin="165,66,0,0" VerticalAlignment="Top" Width="41" Height="30"/>
+                                <Button x:Name="BtnB_AddFeat_Copy" Content="&lt;Rem" HorizontalAlignment="Left" Margin="165,101,0,0" VerticalAlignment="Top" Width="41" Height="30"/>
+                                <Label Content="Feats" HorizontalAlignment="Left" Margin="10,0,0,0" VerticalAlignment="Top" Height="33" FontSize="14"/>
+                                <TextBox x:Name="Txt_Bes_FeatNotes" HorizontalAlignment="Left" Height="23" Margin="59,38,0,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="256"/>
+                                <Label Content="Notes:" HorizontalAlignment="Left" Margin="10,38,0,0" VerticalAlignment="Top" Height="23"/>
+                                <Label Content="Search" HorizontalAlignment="Left" Margin="125,10,0,0" VerticalAlignment="Top" Height="23"/>
+                                <Button x:Name="BtnB_AddFeat_Copy3" Content="Save" HorizontalAlignment="Left" Margin="320,38,0,0" VerticalAlignment="Top" Width="41" Height="23"/>
+                                <ListBox x:Name="Lbx_Bes_SkillsAll" HorizontalAlignment="Left" Height="500" Margin="366,66,0,0" VerticalAlignment="Top" Width="150"/>
+                                <TextBox x:Name="Txt_Bes_SkillSearch" HorizontalAlignment="Left" Height="23" Margin="530,10,0,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="187"/>
+                                <ListBox x:Name="Lbx_Bes_SkillsAssigned" HorizontalAlignment="Left" Height="500" Margin="567,66,0,0" VerticalAlignment="Top" Width="150"/>
+                                <Button x:Name="BtnB_AddFeat_Copy1" Content="Add&gt;" HorizontalAlignment="Left" Margin="521,66,0,0" VerticalAlignment="Top" Width="41" Height="30"/>
+                                <Button x:Name="BtnB_AddFeat_Copy2" Content="&lt;Rem" HorizontalAlignment="Left" Margin="521,101,0,0" VerticalAlignment="Top" Width="41" Height="30"/>
+                                <Label Content="Skills" HorizontalAlignment="Left" Margin="366,0,0,0" VerticalAlignment="Top" Height="33" FontSize="14"/>
+                                <TextBox x:Name="Txt_Bes_SkillNotes" HorizontalAlignment="Left" Height="23" Margin="415,38,0,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="147"/>
+                                <Label Content="Notes:" HorizontalAlignment="Left" Margin="366,38,0,0" VerticalAlignment="Top" Height="23"/>
+                                <Label Content="Search" HorizontalAlignment="Left" Margin="481,10,0,0" VerticalAlignment="Top" Height="23"/>
+                                <Button x:Name="BtnB_AddFeat_Copy4" Content="Save" HorizontalAlignment="Left" Margin="676,38,0,0" VerticalAlignment="Top" Width="41" Height="23"/>
+                                <xctk:IntegerUpDown x:Name="Int_Bes_SkillBonus" HorizontalAlignment="Left" Margin="617,38,0,0" VerticalAlignment="Top" Height="23" Width="54"/>
+                                <Label Content="Bonus:" HorizontalAlignment="Left" Margin="567,38,0,0" VerticalAlignment="Top" Height="23"/>
+                                <Label Content="Abilities" HorizontalAlignment="Left" Margin="722,0,0,0" VerticalAlignment="Top" Height="33" FontSize="14"/>
+                                <Grid HorizontalAlignment="Left" Height="528" Margin="722,38,0,0" VerticalAlignment="Top" Width="389">
+                                    <ScrollViewer HorizontalAlignment="Left" Height="528" VerticalAlignment="Top" Width="389">
+                                        <controls:BestiaryAbilities x:Name="Ctl_Bes_BestiaryAbilities" />
+                                    </ScrollViewer>
+                                </Grid>
+                            </Grid>
                         </TabItem>
                         <TabItem Header="Magic" Margin="-2,-2,-2,0">
-                            <Grid Background="#FFE5E5E5"/>
+                            <Grid Background="#FFE5E5E5">
+                                <ListBox x:Name="Lbx_Bes_SpellsKnown" HorizontalAlignment="Left" Height="474" Margin="10,38,0,0" VerticalAlignment="Top" Width="250"/>
+                                <Label Content="Spells Known" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top" Height="28"/>
+                                <Button x:Name="Btn_Bes_SpellsKnownAdd" Content="Add" HorizontalAlignment="Left" Margin="175,13,0,0" VerticalAlignment="Top" Width="40"/>
+                                <Button x:Name="Btn_Bes_SpellsKnownRem" Content="Rem" HorizontalAlignment="Left" Margin="220,13,0,0" VerticalAlignment="Top" Width="40"/>
+                                <TextBlock HorizontalAlignment="Left" Margin="10,550,0,0" TextWrapping="Wrap" Text="Ex: Magic Missile" VerticalAlignment="Top"/>
+                                <Label Content="Sort" HorizontalAlignment="Left" Margin="10,517,0,0" VerticalAlignment="Top" Height="28"/>
+                                <Button x:Name="Btn_Bes_SpellsKnownSortName" Content="Name" HorizontalAlignment="Left" Margin="47,520,0,0" VerticalAlignment="Top" Width="40"/>
+                                <Button x:Name="Btn_Bes_SpellsKnownSortLevel" Content="Level" HorizontalAlignment="Left" Margin="92,520,0,0" VerticalAlignment="Top" Width="40"/>
+                                <ListBox x:Name="Lbx_Bes_SpellsPrepared" HorizontalAlignment="Left" Height="474" Margin="265,38,0,0" VerticalAlignment="Top" Width="250"/>
+                                <Label Content="Spells Prepared" HorizontalAlignment="Left" Margin="265,10,0,0" VerticalAlignment="Top" Height="28"/>
+                                <Button x:Name="Btn_Bes_SpellsPreparedAdd" Content="Add" HorizontalAlignment="Left" Margin="430,13,0,0" VerticalAlignment="Top" Width="40"/>
+                                <Button x:Name="Btn_Bes_SpellsPreparedRem" Content="Rem" HorizontalAlignment="Left" Margin="475,13,0,0" VerticalAlignment="Top" Width="40"/>
+                                <Label Content="Sort" HorizontalAlignment="Left" Margin="265,517,0,0" VerticalAlignment="Top" Height="28"/>
+                                <Button x:Name="Btn_Bes_SpellsPreparedSortName" Content="Name" HorizontalAlignment="Left" Margin="302,520,0,0" VerticalAlignment="Top" Width="40"/>
+                                <Button x:Name="Btn_Bes_SpellsPreparedSortLevel" Content="Level" HorizontalAlignment="Left" Margin="347,520,0,0" VerticalAlignment="Top" Width="40"/>
+                                <ListBox x:Name="Lbx_Bes_SpellAbilities" HorizontalAlignment="Left" Height="474" Margin="520,38,0,0" VerticalAlignment="Top" Width="250"/>
+                                <Label Content="Spell-Like Abilities" HorizontalAlignment="Left" Margin="520,10,0,0" VerticalAlignment="Top" Height="28"/>
+                                <Button x:Name="Btn_Bes_SpellAbilitiesAdd" Content="Add" HorizontalAlignment="Left" Margin="685,13,0,0" VerticalAlignment="Top" Width="40"/>
+                                <Button x:Name="Btn_Bes_SpellAbilitiesRem" Content="Rem" HorizontalAlignment="Left" Margin="730,13,0,0" VerticalAlignment="Top" Width="40"/>
+                                <Label Content="Sort" HorizontalAlignment="Left" Margin="520,517,0,0" VerticalAlignment="Top" Height="28"/>
+                                <Button x:Name="Btn_Bes_SpellAbilitiesSortName" Content="Name" HorizontalAlignment="Left" Margin="557,520,0,0" VerticalAlignment="Top" Width="40"/>
+                                <Button x:Name="Btn_Bes_SpellAbilitiesSortLevel" Content="Level" HorizontalAlignment="Left" Margin="602,520,0,0" VerticalAlignment="Top" Width="40"/>
+                                <TextBlock HorizontalAlignment="Left" Margin="265,550,0,0" TextWrapping="Wrap" Text="Ex: Magic Missile (CL1)" VerticalAlignment="Top"/>
+                                <TextBlock HorizontalAlignment="Left" Margin="520,550,0,0" TextWrapping="Wrap" Text="Ex: Magic Missile (CL1) 3/day" VerticalAlignment="Top"/>
+                                <TextBlock HorizontalAlignment="Left" Margin="10,496,0,0" TextWrapping="Wrap" Text="Tooltip should show spell level and desc, doubleclick should open spell full info" VerticalAlignment="Top"/>
+                                <Label Content="Familiar Notes" HorizontalAlignment="Left" Margin="775,11,0,0" VerticalAlignment="Top" Height="27"/>
+                                <TextBox x:Name="Txt_Bes_FamiliarNotes" HorizontalAlignment="Left" Height="99" Margin="775,38,0,0" TextWrapping="Wrap" Text="Mighty Longname the Unpronounceable" VerticalAlignment="Top" Width="336"/>
+                                <Label Content="Spell Domains" HorizontalAlignment="Left" Margin="775,137,0,0" VerticalAlignment="Top" Height="27"/>
+                                <TextBox x:Name="Txt_Bes_SpellDomains" HorizontalAlignment="Left" Height="23" Margin="775,164,0,0" TextWrapping="Wrap" Text="Mighty Longname the Unpronounceable" VerticalAlignment="Top" Width="336"/>
+                                <Label Content="Focused School" HorizontalAlignment="Left" Margin="776,187,0,0" VerticalAlignment="Top" Height="27"/>
+                                <TextBox x:Name="Txt_Bes_FocusedSchool" HorizontalAlignment="Left" Height="23" Margin="775,214,0,0" TextWrapping="Wrap" Text="Mighty Longname the Unpronounceable" VerticalAlignment="Top" Width="336"/>
+                                <Label Content="Prohibited Schools" HorizontalAlignment="Left" Margin="775,238,0,0" VerticalAlignment="Top" Height="27"/>
+                                <TextBox x:Name="Txt_Bes_ProhibitedSchools" HorizontalAlignment="Left" Height="23" Margin="775,265,0,0" TextWrapping="Wrap" Text="Mighty Longname the Unpronounceable" VerticalAlignment="Top" Width="336"/>
+                                <Label Content="Patron" HorizontalAlignment="Left" Margin="775,288,0,0" VerticalAlignment="Top" Height="27"/>
+                                <TextBox x:Name="Txt_Bes_Patron" HorizontalAlignment="Left" Height="23" Margin="775,315,0,0" TextWrapping="Wrap" Text="Mighty Longname the Unpronounceable" VerticalAlignment="Top" Width="336"/>
+                                <Label Content="Mystery" HorizontalAlignment="Left" Margin="776,338,0,0" VerticalAlignment="Top" Height="27"/>
+                                <TextBox x:Name="Txt_Bes_Mystery" HorizontalAlignment="Left" Height="23" Margin="775,365,0,0" TextWrapping="Wrap" Text="Mighty Longname the Unpronounceable" VerticalAlignment="Top" Width="336"/>
+                                <Label Content="Bloodline" HorizontalAlignment="Left" Margin="775,389,0,0" VerticalAlignment="Top" Height="27"/>
+                                <TextBox x:Name="Txt_Bes_Bloodline" HorizontalAlignment="Left" Height="23" Margin="775,416,0,0" TextWrapping="Wrap" Text="Mighty Longname the Unpronounceable" VerticalAlignment="Top" Width="336"/>
+                            </Grid>
                         </TabItem>
                         <TabItem Header="Details" Margin="-2,-2,-2,0">
-                            <Grid Background="#FFE5E5E5"/>
+                            <Grid Background="#FFE5E5E5">
+                                <Label Content="Creature Source" HorizontalAlignment="Left" Margin="10,0,0,0" VerticalAlignment="Top" Height="27"/>
+                                <TextBox x:Name="Txt_Bes_CreatureSource" HorizontalAlignment="Left" Height="23" Margin="10,27,0,0" TextWrapping="Wrap" Text="Mighty Longname the Unpronounceable" VerticalAlignment="Top" Width="350"/>
+                                <Label Content="Templates Applied" HorizontalAlignment="Left" Margin="10,50,0,0" VerticalAlignment="Top" Height="27"/>
+                                <TextBox x:Name="Txt_Bes_TemplatesApplied" HorizontalAlignment="Left" Height="23" Margin="10,77,0,0" TextWrapping="Wrap" Text="Mighty Longname the Unpronounceable" VerticalAlignment="Top" Width="350"/>
+                                <Label Content="During Combat" HorizontalAlignment="Left" Margin="10,426,0,0" VerticalAlignment="Top" Height="27"/>
+                                <TextBox x:Name="Txt_Bes_DuringCombat" HorizontalAlignment="Left" Height="100" Margin="10,453,0,0" TextWrapping="Wrap" Text="Mighty Longname the Unpronounceable" VerticalAlignment="Top" Width="350"/>
+                                <Label Content="Before Combat" HorizontalAlignment="Left" Margin="10,300,0,0" VerticalAlignment="Top" Height="27"/>
+                                <TextBox x:Name="Txt_Bes_BeforeCombat" HorizontalAlignment="Left" Height="99" Margin="10,327,0,0" TextWrapping="Wrap" Text="Mighty Longname the Unpronounceable" VerticalAlignment="Top" Width="350"/>
+                                <Label Content="Morale" HorizontalAlignment="Left" Margin="10,200,0,0" VerticalAlignment="Top" Height="27"/>
+                                <TextBox x:Name="Txt_Bes_Morale" HorizontalAlignment="Left" Height="23" Margin="10,227,0,0" TextWrapping="Wrap" Text="Mighty Longname the Unpronounceable" VerticalAlignment="Top" Width="350"/>
+                                <Label Content="Variant Parent" HorizontalAlignment="Left" Margin="10,150,0,0" VerticalAlignment="Top" Height="27"/>
+                                <TextBox x:Name="Txt_Bes_VariantParent" HorizontalAlignment="Left" Height="23" Margin="10,177,0,0" TextWrapping="Wrap" Text="Mighty Longname the Unpronounceable" VerticalAlignment="Top" Width="350"/>
+                                <Label Content="Age Category" HorizontalAlignment="Left" Margin="10,100,0,0" VerticalAlignment="Top" Height="27"/>
+                                <TextBox x:Name="Txt_Bes_AgeCategory" HorizontalAlignment="Left" Height="23" Margin="10,127,0,0" TextWrapping="Wrap" Text="Mighty Longname the Unpronounceable" VerticalAlignment="Top" Width="350"/>
+                                <Label Content="Base Statistics" HorizontalAlignment="Left" Margin="365,100,0,0" VerticalAlignment="Top" Height="27"/>
+                                <TextBox x:Name="Txt_Bes_BaseStatistics" HorizontalAlignment="Left" Height="23" Margin="365,127,0,0" TextWrapping="Wrap" Text="Mighty Longname the Unpronounceable" VerticalAlignment="Top" Width="350"/>
+                                <Label Content="Environment" HorizontalAlignment="Left" Margin="10,250,0,0" VerticalAlignment="Top" Height="27"/>
+                                <TextBox x:Name="Environment" HorizontalAlignment="Left" Height="23" Margin="10,277,0,0" TextWrapping="Wrap" Text="Mighty Longname the Unpronounceable" VerticalAlignment="Top" Width="350"/>
+                                <Label Content="Treasure" HorizontalAlignment="Left" Margin="365,150,0,0" VerticalAlignment="Top" Height="27"/>
+                                <TextBox x:Name="Txt_Bes_Treasure" HorizontalAlignment="Left" Height="23" Margin="365,177,0,0" TextWrapping="Wrap" Text="Mighty Longname the Unpronounceable" VerticalAlignment="Top" Width="350"/>
+                                <Label Content="Traits" HorizontalAlignment="Left" Margin="365,426,0,0" VerticalAlignment="Top" Height="27"/>
+                                <TextBox x:Name="Txt_Bes_Traits" HorizontalAlignment="Left" Height="100" Margin="365,453,0,0" TextWrapping="Wrap" Text="Mighty Longname the Unpronounceable" VerticalAlignment="Top" Width="350"/>
+                                <Label Content="Notes" HorizontalAlignment="Left" Margin="365,300,0,0" VerticalAlignment="Top" Height="27"/>
+                                <TextBox x:Name="Txt_Bes_Notes" HorizontalAlignment="Left" Height="99" Margin="365,327,0,0" TextWrapping="Wrap" Text="Mighty Longname the Unpronounceable" VerticalAlignment="Top" Width="350"/>
+                                <Label Content="Fulltext (HTML)" HorizontalAlignment="Left" Margin="720,250,0,0" VerticalAlignment="Top" Height="27"/>
+                                <TextBox x:Name="Txt_Bes_Fulltext" HorizontalAlignment="Left" Height="276" Margin="720,277,0,0" TextWrapping="Wrap" Text="Mighty Longname the Unpronounceable" VerticalAlignment="Top" Width="350"/>
+                                <Label Content="Visual Description" HorizontalAlignment="Left" Margin="720,124,0,0" VerticalAlignment="Top" Height="27"/>
+                                <TextBox x:Name="Txt_Bes_VisualDescription" HorizontalAlignment="Left" Height="99" Margin="720,151,0,0" TextWrapping="Wrap" Text="Mighty Longname the Unpronounceable" VerticalAlignment="Top" Width="350"/>
+                                <Label Content="Gear" HorizontalAlignment="Left" Margin="720,0,0,0" VerticalAlignment="Top" Height="27"/>
+                                <TextBox x:Name="Txt_Bes_Gear" HorizontalAlignment="Left" Height="100" Margin="720,27,0,0" TextWrapping="Wrap" Text="Mighty Longname the Unpronounceable" VerticalAlignment="Top" Width="350"/>
+                                <Label Content="Organization" HorizontalAlignment="Left" Margin="365,201,0,0" VerticalAlignment="Top" Height="27"/>
+                                <TextBox x:Name="Txt_Bes_Organization" HorizontalAlignment="Left" Height="22" Margin="365,228,0,0" TextWrapping="Wrap" Text="Mighty Longname the Unpronounceable" VerticalAlignment="Top" Width="350"/>
+                                <Label Content="Group" HorizontalAlignment="Left" Margin="365,250,0,0" VerticalAlignment="Top" Height="27"/>
+                                <TextBox x:Name="Txt_Bes_Group" HorizontalAlignment="Left" Height="22" Margin="365,277,0,0" TextWrapping="Wrap" Text="Mighty Longname the Unpronounceable" VerticalAlignment="Top" Width="350"/>
+                                <CheckBox x:Name="Cbx_Bes_NPC" Content="NPC" HorizontalAlignment="Left" Margin="365,29,0,0" VerticalAlignment="Top"/>
+                                <CheckBox x:Name="Cbx_Bes_UniqueCreature" Content="Unique Creature" HorizontalAlignment="Left" Margin="527,50,0,0" VerticalAlignment="Top"/>
+                                <CheckBox x:Name="Cbx_Bes_Template" Content="Template" HorizontalAlignment="Left" Margin="441,50,0,0" VerticalAlignment="Top"/>
+                                <CheckBox x:Name="Cbx_Bes_Mythic" Content="Mythic" HorizontalAlignment="Left" Margin="365,50,0,0" VerticalAlignment="Top"/>
+                                <CheckBox x:Name="Cbx_Bes_DontUseRacialHD" Content="Don't use Racial HD" HorizontalAlignment="Left" Margin="527,29,0,0" VerticalAlignment="Top"/>
+                                <CheckBox x:Name="Cbx_Bes_Companion" Content="Companion" HorizontalAlignment="Left" Margin="441,29,0,0" VerticalAlignment="Top"/>
+                                <xctk:IntegerUpDown x:Name="Int_Bes_MT" HorizontalAlignment="Left" Margin="392,75,0,0" VerticalAlignment="Top" Height="22"/>
+                                <Label Content="MT" HorizontalAlignment="Left" Margin="365,72,0,0" VerticalAlignment="Top" Height="27"/>
+                                <xctk:IntegerUpDown x:Name="Int_Bes_MR" HorizontalAlignment="Left" Margin="469,75,0,0" VerticalAlignment="Top" Height="22"/>
+                                <Label Content="MR" HorizontalAlignment="Left" Margin="441,72,0,0" VerticalAlignment="Top" Height="27"/>
+                            </Grid>
                         </TabItem>
                     </TabControl>
-                    <ListBox x:Name="LbxBestiary" HorizontalAlignment="Left" Height="629" Margin="10,10,0,0" VerticalAlignment="Top" Width="180"/>
-                    <Button Content="Add New" HorizontalAlignment="Left" Margin="195,619,0,0" VerticalAlignment="Top" Width="75"/>
-                    <Button Content="Save" HorizontalAlignment="Left" Margin="1247,619,0,0" VerticalAlignment="Top" Width="75"/>
-                    <Button Content="Clear" HorizontalAlignment="Left" Margin="1167,619,0,0" VerticalAlignment="Top" Width="75"/>
+                    <ListBox x:Name="Lbx_Bes_Bestiary" HorizontalAlignment="Left" Height="576" Margin="10,38,0,0" VerticalAlignment="Top" Width="180"/>
+                    <Button x:Name="Btn_Bes_AddNew" Content="Add New" HorizontalAlignment="Left" Margin="195,619,0,0" VerticalAlignment="Top" Width="75"/>
+                    <Button x:Name="Btn_Bes_Save" Content="Save" HorizontalAlignment="Left" Margin="1247,619,0,0" VerticalAlignment="Top" Width="75"/>
+                    <Button x:Name="Btn_Bes_Clear" Content="Clear" HorizontalAlignment="Left" Margin="1167,619,0,0" VerticalAlignment="Top" Width="75"/>
+                    <TextBox x:Name="Txt_Bes_Search" HorizontalAlignment="Left" Height="23" Margin="10,10,0,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="180"/>
+                    <Button x:Name="Btn_Bes_SortName" Content="Name" HorizontalAlignment="Left" Margin="47,619,0,0" VerticalAlignment="Top" Width="50"/>
+                    <Label Content="Sort" HorizontalAlignment="Left" Margin="10,616,0,0" VerticalAlignment="Top"/>
+                    <Button x:Name="Btn_Bes_SortCR" Content="CR" HorizontalAlignment="Left" Margin="102,619,0,0" VerticalAlignment="Top" Width="50"/>
                 </Grid>
             </TabItem>
             <TabItem Header="MonsterSpawn" Margin="-2,-2,-2,0">
                 <Grid Background="#FFE5E5E5">
-                    <ListBox x:Name="LbxMSBestiary" HorizontalAlignment="Left" Height="629" Margin="10,10,0,0" VerticalAlignment="Top" Width="180"/>
                     <DataGrid HorizontalAlignment="Left" Height="278" Margin="195,361,0,0" VerticalAlignment="Top" Width="1127"/>
+                    <ListBox x:Name="LbxBestiary_Copy" HorizontalAlignment="Left" Height="555" Margin="10,59,0,0" VerticalAlignment="Top" Width="180"/>
+                    <TextBox x:Name="Txt_Spa_Search" HorizontalAlignment="Left" Height="23" Margin="10,10,0,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="180"/>
+                    <Button Content="Name" HorizontalAlignment="Left" Margin="47,617,0,0" VerticalAlignment="Top" Width="50"/>
+                    <Label Content="Sort" HorizontalAlignment="Left" Margin="10,614,0,0" VerticalAlignment="Top"/>
+                    <Button Content="CR" HorizontalAlignment="Left" Margin="102,617,0,0" VerticalAlignment="Top" Width="50"/>
+                    <Label Content="Search" HorizontalAlignment="Left" Margin="10,33,0,0" VerticalAlignment="Top"/>
+                    <RadioButton Content="Name" HorizontalAlignment="Left" Margin="60,39,0,0" VerticalAlignment="Top" GroupName="MSSearch" IsChecked="True"/>
+                    <RadioButton Content="Type" HorizontalAlignment="Left" Margin="116,39,0,0" VerticalAlignment="Top" GroupName="MSSearch"/>
                 </Grid>
             </TabItem>
             <TabItem Header="Continent" Margin="-2,-2,-2,0">
@@ -66,7 +271,24 @@
             <TabItem Header="Faction/Territory" Margin="-2,-2,-2,0">
                 <Grid Background="#FFE5E5E5"/>
             </TabItem>
+            <TabItem Header="Magic" Margin="-2,-2,-2,0">
+                <Grid Background="#FFE5E5E5">
+                    <ListBox x:Name="LbxBestiary_Copy1" HorizontalAlignment="Left" Height="555" Margin="10,59,0,0" VerticalAlignment="Top" Width="200"/>
+                    <TextBox x:Name="Txt_Mag_Search" HorizontalAlignment="Left" Height="23" Margin="10,10,0,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="200"/>
+                    <Button Content="Name" HorizontalAlignment="Left" Margin="47,617,0,0" VerticalAlignment="Top" Width="50"/>
+                    <Label Content="Sort" HorizontalAlignment="Left" Margin="10,614,0,0" VerticalAlignment="Top"/>
+                    <Button Content="Level" HorizontalAlignment="Left" Margin="102,617,0,0" VerticalAlignment="Top" Width="50"/>
+                    <Label Content="Search" HorizontalAlignment="Left" Margin="10,33,0,0" VerticalAlignment="Top"/>
+                    <RadioButton Content="Name" HorizontalAlignment="Left" Margin="60,39,0,0" VerticalAlignment="Top" GroupName="MSSearch" IsChecked="True"/>
+                    <RadioButton Content="Descriptor" HorizontalAlignment="Left" Margin="116,39,0,0" VerticalAlignment="Top" GroupName="MSSearch"/>
+                    <Label Content="Filter" HorizontalAlignment="Left" Margin="215,6,0,0" VerticalAlignment="Top"/>
+                    <xctk:CheckComboBox x:Name="Ccb_Mag_FilterClass" HorizontalAlignment="Left" Height="27" Margin="256,6,0,0" VerticalAlignment="Top" Width="179"/>
+                    <xctk:CheckComboBox x:Name="Ccb_Mag_FilterLevel" HorizontalAlignment="Left" Height="27" Margin="440,6,0,0" VerticalAlignment="Top" Width="179"/>
+                </Grid>
+            </TabItem>
         </TabControl>
 
     </Grid>
+
 </Window>
+    

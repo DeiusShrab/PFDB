@@ -44,7 +44,7 @@ namespace PFDBSite.Helpers
         if (mon != null)
         {
           groupMon.Add(mon);
-          encounterList.Add(new RandomEncounterItem() { BestiaryId = mon.BestiaryId, Cr = mon.Cr ?? 0, Name = mon.Name });
+          encounterList.Add(new RandomEncounterItem() { BestiaryId = mon.BestiaryId, Cr = mon.Cr, Name = mon.Name });
         }
       }
 

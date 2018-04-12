@@ -115,6 +115,12 @@ namespace DBConnect
       return ret;
     }
 
+    public static bool UpdateCurrentDate(string fantasyDate)
+    {
+      var response = client.PostAsync(API_ADDR + "FantasyDate", new StringContent(fantasyDate, Encoding.UTF8)).Result;
+      return response.IsSuccessStatusCode;
+    }
+
     #endregion
 
     #region Details

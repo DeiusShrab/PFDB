@@ -363,6 +363,7 @@ namespace PFHelper
         EncounterZone = saveObject.CbxZone;
         RationsInfinite = saveObject.CbxInfRations;
         ContinentId = saveObject.ContinentId;
+        CombatRound = saveObject.CombatRound;
 
         RationsLeft = saveObject.Rations;
         CurrentDate = saveObject.Date;
@@ -402,6 +403,7 @@ namespace PFHelper
       saveObject.CbxZone = EncounterZone;
       saveObject.CbxInfRations = RationsInfinite;
       saveObject.ContinentId = ContinentId;
+      saveObject.CombatRound = CombatRound;
 
       saveObject.Rations = RationsLeft;
       saveObject.Date = CurrentDate;

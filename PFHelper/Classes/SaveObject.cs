@@ -17,6 +17,7 @@ namespace PFHelper.Classes
     public int Apl { get; set; }
     public int Rations { get; set; }
     public int ContinentId { get; set; }
+    public int CombatRound { get; set; }
     public bool CbxInfRations { get; set; }
     public bool CbxGroup { get; set; }
     public bool CbxZone { get; set; }
