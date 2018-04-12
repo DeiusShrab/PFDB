@@ -1,7 +1,8 @@
 ﻿using System;
 using System.Linq;
 using System.Text.RegularExpressions;
-using PFDAL.Models;
+using DBConnect;
+using DBConnect.DBModels;
 
 namespace PFDALTest
 {
@@ -42,6 +43,7 @@ namespace PFDALTest
       Console.WriteLine("1 - Test");
       Console.WriteLine("2 - PFDB Bestiary Update");
       Console.WriteLine("3 - PFDB Feat/Skill Update");
+      Console.WriteLine("4 - Update Tables");
       Console.WriteLine("0 - EXIT");
       Console.Write("> ");
 
@@ -55,17 +57,18 @@ namespace PFDALTest
     // Menu 1
     private static void Test()
     {
-      var context = PFDAL.PFDAL.GetContext();
+      var context = PFDAL.GetContext(false);
       Console.WriteLine(context.Bestiary.First().Name);
     }
 
     // Menu 2
     private static void UpdateBestiary()
     {
-      var context = PFDAL.PFDAL.GetContext();
+      var context = PFDAL.GetContext(false);
       //int i = 0;
       int[] idList = { 473, 474, 475, 476, 477, 478 };
-      var bList = PFDAL.PFDAL.GetContext().Bestiary.Where(x => idList.Contains(x.BestiaryId));
+      var bList = PFDAL.GetContext(false).Bestiary.Where(x => idList.Contains(x.BestiaryId));
+      /*
       foreach (var z in bList)
       {
         try
@@ -224,7 +227,7 @@ namespace PFDALTest
           //{
           context.SaveChanges();
           context.Dispose();
-          context = PFDAL.PFDAL.GetContext();
+          context = PFDAL.GetContext(false);
           //i = 0;
           Console.WriteLine("Finished BID " + b.BestiaryId.ToString());
           //}
@@ -236,20 +239,20 @@ namespace PFDALTest
             Console.WriteLine("InnerException: " + ex.InnerException.Message);
 
           context.Dispose();
-          context = PFDAL.PFDAL.GetContext();
+          context = PFDAL.GetContext(false);
         }
       }
-
+      */
       context.SaveChanges();
     }
 
     // Menu 3
     private static void PopulateTables()
     {
-      var bList = PFDAL.PFDAL.GetContext().Bestiary.Select(x => x);
+      var bList = PFDAL.GetContext(false).Bestiary.Select(x => x);
       foreach (var b in bList)
       {
-        var context = PFDAL.PFDAL.GetContext();
+        var context = PFDAL.GetContext(false);
 
         // Feat
         // Improved Initiative, Iron Will, Lightning Reflexes, Skill Focus (Perception)
@@ -431,11 +434,17 @@ namespace PFDALTest
     // Menu 4
     private static void UpdateTables()
     {
-      foreach (var env in PFDAL.PFDAL.GetContext().Environment)
+      foreach (var env in PFDAL.GetContext(false).Environment)
       {
-        var context = PFDAL.PFDAL.GetContext();
+        Console.WriteLine(env.Name);
+        var context = PFDAL.GetContext(false);
         var e = context.Environment.First(x => x.EnvironmentId == env.EnvironmentId);
-        e.Name = e.Name.Replace("\"", "").Replace(")", "").Trim();
+        //context.Environment.Attach(e).State = Microsoft.EntityFrameworkCore.EntityState.Modified;
+        if (e.Name.StartsWith(" "))
+          e.Name = e.Name.Substring(1);
+        if (e.Name.StartsWith("or "))
+          e.Name = e.Name.Substring(3);
+        e.Name = e.Name.Replace(")", "").Trim();
         context.SaveChanges();
       }
     }

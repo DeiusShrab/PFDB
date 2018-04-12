@@ -13,6 +13,7 @@ namespace DBConnect
     DbSet<BestiaryEnvironment> BestiaryEnvironment { get; set; }
     DbSet<BestiaryFeat> BestiaryFeat { get; set; }
     DbSet<BestiaryLanguage> BestiaryLanguage { get; set; }
+    DbSet<BestiaryMagic> BestiaryMagic { get; set; }
     DbSet<BestiarySkill> BestiarySkill { get; set; }
     DbSet<BestiarySubType> BestiarySubType { get; set; }
     DbSet<BestiaryType> BestiaryType { get; set; }

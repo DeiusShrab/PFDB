@@ -7,31 +7,31 @@ namespace DBConnect.DBModels
     {
         public int BestiaryId { get; set; }
         public string Name { get; set; }
-        public int? Cr { get; set; }
-        public int? Xp { get; set; }
+        public int Cr { get; set; }
+        public int Xp { get; set; }
         public string Race { get; set; }
         public string Class { get; set; }
         public string Alignment { get; set; }
         public string Size { get; set; }
         public string Type { get; set; }
         public string SubType { get; set; }
-        public int? Init { get; set; }
+        public int Init { get; set; }
         public string Senses { get; set; }
         public string Aura { get; set; }
-        public string Ac { get; set; }
+        public int Ac { get; set; }
         public string Acmods { get; set; }
-        public int? Hp { get; set; }
+        public int Hp { get; set; }
         public string Hd { get; set; }
         public string Hpmods { get; set; }
-        public int? Fortitude { get; set; }
-        public int? Reflex { get; set; }
-        public int? Will { get; set; }
+        public int Fortitude { get; set; }
+        public int Reflex { get; set; }
+        public int Will { get; set; }
         public string SaveMods { get; set; }
         public string DefensiveAbilities { get; set; }
         public string Dr { get; set; }
         public string Immune { get; set; }
         public string Resist { get; set; }
-        public int? Sr { get; set; }
+        public int Sr { get; set; }
         public string Weaknesses { get; set; }
         public string Speed { get; set; }
         public string SpeedMod { get; set; }
@@ -46,9 +46,9 @@ namespace DBConnect.DBModels
         public string SpellDomains { get; set; }
         public string AbilityScores { get; set; }
         public string AbilityScoreMods { get; set; }
-        public int? BaseAtk { get; set; }
-        public int? Cmb { get; set; }
-        public int? Cmd { get; set; }
+        public int BaseAtk { get; set; }
+        public int Cmb { get; set; }
+        public int Cmd { get; set; }
         public string Feats { get; set; }
         public string Skills { get; set; }
         public string RacialMods { get; set; }
@@ -59,7 +59,7 @@ namespace DBConnect.DBModels
         public string Treasure { get; set; }
         public string DescriptionVisual { get; set; }
         public string Group { get; set; }
-        public bool? IsTemplate { get; set; }
+        public bool IsTemplate { get; set; }
         public string SpecialAbilities { get; set; }
         public string Gender { get; set; }
         public string Bloodline { get; set; }
@@ -71,19 +71,19 @@ namespace DBConnect.DBModels
         public string OtherGear { get; set; }
         public string Vulnerability { get; set; }
         public string Note { get; set; }
-        public bool? CharacterFlag { get; set; }
-        public bool? CompanionFlag { get; set; }
-        public bool? Fly { get; set; }
-        public bool? Climb { get; set; }
-        public bool? Burrow { get; set; }
-        public bool? Swim { get; set; }
-        public bool? Land { get; set; }
+        public bool CharacterFlag { get; set; }
+        public bool CompanionFlag { get; set; }
+        public int Fly { get; set; }
+        public int Climb { get; set; }
+        public int Burrow { get; set; }
+        public int Swim { get; set; }
+        public int Land { get; set; }
         public string TemplatesApplied { get; set; }
         public string OffenseNote { get; set; }
         public string BaseStatistics { get; set; }
         public string ExtractsPrepared { get; set; }
         public string AgeCategory { get; set; }
-        public bool? DontUseRacialHd { get; set; }
+        public bool DontUseRacialHd { get; set; }
         public string VariantParent { get; set; }
         public string Mystery { get; set; }
         public string ClassArchetypes { get; set; }
@@ -94,18 +94,18 @@ namespace DBConnect.DBModels
         public string AlternateNameForm { get; set; }
         public string StatisticsNote { get; set; }
         public string LinkText { get; set; }
-        public bool? UniqueMonster { get; set; }
-        public int? Mr { get; set; }
-        public bool? Mythic { get; set; }
-        public int? Mt { get; set; }
-        public int? Actouch { get; set; }
-        public int? Acflat { get; set; }
-        public int? Str { get; set; }
-        public int? Dex { get; set; }
-        public int? Con { get; set; }
-        public int? Wis { get; set; }
-        public int? Int { get; set; }
-        public int? Cha { get; set; }
+        public bool UniqueMonster { get; set; }
+        public int Mr { get; set; }
+        public bool Mythic { get; set; }
+        public int Mt { get; set; }
+        public int Actouch { get; set; }
+        public int Acflat { get; set; }
+        public int Str { get; set; }
+        public int Dex { get; set; }
+        public int Con { get; set; }
+        public int Wis { get; set; }
+        public int Int { get; set; }
+        public int Cha { get; set; }
         //public virtual BestiaryDetail BestiaryDetail { get; set; }
         //public virtual List<BestiaryFeat> BestiaryFeats { get; set; }
         //public virtual List<BestiarySkill> BestiarySkills { get; set; }

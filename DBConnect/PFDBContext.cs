@@ -11,6 +11,7 @@ namespace DBConnect
     public virtual DbSet<BestiaryEnvironment> BestiaryEnvironment { get; set; }
     public virtual DbSet<BestiaryFeat> BestiaryFeat { get; set; }
     public virtual DbSet<BestiaryLanguage> BestiaryLanguage { get; set; }
+    public virtual DbSet<BestiaryMagic> BestiaryMagic { get; set; }
     public virtual DbSet<BestiarySkill> BestiarySkill { get; set; }
     public virtual DbSet<BestiarySubType> BestiarySubType { get; set; }
     public virtual DbSet<BestiaryType> BestiaryType { get; set; }
@@ -42,9 +43,9 @@ namespace DBConnect
         if (!optionsBuilder.IsConfigured)
         {
 #if DEBUG
-        optionsBuilder.UseSqlServer("Server=192.168.1.150;Database=PFDB;User Id=sa;Password=kAE5sIBdyEpbpUmAWIGv");
+        optionsBuilder.UseSqlServer("Server=192.168.1.150;Database=PFDB;User Id=PFDBSite;Password=ayy lmao ayy lmao AYY 1m40");
 #else
-        optionsBuilder.UseSqlServer("Server=localhost;Database=PFDB;User Id=sa;Password=kAE5sIBdyEpbpUmAWIGv");
+        optionsBuilder.UseSqlServer("Server=localhost;Database=PFDB;User Id=PFDBSite;Password=ayy lmao ayy lmao AYY 1m40");
 #endif
       }
     }

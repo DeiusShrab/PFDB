@@ -15,6 +15,7 @@ namespace DBConnect
     public DbSet<BestiaryEnvironment> BestiaryEnvironment { get; set; }
     public DbSet<BestiaryFeat> BestiaryFeat { get; set; }
     public DbSet<BestiaryLanguage> BestiaryLanguage { get; set; }
+    public DbSet<BestiaryMagic> BestiaryMagic { get; set; }
     public DbSet<BestiarySkill> BestiarySkill { get; set; }
     public DbSet<BestiarySubType> BestiarySubType { get; set; }
     public DbSet<BestiaryType> BestiaryType { get; set; }
@@ -49,6 +50,7 @@ namespace DBConnect
     private List<BestiaryEnvironment> _BestiaryEnvironment = new List<BestiaryEnvironment>();
     private List<BestiaryFeat> _BestiaryFeat = new List<BestiaryFeat>();
     private List<BestiaryLanguage> _BestiaryLanguage = new List<BestiaryLanguage>();
+    private List<BestiaryMagic> _BestiaryMagic = new List<BestiaryMagic>();
     private List<BestiarySkill> _BestiarySkill = new List<BestiarySkill>();
     private List<BestiarySubType> _BestiarySubType = new List<BestiarySubType>();
     private List<BestiaryType> _BestiaryType = new List<BestiaryType>();
@@ -85,6 +87,7 @@ namespace DBConnect
       BestiaryEnvironment = GetQueryableMockDbSet(_BestiaryEnvironment);
       BestiaryFeat = GetQueryableMockDbSet(_BestiaryFeat);
       BestiaryLanguage = GetQueryableMockDbSet(_BestiaryLanguage);
+      BestiaryMagic = GetQueryableMockDbSet(_BestiaryMagic);
       BestiarySkill = GetQueryableMockDbSet(_BestiarySkill);
       BestiarySubType = GetQueryableMockDbSet(_BestiarySubType);
       BestiaryType = GetQueryableMockDbSet(_BestiaryType);
