@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+using System.Net;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore;
 using Microsoft.AspNetCore.Hosting;
@@ -18,8 +19,8 @@ namespace PFDBSite
 
     public static IWebHost BuildWebHost(string[] args) =>
         WebHost.CreateDefaultBuilder(args)
-            .UseUrls("http://localhost:5555")
             .UseStartup<Startup>()
+            .UseUrls("http://localhost:5555")
             .Build();
   }
 }
