@@ -335,6 +335,8 @@ namespace PFHelper
 
       try
       {
+        DBClient.ConnectToApi();
+
         continents = DBClient.GetContinents();
         seasons = DBClient.GetSeasons();
         months = DBClient.GetMonths();

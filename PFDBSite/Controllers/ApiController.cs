@@ -57,7 +57,7 @@ namespace PFDBSite.Controllers
 
     #region Queries
 
-    [HttpGet("List/{listType:string")]
+    [HttpGet("List/{listType}")]
     public IActionResult ObjectList(string listType)
     {
       var context = PFDAL.GetContext();

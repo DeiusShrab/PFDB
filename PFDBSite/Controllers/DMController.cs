@@ -20,9 +20,11 @@ namespace PFDBSite.Controllers
   {
     #region HTTP Methods
 
+    [HttpGet]
+    [AllowAnonymous]
     public IActionResult Index()
     {
-      return View("DMIndex");
+      return View();
     }
 
     [HttpGet("Login")]
