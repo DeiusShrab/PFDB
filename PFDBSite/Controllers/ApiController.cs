@@ -324,196 +324,196 @@ namespace PFDBSite.Controllers
 
     #region Details
 
-    [HttpGet("Bestiary/BestiaryId:int")]
+    [HttpGet("Bestiary/{BestiaryId:int}")]
     public IActionResult Bestiary_Detail(int BestiaryId)
     {
       var context = PFDAL.GetContext();
       return new JsonResult(context.Bestiary.FirstOrDefault(x => x.BestiaryId == BestiaryId));
     }
 
-    [HttpGet("BestiaryDetail/BestiaryId:int")]
+    [HttpGet("BestiaryDetail/{BestiaryId:int}")]
     public IActionResult BestiaryDetail_Detail(int BestiaryId)
     {
       var context = PFDAL.GetContext();
       return new JsonResult(context.BestiaryDetail.FirstOrDefault(x => x.BestiaryId == BestiaryId));
     }
 
-    [HttpGet("BestiaryEnvironment/BestiaryEnvironmentId:int")]
+    [HttpGet("BestiaryEnvironment/{BestiaryEnvironmentId:int}")]
     public IActionResult BestiaryEnvironment_Detail(int BestiaryEnvironmentId)
     {
       var context = PFDAL.GetContext();
       return new JsonResult(context.BestiaryEnvironment.FirstOrDefault(x => x.BestiaryEnvironmentId == BestiaryEnvironmentId));
     }
 
-    [HttpGet("BestiaryFeat/BestiaryFeatId:int")]
+    [HttpGet("BestiaryFeat/{BestiaryFeatId:int}")]
     public IActionResult BestiaryFeat_Detail(int BestiaryFeatId)
     {
       var context = PFDAL.GetContext();
       return new JsonResult(context.BestiaryFeat.FirstOrDefault(x => x.BestiaryFeatId == BestiaryFeatId));
     }
 
-    [HttpGet("BestiaryLanguage/BestiaryLanguageId:int")]
+    [HttpGet("BestiaryLanguage/{BestiaryLanguageId:int}")]
     public IActionResult BestiaryLanguage_Detail(int BestiaryLanguageId)
     {
       var context = PFDAL.GetContext();
       return new JsonResult(context.BestiaryLanguage.FirstOrDefault(x => x.BestiaryLanguageId == BestiaryLanguageId));
     }
 
-    [HttpGet("BestiarySkill/BestiarySkillId:int")]
+    [HttpGet("BestiarySkill/{BestiarySkillId:int}")]
     public IActionResult BestiarySkill_Detail(int BestiarySkillId)
     {
       var context = PFDAL.GetContext();
       return new JsonResult(context.BestiarySkill.FirstOrDefault(x => x.BestiarySkillId == BestiarySkillId));
     }
 
-    [HttpGet("BestiarySubType/BestiarySubTypeId:int")]
+    [HttpGet("BestiarySubType/{BestiarySubTypeId:int}")]
     public IActionResult BestiarySubType_Detail(int BestiarySubTypeId)
     {
       var context = PFDAL.GetContext();
       return new JsonResult(context.BestiarySubType.FirstOrDefault(x => x.BestiarySubTypeId == BestiarySubTypeId));
     }
 
-    [HttpGet("BestiaryType/BestiaryTypeId:int")]
+    [HttpGet("BestiaryType/{BestiaryTypeId:int}")]
     public IActionResult BestiaryType_Detail(int BestiaryTypeId)
     {
       var context = PFDAL.GetContext();
       return new JsonResult(context.BestiaryType.FirstOrDefault(x => x.BestiaryTypeId == BestiaryTypeId));
     }
 
-    [HttpGet("Continent/ContinentId:int")]
+    [HttpGet("Continent/{ContinentId:int}")]
     public IActionResult Continent_Detail(int ContinentId)
     {
       var context = PFDAL.GetContext();
       return new JsonResult(context.Continent.FirstOrDefault(x => x.ContinentId == ContinentId));
     }
 
-    [HttpGet("ContinentWeather/ContinentWeatherId:int")]
+    [HttpGet("ContinentWeather/{ContinentWeatherId:int}")]
     public IActionResult ContinentWeather_Detail(int ContinentWeatherId)
     {
       var context = PFDAL.GetContext();
       return new JsonResult(context.ContinentWeather.FirstOrDefault(x => x.Cwid == ContinentWeatherId));
     }
 
-    [HttpGet("Environment/EnvironmentId:int")]
+    [HttpGet("Environment/{EnvironmentId:int}")]
     public IActionResult Environment_Detail(int EnvironmentId)
     {
       var context = PFDAL.GetContext();
       return new JsonResult(context.Environment.FirstOrDefault(x => x.EnvironmentId == EnvironmentId));
     }
 
-    [HttpGet("Faction/FactionId:int")]
+    [HttpGet("Faction/{FactionId:int}")]
     public IActionResult Faction_Detail(int FactionId)
     {
       var context = PFDAL.GetContext();
       return new JsonResult(context.Faction.FirstOrDefault(x => x.FactionId == FactionId));
     }
 
-    [HttpGet("Feat/FeatId:int")]
+    [HttpGet("Feat/{FeatId:int}")]
     public IActionResult Feat_Detail(int FeatId)
     {
       var context = PFDAL.GetContext();
       return new JsonResult(context.Feat.FirstOrDefault(x => x.FeatId == FeatId));
     }
 
-    [HttpGet("Language/LanguageId:int")]
+    [HttpGet("Language/{LanguageId:int}")]
     public IActionResult Language_Detail(int LanguageId)
     {
       var context = PFDAL.GetContext();
       return new JsonResult(context.Language.FirstOrDefault(x => x.LanguageId == LanguageId));
     }
 
-    [HttpGet("Location/LocationId:int")]
+    [HttpGet("Location/{LocationId:int}")]
     public IActionResult Location_Detail(int LocationId)
     {
       var context = PFDAL.GetContext();
       return new JsonResult(context.Location.FirstOrDefault(x => x.LocationId == LocationId));
     }
 
-    [HttpGet("MagicItem/MagicItemId:int")]
+    [HttpGet("MagicItem/{MagicItemId:int}")]
     public IActionResult MagicItem_Detail(int MagicItemId)
     {
       var context = PFDAL.GetContext();
       return new JsonResult(context.MagicItem.FirstOrDefault(x => x.MagicItemId == MagicItemId));
     }
 
-    [HttpGet("MonsterSpawn/MonsterSpawnId:int")]
+    [HttpGet("MonsterSpawn/{MonsterSpawnId:int}")]
     public IActionResult MonsterSpawn_Detail(int MonsterSpawnId)
     {
       var context = PFDAL.GetContext();
       return new JsonResult(context.MonsterSpawn.FirstOrDefault(x => x.SpawnId == MonsterSpawnId));
     }
 
-    [HttpGet("Month/MonthId:int")]
+    [HttpGet("Month/{MonthId:int}")]
     public IActionResult Month_Detail(int MonthId)
     {
       var context = PFDAL.GetContext();
       return new JsonResult(context.Month.FirstOrDefault(x => x.MonthId == MonthId));
     }
 
-    [HttpGet("Plane/PlaneId:int")]
+    [HttpGet("Plane/{PlaneId:int}")]
     public IActionResult Plane_Detail(int PlaneId)
     {
       var context = PFDAL.GetContext();
       return new JsonResult(context.Plane.FirstOrDefault(x => x.PlaneId == PlaneId));
     }
 
-    [HttpGet("Season/SeasonId:int")]
+    [HttpGet("Season/{SeasonId:int}")]
     public IActionResult Season_Detail(int SeasonId)
     {
       var context = PFDAL.GetContext();
       return new JsonResult(context.Season.FirstOrDefault(x => x.SeasonId == SeasonId));
     }
 
-    [HttpGet("Skill/SkillId:int")]
+    [HttpGet("Skill/{SkillId:int}")]
     public IActionResult Skill_Detail(int SkillId)
     {
       var context = PFDAL.GetContext();
       return new JsonResult(context.Skill.FirstOrDefault(x => x.SkillId == SkillId));
     }
 
-    [HttpGet("Spell/SpellId:int")]
+    [HttpGet("Spell/{SpellId:int}")]
     public IActionResult Spell_Detail(int SpellId)
     {
       var context = PFDAL.GetContext();
       return new JsonResult(context.Spell.FirstOrDefault(x => x.SpellId == SpellId));
     }
 
-    [HttpGet("SpellDetail/SpellId:int")]
+    [HttpGet("SpellDetail/{SpellId:int}")]
     public IActionResult SpellDetail_Detail(int SpellId)
     {
       var context = PFDAL.GetContext();
       return new JsonResult(context.SpellDetail.FirstOrDefault(x => x.SpellId == SpellId));
     }
 
-    [HttpGet("Terrain/TerrainId:int")]
+    [HttpGet("Terrain/{TerrainId:int}")]
     public IActionResult Terrain_Detail(int TerrainId)
     {
       var context = PFDAL.GetContext();
       return new JsonResult(context.Terrain.FirstOrDefault(x => x.TerrainId == TerrainId));
     }
 
-    [HttpGet("Territory/TerritoryId:int")]
+    [HttpGet("Territory/{TerritoryId:int}")]
     public IActionResult Territory_Detail(int TerritoryId)
     {
       var context = PFDAL.GetContext();
       return new JsonResult(context.Territory.FirstOrDefault(x => x.TerritoryId == TerritoryId));
     }
 
-    [HttpGet("Time/TimeId:int")]
+    [HttpGet("Time/{TimeId:int}")]
     public IActionResult Time_Detail(int TimeId)
     {
       var context = PFDAL.GetContext();
       return new JsonResult(context.Time.FirstOrDefault(x => x.TimeId == TimeId));
     }
 
-    [HttpGet("TrackedEvent/TrackedEventId:int")]
+    [HttpGet("TrackedEvent/{TrackedEventId:int}")]
     public IActionResult TrackedEvent_Detail(int TrackedEventId)
     {
       var context = PFDAL.GetContext();
       return new JsonResult(context.TrackedEvent.FirstOrDefault(x => x.TrackedEventId == TrackedEventId));
     }
 
-    [HttpGet("Weather/WeatherId:int")]
+    [HttpGet("Weather/{WeatherId:int}")]
     public IActionResult Weather_Detail(int WeatherId)
     {
       var context = PFDAL.GetContext();

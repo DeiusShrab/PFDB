@@ -2,28 +2,31 @@
     ViewData["Title"] = "Jacob's Server";
 }
 
-    <div class="row">
-        <div class="col-lg-6">
-            <div class="panel">
-                <div class="panel-heading text-center">
-                    <h2>Services</h2>
-                </div>
-                <div class="panel-body">
-                    <a href="https://app.plex.tv/desktop"><img src="~/images/plex-logo.svg" class="img-responsive" alt="Plex!" /></a>
-                    <br />
-                    <a href='@Url.Action("Index", "Pathfinder")'><img src="~/images/pathfinder_logo.jpg" class="img-responsive" alt="Pathfinder" /></a>
-                </div>
+<div class="row">
+    <div class="col-lg-6">
+        <div class="panel">
+            <div class="panel-heading text-center">
+                <h2>Services</h2>
             </div>
-        </div>
-        <div class="col-lg-6">
-            <div class="panel">
-                <div class="panel-heading text-center">
-                    <h2>Internal network only</h2>
-                </div>
-                <div class="panel-body">
-                    <a href="http://192.168.1.150:3000"><h3>PlexRequests - request movies and shows for Plex</h3></a>
-                </div>
+            <div class="panel-body">
+                <a href="https://app.plex.tv/desktop"><img src="~/images/plex-logo.svg" class="img-responsive" alt="Plex!" /></a>
+                <br />
+                <a href='@Url.Action("Index", "Pathfinder")'><img src="~/images/pathfinder_logo.jpg" class="img-responsive" alt="Pathfinder" /></a>
             </div>
         </div>
     </div>
+    <div class="col-lg-6">
+        <div class="panel">
+            <div class="panel-heading text-center">
+                <h2>Internal network only</h2>
+            </div>
+            <div class="panel-body">
+                <a href="http://192.168.1.150:3000">
+                    <h3>PlexRequests</h3>
+                    <h2>request movies and shows for Plex</h2>
+                </a>
+            </div>
+        </div>
+    </div>
+</div>
 

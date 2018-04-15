@@ -15,7 +15,7 @@ namespace DBConnect
     public static string JWT_ISSUER = "https://zratsewk.duckdns.org";
     public static string API_USER = "PFHelper";
     public static string API_PASS = "PFHelper";
-    private static readonly string API_ADDR = @"https://zratsewk.duckdns.org/pfdb/api/";
+    private static readonly string API_ADDR = @"http://zratsewk.duckdns.org/api/";
     private static int MAX_CACHE_SIZE = 32;
     private static readonly HttpClient client = new HttpClient();
     private static DBCache<BestiaryDetail> DetailCache = new DBCache<BestiaryDetail>(MAX_CACHE_SIZE);
@@ -39,7 +39,7 @@ namespace DBConnect
       {
         var content = response.Content;
         var token = JsonConvert.DeserializeObject<JObject>(content.ReadAsStringAsync().Result);
-        if (token.ContainsKey("token") && token["token"].HasValues)
+        if (token.ContainsKey("token") && !string.IsNullOrWhiteSpace(token["token"].Value<string>()))
         {
           API_TOKEN = token["token"].Value<string>();
           TOKEN_DATE = System.DateTime.Now;

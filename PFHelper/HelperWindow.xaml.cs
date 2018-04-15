@@ -285,6 +285,8 @@ namespace PFHelper
       if (!LoadDBData())
       {
         MessageBox.Show("ERROR - Failed to connect to server");
+        this.Close();
+        return;
       }
 
       encounterResults = new ObservableCollection<DisplayValues>();
