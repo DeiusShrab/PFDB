@@ -1,0 +1,328 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<!--[if IE 7]>
+<html id="ie7" xmlns="http://www.w3.org/1999/xhtml" lang="en">
+<![endif]-->
+<!--[if (gt IE 7) | (!IE)]><!-->
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en">
+<!--<![endif]-->
+
+<head profile="http://gmpg.org/xfn/11">
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<title>Howto: Make Your Own Cert With OpenSSL | Didier Stevens</title>
+
+	<style type="text/css" media="screen">
+		@import url( https://s2.wp.com/wp-content/themes/pub/rubric/style.css );
+	</style>
+
+	<link rel="pingback" href="https://blog.didierstevens.com/xmlrpc.php" />
+			<script src='https://r-login.wordpress.com/remote-login.php?action=js&amp;host=blog.didierstevens.com&amp;id=264765&amp;t=1523772103&amp;back=https%3A%2F%2Fblog.didierstevens.com%2F2008%2F12%2F30%2Fhowto-make-your-own-cert-with-openssl%2F' type="text/javascript"></script>
+		<script type="text/javascript">
+		/* <![CDATA[ */
+			if ( 'function' === typeof WPRemoteLogin ) {
+				document.cookie = "wordpress_test_cookie=test; path=/";
+				if ( document.cookie.match( /(;|^)\s*wordpress_test_cookie\=/ ) ) {
+					WPRemoteLogin();
+				}
+			}
+		/* ]]> */
+		</script>
+		<link rel='dns-prefetch' href='//s2.wp.com' />
+<link rel='dns-prefetch' href='//s1.wp.com' />
+<link rel='dns-prefetch' href='//didierstevens.wordpress.com' />
+<link rel='dns-prefetch' href='//s0.wp.com' />
+<link rel="alternate" type="application/rss+xml" title="Didier Stevens &raquo; Feed" href="https://blog.didierstevens.com/feed/" />
+<link rel="alternate" type="application/rss+xml" title="Didier Stevens &raquo; Comments Feed" href="https://blog.didierstevens.com/comments/feed/" />
+<link rel="alternate" type="application/rss+xml" title="Didier Stevens &raquo; Howto: Make Your Own Cert With&nbsp;OpenSSL Comments Feed" href="https://blog.didierstevens.com/2008/12/30/howto-make-your-own-cert-with-openssl/feed/" />
+	<script type="text/javascript">
+		/* <![CDATA[ */
+		function addLoadEvent(func) {
+			var oldonload = window.onload;
+			if (typeof window.onload != 'function') {
+				window.onload = func;
+			} else {
+				window.onload = function () {
+					oldonload();
+					func();
+				}
+			}
+		}
+		/* ]]> */
+	</script>
+			<script type="text/javascript">
+			window._wpemojiSettings = {"baseUrl":"https:\/\/s0.wp.com\/wp-content\/mu-plugins\/wpcom-smileys\/twemoji\/2\/72x72\/","ext":".png","svgUrl":"https:\/\/s0.wp.com\/wp-content\/mu-plugins\/wpcom-smileys\/twemoji\/2\/svg\/","svgExt":".svg","source":{"concatemoji":"https:\/\/s1.wp.com\/wp-includes\/js\/wp-emoji-release.min.js?m=1516999477h&ver=4.9.5"}};
+			!function(a,b,c){function d(a,b){var c=String.fromCharCode;l.clearRect(0,0,k.width,k.height),l.fillText(c.apply(this,a),0,0);var d=k.toDataURL();l.clearRect(0,0,k.width,k.height),l.fillText(c.apply(this,b),0,0);var e=k.toDataURL();return d===e}function e(a){var b;if(!l||!l.fillText)return!1;switch(l.textBaseline="top",l.font="600 32px Arial",a){case"flag":return!(b=d([55356,56826,55356,56819],[55356,56826,8203,55356,56819]))&&(b=d([55356,57332,56128,56423,56128,56418,56128,56421,56128,56430,56128,56423,56128,56447],[55356,57332,8203,56128,56423,8203,56128,56418,8203,56128,56421,8203,56128,56430,8203,56128,56423,8203,56128,56447]),!b);case"emoji":return b=d([55357,56692,8205,9792,65039],[55357,56692,8203,9792,65039]),!b}return!1}function f(a){var c=b.createElement("script");c.src=a,c.defer=c.type="text/javascript",b.getElementsByTagName("head")[0].appendChild(c)}var g,h,i,j,k=b.createElement("canvas"),l=k.getContext&&k.getContext("2d");for(j=Array("flag","emoji"),c.supports={everything:!0,everythingExceptFlag:!0},i=0;i<j.length;i++)c.supports[j[i]]=e(j[i]),c.supports.everything=c.supports.everything&&c.supports[j[i]],"flag"!==j[i]&&(c.supports.everythingExceptFlag=c.supports.everythingExceptFlag&&c.supports[j[i]]);c.supports.everythingExceptFlag=c.supports.everythingExceptFlag&&!c.supports.flag,c.DOMReady=!1,c.readyCallback=function(){c.DOMReady=!0},c.supports.everything||(h=function(){c.readyCallback()},b.addEventListener?(b.addEventListener("DOMContentLoaded",h,!1),a.addEventListener("load",h,!1)):(a.attachEvent("onload",h),b.attachEvent("onreadystatechange",function(){"complete"===b.readyState&&c.readyCallback()})),g=c.source||{},g.concatemoji?f(g.concatemoji):g.wpemoji&&g.twemoji&&(f(g.twemoji),f(g.wpemoji)))}(window,document,window._wpemojiSettings);
+		</script>
+		<style type="text/css">
+img.wp-smiley,
+img.emoji {
+	display: inline !important;
+	border: none !important;
+	box-shadow: none !important;
+	height: 1em !important;
+	width: 1em !important;
+	margin: 0 .07em !important;
+	vertical-align: -0.1em !important;
+	background: none !important;
+	padding: 0 !important;
+}
+</style>
+<link rel='stylesheet' id='all-css-0-1' href='https://s1.wp.com/_static/??-eJyNkdFuwyAMRX9oHorUVt3DtG8hxCNuDUbgKO3fjzSpqnYT2gu6F+4xxpg5gZOoGNWECRJPnmIxc3ISoARivL64d1fKm/kbYzpjMSfUZN0Zbq4Vz8hWcYAkRV9cC3OSse6HZHVJBBzIImOosRY20+Cx3lMjmwbFSxMJ6XC/aJFjfVWzs3VQfZ8ylgJ1DTQF0LH21ua21lTSNoyiV8b/IEUcWQaqkWezwmSi6Hp4F62qHgVYnFWS+GTgmy3l9mf2LL5Kf5vww7Yg65bivc0P9Su+js+MO+NZestL4Ct8dvvu8HHcd7vj6QeSAgsG?cssminify=yes' type='text/css' media='all' />
+<script type='text/javascript'>
+/* <![CDATA[ */
+var related_posts_js_options = {"post_heading":"h4"};
+/* ]]> */
+</script>
+<script type='text/javascript' src='https://s2.wp.com/_static/??-eJyFj90KwjAMhV/IrAw6xQvxWWoXS2r/bNoNfXo70At1KARCTr4cTsScgIJ2dUQWttW1Yr49W2d5I34B4MlkVbDzFF6wjqFgKAvr44kcQmXMyjStGZ3jCpciF4/MDVrZvkeiMBHOfzGLJSl9gYxM9y9XXyG5aiiwyOjaAyMsGT6mdnX0h17uh36Qcre1DyuucHk='></script>
+<link rel='stylesheet' id='all-css-0-2' href='https://s1.wp.com/wp-content/mu-plugins/highlander-comments/style.css?m=1522184747h&cssminify=yes' type='text/css' media='all' />
+<!--[if lt IE 8]>
+<link rel='stylesheet' id='highlander-comments-ie7-css'  href='https://s2.wp.com/wp-content/mu-plugins/highlander-comments/style-ie7.css?m=1351637563h&#038;ver=20110606' type='text/css' media='all' />
+<![endif]-->
+<link rel="EditURI" type="application/rsd+xml" title="RSD" href="https://didierstevens.wordpress.com/xmlrpc.php?rsd" />
+<link rel="wlwmanifest" type="application/wlwmanifest+xml" href="https://s1.wp.com/wp-includes/wlwmanifest.xml" /> 
+<link rel='prev' title='Identifying Garbage Men' href='https://blog.didierstevens.com/2008/12/13/identifying-garbage-men/' />
+<link rel='next' title='Howto: Add a Digital Signature to&nbsp;Executables' href='https://blog.didierstevens.com/2008/12/31/howto-add-a-digital-signature-to-executables/' />
+<meta name="generator" content="WordPress.com" />
+<link rel="canonical" href="https://blog.didierstevens.com/2008/12/30/howto-make-your-own-cert-with-openssl/" />
+<link rel='shortlink' href='https://wp.me/p16Sp-go' />
+<link rel="alternate" type="application/json+oembed" href="https://public-api.wordpress.com/oembed/?format=json&amp;url=https%3A%2F%2Fblog.didierstevens.com%2F2008%2F12%2F30%2Fhowto-make-your-own-cert-with-openssl%2F&amp;for=wpcom-auto-discovery" /><link rel="alternate" type="application/xml+oembed" href="https://public-api.wordpress.com/oembed/?format=xml&amp;url=https%3A%2F%2Fblog.didierstevens.com%2F2008%2F12%2F30%2Fhowto-make-your-own-cert-with-openssl%2F&amp;for=wpcom-auto-discovery" />
+<!-- Jetpack Open Graph Tags -->
+<meta property="og:type" content="article" />
+<meta property="og:title" content="Howto: Make Your Own Cert With OpenSSL" />
+<meta property="og:url" content="https://blog.didierstevens.com/2008/12/30/howto-make-your-own-cert-with-openssl/" />
+<meta property="og:description" content="Update: if you don&#8217;t have access to a machine with OpenSSL, I created a website to generate certs using the procedure described here. Read through the procedure, and then use the website list…" />
+<meta property="article:published_time" content="2008-12-30T21:18:38+00:00" />
+<meta property="article:modified_time" content="2016-08-12T11:39:26+00:00" />
+<meta property="og:site_name" content="Didier Stevens" />
+<meta property="og:image" content="https://didierstevens.wordpress.com/files/2008/12/20081230-220418.png" />
+<meta property="og:locale" content="en_US" />
+<meta name="twitter:site" content="@wordpressdotcom" />
+<meta name="twitter:text:title" content="Howto: Make Your Own Cert With&nbsp;OpenSSL" />
+<meta name="twitter:image" content="https://didierstevens.wordpress.com/files/2008/12/20081230-220030.png?w=240" />
+<meta name="twitter:card" content="summary" />
+<meta property="article:publisher" content="https://www.facebook.com/WordPresscom" />
+<link rel="shortcut icon" type="image/x-icon" href="https://s1.wp.com/i/favicon.ico" sizes="16x16 24x24 32x32 48x48" />
+<link rel="icon" type="image/x-icon" href="https://s1.wp.com/i/favicon.ico" sizes="16x16 24x24 32x32 48x48" />
+<link rel="apple-touch-icon-precomposed" href="https://s2.wp.com/i/webclip.png" />
+<link rel='openid.server' href='https://didierstevens.wordpress.com/?openidserver=1' />
+<link rel='openid.delegate' href='https://didierstevens.wordpress.com/' />
+<link rel="search" type="application/opensearchdescription+xml" href="https://blog.didierstevens.com/osd.xml" title="Didier Stevens" />
+<link rel="search" type="application/opensearchdescription+xml" href="https://s1.wp.com/opensearch.xml" title="WordPress.com" />
+		<style id="wpcom-hotfix-masterbar-style">
+			@media screen and (min-width: 783px) {
+				#wpadminbar .quicklinks li#wp-admin-bar-my-account.with-avatar > a img {
+					margin-top: 5px;
+				}
+			}
+		</style>
+		<style type="text/css">
+.widget_twitter li {
+	word-wrap: break-word;
+}
+</style>
+<meta name="application-name" content="Didier Stevens" /><meta name="msapplication-window" content="width=device-width;height=device-height" /><meta name="msapplication-tooltip" content="(blog \&#039;DidierStevens)" /><meta name="msapplication-task" content="name=Subscribe;action-uri=https://blog.didierstevens.com/feed/;icon-uri=https://s1.wp.com/i/favicon.ico" /><meta name="msapplication-task" content="name=Sign up for a free blog;action-uri=http://wordpress.com/signup/;icon-uri=https://s1.wp.com/i/favicon.ico" /><meta name="msapplication-task" content="name=WordPress.com Support;action-uri=http://support.wordpress.com/;icon-uri=https://s1.wp.com/i/favicon.ico" /><meta name="msapplication-task" content="name=WordPress.com Forums;action-uri=http://forums.wordpress.com/;icon-uri=https://s1.wp.com/i/favicon.ico" /><meta name="title" content="Howto: Make Your Own Cert With&nbsp;OpenSSL | Didier Stevens on WordPress.com" />
+<meta name="description" content="Update: if you don&#039;t have access to a machine with OpenSSL, I created a website to generate certs using the procedure described here. Read through the procedure, and then use the website listed at the end. And if you don&#039;t want your private key generated on a server you don&#039;t own, download my tool I&hellip;" />
+<style type="text/css">
+#header{
+	background: url(https://didierstevens.files.wordpress.com/2009/08/blog-header.png) no-repeat top right;
+}
+#header a {
+	color:#B54141;
+}
+</style>
+<link rel="amphtml" href="https://blog.didierstevens.com/2008/12/30/howto-make-your-own-cert-with-openssl/amp/"><style type="text/css" id="syntaxhighlighteranchor"></style>
+</head>
+
+<body class="post-template-default single single-post postid-1016 single-format-standard mp6 customizer-styles-applied highlander-enabled highlander-light">
+<div id="rap">
+<h1 id="header"><a href="https://blog.didierstevens.com/">Didier Stevens</a></h1>
+
+<div id="content">
+<!-- end header -->
+
+
+<h2>Tuesday 30 December 2008</h2>
+<div class="post-1016 post type-post status-publish format-standard hentry category-encryption" id="post-1016">
+	 <h3 class="storytitle">
+			Howto: Make Your Own Cert With&nbsp;OpenSSL		 </h3>
+	<div class="meta">Filed under:  <a href="https://blog.didierstevens.com/category/encryption/" rel="category tag">Encryption</a> &#8212; Didier Stevens @ 21:18 <br /></div>
+
+	<div class="storycontent">
+		<p><em>Update: if you don&#8217;t have access to a machine with OpenSSL, I created a website to generate certs using the procedure described here. Read through the procedure, and then use the website listed at the end. And if you don&#8217;t want your private key generated on a server you don&#8217;t own, download my tool I created for Windows that doesn&#8217;t require installation: <a href="https://blog.didierstevens.com/2016/08/08/howto-createcertgui-create-your-own-certificate-on-windows-openssl-library/">CreateCertGUI</a>.<br />
+</em></p>
+<p><em>I also made a <a href="http://videos.didierstevens.com/2015/03/27/howto-make-your-own-cert-with-openssl/">video</a> showing the full procedure.</em></p>
+<p>Ever wanted to make your own <a href="http://en.wikipedia.org/wiki/Public_key_certificate" target="_blank">public key certificate</a> for digital signatures? There are many recipes and tools on the net, like <a href="http://www.top20toolbar.com/misc/codesigncert.htm" target="_blank">this one</a>. My howto uses OpenSSL, and gives you a cert with a nice chain to your root CA.</p>
+<p>First we generate a 4096-bit long RSA key for our root CA and store it in file ca.key:</p>
+<p><strong>openssl genrsa -out ca.key 4096</strong></p>
+<pre>Generating RSA private key, 4096 bit long modulus
+...................................................................................++
+........................................................................++
+e is 65537 (0x10001)</pre>
+<p>If you want to password-protect this key, add option -des3.</p>
+<p>Next, we create our self-signed root CA certificate ca.crt; you&#8217;ll need to provide an identity for your root CA:</p>
+<p><strong>openssl req -new -x509 -days 1826 -key ca.key -out ca.crt</strong></p>
+<pre>You are about to be asked to enter information that will be incorporated
+into your certificate request.
+What you are about to enter is what is called a Distinguished Name or a DN.
+There are quite a few fields but you can leave some blank
+For some fields there will be a default value,
+If you enter '.', the field will be left blank.
+-----
+Country Name (2 letter code) [GB]:BE
+State or Province Name (full name) [Berkshire]:Brussels
+Locality Name (eg, city) [Newbury]:Brussels
+Organization Name (eg, company) [My Company Ltd]:https://DidierStevens.com
+Organizational Unit Name (eg, section) []:
+Common Name (eg, your name or your server's hostname) []:Didier Stevens (https://DidierStevens.com)
+Email Address []:didier stevens Google mail</pre>
+<p>The -x509 option is used for a self-signed certificate. 1826 days gives us a cert valid for 5 years.</p>
+<p><img data-attachment-id="1017" data-permalink="https://blog.didierstevens.com/2008/12/30/howto-make-your-own-cert-with-openssl/20081230-220030/" data-orig-file="https://didierstevens.files.wordpress.com/2008/12/20081230-220030.png?w=419&#038;h=519" data-orig-size="419,519" data-comments-opened="1" data-image-meta="{&quot;aperture&quot;:&quot;0&quot;,&quot;credit&quot;:&quot;&quot;,&quot;camera&quot;:&quot;&quot;,&quot;caption&quot;:&quot;&quot;,&quot;created_timestamp&quot;:&quot;0&quot;,&quot;copyright&quot;:&quot;&quot;,&quot;focal_length&quot;:&quot;0&quot;,&quot;iso&quot;:&quot;0&quot;,&quot;shutter_speed&quot;:&quot;0&quot;,&quot;title&quot;:&quot;&quot;}" data-image-title="20081230-220030" data-image-description="" data-medium-file="https://didierstevens.files.wordpress.com/2008/12/20081230-220030.png?w=419&#038;h=519?w=242" data-large-file="https://didierstevens.files.wordpress.com/2008/12/20081230-220030.png?w=419&#038;h=519?w=419" class="alignnone size-full wp-image-1017" title="20081230-220030" src="https://didierstevens.files.wordpress.com/2008/12/20081230-220030.png?w=419&#038;h=519" alt="20081230-220030" width="419" height="519" srcset="https://didierstevens.files.wordpress.com/2008/12/20081230-220030.png 419w, https://didierstevens.files.wordpress.com/2008/12/20081230-220030.png?w=78&amp;h=96 78w, https://didierstevens.files.wordpress.com/2008/12/20081230-220030.png?w=242&amp;h=300 242w" sizes="(max-width: 419px) 100vw, 419px" /></p>
+<p>Next step: create our subordinate CA that will be used for the actual signing. First, generate the key:</p>
+<p><strong>openssl genrsa -out ia.key 4096</strong></p>
+<pre>Generating RSA private key, 4096 bit long modulus
+.....++
+.............................................................................++
+e is 65537 (0x10001)</pre>
+<p>Then, request a certificate for this subordinate CA:</p>
+<p><strong>openssl req -new -key ia.key -out ia.csr</strong></p>
+<pre>You are about to be asked to enter information that will be incorporated
+into your certificate request.
+What you are about to enter is what is called a Distinguished Name or a DN.
+There are quite a few fields but you can leave some blank
+For some fields there will be a default value,
+If you enter '.', the field will be left blank.
+-----
+Country Name (2 letter code) [GB]:BE
+State or Province Name (full name) [Berkshire]:Brussels
+Locality Name (eg, city) [Newbury]:Brussels
+Organization Name (eg, company) [My Company Ltd]:https://DidierStevens.com
+Organizational Unit Name (eg, section) []:Didier Stevens Code Signing (https://DidierStevens.com)
+Common Name (eg, your name or your server's hostname) []:
+Email Address []:didier stevens Google mail
+
+Please enter the following 'extra' attributes
+to be sent with your certificate request
+A challenge password []:
+An optional company name []:</pre>
+<p>Next step: process the request for the subordinate CA certificate and get it signed by the root CA.</p>
+<p><strong>openssl x509 -req -days 730 -in ia.csr -CA ca.crt -CAkey ca.key -set_serial 01 -out ia.crt</strong></p>
+<pre>Signature ok
+subject=/C=BE/ST=Brussels/L=Brussels/O=https://DidierStevens.com/OU=Didier Stevens Code Signing (https://DidierStevens.com)/emailAddress=didier stevens Google mail
+Getting CA Private Key</pre>
+<p>The cert will be valid for 2 years (730 days) and I decided to choose my own serial number 01 for this cert (-set_serial 01). For the root CA, I let OpenSSL generate a random serial number.</p>
+<p>That&#8217;s all there is to it! Of course, there are many options I didn&#8217;t use. Consult the <a href="http://openssl.org/docs/apps/req.html" target="_blank">OpenSSL documentation</a> for more info. For example, I didn&#8217;t restrict my subordinate CA key usage to digital signatures. It can be used for anything, even making another subordinate CA. When you buy a code signing certificate, the CA company will limit its use to code signing.</p>
+<p><img data-attachment-id="1018" data-permalink="https://blog.didierstevens.com/2008/12/30/howto-make-your-own-cert-with-openssl/20081230-220418/" data-orig-file="https://didierstevens.files.wordpress.com/2008/12/20081230-220418.png?w=419&#038;h=519" data-orig-size="419,519" data-comments-opened="1" data-image-meta="{&quot;aperture&quot;:&quot;0&quot;,&quot;credit&quot;:&quot;&quot;,&quot;camera&quot;:&quot;&quot;,&quot;caption&quot;:&quot;&quot;,&quot;created_timestamp&quot;:&quot;0&quot;,&quot;copyright&quot;:&quot;&quot;,&quot;focal_length&quot;:&quot;0&quot;,&quot;iso&quot;:&quot;0&quot;,&quot;shutter_speed&quot;:&quot;0&quot;,&quot;title&quot;:&quot;&quot;}" data-image-title="20081230-220418" data-image-description="" data-medium-file="https://didierstevens.files.wordpress.com/2008/12/20081230-220418.png?w=419&#038;h=519?w=242" data-large-file="https://didierstevens.files.wordpress.com/2008/12/20081230-220418.png?w=419&#038;h=519?w=419" class="alignnone size-full wp-image-1018" title="20081230-220418" src="https://didierstevens.files.wordpress.com/2008/12/20081230-220418.png?w=419&#038;h=519" alt="20081230-220418" width="419" height="519" srcset="https://didierstevens.files.wordpress.com/2008/12/20081230-220418.png 419w, https://didierstevens.files.wordpress.com/2008/12/20081230-220418.png?w=78&amp;h=96 78w, https://didierstevens.files.wordpress.com/2008/12/20081230-220418.png?w=242&amp;h=300 242w" sizes="(max-width: 419px) 100vw, 419px" /></p>
+<p>To use this subordinate CA key for <a href="http://en.wikipedia.org/wiki/Authenticode" target="_blank">Authenticode</a> signatures with <a href="https://knowledge.verisign.com/support/code-signing-support/index?page=content&amp;id=AR190" target="_blank">Microsoft&#8217;s signtool</a>, you&#8217;ll have to package the keys and certs in a <a href="http://en.wikipedia.org/wiki/PKCS12" target="_blank">PKCS12</a> file:</p>
+<p><strong>openssl pkcs12 -export -out ia.p12 -inkey ia.key -in ia.crt -chain -CAfile ca.crt</strong></p>
+<pre>Enter Export Password:
+Verifying - Enter Export Password:</pre>
+<p>To sign executables in Windows with the signtool: install file ia.p12 in your certificate store (e.g. double click it), and then use signtool /wizard to sign your PE file.</p>
+<p>I&#8217;ve used this process to generate certs for my own code signing, and for my <a href="https://blog.didierstevens.com/2008/07/22/authenticode-challenge/">Authenticode Challenge</a>.</p>
+<p><em>Update: don&#8217;t have OpenSSL? Use my website <a href="https://toolbokz.com/gencert.psp">https://toolbokz.com/gencert.psp</a></em></p>
+</div>
+</div>
+</div>
+</div>
+
+
+<!--  -->
+	<div style="display:none">
+	</div>
+<script type='text/javascript'>
+/* <![CDATA[ */
+var HighlanderComments = {"loggingInText":"Logging In\u2026","submittingText":"Posting Comment\u2026","postCommentText":"Post Comment","connectingToText":"Connecting to %s","commentingAsText":"%1$s: You are commenting using your %2$s account.","logoutText":"Log Out","loginText":"Log In","connectURL":"https:\/\/didierstevens.wordpress.com\/public.api\/connect\/?action=request","logoutURL":"https:\/\/didierstevens.wordpress.com\/wp-login.php?action=logout&_wpnonce=e35ce64537","homeURL":"https:\/\/blog.didierstevens.com\/","postID":"1016","gravDefault":"mystery","enterACommentError":"Please enter a comment","enterEmailError":"Please enter your email address here","invalidEmailError":"Invalid email address","enterAuthorError":"Please enter your name here","gravatarFromEmail":"This picture will show whenever you leave a comment. Click to customize it.","logInToExternalAccount":"Log in to use details from one of these accounts.","change":"Change","changeAccount":"Change Account","comment_registration":"","userIsLoggedIn":"","isJetpack":"","text_direction":"ltr"};
+/* ]]> */
+</script>
+<script type='text/javascript' src='https://s2.wp.com/_static/??/wp-content/js/jquery/jquery.autoresize.js,/wp-content/mu-plugins/highlander-comments/script.js?m=1521806916j'></script>
+
+	<div id="carousel-reblog-box">
+		<form action="#" name="carousel-reblog">
+			<textarea id="carousel-reblog-content" name="carousel-reblog-content" placeholder="Add your thoughts here... (optional)"></textarea>
+			<label for="carousel-reblog-to-blog-id" id="carousel-reblog-lblogid">Post to</label>
+			<select name="carousel-reblog-to-blog-id" id="carousel-reblog-to-blog-id">
+						</select>
+
+			<div class="submit">
+				<span class="canceltext"><a href="#" class="cancel">Cancel</a></span>
+				<input type="submit" name="carousel-reblog-submit" class="button" id="carousel-reblog-submit" value="Reblog Post" />
+				<input type="hidden" id="carousel-reblog-blog-id" value="264765" />
+				<input type="hidden" id="carousel-reblog-blog-url" value="https://blog.didierstevens.com" />
+				<input type="hidden" id="carousel-reblog-blog-title" value="Didier Stevens" />
+				<input type="hidden" id="carousel-reblog-post-url" value="" />
+				<input type="hidden" id="carousel-reblog-post-title" value="" />
+			</div>
+
+			<input type="hidden" id="_wpnonce" name="_wpnonce" value="fcdf852e70" /><input type="hidden" name="_wp_http_referer" value="/2008/12/30/howto-make-your-own-cert-with-openssl/" />		</form>
+
+		<div class="arrow"></div>
+	</div>
+<script type='text/javascript' src='https://platform.twitter.com/widgets.js?ver=20111117'></script>
+<link rel='stylesheet' id='all-css-0-3' href='https://s1.wp.com/wp-content/mu-plugins/carousel/jetpack-carousel.css?m=1481571546h&cssminify=yes' type='text/css' media='all' />
+<!--[if lte IE 8]>
+<link rel='stylesheet' id='jetpack-carousel-ie8fix-css'  href='https://s1.wp.com/wp-content/mu-plugins/carousel/jetpack-carousel-ie8fix.css?m=1412618825h&#038;ver=20121024' type='text/css' media='all' />
+<![endif]-->
+<script type='text/javascript'>
+/* <![CDATA[ */
+var actionbardata = {"siteID":"264765","siteName":"Didier Stevens","siteURL":"https:\/\/blog.didierstevens.com","icon":"<img alt='' src='https:\/\/s2.wp.com\/i\/logo\/wpcom-gray-white.png' class='avatar avatar-50' height='50' width='50' \/>","canManageOptions":"","canCustomizeSite":"","isFollowing":"","themeSlug":"pub\/rubric","signupURL":"https:\/\/wordpress.com\/start\/","loginURL":"https:\/\/didierstevens.wordpress.com\/wp-login.php?redirect_to=https%3A%2F%2Fblog.didierstevens.com%2F2008%2F12%2F30%2Fhowto-make-your-own-cert-with-openssl%2F","themeURL":"","xhrURL":"https:\/\/blog.didierstevens.com\/wp-admin\/admin-ajax.php","nonce":"0b32d016d9","isSingular":"1","isFolded":"","isLoggedIn":"","isMobile":"","subscribeNonce":"<input type=\"hidden\" id=\"_wpnonce\" name=\"_wpnonce\" value=\"bffb08d666\" \/>","referer":"https:\/\/blog.didierstevens.com\/2008\/12\/30\/howto-make-your-own-cert-with-openssl\/","canFollow":"1","feedID":"267095","statusMessage":"","customizeLink":"https:\/\/didierstevens.wordpress.com\/wp-admin\/customize.php?url=https%3A%2F%2Fdidierstevens.wordpress.com%2F2008%2F12%2F30%2Fhowto-make-your-own-cert-with-openssl%2F","postID":"1016","shortlink":"https:\/\/wp.me\/p16Sp-go","canEditPost":"","editLink":"https:\/\/wordpress.com\/post\/blog.didierstevens.com\/1016","statsLink":"https:\/\/wordpress.com\/stats\/post\/1016\/blog.didierstevens.com","i18n":{"view":"View site","follow":"Follow","following":"Following","edit":"Edit","login":"Log in","signup":"Sign up","customize":"Customize","report":"Report this content","themeInfo":"Get theme: Rubric","shortlink":"Copy shortlink","copied":"Copied","followedText":"New posts from this site will now appear in your <a href=\"https:\/\/wordpress.com\/\">Reader<\/a>","foldBar":"Collapse this bar","unfoldBar":"Expand this bar","editSubs":"Manage subscriptions","viewReader":"View site in Reader","viewReadPost":"View post in Reader","subscribe":"Sign me up","enterEmail":"Enter your email address","followers":"Join 631 other followers","alreadyUser":"Already have a WordPress.com account? <a href=\"https:\/\/didierstevens.wordpress.com\/wp-login.php?redirect_to=https%3A%2F%2Fblog.didierstevens.com%2F2008%2F12%2F30%2Fhowto-make-your-own-cert-with-openssl%2F\">Log in now.<\/a>","stats":"Stats"}};
+/* ]]> */
+</script>
+<script type='text/javascript'>
+/* <![CDATA[ */
+var jetpackCarouselStrings = {"widths":[370,700,1000,1200,1400,2000],"is_logged_in":"","lang":"en","ajaxurl":"https:\/\/blog.didierstevens.com\/wp-admin\/admin-ajax.php","nonce":"0a6c47f624","display_exif":"1","display_geo":"1","single_image_gallery":"1","single_image_gallery_media_file":"","background_color":"black","comment":"Comment","post_comment":"Post Comment","write_comment":"Write a Comment...","loading_comments":"Loading Comments...","download_original":"View full size <span class=\"photo-size\">{0}<span class=\"photo-size-times\">\u00d7<\/span>{1}<\/span>","no_comment_text":"Please be sure to submit some text with your comment.","no_comment_email":"Please provide an email address to comment.","no_comment_author":"Please provide your name to comment.","comment_post_error":"Sorry, but there was an error posting your comment. Please try again later.","comment_approved":"Your comment was approved.","comment_unapproved":"Your comment is in moderation.","camera":"Camera","aperture":"Aperture","shutter_speed":"Shutter Speed","focal_length":"Focal Length","comment_registration":"0","require_name_email":"0","login_url":"https:\/\/didierstevens.wordpress.com\/wp-login.php?redirect_to=https%3A%2F%2Fblog.didierstevens.com%2F2008%2F12%2F30%2Fhowto-make-your-own-cert-with-openssl%2F","blog_id":"264765","local_comments_commenting_as":"<fieldset><label for=\"email\">Email<\/label> <input type=\"text\" name=\"email\" class=\"jp-carousel-comment-form-field jp-carousel-comment-form-text-field\" id=\"jp-carousel-comment-form-email-field\" \/><\/fieldset><fieldset><label for=\"author\">Name<\/label> <input type=\"text\" name=\"author\" class=\"jp-carousel-comment-form-field jp-carousel-comment-form-text-field\" id=\"jp-carousel-comment-form-author-field\" \/><\/fieldset><fieldset><label for=\"url\">Website<\/label> <input type=\"text\" name=\"url\" class=\"jp-carousel-comment-form-field jp-carousel-comment-form-text-field\" id=\"jp-carousel-comment-form-url-field\" \/><\/fieldset>","reblog":"Reblog","reblogged":"Reblogged","reblog_add_thoughts":"Add your thoughts here... (optional)","reblogging":"Reblogging...","post_reblog":"Post Reblog","stats_query_args":"blog=264765&v=wpcom&tz=0&user_id=0&subd=didierstevens","is_public":"1","reblog_enabled":""};
+/* ]]> */
+</script>
+<script type='text/javascript' src='https://s0.wp.com/_static/??-eJyVUEkOwjAM/BCpWcUJ8RQUUgNJs2EnLL/HlSj0gCpxijWbx4F7VibFgrGAY2jxZg3mR+N4BiMqVJV9PdvI4G2HDNeKFS86th5pENtofG2FlCCTQhCjIsz+2QQbJxJ1K7w6aoKguSDJpNINiWwf9sH+TCikTcdTJlNsir3pM/26hPO3/Bh38gX0fD/NWPVjl9GUKqMHhyVLLzUAU/06ywGLWjVzOMhmOCUKot+H3WKzXMzXq/V26V7v7qcD'></script>
+<script type="text/javascript">
+// <![CDATA[
+(function() {
+try{
+  if ( window.external &&'msIsSiteMode' in window.external) {
+    if (window.external.msIsSiteMode()) {
+      var jl = document.createElement('script');
+      jl.type='text/javascript';
+      jl.async=true;
+      jl.src='/wp-content/plugins/ie-sitemode/custom-jumplist.php';
+      var s = document.getElementsByTagName('script')[0];
+      s.parentNode.insertBefore(jl, s);
+    }
+  }
+}catch(e){}
+})();
+// ]]>
+</script>		<iframe src='https://widgets.wp.com/likes/master.html?ver=20180319#ver=20180319' scrolling='no' id='likes-master' name='likes-master' style='display:none;'></iframe>
+		<div id='likes-other-gravatars'><div class="likes-text"><span>%d</span> bloggers like this:</div><ul class="wpl-avatars sd-like-gravatars"></ul></div>
+<script src="//stats.wp.com/w.js?56" type="text/javascript" async defer></script>
+<script type="text/javascript">
+_tkq = window._tkq || [];
+_stq = window._stq || [];
+_tkq.push(['storeContext', {'blog_id':'264765','blog_tz':'0','user_lang':'en','blog_lang':'en','user_id':'0'}]);
+_stq.push(['view', {'blog':'264765','v':'wpcom','tz':'0','user_id':'0','post':'1016','subd':'didierstevens'}]);
+_stq.push(['extra', {'crypt':'UE40eW5QN0p8M2Y/RE1TaVhzUzFMbjdWNHpwZGhTayxPSUFCMGNrd29+Smw0TDhnZmRTK0hlRi9QSGh6bi9GXVhBJWIlZlR5U1JMLU8/MkNtblkvY1dMVEs1QkdjayZ2U0g9LzAsWVFHW28/U0JfcD9SNVZobUxCQ0cwP0RXZiVmSVRZX2VPdjJrVG85cVhXejQsS3M9Vz1fVj9fNW1yQWUucS4sWzVMZ0hhUE1PSEEsRFp1eV0wUm1xak4uTFZqZS49Tk5LeXBtUTZpMlksdCVDMlJrLDd8UFNxMi4zVG4tTFJbUU8lU0dvYm9xRTZHNz1MTFlFV1F8ZXd3YnUzKyw5LEhjRnNwSHdrei1EOE9VUmMlXWk5bWFjSkcmPXNnOXN5dktUXSwxeStMJkhTQU85cFJoWlA9V1lrNVVq'}]);
+_stq.push([ 'clickTrackerInit', '264765', '1016' ]);
+	</script>
+<noscript><img src="https://pixel.wp.com/b.gif?v=noscript" style="height:0px;width:0px;overflow:hidden" alt="" /></noscript>
+<script>
+if ( 'object' === typeof wpcom_mobile_user_agent_info ) {
+
+	wpcom_mobile_user_agent_info.init();
+	var mobileStatsQueryString = "";
+	
+	if( false !== wpcom_mobile_user_agent_info.matchedPlatformName )
+		mobileStatsQueryString += "&x_" + 'mobile_platforms' + '=' + wpcom_mobile_user_agent_info.matchedPlatformName;
+	
+	if( false !== wpcom_mobile_user_agent_info.matchedUserAgentName )
+		mobileStatsQueryString += "&x_" + 'mobile_devices' + '=' + wpcom_mobile_user_agent_info.matchedUserAgentName;
+	
+	if( wpcom_mobile_user_agent_info.isIPad() )
+		mobileStatsQueryString += "&x_" + 'ipad_views' + '=' + 'views';
+
+	if( "" != mobileStatsQueryString ) {
+		new Image().src = document.location.protocol + '//pixel.wp.com/g.gif?v=wpcom-no-pv' + mobileStatsQueryString + '&baba=' + Math.random();
+	}
+	
+}
+</script></body>
+</html>
+<!--
+	generated in 0.270 seconds
+	151037 bytes batcached for 300 seconds
+-->

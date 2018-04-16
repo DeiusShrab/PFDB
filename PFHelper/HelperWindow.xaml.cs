@@ -748,50 +748,68 @@ namespace PFHelper
 
     private void BtnRollD20_Click(object sender, RoutedEventArgs e)
     {
-      var diceList = DiceRoll(20, IntNumD20.Value ?? 0, IntAddD20.Value ?? 0, RadPlusD20.IsChecked ?? false);
-      LbxD20.ItemsSource = diceList;
+      if (IntNumD20.Value > 0)
+      {
+        var diceList = DiceRoll(20, IntNumD20.Value ?? 0, IntAddD20.Value ?? 0, RadPlusD20.IsChecked ?? false);
+        LbxD20.ItemsSource = diceList;
 
-      LblAvgD20.Content = diceList.Average(x => x.Result);
+        LblAvgD20.Content = diceList.Average(x => x.Result);
+      }
     }
 
     private void BtnRollD4_Click(object sender, RoutedEventArgs e)
     {
-      var diceList = DiceRoll(4, IntNumD4.Value ?? 0, IntAddD4.Value ?? 0, RadPlusD4.IsChecked ?? false);
-      LbxD4.ItemsSource = diceList;
+      if (IntNumD4.Value > 0)
+      {
+        var diceList = DiceRoll(4, IntNumD4.Value ?? 0, IntAddD4.Value ?? 0, RadPlusD4.IsChecked ?? false);
+        LbxD4.ItemsSource = diceList;
 
-      LblTotalD4.Content = diceList.Sum(x => x.Result);
+        LblTotalD4.Content = diceList.Sum(x => x.Result);
+      }
     }
 
     private void BtnRollD6_Click(object sender, RoutedEventArgs e)
     {
-      var diceList = DiceRoll(6, IntNumD6.Value ?? 0, IntAddD6.Value ?? 0, RadPlusD6.IsChecked ?? false);
-      LbxD6.ItemsSource = diceList;
+      if (IntNumD6.Value > 0)
+      {
+        var diceList = DiceRoll(6, IntNumD6.Value ?? 0, IntAddD6.Value ?? 0, RadPlusD6.IsChecked ?? false);
+        LbxD6.ItemsSource = diceList;
 
-      LblTotalD6.Content = diceList.Sum(x => x.Result);
+        LblTotalD6.Content = diceList.Sum(x => x.Result);
+      }
     }
 
     private void BtnRollD8_Click(object sender, RoutedEventArgs e)
     {
-      var diceList = DiceRoll(8, IntNumD8.Value ?? 0, IntAddD8.Value ?? 0, RadPlusD8.IsChecked ?? false);
-      LbxD8.ItemsSource = diceList;
+      if (IntNumD8.Value > 0)
+      {
+        var diceList = DiceRoll(8, IntNumD8.Value ?? 0, IntAddD8.Value ?? 0, RadPlusD8.IsChecked ?? false);
+        LbxD8.ItemsSource = diceList;
 
-      LblTotalD8.Content = diceList.Sum(x => x.Result);
+        LblTotalD8.Content = diceList.Sum(x => x.Result);
+      }
     }
 
     private void BtnRollD10_Click(object sender, RoutedEventArgs e)
     {
-      var diceList = DiceRoll(10, IntNumD10.Value ?? 0, IntAddD10.Value ?? 0, RadPlusD10.IsChecked ?? false);
-      LbxD10.ItemsSource = diceList;
+      if (IntNumD10.Value > 0)
+      {
+        var diceList = DiceRoll(10, IntNumD10.Value ?? 0, IntAddD10.Value ?? 0, RadPlusD10.IsChecked ?? false);
+        LbxD10.ItemsSource = diceList;
 
-      LblTotalD10.Content = diceList.Sum(x => x.Result);
+        LblTotalD10.Content = diceList.Sum(x => x.Result);
+      }
     }
 
     private void BtnRollD12_Click(object sender, RoutedEventArgs e)
     {
-      var diceList = DiceRoll(12, IntNumD12.Value ?? 0, IntAddD12.Value ?? 0, RadPlusD12.IsChecked ?? false);
-      LbxD12.ItemsSource = diceList;
+      if (IntNumD12.Value > 0)
+      {
+        var diceList = DiceRoll(12, IntNumD12.Value ?? 0, IntAddD12.Value ?? 0, RadPlusD12.IsChecked ?? false);
+        LbxD12.ItemsSource = diceList;
 
-      LblTotalD12.Content = diceList.Sum(x => x.Result);
+        LblTotalD12.Content = diceList.Sum(x => x.Result);
+      }
     }
 
     private void BtnRollD100_Click(object sender, RoutedEventArgs e)
