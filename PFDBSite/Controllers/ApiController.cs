@@ -64,7 +64,7 @@ namespace PFDBSite.Controllers
       var type = listType.ToLower();
 
       if (type == "Bestiary")
-        return new JsonResult(context.Bestiary.Select(x => new ListItemResult() { Id = x.BestiaryId, Name = x.Name }));
+        return new JsonResult(context.Bestiary.Select(x => new ListItemResult() { Id = x.BestiaryId, Name = x.Name, Notes = x.Cr.ToString() }));
       else if (type == "BestiaryType")
         return new JsonResult(context.BestiaryType.Select(x => new ListItemResult() { Id = x.BestiaryTypeId, Name = x.Name }));
       else if (type == "Continent")
@@ -545,7 +545,7 @@ namespace PFDBSite.Controllers
       }
     }
 
-    // BestiaryDetail not implemented, part of Bestiary
+    // BestiaryDetail created as part of Bestiary
 
     [HttpPost("BestiaryEnvironment")]
     public IActionResult BestiaryEnvironment_Create([FromBody] BestiaryEnvironment obj)

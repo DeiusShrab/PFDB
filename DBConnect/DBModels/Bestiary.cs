@@ -13,7 +13,7 @@ namespace DBConnect.DBModels
         public string Class { get; set; }
         public string Alignment { get; set; }
         public string Size { get; set; }
-        public string Type { get; set; }
+        public int Type { get; set; }
         public string SubType { get; set; }
         public int Init { get; set; }
         public string Senses { get; set; }

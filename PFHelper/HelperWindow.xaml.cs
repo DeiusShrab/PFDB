@@ -249,14 +249,24 @@ namespace PFHelper
       set { LblMoonPhase.Content = value; }
     }
 
+    public ObservableCollection<CombatGridItem> CombatGridItems
+    {
+      get => combatGridItems;
+    }
+
+    public ObservableCollection<CombatEffectItem> CombatEffectItems
+    {
+      get => combatEffectItems;
+    }
+
     #endregion
 
     #region Data Properties
 
     private ObservableCollection<CombatGridItem> combatGridItems;
+    private ObservableCollection<CombatEffectItem> combatEffectItems;
     private ObservableCollection<DisplayResult> randomEncounterItems;
     private ObservableCollection<DisplayResult> continentList;
-    private ObservableCollection<CombatEffectItem> combatEffects;
     private ObservableCollection<DisplayValues> encounterResults;
     private ObservableCollection<DisplayResult> creatureInfos;
 
@@ -291,7 +301,7 @@ namespace PFHelper
 
       encounterResults = new ObservableCollection<DisplayValues>();
       randomEncounterItems = new ObservableCollection<DisplayResult>();
-      combatEffects = new ObservableCollection<CombatEffectItem>();
+      combatEffectItems = new ObservableCollection<CombatEffectItem>();
       combatGridItems = new ObservableCollection<CombatGridItem>();
       continentList = new ObservableCollection<DisplayResult>();
       creatureInfos = new ObservableCollection<DisplayResult>();
@@ -309,8 +319,6 @@ namespace PFHelper
       LbxEncounterCRs.DisplayMemberPath = "Display";
       LbxEncounterCRs.SelectedValuePath = "Values";
 
-      DgCombatGrid.ItemsSource = combatGridItems;
-      DgCombatEffects.ItemsSource = combatEffects;
       LbxEncounterCreatures.ItemsSource = randomEncounterItems;
       LbxEncounterCRs.ItemsSource = encounterResults;
       LbxContinent.ItemsSource = continentList;
@@ -373,7 +381,7 @@ namespace PFHelper
         CurrentDate = saveObject.Date;
         CurrentWeather = saveObject.Weather;
 
-        combatEffects = new ObservableCollection<CombatEffectItem>(saveObject.CombatEffects);
+        combatEffectItems = new ObservableCollection<CombatEffectItem>(saveObject.CombatEffects);
         combatGridItems = new ObservableCollection<CombatGridItem>(saveObject.CombatGridItems);
       }
       else
@@ -389,7 +397,7 @@ namespace PFHelper
         CurrentDate = new FantasyDate() { Year = 10000, Month = 1, Day = 1 };
         CurrentWeather = new Weather();
 
-        combatEffects = new ObservableCollection<CombatEffectItem>();
+        combatEffectItems = new ObservableCollection<CombatEffectItem>();
         combatGridItems = new ObservableCollection<CombatGridItem>();
       }
     }
@@ -413,7 +421,7 @@ namespace PFHelper
       saveObject.Date = CurrentDate;
       saveObject.Weather = CurrentWeather;
 
-      saveObject.CombatEffects = combatEffects.ToList();
+      saveObject.CombatEffects = combatEffectItems.ToList();
       saveObject.CombatGridItems = combatGridItems.ToList();
 
       File.WriteAllText(saveDataPath, Newtonsoft.Json.JsonConvert.SerializeObject(saveObject));
@@ -636,7 +644,7 @@ namespace PFHelper
 
       var removeItems = new List<CombatEffectItem>();
 
-      foreach (var item in combatEffects)
+      foreach (var item in combatEffectItems)
       {
         if (item.Rounds <= 0)
           removeItems.Add(item);
@@ -646,7 +654,7 @@ namespace PFHelper
 
       foreach (var item in removeItems)
       {
-        combatEffects.Remove(item);
+        combatEffectItems.Remove(item);
       }
     }
 
@@ -709,7 +717,7 @@ namespace PFHelper
 
     private void UpdateDate()
     {
-      LblGrandDate.Content = $"YEAR {CurrentDate.Year} AA, Season of {seasons[CurrentDate.Month - 1].Name}, Month of {months[CurrentDate.Month - 1].Name}, Day {CurrentDate.Day}";
+      LblGrandDate.Content = $"YEAR {CurrentDate.Year} AA, Season of {seasons[CurrentDate.Season - 1].Name}, Month of {months[CurrentDate.Month - 1].Name}, Day {CurrentDate.Day}";
 
       if (CurrentDate.Day <= 3 && CurrentDate.Day > 0)
         MoonPhase = "FULL MOON";
@@ -854,7 +862,7 @@ namespace PFHelper
     private void BtnCombatEnd_Click(object sender, RoutedEventArgs e)
     {
       CombatRound = 0;
-      combatEffects.Clear();
+      combatEffectItems.Clear();
 
       var removeItems = new List<CombatGridItem>();
       foreach (var item in combatGridItems)
@@ -870,37 +878,43 @@ namespace PFHelper
 
     private void BtnCombatAddNew_Click(object sender, RoutedEventArgs e)
     {
-      var cgi = new CombatGridItem()
+      if (!string.IsNullOrWhiteSpace(CgiName))
       {
-        Name = CgiName,
-        AC = CgiAC,
-        ACFlat = CgiFlat,
-        ACTouch = CgiTouch,
-        BestiaryId = 0,
-        Fort = CgiFort,
-        Ref = CgiRef,
-        Will = CgiWill,
-        HP = CgiHP,
-        Init = CgiInit,
-        PC = CgiPC
-      };
+        var cgi = new CombatGridItem()
+        {
+          Name = CgiName,
+          AC = CgiAC,
+          ACFlat = CgiFlat,
+          ACTouch = CgiTouch,
+          BestiaryId = 0,
+          Fort = CgiFort,
+          Ref = CgiRef,
+          Will = CgiWill,
+          HP = CgiHP,
+          Init = CgiInit,
+          PC = CgiPC
+        };
 
-      combatGridItems.Add(cgi);
+        combatGridItems.Add(cgi);
 
-      ClearCombatAdd();
+        ClearCombatAdd();
+      }
     }
 
     private void BtnCombatAddEffect_Click(object sender, RoutedEventArgs e)
     {
-      var cef = new CombatEffectItem()
+      if (!string.IsNullOrWhiteSpace(CefName))
       {
-        Rounds = CefRounds,
-        Effect = CefName
-      };
+        var cef = new CombatEffectItem()
+        {
+          Rounds = CefRounds,
+          Effect = CefName
+        };
 
-      combatEffects.Add(cef);
+        combatEffectItems.Add(cef);
 
-      ClearCombatEffectAdd();
+        ClearCombatEffectAdd();
+      }
     }
 
     private void BtnCombatSort_Click(object sender, RoutedEventArgs e)
@@ -910,17 +924,28 @@ namespace PFHelper
 
     private void BtnCombatDuplicate_Click(object sender, RoutedEventArgs e)
     {
-      if (DgCombatGrid.SelectedItem != null)
+      if (DgCombatGrid.SelectedItems != null)
       {
-        combatGridItems.Add(new CombatGridItem((CombatGridItem)DgCombatGrid.SelectedItem));
+        foreach (CombatGridItem item in DgCombatGrid.SelectedItems)
+        {
+          combatGridItems.Add(new CombatGridItem(item));
+        }
       }
     }
 
     private void BtnCombatDelete_Click(object sender, RoutedEventArgs e)
     {
-      if (DgCombatGrid.SelectedItem != null)
+      if (DgCombatGrid.SelectedItems != null)
       {
-        combatGridItems.Remove((CombatGridItem)DgCombatGrid.SelectedItem);
+        var removeItems = new List<CombatGridItem>();
+        foreach (CombatGridItem item in DgCombatGrid.SelectedItems)
+        {
+          removeItems.Add(item);
+        }
+        foreach (var item in removeItems)
+        {
+          combatGridItems.Remove(item);
+        }
       }
     }
 
@@ -938,7 +963,7 @@ namespace PFHelper
     {
       if (MessageBox.Show("Are you sure you want to Clear All?") == MessageBoxResult.OK)
       {
-        combatEffects.Clear();
+        combatEffectItems.Clear();
         combatGridItems.Clear();
         ClearCombatAdd();
         ClearCombatEffectAdd();

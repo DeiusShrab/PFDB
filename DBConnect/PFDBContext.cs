@@ -328,9 +328,7 @@ namespace DBConnect
 
         entity.Property(e => e.Treasure).IsUnicode(false);
 
-        entity.Property(e => e.Type)
-                  .HasMaxLength(100)
-                  .IsUnicode(false);
+        entity.Property(e => e.Type);
 
         entity.Property(e => e.VariantParent)
                   .HasMaxLength(25)

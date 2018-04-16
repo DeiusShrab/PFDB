@@ -54,6 +54,16 @@ namespace PFDBSite.Helpers
                         || (request.Antipaladin && levelList.Contains(s.Antipaladin ?? -1))
                         || (request.Magus && levelList.Contains(s.Magus ?? -1))
                         || (request.Adept && levelList.Contains(s.Adept ?? -1))
+                        || (request.BloodRager && levelList.Contains(s.BloodRager ?? -1))
+                        || (request.Shaman && levelList.Contains(s.Shaman ?? -1))
+                        || (request.Psychic && levelList.Contains(s.Psychic ?? -1))
+                        || (request.Medium && levelList.Contains(s.Medium ?? -1))
+                        || (request.Mesmerist && levelList.Contains(s.Mesmerist ?? -1))
+                        || (request.Occultist && levelList.Contains(s.Occultist ?? -1))
+                        || (request.Spiritualist && levelList.Contains(s.Spiritualist ?? -1))
+                        || (request.Skald && levelList.Contains(s.Skald ?? -1))
+                        || (request.Investigator && levelList.Contains(s.Investigator ?? -1))
+                        || (request.Hunter && levelList.Contains(s.Hunter ?? -1))
                         )
                       select s;
 

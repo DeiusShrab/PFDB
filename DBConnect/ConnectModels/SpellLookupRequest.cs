@@ -22,6 +22,16 @@ namespace DBConnect.ConnectModels
     public bool Antipaladin { get; set; }
     public bool Magus { get; set; }
     public bool Adept { get; set; }
+    public bool BloodRager { get; set; }
+    public bool Shaman { get; set; }
+    public bool Psychic { get; set; }
+    public bool Medium { get; set; }
+    public bool Mesmerist { get; set; }
+    public bool Occultist { get; set; }
+    public bool Spiritualist { get; set; }
+    public bool Skald { get; set; }
+    public bool Investigator { get; set; }
+    public bool Hunter { get; set; }
     public bool Lv0 { get; set; }
     public bool Lv1 { get; set; }
     public bool Lv2 { get; set; }

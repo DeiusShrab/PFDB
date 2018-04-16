@@ -9,10 +9,22 @@
         mc:Ignorable="d"
         Title="PFHelper" Height="728" Width="1366" Closing="Window_Closing">
     <Window.Resources>
-        <ObjectDataProvider x:Key="CombatDataProvider"
-                            ObjectType="{x:Type me:CombatGridItem}" />
-        <ObjectDataProvider x:Key="EffectDataProvider"
-                            ObjectType="{x:Type me:CombatEffectItem}" />
+        <Style TargetType="{x:Type DataGrid}">
+            <Setter Property="Background" Value="#FFF" />
+            <Setter Property="AlternationCount" Value="2" />
+            
+        </Style>
+
+        <Style TargetType="{x:Type DataGridRow}">
+            <Style.Triggers>
+                <Trigger Property="ItemsControl.AlternationIndex" Value="0">
+                    <Setter Property="Background" Value="#FFF"></Setter>
+                </Trigger>
+                <Trigger Property="ItemsControl.AlternationIndex" Value="1">
+                    <Setter Property="Background" Value="#DDD"></Setter>
+                </Trigger>
+            </Style.Triggers>
+        </Style>
     </Window.Resources>
     <Window.CommandBindings>
         <CommandBinding Command="Save" Executed="CommandSave_Executed"/>
@@ -133,7 +145,7 @@
                     <Button x:Name="BtnCombatNextRound" Content="Next Round ==&gt;" HorizontalAlignment="Left" Margin="144,10,0,0" VerticalAlignment="Top" Width="101" Height="31" Click="BtnCombatNextRound_Click"/>
                     <TextBox x:Name="TxtCombatInit" HorizontalAlignment="Left" Height="23" Margin="10,72,0,0" TextWrapping="Wrap" Text="00" VerticalAlignment="Top" Width="27"/>
                     <Label Content="Init" HorizontalAlignment="Left" Margin="10,46,0,0" VerticalAlignment="Top"/>
-                    <DataGrid x:Name="DgCombatGrid" HorizontalAlignment="Left" Height="332" Margin="10,100,0,0" VerticalAlignment="Top" Width="755" AutoGenerateColumns="False" ColumnWidth="Auto" DataContext="{Binding Source={StaticResource CombatDataProvider}}" ItemsSource="{Binding Mode=OneWay}" AlternatingRowBackground="Gray" AlternationCount="1">
+                    <DataGrid x:Name="DgCombatGrid" HorizontalAlignment="Left" Height="332" Margin="10,100,0,0" VerticalAlignment="Top" Width="755" AutoGenerateColumns="False" CanUserAddRows="False" ItemsSource="{Binding CombatGridItems}">
                         <DataGrid.Columns>
                             <DataGridTextColumn Binding="{Binding Init}" Header="Init" Width="30"/>
                             <DataGridTextColumn Binding="{Binding Name}" Header="Name" Width="150"/>
@@ -153,7 +165,7 @@
                             <DataGridTextColumn Binding="{Binding Note}" Header="Note" Width="*"/>
                         </DataGrid.Columns>
                     </DataGrid>
-                    <DataGrid x:Name="DgCombatEffects" HorizontalAlignment="Left" Height="332" Margin="770,100,0,0" VerticalAlignment="Top" Width="310" AutoGenerateColumns="False" DataContext="{Binding Source={StaticResource EffectDataProvider}}" ItemsSource="{Binding Mode=OneWay}" ColumnWidth="Auto">
+                    <DataGrid x:Name="DgCombatEffects" HorizontalAlignment="Left" Height="332" Margin="770,100,0,0" VerticalAlignment="Top" Width="310" AutoGenerateColumns="False" CanUserAddRows="False" ItemsSource="{Binding CombatEffectItems}">
                         <DataGrid.Columns>
                             <DataGridTextColumn Binding="{Binding Effect}" Header="Effect" Width="*"/>
                             <DataGridTextColumn Binding="{Binding Target}" Header="Target" Width="70"/>

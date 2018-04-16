@@ -1,12 +1,12 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Text;
 
 namespace DBConnect.DBModels
 {
-  public partial class Season
+  public class SpellSchool
   {
-    public int SeasonId { get; set; }
+    public int SpellSchoolId { get; set; }
     public string Name { get; set; }
-    public int Order { get; set; }
   }
 }
