@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.Data;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -1143,6 +1144,9 @@ namespace PFEditor
     private ObservableCollection<ListItemResult> SpellSchoolList;
     private ObservableCollection<ListItemResult> SpellSubSchoolList;
 
+    private ObservableCollection<ListItemResult> BestiaryList_Filter;
+    private ObservableCollection<ListItemResult> MonsterSpawnList_Filter;
+
     private Bestiary ActiveBestiary = new Bestiary();
     private BestiaryDetail ActiveBestiaryDetail = new BestiaryDetail();
     private BestiaryEnvironment ActiveBestiaryEnvironment = new BestiaryEnvironment();
@@ -1159,7 +1163,6 @@ namespace PFEditor
     private Language ActiveLanguage = new Language();
     private Location ActiveLocation = new Location();
     private MagicItem ActiveMagicItem = new MagicItem();
-    private MonsterSpawn ActiveMonsterSpawn = new MonsterSpawn();
     private Month ActiveMonth = new Month();
     private Plane ActivePlane = new Plane();
     private Season ActiveSeason = new Season();
@@ -1171,9 +1174,13 @@ namespace PFEditor
     private Time ActiveTime = new Time();
     private TrackedEvent ActiveTrackedEvent = new TrackedEvent();
     private Weather ActiveWeather = new Weather();
+    private List<MonsterSpawn> ActiveSpawns = new List<MonsterSpawn>();
+    private int MonsterSpawnBestiaryId;
 
     private bool bes_sortNameAsc = true;
     private bool bes_sortCrAsc = true;
+    private bool mon_sortNameAsc = true;
+    private bool mon_sortTypeAsc = true;
 
     #endregion
 
@@ -1470,6 +1477,8 @@ namespace PFEditor
 
     #endregion
 
+    #region Bestiary Tab
+
     private void Lbx_Bes_Bestiary_MouseDoubleClick(object sender, MouseButtonEventArgs e)
     {
       if (Lbx_Bes_Bestiary.SelectedItem != null)
@@ -1675,9 +1684,9 @@ namespace PFEditor
     private void Btn_Bes_SortName_Click(object sender, RoutedEventArgs e)
     {
       if (bes_sortNameAsc)
-        BestiaryList = new ObservableCollection<ListItemResult>(BestiaryList.OrderBy(x => x.Name));
+        BestiaryList_Filter = new ObservableCollection<ListItemResult>(BestiaryList_Filter.OrderBy(x => x.Name));
       else
-        BestiaryList = new ObservableCollection<ListItemResult>(BestiaryList.OrderByDescending(x => x.Name));
+        BestiaryList_Filter = new ObservableCollection<ListItemResult>(BestiaryList_Filter.OrderByDescending(x => x.Name));
 
       bes_sortNameAsc = !bes_sortNameAsc;
       bes_sortCrAsc = true;
@@ -1686,12 +1695,74 @@ namespace PFEditor
     private void Btn_Bes_SortCR_Click(object sender, RoutedEventArgs e)
     {
       if (bes_sortCrAsc)
-        BestiaryList = new ObservableCollection<ListItemResult>(BestiaryList.OrderBy(x => x.Notes));
+        BestiaryList_Filter = new ObservableCollection<ListItemResult>(BestiaryList_Filter.OrderBy(x => x.Notes));
       else
-        BestiaryList = new ObservableCollection<ListItemResult>(BestiaryList.OrderByDescending(x => x.Notes));
+        BestiaryList_Filter = new ObservableCollection<ListItemResult>(BestiaryList_Filter.OrderByDescending(x => x.Notes));
 
       bes_sortCrAsc = !bes_sortCrAsc;
       bes_sortNameAsc = true;
+    }
+
+    #endregion
+
+    private void UpdateMonsterSpawnGrid()
+    {
+      var spawnList = DBClient.GetMonsterSpawns(MonsterSpawnBestiaryId);
+
+      var dt = new DataTable();
+      foreach (var item in ContinentList)
+      {
+        dt.Columns.Add(item.Name, typeof(bool));
+      }
+
+    }
+
+    
+    private void Txt_Mon_Search_TextChanged(object sender, TextChangedEventArgs e)
+    {
+      if (string.IsNullOrWhiteSpace(Txt_Mon_Search.Text))
+      {
+        MonsterSpawnList_Filter = new ObservableCollection<ListItemResult>(MonsterSpawnList);
+      }
+      else if (Txt_Mon_Search.Text.Length >= 3)
+      {
+        if (Rad_Mon_SearchName.IsChecked == true)
+          MonsterSpawnList_Filter = new ObservableCollection<ListItemResult>(MonsterSpawnList.Where(x => x.Name.ToLower().Contains(Txt_Mon_Search.Text.ToLower())));
+        else
+          MonsterSpawnList_Filter = new ObservableCollection<ListItemResult>(MonsterSpawnList.Where(x => x.Notes.ToLower().Contains(Txt_Mon_Search.Text.ToLower())));
+      }
+    }
+
+    private void Btn_Mon_SortName_Click(object sender, RoutedEventArgs e)
+    {
+      if (mon_sortNameAsc)
+        MonsterSpawnList_Filter = new ObservableCollection<ListItemResult>(MonsterSpawnList_Filter.OrderBy(x => x.Name));
+      else
+        MonsterSpawnList_Filter = new ObservableCollection<ListItemResult>(MonsterSpawnList_Filter.OrderByDescending(x => x.Name));
+
+      mon_sortNameAsc = !mon_sortNameAsc;
+      mon_sortTypeAsc = true;
+    }
+
+    private void Txt_Bes_Search_TextChanged(object sender, TextChangedEventArgs e)
+    {
+      if (string.IsNullOrWhiteSpace(Txt_Bes_Search.Text))
+      {
+        BestiaryList_Filter = new ObservableCollection<ListItemResult>(BestiaryList);
+      }
+      else if (Txt_Bes_Search.Text.Length >= 3)
+      {
+        MonsterSpawnList_Filter = new ObservableCollection<ListItemResult>(MonsterSpawnList_Filter.Where(x => x.Name.ToLower().Contains(Txt_Bes_Search.Text.ToLower())));
+      }
+    }
+
+    private void Lbx_Mon_SpawnList_MouseDoubleClick(object sender, MouseButtonEventArgs e)
+    {
+      if (Lbx_Mon_SpawnList.SelectedItem != null)
+      {
+        MonsterSpawnBestiaryId = (int)Lbx_Mon_SpawnList.SelectedValue;
+        UpdateMonsterSpawnGrid();
+      }
     }
   }
 }

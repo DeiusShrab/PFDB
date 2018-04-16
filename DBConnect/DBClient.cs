@@ -116,6 +116,29 @@ namespace DBConnect
       return response.IsSuccessStatusCode;
     }
 
+    public static List<MonsterSpawn> GetMonsterSpawns(int bestiaryId)
+    {
+      var response = client.GetAsync(API_ADDR + "Spawns/" + bestiaryId.ToString()).Result;
+      if (response.IsSuccessStatusCode)
+      {
+        var content = response.Content;
+        var ret = JsonConvert.DeserializeObject<List<MonsterSpawn>>(content.ReadAsStringAsync().Result);
+        return ret;
+      }
+      else
+        return null;
+    }
+
+    public static bool UpdateMonsterSpawns(SpawnUpdateRequest request)
+    {
+      var body = JsonConvert.SerializeObject(request);
+      var response = client.PostAsync(API_ADDR + "Spawns/" + request.BestiaryId.ToString(), new StringContent(body, Encoding.UTF8, "application/json")).Result;
+      if (response.IsSuccessStatusCode)
+        return true;
+      else
+        return false;
+    }
+
     #endregion
 
     #region Details
@@ -353,20 +376,6 @@ namespace DBConnect
       {
         var content = response.Content;
         ret = JsonConvert.DeserializeObject<MagicItem>(content.ReadAsStringAsync().Result);
-      }
-
-      return ret;
-    }
-
-    public static MonsterSpawn GetMonsterSpawn(int SpawnId)
-    {
-      MonsterSpawn ret = null;
-
-      var response = client.GetAsync(API_ADDR + "MonsterSpawn/" + SpawnId.ToString()).Result;
-      if (response.IsSuccessStatusCode)
-      {
-        var content = response.Content;
-        ret = JsonConvert.DeserializeObject<MonsterSpawn>(content.ReadAsStringAsync().Result);
       }
 
       return ret;
@@ -727,20 +736,6 @@ namespace DBConnect
       return ret;
     }
 
-    public static List<MonsterSpawn> GetMonsterSpawns()
-    {
-      List<MonsterSpawn> ret = new List<MonsterSpawn>();
-
-      var response = client.GetAsync(API_ADDR + "MonsterSpawn").Result;
-      if (response.IsSuccessStatusCode)
-      {
-        var content = response.Content;
-        ret = JsonConvert.DeserializeObject<List<MonsterSpawn>>(content.ReadAsStringAsync().Result);
-      }
-
-      return ret;
-    }
-
     public static List<Month> GetMonths()
     {
       List<Month> ret = new List<Month>();
@@ -1061,21 +1056,6 @@ namespace DBConnect
 
       var body = JsonConvert.SerializeObject(obj);
       var response = client.PostAsync(API_ADDR + "MagicItem", new StringContent(body, Encoding.UTF8, "application/json")).Result;
-      if (response.IsSuccessStatusCode)
-      {
-        var content = response.Content;
-        int.TryParse(content.ReadAsStringAsync().Result, out ret);
-      }
-
-      return ret;
-    }
-
-    public static int CreateMonsterSpawn(MonsterSpawn obj)
-    {
-      var ret = 0;
-
-      var body = JsonConvert.SerializeObject(obj);
-      var response = client.PostAsync(API_ADDR + "MonsterSpawn", new StringContent(body, Encoding.UTF8, "application/json")).Result;
       if (response.IsSuccessStatusCode)
       {
         var content = response.Content;

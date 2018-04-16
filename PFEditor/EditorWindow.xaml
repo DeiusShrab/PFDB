@@ -223,7 +223,7 @@
                     <Button x:Name="Btn_Bes_AddNew" Content="Add New" HorizontalAlignment="Left" Margin="195,619,0,0" VerticalAlignment="Top" Width="75" Click="Btn_Bes_AddNew_Click"/>
                     <Button x:Name="Btn_Bes_Save" Content="Save" HorizontalAlignment="Left" Margin="1247,619,0,0" VerticalAlignment="Top" Width="75" Click="Btn_Bes_Save_Click"/>
                     <Button x:Name="Btn_Bes_Clear" Content="Clear" HorizontalAlignment="Left" Margin="1167,619,0,0" VerticalAlignment="Top" Width="75"/>
-                    <TextBox x:Name="Txt_Bes_Search" HorizontalAlignment="Left" Height="23" Margin="10,10,0,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="180"/>
+                    <TextBox x:Name="Txt_Bes_Search" HorizontalAlignment="Left" Height="23" Margin="10,10,0,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="180" TextChanged="Txt_Bes_Search_TextChanged"/>
                     <Button x:Name="Btn_Bes_SortName" Content="Name" HorizontalAlignment="Left" Margin="47,619,0,0" VerticalAlignment="Top" Width="50" Click="Btn_Bes_SortName_Click"/>
                     <Label Content="Sort" HorizontalAlignment="Left" Margin="10,616,0,0" VerticalAlignment="Top"/>
                     <Button x:Name="Btn_Bes_SortCR" Content="CR" HorizontalAlignment="Left" Margin="102,619,0,0" VerticalAlignment="Top" Width="50" Click="Btn_Bes_SortCR_Click"/>
@@ -231,15 +231,16 @@
             </TabItem>
             <TabItem Header="MonsterSpawn" Margin="-2,-2,-2,0">
                 <Grid Background="#FFE5E5E5">
-                    <DataGrid HorizontalAlignment="Left" Height="278" Margin="195,361,0,0" VerticalAlignment="Top" Width="1127"/>
-                    <ListBox x:Name="Lbx_Mon_SpawnList" HorizontalAlignment="Left" Height="555" Margin="10,59,0,0" VerticalAlignment="Top" Width="180"/>
-                    <TextBox x:Name="Txt_Spa_Search" HorizontalAlignment="Left" Height="23" Margin="10,10,0,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="180"/>
-                    <Button Content="Name" HorizontalAlignment="Left" Margin="47,617,0,0" VerticalAlignment="Top" Width="50"/>
+                    <DataGrid x:Name="DgMonSpawns" HorizontalAlignment="Left" Height="404" Margin="195,210,0,0" VerticalAlignment="Top" Width="1127"/>
+                    <ListBox x:Name="Lbx_Mon_SpawnList" HorizontalAlignment="Left" Height="555" Margin="10,59,0,0" VerticalAlignment="Top" Width="180" MouseDoubleClick="Lbx_Mon_SpawnList_MouseDoubleClick"/>
+                    <TextBox x:Name="Txt_Mon_Search" HorizontalAlignment="Left" Height="23" Margin="10,10,0,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="180" TextChanged="Txt_Mon_Search_TextChanged"/>
+                    <Button x:Name="Btn_Mon_SortName" Content="Name" HorizontalAlignment="Left" Margin="47,617,0,0" VerticalAlignment="Top" Width="50" Click="Btn_Mon_SortName_Click"/>
                     <Label Content="Sort" HorizontalAlignment="Left" Margin="10,614,0,0" VerticalAlignment="Top"/>
-                    <Button Content="CR" HorizontalAlignment="Left" Margin="102,617,0,0" VerticalAlignment="Top" Width="50"/>
+                    <Button x:Name="Btn_Mon_SortCr" Content="CR" HorizontalAlignment="Left" Margin="102,617,0,0" VerticalAlignment="Top" Width="50"/>
                     <Label Content="Search" HorizontalAlignment="Left" Margin="10,33,0,0" VerticalAlignment="Top"/>
-                    <RadioButton Content="Name" HorizontalAlignment="Left" Margin="60,39,0,0" VerticalAlignment="Top" GroupName="MSSearch" IsChecked="True"/>
-                    <RadioButton Content="Type" HorizontalAlignment="Left" Margin="116,39,0,0" VerticalAlignment="Top" GroupName="MSSearch"/>
+                    <RadioButton x:Name="Rad_Mon_SearchName" Content="Name" HorizontalAlignment="Left" Margin="60,39,0,0" VerticalAlignment="Top" GroupName="MSSearch" IsChecked="True"/>
+                    <RadioButton x:Name="Rad_Mon_SearchType" Content="Type" HorizontalAlignment="Left" Margin="116,39,0,0" VerticalAlignment="Top" GroupName="MSSearch"/>
+                    <Button x:Name="Btn_Mon_Save" Content="Save" HorizontalAlignment="Left" Margin="1247,619,0,0" VerticalAlignment="Top" Width="75"/>
                 </Grid>
             </TabItem>
             <TabItem Header="Continent" Margin="-2,-2,-2,0">

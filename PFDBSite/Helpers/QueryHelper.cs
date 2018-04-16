@@ -79,5 +79,30 @@ namespace PFDBSite.Helpers
 
       return response;
     }
+
+    public void UpdateSpawns(SpawnUpdateRequest request)
+    {
+      if (request.BestiaryId > 0)
+      {
+        var context = PFDAL.GetContext();
+        var removeSpawns = context.MonsterSpawn.Where(x => x.BestiaryId == request.BestiaryId).ToList();
+        foreach (var item in removeSpawns)
+        {
+          context.MonsterSpawn.Remove(item);
+          context.SaveChanges();
+        }
+      }
+
+      if (request.SpawnList != null)
+      {
+        var context = PFDAL.GetContext();
+
+        foreach (var item in request.SpawnList)
+        {
+          context.MonsterSpawn.Add(item);
+          context.SaveChanges();
+        }
+      }
+    }
   }
 }

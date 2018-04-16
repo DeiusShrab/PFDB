@@ -81,6 +81,8 @@ namespace PFDBSite.Controllers
         return new JsonResult(context.Location.Select(x => new ListItemResult() { Id = x.LocationId, Name = x.Name }));
       else if (type == "MagicItem")
         return new JsonResult(context.MagicItem.Select(x => new ListItemResult() { Id = x.MagicItemId, Name = x.Name }));
+      else if (type == "MonsterSpawn")
+        return new JsonResult(context.Bestiary.Select(x => new ListItemResult() { Id = x.BestiaryId, Name = x.Name, Notes = GetTypesForBestiary(x.BestiaryId) }));
       else if (type == "Month")
         return new JsonResult(context.Month.Select(x => new ListItemResult() { Id = x.MonthId, Name = x.Name }));
       else if (type == "Season")
@@ -147,6 +149,24 @@ namespace PFDBSite.Controllers
     public IActionResult GetFantasyDate()
     {
       return Ok("11110101");
+    }
+
+    [HttpPost("Spawns/{bestiaryId:int}")]
+    public IActionResult UpdateSpawns([FromBody] SpawnUpdateRequest request, int bestiaryId)
+    {
+      if (request == null || request.BestiaryId != bestiaryId)
+        return BadRequest();
+
+      helperQuery.UpdateSpawns(request);
+
+      return Ok();
+    }
+
+    [HttpGet("Spawns/{bestiaryId:int}")]
+    public IActionResult GetSpawns(int bestiaryId)
+    {
+      var context = PFDAL.GetContext();
+      return new JsonResult(context.MonsterSpawn.Where(x => x.BestiaryId == bestiaryId));
     }
 
     #endregion
@@ -1597,6 +1617,28 @@ namespace PFDBSite.Controllers
     #region Delete
 
     // Ehh... let's hold off on this one...
+
+    #endregion
+
+    #region Private Methods
+
+    private string GetTypesForBestiary(int bestiaryId)
+    {
+      var ret = string.Empty;
+
+      var context = PFDAL.GetContext();
+      var b = context.Bestiary.FirstOrDefault(x => x.BestiaryId == bestiaryId);
+      if (b != null)
+      {
+        var t = context.BestiaryType.FirstOrDefault(x => x.BestiaryTypeId == b.Type);
+        if (t != null)
+          ret += t.Name + ", ";
+
+        ret += b.SubType;
+      }
+
+      return ret;
+    }
 
     #endregion
   }
