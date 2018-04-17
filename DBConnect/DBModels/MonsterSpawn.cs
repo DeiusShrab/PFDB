@@ -7,9 +7,8 @@ namespace DBConnect.DBModels
     {
         public int SpawnId { get; set; }
         public int BestiaryId { get; set; }
-        public int? ContinentId { get; set; }
-        public int? SeasonId { get; set; }
-        public int? TimeId { get; set; }
-        public int? TerrainId { get; set; }
+        public int ContinentId { get; set; }
+        public int SeasonId { get; set; }
+        public int TimeId { get; set; }
     }
 }

@@ -1115,6 +1115,12 @@ namespace PFEditor
     private List<DisplayResult> Mag_LevelList;
     private List<DisplayResult> CR_List;
 
+    private Bictionary<int, string> BiContinents;
+    private Bictionary<int, string> BiSeasons;
+    private Bictionary<int, string> BiTimes;
+
+    private DataSet DsMonsterSpawns;
+
     private ObservableCollection<ListItemResult> BestiaryList;
     private ObservableCollection<ListItemResult> BestiaryEnvironmentList;
     private ObservableCollection<ListItemResult> BestiaryFeatList;
@@ -1188,6 +1194,12 @@ namespace PFEditor
 
     public EditorWindow()
     {
+      if (!DBClient.ConfigExists())
+      {
+        MessageBox.Show("Not configured - please run configuration tool in PFHelper");
+        Application.Current.Shutdown();
+      }
+
       Mag_LevelList = new List<DisplayResult>
       {
         new DisplayResult() { Display = "--", Result = -1 },
@@ -1252,8 +1264,6 @@ namespace PFEditor
       Lbx_Ter_Terrain.ItemsSource = TerrainList;
       Lbx_Wth_Weather.ItemsSource = WeatherList;
 
-      Drp_Msc_MonthSeasonId.ItemsSource = SeasonList;
-      Drp_Bes_Type.ItemsSource = BestiaryTypeList;
       Drp_Spl_LevelAdept.ItemsSource = Mag_LevelList;
       Drp_Spl_LevelAlchemist.ItemsSource = Mag_LevelList;
       Drp_Spl_LevelAntipaladin.ItemsSource = Mag_LevelList;
@@ -1282,8 +1292,9 @@ namespace PFEditor
 
       Drp_Spl_School.ItemsSource = SpellSchoolList;
       Drp_Spl_SubSchool.ItemsSource = SpellSubSchoolList;
-      Drp_Bes_Type.ItemsSource = BestiaryTypeList;
       Drp_Bes_CR.ItemsSource = CR_List;
+      Drp_Msc_MonthSeasonId.ItemsSource = SeasonList;
+      Drp_Bes_Type.ItemsSource = BestiaryTypeList;
     }
 
     private void LoadDBData()
@@ -1705,16 +1716,92 @@ namespace PFEditor
 
     #endregion
 
-    private void UpdateMonsterSpawnGrid()
-    {
-      var spawnList = DBClient.GetMonsterSpawns(MonsterSpawnBestiaryId);
+    #region Monster Spawn Tab
 
-      var dt = new DataTable();
+    private void LoadMonsterSpawnData()
+    {
+      BiContinents = new Bictionary<int, string>();
       foreach (var item in ContinentList)
       {
-        dt.Columns.Add(item.Name, typeof(bool));
+        BiContinents.Add(item.Id, item.Name);
+      }
+      BiSeasons = new Bictionary<int, string>();
+      foreach (var item in SeasonList)
+      {
+        BiSeasons.Add(item.Id, item.Name);
+      }
+      BiTimes = new Bictionary<int, string>();
+      foreach (var item in TimeList)
+      {
+        BiTimes.Add(item.Id, item.Name);
       }
 
+      var spawnList = DBClient.GetMonsterSpawns(MonsterSpawnBestiaryId);
+      
+      DsMonsterSpawns = new DataSet();
+
+      foreach (var season in SeasonList)
+      {
+        var dt = new DataTable(season.Name);
+
+        dt.Columns.Add("Continent");
+        foreach (var time in TimeList)
+        {
+          dt.Columns.Add(time.Name, typeof(bool));
+        }
+        foreach (var continent in ContinentList)
+        {
+          var r = dt.NewRow();
+          r[0] = continent.Name;
+          dt.Rows.Add(r);
+        }
+      }
+
+      foreach (var item in spawnList)
+      {
+        // Table (Season) -> Row (Continent) -> Column (Time)
+        DsMonsterSpawns.Tables[BiSeasons[item.SeasonId]].Select("Continent = " + BiContinents[item.ContinentId])[0].SetField(BiTimes[item.TimeId], true);
+      }
+
+      // Bind table to grid(s)
+      // https://stackoverflow.com/questions/20770438/how-to-bind-datatable-to-datagrid
+      TabsMonsterSpawn.Items.Clear();
+      foreach (DataTable table in DsMonsterSpawns.Tables)
+      {
+        var tab = new TabItem
+        {
+          Header = table.TableName,
+          Content = new DataGrid()
+          {
+            DataContext = table.DefaultView,
+            ItemsSource = table.DefaultView
+          }
+        };
+        TabsMonsterSpawn.Items.Add(tab);
+      }
+    }
+
+    private List<MonsterSpawn> ExportMonsterSpawnData()
+    {
+      var ret = new List<MonsterSpawn>();
+      
+      foreach (DataTable table in DsMonsterSpawns.Tables)
+      {
+        var sid = BiSeasons[table.TableName];
+        foreach (DataRow row in table.Rows)
+        {
+          var cid = BiContinents[(string)row[0]];
+          for(int i = 1; i < table.Columns.Count; i++)
+          {
+            if ((bool?)row[i] == true)
+            {
+              ret.Add(new MonsterSpawn() { BestiaryId = (int)Lbx_Mon_SpawnList.SelectedValue, ContinentId = cid, SeasonId = sid, TimeId = BiTimes[table.Columns[i].ColumnName] });
+            }
+          }
+        }
+      }
+
+      return ret;
     }
 
     
@@ -1761,8 +1848,24 @@ namespace PFEditor
       if (Lbx_Mon_SpawnList.SelectedItem != null)
       {
         MonsterSpawnBestiaryId = (int)Lbx_Mon_SpawnList.SelectedValue;
-        UpdateMonsterSpawnGrid();
+        LoadMonsterSpawnData();
       }
+    }
+
+    #endregion
+
+    private void Lbx_Bes_SpellsKnown_MouseDoubleClick(object sender, MouseButtonEventArgs e)
+    {
+      if (Lbx_Bes_SpellsKnown.SelectedItem != null)
+      {
+        // Load spell in spells tab
+        // Switch to spells tab
+      }
+    }
+
+    private void Lbx_Spl_Spell_MouseDoubleClick(object sender, MouseButtonEventArgs e)
+    {
+
     }
   }
 }

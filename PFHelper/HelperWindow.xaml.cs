@@ -292,12 +292,19 @@ namespace PFHelper
       InitializeComponent();
       this.DataContext = this;
 
+      random = new Random();
+      CurrentDate = new FantasyDate();
+
       if (!LoadDBData())
       {
-        MessageBox.Show("ERROR - Failed to connect to server");
-        this.Close();
-        return;
+        MessageBox.Show("ERROR - Failed to connect to server. Is the config set correctly?");
+        continents = new List<Continent>();
+        seasons = new List<Season>();
+        months = new List<Month>();
+        trackedEvents = new List<TrackedEvent>();
       }
+
+      LoadSavedData();
 
       encounterResults = new ObservableCollection<DisplayValues>();
       randomEncounterItems = new ObservableCollection<DisplayResult>();
@@ -323,16 +330,6 @@ namespace PFHelper
       LbxEncounterCRs.ItemsSource = encounterResults;
       LbxContinent.ItemsSource = continentList;
       LbxCreatureInfo.ItemsSource = creatureInfos;
-
-      random = new Random();
-      CurrentDate = new FantasyDate();
-
-      if (File.Exists(saveDataPath))
-        LoadSavedData();
-      else
-        SaveData();
-
-      ReloadWeatherTable();
     }
 
     #endregion
@@ -341,21 +338,24 @@ namespace PFHelper
 
     private bool LoadDBData()
     {
-      var ret = true;
+      var ret = false;
 
-      try
+      if (DBClient.ConfigExists())
       {
-        DBClient.ConnectToApi();
+        try
+        {
+          DBClient.ConnectToApi();
 
-        continents = DBClient.GetContinents();
-        seasons = DBClient.GetSeasons();
-        months = DBClient.GetMonths();
-        trackedEvents = DBClient.GetTrackedEvents();
-      }
-      catch (Exception ex)
-      {
-        Console.WriteLine(ex.Message);
-        ret = false;
+          continents = DBClient.GetContinents();
+          seasons = DBClient.GetSeasons();
+          months = DBClient.GetMonths();
+          trackedEvents = DBClient.GetTrackedEvents();
+          ret = true;
+        }
+        catch (Exception ex)
+        {
+          Console.WriteLine(ex.Message);
+        }
       }
 
       return ret;
@@ -1014,6 +1014,20 @@ namespace PFHelper
         CurrentWeather = GetRandomWeather();
       else
         NextWeather();
+    }
+
+    private void MenuEditConfig_Click(object sender, RoutedEventArgs e)
+    {
+      var popup = new Controls.ConfigEditor();
+      popup.ShowDialog();
+
+      if (DBClient.ConfigExists())
+        DBClient.ReloadConfig(true);
+
+      if (!LoadDBData())
+      {
+        MessageBox.Show("ERROR - Failed to connect to server. Is the config set correctly?");
+      }
     }
 
     #endregion
