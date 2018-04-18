@@ -1,18 +1,17 @@
 TODO AT WORK
+PFEditor - Weather (blocker)
 Manually set weather
 Lock weather (prevent duration from advancing, for perma-storms)
-https://auth0.com/blog/securing-asp-dot-net-core-2-applications-with-jwts/
 
 TODO AT HOME
 Add School and SubSchool to DB
 Update DB to match DBModels
 Backup DB somehow
 Generate code-first for updated DB stuff
-Set up HTTPS and require a token to access the api
+Set up HTTPS to access the api (but not the main site)
 Get the got-dang MAPS UP
 	Touch them up first with more locations and proper city names
 	Remember that maps only show "major" locations, small towns and villages won't be there
-Update PFDBSite, test PFHelper
 Make some kind of DB Importer that pulls PFSRD stuff, runs it through the formatter from Test, and adds it to the DB
 
 DB STUFF
@@ -20,9 +19,6 @@ DB STUFF
 - Consider moving low-pop columns to separate tables.
 - Check interaction between [Bestiary].Environment, Feat, Language, Skill and new tables
 - Write up (or pseudocode) Transformer code to split them up
-
-Remove columns from [Bestiary]:
-Mythic bool
 
 [Bestiary] NPCs
 Use the CharacterFlag column for NPCs, and have it set for intelligent beings that might interact with the party instead of fight them

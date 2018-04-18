@@ -3,12 +3,14 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using DBConnect.ConnectModels;
 using DBConnect.DBModels;
 
 namespace PFHelper.Classes
 {
   class SaveObject
   {
+    public RandomWeatherResult WeatherResult { get; set; }
     public List<CombatEffectItem> CombatEffects { get; set; }
     public List<CombatGridItem> CombatGridItems { get; set; }
     public FantasyDate Date { get; set; }

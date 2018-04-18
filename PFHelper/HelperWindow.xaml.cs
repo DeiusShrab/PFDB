@@ -275,7 +275,7 @@ namespace PFHelper
     private List<Season> seasons;
     private List<Month> months;
 
-    private RandomWeatherResult weatherResult;
+    private RandomWeatherResult WeatherResult;
     private Random random;
     private FantasyDate CurrentDate;
     private Weather CurrentWeather;
@@ -380,6 +380,7 @@ namespace PFHelper
         RationsLeft = saveObject.Rations;
         CurrentDate = saveObject.Date;
         CurrentWeather = saveObject.Weather;
+        WeatherResult = saveObject.WeatherResult;
 
         combatEffectItems = new ObservableCollection<CombatEffectItem>(saveObject.CombatEffects);
         combatGridItems = new ObservableCollection<CombatGridItem>(saveObject.CombatGridItems);
@@ -420,6 +421,7 @@ namespace PFHelper
       saveObject.Rations = RationsLeft;
       saveObject.Date = CurrentDate;
       saveObject.Weather = CurrentWeather;
+      saveObject.WeatherResult = WeatherResult;
 
       saveObject.CombatEffects = combatEffectItems.ToList();
       saveObject.CombatGridItems = combatGridItems.ToList();
@@ -667,13 +669,13 @@ namespace PFHelper
 
     private void NextWeather(int d = 1)
     {
-      if (ContinentId != weatherResult.ContinentId)
+      if (WeatherResult == null || ContinentId != WeatherResult.ContinentId)
       {
         ReloadWeatherTable();
         CurrentWeather = GetRandomWeather();
         CurrentWeather.Duration = random.Next(CurrentWeather.Duration);
       }
-      else if (CurrentDate.Season != weatherResult.SeasonId)
+      else if (CurrentDate.Season != WeatherResult.SeasonId)
         ReloadWeatherTable();
 
       while (d >= 0)
@@ -688,8 +690,8 @@ namespace PFHelper
           d -= CurrentWeather.Duration;
           if (CurrentWeather.NextWeather > 0)
           {
-            if (weatherResult.WeatherList.Select(x => x.WeatherId).Contains(CurrentWeather.NextWeather))
-              CurrentWeather = weatherResult.WeatherList.First(x => x.WeatherId == CurrentWeather.NextWeather);
+            if (WeatherResult.WeatherList.Select(x => x.WeatherId).Contains(CurrentWeather.NextWeather))
+              CurrentWeather = WeatherResult.WeatherList.First(x => x.WeatherId == CurrentWeather.NextWeather);
             else
               CurrentWeather = DBClient.GetWeather(CurrentWeather.NextWeather);
           }
@@ -701,7 +703,7 @@ namespace PFHelper
 
     private Weather GetRandomWeather()
     {
-      var initialWeathers = weatherResult.WeatherList.Where(x => x.ParentWeatherId == 0);
+      var initialWeathers = WeatherResult.WeatherList.Where(x => x.ParentWeatherId == 0);
       return initialWeathers.ElementAt(random.Next(initialWeathers.Count()));
     }
 
@@ -747,7 +749,7 @@ namespace PFHelper
         SeasonId = CurrentDate.Season
       };
 
-      weatherResult = DBClient.GetRandomWeatherList(reqWeather);
+      WeatherResult = DBClient.GetRandomWeatherList(reqWeather);
     }
 
     #endregion
@@ -1010,7 +1012,7 @@ namespace PFHelper
 
     private void BtnNextWeather_Click(object sender, RoutedEventArgs e)
     {
-      if (ContinentId != weatherResult.ContinentId || CurrentDate.Season != weatherResult.SeasonId)
+      if (ContinentId != WeatherResult.ContinentId || CurrentDate.Season != WeatherResult.SeasonId)
         CurrentWeather = GetRandomWeather();
       else
         NextWeather();
