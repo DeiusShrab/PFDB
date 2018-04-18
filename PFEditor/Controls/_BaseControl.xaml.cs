@@ -16,11 +16,11 @@ using System.Windows.Shapes;
 namespace PFEditor.Controls
 {
   /// <summary>
-  /// Interaction logic for SpellSelectPopup.xaml
+  /// Interaction logic for BaseControl.xaml
   /// </summary>
-  public partial class SpellSelectPopup : UserControl
+  public partial class BaseControl : UserControl
   {
-    public SpellSelectPopup()
+    public BaseControl()
     {
       InitializeComponent();
     }

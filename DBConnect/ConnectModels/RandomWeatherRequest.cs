@@ -16,6 +16,6 @@ namespace DBConnect.ConnectModels
     public bool Success { get; set; }
     public int ContinentId { get; set; }
     public int SeasonId { get; set; }
-    public List<Weather> WeatherList { get; set; }
+    public List<ContinentWeather> WeatherList { get; set; }
   }
 }

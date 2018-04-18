@@ -6,6 +6,7 @@ Lock weather (prevent duration from advancing, for perma-storms)
 TODO AT HOME
 Add School and SubSchool to DB
 Update DB to match DBModels
+Add Misc items to DB (Months, Seasons, etc)
 Backup DB somehow
 Generate code-first for updated DB stuff
 Set up HTTPS to access the api (but not the main site)

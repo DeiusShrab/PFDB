@@ -48,8 +48,8 @@
         <xctk:IntegerUpDown x:Name="IntAddD20" Value="0" HorizontalAlignment="Left" Margin="1172,74,0,0" VerticalAlignment="Top" Width="49" />
         <Label Content="Current Weather:" HorizontalAlignment="Left" Margin="456,79,0,0" VerticalAlignment="Top"/>
         <Label x:Name="LblCurrentWeather" Content="Meteor Storm!" HorizontalAlignment="Left" Margin="561,79,0,0" VerticalAlignment="Top"/>
-        <Label Content="Moon Phase:" HorizontalAlignment="Left" Margin="478,110,0,0" VerticalAlignment="Top"/>
-        <Label x:Name="LblMoonPhase" Content="MOON MOON" HorizontalAlignment="Left" Margin="561,110,0,0" VerticalAlignment="Top"/>
+        <Label Content="Moon Phase:" HorizontalAlignment="Left" Margin="478,141,0,0" VerticalAlignment="Top"/>
+        <Label x:Name="LblMoonPhase" Content="MOON MOON" HorizontalAlignment="Left" Margin="561,141,0,0" VerticalAlignment="Top"/>
         <Button x:Name="BtnNextWeather" Content="Next Weather" HorizontalAlignment="Left" Margin="366,82,0,0" VerticalAlignment="Top" Width="85" Click="BtnNextWeather_Click"/>
         <Label Content="Rations:" HorizontalAlignment="Left" Margin="818,132,0,0" VerticalAlignment="Top"/>
         <Label x:Name="LblRationsLeft" Content="00" HorizontalAlignment="Left" Margin="898,132,0,0" VerticalAlignment="Top" FontSize="18" Height="49" Width="75"/>
@@ -224,6 +224,8 @@
                 <MenuItem x:Name="MenuEditConfig" Header="Configuration" Height="21" Margin="0,0,-1,0" Click="MenuEditConfig_Click"/>
             </MenuItem>
         </Menu>
+        <Label Content="Weather Group:" HorizontalAlignment="Left" Margin="462,110,0,0" VerticalAlignment="Top"/>
+        <Label x:Name="LblCurrentWeatherGroup" Content="Apocalypse!" HorizontalAlignment="Left" Margin="561,110,0,0" VerticalAlignment="Top"/>
 
     </Grid>
 </Window>

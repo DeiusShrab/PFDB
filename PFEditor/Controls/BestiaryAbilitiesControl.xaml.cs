@@ -18,7 +18,7 @@ namespace PFEditor.Controls
   /// <summary>
   /// Interaction logic for BestiaryAbilities.xaml
   /// </summary>
-  public partial class BestiaryAbilities : UserControl
+  public partial class BestiaryAbilitiesControl : UserControl
   {
     #region Interface Variables
 
@@ -120,7 +120,7 @@ namespace PFEditor.Controls
 
     #endregion
 
-    public BestiaryAbilities()
+    public BestiaryAbilitiesControl()
     {
       InitializeComponent();
     }

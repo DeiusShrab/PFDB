@@ -71,11 +71,35 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
-    <Page Include="Controls\BestiaryAbilities.xaml">
+    <Page Include="Controls\MiscControl.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Controls\BestiaryControl.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Controls\MonsterSpawnControl.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Controls\SpellControl.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Controls\_BaseControl.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Controls\SpellSelectPopup.xaml">
+    <Page Include="Controls\BestiaryAbilitiesControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Popups\SpellSelectPopup.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Controls\WeatherControl.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -87,12 +111,30 @@
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="Controls\BestiaryAbilities.xaml.cs">
-      <DependentUpon>BestiaryAbilities.xaml</DependentUpon>
+    <Compile Include="Controls\MiscControl.xaml.cs">
+      <DependentUpon>MiscControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\BestiaryControl.xaml.cs">
+      <DependentUpon>BestiaryControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\MonsterSpawnControl.xaml.cs">
+      <DependentUpon>MonsterSpawnControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\SpellControl.xaml.cs">
+      <DependentUpon>SpellControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\_BaseControl.xaml.cs">
+      <DependentUpon>_BaseControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\BestiaryAbilitiesControl.xaml.cs">
+      <DependentUpon>BestiaryAbilitiesControl.xaml</DependentUpon>
     </Compile>
     <Compile Include="Classes\DisplayResult.cs" />
-    <Compile Include="Controls\SpellSelectPopup.xaml.cs">
+    <Compile Include="Popups\SpellSelectPopup.xaml.cs">
       <DependentUpon>SpellSelectPopup.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\WeatherControl.xaml.cs">
+      <DependentUpon>WeatherControl.xaml</DependentUpon>
     </Compile>
     <Compile Include="EditorWindow.xaml.cs">
       <DependentUpon>EditorWindow.xaml</DependentUpon>

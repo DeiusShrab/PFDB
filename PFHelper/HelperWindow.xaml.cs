@@ -279,6 +279,7 @@ namespace PFHelper
     private Random random;
     private FantasyDate CurrentDate;
     private Weather CurrentWeather;
+    private ContinentWeather CurrentWeatherGroup;
     private string saveDataPath = Path.Combine(System.Environment.CurrentDirectory, "pfdat.dat");
     private string selectedCombatMonsterHtml;
     private int selectedCombatMonsterId;
@@ -672,39 +673,43 @@ namespace PFHelper
       if (WeatherResult == null || ContinentId != WeatherResult.ContinentId)
       {
         ReloadWeatherTable();
-        CurrentWeather = GetRandomWeather();
-        CurrentWeather.Duration = random.Next(CurrentWeather.Duration);
+        CurrentWeatherGroup = GetRandomWeather();
       }
       else if (CurrentDate.Season != WeatherResult.SeasonId)
         ReloadWeatherTable();
 
       while (d >= 0)
       {
-        if (CurrentWeather.Duration >= d)
+        if (CurrentWeatherGroup.Duration >= d)
         {
-          CurrentWeather.Duration -= d;
+          CurrentWeatherGroup.Duration -= d;
           d = -1;
         }
         else
         {
-          d -= CurrentWeather.Duration;
-          if (CurrentWeather.NextWeather > 0)
+          d -= CurrentWeatherGroup.Duration;
+          if (CurrentWeatherGroup.NextContinentWeatherId > 0)
           {
-            if (WeatherResult.WeatherList.Select(x => x.WeatherId).Contains(CurrentWeather.NextWeather))
-              CurrentWeather = WeatherResult.WeatherList.First(x => x.WeatherId == CurrentWeather.NextWeather);
+            if (WeatherResult.WeatherList.Select(x => x.WeatherId).Contains(CurrentWeatherGroup.NextContinentWeatherId))
+              CurrentWeatherGroup = WeatherResult.WeatherList.First(x => x.WeatherId == CurrentWeatherGroup.NextContinentWeatherId);
             else
-              CurrentWeather = DBClient.GetWeather(CurrentWeather.NextWeather);
+              CurrentWeatherGroup = DBClient.GetContinentWeather(CurrentWeatherGroup.NextContinentWeatherId);
           }
           else
-            CurrentWeather = GetRandomWeather();
+            CurrentWeatherGroup = GetRandomWeather();
         }
       }
+
+      CurrentWeather = DBClient.GetWeather(CurrentWeatherGroup.WeatherId);
     }
 
-    private Weather GetRandomWeather()
+    private ContinentWeather GetRandomWeather()
     {
       var initialWeathers = WeatherResult.WeatherList.Where(x => x.ParentWeatherId == 0);
-      return initialWeathers.ElementAt(random.Next(initialWeathers.Count()));
+      var weather = initialWeathers.ElementAt(random.Next(initialWeathers.Count()));
+      weather.Duration = weather.Duration - random.Next(weather.Duration);
+
+      return weather;
     }
 
     private void AddRations(int r)
@@ -1012,9 +1017,6 @@ namespace PFHelper
 
     private void BtnNextWeather_Click(object sender, RoutedEventArgs e)
     {
-      if (ContinentId != WeatherResult.ContinentId || CurrentDate.Season != WeatherResult.SeasonId)
-        CurrentWeather = GetRandomWeather();
-      else
         NextWeather();
     }
 
