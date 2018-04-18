@@ -1,7 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
-using System.Threading.Tasks;
 using DBConnect;
 using DBConnect.ConnectModels;
 using DBConnect.DBModels;
@@ -100,6 +98,30 @@ namespace PFDBSite.Helpers
         foreach (var item in request.SpawnList)
         {
           context.MonsterSpawn.Add(item);
+          context.SaveChanges();
+        }
+      }
+    }
+
+    public void UpdateContinentWeathers(ContinentWeatherUpdateRequest request)
+    {
+      if (request.ContinentId > 0 && request.SeasonId > 0)
+      {
+        var context = PFDAL.GetContext();
+        var removeCWs = context.ContinentWeather.Where(x => x.ContinentId == request.ContinentId && x.SeasonId == request.SeasonId);
+        foreach (var item in removeCWs)
+        {
+          context.ContinentWeather.Remove(item);
+          context.SaveChanges();
+        }
+      }
+
+      if (request.UpdateList != null)
+      {
+        var context = PFDAL.GetContext();
+        foreach (var item in request.UpdateList)
+        {
+          context.ContinentWeather.Add(item);
           context.SaveChanges();
         }
       }

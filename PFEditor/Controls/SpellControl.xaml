@@ -24,7 +24,7 @@
         <Label Content="0000" HorizontalAlignment="Left" Margin="270,59,0,0" VerticalAlignment="Top"/>
         <Label Content="Name" HorizontalAlignment="Left" Margin="215,85,0,0" VerticalAlignment="Top" Height="27"/>
         <TextBox x:Name="TxtName" HorizontalAlignment="Left" Height="23" Margin="264,89,0,0" TextWrapping="Wrap" Text="Mighty Longname the Unpronounceable" VerticalAlignment="Top" Width="253"/>
-        <ComboBox x:Name="DrpSchool" HorizontalAlignment="Left" Margin="573,89,0,0" VerticalAlignment="Top" Width="150" Height="23"/>
+        <ComboBox x:Name="DrpSchool" HorizontalAlignment="Left" Margin="573,89,0,0" VerticalAlignment="Top" Width="150" Height="23" SelectionChanged="DrpSchool_SelectionChanged"/>
         <Label Content="School" HorizontalAlignment="Left" Margin="522,85,0,0" VerticalAlignment="Top" Height="27"/>
         <ComboBox x:Name="DrpSubSchool" HorizontalAlignment="Left" Margin="798,89,0,0" VerticalAlignment="Top" Width="150" Height="23"/>
         <Label Content="Subschool" HorizontalAlignment="Left" Margin="728,85,0,0" VerticalAlignment="Top" Height="27"/>

@@ -1,18 +1,8 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Collections.ObjectModel;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
 using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
 using DBConnect;
 using DBConnect.ConnectModels;
 using DBConnect.DBModels;
@@ -24,90 +14,168 @@ namespace PFEditor.Controls
   /// </summary>
   public partial class MiscControl : UserControl
   {
-    #region Interface Variables
+    #region Interface Properties
 
-    public string Msc_MonthName
+    public string MonthName
     {
       get { return TxtMonthName.Text; }
       set { TxtMonthName.Text = value; }
     }
 
-    public string Msc_PlaneName
+    public string PlaneName
     {
       get { return TxtPlaneName.Text; }
       set { TxtPlaneName.Text = value; }
     }
 
-    public string Msc_SeasonName
+    public string SeasonName
     {
       get { return TxtSeasonName.Text; }
       set { TxtSeasonName.Text = value; }
     }
 
-    public string Msc_TimeName
+    public string TimeName
     {
       get { return TxtTimeName.Text; }
       set { TxtTimeName.Text = value; }
     }
 
-    public int Msc_MonthDays
+    public string TerrainName
+    {
+      get { return TxtTerrainName.Text; }
+      set { TxtTerrainName.Text = value; }
+    }
+
+    public string EnvironmentName
+    {
+      get { return TxtEnvironmentName.Text; }
+      set { TxtEnvironmentName.Text = value; }
+    }
+
+    public string TerrainDescription
+    {
+      get { return TxtTerrainDescription.Text; }
+      set { TxtTerrainDescription.Text = value; }
+    }
+
+    public string EnvironmentTemp
+    {
+      get { return TxtEnvironmentTemp.Text; }
+      set { TxtEnvironmentTemp.Text = value; }
+    }
+
+    public string EnvironmentNotes
+    {
+      get { return TxtEnvironmentNotes.Text; }
+      set { TxtEnvironmentNotes.Text = value; }
+    }
+
+    public int MonthDays
     {
       get { return IntMonthDays.Value ?? 0; }
       set { IntMonthDays.Value = value; }
     }
 
-    public int Msc_MonthOrder
+    public int MonthOrder
     {
       get { return IntMonthOrder.Value ?? 0; }
       set { IntMonthOrder.Value = value; }
     }
 
-    public int Msc_SeasonOrder
+    public int SeasonOrder
     {
       get { return IntSeasonOrder.Value ?? 0; }
       set { IntSeasonOrder.Value = value; }
     }
 
-    public int Msc_TimeOrder
+    public int TimeOrder
     {
       get { return IntTimeOrder.Value ?? 0; }
       set { IntTimeOrder.Value = value; }
     }
 
-    public int Msc_MonthSeasonId
+    public int MonthSeasonId
     {
       get { return Convert.ToInt32(DrpMonthSeasonId.SelectedValue); }
       set { DrpMonthSeasonId.SelectedValue = value; }
     }
 
-    public bool Msc_TimeNight
+    public decimal TerrainMovementMod
+    {
+      get { return DecTerrainMovementMod.Value ?? 0; }
+      set { DecTerrainMovementMod.Value = value; }
+    }
+
+    public int EnvironmentTravelSpeed
+    {
+      get { return IntEnvironmentTravelSpeed.Value ?? 0; }
+      set { IntEnvironmentTravelSpeed.Value = value; }
+    }
+
+    public bool TimeNight
     {
       get { return CbxTimeNight.IsChecked ?? false; }
       set { CbxTimeNight.IsChecked = value; }
     }
 
-    public int Msc_MonthId
+    public bool TerrainWater
+    {
+      get { return CbxTerrainWater.IsChecked ?? false; }
+      set { CbxTerrainWater.IsChecked = value; }
+    }
+
+    public bool TerrainUnderground
+    {
+      get { return CbxTerrainUnderground.IsChecked ?? false; }
+      set { CbxTerrainUnderground.IsChecked = value; }
+    }
+
+    public bool TerrainRough
+    {
+      get { return CbxTerrainRough.IsChecked ?? false; }
+      set { CbxTerrainRough.IsChecked = value; }
+    }
+
+    public bool TerrainBroken
+    {
+      get { return CbxTerrainBroken.IsChecked ?? false; }
+      set { CbxTerrainBroken.IsChecked = value; }
+    }
+
+    public int MonthId
     {
       get { return Convert.ToInt32(LblMonthId.Content); }
       set { LblMonthId.Content = value; }
     }
 
-    public int Msc_PlaneId
+    public int PlaneId
     {
       get { return Convert.ToInt32(LblPlaneId.Content); }
       set { LblPlaneId.Content = value; }
     }
 
-    public int Msc_SeasonId
+    public int SeasonId
     {
       get { return Convert.ToInt32(LblSeasonId.Content); }
       set { LblSeasonId.Content = value; }
     }
 
-    public int Msc_TimeId
+    public int TimeId
     {
       get { return Convert.ToInt32(LblTimeId.Content); }
       set { LblTimeId.Content = value; }
+    }
+
+    public int TerrainId
+    {
+      get { return Convert.ToInt32(LblTerrainId.Content); }
+      set { LblTerrainId.Content = value; }
+    }
+
+    public int EnvironmentId
+    {
+      get { return Convert.ToInt32(LblEnvironmentId.Content); }
+      set { LblEnvironmentId.Content = value; }
     }
 
     #endregion
@@ -118,6 +186,8 @@ namespace PFEditor.Controls
     private ObservableCollection<ListItemResult> SeasonList;
     private ObservableCollection<ListItemResult> TimeList;
     private ObservableCollection<ListItemResult> PlaneList;
+    private ObservableCollection<ListItemResult> EnvironmentList;
+    private ObservableCollection<ListItemResult> TerrainList;
 
     private Month ActiveMonth = new Month();
     private Plane ActivePlane = new Plane();
@@ -129,22 +199,30 @@ namespace PFEditor.Controls
     public MiscControl()
     {
       InitializeComponent();
+      if (System.ComponentModel.DesignerProperties.GetIsInDesignMode(this))
+        return;
+
+      this.DataContext = this;
 
       MonthList = new ObservableCollection<ListItemResult>(DBClient.GetList("Month"));
       SeasonList = new ObservableCollection<ListItemResult>(DBClient.GetList("Season"));
       TimeList = new ObservableCollection<ListItemResult>(DBClient.GetList("Time"));
       PlaneList = new ObservableCollection<ListItemResult>(DBClient.GetList("Plane"));
+      TerrainList = new ObservableCollection<ListItemResult>(DBClient.GetList("Terrain"));
+      EnvironmentList = new ObservableCollection<ListItemResult>(DBClient.GetList("Environment"));
 
       LbxMonth.DisplayMemberPath = LbxPlane.DisplayMemberPath = LbxSeason.DisplayMemberPath =
-        LbxTime.DisplayMemberPath = "Name";
+        LbxTime.DisplayMemberPath = LbxTerrain.DisplayMemberPath = LbxEnvironment.DisplayMemberPath = "Name";
 
       LbxMonth.SelectedValuePath = LbxPlane.SelectedValuePath = LbxSeason.SelectedValuePath =
-        LbxTime.SelectedValuePath = "Id";
+        LbxTime.SelectedValuePath = LbxTerrain.SelectedValuePath = LbxEnvironment.SelectedValuePath = "Id";
 
       LbxMonth.ItemsSource = MonthList;
       LbxPlane.ItemsSource = PlaneList;
       LbxSeason.ItemsSource = SeasonList;
       LbxTime.ItemsSource = TimeList;
+      LbxTerrain.ItemsSource = TerrainList;
+      LbxEnvironment.ItemsSource = EnvironmentList;
 
       DrpMonthSeasonId.ItemsSource = SeasonList;
     }
@@ -153,38 +231,38 @@ namespace PFEditor.Controls
 
     #region Events
 
-    private void Btn_Misc_TimeAdd_Click(object sender, RoutedEventArgs e)
+    private void BtnTimeAdd_Click(object sender, RoutedEventArgs e)
     {
       ActiveTime = new Time();
-      Msc_TimeId = 0;
-      Msc_TimeName = string.Empty;
-      Msc_TimeNight = false;
-      Msc_TimeOrder = 0;
+      TimeId = 0;
+      TimeName = string.Empty;
+      TimeNight = false;
+      TimeOrder = 0;
     }
 
-    private void Btn_Misc_SeasonAdd_Click(object sender, RoutedEventArgs e)
+    private void BtnSeasonAdd_Click(object sender, RoutedEventArgs e)
     {
       ActiveSeason = new Season();
-      Msc_SeasonId = 0;
-      Msc_SeasonName = string.Empty;
-      Msc_SeasonOrder = 0;
+      SeasonId = 0;
+      SeasonName = string.Empty;
+      SeasonOrder = 0;
     }
 
-    private void Btn_Misc_PlaneAdd_Click(object sender, RoutedEventArgs e)
+    private void BtnPlaneAdd_Click(object sender, RoutedEventArgs e)
     {
       ActivePlane = new Plane();
-      Msc_PlaneId = 0;
-      Msc_PlaneName = string.Empty;
+      PlaneId = 0;
+      PlaneName = string.Empty;
     }
 
-    private void Btn_Misc_MonthAdd_Click(object sender, RoutedEventArgs e)
+    private void BtnMonthAdd_Click(object sender, RoutedEventArgs e)
     {
       ActiveMonth = new Month();
-      Msc_MonthDays = 0;
-      Msc_MonthId = 0;
-      Msc_MonthName = string.Empty;
-      Msc_MonthOrder = 0;
-      Msc_MonthSeasonId = 0;
+      MonthDays = 0;
+      MonthId = 0;
+      MonthName = string.Empty;
+      MonthOrder = 0;
+      MonthSeasonId = 0;
     }
 
     private void LbxTime_MouseDoubleClick(object sender, MouseButtonEventArgs e)
@@ -192,10 +270,10 @@ namespace PFEditor.Controls
       if (LbxTime.SelectedItem != null)
       {
         ActiveTime = DBClient.GetTime((int)LbxTime.SelectedValue);
-        Msc_TimeId = ActiveTime.TimeId;
-        Msc_TimeName = ActiveTime.Name;
-        Msc_TimeNight = ActiveTime.IsNight;
-        Msc_TimeOrder = ActiveTime.TimeOrder;
+        TimeId = ActiveTime.TimeId;
+        TimeName = ActiveTime.Name;
+        TimeNight = ActiveTime.IsNight;
+        TimeOrder = ActiveTime.TimeOrder;
       }
     }
 
@@ -204,9 +282,9 @@ namespace PFEditor.Controls
       if (LbxSeason.SelectedItem != null)
       {
         ActiveSeason = DBClient.GetSeason((int)LbxSeason.SelectedValue);
-        Msc_SeasonId = ActiveSeason.SeasonId;
-        Msc_SeasonName = ActiveSeason.Name;
-        Msc_SeasonOrder = ActiveSeason.Order;
+        SeasonId = ActiveSeason.SeasonId;
+        SeasonName = ActiveSeason.Name;
+        SeasonOrder = ActiveSeason.Order;
       }
     }
 
@@ -215,8 +293,8 @@ namespace PFEditor.Controls
       if (LbxPlane.SelectedItem != null)
       {
         ActivePlane = DBClient.GetPlane((int)LbxPlane.SelectedValue);
-        Msc_PlaneId = ActivePlane.PlaneId;
-        Msc_PlaneName = ActivePlane.Name;
+        PlaneId = ActivePlane.PlaneId;
+        PlaneName = ActivePlane.Name;
       }
     }
 
@@ -225,55 +303,55 @@ namespace PFEditor.Controls
       if (LbxMonth.SelectedItem != null)
       {
         ActiveMonth = DBClient.GetMonth((int)LbxMonth.SelectedValue);
-        Msc_MonthDays = ActiveMonth.Days;
-        Msc_MonthId = ActiveMonth.MonthId;
-        Msc_MonthName = ActiveMonth.Name;
-        Msc_MonthOrder = ActiveMonth.Order;
-        Msc_MonthSeasonId = ActiveMonth.SeasonId;
+        MonthDays = ActiveMonth.Days;
+        MonthId = ActiveMonth.MonthId;
+        MonthName = ActiveMonth.Name;
+        MonthOrder = ActiveMonth.Order;
+        MonthSeasonId = ActiveMonth.SeasonId;
       }
     }
 
-    private void Btn_Misc_TimeSave_Click(object sender, RoutedEventArgs e)
+    private void BtnTimeSave_Click(object sender, RoutedEventArgs e)
     {
       if (ActiveTime.TimeId == 0)
         ActiveTime.TimeId = DBClient.CreateTime(ActiveTime);
       else
         DBClient.UpdateTime(ActiveTime);
 
-      Msc_TimeId = ActiveTime.TimeId;
+      TimeId = ActiveTime.TimeId;
       TimeList = new ObservableCollection<ListItemResult>(DBClient.GetList("Time"));
     }
 
-    private void Btn_Misc_SeasonSave_Click(object sender, RoutedEventArgs e)
+    private void BtnSeasonSave_Click(object sender, RoutedEventArgs e)
     {
       if (ActiveSeason.SeasonId == 0)
         ActiveSeason.SeasonId = DBClient.CreateSeason(ActiveSeason);
       else
         DBClient.UpdateSeason(ActiveSeason);
 
-      Msc_SeasonId = ActiveSeason.SeasonId;
+      SeasonId = ActiveSeason.SeasonId;
       SeasonList = new ObservableCollection<ListItemResult>(DBClient.GetList("Season"));
     }
 
-    private void Btn_Misc_PlaneSave_Click(object sender, RoutedEventArgs e)
+    private void BtnPlaneSave_Click(object sender, RoutedEventArgs e)
     {
       if (ActivePlane.PlaneId == 0)
         ActivePlane.PlaneId = DBClient.CreatePlane(ActivePlane);
       else
         DBClient.UpdatePlane(ActivePlane);
 
-      Msc_PlaneId = ActivePlane.PlaneId;
+      PlaneId = ActivePlane.PlaneId;
       PlaneList = new ObservableCollection<ListItemResult>(DBClient.GetList("Plane"));
     }
 
-    private void Btn_Misc_MonthSave_Click(object sender, RoutedEventArgs e)
+    private void BtnMonthSave_Click(object sender, RoutedEventArgs e)
     {
       if (ActiveMonth.MonthId == 0)
         ActiveMonth.MonthId = DBClient.CreateMonth(ActiveMonth);
       else
         DBClient.UpdateMonth(ActiveMonth);
 
-      Msc_MonthId = ActiveMonth.MonthId;
+      MonthId = ActiveMonth.MonthId;
       MonthList = new ObservableCollection<ListItemResult>(DBClient.GetList("Month"));
     }
 

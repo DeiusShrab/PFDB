@@ -1,9 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-
-namespace DBConnect.DBModels
+﻿namespace DBConnect.DBModels
 {
-    public partial class Spell
+  public partial class Spell
     {
         public int SpellId { get; set; }
         public string Name { get; set; }

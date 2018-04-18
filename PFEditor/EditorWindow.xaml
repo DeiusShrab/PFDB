@@ -21,21 +21,19 @@
                 </Grid>
             </TabItem>
             <TabItem Header="Continent" Margin="-2,-2,-2,0">
-                <Grid Background="#FFE5E5E5"/>
-            </TabItem>
-            <TabItem Header="Terrain" Margin="-2,-2,-2,0">
-                <Grid Background="#FFE5E5E5"/>
+                <Grid Background="#FFE5E5E5">
+                    <controls:ContinentControl x:Name="CtlContinent" />
+                </Grid>
             </TabItem>
             <TabItem Header="Weather" Margin="-2,-2,-2,0">
                 <Grid Background="#FFE5E5E5">
                     <controls:WeatherControl x:Name="CtlWeather" />
                 </Grid>
             </TabItem>
-            <TabItem Header="Environment" Margin="-2,-2,-2,0">
-                <Grid Background="#FFE5E5E5"/>
-            </TabItem>
             <TabItem Header="Location" Margin="-2,-2,-2,0">
-                <Grid Background="#FFE5E5E5"/>
+                <Grid Background="#FFE5E5E5">
+                    <controls:LocationControl x:Name="CtlLocation" />
+                </Grid>
             </TabItem>
             <TabItem Header="Misc" Margin="-2,-2,-2,0">
                 <Grid Background="#FFE5E5E5">

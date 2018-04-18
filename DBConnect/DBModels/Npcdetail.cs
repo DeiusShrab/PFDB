@@ -1,9 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-
-namespace DBConnect.DBModels
+﻿namespace DBConnect.DBModels
 {
-    public partial class Npcdetail
+  public partial class Npcdetail
     {
         public int Npcid { get; set; }
         public string MonsterSource { get; set; }

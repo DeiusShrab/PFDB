@@ -5,7 +5,6 @@ using System.Text;
 using System.Timers;
 using DBConnect.ConnectModels;
 using DBConnect.DBModels;
-using Microsoft.Extensions.Configuration;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 
@@ -195,21 +194,46 @@ namespace DBConnect
 
     public static List<MonsterSpawn> GetMonsterSpawns(int bestiaryId)
     {
+      var ret = new List<MonsterSpawn>();
+
       var response = client.GetAsync(API_ADDR + "Spawns/" + bestiaryId.ToString()).Result;
       if (response.IsSuccessStatusCode)
       {
         var content = response.Content;
-        var ret = JsonConvert.DeserializeObject<List<MonsterSpawn>>(content.ReadAsStringAsync().Result);
-        return ret;
+        ret = JsonConvert.DeserializeObject<List<MonsterSpawn>>(content.ReadAsStringAsync().Result);
       }
-      else
-        return null;
+
+      return ret;
     }
 
     public static bool UpdateMonsterSpawns(SpawnUpdateRequest request)
     {
       var body = JsonConvert.SerializeObject(request);
       var response = client.PostAsync(API_ADDR + "Spawns/" + request.BestiaryId.ToString(), new StringContent(body, Encoding.UTF8, "application/json")).Result;
+      if (response.IsSuccessStatusCode)
+        return true;
+      else
+        return false;
+    }
+
+    public static List<ContinentWeather> GetContinentWeathers(int continentId, int bestiaryId)
+    {
+      var ret = new List<ContinentWeather>();
+
+      var response = client.GetAsync($"{API_ADDR}ContinentWeathers?continentId={continentId}&bestiaryId={bestiaryId}").Result;
+      if (response.IsSuccessStatusCode)
+      {
+        var content = response.Content;
+        ret = JsonConvert.DeserializeObject<List<ContinentWeather>>(content.ReadAsStringAsync().Result);
+      }
+
+      return ret;
+    }
+
+    public static bool UpdateContinentWeathers(ContinentWeatherUpdateRequest request)
+    {
+      var body = JsonConvert.SerializeObject(request);
+      var response = client.PostAsync(API_ADDR + "ContinentWeathers", new StringContent(body, Encoding.UTF8, "application/json")).Result;
       if (response.IsSuccessStatusCode)
         return true;
       else

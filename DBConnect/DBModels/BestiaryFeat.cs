@@ -1,9 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-
-namespace DBConnect.DBModels
+﻿namespace DBConnect.DBModels
 {
-    public partial class BestiaryFeat
+  public partial class BestiaryFeat
     {
         public int BestiaryFeatId { get; set; }
         public int BestiaryId { get; set; }

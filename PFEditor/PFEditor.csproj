@@ -87,6 +87,14 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
+    <Page Include="Controls\ContinentControl.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Controls\LocationControl.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
     <Page Include="Controls\_BaseControl.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -122,6 +130,12 @@
     </Compile>
     <Compile Include="Controls\SpellControl.xaml.cs">
       <DependentUpon>SpellControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\ContinentControl.xaml.cs">
+      <DependentUpon>ContinentControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\LocationControl.xaml.cs">
+      <DependentUpon>LocationControl.xaml</DependentUpon>
     </Compile>
     <Compile Include="Controls\_BaseControl.xaml.cs">
       <DependentUpon>_BaseControl.xaml</DependentUpon>

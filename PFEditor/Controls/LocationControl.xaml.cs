@@ -3,11 +3,11 @@
 namespace PFEditor.Controls
 {
   /// <summary>
-  /// Interaction logic for BaseControl.xaml
+  /// Interaction logic for LocationControl.xaml
   /// </summary>
-  public partial class BaseControl : UserControl
+  public partial class LocationControl : UserControl
   {
-    public BaseControl()
+    public LocationControl()
     {
       InitializeComponent();
       if (System.ComponentModel.DesignerProperties.GetIsInDesignMode(this))

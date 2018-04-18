@@ -1,5 +1,4 @@
 ﻿using System.Windows;
-using System.Windows.Input;
 using DBConnect;
 
 namespace PFEditor
@@ -13,13 +12,15 @@ namespace PFEditor
 
     public EditorWindow()
     {
+      InitializeComponent();
+      if (System.ComponentModel.DesignerProperties.GetIsInDesignMode(this))
+        return;
+
       if (!DBClient.ConfigExists())
       {
         MessageBox.Show("Not configured - please run configuration tool in PFHelper");
         Application.Current.Shutdown();
       }
-
-      InitializeComponent();
 
       LoadDBData();      
     }

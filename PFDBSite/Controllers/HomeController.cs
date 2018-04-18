@@ -1,14 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Diagnostics;
-using System.Linq;
-using System.Threading.Tasks;
+﻿using System.Diagnostics;
 using Microsoft.AspNetCore.Mvc;
 using PFDBSite.Models;
 
 namespace PFDBSite.Controllers
 {
-    public class HomeController : PFDBController
+  public class HomeController : PFDBController
     {
         public IActionResult Index()
         {

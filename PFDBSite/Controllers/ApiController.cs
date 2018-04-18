@@ -1,10 +1,6 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Linq;
-using System.Threading.Tasks;
-using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
-using Newtonsoft.Json;
 using DBConnect;
 using DBConnect.ConnectModels;
 using PFDBSite.Helpers;
@@ -154,7 +150,7 @@ namespace PFDBSite.Controllers
     [HttpPost("Spawns/{bestiaryId:int}")]
     public IActionResult UpdateSpawns([FromBody] SpawnUpdateRequest request, int bestiaryId)
     {
-      if (request == null || request.BestiaryId != bestiaryId)
+      if (request == null || request.BestiaryId != bestiaryId || request.BestiaryId <= 0)
         return BadRequest();
 
       helperQuery.UpdateSpawns(request);
@@ -167,6 +163,24 @@ namespace PFDBSite.Controllers
     {
       var context = PFDAL.GetContext();
       return new JsonResult(context.MonsterSpawn.Where(x => x.BestiaryId == bestiaryId));
+    }
+
+    [HttpGet("ContinentWeathers")]
+    public IActionResult GetContinentWeathers(int continentId, int seasonId)
+    {
+      var context = PFDAL.GetContext();
+      return new JsonResult(context.ContinentWeather.Where(x => x.ContinentId == continentId && x.SeasonId == seasonId));
+    }
+
+    [HttpPost("ContinentWeathers")]
+    public IActionResult UpdateContinentWeathers([FromBody] ContinentWeatherUpdateRequest request)
+    {
+      if (request == null || request.ContinentId <= 0 || request.SeasonId <= 0)
+        return BadRequest();
+
+      helperQuery.UpdateContinentWeathers(request);
+
+      return Ok();
     }
 
     #endregion

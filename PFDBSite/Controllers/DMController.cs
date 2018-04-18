@@ -1,12 +1,7 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Text;
-using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using DBConnect;
-using DBConnect.DBModels;
-using PFDBSite.Models;
 using Microsoft.AspNetCore.Authorization;
 using Newtonsoft.Json.Linq;
 using Microsoft.IdentityModel.Tokens;

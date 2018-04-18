@@ -2,17 +2,9 @@
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
 using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
 using DBConnect;
 using DBConnect.ConnectModels;
 using DBConnect.DBModels;
@@ -25,7 +17,7 @@ namespace PFEditor.Controls
   /// </summary>
   public partial class BestiaryControl : UserControl
   {
-    #region Interface Variables
+    #region Interface Properties
 
     public string Bes_ACMods
     {
@@ -595,6 +587,10 @@ namespace PFEditor.Controls
     public BestiaryControl()
     {
       InitializeComponent();
+      if (System.ComponentModel.DesignerProperties.GetIsInDesignMode(this))
+        return;
+
+      this.DataContext = this;
 
       CR_List = new List<DisplayResult>();
       for (int i = -4; i < 32; i++)
@@ -877,13 +873,16 @@ namespace PFEditor.Controls
 
     private void TxtSearch_TextChanged(object sender, TextChangedEventArgs e)
     {
-      if (string.IsNullOrWhiteSpace(TxtSearch.Text))
+      if (BestiaryList != null) // Prevent designer failure
       {
-        BestiaryList_Filter = new ObservableCollection<ListItemResult>(BestiaryList);
-      }
-      else if (TxtSearch.Text.Length >= 3)
-      {
-        BestiaryList_Filter = new ObservableCollection<ListItemResult>(BestiaryList_Filter.Where(x => x.Name.ToLower().Contains(TxtSearch.Text.ToLower())));
+        if (string.IsNullOrWhiteSpace(TxtSearch.Text))
+        {
+          BestiaryList_Filter = new ObservableCollection<ListItemResult>(BestiaryList);
+        }
+        else if (TxtSearch.Text.Length >= 3)
+        {
+          BestiaryList_Filter = new ObservableCollection<ListItemResult>(BestiaryList_Filter.Where(x => x.Name.ToLower().Contains(TxtSearch.Text.ToLower())));
+        }
       }
     }
 

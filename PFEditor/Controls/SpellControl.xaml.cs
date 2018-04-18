@@ -2,17 +2,7 @@
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
 using DBConnect;
 using DBConnect.ConnectModels;
 using DBConnect.DBModels;
@@ -25,456 +15,476 @@ namespace PFEditor.Controls
   /// </summary>
   public partial class SpellControl : UserControl
   {
-    #region Interface Variables
+    #region Interface Properties
 
-    public string Spl_Bloodline
+    public string Bloodline
     {
       get { return TxtBloodline.Text; }
       set { TxtBloodline.Text = value; }
     }
 
-    public string Spl_CastingTime
+    public string CastingTime
     {
       get { return TxtCastingTime.Text; }
       set { TxtCastingTime.Text = value; }
     }
 
-    public string Spl_Duration
+    public string Duration
     {
       get { return TxtDuration.Text; }
       set { TxtDuration.Text = value; }
     }
 
-    public string Spl_Effect
+    public string SpellEffect
     {
       get { return TxtEffect.Text; }
       set { TxtEffect.Text = value; }
     }
 
-    public string Spl_Fulltext
+    public string Fulltext
     {
       get { return TxtFulltext.Text; }
       set { TxtFulltext.Text = value; }
     }
 
-    public string Spl_Materials
+    public string Materials
     {
       get { return TxtMaterials.Text; }
       set { TxtMaterials.Text = value; }
     }
 
-    public string Spl_Name
+    public string SpellName
     {
       get { return TxtName.Text; }
       set { TxtName.Text = value; }
     }
 
-    public string Spl_Patron
+    public string Patron
     {
       get { return TxtPatron.Text; }
       set { TxtPatron.Text = value; }
     }
 
-    public string Spl_Range
+    public string Range
     {
       get { return TxtRange.Text; }
       set { TxtRange.Text = value; }
     }
 
-    public string Spl_Save
+    public string Save
     {
       get { return TxtSave.Text; }
       set { TxtSave.Text = value; }
     }
 
-    public string Spl_Search
+    public string Search
     {
       get { return TxtSearch.Text; }
       set { TxtSearch.Text = value; }
     }
 
-    public string Spl_ShortDesc
+    public string ShortDesc
     {
       get { return TxtShortDesc.Text; }
       set { TxtShortDesc.Text = value; }
     }
 
-    public string Spl_SR
+    public string SR
     {
       get { return TxtSR.Text; }
       set { TxtSR.Text = value; }
     }
 
-    public string Spl_Targets
+    public string Targets
     {
       get { return TxtTargets.Text; }
       set { TxtTargets.Text = value; }
     }
 
-    public int Spl_LevelAdept
+    public int LevelAdept
     {
       get { return Convert.ToInt32(DrpLevelAdept.SelectedValue); }
       set { DrpLevelAdept.SelectedValue = value; }
     }
 
-    public int Spl_LevelAlchemist
+    public int LevelAlchemist
     {
       get { return Convert.ToInt32(DrpLevelAlchemist.SelectedValue); }
       set { DrpLevelAlchemist.SelectedValue = value; }
     }
 
-    public int Spl_LevelAntipaladin
+    public int LevelAntipaladin
     {
       get { return Convert.ToInt32(DrpLevelAntipaladin.SelectedValue); }
       set { DrpLevelAntipaladin.SelectedValue = value; }
     }
 
-    public int Spl_LevelBard
+    public int LevelBard
     {
       get { return Convert.ToInt32(DrpLevelBard.SelectedValue); }
       set { DrpLevelBard.SelectedValue = value; }
     }
 
-    public int Spl_LevelBloodRager
+    public int LevelBloodRager
     {
       get { return Convert.ToInt32(DrpLevelBloodRager.SelectedValue); }
       set { DrpLevelBloodRager.SelectedValue = value; }
     }
 
-    public int Spl_LevelCleric
+    public int LevelCleric
     {
       get { return Convert.ToInt32(DrpLevelCleric.SelectedValue); }
       set { DrpLevelCleric.SelectedValue = value; }
     }
 
-    public int Spl_LevelDruid
+    public int LevelDruid
     {
       get { return Convert.ToInt32(DrpLevelDruid.SelectedValue); }
       set { DrpLevelDruid.SelectedValue = value; }
     }
 
-    public int Spl_LevelHunter
+    public int LevelHunter
     {
       get { return Convert.ToInt32(DrpLevelHunter.SelectedValue); }
       set { DrpLevelHunter.SelectedValue = value; }
     }
 
-    public int Spl_LevelInquisitor
+    public int LevelInquisitor
     {
       get { return Convert.ToInt32(DrpLevelInquisitor.SelectedValue); }
       set { DrpLevelInquisitor.SelectedValue = value; }
     }
 
-    public int Spl_LevelInvestigator
+    public int LevelInvestigator
     {
       get { return Convert.ToInt32(DrpLevelInvestigator.SelectedValue); }
       set { DrpLevelInvestigator.SelectedValue = value; }
     }
 
-    public int Spl_LevelMagus
+    public int LevelMagus
     {
       get { return Convert.ToInt32(DrpLevelMagus.SelectedValue); }
       set { DrpLevelMagus.SelectedValue = value; }
     }
 
-    public int Spl_LevelMedium
+    public int LevelMedium
     {
       get { return Convert.ToInt32(DrpLevelMedium.SelectedValue); }
       set { DrpLevelMedium.SelectedValue = value; }
     }
 
-    public int Spl_LevelMesmerist
+    public int LevelMesmerist
     {
       get { return Convert.ToInt32(DrpLevelMesmerist.SelectedValue); }
       set { DrpLevelMesmerist.SelectedValue = value; }
     }
 
-    public int Spl_LevelOccultist
+    public int LevelOccultist
     {
       get { return Convert.ToInt32(DrpLevelOccultist.SelectedValue); }
       set { DrpLevelOccultist.SelectedValue = value; }
     }
 
-    public int Spl_LevelOracle
+    public int LevelOracle
     {
       get { return Convert.ToInt32(DrpLevelOracle.SelectedValue); }
       set { DrpLevelOracle.SelectedValue = value; }
     }
 
-    public int Spl_LevelPaladin
+    public int LevelPaladin
     {
       get { return Convert.ToInt32(DrpLevelPaladin.SelectedValue); }
       set { DrpLevelPaladin.SelectedValue = value; }
     }
 
-    public int Spl_LevelPsychic
+    public int LevelPsychic
     {
       get { return Convert.ToInt32(DrpLevelPsychic.SelectedValue); }
       set { DrpLevelPsychic.SelectedValue = value; }
     }
 
-    public int Spl_LevelRanger
+    public int LevelRanger
     {
       get { return Convert.ToInt32(DrpLevelRanger.SelectedValue); }
       set { DrpLevelRanger.SelectedValue = value; }
     }
 
-    public int Spl_LevelShaman
+    public int LevelShaman
     {
       get { return Convert.ToInt32(DrpLevelShaman.SelectedValue); }
       set { DrpLevelShaman.SelectedValue = value; }
     }
 
-    public int Spl_LevelSkald
+    public int LevelSkald
     {
       get { return Convert.ToInt32(DrpLevelSkald.SelectedValue); }
       set { DrpLevelSkald.SelectedValue = value; }
     }
 
-    public int Spl_LevelSor
+    public int LevelSor
     {
       get { return Convert.ToInt32(DrpLevelSor.SelectedValue); }
       set { DrpLevelSor.SelectedValue = value; }
     }
 
-    public int Spl_LevelSpiritualist
+    public int LevelSpiritualist
     {
       get { return Convert.ToInt32(DrpLevelSpiritualist.SelectedValue); }
       set { DrpLevelSpiritualist.SelectedValue = value; }
     }
 
-    public int Spl_LevelSummoner
+    public int LevelSummoner
     {
       get { return Convert.ToInt32(DrpLevelSummoner.SelectedValue); }
       set { DrpLevelSummoner.SelectedValue = value; }
     }
 
-    public int Spl_LevelWitch
+    public int LevelWitch
     {
       get { return Convert.ToInt32(DrpLevelWitch.SelectedValue); }
       set { DrpLevelWitch.SelectedValue = value; }
     }
 
-    public int Spl_LevelWiz
+    public int LevelWiz
     {
       get { return Convert.ToInt32(DrpLevelWiz.SelectedValue); }
       set { DrpLevelWiz.SelectedValue = value; }
     }
 
-    public int Spl_School
+    public int School
     {
       get { return Convert.ToInt32(DrpSchool.SelectedValue); }
       set { DrpSchool.SelectedValue = value; }
     }
 
-    public int Spl_SubSchool
+    public int SubSchool
     {
       get { return Convert.ToInt32(DrpSubSchool.SelectedValue); }
       set { DrpSubSchool.SelectedValue = value; }
     }
 
-    public bool Spl_Acid
+    public bool Acid
     {
       get { return CbxAcid.IsChecked ?? false; }
       set { CbxAcid.IsChecked = value; }
     }
 
-    public bool Spl_Air
+    public bool Air
     {
       get { return CbxAir.IsChecked ?? false; }
       set { CbxAir.IsChecked = value; }
     }
 
-    public bool Spl_Chaotic
+    public bool Chaotic
     {
       get { return CbxChaotic.IsChecked ?? false; }
       set { CbxChaotic.IsChecked = value; }
     }
 
-    public bool Spl_Cold
+    public bool Cold
     {
       get { return CbxCold.IsChecked ?? false; }
       set { CbxCold.IsChecked = value; }
     }
 
-    public bool Spl_CostlyComponents
+    public bool CostlyComponents
     {
       get { return CbxCostlyComponents.IsChecked ?? false; }
       set { CbxCostlyComponents.IsChecked = value; }
     }
 
-    public bool Spl_Curse
+    public bool Curse
     {
       get { return CbxCurse.IsChecked ?? false; }
       set { CbxCurse.IsChecked = value; }
     }
 
-    public bool Spl_Darkness
+    public bool Darkness
     {
       get { return CbxDarkness.IsChecked ?? false; }
       set { CbxDarkness.IsChecked = value; }
     }
 
-    public bool Spl_Death
+    public bool Death
     {
       get { return CbxDeath.IsChecked ?? false; }
       set { CbxDeath.IsChecked = value; }
     }
 
-    public bool Spl_Disease
+    public bool Disease
     {
       get { return CbxDisease.IsChecked ?? false; }
       set { CbxDisease.IsChecked = value; }
     }
 
-    public bool Spl_Dismissable
+    public bool Dismissable
     {
       get { return CbxDismissable.IsChecked ?? false; }
       set { CbxDismissable.IsChecked = value; }
     }
 
-    public bool Spl_DivineFocus
+    public bool DivineFocus
     {
       get { return CbxDivineFocus.IsChecked ?? false; }
       set { CbxDivineFocus.IsChecked = value; }
     }
 
-    public bool Spl_Earth
+    public bool Earth
     {
       get { return CbxEarth.IsChecked ?? false; }
       set { CbxEarth.IsChecked = value; }
     }
 
-    public bool Spl_Electricity
+    public bool Electricity
     {
       get { return CbxElectricity.IsChecked ?? false; }
       set { CbxElectricity.IsChecked = value; }
     }
 
-    public bool Spl_Emotion
+    public bool Emotion
     {
       get { return CbxEmotion.IsChecked ?? false; }
       set { CbxEmotion.IsChecked = value; }
     }
 
-    public bool Spl_Evil
+    public bool Evil
     {
       get { return CbxEvil.IsChecked ?? false; }
       set { CbxEvil.IsChecked = value; }
     }
 
-    public bool Spl_Fear
+    public bool Fear
     {
       get { return CbxFear.IsChecked ?? false; }
       set { CbxFear.IsChecked = value; }
     }
 
-    public bool Spl_Fire
+    public bool Fire
     {
       get { return CbxFire.IsChecked ?? false; }
       set { CbxFire.IsChecked = value; }
     }
 
-    public bool Spl_Focus
+    public bool SpellFocus
     {
       get { return CbxFocus.IsChecked ?? false; }
       set { CbxFocus.IsChecked = value; }
     }
 
-    public bool Spl_Force
+    public bool Force
     {
       get { return CbxForce.IsChecked ?? false; }
       set { CbxForce.IsChecked = value; }
     }
 
-    public bool Spl_Good
+    public bool Good
     {
       get { return CbxGood.IsChecked ?? false; }
       set { CbxGood.IsChecked = value; }
     }
 
-    public bool Spl_LanguageDependent
+    public bool LanguageDependent
     {
       get { return CbxLanguageDependent.IsChecked ?? false; }
       set { CbxLanguageDependent.IsChecked = value; }
     }
 
-    public bool Spl_Lawful
+    public bool Lawful
     {
       get { return CbxLawful.IsChecked ?? false; }
       set { CbxLawful.IsChecked = value; }
     }
 
-    public bool Spl_Light
+    public bool Light
     {
       get { return CbxLight.IsChecked ?? false; }
       set { CbxLight.IsChecked = value; }
     }
 
-    public bool Spl_Material
+    public bool Material
     {
       get { return CbxMaterial.IsChecked ?? false; }
       set { CbxMaterial.IsChecked = value; }
     }
 
-    public bool Spl_MindAffecting
+    public bool MindAffecting
     {
       get { return CbxMindAffecting.IsChecked ?? false; }
       set { CbxMindAffecting.IsChecked = value; }
     }
 
-    public bool Spl_Mythic
+    public bool Mythic
     {
       get { return CbxMythic.IsChecked ?? false; }
       set { CbxMythic.IsChecked = value; }
     }
 
-    public bool Spl_Pain
+    public bool Pain
     {
       get { return CbxPain.IsChecked ?? false; }
       set { CbxPain.IsChecked = value; }
     }
 
-    public bool Spl_Poison
+    public bool Poison
     {
       get { return CbxPoison.IsChecked ?? false; }
       set { CbxPoison.IsChecked = value; }
     }
 
-    public bool Spl_Shadow
+    public bool Shadow
     {
       get { return CbxShadow.IsChecked ?? false; }
       set { CbxShadow.IsChecked = value; }
     }
 
-    public bool Spl_Shapeable
+    public bool Shapeable
     {
       get { return CbxShapeable.IsChecked ?? false; }
       set { CbxShapeable.IsChecked = value; }
     }
 
-    public bool Spl_Somatic
+    public bool Somatic
     {
       get { return CbxSomatic.IsChecked ?? false; }
       set { CbxSomatic.IsChecked = value; }
     }
 
-    public bool Spl_Sonic
+    public bool Sonic
     {
       get { return CbxSonic.IsChecked ?? false; }
       set { CbxSonic.IsChecked = value; }
     }
 
-    public bool Spl_Verbal
+    public bool Verbal
     {
       get { return CbxVerbal.IsChecked ?? false; }
       set { CbxVerbal.IsChecked = value; }
     }
 
-    public bool Spl_Water
+    public bool Water
     {
       get { return CbxWater.IsChecked ?? false; }
       set { CbxWater.IsChecked = value; }
+    }
+
+    public int SelectedSpellSchoolId
+    {
+      get
+      {
+        int.TryParse(DrpSchool.SelectedValue.ToString(), out int ret);
+        return ret;
+      }
+      set { DrpSchool.SelectedValue = value; }
+    }
+
+    public int SelectedSpellSubSchoolId
+    {
+      get
+      {
+        int.TryParse(DrpSubSchool.SelectedValue.ToString(), out int ret);
+        return ret;
+      }
+      set { DrpSubSchool.SelectedValue = value; }
     }
 
     #endregion
@@ -484,10 +494,11 @@ namespace PFEditor.Controls
     private ObservableCollection<ListItemResult> SpellList;
     private ObservableCollection<ListItemResult> SpellSchoolList;
     private ObservableCollection<ListItemResult> SpellSubSchoolList;
+    private ObservableCollection<ListItemResult> SpellSubSchoolList_Filter;
     private List<DisplayResult> Mag_LevelList;
 
     private Spell ActiveSpell = new Spell();
-    private SpellDetail ActiveSpellDetail = new SpellDetail();
+    private SpellDetail ActiveSpellDetail = new SpellDetail();    
 
     #endregion
 
@@ -495,6 +506,11 @@ namespace PFEditor.Controls
 
     public SpellControl()
     {
+      InitializeComponent();
+      if (System.ComponentModel.DesignerProperties.GetIsInDesignMode(this))
+        return;
+
+      this.DataContext = this;
 
       Mag_LevelList = new List<DisplayResult>
       {
@@ -511,9 +527,10 @@ namespace PFEditor.Controls
         new DisplayResult() { Display = "9", Result = 9 }
       };
 
-      InitializeComponent();
-
       SpellList = new ObservableCollection<ListItemResult>(DBClient.GetList("Spell"));
+      SpellSchoolList = new ObservableCollection<ListItemResult>(DBClient.GetList("SpellSchool"));
+      SpellSubSchoolList = new ObservableCollection<ListItemResult>(DBClient.GetList("SpellSubSchool")); // SubSchoolId as Id, SchoolId as Note
+      SpellSubSchoolList_Filter = new ObservableCollection<ListItemResult>(SpellSubSchoolList.Where(x => x.Notes == SelectedSpellSubSchoolId.ToString()));
 
       LbxSpell.DisplayMemberPath = "Name";
       LbxSpell.SelectedValuePath = "Id";
@@ -564,9 +581,15 @@ namespace PFEditor.Controls
       DrpLevelWiz.ItemsSource = Mag_LevelList;
 
       DrpSchool.ItemsSource = SpellSchoolList;
-      DrpSubSchool.ItemsSource = SpellSubSchoolList;
+      DrpSubSchool.ItemsSource = SpellSubSchoolList_Filter;
     }
 
     #endregion
+
+    private void DrpSchool_SelectionChanged(object sender, SelectionChangedEventArgs e)
+    {
+      if (SelectedSpellSchoolId > 0)
+        SpellSubSchoolList_Filter = new ObservableCollection<ListItemResult>(SpellSubSchoolList.Where(x => x.Notes == SelectedSpellSubSchoolId.ToString()));
+    }
   }
 }

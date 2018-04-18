@@ -1,9 +1,10 @@
-﻿<UserControl x:Class="PFEditor.Controls.WeatherControl"
+﻿<UserControl
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:PFEditor.Controls"
+             xmlns:xctk="http://schemas.xceed.com/wpf/xaml/toolkit" x:Class="PFEditor.Controls.WeatherControl"
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800" Width="1332" Height="649" Background="#FFDDDDDD">
     <Grid>
@@ -36,6 +37,24 @@
         <Button x:Name="BtnSaveContinentWeather" Content="Save" HorizontalAlignment="Left" Margin="1247,619,0,0" VerticalAlignment="Top" Width="75"/>
         <Button x:Name="BtnAddWeather" Content="Add" HorizontalAlignment="Left" Margin="10,619,0,0" VerticalAlignment="Top" Width="75"/>
         <Button x:Name="BtnAddContinentWeather" Content="Add" HorizontalAlignment="Left" Margin="665,619,0,0" VerticalAlignment="Top" Width="75"/>
+        <ComboBox x:Name="DrpSeason" HorizontalAlignment="Left" Margin="850,10,0,0" VerticalAlignment="Top" Width="180"/>
+        <Label Content="CWID" HorizontalAlignment="Left" Margin="845,68,0,0" VerticalAlignment="Top"/>
+        <Label x:Name="LblCWID" Content="0000" HorizontalAlignment="Left" Margin="936,68,0,0" VerticalAlignment="Top"/>
+        <TextBox x:Name="TxtGroupPhase" HorizontalAlignment="Left" Height="23" Margin="936,96,0,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="261"/>
+        <Label Content="Group (Phase)" HorizontalAlignment="Left" Margin="846,92,0,0" VerticalAlignment="Top"/>
+
+        <xctk:IntegerUpDown x:Name="IntWeight" HorizontalAlignment="Left" Margin="937,152,0,0" VerticalAlignment="Top"/>
+        <Label Content="Total Weight" HorizontalAlignment="Left" Margin="845,35,0,0" VerticalAlignment="Top"/>
+        <Label x:Name="LblWeight" Content="0000" HorizontalAlignment="Left" Margin="936,35,0,0" VerticalAlignment="Top"/>
+        <Label Content="Weight" HorizontalAlignment="Left" Margin="846,148,0,0" VerticalAlignment="Top"/>
+        <xctk:IntegerUpDown x:Name="IntDuration" HorizontalAlignment="Left" Margin="937,180,0,0" VerticalAlignment="Top"/>
+        <Label Content="Duration (days)" HorizontalAlignment="Left" Margin="846,176,0,0" VerticalAlignment="Top"/>
+        <Label Content="Next ContinentWeather" HorizontalAlignment="Left" Margin="846,203,0,0" VerticalAlignment="Top"/>
+        <Label Content="Parent ContinentWeather" HorizontalAlignment="Left" Margin="845,229,0,0" VerticalAlignment="Top"/>
+        <ComboBox x:Name="DrpWeather" HorizontalAlignment="Left" Margin="936,124,0,0" VerticalAlignment="Top" Width="180"/>
+        <Label Content="Weather" HorizontalAlignment="Left" Margin="846,120,0,0" VerticalAlignment="Top"/>
+        <ComboBox x:Name="DrpParentWeather" HorizontalAlignment="Left" Margin="989,233,0,0" VerticalAlignment="Top" Width="180"/>
+        <ComboBox x:Name="DrpNextWeather" HorizontalAlignment="Left" Margin="989,204,0,0" VerticalAlignment="Top" Width="180"/>
 
     </Grid>
 </UserControl>

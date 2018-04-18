@@ -1,9 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Data.SqlClient;
 using System.Linq;
-using System.Threading.Tasks;
-using Microsoft.EntityFrameworkCore;
 using DBConnect;
 using DBConnect.ConnectModels;
 using DBConnect.DBModels;
@@ -24,7 +21,6 @@ namespace PFDBSite.Helpers
                         where (s.ContinentId == request.ContinentId || request.ContinentId == 0)
                             && (s.SeasonId == request.SeasonId || request.SeasonId == 0)
                             && (s.TimeId == request.TimeId || request.TimeId == 0)
-                            && (s.TerrainId == request.TerrainId || request.TerrainId == 0)
                             && b.CharacterFlag == request.Npc
                         select b;
 
@@ -66,10 +62,9 @@ namespace PFDBSite.Helpers
       };
 
       var validWeathers = from c in context.ContinentWeather
-                          join w in context.Weather on c.WeatherId equals w.WeatherId
                           where (c.ContinentId == request.ContinentId || c.ContinentId == 0)
                               && (c.SeasonId == request.SeasonId || c.SeasonId == 0)
-                          select w;
+                          select c;
 
       ret.WeatherList = validWeathers.ToList();
       ret.Success = true;

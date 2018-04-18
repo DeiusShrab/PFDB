@@ -1,19 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Data;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
 using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
 using DBConnect;
 using DBConnect.ConnectModels;
 using DBConnect.DBModels;
@@ -44,6 +35,10 @@ namespace PFEditor.Controls
     public MonsterSpawnControl()
     {
       InitializeComponent();
+      if (System.ComponentModel.DesignerProperties.GetIsInDesignMode(this))
+        return;
+
+      this.DataContext = this;
 
       MonsterSpawnList = new ObservableCollection<ListItemResult>(DBClient.GetList("MonsterSpawn"));
       ContinentList = new ObservableCollection<ListItemResult>(DBClient.GetList("Continent"));
@@ -146,16 +141,19 @@ namespace PFEditor.Controls
 
     private void TxtSearch_TextChanged(object sender, TextChangedEventArgs e)
     {
-      if (string.IsNullOrWhiteSpace(TxtSearch.Text))
+      if (MonsterSpawnList != null) // Prevent designer failure
       {
-        MonsterSpawnList_Filter = new ObservableCollection<ListItemResult>(MonsterSpawnList);
-      }
-      else if (TxtSearch.Text.Length >= 3)
-      {
-        if (RadSearchName.IsChecked == true)
-          MonsterSpawnList_Filter = new ObservableCollection<ListItemResult>(MonsterSpawnList.Where(x => x.Name.ToLower().Contains(TxtSearch.Text.ToLower())));
-        else
-          MonsterSpawnList_Filter = new ObservableCollection<ListItemResult>(MonsterSpawnList.Where(x => x.Notes.ToLower().Contains(TxtSearch.Text.ToLower())));
+        if (string.IsNullOrWhiteSpace(TxtSearch.Text))
+        {
+          MonsterSpawnList_Filter = new ObservableCollection<ListItemResult>(MonsterSpawnList);
+        }
+        else if (TxtSearch.Text.Length >= 3)
+        {
+          if (RadSearchName.IsChecked == true)
+            MonsterSpawnList_Filter = new ObservableCollection<ListItemResult>(MonsterSpawnList.Where(x => x.Name.ToLower().Contains(TxtSearch.Text.ToLower())));
+          else
+            MonsterSpawnList_Filter = new ObservableCollection<ListItemResult>(MonsterSpawnList.Where(x => x.Notes.ToLower().Contains(TxtSearch.Text.ToLower())));
+        }
       }
     }
 
