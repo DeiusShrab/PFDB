@@ -216,11 +216,11 @@ namespace DBConnect
         return false;
     }
 
-    public static List<ContinentWeather> GetContinentWeathers(int continentId, int bestiaryId)
+    public static List<ContinentWeather> GetContinentWeathers(int continentId, int seasonId)
     {
       var ret = new List<ContinentWeather>();
 
-      var response = client.GetAsync($"{API_ADDR}ContinentWeathers?continentId={continentId}&bestiaryId={bestiaryId}").Result;
+      var response = client.GetAsync($"{API_ADDR}ContinentWeathers?continentId={continentId}&seasonId={seasonId}").Result;
       if (response.IsSuccessStatusCode)
       {
         var content = response.Content;
@@ -1453,7 +1453,7 @@ namespace DBConnect
       var ret = false;
 
       var body = JsonConvert.SerializeObject(obj);
-      var response = client.PutAsync(API_ADDR + "ContinentWeather/" + obj.Cwid.ToString(), new StringContent(body, Encoding.UTF8, "application/json")).Result;
+      var response = client.PutAsync(API_ADDR + "ContinentWeather/" + obj.CWID.ToString(), new StringContent(body, Encoding.UTF8, "application/json")).Result;
       if (response.IsSuccessStatusCode)
         ret = true;
 
@@ -1674,6 +1674,266 @@ namespace DBConnect
         ret = true;
 
       return ret;
+    }
+
+    #endregion
+
+    #region Delete
+
+    public static bool DeleteBestiary(int BestiaryId)
+    {
+      var response = client.DeleteAsync(API_ADDR + "Bestiary/" + BestiaryId.ToString()).Result;
+      if (response.IsSuccessStatusCode)
+        return true;
+
+      return false;
+    }
+
+    // BestiaryDetail deleted with Bestiary
+
+    public static bool DeleteBestiaryEnvironment(int BestiaryEnvironmentId)
+    {
+      var response = client.DeleteAsync(API_ADDR + "BestiaryEnvironment/" + BestiaryEnvironmentId.ToString()).Result;
+      if (response.IsSuccessStatusCode)
+        return true;
+
+      return false;
+    }
+
+    public static bool DeleteBestiaryFeat(int BestiaryFeatId)
+    {
+      var response = client.DeleteAsync(API_ADDR + "BestiaryFeat/" + BestiaryFeatId.ToString()).Result;
+      if (response.IsSuccessStatusCode)
+        return true;
+
+      return false;
+    }
+
+    public static bool DeleteBestiaryLanguage(int BestiaryLanguageId)
+    {
+      var response = client.DeleteAsync(API_ADDR + "BestiaryLanguage/" + BestiaryLanguageId.ToString()).Result;
+      if (response.IsSuccessStatusCode)
+        return true;
+
+      return false;
+    }
+
+    public static bool DeleteBestiarySkill(int BestiarySkillId)
+    {
+      var response = client.DeleteAsync(API_ADDR + "BestiarySkill/" + BestiarySkillId.ToString()).Result;
+      if (response.IsSuccessStatusCode)
+        return true;
+
+      return false;
+    }
+
+    public static bool DeleteBestiarySubType(int BestiarySubTypeId)
+    {
+      var response = client.DeleteAsync(API_ADDR + "BestiarySubType/" + BestiarySubTypeId.ToString()).Result;
+      if (response.IsSuccessStatusCode)
+        return true;
+
+      return false;
+    }
+
+    public static bool DeleteBestiaryType(int BestiaryTypeId)
+    {
+      var response = client.DeleteAsync(API_ADDR + "BestiaryType/" + BestiaryTypeId.ToString()).Result;
+      if (response.IsSuccessStatusCode)
+        return true;
+
+      return false;
+    }
+
+    public static bool DeleteContinent(int ContinentId)
+    {
+      var response = client.DeleteAsync(API_ADDR + "Continent/" + ContinentId.ToString()).Result;
+      if (response.IsSuccessStatusCode)
+        return true;
+
+      return false;
+    }
+
+    public static bool DeleteContinentWeather(int ContinentWeatherId)
+    {
+      var response = client.DeleteAsync(API_ADDR + "ContinentWeather/" + ContinentWeatherId.ToString()).Result;
+      if (response.IsSuccessStatusCode)
+        return true;
+
+      return false;
+    }
+
+    public static bool DeleteEnvironment(int EnvironmentId)
+    {
+      var response = client.DeleteAsync(API_ADDR + "Environment/" + EnvironmentId.ToString()).Result;
+      if (response.IsSuccessStatusCode)
+        return true;
+
+      return false;
+    }
+
+    public static bool DeleteFaction(int FactionId)
+    {
+      var response = client.DeleteAsync(API_ADDR + "Faction/" + FactionId.ToString()).Result;
+      if (response.IsSuccessStatusCode)
+        return true;
+
+      return false;
+    }
+
+    public static bool DeleteFeat(int FeatId)
+    {
+      var response = client.DeleteAsync(API_ADDR + "Feat/" + FeatId.ToString()).Result;
+      if (response.IsSuccessStatusCode)
+        return true;
+
+      return false;
+    }
+
+    public static bool DeleteLanguage(int LanguageId)
+    {
+      var response = client.DeleteAsync(API_ADDR + "Language/" + LanguageId.ToString()).Result;
+      if (response.IsSuccessStatusCode)
+        return true;
+
+      return false;
+    }
+
+    public static bool DeleteLocation(int LocationId)
+    {
+      var response = client.DeleteAsync(API_ADDR + "Location/" + LocationId.ToString()).Result;
+      if (response.IsSuccessStatusCode)
+        return true;
+
+      return false;
+    }
+
+    public static bool DeleteMagicItem(int MagicItemId)
+    {
+      var response = client.DeleteAsync(API_ADDR + "MagicItem/" + MagicItemId.ToString()).Result;
+      if (response.IsSuccessStatusCode)
+        return true;
+
+      return false;
+    }
+
+    public static bool DeleteMonsterSpawn(int MonsterSpawnId)
+    {
+      var response = client.DeleteAsync(API_ADDR + "MonsterSpawn/" + MonsterSpawnId.ToString()).Result;
+      if (response.IsSuccessStatusCode)
+        return true;
+
+      return false;
+    }
+
+    public static bool DeleteMonth(int MonthId)
+    {
+      var response = client.DeleteAsync(API_ADDR + "Month/" + MonthId.ToString()).Result;
+      if (response.IsSuccessStatusCode)
+        return true;
+
+      return false;
+    }
+
+    public static bool DeletePlane(int PlaneId)
+    {
+      var response = client.DeleteAsync(API_ADDR + "Plane/" + PlaneId.ToString()).Result;
+      if (response.IsSuccessStatusCode)
+        return true;
+
+      return false;
+    }
+
+    public static bool DeleteSeason(int SeasonId)
+    {
+      var response = client.DeleteAsync(API_ADDR + "Season/" + SeasonId.ToString()).Result;
+      if (response.IsSuccessStatusCode)
+        return true;
+
+      return false;
+    }
+
+    public static bool DeleteSkill(int SkillId)
+    {
+      var response = client.DeleteAsync(API_ADDR + "Skill/" + SkillId.ToString()).Result;
+      if (response.IsSuccessStatusCode)
+        return true;
+
+      return false;
+    }
+
+    public static bool DeleteSpell(int SpellId)
+    {
+      var response = client.DeleteAsync(API_ADDR + "Spell/" + SpellId.ToString()).Result;
+      if (response.IsSuccessStatusCode)
+        return true;
+
+      return false;
+    }
+
+    // SpellDetail deleted with Spell
+
+    public static bool DeleteSpellSchool(int SpellSchoolId)
+    {
+      var response = client.DeleteAsync(API_ADDR + "SpellSchool/" + SpellSchoolId.ToString()).Result;
+      if (response.IsSuccessStatusCode)
+        return true;
+
+      return false;
+    }
+
+    public static bool DeleteSpellSubSchool(int SpellSubSchoolId)
+    {
+      var response = client.DeleteAsync(API_ADDR + "SpellSubSchool/" + SpellSubSchoolId.ToString()).Result;
+      if (response.IsSuccessStatusCode)
+        return true;
+
+      return false;
+    }
+
+    public static bool DeleteTerrain(int TerrainId)
+    {
+      var response = client.DeleteAsync(API_ADDR + "Terrain/" + TerrainId.ToString()).Result;
+      if (response.IsSuccessStatusCode)
+        return true;
+
+      return false;
+    }
+
+    public static bool DeleteTerritory(int TerritoryId)
+    {
+      var response = client.DeleteAsync(API_ADDR + "Territory/" + TerritoryId.ToString()).Result;
+      if (response.IsSuccessStatusCode)
+        return true;
+
+      return false;
+    }
+
+    public static bool DeleteTime(int TimeId)
+    {
+      var response = client.DeleteAsync(API_ADDR + "Time/" + TimeId.ToString()).Result;
+      if (response.IsSuccessStatusCode)
+        return true;
+
+      return false;
+    }
+
+    public static bool DeleteTrackedEvent(int TrackedEventId)
+    {
+      var response = client.DeleteAsync(API_ADDR + "TrackedEvent/" + TrackedEventId.ToString()).Result;
+      if (response.IsSuccessStatusCode)
+        return true;
+
+      return false;
+    }
+
+    public static bool DeleteWeather(int WeatherId)
+    {
+      var response = client.DeleteAsync(API_ADDR + "Weather/" + WeatherId.ToString()).Result;
+      if (response.IsSuccessStatusCode)
+        return true;
+
+      return false;
     }
 
     #endregion

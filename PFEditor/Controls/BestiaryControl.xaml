@@ -219,7 +219,6 @@
         <ListBox x:Name="LbxBestiary" HorizontalAlignment="Left" Height="576" Margin="10,38,0,0" VerticalAlignment="Top" Width="180" MouseDoubleClick="LbxBestiary_MouseDoubleClick"/>
         <Button x:Name="BtnAddNew" Content="Add New" HorizontalAlignment="Left" Margin="195,619,0,0" VerticalAlignment="Top" Width="75" Click="BtnAddNew_Click"/>
         <Button x:Name="BtnSave" Content="Save" HorizontalAlignment="Left" Margin="1247,619,0,0" VerticalAlignment="Top" Width="75" Click="BtnSave_Click"/>
-        <Button x:Name="BtnClear" Content="Clear" HorizontalAlignment="Left" Margin="1167,619,0,0" VerticalAlignment="Top" Width="75"/>
         <TextBox x:Name="TxtSearch" HorizontalAlignment="Left" Height="23" Margin="10,10,0,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="180" TextChanged="TxtSearch_TextChanged"/>
         <Button x:Name="BtnSortName" Content="Name" HorizontalAlignment="Left" Margin="47,619,0,0" VerticalAlignment="Top" Width="50" Click="BtnSortName_Click"/>
         <Label Content="Sort" HorizontalAlignment="Left" Margin="10,616,0,0" VerticalAlignment="Top"/>

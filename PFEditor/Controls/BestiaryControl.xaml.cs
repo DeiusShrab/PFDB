@@ -642,111 +642,10 @@ namespace PFEditor.Controls
       }
     }
 
-    #endregion
-
-
-    #region Events
-
-    private void LbxBestiary_MouseDoubleClick(object sender, MouseButtonEventArgs e)
+    private void LoadActiveBestiary()
     {
-      if (LbxBestiary.SelectedItem != null)
-      {
-        ActiveBestiary = DBClient.GetBestiary((int)LbxBestiary.SelectedValue);
-        ActiveBestiaryDetail = DBClient.GetBestiaryDetail((int)LbxBestiary.SelectedValue);
-
-        Bes_AC = ActiveBestiary.Ac;
-        Bes_ACFlat = ActiveBestiary.Acflat;
-        Bes_ACMods = ActiveBestiary.Acmods;
-        Bes_ACTouch = ActiveBestiary.Actouch;
-        Bes_AgeCategory = ActiveBestiary.AgeCategory;
-        Bes_Align = ActiveBestiary.Alignment;
-        Bes_Archetype = ActiveBestiary.ClassArchetypes;
-        Bes_Aura = ActiveBestiary.Aura;
-        Bes_BAB = ActiveBestiary.BaseAtk;
-        Bes_BaseStatistics = ActiveBestiary.BaseStatistics;
-        Bes_BeforeCombat = ActiveBestiary.BeforeCombat;
-        Bes_BestiaryId = ActiveBestiary.BestiaryId;
-        Bes_Bloodline = ActiveBestiary.Bloodline;
-        Bes_CHA = ActiveBestiary.Cha;
-        Bes_Class = ActiveBestiary.Class;
-        Bes_CMB = ActiveBestiary.Cmb;
-        Bes_CMD = ActiveBestiary.Cmd;
-        Bes_Companion = ActiveBestiary.CompanionFlag;
-        Bes_CON = ActiveBestiary.Con;
-        Bes_CR = ActiveBestiary.Cr;
-        Bes_CreatureSource = ActiveBestiaryDetail.MonsterSource;
-        Bes_Defense = ActiveBestiary.DefensiveAbilities;
-        Bes_DEX = ActiveBestiary.Dex;
-        Bes_DontUseRacialHD = ActiveBestiary.DontUseRacialHd;
-        Bes_DuringCombat = ActiveBestiary.DuringCombat;
-        Bes_FamiliarNotes = ActiveBestiary.CompanionFamiliarLink;
-        Bes_FeatNotes = ActiveBestiary.Feats;
-        Bes_FocusedSchool = ActiveBestiary.FocusedSchool;
-        Bes_Fort = ActiveBestiary.Fortitude;
-        Bes_Fulltext = ActiveBestiaryDetail.FullText;
-        Bes_Gear = ActiveBestiary.Gear;
-        Bes_Gender = ActiveBestiary.Gender;
-        Bes_Group = ActiveBestiary.Group;
-        Bes_HD = ActiveBestiary.Hd;
-        Bes_HP = ActiveBestiary.Hp;
-        Bes_Immune = ActiveBestiary.Immune;
-        Bes_Init = ActiveBestiary.Init;
-        Bes_INT = ActiveBestiary.Int;
-        Bes_Languages = ActiveBestiary.Languages;
-        Bes_Melee = ActiveBestiary.Melee;
-        Bes_Morale = ActiveBestiary.Morale;
-        Bes_MR = ActiveBestiary.Mr;
-        Bes_MT = ActiveBestiary.Mt;
-        Bes_Mystery = ActiveBestiary.Mystery;
-        Bes_Mythic = ActiveBestiary.Mythic;
-        Bes_Name = ActiveBestiary.Name;
-        Bes_Notes = ActiveBestiary.Note;
-        Bes_NPC = ActiveBestiary.CharacterFlag;
-        Bes_Offense = ActiveBestiary.OffenseNote;
-        Bes_OffenseNote = ActiveBestiary.OffenseNote;
-        Bes_Organization = ActiveBestiary.Organization;
-        Bes_Patron = ActiveBestiary.Patron;
-        Bes_ProhibitedSchools = ActiveBestiary.ProhibitedSchools;
-        Bes_Race = ActiveBestiary.Race;
-        Bes_RacialMods = ActiveBestiary.RacialMods;
-        Bes_Ranged = ActiveBestiary.Ranged;
-        Bes_Reach = ActiveBestiary.Reach;
-        Bes_Ref = ActiveBestiary.Reflex;
-        Bes_Resist = ActiveBestiary.Resist;
-        Bes_SaveMods = ActiveBestiary.SaveMods;
-        Bes_Senses = ActiveBestiary.Senses;
-        Bes_Size = ActiveBestiary.Size;
-        Bes_Space = ActiveBestiary.Space;
-        Bes_SpdBurrow = ActiveBestiary.Burrow;
-        Bes_SpdClimb = ActiveBestiary.Climb;
-        Bes_SpdFly = ActiveBestiary.Fly;
-        Bes_SpdLand = ActiveBestiary.Land;
-        Bes_SpdSwim = ActiveBestiary.Swim;
-        Bes_Special = ActiveBestiary.SpecialAttacks;
-        Bes_SpecialAbilities = ActiveBestiary.SpecialAbilities;
-        Bes_SpecialQualities = "Not Used?";
-        Bes_SpeedMods = ActiveBestiary.SpeedMod;
-        Bes_SpellDomains = ActiveBestiary.SpellDomains;
-        Bes_STR = ActiveBestiary.Str;
-        Bes_SubType = ActiveBestiary.SubType;
-        Bes_Template = ActiveBestiary.IsTemplate;
-        Bes_TemplatesApplied = ActiveBestiary.TemplatesApplied;
-        Bes_Traits = ActiveBestiary.Traits;
-        Bes_Treasure = ActiveBestiary.Traits;
-        Bes_Type = ActiveBestiary.Type;
-        Bes_UniqueCreature = ActiveBestiary.UniqueMonster;
-        Bes_VariantParent = ActiveBestiary.VariantParent;
-        Bes_VisualDescription = ActiveBestiaryDetail.Description;
-        Bes_Will = ActiveBestiary.Will;
-        Bes_WIS = ActiveBestiary.Wis;
-        Bes_XP = ActiveBestiary.Xp;
-      }
-    }
-
-    private void BtnAddNew_Click(object sender, RoutedEventArgs e)
-    {
-      ActiveBestiary = new Bestiary();
-      ActiveBestiaryDetail = new BestiaryDetail();
+      if (ActiveBestiary == null || ActiveBestiaryDetail == null)
+        return;
 
       Bes_AC = ActiveBestiary.Ac;
       Bes_ACFlat = ActiveBestiary.Acflat;
@@ -834,6 +733,120 @@ namespace PFEditor.Controls
       Bes_Will = ActiveBestiary.Will;
       Bes_WIS = ActiveBestiary.Wis;
       Bes_XP = ActiveBestiary.Xp;
+    }
+
+    private void SaveActiveBestiary()
+    {
+      ActiveBestiary.Ac = Bes_AC;
+      ActiveBestiary.Acflat = Bes_ACFlat;
+      ActiveBestiary.Acmods = Bes_ACMods;
+      ActiveBestiary.Actouch = Bes_ACTouch;
+      ActiveBestiary.AgeCategory = Bes_AgeCategory;
+      ActiveBestiary.Alignment = Bes_Align;
+      ActiveBestiary.ClassArchetypes = Bes_Archetype;
+      ActiveBestiary.Aura = Bes_Aura;
+      ActiveBestiary.BaseAtk = Bes_BAB;
+      ActiveBestiary.BaseStatistics = Bes_BaseStatistics;
+      ActiveBestiary.BeforeCombat = Bes_BeforeCombat;
+      ActiveBestiary.BestiaryId = Bes_BestiaryId;
+      ActiveBestiary.Bloodline = Bes_Bloodline;
+      ActiveBestiary.Cha = Bes_CHA;
+      ActiveBestiary.Class = Bes_Class;
+      ActiveBestiary.Cmb = Bes_CMB;
+      ActiveBestiary.Cmd = Bes_CMD;
+      ActiveBestiary.CompanionFlag = Bes_Companion;
+      ActiveBestiary.Con = Bes_CON;
+      ActiveBestiary.Cr = Bes_CR;
+      ActiveBestiaryDetail.MonsterSource = Bes_CreatureSource;
+      ActiveBestiary.DefensiveAbilities = Bes_Defense;
+      ActiveBestiary.Dex = Bes_DEX;
+      ActiveBestiary.DontUseRacialHd = Bes_DontUseRacialHD;
+      ActiveBestiary.DuringCombat = Bes_DuringCombat;
+      ActiveBestiary.CompanionFamiliarLink = Bes_FamiliarNotes;
+      ActiveBestiary.Feats = Bes_FeatNotes;
+      ActiveBestiary.FocusedSchool = Bes_FocusedSchool;
+      ActiveBestiary.Fortitude = Bes_Fort;
+      ActiveBestiaryDetail.FullText = Bes_Fulltext;
+      ActiveBestiary.Gear = Bes_Gear;
+      ActiveBestiary.Gender = Bes_Gender;
+      ActiveBestiary.Group = Bes_Group;
+      ActiveBestiary.Hd = Bes_HD;
+      ActiveBestiary.Hp = Bes_HP;
+      ActiveBestiary.Immune = Bes_Immune;
+      ActiveBestiary.Init = Bes_Init;
+      ActiveBestiary.Int = Bes_INT;
+      ActiveBestiary.Languages = Bes_Languages;
+      ActiveBestiary.Melee = Bes_Melee;
+      ActiveBestiary.Morale = Bes_Morale;
+      ActiveBestiary.Mr = Bes_MR;
+      ActiveBestiary.Mt = Bes_MT;
+      ActiveBestiary.Mystery = Bes_Mystery;
+      ActiveBestiary.Mythic = Bes_Mythic;
+      ActiveBestiary.Name = Bes_Name;
+      ActiveBestiary.Note = Bes_Notes;
+      ActiveBestiary.CharacterFlag = Bes_NPC;
+      ActiveBestiary.OffenseNote = Bes_Offense;
+      ActiveBestiary.OffenseNote = Bes_OffenseNote;
+      ActiveBestiary.Organization = Bes_Organization;
+      ActiveBestiary.Patron = Bes_Patron;
+      ActiveBestiary.ProhibitedSchools = Bes_ProhibitedSchools;
+      ActiveBestiary.Race = Bes_Race;
+      ActiveBestiary.RacialMods = Bes_RacialMods;
+      ActiveBestiary.Ranged = Bes_Ranged;
+      ActiveBestiary.Reach = Bes_Reach;
+      ActiveBestiary.Reflex = Bes_Ref;
+      ActiveBestiary.Resist = Bes_Resist;
+      ActiveBestiary.SaveMods = Bes_SaveMods;
+      ActiveBestiary.Senses = Bes_Senses;
+      ActiveBestiary.Size = Bes_Size;
+      ActiveBestiary.Space = Bes_Space;
+      ActiveBestiary.Burrow = Bes_SpdBurrow;
+      ActiveBestiary.Climb = Bes_SpdClimb;
+      ActiveBestiary.Fly = Bes_SpdFly;
+      ActiveBestiary.Land = Bes_SpdLand;
+      ActiveBestiary.Swim = Bes_SpdSwim;
+      ActiveBestiary.SpecialAttacks = Bes_Special;
+      ActiveBestiary.SpecialAbilities = Bes_SpecialAbilities;
+      // Special Qualities?
+      ActiveBestiary.SpeedMod = Bes_SpeedMods;
+      ActiveBestiary.SpellDomains = Bes_SpellDomains;
+      ActiveBestiary.Str = Bes_STR;
+      ActiveBestiary.SubType = Bes_SubType;
+      ActiveBestiary.IsTemplate = Bes_Template;
+      ActiveBestiary.TemplatesApplied = Bes_TemplatesApplied;
+      ActiveBestiary.Traits = Bes_Traits;
+      ActiveBestiary.Traits = Bes_Treasure;
+      ActiveBestiary.Type = Bes_Type;
+      ActiveBestiary.UniqueMonster = Bes_UniqueCreature;
+      ActiveBestiary.VariantParent = Bes_VariantParent;
+      ActiveBestiaryDetail.Description = Bes_VisualDescription;
+      ActiveBestiary.Will = Bes_Will;
+      ActiveBestiary.Wis = Bes_WIS;
+      ActiveBestiary.Xp = Bes_XP;
+    }
+
+    #endregion
+
+
+    #region Events
+
+    private void LbxBestiary_MouseDoubleClick(object sender, MouseButtonEventArgs e)
+    {
+      if (LbxBestiary.SelectedItem != null)
+      {
+        ActiveBestiary = DBClient.GetBestiary((int)LbxBestiary.SelectedValue);
+        ActiveBestiaryDetail = DBClient.GetBestiaryDetail((int)LbxBestiary.SelectedValue);
+
+        LoadActiveBestiary();
+      }
+    }
+
+    private void BtnAddNew_Click(object sender, RoutedEventArgs e)
+    {
+      ActiveBestiary = new Bestiary();
+      ActiveBestiaryDetail = new BestiaryDetail();
+
+      LoadActiveBestiary();
     }
 
     private void BtnSave_Click(object sender, RoutedEventArgs e)

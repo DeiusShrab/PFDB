@@ -39,6 +39,8 @@ namespace DBConnect
     DbSet<TrackedEvent> TrackedEvent { get; set; }
     DbSet<Plane> Plane { get; set; }
     DbSet<Skill> Skill { get; set; }
+    DbSet<SpellSchool> SpellSchool { get; set; }
+    DbSet<SpellSubSchool> SpellSubSchool { get; set; }
 
     #endregion
 

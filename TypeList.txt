@@ -21,6 +21,8 @@ Season
 Skill
 Spell
 SpellDetail
+SpellSchool
+SpellSubSchool
 Terrain
 Territory
 Time

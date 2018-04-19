@@ -8,8 +8,8 @@
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800" Width="1332" Height="649" Background="#FFDDDDDD">
     <Grid>
-        <ListBox x:Name="LbxContinentWeather" HorizontalAlignment="Left" Height="546" Margin="665,68,0,0" VerticalAlignment="Top" Width="180"/>
-        <ListBox x:Name="LbxWeather" HorizontalAlignment="Left" Height="576" Margin="10,38,0,0" VerticalAlignment="Top" Width="180"/>
+        <ListBox x:Name="LbxContinentWeather" HorizontalAlignment="Left" Height="546" Margin="665,68,0,0" VerticalAlignment="Top" Width="180" MouseDoubleClick="LbxContinentWeather_MouseDoubleClick"/>
+        <ListBox x:Name="LbxWeather" HorizontalAlignment="Left" Height="576" Margin="10,38,0,0" VerticalAlignment="Top" Width="180" MouseDoubleClick="LbxWeather_MouseDoubleClick"/>
         <TextBox x:Name="TxtSearchContinentWeather" HorizontalAlignment="Left" Height="23" Margin="665,38,0,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="180"/>
         <TextBox x:Name="TxtSearchWeather" HorizontalAlignment="Left" Height="23" Margin="10,10,0,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="180"/>
         <TextBox x:Name="TxtName" HorizontalAlignment="Left" Height="23" Margin="260,68,0,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="400"/>
@@ -30,14 +30,14 @@
         <CheckBox x:Name="CbxMagical" Content="Magical" HorizontalAlignment="Left" Margin="260,284,0,0" VerticalAlignment="Top"/>
         <CheckBox x:Name="CbxDeadly" Content="Deadly" HorizontalAlignment="Left" Margin="386,264,0,0" VerticalAlignment="Top"/>
         <CheckBox x:Name="CbxFloodDanger" Content="Flood Danger" HorizontalAlignment="Left" Margin="260,264,0,0" VerticalAlignment="Top"/>
-        <ComboBox x:Name="DrpContinent" HorizontalAlignment="Left" Margin="665,10,0,0" VerticalAlignment="Top" Width="180"/>
-        <Button x:Name="BtnDelWeather" Content="Delete" HorizontalAlignment="Left" Margin="115,619,0,0" VerticalAlignment="Top" Width="75"/>
-        <Button x:Name="BtnSaveWeather" Content="Save" HorizontalAlignment="Left" Margin="585,619,0,0" VerticalAlignment="Top" Width="75"/>
-        <Button x:Name="BtnDelContinentWeather" Content="Delete" HorizontalAlignment="Left" Margin="770,619,0,0" VerticalAlignment="Top" Width="75"/>
-        <Button x:Name="BtnSaveContinentWeather" Content="Save" HorizontalAlignment="Left" Margin="1247,619,0,0" VerticalAlignment="Top" Width="75"/>
-        <Button x:Name="BtnAddWeather" Content="Add" HorizontalAlignment="Left" Margin="10,619,0,0" VerticalAlignment="Top" Width="75"/>
-        <Button x:Name="BtnAddContinentWeather" Content="Add" HorizontalAlignment="Left" Margin="665,619,0,0" VerticalAlignment="Top" Width="75"/>
-        <ComboBox x:Name="DrpSeason" HorizontalAlignment="Left" Margin="850,10,0,0" VerticalAlignment="Top" Width="180"/>
+        <ComboBox x:Name="DrpContinent" HorizontalAlignment="Left" Margin="665,10,0,0" VerticalAlignment="Top" Width="180" SelectionChanged="DrpContinent_SelectionChanged"/>
+        <Button x:Name="BtnDelWeather" Content="Delete" HorizontalAlignment="Left" Margin="115,619,0,0" VerticalAlignment="Top" Width="75" Click="BtnDelWeather_Click"/>
+        <Button x:Name="BtnSaveWeather" Content="Save" HorizontalAlignment="Left" Margin="585,619,0,0" VerticalAlignment="Top" Width="75" Click="BtnSaveWeather_Click"/>
+        <Button x:Name="BtnDelContinentWeather" Content="Delete" HorizontalAlignment="Left" Margin="770,619,0,0" VerticalAlignment="Top" Width="75" Click="BtnDelContinentWeather_Click"/>
+        <Button x:Name="BtnSaveContinentWeather" Content="Save" HorizontalAlignment="Left" Margin="1247,619,0,0" VerticalAlignment="Top" Width="75" Click="BtnSaveContinentWeather_Click"/>
+        <Button x:Name="BtnAddWeather" Content="Add" HorizontalAlignment="Left" Margin="10,619,0,0" VerticalAlignment="Top" Width="75" Click="BtnAddWeather_Click"/>
+        <Button x:Name="BtnAddContinentWeather" Content="Add" HorizontalAlignment="Left" Margin="665,619,0,0" VerticalAlignment="Top" Width="75" Click="BtnAddContinentWeather_Click"/>
+        <ComboBox x:Name="DrpSeason" HorizontalAlignment="Left" Margin="850,10,0,0" VerticalAlignment="Top" Width="180" SelectionChanged="DrpSeason_SelectionChanged"/>
         <Label Content="CWID" HorizontalAlignment="Left" Margin="845,68,0,0" VerticalAlignment="Top"/>
         <Label x:Name="LblCWID" Content="0000" HorizontalAlignment="Left" Margin="936,68,0,0" VerticalAlignment="Top"/>
         <TextBox x:Name="TxtGroupPhase" HorizontalAlignment="Left" Height="23" Margin="936,96,0,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="261"/>
@@ -55,6 +55,7 @@
         <Label Content="Weather" HorizontalAlignment="Left" Margin="846,120,0,0" VerticalAlignment="Top"/>
         <ComboBox x:Name="DrpParentWeather" HorizontalAlignment="Left" Margin="989,233,0,0" VerticalAlignment="Top" Width="180"/>
         <ComboBox x:Name="DrpNextWeather" HorizontalAlignment="Left" Margin="989,204,0,0" VerticalAlignment="Top" Width="180"/>
+        <CheckBox x:Name="CbxRandomDuration" Content="Random Duration" HorizontalAlignment="Left" Margin="989,182,0,0" VerticalAlignment="Top"/>
 
     </Grid>
 </UserControl>

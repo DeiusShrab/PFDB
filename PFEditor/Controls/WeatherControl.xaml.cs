@@ -1,4 +1,7 @@
-﻿using System.Collections.ObjectModel;
+﻿using System;
+using System.Collections.ObjectModel;
+using System.Linq;
+using System.Windows;
 using System.Windows.Controls;
 using DBConnect;
 using DBConnect.ConnectModels;
@@ -24,7 +27,7 @@ namespace PFEditor.Controls
       set { DrpContinent.SelectedValue = value; }
     }
 
-    public int NextWeatherId
+    public int NextCWID
     {
       get
       {
@@ -34,7 +37,7 @@ namespace PFEditor.Controls
       set { DrpNextWeather.SelectedValue = value; }
     }
 
-    public int ParentWeatherId
+    public int ParentCWID
     {
       get
       {
@@ -112,15 +115,15 @@ namespace PFEditor.Controls
       set { IntWeight.Value = value; }
     }
 
-    public string CWID
+    public int CWID
     {
-      get { return LblCWID.Content.ToString(); }
+      get { return Convert.ToInt32(LblCWID.Content.ToString()); }
       set { LblCWID.Content = value; }
     }
 
-    public string WeatherId
+    public int WeatherId
     {
-      get { return LblWeatherId.Content.ToString(); }
+      get { return Convert.ToInt32(LblWeatherId.Content.ToString()); }
       set { LblWeatherId.Content = value; }
     }
 
@@ -183,17 +186,27 @@ namespace PFEditor.Controls
       set { CbxWindDanger.IsChecked = value; }
     }
 
-
+    public bool RandomDuration
+    {
+      get { return CbxRandomDuration.IsChecked ?? false; }
+      set { CbxRandomDuration.IsChecked = value; }
+    }
 
     #endregion
 
+    #region Private Variables
+
     private ObservableCollection<ListItemResult> WeatherList;
-    private ObservableCollection<ListItemResult> ContinentWeatherList;
+    private ObservableCollection<ContinentWeather> ContinentWeatherList;
     private ObservableCollection<ListItemResult> ContinentList;
     private ObservableCollection<ListItemResult> SeasonList;
 
     private Weather ActiveWeather = new Weather();
     private ContinentWeather ActiveContinentWeather = new ContinentWeather();
+
+    #endregion
+
+    #region Constructor
 
     public WeatherControl()
     {
@@ -206,12 +219,15 @@ namespace PFEditor.Controls
       WeatherList = new ObservableCollection<ListItemResult>(DBClient.GetList("Weather"));
       ContinentList = new ObservableCollection<ListItemResult>(DBClient.GetList("Continent"));
       SeasonList = new ObservableCollection<ListItemResult>(DBClient.GetList("Season"));
-      ContinentWeatherList = new ObservableCollection<ListItemResult>();
+      ContinentWeatherList = new ObservableCollection<ContinentWeather>();
 
-      LbxWeather.DisplayMemberPath = LbxContinentWeather.DisplayMemberPath = DrpContinent.DisplayMemberPath = DrpNextWeather.DisplayMemberPath = 
-        DrpParentWeather.DisplayMemberPath = DrpSeason.DisplayMemberPath = DrpWeather.DisplayMemberPath = "Name";
-      LbxWeather.SelectedValuePath = LbxContinentWeather.SelectedValuePath = DrpContinent.SelectedValuePath = DrpNextWeather.SelectedValuePath =
-        DrpParentWeather.SelectedValuePath = DrpSeason.SelectedValuePath = DrpWeather.SelectedValuePath = "Id";
+      LbxWeather.DisplayMemberPath = DrpContinent.DisplayMemberPath = DrpNextWeather.DisplayMemberPath = DrpParentWeather.DisplayMemberPath =
+        DrpSeason.DisplayMemberPath = DrpWeather.DisplayMemberPath = "Name";
+      LbxWeather.SelectedValuePath = DrpContinent.SelectedValuePath = DrpNextWeather.SelectedValuePath = DrpParentWeather.SelectedValuePath =
+        DrpSeason.SelectedValuePath = DrpWeather.SelectedValuePath = "Id";
+
+      LbxContinentWeather.DisplayMemberPath = "Name";
+      LbxContinentWeather.SelectedValuePath = "CWID";
 
       LbxWeather.ItemsSource = WeatherList;
       LbxContinentWeather.ItemsSource = ContinentWeatherList;
@@ -222,5 +238,195 @@ namespace PFEditor.Controls
       DrpWeather.ItemsSource = WeatherList;
       
     }
+
+    #endregion
+
+    #region Private Methods
+
+    private void LoadActiveWeather()
+    {
+      if (ActiveWeather == null)
+        return;
+
+      WeatherId = ActiveWeather.WeatherId;
+      WeatherName = ActiveWeather.Name;
+      ColdDanger = ActiveWeather.ColdDanger;
+      ColdLethal = ActiveWeather.ColdLethal;
+      Deadly = ActiveWeather.Deadly;
+      Description = ActiveWeather.Description;
+      Effects = ActiveWeather.Effects;
+      FloodDanger = ActiveWeather.Flooding;
+      HeatDanger = ActiveWeather.HeatDanger;
+      HeatLethal = ActiveWeather.HeatLethal;
+      WindDanger = ActiveWeather.HighWind;
+      Magical = ActiveWeather.Magical;
+      VisionObscured = ActiveWeather.VisionObscured;
+    }
+
+    private void SaveActiveWeather()
+    {
+      ActiveWeather.WeatherId = WeatherId;
+      ActiveWeather.Name = WeatherName;
+      ActiveWeather.ColdDanger = ColdDanger;
+      ActiveWeather.ColdLethal = ColdLethal;
+      ActiveWeather.Deadly = Deadly;
+      ActiveWeather.Description = Description;
+      ActiveWeather.Effects = Effects;
+      ActiveWeather.Flooding = FloodDanger;
+      ActiveWeather.HeatDanger = HeatDanger;
+      ActiveWeather.HeatLethal = HeatLethal;
+      ActiveWeather.HighWind = WindDanger;
+      ActiveWeather.Magical = Magical;
+      ActiveWeather.VisionObscured = VisionObscured;
+    }
+
+    private void LoadActiveContinentWeather()
+    {
+      if (ActiveContinentWeather == null)
+        return;
+
+      ContinentId = ActiveContinentWeather.ContinentId;
+      CWID = ActiveContinentWeather.CWID;
+      Duration = ActiveContinentWeather.Duration;
+      GroupPhase = ActiveContinentWeather.Name;
+      NextCWID = ActiveContinentWeather.NextCWID;
+      ParentCWID = ActiveContinentWeather.ParentCWID;
+      RandomDuration = ActiveContinentWeather.RandomDuration;
+      SeasonId = ActiveContinentWeather.SeasonId;
+      CW_WeatherId = ActiveContinentWeather.WeatherId;
+      Weight = ActiveContinentWeather.Weight;
+    }
+
+    private void SaveActiveContinentWeather()
+    {
+      ActiveContinentWeather.ContinentId = ContinentId;
+      ActiveContinentWeather.CWID = CWID;
+      ActiveContinentWeather.Duration = Duration;
+      ActiveContinentWeather.Name = GroupPhase;
+      ActiveContinentWeather.NextCWID = NextCWID;
+      ActiveContinentWeather.ParentCWID = ParentCWID;
+      ActiveContinentWeather.RandomDuration = RandomDuration;
+      ActiveContinentWeather.SeasonId = SeasonId;
+      ActiveContinentWeather.WeatherId = CW_WeatherId;
+      ActiveContinentWeather.Weight = Weight;
+    }
+
+    private void UpdateCWIDList()
+    {
+      if (ContinentId > 0 && SeasonId > 0)
+        ContinentWeatherList = new ObservableCollection<ContinentWeather>(DBClient.GetContinentWeathers(ContinentId, SeasonId));
+    }
+
+    #endregion
+
+    #region Events
+
+    private void LbxWeather_MouseDoubleClick(object sender, System.Windows.Input.MouseButtonEventArgs e)
+    {
+      if (LbxWeather.SelectedItem != null)
+      {
+        ActiveWeather = DBClient.GetWeather((int)LbxWeather.SelectedItem);
+
+        LoadActiveWeather();
+      }
+    }
+
+    private void BtnAddWeather_Click(object sender, System.Windows.RoutedEventArgs e)
+    {
+      ActiveWeather = new Weather();
+
+      LoadActiveWeather();
+    }
+
+    private void BtnDelWeather_Click(object sender, System.Windows.RoutedEventArgs e)
+    {
+      if (LbxWeather.SelectedItem != null && MessageBox.Show("WARNING\nAre you sure you want to delete the selected Weather?") == MessageBoxResult.OK)
+      {
+        if (DBClient.DeleteWeather((int)LbxWeather.SelectedItem))
+          WeatherList.Remove((ListItemResult)LbxWeather.SelectedItem);
+      }
+    }
+
+    private void BtnSaveWeather_Click(object sender, RoutedEventArgs e)
+    {
+      if (string.IsNullOrWhiteSpace(WeatherName))
+      {
+        MessageBox.Show("Weather to be saved must have a Name");
+        return;
+      }
+
+      var saved = false;
+
+      SaveActiveWeather();
+      if (ActiveWeather.WeatherId == 0)
+        saved = 0 != (ActiveWeather.WeatherId = DBClient.CreateWeather(ActiveWeather));
+      else
+        saved = DBClient.UpdateWeather(ActiveWeather);
+
+      if (saved)
+        MessageBox.Show("Saved");
+      else
+        MessageBox.Show("ERROR - failed to save");
+    }
+
+    private void BtnAddContinentWeather_Click(object sender, RoutedEventArgs e)
+    {
+      ActiveContinentWeather = new ContinentWeather();
+
+      LoadActiveContinentWeather();
+    }
+
+    private void BtnDelContinentWeather_Click(object sender, RoutedEventArgs e)
+    {
+      if (LbxContinentWeather.SelectedItem != null && MessageBox.Show("WARNING\nAre you sure you want to delete the selected ContinentWeather?") == MessageBoxResult.OK)
+      {
+        if (DBClient.DeleteContinentWeather((int)LbxContinentWeather.SelectedItem))
+          ContinentWeatherList.Remove((ContinentWeather)LbxContinentWeather.SelectedItem);
+      }
+    }
+
+    private void BtnSaveContinentWeather_Click(object sender, RoutedEventArgs e)
+    {
+      if (string.IsNullOrWhiteSpace(GroupPhase))
+      {
+        MessageBox.Show("ContinentWeather to be saved must have a Group");
+        return;
+      }
+
+      var saved = false;
+
+      SaveActiveContinentWeather();
+      if (ActiveContinentWeather.CWID == 0)
+        saved = 0 != (ActiveContinentWeather.CWID = DBClient.CreateContinentWeather(ActiveContinentWeather));
+      else
+        saved = DBClient.UpdateContinentWeather(ActiveContinentWeather);
+
+      if (saved)
+        MessageBox.Show("Saved");
+      else
+        MessageBox.Show("ERROR - failed to save");
+    }
+
+    private void LbxContinentWeather_MouseDoubleClick(object sender, System.Windows.Input.MouseButtonEventArgs e)
+    {
+      if (LbxContinentWeather.SelectedItem != null)
+      {
+        ActiveContinentWeather = DBClient.GetContinentWeather((int)LbxContinentWeather.SelectedItem);
+
+        LoadActiveContinentWeather();
+      }
+    }
+
+    private void DrpContinent_SelectionChanged(object sender, SelectionChangedEventArgs e)
+    {
+      UpdateCWIDList();
+    }
+
+    private void DrpSeason_SelectionChanged(object sender, SelectionChangedEventArgs e)
+    {
+      UpdateCWIDList();
+    }
   }
+
+  #endregion
 }

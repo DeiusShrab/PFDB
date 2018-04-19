@@ -687,12 +687,12 @@ namespace PFHelper
         else
         {
           d -= CurrentWeatherGroup.Duration;
-          if (CurrentWeatherGroup.NextContinentWeatherId > 0)
+          if (CurrentWeatherGroup.NextCWID > 0)
           {
-            if (WeatherResult.WeatherList.Select(x => x.WeatherId).Contains(CurrentWeatherGroup.NextContinentWeatherId))
-              CurrentWeatherGroup = WeatherResult.WeatherList.First(x => x.WeatherId == CurrentWeatherGroup.NextContinentWeatherId);
+            if (WeatherResult.WeatherList.Select(x => x.WeatherId).Contains(CurrentWeatherGroup.NextCWID))
+              CurrentWeatherGroup = WeatherResult.WeatherList.First(x => x.WeatherId == CurrentWeatherGroup.NextCWID);
             else
-              CurrentWeatherGroup = DBClient.GetContinentWeather(CurrentWeatherGroup.NextContinentWeatherId);
+              CurrentWeatherGroup = DBClient.GetContinentWeather(CurrentWeatherGroup.NextCWID);
           }
           else
             CurrentWeatherGroup = GetRandomWeather();
@@ -704,7 +704,7 @@ namespace PFHelper
 
     private ContinentWeather GetRandomWeather()
     {
-      var initialWeathers = WeatherResult.WeatherList.Where(x => x.ParentWeatherId == 0);
+      var initialWeathers = WeatherResult.WeatherList.Where(x => x.ParentCWID == 0);
       var weather = initialWeathers.ElementAt(random.Next(initialWeathers.Count()));
       weather.Duration = weather.Duration - random.Next(weather.Duration);
 

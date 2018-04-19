@@ -17,6 +17,12 @@ namespace PFEditor.Controls
   {
     #region Interface Properties
 
+    public string Area
+    {
+      get { return TxtArea.Text; }
+      set { TxtArea.Text = value; }
+    }
+
     public string Bloodline
     {
       get { return TxtBloodline.Text; }
@@ -101,166 +107,196 @@ namespace PFEditor.Controls
       set { TxtTargets.Text = value; }
     }
 
+    public string Components
+    {
+      get { return TxtComponents.Text; }
+      set { TxtComponents.Text = value; }
+    }
+
+    public string Deity
+    {
+      get { return TxtDeity.Text; }
+      set { TxtDeity.Text = value; }
+    }
+
+    public string Domain
+    {
+      get { return TxtDomain.Text; }
+      set { TxtDomain.Text = value; }
+    }
+
+    public int SpellId
+    {
+      get { return Convert.ToInt32(LblSpellId.Content.ToString()); }
+      set { LblSpellId.Content = value; }
+    }
+
     public int LevelAdept
     {
-      get { return Convert.ToInt32(DrpLevelAdept.SelectedValue); }
+      get { return (int)DrpLevelAdept.SelectedValue; }
       set { DrpLevelAdept.SelectedValue = value; }
     }
 
     public int LevelAlchemist
     {
-      get { return Convert.ToInt32(DrpLevelAlchemist.SelectedValue); }
+      get { return (int)DrpLevelAlchemist.SelectedValue; }
       set { DrpLevelAlchemist.SelectedValue = value; }
     }
 
     public int LevelAntipaladin
     {
-      get { return Convert.ToInt32(DrpLevelAntipaladin.SelectedValue); }
+      get { return (int)DrpLevelAntipaladin.SelectedValue; }
       set { DrpLevelAntipaladin.SelectedValue = value; }
     }
 
     public int LevelBard
     {
-      get { return Convert.ToInt32(DrpLevelBard.SelectedValue); }
+      get { return (int)DrpLevelBard.SelectedValue; }
       set { DrpLevelBard.SelectedValue = value; }
     }
 
     public int LevelBloodRager
     {
-      get { return Convert.ToInt32(DrpLevelBloodRager.SelectedValue); }
+      get { return (int)DrpLevelBloodRager.SelectedValue; }
       set { DrpLevelBloodRager.SelectedValue = value; }
     }
 
     public int LevelCleric
     {
-      get { return Convert.ToInt32(DrpLevelCleric.SelectedValue); }
+      get { return (int)DrpLevelCleric.SelectedValue; }
       set { DrpLevelCleric.SelectedValue = value; }
     }
 
     public int LevelDruid
     {
-      get { return Convert.ToInt32(DrpLevelDruid.SelectedValue); }
+      get { return (int)DrpLevelDruid.SelectedValue; }
       set { DrpLevelDruid.SelectedValue = value; }
     }
 
     public int LevelHunter
     {
-      get { return Convert.ToInt32(DrpLevelHunter.SelectedValue); }
+      get { return (int)DrpLevelHunter.SelectedValue; }
       set { DrpLevelHunter.SelectedValue = value; }
     }
 
     public int LevelInquisitor
     {
-      get { return Convert.ToInt32(DrpLevelInquisitor.SelectedValue); }
+      get { return (int)DrpLevelInquisitor.SelectedValue; }
       set { DrpLevelInquisitor.SelectedValue = value; }
     }
 
     public int LevelInvestigator
     {
-      get { return Convert.ToInt32(DrpLevelInvestigator.SelectedValue); }
+      get { return (int)DrpLevelInvestigator.SelectedValue; }
       set { DrpLevelInvestigator.SelectedValue = value; }
     }
 
     public int LevelMagus
     {
-      get { return Convert.ToInt32(DrpLevelMagus.SelectedValue); }
+      get { return (int)DrpLevelMagus.SelectedValue; }
       set { DrpLevelMagus.SelectedValue = value; }
     }
 
     public int LevelMedium
     {
-      get { return Convert.ToInt32(DrpLevelMedium.SelectedValue); }
+      get { return (int)DrpLevelMedium.SelectedValue; }
       set { DrpLevelMedium.SelectedValue = value; }
     }
 
     public int LevelMesmerist
     {
-      get { return Convert.ToInt32(DrpLevelMesmerist.SelectedValue); }
+      get { return (int)DrpLevelMesmerist.SelectedValue; }
       set { DrpLevelMesmerist.SelectedValue = value; }
     }
 
     public int LevelOccultist
     {
-      get { return Convert.ToInt32(DrpLevelOccultist.SelectedValue); }
+      get { return (int)DrpLevelOccultist.SelectedValue; }
       set { DrpLevelOccultist.SelectedValue = value; }
     }
 
     public int LevelOracle
     {
-      get { return Convert.ToInt32(DrpLevelOracle.SelectedValue); }
+      get { return (int)DrpLevelOracle.SelectedValue; }
       set { DrpLevelOracle.SelectedValue = value; }
     }
 
     public int LevelPaladin
     {
-      get { return Convert.ToInt32(DrpLevelPaladin.SelectedValue); }
+      get { return (int)DrpLevelPaladin.SelectedValue; }
       set { DrpLevelPaladin.SelectedValue = value; }
     }
 
     public int LevelPsychic
     {
-      get { return Convert.ToInt32(DrpLevelPsychic.SelectedValue); }
+      get { return (int)DrpLevelPsychic.SelectedValue; }
       set { DrpLevelPsychic.SelectedValue = value; }
     }
 
     public int LevelRanger
     {
-      get { return Convert.ToInt32(DrpLevelRanger.SelectedValue); }
+      get { return (int)DrpLevelRanger.SelectedValue; }
       set { DrpLevelRanger.SelectedValue = value; }
     }
 
     public int LevelShaman
     {
-      get { return Convert.ToInt32(DrpLevelShaman.SelectedValue); }
+      get { return (int)DrpLevelShaman.SelectedValue; }
       set { DrpLevelShaman.SelectedValue = value; }
     }
 
     public int LevelSkald
     {
-      get { return Convert.ToInt32(DrpLevelSkald.SelectedValue); }
+      get { return (int)DrpLevelSkald.SelectedValue; }
       set { DrpLevelSkald.SelectedValue = value; }
     }
 
     public int LevelSor
     {
-      get { return Convert.ToInt32(DrpLevelSor.SelectedValue); }
+      get { return (int)DrpLevelSor.SelectedValue; }
       set { DrpLevelSor.SelectedValue = value; }
     }
 
     public int LevelSpiritualist
     {
-      get { return Convert.ToInt32(DrpLevelSpiritualist.SelectedValue); }
+      get { return (int)DrpLevelSpiritualist.SelectedValue; }
       set { DrpLevelSpiritualist.SelectedValue = value; }
     }
 
     public int LevelSummoner
     {
-      get { return Convert.ToInt32(DrpLevelSummoner.SelectedValue); }
+      get { return (int)DrpLevelSummoner.SelectedValue; }
       set { DrpLevelSummoner.SelectedValue = value; }
     }
 
     public int LevelWitch
     {
-      get { return Convert.ToInt32(DrpLevelWitch.SelectedValue); }
+      get { return (int)DrpLevelWitch.SelectedValue; }
       set { DrpLevelWitch.SelectedValue = value; }
     }
 
     public int LevelWiz
     {
-      get { return Convert.ToInt32(DrpLevelWiz.SelectedValue); }
+      get { return (int)DrpLevelWiz.SelectedValue; }
       set { DrpLevelWiz.SelectedValue = value; }
     }
 
-    public int School
+    public int SchoolId
     {
-      get { return Convert.ToInt32(DrpSchool.SelectedValue); }
+      get { return (int)DrpSchool.SelectedValue; }
       set { DrpSchool.SelectedValue = value; }
     }
 
-    public int SubSchool
+    public int SubSchoolId
     {
-      get { return Convert.ToInt32(DrpSubSchool.SelectedValue); }
+      get { return (int)DrpSubSchool.SelectedValue; }
       set { DrpSubSchool.SelectedValue = value; }
+    }
+
+    public int MaterialCost
+    {
+      get { return IntMaterialCost.Value ?? 0; }
+      set { IntMaterialCost.Value = value; }
     }
 
     public bool Acid
@@ -529,7 +565,7 @@ namespace PFEditor.Controls
 
       SpellList = new ObservableCollection<ListItemResult>(DBClient.GetList("Spell"));
       SpellSchoolList = new ObservableCollection<ListItemResult>(DBClient.GetList("SpellSchool"));
-      SpellSubSchoolList = new ObservableCollection<ListItemResult>(DBClient.GetList("SpellSubSchool")); // SubSchoolId as Id, SchoolId as Note
+      SpellSubSchoolList = new ObservableCollection<ListItemResult>(DBClient.GetList("SpellSubSchool"));
       SpellSubSchoolList_Filter = new ObservableCollection<ListItemResult>(SpellSubSchoolList.Where(x => x.Notes == SelectedSpellSubSchoolId.ToString()));
 
       LbxSpell.DisplayMemberPath = "Name";
@@ -586,10 +622,195 @@ namespace PFEditor.Controls
 
     #endregion
 
+    #region Private Methods
+
+    private void LoadActiveSpell()
+    {
+      if (LbxSpell.SelectedItem != null)
+      {
+        ActiveSpell = DBClient.GetSpell((int)LbxSpell.SelectedItem);
+        ActiveSpellDetail = DBClient.GetSpellDetail((int)LbxSpell.SelectedItem);
+
+        Acid = ActiveSpell.Acid;
+        LevelAdept = ActiveSpell.Adept;
+        Air = ActiveSpell.Air;
+        LevelAlchemist = ActiveSpell.Alchemist;
+        LevelAntipaladin = ActiveSpell.Antipaladin;
+        Area = ActiveSpell.Area;
+        LevelBard = ActiveSpell.Bard;
+        Bloodline = ActiveSpell.Bloodline;
+        LevelBloodRager = ActiveSpell.BloodRager;
+        CastingTime = ActiveSpell.CastingTime;
+        Chaotic = ActiveSpell.Chaotic;
+        LevelCleric = ActiveSpell.Cleric;
+        Cold = ActiveSpell.Cold;
+        Components = ActiveSpell.Components;
+        CostlyComponents = ActiveSpell.CostlyComponents;
+        Curse = ActiveSpell.Curse;
+        Darkness = ActiveSpell.Darkness;
+        Death = ActiveSpell.Death;
+        Deity = ActiveSpell.Deity;
+        Disease = ActiveSpell.Disease;
+        Dismissable = ActiveSpell.Dismissable;
+        DivineFocus = ActiveSpell.DivineFocus;
+        Domain = ActiveSpell.Domain;
+        LevelDruid = ActiveSpell.Druid;
+        Duration = ActiveSpell.Duration;
+        Earth = ActiveSpell.Earth;
+        SpellEffect = ActiveSpell.Effect;
+        Electricity = ActiveSpell.Electricity;
+        Emotion = ActiveSpell.Emotion;
+        Evil = ActiveSpell.Evil;
+        Fear = ActiveSpell.Fear;
+        Fire = ActiveSpell.Fire;
+        SpellFocus = ActiveSpell.Focus;
+        Force = ActiveSpell.Force;
+        Good = ActiveSpell.Good;
+        LevelHunter = ActiveSpell.Hunter;
+        LevelInquisitor = ActiveSpell.Inquisitor;
+        LevelInvestigator = ActiveSpell.Investigator;
+        LanguageDependent = ActiveSpell.LanguageDependent;
+        Lawful = ActiveSpell.Lawful;
+        Light = ActiveSpell.Light;
+        LevelMagus = ActiveSpell.Magus;
+        Material = ActiveSpell.Material;
+        MaterialCost = ActiveSpell.MaterialCost;
+        LevelMedium = ActiveSpell.Medium;
+        LevelMesmerist = ActiveSpell.Mesmerist;
+        MindAffecting = ActiveSpell.MindAffecting;
+        Mythic = ActiveSpell.Mythic;
+        SpellName = ActiveSpell.Name;
+        LevelOccultist = ActiveSpell.Occultist;
+        LevelOracle = ActiveSpell.Oracle;
+        Pain = ActiveSpell.Pain;
+        LevelPaladin = ActiveSpell.Paladin;
+        Patron = ActiveSpell.Patron;
+        Poison = ActiveSpell.Poison;
+        LevelPsychic = ActiveSpell.Psychic;
+        Range = ActiveSpell.Range;
+        LevelRanger = ActiveSpell.Ranger;
+        Save = ActiveSpell.SavingThrow;
+        SchoolId = ActiveSpell.SchoolId;
+        Shadow = ActiveSpell.Shadow;
+        LevelShaman = ActiveSpell.Shaman;
+        Shapeable = ActiveSpell.Shapeable;
+        ShortDesc = ActiveSpell.ShortDescription;
+        LevelSkald = ActiveSpell.Skald;
+        Somatic = ActiveSpell.Somatic;
+        Sonic = ActiveSpell.Sonic;
+        LevelSor = ActiveSpell.Sor;
+        SpellId = ActiveSpell.SpellId;
+        SR = ActiveSpell.SpellResistance;
+        LevelSpiritualist = ActiveSpell.Spiritualist;
+        SubSchoolId = ActiveSpell.SubSchoolId;
+        LevelSummoner = ActiveSpell.Summoner;
+        Targets = ActiveSpell.Targets;
+        Verbal = ActiveSpell.Verbal;
+        Water = ActiveSpell.Water;
+        LevelWitch = ActiveSpell.Witch;
+        LevelWiz = ActiveSpell.Wiz;
+
+        Fulltext = ActiveSpellDetail.FullText;
+        SpellId = ActiveSpellDetail.SpellId;
+      }
+    }
+
+    private void SaveActiveSpell()
+    {
+      ActiveSpell.Acid = Acid;
+      ActiveSpell.Adept = LevelAdept;
+      ActiveSpell.Air = Air;
+      ActiveSpell.Alchemist = LevelAlchemist;
+      ActiveSpell.Antipaladin = LevelAntipaladin;
+      ActiveSpell.Area = Area;
+      ActiveSpell.Bard = LevelBard;
+      ActiveSpell.Bloodline = Bloodline;
+      ActiveSpell.BloodRager = LevelBloodRager;
+      ActiveSpell.CastingTime = CastingTime;
+      ActiveSpell.Chaotic = Chaotic;
+      ActiveSpell.Cleric = LevelCleric;
+      ActiveSpell.Cold = Cold;
+      ActiveSpell.Components = Components;
+      ActiveSpell.CostlyComponents = CostlyComponents;
+      ActiveSpell.Curse = Curse;
+      ActiveSpell.Darkness = Darkness;
+      ActiveSpell.Death = Death;
+      ActiveSpell.Deity = Deity;
+      ActiveSpell.Disease = Disease;
+      ActiveSpell.Dismissable = Dismissable;
+      ActiveSpell.DivineFocus = DivineFocus;
+      ActiveSpell.Domain = Domain;
+      ActiveSpell.Druid = LevelDruid;
+      ActiveSpell.Duration = Duration;
+      ActiveSpell.Earth = Earth;
+      ActiveSpell.Effect = SpellEffect;
+      ActiveSpell.Electricity = Electricity;
+      ActiveSpell.Emotion = Emotion;
+      ActiveSpell.Evil = Evil;
+      ActiveSpell.Fear = Fear;
+      ActiveSpell.Fire = Fire;
+      ActiveSpell.Focus = SpellFocus;
+      ActiveSpell.Force = Force;
+      ActiveSpell.Good = Good;
+      ActiveSpell.Hunter = LevelHunter;
+      ActiveSpell.Inquisitor = LevelInquisitor;
+      ActiveSpell.Investigator = LevelInvestigator;
+      ActiveSpell.LanguageDependent = LanguageDependent;
+      ActiveSpell.Lawful = Lawful;
+      ActiveSpell.Light = Light;
+      ActiveSpell.Magus = LevelMagus;
+      ActiveSpell.Material = Material;
+      ActiveSpell.MaterialCost = MaterialCost;
+      ActiveSpell.Medium = LevelMedium;
+      ActiveSpell.Mesmerist = LevelMesmerist;
+      ActiveSpell.MindAffecting = MindAffecting;
+      ActiveSpell.Mythic = Mythic;
+      ActiveSpell.Name = SpellName;
+      ActiveSpell.Occultist = LevelOccultist;
+      ActiveSpell.Oracle = LevelOracle;
+      ActiveSpell.Pain = Pain;
+      ActiveSpell.Paladin = LevelPaladin;
+      ActiveSpell.Patron = Patron;
+      ActiveSpell.Poison = Poison;
+      ActiveSpell.Psychic = LevelPsychic;
+      ActiveSpell.Range = Range;
+      ActiveSpell.Ranger = LevelRanger;
+      ActiveSpell.SavingThrow = Save;
+      ActiveSpell.SchoolId = SchoolId;
+      ActiveSpell.Shadow = Shadow;
+      ActiveSpell.Shaman = LevelShaman;
+      ActiveSpell.Shapeable = Shapeable;
+      ActiveSpell.ShortDescription = ShortDesc;
+      ActiveSpell.Skald = LevelSkald;
+      ActiveSpell.Somatic = Somatic;
+      ActiveSpell.Sonic = Sonic;
+      ActiveSpell.Sor = LevelSor;
+      ActiveSpell.SpellId = SpellId;
+      ActiveSpell.SpellResistance = SR;
+      ActiveSpell.Spiritualist = LevelSpiritualist;
+      ActiveSpell.SubSchoolId = SubSchoolId;
+      ActiveSpell.Summoner = LevelSummoner;
+      ActiveSpell.Targets = Targets;
+      ActiveSpell.Verbal = Verbal;
+      ActiveSpell.Water = Water;
+      ActiveSpell.Witch = LevelWitch;
+      ActiveSpell.Wiz = LevelWiz;
+
+      ActiveSpellDetail.FullText = Fulltext;
+      ActiveSpellDetail.SpellId = SpellId;
+    }
+
+    #endregion
+
     private void DrpSchool_SelectionChanged(object sender, SelectionChangedEventArgs e)
     {
       if (SelectedSpellSchoolId > 0)
         SpellSubSchoolList_Filter = new ObservableCollection<ListItemResult>(SpellSubSchoolList.Where(x => x.Notes == SelectedSpellSubSchoolId.ToString()));
+    }
+
+    private void BtnNewSpell_Click(object sender, System.Windows.RoutedEventArgs e)
+    {
+
     }
   }
 }

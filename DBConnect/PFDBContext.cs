@@ -36,6 +36,8 @@ namespace DBConnect
     public virtual DbSet<Time> Time { get; set; }
     public virtual DbSet<Plane> Plane { get; set; }
     public virtual DbSet<Skill> Skill { get; set; }
+    public virtual DbSet<SpellSchool> SpellSchool { get; set; }
+    public virtual DbSet<SpellSubSchool> SpellSubSchool { get; set; }
 
     protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
     {
@@ -433,9 +435,9 @@ namespace DBConnect
 
       modelBuilder.Entity<ContinentWeather>(entity =>
       {
-        entity.HasKey(e => e.Cwid);
+        entity.HasKey(e => e.CWID);
 
-        entity.Property(e => e.Cwid)
+        entity.Property(e => e.CWID)
                   .HasColumnName("CWID")
                   .ValueGeneratedNever();
       });
@@ -1086,7 +1088,7 @@ namespace DBConnect
                   .HasMaxLength(100)
                   .IsUnicode(false);
 
-        entity.Property(e => e.School)
+        entity.Property(e => e.SchoolId)
                   .HasMaxLength(25)
                   .IsUnicode(false);
 
@@ -1108,7 +1110,7 @@ namespace DBConnect
                   .HasMaxLength(50)
                   .IsUnicode(false);
 
-        entity.Property(e => e.SubSchool)
+        entity.Property(e => e.SubSchoolId)
                   .HasMaxLength(25)
                   .IsUnicode(false);
 

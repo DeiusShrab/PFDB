@@ -2,7 +2,7 @@
 {
   public partial class ContinentWeather
   {
-    public int Cwid { get; set; }
+    public int CWID { get; set; }
     public string Name { get; set; }
     public int ContinentId { get; set; }
     public int WeatherId { get; set; }
@@ -10,7 +10,7 @@
     public int Weight { get; set; }
     public int Duration { get; set; }
     public bool RandomDuration { get; set; }
-    public int NextContinentWeatherId { get; set; }
-    public int ParentWeatherId { get; set; }
+    public int NextCWID { get; set; }
+    public int ParentCWID { get; set; }
   }
 }

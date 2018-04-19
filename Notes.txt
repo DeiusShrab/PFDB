@@ -6,6 +6,8 @@ Lock weather (prevent duration from advancing, for perma-storms)
 TODO AT HOME
 Add School and SubSchool to DB
 Update DB to match DBModels
+	Spells - int? null to -1
+	Spells - bool? null to false
 Add Misc items to DB (Months, Seasons, etc)
 Backup DB somehow
 Generate code-first for updated DB stuff

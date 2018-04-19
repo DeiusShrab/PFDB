@@ -1,5 +1,4 @@
-﻿using System;
-using System.Collections.ObjectModel;
+﻿using System.Collections.ObjectModel;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
@@ -96,7 +95,7 @@ namespace PFEditor.Controls
 
     public int MonthSeasonId
     {
-      get { return Convert.ToInt32(DrpMonthSeasonId.SelectedValue); }
+      get { return System.Convert.ToInt32(DrpMonthSeasonId.SelectedValue); }
       set { DrpMonthSeasonId.SelectedValue = value; }
     }
 
@@ -144,37 +143,37 @@ namespace PFEditor.Controls
 
     public int MonthId
     {
-      get { return Convert.ToInt32(LblMonthId.Content); }
+      get { return System.Convert.ToInt32(LblMonthId.Content); }
       set { LblMonthId.Content = value; }
     }
 
     public int PlaneId
     {
-      get { return Convert.ToInt32(LblPlaneId.Content); }
+      get { return System.Convert.ToInt32(LblPlaneId.Content); }
       set { LblPlaneId.Content = value; }
     }
 
     public int SeasonId
     {
-      get { return Convert.ToInt32(LblSeasonId.Content); }
+      get { return System.Convert.ToInt32(LblSeasonId.Content); }
       set { LblSeasonId.Content = value; }
     }
 
     public int TimeId
     {
-      get { return Convert.ToInt32(LblTimeId.Content); }
+      get { return System.Convert.ToInt32(LblTimeId.Content); }
       set { LblTimeId.Content = value; }
     }
 
     public int TerrainId
     {
-      get { return Convert.ToInt32(LblTerrainId.Content); }
+      get { return System.Convert.ToInt32(LblTerrainId.Content); }
       set { LblTerrainId.Content = value; }
     }
 
     public int EnvironmentId
     {
-      get { return Convert.ToInt32(LblEnvironmentId.Content); }
+      get { return System.Convert.ToInt32(LblEnvironmentId.Content); }
       set { LblEnvironmentId.Content = value; }
     }
 
@@ -193,6 +192,8 @@ namespace PFEditor.Controls
     private Plane ActivePlane = new Plane();
     private Season ActiveSeason = new Season();
     private Time ActiveTime = new Time();
+    private Environment ActiveEnvironment = new Environment();
+    private Terrain ActiveTerrain = new Terrain();
 
     #endregion
 
@@ -265,6 +266,29 @@ namespace PFEditor.Controls
       MonthSeasonId = 0;
     }
 
+    private void BtnTerrainAdd_Click(object sender, RoutedEventArgs e)
+    {
+      ActiveTerrain = new Terrain();
+      TerrainId = 0;
+      TerrainMovementMod = 0;
+      TerrainBroken = false;
+      TerrainRough = false;
+      TerrainUnderground = false;
+      TerrainWater = false;
+      TerrainDescription = string.Empty;
+      TerrainName = string.Empty;
+    }
+
+    private void BtnEnvironmentAdd_Click(object sender, RoutedEventArgs e)
+    {
+      ActiveEnvironment = new Environment();
+      EnvironmentId = 0;
+      EnvironmentName = string.Empty;
+      EnvironmentNotes = string.Empty;
+      EnvironmentTemp = string.Empty;
+      EnvironmentTravelSpeed = 0;
+    }
+
     private void LbxTime_MouseDoubleClick(object sender, MouseButtonEventArgs e)
     {
       if (LbxTime.SelectedItem != null)
@@ -311,8 +335,44 @@ namespace PFEditor.Controls
       }
     }
 
+    private void LbxTerrain_MouseDoubleClick(object sender, MouseButtonEventArgs e)
+    {
+      if (LbxTerrain.SelectedItem != null)
+      {
+        ActiveTerrain = DBClient.GetTerrain((int)LbxTerrain.SelectedItem);
+
+        TerrainDescription = ActiveTerrain.Description;
+        TerrainBroken = ActiveTerrain.IsBroken;
+        TerrainRough = ActiveTerrain.IsRough;
+        TerrainUnderground = ActiveTerrain.IsUnderground;
+        TerrainWater = ActiveTerrain.IsWater;
+        TerrainMovementMod = ActiveTerrain.MovementModifier;
+        TerrainName = ActiveTerrain.Name;
+        TerrainId = ActiveTerrain.TerrainId;
+      }
+    }
+
+    private void LbxEnvironment_MouseDoubleClick(object sender, MouseButtonEventArgs e)
+    {
+      if (LbxEnvironment.SelectedItem != null)
+      {
+        ActiveEnvironment = DBClient.GetEnvironment((int)LbxEnvironment.SelectedItem);
+
+        EnvironmentId = ActiveEnvironment.EnvironmentId;
+        EnvironmentName = ActiveEnvironment.Name;
+        EnvironmentNotes = ActiveEnvironment.Notes;
+        EnvironmentTemp = ActiveEnvironment.Temperature;
+        EnvironmentTravelSpeed = ActiveEnvironment.TravelSpeed;
+      }
+    }
+
     private void BtnTimeSave_Click(object sender, RoutedEventArgs e)
     {
+      ActiveTime.TimeId = TimeId;
+      ActiveTime.Name = TimeName;
+      ActiveTime.IsNight = TimeNight;
+      ActiveTime.TimeOrder = TimeOrder;
+
       if (ActiveTime.TimeId == 0)
         ActiveTime.TimeId = DBClient.CreateTime(ActiveTime);
       else
@@ -324,6 +384,10 @@ namespace PFEditor.Controls
 
     private void BtnSeasonSave_Click(object sender, RoutedEventArgs e)
     {
+      ActiveSeason.SeasonId = SeasonId;
+      ActiveSeason.Name = SeasonName;
+      ActiveSeason.Order = SeasonOrder;
+
       if (ActiveSeason.SeasonId == 0)
         ActiveSeason.SeasonId = DBClient.CreateSeason(ActiveSeason);
       else
@@ -335,6 +399,9 @@ namespace PFEditor.Controls
 
     private void BtnPlaneSave_Click(object sender, RoutedEventArgs e)
     {
+      ActivePlane.PlaneId = PlaneId;
+      ActivePlane.Name = PlaneName;
+
       if (ActivePlane.PlaneId == 0)
         ActivePlane.PlaneId = DBClient.CreatePlane(ActivePlane);
       else
@@ -346,6 +413,12 @@ namespace PFEditor.Controls
 
     private void BtnMonthSave_Click(object sender, RoutedEventArgs e)
     {
+      ActiveMonth.Days = MonthDays;
+      ActiveMonth.MonthId = MonthId;
+      ActiveMonth.Name = MonthName;
+      ActiveMonth.Order = MonthOrder;
+      ActiveMonth.SeasonId = MonthSeasonId;
+
       if (ActiveMonth.MonthId == 0)
         ActiveMonth.MonthId = DBClient.CreateMonth(ActiveMonth);
       else
@@ -355,6 +428,36 @@ namespace PFEditor.Controls
       MonthList = new ObservableCollection<ListItemResult>(DBClient.GetList("Month"));
     }
 
+    private void BtnTerrainSave_Click(object sender, RoutedEventArgs e)
+    {
+      ActiveTerrain.Description = TerrainDescription;
+      ActiveTerrain.IsBroken = TerrainBroken;
+      ActiveTerrain.IsRough = TerrainRough;
+      ActiveTerrain.IsUnderground = TerrainUnderground;
+      ActiveTerrain.IsWater = TerrainWater;
+      ActiveTerrain.MovementModifier = TerrainMovementMod;
+      ActiveTerrain.Name = TerrainName;
+      ActiveTerrain.TerrainId = TerrainId;
+
+      if (ActiveTerrain.TerrainId == 0)
+        ActiveTerrain.TerrainId = TerrainId = DBClient.CreateTerrain(ActiveTerrain);
+      else
+        DBClient.UpdateTerrain(ActiveTerrain);
+    }
+
+    private void BtnEnvironmentSave_Click(object sender, RoutedEventArgs e)
+    {
+      ActiveEnvironment.EnvironmentId = EnvironmentId;
+      ActiveEnvironment.Name = EnvironmentName;
+      ActiveEnvironment.Notes = EnvironmentNotes;
+      ActiveEnvironment.Temperature = EnvironmentTemp;
+      ActiveEnvironment.TravelSpeed = EnvironmentTravelSpeed;
+
+      if (ActiveEnvironment.EnvironmentId == 0)
+        ActiveEnvironment.EnvironmentId = EnvironmentId = DBClient.CreateEnvironment(ActiveEnvironment);
+      else
+        DBClient.UpdateEnvironment(ActiveEnvironment);
+    }
 
     #endregion
   }

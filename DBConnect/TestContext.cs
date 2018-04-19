@@ -40,6 +40,8 @@ namespace DBConnect
     public DbSet<TrackedEvent> TrackedEvent { get; set; }
     public DbSet<Plane> Plane { get; set; }
     public DbSet<Skill> Skill { get; set; }
+    public DbSet<SpellSchool> SpellSchool { get; set; }
+    public DbSet<SpellSubSchool> SpellSubSchool { get; set; }
     #endregion
 
     #region Lists
@@ -75,6 +77,8 @@ namespace DBConnect
     private List<TrackedEvent> _TrackedEvent = new List<TrackedEvent>();
     private List<Plane> _Plane = new List<Plane>();
     private List<Skill> _Skill = new List<Skill>();
+    private List<SpellSchool> _SpellSchool = new List<SpellSchool>();
+    private List<SpellSubSchool> _SpellSubSchool = new List<SpellSubSchool>();
     #endregion
 
     private int _changes;
@@ -112,6 +116,8 @@ namespace DBConnect
       TrackedEvent = GetQueryableMockDbSet(_TrackedEvent);
       Plane = GetQueryableMockDbSet(_Plane);
       Skill = GetQueryableMockDbSet(_Skill);
+      SpellSchool = GetQueryableMockDbSet(_SpellSchool);
+      SpellSubSchool = GetQueryableMockDbSet(_SpellSubSchool);
     }
 
     private DbSet<T> GetQueryableMockDbSet<T>(List<T> sourceList) where T : class
@@ -130,7 +136,7 @@ namespace DBConnect
 
     public void Dispose()
     {
-
+      _changes = 0;
     }
 
     public int SaveChanges()

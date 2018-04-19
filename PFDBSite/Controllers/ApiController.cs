@@ -99,6 +99,10 @@ namespace PFDBSite.Controllers
         return new JsonResult(context.Plane.Select(x => new ListItemResult() { Id = x.PlaneId, Name = x.Name }));
       else if (type == "Skill")
         return new JsonResult(context.Skill.Select(x => new ListItemResult() { Id = x.SkillId, Name = x.Name }));
+      else if (type == "SpellSchool")
+        return new JsonResult(context.SpellSchool.Select(x => new ListItemResult() { Id = x.SpellSchoolId, Name = x.Name }));
+      else if (type == "SpellSubSchool")
+        return new JsonResult(context.SpellSubSchool.Select(x => new ListItemResult() { Id = x.SpellSubSchoolId, Name = x.Name, Notes = x.SpellSchoolId.ToString() }));
       else
         return new NotFoundResult();
     }
