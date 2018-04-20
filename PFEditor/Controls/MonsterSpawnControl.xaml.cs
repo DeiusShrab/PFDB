@@ -44,11 +44,12 @@ namespace PFEditor.Controls
       ContinentList = new ObservableCollection<ListItemResult>();
       SeasonList = new ObservableCollection<ListItemResult>();
       TimeList = new ObservableCollection<ListItemResult>();
+      MonsterSpawnList_Filter = new ObservableCollection<ListItemResult>();
 
       LbxSpawnList.DisplayMemberPath = "Name";
       LbxSpawnList.SelectedValuePath = "Id";
 
-      LbxSpawnList.ItemsSource = MonsterSpawnList;
+      LbxSpawnList.ItemsSource = MonsterSpawnList_Filter;
     }
 
 
@@ -145,14 +146,21 @@ namespace PFEditor.Controls
       {
         if (string.IsNullOrWhiteSpace(TxtSearch.Text))
         {
-          MonsterSpawnList_Filter = new ObservableCollection<ListItemResult>(MonsterSpawnList);
+          MonsterSpawnList_Filter.Clear();
+          MonsterSpawnList_Filter.AddRange(MonsterSpawnList);
         }
         else if (TxtSearch.Text.Length >= 3)
         {
           if (RadSearchName.IsChecked == true)
-            MonsterSpawnList_Filter = new ObservableCollection<ListItemResult>(MonsterSpawnList.Where(x => x.Name.ToLower().Contains(TxtSearch.Text.ToLower())));
+          {
+            MonsterSpawnList_Filter.Clear();
+            MonsterSpawnList_Filter.AddRange(MonsterSpawnList.Where(x => x.Name.ToLower().Contains(TxtSearch.Text.ToLower())));
+          }
           else
-            MonsterSpawnList_Filter = new ObservableCollection<ListItemResult>(MonsterSpawnList.Where(x => x.Notes.ToLower().Contains(TxtSearch.Text.ToLower())));
+          {
+            MonsterSpawnList_Filter.Clear();
+            MonsterSpawnList_Filter.AddRange(MonsterSpawnList.Where(x => x.Notes.ToLower().Contains(TxtSearch.Text.ToLower())));
+          }
         }
       }
     }

@@ -382,8 +382,10 @@ namespace PFHelper
         CurrentWeather = saveObject.Weather;
         WeatherResult = saveObject.WeatherResult;
 
-        combatEffectItems = new ObservableCollection<CombatEffectItem>(saveObject.CombatEffects);
-        combatGridItems = new ObservableCollection<CombatGridItem>(saveObject.CombatGridItems);
+        combatEffectItems.Clear();
+        combatGridItems.Clear();
+        combatEffectItems.AddRange(saveObject.CombatEffects);
+        combatGridItems.AddRange(saveObject.CombatGridItems);
       }
       else
       {
@@ -398,8 +400,8 @@ namespace PFHelper
         CurrentDate = new FantasyDate() { Year = 10000, Month = 1, Day = 1 };
         CurrentWeather = new Weather();
 
-        combatEffectItems = new ObservableCollection<CombatEffectItem>();
-        combatGridItems = new ObservableCollection<CombatGridItem>();
+        combatEffectItems.Clear();
+        combatGridItems.Clear();
       }
     }
 
@@ -928,7 +930,9 @@ namespace PFHelper
 
     private void BtnCombatSort_Click(object sender, RoutedEventArgs e)
     {
-      combatGridItems = new ObservableCollection<CombatGridItem>(combatGridItems.OrderBy(x => x.Init));
+      var temp = combatGridItems.OrderBy(x => x.Init);
+      combatGridItems.Clear();
+      combatGridItems.AddRange(temp);
     }
 
     private void BtnCombatDuplicate_Click(object sender, RoutedEventArgs e)
@@ -1037,5 +1041,16 @@ namespace PFHelper
     }
 
     #endregion
+
+    private void BtnManualWeather_Click(object sender, RoutedEventArgs e)
+    {
+      var weatherList = DBClient.GetList("Weather");
+      var popup = new ListPopUp(weatherList, "Select the new Weather:");
+      popup.ShowDialog();
+      if (popup.SelectedResult > 0)
+      {
+        CurrentWeather = DBClient.GetWeather(popup.SelectedResult);
+      }
+    }
   }
 }

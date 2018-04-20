@@ -52,12 +52,14 @@ namespace PFEditor.Controls
       set { DrpParentWeather.SelectedValue = value; }
     }
 
-    public int SeasonId
+    public int? SeasonId
     {
       get
       {
-        int.TryParse(DrpSeason.SelectedValue.ToString(), out int ret);
-        return ret;
+        if (DrpSeason.SelectedValue != null)
+          return (int)DrpSeason.SelectedValue;
+
+        return null;
       }
       set { DrpSeason.SelectedValue = value; }
     }
@@ -304,22 +306,28 @@ namespace PFEditor.Controls
 
     private void SaveActiveContinentWeather()
     {
-      ActiveContinentWeather.ContinentId = ContinentId;
-      ActiveContinentWeather.CWID = CWID;
-      ActiveContinentWeather.Duration = Duration;
-      ActiveContinentWeather.CWName = CWName;
-      ActiveContinentWeather.NextCWID = NextCWID;
-      ActiveContinentWeather.ParentCWID = ParentCWID;
-      ActiveContinentWeather.RandomDuration = RandomDuration;
-      ActiveContinentWeather.SeasonId = SeasonId;
-      ActiveContinentWeather.WeatherId = CW_WeatherId;
-      ActiveContinentWeather.Weight = Weight;
+      if (ContinentId > 0 && SeasonId > 0)
+      {
+        ActiveContinentWeather.ContinentId = ContinentId.Value;
+        ActiveContinentWeather.CWID = CWID;
+        ActiveContinentWeather.Duration = Duration;
+        ActiveContinentWeather.CWName = CWName;
+        ActiveContinentWeather.NextCWID = NextCWID;
+        ActiveContinentWeather.ParentCWID = ParentCWID;
+        ActiveContinentWeather.RandomDuration = RandomDuration;
+        ActiveContinentWeather.SeasonId = SeasonId.Value;
+        ActiveContinentWeather.WeatherId = CW_WeatherId;
+        ActiveContinentWeather.Weight = Weight;
+      }
     }
 
     private void UpdateCWIDList()
     {
       if (ContinentId > 0 && SeasonId > 0)
-        ContinentWeatherList = new ObservableCollection<ContinentWeather>(DBClient.GetContinentWeathers(ContinentId, SeasonId));
+      {
+        ContinentWeatherList.Clear();
+        ContinentWeatherList.AddRange(DBClient.GetContinentWeathers(ContinentId.Value, SeasonId.Value));
+      }
     }
 
     #endregion
@@ -401,6 +409,12 @@ namespace PFEditor.Controls
         return;
       }
 
+      if (!ContinentId.HasValue || !SeasonId.HasValue)
+      {
+        MessageBox.Show("Please select a Continent and Season");
+        return;
+      }
+
       var saved = false;
 
       SaveActiveContinentWeather();
@@ -454,7 +468,7 @@ namespace PFEditor.Controls
         SeasonList.AddRange(DBClient.GetList("Season"));
 
         if (ContinentId > 0 && SeasonId > 0)
-          ContinentWeatherList.AddRange(DBClient.GetContinentWeathers(ContinentId, SeasonId));
+          ContinentWeatherList.AddRange(DBClient.GetContinentWeathers(ContinentId.Value, SeasonId.Value));
 
         e.Handled = true;
       }

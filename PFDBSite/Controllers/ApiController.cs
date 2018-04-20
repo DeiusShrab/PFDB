@@ -16,6 +16,7 @@ namespace PFDBSite.Controllers
   [Produces("application/json")]
   [Route("api")]
   [Authorize]
+  [RequireHttps]
   public class ApiController : PFDBController
   {
     private RandomHelper helperRandom;
@@ -1634,7 +1635,7 @@ namespace PFDBSite.Controllers
 
     #region Delete
 
-    // Ehh... let's hold off on this one...
+    // Do this one after the first successful DB backup
 
     #endregion
 

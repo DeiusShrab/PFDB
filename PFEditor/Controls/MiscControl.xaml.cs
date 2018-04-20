@@ -379,7 +379,8 @@ namespace PFEditor.Controls
         DBClient.UpdateTime(ActiveTime);
 
       TimeId = ActiveTime.TimeId;
-      TimeList = new ObservableCollection<ListItemResult>(DBClient.GetList("Time"));
+      TimeList.Clear();
+      TimeList.AddRange(DBClient.GetList("Time"));
     }
 
     private void BtnSeasonSave_Click(object sender, RoutedEventArgs e)
@@ -394,7 +395,8 @@ namespace PFEditor.Controls
         DBClient.UpdateSeason(ActiveSeason);
 
       SeasonId = ActiveSeason.SeasonId;
-      SeasonList = new ObservableCollection<ListItemResult>(DBClient.GetList("Season"));
+      SeasonList.Clear();
+      SeasonList.AddRange(DBClient.GetList("Season"));
     }
 
     private void BtnPlaneSave_Click(object sender, RoutedEventArgs e)
@@ -408,7 +410,8 @@ namespace PFEditor.Controls
         DBClient.UpdatePlane(ActivePlane);
 
       PlaneId = ActivePlane.PlaneId;
-      PlaneList = new ObservableCollection<ListItemResult>(DBClient.GetList("Plane"));
+      PlaneList.Clear();
+      PlaneList.AddRange(DBClient.GetList("Plane"));
     }
 
     private void BtnMonthSave_Click(object sender, RoutedEventArgs e)
@@ -425,7 +428,8 @@ namespace PFEditor.Controls
         DBClient.UpdateMonth(ActiveMonth);
 
       MonthId = ActiveMonth.MonthId;
-      MonthList = new ObservableCollection<ListItemResult>(DBClient.GetList("Month"));
+      MonthList.Clear();
+      MonthList.AddRange(DBClient.GetList("Month"));
     }
 
     private void BtnTerrainSave_Click(object sender, RoutedEventArgs e)
@@ -445,7 +449,8 @@ namespace PFEditor.Controls
         DBClient.UpdateTerrain(ActiveTerrain);
 
       TerrainId = ActiveTerrain.TerrainId;
-      TerrainList = new ObservableCollection<ListItemResult>(DBClient.GetList("Terrain"));
+      TerrainList.Clear();
+      TerrainList.AddRange(DBClient.GetList("Terrain"));
     }
 
     private void BtnEnvironmentSave_Click(object sender, RoutedEventArgs e)
@@ -462,7 +467,8 @@ namespace PFEditor.Controls
         DBClient.UpdateEnvironment(ActiveEnvironment);
 
       EnvironmentId = ActiveEnvironment.EnvironmentId;
-      EnvironmentList = new ObservableCollection<ListItemResult>(DBClient.GetList("Environment"));
+      EnvironmentList.Clear();
+      EnvironmentList.AddRange(DBClient.GetList("Environment"));
     }
 
     #endregion
@@ -472,13 +478,19 @@ namespace PFEditor.Controls
       if (e.Key == System.Windows.Input.Key.F5)
       {
         // Reload lists
+        MonthList.Clear();
+        SeasonList.Clear();
+        TimeList.Clear();
+        PlaneList.Clear();
+        TerrainList.Clear();
+        EnvironmentList.Clear();
 
-        MonthList = new ObservableCollection<ListItemResult>(DBClient.GetList("Month"));
-        SeasonList = new ObservableCollection<ListItemResult>(DBClient.GetList("Season"));
-        TimeList = new ObservableCollection<ListItemResult>(DBClient.GetList("Time"));
-        PlaneList = new ObservableCollection<ListItemResult>(DBClient.GetList("Plane"));
-        TerrainList = new ObservableCollection<ListItemResult>(DBClient.GetList("Terrain"));
-        EnvironmentList = new ObservableCollection<ListItemResult>(DBClient.GetList("Environment"));
+        MonthList.AddRange(DBClient.GetList("Month"));
+        SeasonList.AddRange(DBClient.GetList("Season"));
+        TimeList.AddRange(DBClient.GetList("Time"));
+        PlaneList.AddRange(DBClient.GetList("Plane"));
+        TerrainList.AddRange(DBClient.GetList("Terrain"));
+        EnvironmentList.AddRange(DBClient.GetList("Environment"));
 
         e.Handled = true;
       }

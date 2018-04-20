@@ -602,6 +602,7 @@ namespace PFEditor.Controls
       FeatList = new ObservableCollection<ListItemResult>();
       SkillList = new ObservableCollection<ListItemResult>();
       BestiaryTypeList = new ObservableCollection<ListItemResult>();
+      BestiaryList_Filter = new ObservableCollection<ListItemResult>();
 
       LbxBestiary.DisplayMemberPath = LbxFeatsAll.DisplayMemberPath = LbxFeatsAssigned.DisplayMemberPath = LbxSkillsAll.DisplayMemberPath =
         LbxSkillsAssigned.DisplayMemberPath = LbxSpellAbilities.DisplayMemberPath = LbxSpellsKnown.DisplayMemberPath = LbxSpellsPrepared.DisplayMemberPath = "Name";
@@ -613,7 +614,7 @@ namespace PFEditor.Controls
 
       DrpCR.SelectedValuePath = DrpType.SelectedValuePath = "Result";
 
-      LbxBestiary.ItemsSource = BestiaryList;
+      LbxBestiary.ItemsSource = BestiaryList_Filter;
       LbxFeatsAll.ItemsSource = FeatList;
       LbxSkillsAll.ItemsSource = SkillList;
 
@@ -860,15 +861,24 @@ namespace PFEditor.Controls
       DBClient.UpdateBestiaryDetail(ActiveBestiaryDetail);
 
       BestiaryId = ActiveBestiary.BestiaryId;
-      BestiaryList = new ObservableCollection<ListItemResult>(DBClient.GetList("Bestiary"));
+      BestiaryList.Clear();
+      BestiaryList.AddRange(DBClient.GetList("Bestiary"));
     }
 
     private void BtnSortName_Click(object sender, RoutedEventArgs e)
     {
       if (sortNameAsc)
-        BestiaryList_Filter = new ObservableCollection<ListItemResult>(BestiaryList_Filter.OrderBy(x => x.Name));
+      {
+        var temp = BestiaryList_Filter.OrderBy(x => x.Name);
+        BestiaryList_Filter.Clear();
+        BestiaryList_Filter.AddRange(temp);
+      }
       else
-        BestiaryList_Filter = new ObservableCollection<ListItemResult>(BestiaryList_Filter.OrderByDescending(x => x.Name));
+      {
+        var temp = BestiaryList_Filter.OrderByDescending(x => x.Name);
+        BestiaryList_Filter.Clear();
+        BestiaryList_Filter.AddRange(temp);
+      }
 
       sortNameAsc = !sortNameAsc;
       sortCrAsc = true;
@@ -877,9 +887,17 @@ namespace PFEditor.Controls
     private void BtnSortCR_Click(object sender, RoutedEventArgs e)
     {
       if (sortCrAsc)
-        BestiaryList_Filter = new ObservableCollection<ListItemResult>(BestiaryList_Filter.OrderBy(x => x.Notes));
+      {
+        var temp = BestiaryList_Filter.OrderBy(x => x.Notes);
+        BestiaryList_Filter.Clear();
+        BestiaryList_Filter.AddRange(temp);
+      }
       else
-        BestiaryList_Filter = new ObservableCollection<ListItemResult>(BestiaryList_Filter.OrderByDescending(x => x.Notes));
+      {
+        var temp = BestiaryList_Filter.OrderByDescending(x => x.Notes);
+        BestiaryList_Filter.Clear();
+        BestiaryList_Filter.AddRange(temp);
+      }
 
       sortCrAsc = !sortCrAsc;
       sortNameAsc = true;
@@ -891,11 +909,13 @@ namespace PFEditor.Controls
       {
         if (string.IsNullOrWhiteSpace(TxtSearch.Text))
         {
-          BestiaryList_Filter = new ObservableCollection<ListItemResult>(BestiaryList);
+          BestiaryList_Filter.Clear();
+          BestiaryList_Filter.AddRange(BestiaryList);
         }
         else if (TxtSearch.Text.Length >= 3)
         {
-          BestiaryList_Filter = new ObservableCollection<ListItemResult>(BestiaryList_Filter.Where(x => x.Name.ToLower().Contains(TxtSearch.Text.ToLower())));
+          BestiaryList_Filter.Clear();
+          BestiaryList_Filter.AddRange(BestiaryList.Where(x => x.Name.ToLower().Contains(TxtSearch.Text.ToLower())));
         }
       }
     }
@@ -916,11 +936,15 @@ namespace PFEditor.Controls
       if (e.Key == System.Windows.Input.Key.F5)
       {
         // Reload lists
+        BestiaryList.Clear();
+        FeatList.Clear();
+        SkillList.Clear();
+        BestiaryTypeList.Clear();
 
-        BestiaryList = new ObservableCollection<ListItemResult>(DBClient.GetList("Bestiary"));
-        FeatList = new ObservableCollection<ListItemResult>(DBClient.GetList("Feat"));
-        SkillList = new ObservableCollection<ListItemResult>(DBClient.GetList("Skill"));
-        BestiaryTypeList = new ObservableCollection<ListItemResult>(DBClient.GetList("BestiaryType"));
+        BestiaryList.AddRange(DBClient.GetList("Bestiary"));
+        FeatList.AddRange(DBClient.GetList("Feat"));
+        SkillList.AddRange(DBClient.GetList("Skill"));
+        BestiaryTypeList.AddRange(DBClient.GetList("BestiaryType"));
 
         e.Handled = true;
       }
