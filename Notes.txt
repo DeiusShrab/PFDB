@@ -17,6 +17,9 @@ Get the got-dang MAPS UP
 	Remember that maps only show "major" locations, small towns and villages won't be there
 Make some kind of DB Importer that pulls PFSRD stuff, runs it through the formatter from Test, and adds it to the DB
 
+Generating code-first from existing DB
+https://docs.microsoft.com/en-us/ef/core/get-started/aspnetcore/existing-db
+
 DB STUFF
 - Get a count of non-null entries for each column. Make sure the column is not nullable if there are 0 null entries.
 - Consider moving low-pop columns to separate tables.

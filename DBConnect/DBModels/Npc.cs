@@ -1,6 +1,9 @@
-﻿namespace DBConnect.DBModels
+﻿using System;
+using System.Collections.Generic;
+
+namespace DBConnect.DBModels
 {
-  public partial class Npc
+    public partial class Npc
     {
         public int Npcid { get; set; }
         public string Name { get; set; }

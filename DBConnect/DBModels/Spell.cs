@@ -1,6 +1,9 @@
-﻿namespace DBConnect.DBModels
+﻿using System;
+using System.Collections.Generic;
+
+namespace DBConnect.DBModels
 {
-  public partial class Spell
+    public partial class Spell
     {
         public int SpellId { get; set; }
         public string Name { get; set; }
@@ -26,21 +29,21 @@
         public bool Material { get; set; }
         public bool Focus { get; set; }
         public bool DivineFocus { get; set; }
-        public int Sor { get; set; }
-        public int Wiz { get; set; }
-        public int Cleric { get; set; }
-        public int Druid { get; set; }
-        public int Ranger { get; set; }
-        public int Bard { get; set; }
-        public int Paladin { get; set; }
-        public int Alchemist { get; set; }
-        public int Summoner { get; set; }
-        public int Witch { get; set; }
-        public int Inquisitor { get; set; }
-        public int Oracle { get; set; }
-        public int Antipaladin { get; set; }
-        public int Magus { get; set; }
-        public int Adept { get; set; }
+        public int? Sor { get; set; }
+        public int? Wiz { get; set; }
+        public int? Cleric { get; set; }
+        public int? Druid { get; set; }
+        public int? Ranger { get; set; }
+        public int? Bard { get; set; }
+        public int? Paladin { get; set; }
+        public int? Alchemist { get; set; }
+        public int? Summoner { get; set; }
+        public int? Witch { get; set; }
+        public int? Inquisitor { get; set; }
+        public int? Oracle { get; set; }
+        public int? Antipaladin { get; set; }
+        public int? Magus { get; set; }
+        public int? Adept { get; set; }
         public string Deity { get; set; }
         public int Slalevel { get; set; }
         public string Domain { get; set; }
@@ -77,16 +80,16 @@
         public string MythicText { get; set; }
         public string Augmented { get; set; }
         public bool Mythic { get; set; }
-        public int BloodRager { get; set; }
-        public int Shaman { get; set; }
-        public int Psychic { get; set; }
-        public int Medium { get; set; }
-        public int Mesmerist { get; set; }
-        public int Occultist { get; set; }
-        public int Spiritualist { get; set; }
-        public int Skald { get; set; }
-        public int Investigator { get; set; }
-        public int Hunter { get; set; }
+        public int? BloodRager { get; set; }
+        public int? Shaman { get; set; }
+        public int? Psychic { get; set; }
+        public int? Medium { get; set; }
+        public int? Mesmerist { get; set; }
+        public int? Occultist { get; set; }
+        public int? Spiritualist { get; set; }
+        public int? Skald { get; set; }
+        public int? Investigator { get; set; }
+        public int? Hunter { get; set; }
         public string HauntStatistics { get; set; }
     }
 }

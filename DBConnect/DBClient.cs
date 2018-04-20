@@ -24,6 +24,8 @@ namespace DBConnect
   {
     private static string CONFIG_FILE = "PFConfig.json";
 
+
+    //public static string JWT_KEY = "AAAAAAAAAAAAAAAAAAAAAAAAAA";
     public static string JWT_KEY { get { return GetConfig(ConfigValues.JWT_KEY); } }
     public static string JWT_ISSUER { get { return GetConfig(ConfigValues.JWT_ISSUER); } }
     public static string API_USER { get { return GetConfig(ConfigValues.API_USER); } }
@@ -1153,6 +1155,7 @@ namespace DBConnect
 
     public static bool ConfigExists()
     {
+      var c = Directory.GetCurrentDirectory();
       return File.Exists(CONFIG_FILE);
     }
 

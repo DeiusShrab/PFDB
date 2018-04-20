@@ -12,6 +12,7 @@ namespace PFDALTest
     private static string REGEX_SPLIT = @"(?:\s)?([^,\r\n\s(][^,\r\n(]*(?<dq>\()?(?(dq)[^\(\r\n]+\)[^\(\)\r\n,]*))";
     static void Main(string[] args)
     {
+      Console.WriteLine("Remember to make sure the PFDBContext is in LIVE mode!");
       int menu = -1;
       while (menu != 0)
       {
@@ -31,6 +32,9 @@ namespace PFDALTest
           case 4:
             UpdateTables();
             break;
+          case 5:
+            UpdateSpellSchools();
+            break;
         }
       }
     }
@@ -44,6 +48,7 @@ namespace PFDALTest
       Console.WriteLine("2 - PFDB Bestiary Update");
       Console.WriteLine("3 - PFDB Feat/Skill Update");
       Console.WriteLine("4 - Update Tables");
+      Console.WriteLine("5 - Update SpellSchools");
       Console.WriteLine("0 - EXIT");
       Console.Write("> ");
 
@@ -445,6 +450,58 @@ namespace PFDALTest
         if (e.Name.StartsWith("or "))
           e.Name = e.Name.Substring(3);
         e.Name = e.Name.Replace(")", "").Trim();
+        context.SaveChanges();
+      }
+    }
+
+    // Menu 5
+    private static void UpdateSpellSchools()
+    {
+      var spellList = PFDAL.GetContext().Spell.Where(x => true);
+
+      foreach (var spell in spellList)
+      {
+        var context = PFDAL.GetContext();
+        context.Spell.Attach(spell);
+        SpellSchool school = null;
+        SpellSubSchool subSchool = null;
+
+        if (!string.IsNullOrWhiteSpace(spell.SchoolId))
+        {
+          school = context.SpellSchool.FirstOrDefault(x => x.Name.Equals(spell.SchoolId));
+          if (school == null || school.SpellSchoolId == 0)
+          {
+            school = new SpellSchool();
+            school.Name = spell.SchoolId;
+            context.SpellSchool.Add(school);
+            context.SaveChanges();
+          }
+
+          spell.SchoolId = school.SpellSchoolId.ToString();
+        }
+        else
+          spell.SchoolId = "0";
+
+        if (!string.IsNullOrWhiteSpace(spell.SubSchoolId))
+        {
+          subSchool = context.SpellSubSchool.FirstOrDefault(x => x.Name.Equals(spell.SubSchoolId));
+          if (subSchool == null || subSchool.SpellSubSchoolId == 0)
+          {
+            subSchool = new SpellSubSchool();
+            subSchool.Name = spell.SubSchoolId;
+            if (school == null)
+              subSchool.SpellSchoolId = 0;
+            else
+              subSchool.SpellSchoolId = school.SpellSchoolId;
+            context.SpellSubSchool.Add(subSchool);
+            context.SaveChanges();
+          }
+
+          spell.SubSchoolId = subSchool.SpellSubSchoolId.ToString();
+        }
+        else
+          spell.SubSchoolId = "0";
+
         context.SaveChanges();
       }
     }

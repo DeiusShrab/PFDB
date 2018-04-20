@@ -1,10 +1,13 @@
-﻿namespace DBConnect.DBModels
+﻿using System;
+using System.Collections.Generic;
+
+namespace DBConnect.DBModels
 {
-  public partial class Time
+    public partial class Time
     {
         public int TimeId { get; set; }
-        public int TimeOrder { get; set; }
         public string Name { get; set; }
+        public int TimeOrder { get; set; }
         public bool IsNight { get; set; }
     }
 }

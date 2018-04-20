@@ -131,165 +131,327 @@ namespace PFEditor.Controls
       set { LblSpellId.Content = value; }
     }
 
-    public int LevelAdept
+    public int? LevelAdept
     {
-      get { return (int)DrpLevelAdept.SelectedValue; }
+      get
+      {
+        if (DrpLevelAdept.SelectedValue != null)
+          return (int)DrpLevelAdept.SelectedValue;
+
+        return null;
+      }
       set { DrpLevelAdept.SelectedValue = value; }
     }
 
-    public int LevelAlchemist
+    public int? LevelAlchemist
     {
-      get { return (int)DrpLevelAlchemist.SelectedValue; }
+      get
+      {
+        if (DrpLevelAlchemist.SelectedValue != null)
+          return (int)DrpLevelAlchemist.SelectedValue;
+
+        return null;
+      }
       set { DrpLevelAlchemist.SelectedValue = value; }
     }
 
-    public int LevelAntipaladin
+    public int? LevelAntipaladin
     {
-      get { return (int)DrpLevelAntipaladin.SelectedValue; }
+      get
+      {
+        if (DrpLevelAntipaladin.SelectedValue != null)
+          return (int)DrpLevelAntipaladin.SelectedValue;
+
+        return null;
+      }
       set { DrpLevelAntipaladin.SelectedValue = value; }
     }
 
-    public int LevelBard
+    public int? LevelBard
     {
-      get { return (int)DrpLevelBard.SelectedValue; }
+      get
+      {
+        if (DrpLevelBard.SelectedValue != null)
+          return (int)DrpLevelBard.SelectedValue;
+
+        return null;
+      }
       set { DrpLevelBard.SelectedValue = value; }
     }
 
-    public int LevelBloodRager
+    public int? LevelBloodRager
     {
-      get { return (int)DrpLevelBloodRager.SelectedValue; }
+      get
+      {
+        if (DrpLevelBloodRager.SelectedValue != null)
+          return (int)DrpLevelBloodRager.SelectedValue;
+
+        return null;
+      }
       set { DrpLevelBloodRager.SelectedValue = value; }
     }
 
-    public int LevelCleric
+    public int? LevelCleric
     {
-      get { return (int)DrpLevelCleric.SelectedValue; }
+      get
+      {
+        if (DrpLevelCleric.SelectedValue != null)
+          return (int)DrpLevelCleric.SelectedValue;
+
+        return null;
+      }
       set { DrpLevelCleric.SelectedValue = value; }
     }
 
-    public int LevelDruid
+    public int? LevelDruid
     {
-      get { return (int)DrpLevelDruid.SelectedValue; }
+      get
+      {
+        if (DrpLevelDruid.SelectedValue != null)
+          return (int)DrpLevelDruid.SelectedValue;
+
+        return null;
+      }
       set { DrpLevelDruid.SelectedValue = value; }
     }
 
-    public int LevelHunter
+    public int? LevelHunter
     {
-      get { return (int)DrpLevelHunter.SelectedValue; }
+      get
+      {
+        if (DrpLevelHunter.SelectedValue != null)
+          return (int)DrpLevelHunter.SelectedValue;
+
+        return null;
+      }
       set { DrpLevelHunter.SelectedValue = value; }
     }
 
-    public int LevelInquisitor
+    public int? LevelInquisitor
     {
-      get { return (int)DrpLevelInquisitor.SelectedValue; }
+      get
+      {
+        if (DrpLevelInquisitor.SelectedValue != null)
+          return (int)DrpLevelInquisitor.SelectedValue;
+
+        return null;
+      }
       set { DrpLevelInquisitor.SelectedValue = value; }
     }
 
-    public int LevelInvestigator
+    public int? LevelInvestigator
     {
-      get { return (int)DrpLevelInvestigator.SelectedValue; }
+      get
+      {
+        if (DrpLevelInvestigator.SelectedValue != null)
+          return (int)DrpLevelInvestigator.SelectedValue;
+
+        return null;
+      }
       set { DrpLevelInvestigator.SelectedValue = value; }
     }
 
-    public int LevelMagus
+    public int? LevelMagus
     {
-      get { return (int)DrpLevelMagus.SelectedValue; }
+      get
+      {
+        if (DrpLevelMagus.SelectedValue != null)
+          return (int)DrpLevelMagus.SelectedValue;
+
+        return null;
+      }
       set { DrpLevelMagus.SelectedValue = value; }
     }
 
-    public int LevelMedium
+    public int? LevelMedium
     {
-      get { return (int)DrpLevelMedium.SelectedValue; }
+      get
+      {
+        if (DrpLevelMedium.SelectedValue != null)
+          return (int)DrpLevelMedium.SelectedValue;
+
+        return null;
+      }
       set { DrpLevelMedium.SelectedValue = value; }
     }
 
-    public int LevelMesmerist
+    public int? LevelMesmerist
     {
-      get { return (int)DrpLevelMesmerist.SelectedValue; }
+      get
+      {
+        if (DrpLevelMesmerist.SelectedValue != null)
+          return (int)DrpLevelMesmerist.SelectedValue;
+
+        return null;
+      }
       set { DrpLevelMesmerist.SelectedValue = value; }
     }
 
-    public int LevelOccultist
+    public int? LevelOccultist
     {
-      get { return (int)DrpLevelOccultist.SelectedValue; }
+      get
+      {
+        if (DrpLevelOccultist.SelectedValue != null)
+          return (int)DrpLevelOccultist.SelectedValue;
+
+        return null;
+      }
       set { DrpLevelOccultist.SelectedValue = value; }
     }
 
-    public int LevelOracle
+    public int? LevelOracle
     {
-      get { return (int)DrpLevelOracle.SelectedValue; }
+      get
+      {
+        if (DrpLevelOracle.SelectedValue != null)
+          return (int)DrpLevelOracle.SelectedValue;
+
+        return null;
+      }
       set { DrpLevelOracle.SelectedValue = value; }
     }
 
-    public int LevelPaladin
+    public int? LevelPaladin
     {
-      get { return (int)DrpLevelPaladin.SelectedValue; }
+      get
+      {
+        if (DrpLevelPaladin.SelectedValue != null)
+          return (int)DrpLevelPaladin.SelectedValue;
+
+        return null;
+      }
       set { DrpLevelPaladin.SelectedValue = value; }
     }
 
-    public int LevelPsychic
+    public int? LevelPsychic
     {
-      get { return (int)DrpLevelPsychic.SelectedValue; }
+      get
+      {
+        if (DrpLevelPsychic.SelectedValue != null)
+          return (int)DrpLevelPsychic.SelectedValue;
+
+        return null;
+      }
       set { DrpLevelPsychic.SelectedValue = value; }
     }
 
-    public int LevelRanger
+    public int? LevelRanger
     {
-      get { return (int)DrpLevelRanger.SelectedValue; }
+      get
+      {
+        if (DrpLevelRanger.SelectedValue != null)
+          return (int)DrpLevelRanger.SelectedValue;
+
+        return null;
+      }
       set { DrpLevelRanger.SelectedValue = value; }
     }
 
-    public int LevelShaman
+    public int? LevelShaman
     {
-      get { return (int)DrpLevelShaman.SelectedValue; }
+      get
+      {
+        if (DrpLevelShaman.SelectedValue != null)
+          return (int)DrpLevelShaman.SelectedValue;
+
+        return null;
+      }
       set { DrpLevelShaman.SelectedValue = value; }
     }
 
-    public int LevelSkald
+    public int? LevelSkald
     {
-      get { return (int)DrpLevelSkald.SelectedValue; }
+      get
+      {
+        if (DrpLevelSkald.SelectedValue != null)
+          return (int)DrpLevelSkald.SelectedValue;
+
+        return null;
+      }
       set { DrpLevelSkald.SelectedValue = value; }
     }
 
-    public int LevelSor
+    public int? LevelSor
     {
-      get { return (int)DrpLevelSor.SelectedValue; }
+      get
+      {
+        if (DrpLevelSor.SelectedValue != null)
+          return (int)DrpLevelSor.SelectedValue;
+
+        return null;
+      }
       set { DrpLevelSor.SelectedValue = value; }
     }
 
-    public int LevelSpiritualist
+    public int? LevelSpiritualist
     {
-      get { return (int)DrpLevelSpiritualist.SelectedValue; }
+      get
+      {
+        if (DrpLevelSpiritualist.SelectedValue != null)
+          return (int)DrpLevelSpiritualist.SelectedValue;
+
+        return null;
+      }
       set { DrpLevelSpiritualist.SelectedValue = value; }
     }
 
-    public int LevelSummoner
+    public int? LevelSummoner
     {
-      get { return (int)DrpLevelSummoner.SelectedValue; }
+      get
+      {
+        if (DrpLevelSummoner.SelectedValue != null)
+          return (int)DrpLevelSummoner.SelectedValue;
+
+        return null;
+      }
       set { DrpLevelSummoner.SelectedValue = value; }
     }
 
-    public int LevelWitch
+    public int? LevelWitch
     {
-      get { return (int)DrpLevelWitch.SelectedValue; }
+      get
+      {
+        if (DrpLevelWitch.SelectedValue != null)
+          return (int)DrpLevelWitch.SelectedValue;
+
+        return null;
+      }
       set { DrpLevelWitch.SelectedValue = value; }
     }
 
-    public int LevelWiz
+    public int? LevelWiz
     {
-      get { return (int)DrpLevelWiz.SelectedValue; }
+      get
+      {
+        if (DrpLevelWiz.SelectedValue != null)
+          return (int)DrpLevelWiz.SelectedValue;
+
+        return null;
+      }
       set { DrpLevelWiz.SelectedValue = value; }
     }
 
-    public int SchoolId
+    public int? SchoolId
     {
-      get { return (int)DrpSchool.SelectedValue; }
+      get
+      {
+        if (DrpSchool.SelectedValue != null)
+          return (int)DrpSchool.SelectedValue;
+
+        return null;
+      }
       set { DrpSchool.SelectedValue = value; }
     }
 
-    public int SubSchoolId
+    public int? SubSchoolId
     {
-      get { return (int)DrpSubSchool.SelectedValue; }
+      get
+      {
+        if (DrpSubSchool.SelectedValue != null)
+          return (int)DrpSubSchool.SelectedValue;
+
+        return null;
+      }
       set { DrpSubSchool.SelectedValue = value; }
     }
 
@@ -776,7 +938,7 @@ namespace PFEditor.Controls
       ActiveSpell.Range = Range;
       ActiveSpell.Ranger = LevelRanger;
       ActiveSpell.SavingThrow = Save;
-      ActiveSpell.SchoolId = SchoolId;
+      ActiveSpell.SchoolId = SchoolId ?? 0;
       ActiveSpell.Shadow = Shadow;
       ActiveSpell.Shaman = LevelShaman;
       ActiveSpell.Shapeable = Shapeable;
@@ -788,7 +950,7 @@ namespace PFEditor.Controls
       ActiveSpell.SpellId = SpellId;
       ActiveSpell.SpellResistance = SR;
       ActiveSpell.Spiritualist = LevelSpiritualist;
-      ActiveSpell.SubSchoolId = SubSchoolId;
+      ActiveSpell.SubSchoolId = SubSchoolId ?? 0;
       ActiveSpell.Summoner = LevelSummoner;
       ActiveSpell.Targets = Targets;
       ActiveSpell.Verbal = Verbal;

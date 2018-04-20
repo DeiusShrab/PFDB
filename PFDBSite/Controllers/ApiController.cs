@@ -429,7 +429,7 @@ namespace PFDBSite.Controllers
     public IActionResult ContinentWeather_Detail(int ContinentWeatherId)
     {
       var context = PFDAL.GetContext();
-      return new JsonResult(context.ContinentWeather.FirstOrDefault(x => x.Cwid == ContinentWeatherId));
+      return new JsonResult(context.ContinentWeather.FirstOrDefault(x => x.CWID == ContinentWeatherId));
     }
 
     [HttpGet("Environment/{EnvironmentId:int}")]
@@ -722,14 +722,14 @@ namespace PFDBSite.Controllers
     public IActionResult ContinentWeather_Create([FromBody] ContinentWeather obj)
     {
       var context = PFDAL.GetContext();
-      if (obj == null || obj.Cwid != 0)
+      if (obj == null || obj.CWID != 0)
         return BadRequest();
 
       try
       {
         context.ContinentWeather.Add(obj);
         context.SaveChanges();
-        return Created("ContinentWeather/" + obj.Cwid.ToString(), obj);
+        return Created("ContinentWeather/" + obj.CWID.ToString(), obj);
       }
       catch (Exception ex)
       {
@@ -1254,7 +1254,7 @@ namespace PFDBSite.Controllers
     {
       var context = PFDAL.GetContext();
 
-      if (obj == null || obj.Cwid == 0 || obj.Cwid != ContinentWeatherId)
+      if (obj == null || obj.CWID == 0 || obj.CWID != ContinentWeatherId)
         return BadRequest();
 
       try

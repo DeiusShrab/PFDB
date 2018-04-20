@@ -1,6 +1,9 @@
-﻿namespace DBConnect.DBModels
+﻿using System;
+using System.Collections.Generic;
+
+namespace DBConnect.DBModels
 {
-  public partial class Bestiary
+    public partial class Bestiary
     {
         public int BestiaryId { get; set; }
         public string Name { get; set; }
@@ -103,12 +106,5 @@
         public int Wis { get; set; }
         public int Int { get; set; }
         public int Cha { get; set; }
-        //public virtual BestiaryDetail BestiaryDetail { get; set; }
-        //public virtual List<BestiaryFeat> BestiaryFeats { get; set; }
-        //public virtual List<BestiarySkill> BestiarySkills { get; set; }
-        //public virtual List<BestiaryLanguage> BestiaryLanguages { get; set; }
-        //public virtual List<BestiarySubType> BestiarySubTypes { get; set; }
-        //public virtual List<BestiaryEnvironment> BestiaryEnvironments { get; set; }
-        //public virtual BestiaryType BestiaryType { get; set; }
     }
 }

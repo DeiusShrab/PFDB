@@ -665,6 +665,9 @@ namespace PFHelper
       CurrentDate.AddDays(i);
       NextWeather(i);
       UpdateDate();
+
+      if (!RationsInfinite && i > 0)
+        AddRations(i * -1);
     }
 
     private void NextWeather(int d = 1)
@@ -689,10 +692,10 @@ namespace PFHelper
           d -= CurrentWeatherGroup.Duration;
           if (CurrentWeatherGroup.NextCWID > 0)
           {
-            if (WeatherResult.WeatherList.Select(x => x.WeatherId).Contains(CurrentWeatherGroup.NextCWID))
-              CurrentWeatherGroup = WeatherResult.WeatherList.First(x => x.WeatherId == CurrentWeatherGroup.NextCWID);
+            if (WeatherResult.WeatherList.Select(x => x.WeatherId).Contains(CurrentWeatherGroup.NextCWID.Value))
+              CurrentWeatherGroup = WeatherResult.WeatherList.First(x => x.WeatherId == CurrentWeatherGroup.NextCWID.Value);
             else
-              CurrentWeatherGroup = DBClient.GetContinentWeather(CurrentWeatherGroup.NextCWID);
+              CurrentWeatherGroup = DBClient.GetContinentWeather(CurrentWeatherGroup.NextCWID.Value);
           }
           else
             CurrentWeatherGroup = GetRandomWeather();

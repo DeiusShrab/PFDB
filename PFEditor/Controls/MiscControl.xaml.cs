@@ -308,7 +308,7 @@ namespace PFEditor.Controls
         ActiveSeason = DBClient.GetSeason((int)LbxSeason.SelectedValue);
         SeasonId = ActiveSeason.SeasonId;
         SeasonName = ActiveSeason.Name;
-        SeasonOrder = ActiveSeason.Order;
+        SeasonOrder = ActiveSeason.SeasonOrder;
       }
     }
 
@@ -330,7 +330,7 @@ namespace PFEditor.Controls
         MonthDays = ActiveMonth.Days;
         MonthId = ActiveMonth.MonthId;
         MonthName = ActiveMonth.Name;
-        MonthOrder = ActiveMonth.Order;
+        MonthOrder = ActiveMonth.MonthOrder;
         MonthSeasonId = ActiveMonth.SeasonId;
       }
     }
@@ -386,7 +386,7 @@ namespace PFEditor.Controls
     {
       ActiveSeason.SeasonId = SeasonId;
       ActiveSeason.Name = SeasonName;
-      ActiveSeason.Order = SeasonOrder;
+      ActiveSeason.SeasonOrder = SeasonOrder;
 
       if (ActiveSeason.SeasonId == 0)
         ActiveSeason.SeasonId = DBClient.CreateSeason(ActiveSeason);
@@ -416,7 +416,7 @@ namespace PFEditor.Controls
       ActiveMonth.Days = MonthDays;
       ActiveMonth.MonthId = MonthId;
       ActiveMonth.Name = MonthName;
-      ActiveMonth.Order = MonthOrder;
+      ActiveMonth.MonthOrder = MonthOrder;
       ActiveMonth.SeasonId = MonthSeasonId;
 
       if (ActiveMonth.MonthId == 0)

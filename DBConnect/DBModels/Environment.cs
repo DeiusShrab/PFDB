@@ -1,6 +1,9 @@
-﻿namespace DBConnect.DBModels
+﻿using System;
+using System.Collections.Generic;
+
+namespace DBConnect.DBModels
 {
-  public partial class Environment
+    public partial class Environment
     {
         public int EnvironmentId { get; set; }
         public string Name { get; set; }

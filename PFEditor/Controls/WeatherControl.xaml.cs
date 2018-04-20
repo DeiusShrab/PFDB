@@ -27,22 +27,26 @@ namespace PFEditor.Controls
       set { DrpContinent.SelectedValue = value; }
     }
 
-    public int NextCWID
+    public int? NextCWID
     {
       get
       {
-        int.TryParse(DrpNextWeather.SelectedValue.ToString(), out int ret);
-        return ret;
+        if (DrpNextWeather.SelectedValue != null)
+          return (int)DrpNextWeather.SelectedValue;
+
+        return null;
       }
       set { DrpNextWeather.SelectedValue = value; }
     }
 
-    public int ParentCWID
+    public int? ParentCWID
     {
       get
       {
-        int.TryParse(DrpParentWeather.SelectedValue.ToString(), out int ret);
-        return ret;
+        if (DrpParentWeather.SelectedValue != null)
+          return (int)DrpParentWeather.SelectedValue;
+
+        return null;
       }
       set { DrpParentWeather.SelectedValue = value; }
     }
@@ -79,7 +83,7 @@ namespace PFEditor.Controls
       set { TxtEffects.Text = value; }
     }
 
-    public string GroupPhase
+    public string CWName
     {
       get { return TxtGroupPhase.Text; }
       set { TxtGroupPhase.Text = value; }
@@ -236,7 +240,7 @@ namespace PFEditor.Controls
       DrpParentWeather.ItemsSource = ContinentWeatherList;
       DrpSeason.ItemsSource = SeasonList;
       DrpWeather.ItemsSource = WeatherList;
-      
+
     }
 
     #endregion
@@ -288,7 +292,7 @@ namespace PFEditor.Controls
       ContinentId = ActiveContinentWeather.ContinentId;
       CWID = ActiveContinentWeather.CWID;
       Duration = ActiveContinentWeather.Duration;
-      GroupPhase = ActiveContinentWeather.Name;
+      CWName = ActiveContinentWeather.CWName;
       NextCWID = ActiveContinentWeather.NextCWID;
       ParentCWID = ActiveContinentWeather.ParentCWID;
       RandomDuration = ActiveContinentWeather.RandomDuration;
@@ -302,7 +306,7 @@ namespace PFEditor.Controls
       ActiveContinentWeather.ContinentId = ContinentId;
       ActiveContinentWeather.CWID = CWID;
       ActiveContinentWeather.Duration = Duration;
-      ActiveContinentWeather.Name = GroupPhase;
+      ActiveContinentWeather.CWName = CWName;
       ActiveContinentWeather.NextCWID = NextCWID;
       ActiveContinentWeather.ParentCWID = ParentCWID;
       ActiveContinentWeather.RandomDuration = RandomDuration;
@@ -387,7 +391,7 @@ namespace PFEditor.Controls
 
     private void BtnSaveContinentWeather_Click(object sender, RoutedEventArgs e)
     {
-      if (string.IsNullOrWhiteSpace(GroupPhase))
+      if (string.IsNullOrWhiteSpace(CWName))
       {
         MessageBox.Show("ContinentWeather to be saved must have a Group");
         return;

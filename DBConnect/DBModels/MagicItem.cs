@@ -1,6 +1,9 @@
-﻿namespace DBConnect.DBModels
+﻿using System;
+using System.Collections.Generic;
+
+namespace DBConnect.DBModels
 {
-  public partial class MagicItem
+    public partial class MagicItem
     {
         public int MagicItemId { get; set; }
         public string Name { get; set; }

@@ -1,9 +1,11 @@
-﻿namespace DBConnect.DBModels
+﻿using System;
+using System.Collections.Generic;
+
+namespace DBConnect.DBModels
 {
-  public partial class Faction
+    public partial class Faction
     {
         public int FactionId { get; set; }
-        public int? ContinentId { get; set; }
         public string Name { get; set; }
         public string Language { get; set; }
         public int? ParentFaction { get; set; }
