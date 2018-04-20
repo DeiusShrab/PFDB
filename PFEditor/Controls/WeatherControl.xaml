@@ -7,7 +7,7 @@
              xmlns:xctk="http://schemas.xceed.com/wpf/xaml/toolkit" x:Class="PFEditor.Controls.WeatherControl"
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800" Width="1332" Height="649" Background="#FFDDDDDD">
-    <Grid>
+    <Grid KeyDown="Grid_KeyDown">
         <ListBox x:Name="LbxContinentWeather" HorizontalAlignment="Left" Height="546" Margin="665,68,0,0" VerticalAlignment="Top" Width="180" MouseDoubleClick="LbxContinentWeather_MouseDoubleClick"/>
         <ListBox x:Name="LbxWeather" HorizontalAlignment="Left" Height="576" Margin="10,38,0,0" VerticalAlignment="Top" Width="180" MouseDoubleClick="LbxWeather_MouseDoubleClick"/>
         <TextBox x:Name="TxtSearchContinentWeather" HorizontalAlignment="Left" Height="23" Margin="665,38,0,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="180"/>

@@ -59,49 +59,49 @@ namespace PFDBSite.Controllers
       var context = PFDAL.GetContext();
       var type = listType.ToLower();
 
-      if (type == "Bestiary")
+      if (type == "bestiary")
         return new JsonResult(context.Bestiary.Select(x => new ListItemResult() { Id = x.BestiaryId, Name = x.Name, Notes = x.Cr.ToString() }));
-      else if (type == "BestiaryType")
+      else if (type == "bestiarytype")
         return new JsonResult(context.BestiaryType.Select(x => new ListItemResult() { Id = x.BestiaryTypeId, Name = x.Name }));
-      else if (type == "Continent")
+      else if (type == "continent")
         return new JsonResult(context.Continent.Select(x => new ListItemResult() { Id = x.ContinentId, Name = x.Name }));
-      else if (type == "Environment")
+      else if (type == "environment")
         return new JsonResult(context.Environment.Select(x => new ListItemResult() { Id = x.EnvironmentId, Name = x.Name }));
-      else if (type == "Faction")
+      else if (type == "faction")
         return new JsonResult(context.Faction.Select(x => new ListItemResult() { Id = x.FactionId, Name = x.Name }));
-      else if (type == "Feat")
+      else if (type == "feat")
         return new JsonResult(context.Feat.Select(x => new ListItemResult() { Id = x.FeatId, Name = x.Name }));
-      else if (type == "Language")
+      else if (type == "language")
         return new JsonResult(context.Language.Select(x => new ListItemResult() { Id = x.LanguageId, Name = x.Name }));
-      else if (type == "Location")
+      else if (type == "location")
         return new JsonResult(context.Location.Select(x => new ListItemResult() { Id = x.LocationId, Name = x.Name }));
-      else if (type == "MagicItem")
+      else if (type == "magicitem")
         return new JsonResult(context.MagicItem.Select(x => new ListItemResult() { Id = x.MagicItemId, Name = x.Name }));
-      else if (type == "MonsterSpawn")
+      else if (type == "monsterspawn")
         return new JsonResult(context.Bestiary.Select(x => new ListItemResult() { Id = x.BestiaryId, Name = x.Name, Notes = GetTypesForBestiary(x.BestiaryId) }));
-      else if (type == "Month")
+      else if (type == "month")
         return new JsonResult(context.Month.Select(x => new ListItemResult() { Id = x.MonthId, Name = x.Name }));
-      else if (type == "Season")
+      else if (type == "season")
         return new JsonResult(context.Season.Select(x => new ListItemResult() { Id = x.SeasonId, Name = x.Name }));
-      else if (type == "Spell")
+      else if (type == "spell")
         return new JsonResult(context.Spell.Select(x => new ListItemResult() { Id = x.SpellId, Name = x.Name }));
-      else if (type == "Territory")
+      else if (type == "territory")
         return new JsonResult(context.Territory.Select(x => new ListItemResult() { Id = x.TerritoryId, Name = x.Name }));
-      else if (type == "Weather")
+      else if (type == "weather")
         return new JsonResult(context.Weather.Select(x => new ListItemResult() { Id = x.WeatherId, Name = x.Name }));
-      else if (type == "Terrain")
+      else if (type == "terrain")
         return new JsonResult(context.Terrain.Select(x => new ListItemResult() { Id = x.TerrainId, Name = x.Name }));
-      else if (type == "Time")
+      else if (type == "time")
         return new JsonResult(context.Time.Select(x => new ListItemResult() { Id = x.TimeId, Name = x.Name }));
-      else if (type == "TrackedEvent")
+      else if (type == "trackedEvent")
         return new JsonResult(context.TrackedEvent.Select(x => new ListItemResult() { Id = x.TrackedEventId, Name = x.Name }));
-      else if (type == "Plane")
+      else if (type == "plane")
         return new JsonResult(context.Plane.Select(x => new ListItemResult() { Id = x.PlaneId, Name = x.Name }));
-      else if (type == "Skill")
+      else if (type == "skill")
         return new JsonResult(context.Skill.Select(x => new ListItemResult() { Id = x.SkillId, Name = x.Name }));
-      else if (type == "SpellSchool")
+      else if (type == "spellschool")
         return new JsonResult(context.SpellSchool.Select(x => new ListItemResult() { Id = x.SpellSchoolId, Name = x.Name }));
-      else if (type == "SpellSubSchool")
+      else if (type == "spellsubschool")
         return new JsonResult(context.SpellSubSchool.Select(x => new ListItemResult() { Id = x.SpellSubSchoolId, Name = x.Name, Notes = x.SpellSchoolId.ToString() }));
       else
         return new NotFoundResult();

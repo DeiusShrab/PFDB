@@ -205,12 +205,12 @@ namespace PFEditor.Controls
 
       this.DataContext = this;
 
-      MonthList = new ObservableCollection<ListItemResult>(DBClient.GetList("Month"));
-      SeasonList = new ObservableCollection<ListItemResult>(DBClient.GetList("Season"));
-      TimeList = new ObservableCollection<ListItemResult>(DBClient.GetList("Time"));
-      PlaneList = new ObservableCollection<ListItemResult>(DBClient.GetList("Plane"));
-      TerrainList = new ObservableCollection<ListItemResult>(DBClient.GetList("Terrain"));
-      EnvironmentList = new ObservableCollection<ListItemResult>(DBClient.GetList("Environment"));
+      MonthList = new ObservableCollection<ListItemResult>();
+      SeasonList = new ObservableCollection<ListItemResult>();
+      TimeList = new ObservableCollection<ListItemResult>();
+      PlaneList = new ObservableCollection<ListItemResult>();
+      TerrainList = new ObservableCollection<ListItemResult>();
+      EnvironmentList = new ObservableCollection<ListItemResult>();
 
       LbxMonth.DisplayMemberPath = LbxPlane.DisplayMemberPath = LbxSeason.DisplayMemberPath =
         LbxTime.DisplayMemberPath = LbxTerrain.DisplayMemberPath = LbxEnvironment.DisplayMemberPath = "Name";
@@ -374,7 +374,7 @@ namespace PFEditor.Controls
       ActiveTime.TimeOrder = TimeOrder;
 
       if (ActiveTime.TimeId == 0)
-        ActiveTime.TimeId = DBClient.CreateTime(ActiveTime);
+        ActiveTime = DBClient.CreateTime(ActiveTime);
       else
         DBClient.UpdateTime(ActiveTime);
 
@@ -389,7 +389,7 @@ namespace PFEditor.Controls
       ActiveSeason.SeasonOrder = SeasonOrder;
 
       if (ActiveSeason.SeasonId == 0)
-        ActiveSeason.SeasonId = DBClient.CreateSeason(ActiveSeason);
+        ActiveSeason = DBClient.CreateSeason(ActiveSeason);
       else
         DBClient.UpdateSeason(ActiveSeason);
 
@@ -403,7 +403,7 @@ namespace PFEditor.Controls
       ActivePlane.Name = PlaneName;
 
       if (ActivePlane.PlaneId == 0)
-        ActivePlane.PlaneId = DBClient.CreatePlane(ActivePlane);
+        ActivePlane = DBClient.CreatePlane(ActivePlane);
       else
         DBClient.UpdatePlane(ActivePlane);
 
@@ -420,7 +420,7 @@ namespace PFEditor.Controls
       ActiveMonth.SeasonId = MonthSeasonId;
 
       if (ActiveMonth.MonthId == 0)
-        ActiveMonth.MonthId = DBClient.CreateMonth(ActiveMonth);
+        ActiveMonth = DBClient.CreateMonth(ActiveMonth);
       else
         DBClient.UpdateMonth(ActiveMonth);
 
@@ -440,9 +440,12 @@ namespace PFEditor.Controls
       ActiveTerrain.TerrainId = TerrainId;
 
       if (ActiveTerrain.TerrainId == 0)
-        ActiveTerrain.TerrainId = TerrainId = DBClient.CreateTerrain(ActiveTerrain);
+        ActiveTerrain = DBClient.CreateTerrain(ActiveTerrain);
       else
         DBClient.UpdateTerrain(ActiveTerrain);
+
+      TerrainId = ActiveTerrain.TerrainId;
+      TerrainList = new ObservableCollection<ListItemResult>(DBClient.GetList("Terrain"));
     }
 
     private void BtnEnvironmentSave_Click(object sender, RoutedEventArgs e)
@@ -454,11 +457,31 @@ namespace PFEditor.Controls
       ActiveEnvironment.TravelSpeed = EnvironmentTravelSpeed;
 
       if (ActiveEnvironment.EnvironmentId == 0)
-        ActiveEnvironment.EnvironmentId = EnvironmentId = DBClient.CreateEnvironment(ActiveEnvironment);
+        ActiveEnvironment = DBClient.CreateEnvironment(ActiveEnvironment);
       else
         DBClient.UpdateEnvironment(ActiveEnvironment);
+
+      EnvironmentId = ActiveEnvironment.EnvironmentId;
+      EnvironmentList = new ObservableCollection<ListItemResult>(DBClient.GetList("Environment"));
     }
 
     #endregion
+
+    private void Grid_KeyDown(object sender, System.Windows.Input.KeyEventArgs e)
+    {
+      if (e.Key == System.Windows.Input.Key.F5)
+      {
+        // Reload lists
+
+        MonthList = new ObservableCollection<ListItemResult>(DBClient.GetList("Month"));
+        SeasonList = new ObservableCollection<ListItemResult>(DBClient.GetList("Season"));
+        TimeList = new ObservableCollection<ListItemResult>(DBClient.GetList("Time"));
+        PlaneList = new ObservableCollection<ListItemResult>(DBClient.GetList("Plane"));
+        TerrainList = new ObservableCollection<ListItemResult>(DBClient.GetList("Terrain"));
+        EnvironmentList = new ObservableCollection<ListItemResult>(DBClient.GetList("Environment"));
+
+        e.Handled = true;
+      }
+    }
   }
 }

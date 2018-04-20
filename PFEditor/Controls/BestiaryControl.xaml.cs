@@ -19,547 +19,547 @@ namespace PFEditor.Controls
   {
     #region Interface Properties
 
-    public string Bes_ACMods
+    public string ACMods
     {
-      get { return CtlBestiaryAbilities.Bes_ACMods; }
-      set { CtlBestiaryAbilities.Bes_ACMods = value; }
+      get { return CtlBestiaryAbilities.ACMods; }
+      set { CtlBestiaryAbilities.ACMods = value; }
     }
 
-    public string Bes_Aura
+    public string Aura
     {
-      get { return CtlBestiaryAbilities.Bes_Aura; }
-      set { CtlBestiaryAbilities.Bes_Aura = value; }
+      get { return CtlBestiaryAbilities.Aura; }
+      set { CtlBestiaryAbilities.Aura = value; }
     }
 
-    public string Bes_Defense
+    public string Defense
     {
-      get { return CtlBestiaryAbilities.Bes_Defense; }
-      set { CtlBestiaryAbilities.Bes_Defense = value; }
+      get { return CtlBestiaryAbilities.Defense; }
+      set { CtlBestiaryAbilities.Defense = value; }
     }
 
-    public string Bes_Immune
+    public string Immune
     {
-      get { return CtlBestiaryAbilities.Bes_Immune; }
-      set { CtlBestiaryAbilities.Bes_Immune = value; }
+      get { return CtlBestiaryAbilities.Immune; }
+      set { CtlBestiaryAbilities.Immune = value; }
     }
 
-    public string Bes_Languages
+    public string Languages
     {
-      get { return CtlBestiaryAbilities.Bes_Languages; }
-      set { CtlBestiaryAbilities.Bes_Languages = value; }
+      get { return CtlBestiaryAbilities.Languages; }
+      set { CtlBestiaryAbilities.Languages = value; }
     }
 
-    public string Bes_Offense
+    public string Offense
     {
-      get { return CtlBestiaryAbilities.Bes_Offense; }
-      set { CtlBestiaryAbilities.Bes_Offense = value; }
+      get { return CtlBestiaryAbilities.Offense; }
+      set { CtlBestiaryAbilities.Offense = value; }
     }
 
-    public string Bes_OffenseNote
+    public string OffenseNote
     {
-      get { return CtlBestiaryAbilities.Bes_OffenseNote; }
-      set { CtlBestiaryAbilities.Bes_OffenseNote = value; }
+      get { return CtlBestiaryAbilities.OffenseNote; }
+      set { CtlBestiaryAbilities.OffenseNote = value; }
     }
 
-    public string Bes_RacialMods
+    public string RacialMods
     {
-      get { return CtlBestiaryAbilities.Bes_RacialMods; }
-      set { CtlBestiaryAbilities.Bes_RacialMods = value; }
+      get { return CtlBestiaryAbilities.RacialMods; }
+      set { CtlBestiaryAbilities.RacialMods = value; }
     }
 
-    public string Bes_Reach
+    public string Reach
     {
-      get { return CtlBestiaryAbilities.Bes_Reach; }
-      set { CtlBestiaryAbilities.Bes_Reach = value; }
+      get { return CtlBestiaryAbilities.Reach; }
+      set { CtlBestiaryAbilities.Reach = value; }
     }
 
-    public string Bes_Resist
+    public string Resist
     {
-      get { return CtlBestiaryAbilities.Bes_Resist; }
-      set { CtlBestiaryAbilities.Bes_Resist = value; }
+      get { return CtlBestiaryAbilities.Resist; }
+      set { CtlBestiaryAbilities.Resist = value; }
     }
 
-    public string Bes_SaveMods
+    public string SaveMods
     {
-      get { return CtlBestiaryAbilities.Bes_SaveMods; }
-      set { CtlBestiaryAbilities.Bes_SaveMods = value; }
+      get { return CtlBestiaryAbilities.SaveMods; }
+      set { CtlBestiaryAbilities.SaveMods = value; }
     }
 
-    public string Bes_Senses
+    public string Senses
     {
-      get { return CtlBestiaryAbilities.Bes_Senses; }
-      set { CtlBestiaryAbilities.Bes_Senses = value; }
+      get { return CtlBestiaryAbilities.Senses; }
+      set { CtlBestiaryAbilities.Senses = value; }
     }
 
-    public string Bes_Space
+    public string Space
     {
-      get { return CtlBestiaryAbilities.Bes_Space; }
-      set { CtlBestiaryAbilities.Bes_Space = value; }
+      get { return CtlBestiaryAbilities.Space; }
+      set { CtlBestiaryAbilities.Space = value; }
     }
 
-    public string Bes_SpecialAbilities
+    public string SpecialAbilities
     {
-      get { return CtlBestiaryAbilities.Bes_SpecialAbilities; }
-      set { CtlBestiaryAbilities.Bes_SpecialAbilities = value; }
+      get { return CtlBestiaryAbilities.SpecialAbilities; }
+      set { CtlBestiaryAbilities.SpecialAbilities = value; }
     }
 
-    public string Bes_SpecialQualities
+    public string SpecialQualities
     {
-      get { return CtlBestiaryAbilities.Bes_SpecialQualities; }
-      set { CtlBestiaryAbilities.Bes_SpecialQualities = value; }
+      get { return CtlBestiaryAbilities.SpecialQualities; }
+      set { CtlBestiaryAbilities.SpecialQualities = value; }
     }
 
-    public string Bes_SpeedMods
+    public string SpeedMods
     {
-      get { return CtlBestiaryAbilities.Bes_SpeedMods; }
-      set { CtlBestiaryAbilities.Bes_SpeedMods = value; }
+      get { return CtlBestiaryAbilities.SpeedMods; }
+      set { CtlBestiaryAbilities.SpeedMods = value; }
     }
 
-    public int Bes_AC
+    public int AC
     {
       get { return Convert.ToInt32(TxtAC.Text); }
       set { TxtAC.Text = value.ToString(); }
     }
 
-    public int Bes_ACFlat
+    public int ACFlat
     {
       get { return Convert.ToInt32(TxtACFlat.Text); }
       set { TxtACFlat.Text = value.ToString(); }
     }
 
-    public int Bes_ACTouch
+    public int ACTouch
     {
       get { return Convert.ToInt32(TxtACTouch.Text); }
       set { TxtACTouch.Text = value.ToString(); }
     }
 
-    public string Bes_AgeCategory
+    public string AgeCategory
     {
       get { return TxtAgeCategory.Text; }
       set { TxtAgeCategory.Text = value; }
     }
 
-    public string Bes_Align
+    public string Align
     {
       get { return TxtAlign.Text; }
       set { TxtAlign.Text = value; }
     }
 
-    public string Bes_Archetype
+    public string Archetype
     {
       get { return TxtArchetype.Text; }
       set { TxtArchetype.Text = value; }
     }
 
-    public int Bes_BAB
+    public int BAB
     {
       get { return Convert.ToInt32(TxtBAB.Text); }
       set { TxtBAB.Text = value.ToString(); }
     }
 
-    public string Bes_BaseStatistics
+    public string BaseStatistics
     {
       get { return TxtBaseStatistics.Text; }
       set { TxtBaseStatistics.Text = value; }
     }
 
-    public string Bes_BeforeCombat
+    public string BeforeCombat
     {
       get { return TxtBeforeCombat.Text; }
       set { TxtBeforeCombat.Text = value; }
     }
 
-    public string Bes_Bloodline
+    public string Bloodline
     {
       get { return TxtBloodline.Text; }
       set { TxtBloodline.Text = value; }
     }
 
-    public int Bes_CHA
+    public int CHA
     {
       get { return Convert.ToInt32(TxtCHA.Text); }
       set { TxtCHA.Text = value.ToString(); }
     }
 
-    public string Bes_Class
+    public string Class
     {
       get { return TxtClass.Text; }
       set { TxtClass.Text = value; }
     }
 
-    public int Bes_CMB
+    public int CMB
     {
       get { return Convert.ToInt32(TxtCMB.Text); }
       set { TxtCMB.Text = value.ToString(); }
     }
 
-    public int Bes_CMD
+    public int CMD
     {
       get { return Convert.ToInt32(TxtCMD.Text); }
       set { TxtCMD.Text = value.ToString(); }
     }
 
-    public int Bes_CON
+    public int CON
     {
       get { return Convert.ToInt32(TxtCON.Text); }
       set { TxtCON.Text = value.ToString(); }
     }
 
-    public int Bes_CR
+    public int CR
     {
       get { return (int)DrpCR.SelectedValue; }
       set { DrpCR.SelectedValue = value; }
     }
 
-    public string Bes_CreatureSource
+    public string CreatureSource
     {
       get { return TxtCreatureSource.Text; }
       set { TxtCreatureSource.Text = value; }
     }
 
-    public int Bes_DEX
+    public int DEX
     {
       get { return Convert.ToInt32(TxtDEX.Text); }
       set { TxtDEX.Text = value.ToString(); }
     }
 
-    public string Bes_DuringCombat
+    public string DuringCombat
     {
       get { return TxtDuringCombat.Text; }
       set { TxtDuringCombat.Text = value; }
     }
 
-    public string Bes_FamiliarNotes
+    public string FamiliarNotes
     {
       get { return TxtFamiliarNotes.Text; }
       set { TxtFamiliarNotes.Text = value; }
     }
 
-    public string Bes_FeatNotes
+    public string FeatNotes
     {
       get { return TxtFeatNotes.Text; }
       set { TxtFeatNotes.Text = value; }
     }
 
-    public string Bes_FeatSearch
+    public string FeatSearch
     {
       get { return TxtFeatSearch.Text; }
       set { TxtFeatSearch.Text = value; }
     }
 
-    public string Bes_FocusedSchool
+    public string FocusedSchool
     {
       get { return TxtFocusedSchool.Text; }
       set { TxtFocusedSchool.Text = value; }
     }
 
-    public int Bes_Fort
+    public int Fort
     {
       get { return Convert.ToInt32(TxtFort.Text); }
       set { TxtFort.Text = value.ToString(); }
     }
 
-    public string Bes_Fulltext
+    public string Fulltext
     {
       get { return TxtFulltext.Text; }
       set { TxtFulltext.Text = value; }
     }
 
-    public string Bes_Gear
+    public string Gear
     {
       get { return TxtGear.Text; }
       set { TxtGear.Text = value; }
     }
 
-    public string Bes_Gender
+    public string Gender
     {
       get { return TxtGender.Text; }
       set { TxtGender.Text = value; }
     }
 
-    public string Bes_Group
+    public string Group
     {
       get { return TxtGroup.Text; }
       set { TxtGroup.Text = value; }
     }
 
-    public string Bes_HD
+    public string HD
     {
       get { return TxtHD.Text; }
       set { TxtHD.Text = value; }
     }
 
-    public int Bes_HP
+    public int HP
     {
       get { return Convert.ToInt32(TxtHP.Text); }
       set { TxtHP.Text = value.ToString(); }
     }
 
-    public int Bes_Init
+    public int Init
     {
       get { return Convert.ToInt32(TxtInit.Text); }
       set { TxtInit.Text = value.ToString(); }
     }
 
-    public int Bes_INT
+    public int INT
     {
       get { return Convert.ToInt32(TxtINT.Text); }
       set { TxtINT.Text = value.ToString(); }
     }
 
-    public string Bes_Melee
+    public string Melee
     {
       get { return TxtMelee.Text; }
       set { TxtMelee.Text = value; }
     }
 
-    public string Bes_Morale
+    public string Morale
     {
       get { return TxtMorale.Text; }
       set { TxtMorale.Text = value; }
     }
 
-    public string Bes_Mystery
+    public string Mystery
     {
       get { return TxtMystery.Text; }
       set { TxtMystery.Text = value; }
     }
 
-    public string Bes_Name
+    public string BestiaryName
     {
       get { return TxtName.Text; }
       set { TxtName.Text = value; }
     }
 
-    public string Bes_Notes
+    public string Notes
     {
       get { return TxtNotes.Text; }
       set { TxtNotes.Text = value; }
     }
 
-    public string Bes_Organization
+    public string Organization
     {
       get { return TxtOrganization.Text; }
       set { TxtOrganization.Text = value; }
     }
 
-    public string Bes_Patron
+    public string Patron
     {
       get { return TxtPatron.Text; }
       set { TxtPatron.Text = value; }
     }
 
-    public string Bes_ProhibitedSchools
+    public string ProhibitedSchools
     {
       get { return TxtProhibitedSchools.Text; }
       set { TxtProhibitedSchools.Text = value; }
     }
 
-    public string Bes_Race
+    public string Race
     {
       get { return TxtRace.Text; }
       set { TxtRace.Text = value; }
     }
 
-    public string Bes_Ranged
+    public string Ranged
     {
       get { return TxtRanged.Text; }
       set { TxtRanged.Text = value; }
     }
 
-    public int Bes_Ref
+    public int Ref
     {
       get { return Convert.ToInt32(TxtRef.Text); }
       set { TxtRef.Text = value.ToString(); }
     }
 
-    public string Bes_Search
+    public string Search
     {
       get { return TxtSearch.Text; }
       set { TxtSearch.Text = value; }
     }
 
-    public string Bes_Size
+    public string Size
     {
       get { return TxtSize.Text; }
       set { TxtSize.Text = value; }
     }
 
-    public string Bes_SkillNotes
+    public string SkillNotes
     {
       get { return TxtSkillNotes.Text; }
       set { TxtSkillNotes.Text = value; }
     }
 
-    public string Bes_SkillSearch
+    public string SkillSearch
     {
       get { return TxtSkillSearch.Text; }
       set { TxtSkillSearch.Text = value; }
     }
 
-    public int Bes_SpdBurrow
+    public int SpdBurrow
     {
       get { return Convert.ToInt32(TxtSpdBurrow.Text); }
       set { TxtSpdBurrow.Text = value.ToString(); }
     }
 
-    public int Bes_SpdClimb
+    public int SpdClimb
     {
       get { return Convert.ToInt32(TxtSpdClimb.Text); }
       set { TxtSpdClimb.Text = value.ToString(); }
     }
 
-    public int Bes_SpdFly
+    public int SpdFly
     {
       get { return Convert.ToInt32(TxtSpdFly.Text); }
       set { TxtSpdFly.Text = value.ToString(); }
     }
 
-    public int Bes_SpdLand
+    public int SpdLand
     {
       get { return Convert.ToInt32(TxtSpdLand.Text); }
       set { TxtSpdLand.Text = value.ToString(); }
     }
 
-    public int Bes_SpdSwim
+    public int SpdSwim
     {
       get { return Convert.ToInt32(TxtSpdSwim.Text); }
       set { TxtSpdSwim.Text = value.ToString(); }
     }
 
-    public string Bes_Special
+    public string Special
     {
       get { return TxtSpecial.Text; }
       set { TxtSpecial.Text = value; }
     }
 
-    public string Bes_SpellDomains
+    public string SpellDomains
     {
       get { return TxtSpellDomains.Text; }
       set { TxtSpellDomains.Text = value; }
     }
 
-    public int Bes_STR
+    public int STR
     {
       get { return Convert.ToInt32(TxtSTR.Text); }
       set { TxtSTR.Text = value.ToString(); }
     }
 
-    public string Bes_SubType
+    public string SubType
     {
       get { return TxtSubType.Text; }
       set { TxtSubType.Text = value; }
     }
 
-    public string Bes_TemplatesApplied
+    public string TemplatesApplied
     {
       get { return TxtTemplatesApplied.Text; }
       set { TxtTemplatesApplied.Text = value; }
     }
 
-    public string Bes_Traits
+    public string Traits
     {
       get { return TxtTraits.Text; }
       set { TxtTraits.Text = value; }
     }
 
-    public string Bes_Treasure
+    public string Treasure
     {
       get { return TxtTreasure.Text; }
       set { TxtTreasure.Text = value; }
     }
 
-    public string Bes_VariantParent
+    public string VariantParent
     {
       get { return TxtVariantParent.Text; }
       set { TxtVariantParent.Text = value; }
     }
 
-    public string Bes_VisualDescription
+    public string VisualDescription
     {
       get { return TxtVisualDescription.Text; }
       set { TxtVisualDescription.Text = value; }
     }
 
-    public int Bes_Will
+    public int Will
     {
       get { return Convert.ToInt32(TxtWill.Text); }
       set { TxtWill.Text = value.ToString(); }
     }
 
-    public int Bes_WIS
+    public int WIS
     {
       get { return Convert.ToInt32(TxtWIS.Text); }
       set { TxtWIS.Text = value.ToString(); }
     }
 
-    public int Bes_XP
+    public int XP
     {
       get { return Convert.ToInt32(TxtXP.Text); }
       set { TxtXP.Text = value.ToString(); }
     }
 
-    public int Bes_MR
+    public int MR
     {
       get { return IntMR.Value ?? 0; }
       set { IntMR.Value = value; }
     }
 
-    public int Bes_MT
+    public int MT
     {
       get { return IntMT.Value ?? 0; }
       set { IntMT.Value = value; }
     }
 
-    public int Bes_SkillBonus
+    public int SkillBonus
     {
       get { return IntSkillBonus.Value ?? 0; }
       set { IntSkillBonus.Value = value; }
     }
 
-    public int Bes_Type
+    public int Type
     {
       get { return Convert.ToInt32(DrpType.SelectedValue); }
       set { DrpType.SelectedValue = value; }
     }
 
-    public bool Bes_Companion
+    public bool Companion
     {
       get { return CbxCompanion.IsChecked ?? false; }
       set { CbxCompanion.IsChecked = value; }
     }
 
-    public bool Bes_DontUseRacialHD
+    public bool DontUseRacialHD
     {
       get { return CbxDontUseRacialHD.IsChecked ?? false; }
       set { CbxDontUseRacialHD.IsChecked = value; }
     }
 
-    public bool Bes_Mythic
+    public bool Mythic
     {
       get { return CbxMythic.IsChecked ?? false; }
       set { CbxMythic.IsChecked = value; }
     }
 
-    public bool Bes_NPC
+    public bool NPC
     {
       get { return CbxNPC.IsChecked ?? false; }
       set { CbxNPC.IsChecked = value; }
     }
 
-    public bool Bes_Template
+    public bool BestiaryTemplate
     {
       get { return CbxTemplate.IsChecked ?? false; }
       set { CbxTemplate.IsChecked = value; }
     }
 
-    public bool Bes_UniqueCreature
+    public bool UniqueCreature
     {
       get { return CbxUniqueCreature.IsChecked ?? false; }
       set { CbxUniqueCreature.IsChecked = value; }
     }
 
-    public int Bes_BestiaryId
+    public int BestiaryId
     {
       get { return (int)LblBestiaryId.Content; }
       set { LblBestiaryId.Content = value; }
@@ -598,10 +598,10 @@ namespace PFEditor.Controls
         CR_List.Add(new DisplayResult() { Display = ParseCR(i), Result = i });
       }
 
-      BestiaryList = new ObservableCollection<ListItemResult>(DBClient.GetList("Bestiary"));
-      FeatList = new ObservableCollection<ListItemResult>(DBClient.GetList("Feat"));
-      SkillList = new ObservableCollection<ListItemResult>(DBClient.GetList("Skill"));
-      BestiaryTypeList = new ObservableCollection<ListItemResult>(DBClient.GetList("BestiaryType"));
+      BestiaryList = new ObservableCollection<ListItemResult>();
+      FeatList = new ObservableCollection<ListItemResult>();
+      SkillList = new ObservableCollection<ListItemResult>();
+      BestiaryTypeList = new ObservableCollection<ListItemResult>();
 
       LbxBestiary.DisplayMemberPath = LbxFeatsAll.DisplayMemberPath = LbxFeatsAssigned.DisplayMemberPath = LbxSkillsAll.DisplayMemberPath =
         LbxSkillsAssigned.DisplayMemberPath = LbxSpellAbilities.DisplayMemberPath = LbxSpellsKnown.DisplayMemberPath = LbxSpellsPrepared.DisplayMemberPath = "Name";
@@ -647,182 +647,182 @@ namespace PFEditor.Controls
       if (ActiveBestiary == null || ActiveBestiaryDetail == null)
         return;
 
-      Bes_AC = ActiveBestiary.Ac;
-      Bes_ACFlat = ActiveBestiary.Acflat;
-      Bes_ACMods = ActiveBestiary.Acmods;
-      Bes_ACTouch = ActiveBestiary.Actouch;
-      Bes_AgeCategory = ActiveBestiary.AgeCategory;
-      Bes_Align = ActiveBestiary.Alignment;
-      Bes_Archetype = ActiveBestiary.ClassArchetypes;
-      Bes_Aura = ActiveBestiary.Aura;
-      Bes_BAB = ActiveBestiary.BaseAtk;
-      Bes_BaseStatistics = ActiveBestiary.BaseStatistics;
-      Bes_BeforeCombat = ActiveBestiary.BeforeCombat;
-      Bes_BestiaryId = ActiveBestiary.BestiaryId;
-      Bes_Bloodline = ActiveBestiary.Bloodline;
-      Bes_CHA = ActiveBestiary.Cha;
-      Bes_Class = ActiveBestiary.Class;
-      Bes_CMB = ActiveBestiary.Cmb;
-      Bes_CMD = ActiveBestiary.Cmd;
-      Bes_Companion = ActiveBestiary.CompanionFlag;
-      Bes_CON = ActiveBestiary.Con;
-      Bes_CR = ActiveBestiary.Cr;
-      Bes_CreatureSource = ActiveBestiaryDetail.MonsterSource;
-      Bes_Defense = ActiveBestiary.DefensiveAbilities;
-      Bes_DEX = ActiveBestiary.Dex;
-      Bes_DontUseRacialHD = ActiveBestiary.DontUseRacialHd;
-      Bes_DuringCombat = ActiveBestiary.DuringCombat;
-      Bes_FamiliarNotes = ActiveBestiary.CompanionFamiliarLink;
-      Bes_FeatNotes = ActiveBestiary.Feats;
-      Bes_FocusedSchool = ActiveBestiary.FocusedSchool;
-      Bes_Fort = ActiveBestiary.Fortitude;
-      Bes_Fulltext = ActiveBestiaryDetail.FullText;
-      Bes_Gear = ActiveBestiary.Gear;
-      Bes_Gender = ActiveBestiary.Gender;
-      Bes_Group = ActiveBestiary.Group;
-      Bes_HD = ActiveBestiary.Hd;
-      Bes_HP = ActiveBestiary.Hp;
-      Bes_Immune = ActiveBestiary.Immune;
-      Bes_Init = ActiveBestiary.Init;
-      Bes_INT = ActiveBestiary.Int;
-      Bes_Languages = ActiveBestiary.Languages;
-      Bes_Melee = ActiveBestiary.Melee;
-      Bes_Morale = ActiveBestiary.Morale;
-      Bes_MR = ActiveBestiary.Mr;
-      Bes_MT = ActiveBestiary.Mt;
-      Bes_Mystery = ActiveBestiary.Mystery;
-      Bes_Mythic = ActiveBestiary.Mythic;
-      Bes_Name = ActiveBestiary.Name;
-      Bes_Notes = ActiveBestiary.Note;
-      Bes_NPC = ActiveBestiary.CharacterFlag;
-      Bes_Offense = ActiveBestiary.OffenseNote;
-      Bes_OffenseNote = ActiveBestiary.OffenseNote;
-      Bes_Organization = ActiveBestiary.Organization;
-      Bes_Patron = ActiveBestiary.Patron;
-      Bes_ProhibitedSchools = ActiveBestiary.ProhibitedSchools;
-      Bes_Race = ActiveBestiary.Race;
-      Bes_RacialMods = ActiveBestiary.RacialMods;
-      Bes_Ranged = ActiveBestiary.Ranged;
-      Bes_Reach = ActiveBestiary.Reach;
-      Bes_Ref = ActiveBestiary.Reflex;
-      Bes_Resist = ActiveBestiary.Resist;
-      Bes_SaveMods = ActiveBestiary.SaveMods;
-      Bes_Senses = ActiveBestiary.Senses;
-      Bes_Size = ActiveBestiary.Size;
-      Bes_Space = ActiveBestiary.Space;
-      Bes_SpdBurrow = ActiveBestiary.Burrow;
-      Bes_SpdClimb = ActiveBestiary.Climb;
-      Bes_SpdFly = ActiveBestiary.Fly;
-      Bes_SpdLand = ActiveBestiary.Land;
-      Bes_SpdSwim = ActiveBestiary.Swim;
-      Bes_Special = ActiveBestiary.SpecialAttacks;
-      Bes_SpecialAbilities = ActiveBestiary.SpecialAbilities;
-      Bes_SpecialQualities = "Not Used?";
-      Bes_SpeedMods = ActiveBestiary.SpeedMod;
-      Bes_SpellDomains = ActiveBestiary.SpellDomains;
-      Bes_STR = ActiveBestiary.Str;
-      Bes_SubType = ActiveBestiary.SubType;
-      Bes_Template = ActiveBestiary.IsTemplate;
-      Bes_TemplatesApplied = ActiveBestiary.TemplatesApplied;
-      Bes_Traits = ActiveBestiary.Traits;
-      Bes_Treasure = ActiveBestiary.Traits;
-      Bes_Type = ActiveBestiary.Type;
-      Bes_UniqueCreature = ActiveBestiary.UniqueMonster;
-      Bes_VariantParent = ActiveBestiary.VariantParent;
-      Bes_VisualDescription = ActiveBestiaryDetail.Description;
-      Bes_Will = ActiveBestiary.Will;
-      Bes_WIS = ActiveBestiary.Wis;
-      Bes_XP = ActiveBestiary.Xp;
+      AC = ActiveBestiary.Ac;
+      ACFlat = ActiveBestiary.Acflat;
+      ACMods = ActiveBestiary.Acmods;
+      ACTouch = ActiveBestiary.Actouch;
+      AgeCategory = ActiveBestiary.AgeCategory;
+      Align = ActiveBestiary.Alignment;
+      Archetype = ActiveBestiary.ClassArchetypes;
+      Aura = ActiveBestiary.Aura;
+      BAB = ActiveBestiary.BaseAtk;
+      BaseStatistics = ActiveBestiary.BaseStatistics;
+      BeforeCombat = ActiveBestiary.BeforeCombat;
+      BestiaryId = ActiveBestiary.BestiaryId;
+      Bloodline = ActiveBestiary.Bloodline;
+      CHA = ActiveBestiary.Cha;
+      Class = ActiveBestiary.Class;
+      CMB = ActiveBestiary.Cmb;
+      CMD = ActiveBestiary.Cmd;
+      Companion = ActiveBestiary.CompanionFlag;
+      CON = ActiveBestiary.Con;
+      CR = ActiveBestiary.Cr;
+      CreatureSource = ActiveBestiaryDetail.MonsterSource;
+      Defense = ActiveBestiary.DefensiveAbilities;
+      DEX = ActiveBestiary.Dex;
+      DontUseRacialHD = ActiveBestiary.DontUseRacialHd;
+      DuringCombat = ActiveBestiary.DuringCombat;
+      FamiliarNotes = ActiveBestiary.CompanionFamiliarLink;
+      FeatNotes = ActiveBestiary.Feats;
+      FocusedSchool = ActiveBestiary.FocusedSchool;
+      Fort = ActiveBestiary.Fortitude;
+      Fulltext = ActiveBestiaryDetail.FullText;
+      Gear = ActiveBestiary.Gear;
+      Gender = ActiveBestiary.Gender;
+      Group = ActiveBestiary.Group;
+      HD = ActiveBestiary.Hd;
+      HP = ActiveBestiary.Hp;
+      Immune = ActiveBestiary.Immune;
+      Init = ActiveBestiary.Init;
+      INT = ActiveBestiary.Int;
+      Languages = ActiveBestiary.Languages;
+      Melee = ActiveBestiary.Melee;
+      Morale = ActiveBestiary.Morale;
+      MR = ActiveBestiary.Mr;
+      MT = ActiveBestiary.Mt;
+      Mystery = ActiveBestiary.Mystery;
+      Mythic = ActiveBestiary.Mythic;
+      BestiaryName = ActiveBestiary.Name;
+      Notes = ActiveBestiary.Note;
+      NPC = ActiveBestiary.CharacterFlag;
+      Offense = ActiveBestiary.OffenseNote;
+      OffenseNote = ActiveBestiary.OffenseNote;
+      Organization = ActiveBestiary.Organization;
+      Patron = ActiveBestiary.Patron;
+      ProhibitedSchools = ActiveBestiary.ProhibitedSchools;
+      Race = ActiveBestiary.Race;
+      RacialMods = ActiveBestiary.RacialMods;
+      Ranged = ActiveBestiary.Ranged;
+      Reach = ActiveBestiary.Reach;
+      Ref = ActiveBestiary.Reflex;
+      Resist = ActiveBestiary.Resist;
+      SaveMods = ActiveBestiary.SaveMods;
+      Senses = ActiveBestiary.Senses;
+      Size = ActiveBestiary.Size;
+      Space = ActiveBestiary.Space;
+      SpdBurrow = ActiveBestiary.Burrow;
+      SpdClimb = ActiveBestiary.Climb;
+      SpdFly = ActiveBestiary.Fly;
+      SpdLand = ActiveBestiary.Land;
+      SpdSwim = ActiveBestiary.Swim;
+      Special = ActiveBestiary.SpecialAttacks;
+      SpecialAbilities = ActiveBestiary.SpecialAbilities;
+      SpecialQualities = "Not Used?";
+      SpeedMods = ActiveBestiary.SpeedMod;
+      SpellDomains = ActiveBestiary.SpellDomains;
+      STR = ActiveBestiary.Str;
+      SubType = ActiveBestiary.SubType;
+      BestiaryTemplate = ActiveBestiary.IsTemplate;
+      TemplatesApplied = ActiveBestiary.TemplatesApplied;
+      Traits = ActiveBestiary.Traits;
+      Treasure = ActiveBestiary.Traits;
+      Type = ActiveBestiary.Type;
+      UniqueCreature = ActiveBestiary.UniqueMonster;
+      VariantParent = ActiveBestiary.VariantParent;
+      VisualDescription = ActiveBestiaryDetail.Description;
+      Will = ActiveBestiary.Will;
+      WIS = ActiveBestiary.Wis;
+      XP = ActiveBestiary.Xp;
     }
 
     private void SaveActiveBestiary()
     {
-      ActiveBestiary.Ac = Bes_AC;
-      ActiveBestiary.Acflat = Bes_ACFlat;
-      ActiveBestiary.Acmods = Bes_ACMods;
-      ActiveBestiary.Actouch = Bes_ACTouch;
-      ActiveBestiary.AgeCategory = Bes_AgeCategory;
-      ActiveBestiary.Alignment = Bes_Align;
-      ActiveBestiary.ClassArchetypes = Bes_Archetype;
-      ActiveBestiary.Aura = Bes_Aura;
-      ActiveBestiary.BaseAtk = Bes_BAB;
-      ActiveBestiary.BaseStatistics = Bes_BaseStatistics;
-      ActiveBestiary.BeforeCombat = Bes_BeforeCombat;
-      ActiveBestiary.BestiaryId = Bes_BestiaryId;
-      ActiveBestiary.Bloodline = Bes_Bloodline;
-      ActiveBestiary.Cha = Bes_CHA;
-      ActiveBestiary.Class = Bes_Class;
-      ActiveBestiary.Cmb = Bes_CMB;
-      ActiveBestiary.Cmd = Bes_CMD;
-      ActiveBestiary.CompanionFlag = Bes_Companion;
-      ActiveBestiary.Con = Bes_CON;
-      ActiveBestiary.Cr = Bes_CR;
-      ActiveBestiaryDetail.MonsterSource = Bes_CreatureSource;
-      ActiveBestiary.DefensiveAbilities = Bes_Defense;
-      ActiveBestiary.Dex = Bes_DEX;
-      ActiveBestiary.DontUseRacialHd = Bes_DontUseRacialHD;
-      ActiveBestiary.DuringCombat = Bes_DuringCombat;
-      ActiveBestiary.CompanionFamiliarLink = Bes_FamiliarNotes;
-      ActiveBestiary.Feats = Bes_FeatNotes;
-      ActiveBestiary.FocusedSchool = Bes_FocusedSchool;
-      ActiveBestiary.Fortitude = Bes_Fort;
-      ActiveBestiaryDetail.FullText = Bes_Fulltext;
-      ActiveBestiary.Gear = Bes_Gear;
-      ActiveBestiary.Gender = Bes_Gender;
-      ActiveBestiary.Group = Bes_Group;
-      ActiveBestiary.Hd = Bes_HD;
-      ActiveBestiary.Hp = Bes_HP;
-      ActiveBestiary.Immune = Bes_Immune;
-      ActiveBestiary.Init = Bes_Init;
-      ActiveBestiary.Int = Bes_INT;
-      ActiveBestiary.Languages = Bes_Languages;
-      ActiveBestiary.Melee = Bes_Melee;
-      ActiveBestiary.Morale = Bes_Morale;
-      ActiveBestiary.Mr = Bes_MR;
-      ActiveBestiary.Mt = Bes_MT;
-      ActiveBestiary.Mystery = Bes_Mystery;
-      ActiveBestiary.Mythic = Bes_Mythic;
-      ActiveBestiary.Name = Bes_Name;
-      ActiveBestiary.Note = Bes_Notes;
-      ActiveBestiary.CharacterFlag = Bes_NPC;
-      ActiveBestiary.OffenseNote = Bes_Offense;
-      ActiveBestiary.OffenseNote = Bes_OffenseNote;
-      ActiveBestiary.Organization = Bes_Organization;
-      ActiveBestiary.Patron = Bes_Patron;
-      ActiveBestiary.ProhibitedSchools = Bes_ProhibitedSchools;
-      ActiveBestiary.Race = Bes_Race;
-      ActiveBestiary.RacialMods = Bes_RacialMods;
-      ActiveBestiary.Ranged = Bes_Ranged;
-      ActiveBestiary.Reach = Bes_Reach;
-      ActiveBestiary.Reflex = Bes_Ref;
-      ActiveBestiary.Resist = Bes_Resist;
-      ActiveBestiary.SaveMods = Bes_SaveMods;
-      ActiveBestiary.Senses = Bes_Senses;
-      ActiveBestiary.Size = Bes_Size;
-      ActiveBestiary.Space = Bes_Space;
-      ActiveBestiary.Burrow = Bes_SpdBurrow;
-      ActiveBestiary.Climb = Bes_SpdClimb;
-      ActiveBestiary.Fly = Bes_SpdFly;
-      ActiveBestiary.Land = Bes_SpdLand;
-      ActiveBestiary.Swim = Bes_SpdSwim;
-      ActiveBestiary.SpecialAttacks = Bes_Special;
-      ActiveBestiary.SpecialAbilities = Bes_SpecialAbilities;
+      ActiveBestiary.Ac = AC;
+      ActiveBestiary.Acflat = ACFlat;
+      ActiveBestiary.Acmods = ACMods;
+      ActiveBestiary.Actouch = ACTouch;
+      ActiveBestiary.AgeCategory = AgeCategory;
+      ActiveBestiary.Alignment = Align;
+      ActiveBestiary.ClassArchetypes = Archetype;
+      ActiveBestiary.Aura = Aura;
+      ActiveBestiary.BaseAtk = BAB;
+      ActiveBestiary.BaseStatistics = BaseStatistics;
+      ActiveBestiary.BeforeCombat = BeforeCombat;
+      ActiveBestiary.BestiaryId = BestiaryId;
+      ActiveBestiary.Bloodline = Bloodline;
+      ActiveBestiary.Cha = CHA;
+      ActiveBestiary.Class = Class;
+      ActiveBestiary.Cmb = CMB;
+      ActiveBestiary.Cmd = CMD;
+      ActiveBestiary.CompanionFlag = Companion;
+      ActiveBestiary.Con = CON;
+      ActiveBestiary.Cr = CR;
+      ActiveBestiaryDetail.MonsterSource = CreatureSource;
+      ActiveBestiary.DefensiveAbilities = Defense;
+      ActiveBestiary.Dex = DEX;
+      ActiveBestiary.DontUseRacialHd = DontUseRacialHD;
+      ActiveBestiary.DuringCombat = DuringCombat;
+      ActiveBestiary.CompanionFamiliarLink = FamiliarNotes;
+      ActiveBestiary.Feats = FeatNotes;
+      ActiveBestiary.FocusedSchool = FocusedSchool;
+      ActiveBestiary.Fortitude = Fort;
+      ActiveBestiaryDetail.FullText = Fulltext;
+      ActiveBestiary.Gear = Gear;
+      ActiveBestiary.Gender = Gender;
+      ActiveBestiary.Group = Group;
+      ActiveBestiary.Hd = HD;
+      ActiveBestiary.Hp = HP;
+      ActiveBestiary.Immune = Immune;
+      ActiveBestiary.Init = Init;
+      ActiveBestiary.Int = INT;
+      ActiveBestiary.Languages = Languages;
+      ActiveBestiary.Melee = Melee;
+      ActiveBestiary.Morale = Morale;
+      ActiveBestiary.Mr = MR;
+      ActiveBestiary.Mt = MT;
+      ActiveBestiary.Mystery = Mystery;
+      ActiveBestiary.Mythic = Mythic;
+      ActiveBestiary.Name = BestiaryName;
+      ActiveBestiary.Note = Notes;
+      ActiveBestiary.CharacterFlag = NPC;
+      ActiveBestiary.OffenseNote = Offense;
+      ActiveBestiary.OffenseNote = OffenseNote;
+      ActiveBestiary.Organization = Organization;
+      ActiveBestiary.Patron = Patron;
+      ActiveBestiary.ProhibitedSchools = ProhibitedSchools;
+      ActiveBestiary.Race = Race;
+      ActiveBestiary.RacialMods = RacialMods;
+      ActiveBestiary.Ranged = Ranged;
+      ActiveBestiary.Reach = Reach;
+      ActiveBestiary.Reflex = Ref;
+      ActiveBestiary.Resist = Resist;
+      ActiveBestiary.SaveMods = SaveMods;
+      ActiveBestiary.Senses = Senses;
+      ActiveBestiary.Size = Size;
+      ActiveBestiary.Space = Space;
+      ActiveBestiary.Burrow = SpdBurrow;
+      ActiveBestiary.Climb = SpdClimb;
+      ActiveBestiary.Fly = SpdFly;
+      ActiveBestiary.Land = SpdLand;
+      ActiveBestiary.Swim = SpdSwim;
+      ActiveBestiary.SpecialAttacks = Special;
+      ActiveBestiary.SpecialAbilities = SpecialAbilities;
       // Special Qualities?
-      ActiveBestiary.SpeedMod = Bes_SpeedMods;
-      ActiveBestiary.SpellDomains = Bes_SpellDomains;
-      ActiveBestiary.Str = Bes_STR;
-      ActiveBestiary.SubType = Bes_SubType;
-      ActiveBestiary.IsTemplate = Bes_Template;
-      ActiveBestiary.TemplatesApplied = Bes_TemplatesApplied;
-      ActiveBestiary.Traits = Bes_Traits;
-      ActiveBestiary.Traits = Bes_Treasure;
-      ActiveBestiary.Type = Bes_Type;
-      ActiveBestiary.UniqueMonster = Bes_UniqueCreature;
-      ActiveBestiary.VariantParent = Bes_VariantParent;
-      ActiveBestiaryDetail.Description = Bes_VisualDescription;
-      ActiveBestiary.Will = Bes_Will;
-      ActiveBestiary.Wis = Bes_WIS;
-      ActiveBestiary.Xp = Bes_XP;
+      ActiveBestiary.SpeedMod = SpeedMods;
+      ActiveBestiary.SpellDomains = SpellDomains;
+      ActiveBestiary.Str = STR;
+      ActiveBestiary.SubType = SubType;
+      ActiveBestiary.IsTemplate = BestiaryTemplate;
+      ActiveBestiary.TemplatesApplied = TemplatesApplied;
+      ActiveBestiary.Traits = Traits;
+      ActiveBestiary.Traits = Treasure;
+      ActiveBestiary.Type = Type;
+      ActiveBestiary.UniqueMonster = UniqueCreature;
+      ActiveBestiary.VariantParent = VariantParent;
+      ActiveBestiaryDetail.Description = VisualDescription;
+      ActiveBestiary.Will = Will;
+      ActiveBestiary.Wis = WIS;
+      ActiveBestiary.Xp = XP;
     }
 
     #endregion
@@ -852,13 +852,14 @@ namespace PFEditor.Controls
     private void BtnSave_Click(object sender, RoutedEventArgs e)
     {
       if (ActiveBestiary.BestiaryId == 0)
-        ActiveBestiary.BestiaryId = DBClient.CreateBestiary(ActiveBestiary);
+        ActiveBestiary = DBClient.CreateBestiary(ActiveBestiary);
       else
         DBClient.UpdateBestiary(ActiveBestiary);
 
       ActiveBestiaryDetail.BestiaryId = ActiveBestiary.BestiaryId;
       DBClient.UpdateBestiaryDetail(ActiveBestiaryDetail);
 
+      BestiaryId = ActiveBestiary.BestiaryId;
       BestiaryList = new ObservableCollection<ListItemResult>(DBClient.GetList("Bestiary"));
     }
 
@@ -909,5 +910,20 @@ namespace PFEditor.Controls
     }
 
     #endregion
+
+    private void Grid_KeyDown(object sender, System.Windows.Input.KeyEventArgs e)
+    {
+      if (e.Key == System.Windows.Input.Key.F5)
+      {
+        // Reload lists
+
+        BestiaryList = new ObservableCollection<ListItemResult>(DBClient.GetList("Bestiary"));
+        FeatList = new ObservableCollection<ListItemResult>(DBClient.GetList("Feat"));
+        SkillList = new ObservableCollection<ListItemResult>(DBClient.GetList("Skill"));
+        BestiaryTypeList = new ObservableCollection<ListItemResult>(DBClient.GetList("BestiaryType"));
+
+        e.Handled = true;
+      }
+    }
   }
 }

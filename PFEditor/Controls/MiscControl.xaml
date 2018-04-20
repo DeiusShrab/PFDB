@@ -7,7 +7,7 @@
              xmlns:xctk="http://schemas.xceed.com/wpf/xaml/toolkit" x:Class="PFEditor.Controls.MiscControl"
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800" Width="1332" Height="649" Background="#FFDDDDDD">
-    <Grid>
+    <Grid KeyDown="Grid_KeyDown">
 
         <Label Content="Time" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top"/>
         <Label Content="Plane" HorizontalAlignment="Left" Margin="749,10,0,0" VerticalAlignment="Top"/>

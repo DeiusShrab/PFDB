@@ -40,10 +40,10 @@ namespace PFEditor.Controls
 
       this.DataContext = this;
 
-      MonsterSpawnList = new ObservableCollection<ListItemResult>(DBClient.GetList("MonsterSpawn"));
-      ContinentList = new ObservableCollection<ListItemResult>(DBClient.GetList("Continent"));
-      SeasonList = new ObservableCollection<ListItemResult>(DBClient.GetList("Season"));
-      TimeList = new ObservableCollection<ListItemResult>(DBClient.GetList("Time"));
+      MonsterSpawnList = new ObservableCollection<ListItemResult>();
+      ContinentList = new ObservableCollection<ListItemResult>();
+      SeasonList = new ObservableCollection<ListItemResult>();
+      TimeList = new ObservableCollection<ListItemResult>();
 
       LbxSpawnList.DisplayMemberPath = "Name";
       LbxSpawnList.SelectedValuePath = "Id";
@@ -186,6 +186,21 @@ namespace PFEditor.Controls
 
       sortCrAsc = !sortCrAsc;
       sortNameAsc = true;
+    }
+
+    private void Grid_KeyDown(object sender, System.Windows.Input.KeyEventArgs e)
+    {
+      if (e.Key == System.Windows.Input.Key.F5)
+      {
+        // Reload lists
+
+        MonsterSpawnList = new ObservableCollection<ListItemResult>(DBClient.GetList("MonsterSpawn"));
+        ContinentList = new ObservableCollection<ListItemResult>(DBClient.GetList("Continent"));
+        SeasonList = new ObservableCollection<ListItemResult>(DBClient.GetList("Season"));
+        TimeList = new ObservableCollection<ListItemResult>(DBClient.GetList("Time"));
+
+        e.Handled = true;
+      }
     }
   }
 }

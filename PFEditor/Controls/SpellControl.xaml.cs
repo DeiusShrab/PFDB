@@ -725,10 +725,10 @@ namespace PFEditor.Controls
         new DisplayResult() { Display = "9", Result = 9 }
       };
 
-      SpellList = new ObservableCollection<ListItemResult>(DBClient.GetList("Spell"));
-      SpellSchoolList = new ObservableCollection<ListItemResult>(DBClient.GetList("SpellSchool"));
-      SpellSubSchoolList = new ObservableCollection<ListItemResult>(DBClient.GetList("SpellSubSchool"));
-      SpellSubSchoolList_Filter = new ObservableCollection<ListItemResult>(SpellSubSchoolList.Where(x => x.Notes == SelectedSpellSubSchoolId.ToString()));
+      SpellList = new ObservableCollection<ListItemResult>();
+      SpellSchoolList = new ObservableCollection<ListItemResult>();
+      SpellSubSchoolList = new ObservableCollection<ListItemResult>();
+      SpellSubSchoolList_Filter = new ObservableCollection<ListItemResult>();
 
       LbxSpell.DisplayMemberPath = "Name";
       LbxSpell.SelectedValuePath = "Id";
@@ -973,6 +973,21 @@ namespace PFEditor.Controls
     private void BtnNewSpell_Click(object sender, System.Windows.RoutedEventArgs e)
     {
 
+    }
+
+    private void Grid_KeyDown(object sender, System.Windows.Input.KeyEventArgs e)
+    {
+      if (e.Key == System.Windows.Input.Key.F5)
+      {
+        // Reload lists
+
+        SpellList = new ObservableCollection<ListItemResult>(DBClient.GetList("Spell"));
+        SpellSchoolList = new ObservableCollection<ListItemResult>(DBClient.GetList("SpellSchool"));
+        SpellSubSchoolList = new ObservableCollection<ListItemResult>(DBClient.GetList("SpellSubSchool"));
+        SpellSubSchoolList_Filter = new ObservableCollection<ListItemResult>(SpellSubSchoolList.Where(x => x.Notes == SelectedSpellSubSchoolId.ToString()));
+
+        e.Handled = true;
+      }
     }
   }
 }

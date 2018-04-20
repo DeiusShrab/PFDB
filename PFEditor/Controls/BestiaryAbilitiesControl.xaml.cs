@@ -9,100 +9,100 @@ namespace PFEditor.Controls
   {
     #region Interface Properties
 
-    public string Bes_ACMods
+    public string ACMods
     {
-      get { return Txt_Bes_ACMods.Text; }
-      set { Txt_Bes_ACMods.Text = value; }
+      get { return Txt_ACMods.Text; }
+      set { Txt_ACMods.Text = value; }
     }
 
-    public string Bes_Aura
+    public string Aura
     {
-      get { return Txt_Bes_Aura.Text; }
-      set { Txt_Bes_Aura.Text = value; }
+      get { return Txt_Aura.Text; }
+      set { Txt_Aura.Text = value; }
     }
 
-    public string Bes_Defense
+    public string Defense
     {
-      get { return Txt_Bes_Defense.Text; }
-      set { Txt_Bes_Defense.Text = value; }
+      get { return Txt_Defense.Text; }
+      set { Txt_Defense.Text = value; }
     }
 
-    public string Bes_Immune
+    public string Immune
     {
-      get { return Txt_Bes_Immune.Text; }
-      set { Txt_Bes_Immune.Text = value; }
+      get { return Txt_Immune.Text; }
+      set { Txt_Immune.Text = value; }
     }
 
-    public string Bes_Languages
+    public string Languages
     {
-      get { return Txt_Bes_Languages.Text; }
-      set { Txt_Bes_Languages.Text = value; }
+      get { return Txt_Languages.Text; }
+      set { Txt_Languages.Text = value; }
     }
 
-    public string Bes_Offense
+    public string Offense
     {
-      get { return Txt_Bes_Offense.Text; }
-      set { Txt_Bes_Offense.Text = value; }
+      get { return Txt_Offense.Text; }
+      set { Txt_Offense.Text = value; }
     }
 
-    public string Bes_OffenseNote
+    public string OffenseNote
     {
-      get { return Txt_Bes_OffenseNote.Text; }
-      set { Txt_Bes_OffenseNote.Text = value; }
+      get { return Txt_OffenseNote.Text; }
+      set { Txt_OffenseNote.Text = value; }
     }
 
-    public string Bes_RacialMods
+    public string RacialMods
     {
-      get { return Txt_Bes_RacialMods.Text; }
-      set { Txt_Bes_RacialMods.Text = value; }
+      get { return Txt_RacialMods.Text; }
+      set { Txt_RacialMods.Text = value; }
     }
 
-    public string Bes_Reach
+    public string Reach
     {
-      get { return Txt_Bes_Reach.Text; }
-      set { Txt_Bes_Reach.Text = value; }
+      get { return Txt_Reach.Text; }
+      set { Txt_Reach.Text = value; }
     }
 
-    public string Bes_Resist
+    public string Resist
     {
-      get { return Txt_Bes_Resist.Text; }
-      set { Txt_Bes_Resist.Text = value; }
+      get { return Txt_Resist.Text; }
+      set { Txt_Resist.Text = value; }
     }
 
-    public string Bes_SaveMods
+    public string SaveMods
     {
-      get { return Txt_Bes_SaveMods.Text; }
-      set { Txt_Bes_SaveMods.Text = value; }
+      get { return Txt_SaveMods.Text; }
+      set { Txt_SaveMods.Text = value; }
     }
 
-    public string Bes_Senses
+    public string Senses
     {
-      get { return Txt_Bes_Senses.Text; }
-      set { Txt_Bes_Senses.Text = value; }
+      get { return Txt_Senses.Text; }
+      set { Txt_Senses.Text = value; }
     }
 
-    public string Bes_Space
+    public string Space
     {
-      get { return Txt_Bes_Space.Text; }
-      set { Txt_Bes_Space.Text = value; }
+      get { return Txt_Space.Text; }
+      set { Txt_Space.Text = value; }
     }
 
-    public string Bes_SpecialAbilities
+    public string SpecialAbilities
     {
-      get { return Txt_Bes_SpecialAbilities.Text; }
-      set { Txt_Bes_SpecialAbilities.Text = value; }
+      get { return Txt_SpecialAbilities.Text; }
+      set { Txt_SpecialAbilities.Text = value; }
     }
 
-    public string Bes_SpecialQualities
+    public string SpecialQualities
     {
-      get { return Txt_Bes_SpecialQualities.Text; }
-      set { Txt_Bes_SpecialQualities.Text = value; }
+      get { return Txt_SpecialQualities.Text; }
+      set { Txt_SpecialQualities.Text = value; }
     }
 
-    public string Bes_SpeedMods
+    public string SpeedMods
     {
-      get { return Txt_Bes_SpeedMods.Text; }
-      set { Txt_Bes_SpeedMods.Text = value; }
+      get { return Txt_SpeedMods.Text; }
+      set { Txt_SpeedMods.Text = value; }
     }
 
     #endregion

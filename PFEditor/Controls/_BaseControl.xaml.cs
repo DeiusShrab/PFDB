@@ -15,5 +15,15 @@ namespace PFEditor.Controls
 
       this.DataContext = this;
     }
+
+    private void Grid_KeyDown(object sender, System.Windows.Input.KeyEventArgs e)
+    {
+      if (e.Key == System.Windows.Input.Key.F5)
+      {
+        // Reload lists
+
+        e.Handled = true;
+      }
+    }
   }
 }

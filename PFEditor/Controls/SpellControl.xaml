@@ -7,7 +7,7 @@
              xmlns:xctk="http://schemas.xceed.com/wpf/xaml/toolkit" x:Class="PFEditor.Controls.SpellControl"
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800" Width="1332" Height="649" Background="#FFDDDDDD">
-    <Grid>
+    <Grid KeyDown="Grid_KeyDown">
 
         <ListBox x:Name="LbxSpell" HorizontalAlignment="Left" Height="527" Margin="10,87,0,0" VerticalAlignment="Top" Width="200"/>
         <TextBox x:Name="TxtSearch" HorizontalAlignment="Left" Height="23" Margin="10,10,0,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="200"/>

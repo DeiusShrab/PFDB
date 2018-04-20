@@ -16,7 +16,6 @@ namespace PFEditor.Controls
   {
     #region Interface Properties
 
-
     public int ContinentId
     {
       get
@@ -220,9 +219,9 @@ namespace PFEditor.Controls
 
       this.DataContext = this;
 
-      WeatherList = new ObservableCollection<ListItemResult>(DBClient.GetList("Weather"));
-      ContinentList = new ObservableCollection<ListItemResult>(DBClient.GetList("Continent"));
-      SeasonList = new ObservableCollection<ListItemResult>(DBClient.GetList("Season"));
+      WeatherList = new ObservableCollection<ListItemResult>();
+      ContinentList = new ObservableCollection<ListItemResult>();
+      SeasonList = new ObservableCollection<ListItemResult>();
       ContinentWeatherList = new ObservableCollection<ContinentWeather>();
 
       LbxWeather.DisplayMemberPath = DrpContinent.DisplayMemberPath = DrpNextWeather.DisplayMemberPath = DrpParentWeather.DisplayMemberPath =
@@ -363,7 +362,10 @@ namespace PFEditor.Controls
 
       SaveActiveWeather();
       if (ActiveWeather.WeatherId == 0)
-        saved = 0 != (ActiveWeather.WeatherId = DBClient.CreateWeather(ActiveWeather));
+      {
+        ActiveWeather = DBClient.CreateWeather(ActiveWeather);
+        saved = ActiveWeather.WeatherId != 0;
+      }
       else
         saved = DBClient.UpdateWeather(ActiveWeather);
 
@@ -401,7 +403,10 @@ namespace PFEditor.Controls
 
       SaveActiveContinentWeather();
       if (ActiveContinentWeather.CWID == 0)
-        saved = 0 != (ActiveContinentWeather.CWID = DBClient.CreateContinentWeather(ActiveContinentWeather));
+      {
+        ActiveContinentWeather = DBClient.CreateContinentWeather(ActiveContinentWeather);
+        saved = ActiveContinentWeather.CWID != 0;
+      }
       else
         saved = DBClient.UpdateContinentWeather(ActiveContinentWeather);
 
@@ -429,6 +434,21 @@ namespace PFEditor.Controls
     private void DrpSeason_SelectionChanged(object sender, SelectionChangedEventArgs e)
     {
       UpdateCWIDList();
+    }
+
+    private void Grid_KeyDown(object sender, System.Windows.Input.KeyEventArgs e)
+    {
+      if (e.Key == System.Windows.Input.Key.F5)
+      {
+        // Reload lists
+
+        WeatherList = new ObservableCollection<ListItemResult>(DBClient.GetList("Weather"));
+        ContinentList = new ObservableCollection<ListItemResult>(DBClient.GetList("Continent"));
+        SeasonList = new ObservableCollection<ListItemResult>(DBClient.GetList("Season"));
+        ContinentWeatherList = new ObservableCollection<ContinentWeather>();
+
+        e.Handled = true;
+      }
     }
   }
 

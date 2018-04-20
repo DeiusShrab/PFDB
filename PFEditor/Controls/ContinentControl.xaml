@@ -6,7 +6,7 @@
              xmlns:local="clr-namespace:PFEditor.Controls"
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800" Width="1332" Height="649" Background="#FFDDDDDD">
-    <Grid>
+    <Grid KeyDown="Grid_KeyDown">
             
     </Grid>
 </UserControl>
