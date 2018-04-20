@@ -665,22 +665,26 @@ namespace PFEditor.Controls
       set { CbxWater.IsChecked = value; }
     }
 
-    public int SelectedSpellSchoolId
+    public int? SelectedSpellSchoolId
     {
       get
       {
-        int.TryParse(DrpSchool.SelectedValue.ToString(), out int ret);
-        return ret;
+        if (DrpSchool.SelectedValue != null)
+          return (int)DrpSchool.SelectedValue;
+
+        return null;
       }
       set { DrpSchool.SelectedValue = value; }
     }
 
-    public int SelectedSpellSubSchoolId
+    public int? SelectedSpellSubSchoolId
     {
       get
       {
-        int.TryParse(DrpSubSchool.SelectedValue.ToString(), out int ret);
-        return ret;
+        if (DrpSubSchool.SelectedValue != null)
+          return (int)DrpSubSchool.SelectedValue;
+
+        return null;
       }
       set { DrpSubSchool.SelectedValue = value; }
     }
@@ -967,7 +971,10 @@ namespace PFEditor.Controls
     private void DrpSchool_SelectionChanged(object sender, SelectionChangedEventArgs e)
     {
       if (SelectedSpellSchoolId > 0)
-        SpellSubSchoolList_Filter = new ObservableCollection<ListItemResult>(SpellSubSchoolList.Where(x => x.Notes == SelectedSpellSubSchoolId.ToString()));
+      {
+        SpellSubSchoolList_Filter.Clear();
+        SpellSubSchoolList_Filter.AddRange(SpellSubSchoolList.Where(x => x.Notes == SelectedSpellSubSchoolId.ToString()));
+      }
     }
 
     private void BtnNewSpell_Click(object sender, System.Windows.RoutedEventArgs e)
@@ -981,10 +988,15 @@ namespace PFEditor.Controls
       {
         // Reload lists
 
-        SpellList = new ObservableCollection<ListItemResult>(DBClient.GetList("Spell"));
-        SpellSchoolList = new ObservableCollection<ListItemResult>(DBClient.GetList("SpellSchool"));
-        SpellSubSchoolList = new ObservableCollection<ListItemResult>(DBClient.GetList("SpellSubSchool"));
-        SpellSubSchoolList_Filter = new ObservableCollection<ListItemResult>(SpellSubSchoolList.Where(x => x.Notes == SelectedSpellSubSchoolId.ToString()));
+        SpellList.Clear();
+        SpellSchoolList.Clear();
+        SpellSubSchoolList.Clear();
+        SpellSubSchoolList_Filter.Clear();
+
+        SpellList.AddRange(DBClient.GetList("Spell"));
+        SpellSchoolList.AddRange(DBClient.GetList("SpellSchool"));
+        SpellSubSchoolList.AddRange(DBClient.GetList("SpellSubSchool"));
+        SpellSubSchoolList_Filter.AddRange(SpellSubSchoolList.Where(x => x.Notes == SelectedSpellSubSchoolId.ToString()));
 
         e.Handled = true;
       }

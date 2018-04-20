@@ -16,12 +16,14 @@ namespace PFEditor.Controls
   {
     #region Interface Properties
 
-    public int ContinentId
+    public int? ContinentId
     {
       get
       {
-        int.TryParse(DrpContinent.SelectedValue.ToString(), out int ret);
-        return ret;
+        if (DrpContinent.SelectedValue != null)
+          return (int)DrpContinent.SelectedValue;
+
+        return null;
       }
       set { DrpContinent.SelectedValue = value; }
     }
@@ -442,10 +444,17 @@ namespace PFEditor.Controls
       {
         // Reload lists
 
-        WeatherList = new ObservableCollection<ListItemResult>(DBClient.GetList("Weather"));
-        ContinentList = new ObservableCollection<ListItemResult>(DBClient.GetList("Continent"));
-        SeasonList = new ObservableCollection<ListItemResult>(DBClient.GetList("Season"));
-        ContinentWeatherList = new ObservableCollection<ContinentWeather>();
+        WeatherList.Clear();
+        ContinentList.Clear();
+        SeasonList.Clear();
+        ContinentWeatherList.Clear();
+
+        WeatherList.AddRange(DBClient.GetList("Weather"));
+        ContinentList.AddRange(DBClient.GetList("Continent"));
+        SeasonList.AddRange(DBClient.GetList("Season"));
+
+        if (ContinentId > 0 && SeasonId > 0)
+          ContinentWeatherList.AddRange(DBClient.GetContinentWeathers(ContinentId, SeasonId));
 
         e.Handled = true;
       }

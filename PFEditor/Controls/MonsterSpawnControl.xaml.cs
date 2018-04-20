@@ -160,9 +160,17 @@ namespace PFEditor.Controls
     private void BtnSortName_Click(object sender, RoutedEventArgs e)
     {
       if (sortNameAsc)
-        MonsterSpawnList_Filter = new ObservableCollection<ListItemResult>(MonsterSpawnList_Filter.OrderBy(x => x.Name));
+      {
+        var temp = MonsterSpawnList_Filter.OrderBy(x => x.Name);
+        MonsterSpawnList_Filter.Clear();
+        MonsterSpawnList_Filter.AddRange(temp);
+      }
       else
-        MonsterSpawnList_Filter = new ObservableCollection<ListItemResult>(MonsterSpawnList_Filter.OrderByDescending(x => x.Name));
+      {
+        var temp = MonsterSpawnList_Filter.OrderByDescending(x => x.Name);
+        MonsterSpawnList_Filter.Clear();
+        MonsterSpawnList_Filter.AddRange(temp);
+      }
 
       sortNameAsc = !sortNameAsc;
       sortCrAsc = true;
@@ -180,9 +188,17 @@ namespace PFEditor.Controls
     private void BtnSortCr_Click(object sender, RoutedEventArgs e)
     {
       if (sortCrAsc)
-        MonsterSpawnList_Filter = new ObservableCollection<ListItemResult>(MonsterSpawnList_Filter.OrderBy(x => x.Id));
+      {
+        var temp = MonsterSpawnList_Filter.OrderBy(x => x.Id);
+        MonsterSpawnList_Filter.Clear();
+        MonsterSpawnList_Filter.AddRange(temp);
+      }
       else
-        MonsterSpawnList_Filter = new ObservableCollection<ListItemResult>(MonsterSpawnList_Filter.OrderByDescending(x => x.Id));
+      {
+        var temp = MonsterSpawnList_Filter.OrderByDescending(x => x.Id);
+        MonsterSpawnList_Filter.Clear();
+        MonsterSpawnList_Filter.AddRange(temp);
+      }
 
       sortCrAsc = !sortCrAsc;
       sortNameAsc = true;
@@ -194,10 +210,15 @@ namespace PFEditor.Controls
       {
         // Reload lists
 
-        MonsterSpawnList = new ObservableCollection<ListItemResult>(DBClient.GetList("MonsterSpawn"));
-        ContinentList = new ObservableCollection<ListItemResult>(DBClient.GetList("Continent"));
-        SeasonList = new ObservableCollection<ListItemResult>(DBClient.GetList("Season"));
-        TimeList = new ObservableCollection<ListItemResult>(DBClient.GetList("Time"));
+        MonsterSpawnList.Clear();
+        ContinentList.Clear();
+        SeasonList.Clear();
+        TimeList.Clear();
+
+        MonsterSpawnList.AddRange(DBClient.GetList("MonsterSpawn"));
+        ContinentList.AddRange(DBClient.GetList("Continent"));
+        SeasonList.AddRange(DBClient.GetList("Season"));
+        TimeList.AddRange(DBClient.GetList("Time"));
 
         e.Handled = true;
       }
