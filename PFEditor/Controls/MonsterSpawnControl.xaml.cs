@@ -88,6 +88,10 @@ namespace PFEditor.Controls
         {
           var r = dt.NewRow();
           r[0] = continent.Name;
+
+          for (int i = 1; i < r.ItemArray.Length; i++)
+            r[i] = false;
+
           dt.Rows.Add(r);
         }
 
@@ -97,7 +101,7 @@ namespace PFEditor.Controls
       foreach (var item in spawnList)
       {
         // Table (Season) -> Row (Continent) -> Column (Time)
-        DsMonsterSpawns.Tables[BiSeasons[item.SeasonId]].Select("Continent = " + BiContinents[item.ContinentId])[0].SetField(BiTimes[item.TimeId], true);
+        DsMonsterSpawns.Tables[BiSeasons[item.SeasonId]].Select($"Continent = '{BiContinents[item.ContinentId]}'")[0].SetField(BiTimes[item.TimeId], true);
       }
 
       // Bind table to grid(s)

@@ -1,13 +1,18 @@
 TODO AT WORK
 Manually set weather
 Lock weather (prevent duration from advancing, for perma-storms)
+Autoselect creature detail when added to detail tab
+Dice roller rolling 0s?
+Tab Order!
+MonsterSpawn
+	Special behavior for ALL NIGHT and ALL DAY checkboxes
+	Make checkboxes unchecked instead of unknown
+	Select by cell, space to multi-toggle
 
 TODO AT HOME
 Set up HTTPS on Apache
-Add Misc items to DB (Months, Seasons, etc)
+	Set up HTTPS to access the api (but not the main site)
 Backup DB somehow
-Generate code-first for updated DB stuff
-Set up HTTPS to access the api (but not the main site)
 Get the got-dang MAPS UP
 	Touch them up first with more locations and proper city names
 	Remember that maps only show "major" locations, small towns and villages won't be there
