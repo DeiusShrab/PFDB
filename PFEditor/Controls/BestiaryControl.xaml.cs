@@ -605,14 +605,14 @@ namespace PFEditor.Controls
       BestiaryList_Filter = new ObservableCollection<ListItemResult>();
 
       LbxBestiary.DisplayMemberPath = LbxFeatsAll.DisplayMemberPath = LbxFeatsAssigned.DisplayMemberPath = LbxSkillsAll.DisplayMemberPath =
-        LbxSkillsAssigned.DisplayMemberPath = LbxSpellAbilities.DisplayMemberPath = LbxSpellsKnown.DisplayMemberPath = LbxSpellsPrepared.DisplayMemberPath = "Name";
+        LbxSkillsAssigned.DisplayMemberPath = LbxSpellAbilities.DisplayMemberPath = LbxSpellsKnown.DisplayMemberPath = LbxSpellsPrepared.DisplayMemberPath = DrpType.DisplayMemberPath = "Name";
 
       LbxBestiary.SelectedValuePath = LbxFeatsAll.SelectedValuePath = LbxFeatsAssigned.SelectedValuePath = LbxSkillsAll.SelectedValuePath =
-        LbxSkillsAssigned.SelectedValuePath = LbxSpellAbilities.SelectedValuePath = LbxSpellsKnown.SelectedValuePath = LbxSpellsPrepared.SelectedValuePath = "Id";
+        LbxSkillsAssigned.SelectedValuePath = LbxSpellAbilities.SelectedValuePath = LbxSpellsKnown.SelectedValuePath = LbxSpellsPrepared.SelectedValuePath = DrpType.SelectedValuePath = "Id";
 
-      DrpCR.DisplayMemberPath = DrpType.DisplayMemberPath = "Display";
+      DrpCR.DisplayMemberPath = "Display";
 
-      DrpCR.SelectedValuePath = DrpType.SelectedValuePath = "Result";
+      DrpCR.SelectedValuePath = "Result";
 
       LbxBestiary.ItemsSource = BestiaryList_Filter;
       LbxFeatsAll.ItemsSource = FeatList;
@@ -940,11 +940,13 @@ namespace PFEditor.Controls
         FeatList.Clear();
         SkillList.Clear();
         BestiaryTypeList.Clear();
+        BestiaryList_Filter.Clear();
 
-        BestiaryList.AddRange(DBClient.GetList("Bestiary"));
-        FeatList.AddRange(DBClient.GetList("Feat"));
-        SkillList.AddRange(DBClient.GetList("Skill"));
-        BestiaryTypeList.AddRange(DBClient.GetList("BestiaryType"));
+        BestiaryList.AddRange(DBClient.GetList("Bestiary").OrderBy(x => x.Name));
+        FeatList.AddRange(DBClient.GetList("Feat").OrderBy(x => x.Name));
+        SkillList.AddRange(DBClient.GetList("Skill").OrderBy(x => x.Name));
+        BestiaryTypeList.AddRange(DBClient.GetList("BestiaryType").OrderBy(x => x.Name));
+        BestiaryList_Filter.AddRange(BestiaryList);
 
         e.Handled = true;
       }

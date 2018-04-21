@@ -90,6 +90,8 @@ namespace PFEditor.Controls
           r[0] = continent.Name;
           dt.Rows.Add(r);
         }
+
+        DsMonsterSpawns.Tables.Add(dt);
       }
 
       foreach (var item in spawnList)
@@ -222,11 +224,13 @@ namespace PFEditor.Controls
         ContinentList.Clear();
         SeasonList.Clear();
         TimeList.Clear();
+        MonsterSpawnList_Filter.Clear();
 
         MonsterSpawnList.AddRange(DBClient.GetList("MonsterSpawn"));
-        ContinentList.AddRange(DBClient.GetList("Continent"));
-        SeasonList.AddRange(DBClient.GetList("Season"));
-        TimeList.AddRange(DBClient.GetList("Time"));
+        ContinentList.AddRange(DBClient.GetList("Continent").OrderBy(x => x.Name));
+        SeasonList.AddRange(DBClient.GetList("Season").OrderBy(x => x.Name));
+        TimeList.AddRange(DBClient.GetList("Time").OrderBy(x => x.Name));
+        MonsterSpawnList_Filter.AddRange(MonsterSpawnList);
 
         e.Handled = true;
       }

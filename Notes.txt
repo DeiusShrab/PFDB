@@ -1,5 +1,4 @@
 TODO AT WORK
-PFEditor - Weather (blocker)
 Manually set weather
 Lock weather (prevent duration from advancing, for perma-storms)
 

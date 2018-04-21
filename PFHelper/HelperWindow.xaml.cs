@@ -277,11 +277,13 @@ namespace PFHelper
     private RandomWeatherResult WeatherResult;
     private Random random;
     private FantasyDate CurrentDate;
+    private Month CurrentMonth;
     private Weather CurrentWeather;
     private ContinentWeather CurrentWeatherGroup;
     private string saveDataPath = Path.Combine(System.Environment.CurrentDirectory, "pfdat.dat");
     private string selectedCombatMonsterHtml;
     private int selectedCombatMonsterId;
+    private string[] DayNames = { "Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat" };
 
     #endregion
 
@@ -304,14 +306,14 @@ namespace PFHelper
         trackedEvents = new List<TrackedEvent>();
       }
 
-      LoadSavedData();
-
       encounterResults = new ObservableCollection<DisplayValues>();
       randomEncounterItems = new ObservableCollection<DisplayResult>();
       combatEffectItems = new ObservableCollection<CombatEffectItem>();
       combatGridItems = new ObservableCollection<CombatGridItem>();
       continentList = new ObservableCollection<DisplayResult>();
       creatureInfos = new ObservableCollection<DisplayResult>();
+
+      LoadSavedData();
 
       foreach (var item in continents)
       {
@@ -330,6 +332,8 @@ namespace PFHelper
       LbxEncounterCRs.ItemsSource = encounterResults;
       LbxContinent.ItemsSource = continentList;
       LbxCreatureInfo.ItemsSource = creatureInfos;
+      
+      UpdateDate();
     }
 
     #endregion
@@ -674,12 +678,17 @@ namespace PFHelper
 
     private void NextWeather(int d = 1)
     {
+      // DEBUG
+      LblCurrentWeather.Content = random.Next(100);
+      LblCurrentWeatherGroup.Content = "DEBUG";
+      return;
+
       if (WeatherResult == null || ContinentId != WeatherResult.ContinentId)
       {
         ReloadWeatherTable();
         CurrentWeatherGroup = GetRandomWeather();
       }
-      else if (CurrentDate.Season != WeatherResult.SeasonId)
+      else if (CurrentMonth.SeasonId != WeatherResult.SeasonId)
         ReloadWeatherTable();
 
       while (d >= 0)
@@ -728,7 +737,12 @@ namespace PFHelper
 
     private void UpdateDate()
     {
-      LblGrandDate.Content = $"YEAR {CurrentDate.Year} AA, Season of {seasons[CurrentDate.Season - 1].Name}, Month of {months[CurrentDate.Month - 1].Name}, Day {CurrentDate.Day}";
+      CurrentMonth = months.FirstOrDefault(x => x.MonthOrder == CurrentDate.Month);
+      LblGrandDate.Content = $"YEAR {CurrentDate.Year} AA, Season of {seasons.First(x => x.SeasonId == CurrentMonth.SeasonId).Name}, Month of {CurrentMonth.Name}, Day {CurrentDate.Day}";
+
+      LblNumericDate.Content = $"{CurrentDate.Year} / {CurrentMonth.MonthOrder} / {CurrentDate.Day}";
+
+      LblTextDate.Content = $"{DayNames[(CurrentDate.Day - 1) % 7]}, {CurrentMonth.Name.Substring(0,3)} {CurrentDate.Day}";
 
       if (CurrentDate.Day <= 3 && CurrentDate.Day > 0)
         MoonPhase = "FULL MOON";
@@ -755,9 +769,9 @@ namespace PFHelper
       var reqWeather = new RandomWeatherRequest()
       {
         ContinentId = ContinentId,
-        SeasonId = CurrentDate.Season
+        SeasonId = CurrentMonth.SeasonId
       };
-
+      
       WeatherResult = DBClient.GetRandomWeatherList(reqWeather);
     }
 

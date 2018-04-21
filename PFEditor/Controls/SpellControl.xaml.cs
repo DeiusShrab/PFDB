@@ -792,11 +792,8 @@ namespace PFEditor.Controls
 
     private void LoadActiveSpell()
     {
-      if (LbxSpell.SelectedItem != null)
+      if (ActiveSpell != null && ActiveSpellDetail != null)
       {
-        ActiveSpell = DBClient.GetSpell((int)LbxSpell.SelectedItem);
-        ActiveSpellDetail = DBClient.GetSpellDetail((int)LbxSpell.SelectedItem);
-
         Acid = ActiveSpell.Acid;
         LevelAdept = ActiveSpell.Adept;
         Air = ActiveSpell.Air;
@@ -979,7 +976,10 @@ namespace PFEditor.Controls
 
     private void BtnNewSpell_Click(object sender, System.Windows.RoutedEventArgs e)
     {
+      ActiveSpell = new Spell();
+      ActiveSpellDetail = new SpellDetail();
 
+      LoadActiveSpell();
     }
 
     private void Grid_KeyDown(object sender, System.Windows.Input.KeyEventArgs e)
@@ -993,12 +993,23 @@ namespace PFEditor.Controls
         SpellSubSchoolList.Clear();
         SpellSubSchoolList_Filter.Clear();
 
-        SpellList.AddRange(DBClient.GetList("Spell"));
-        SpellSchoolList.AddRange(DBClient.GetList("SpellSchool"));
-        SpellSubSchoolList.AddRange(DBClient.GetList("SpellSubSchool"));
+        SpellList.AddRange(DBClient.GetList("Spell").OrderBy(x => x.Name));
+        SpellSchoolList.AddRange(DBClient.GetList("SpellSchool").OrderBy(x => x.Name));
+        SpellSubSchoolList.AddRange(DBClient.GetList("SpellSubSchool").OrderBy(x => x.Name));
         SpellSubSchoolList_Filter.AddRange(SpellSubSchoolList.Where(x => x.Notes == SelectedSpellSubSchoolId.ToString()));
 
         e.Handled = true;
+      }
+    }
+
+    private void LbxSpell_MouseDoubleClick(object sender, System.Windows.Input.MouseButtonEventArgs e)
+    {
+      if (LbxSpell.SelectedItem != null)
+      {
+        ActiveSpell = DBClient.GetSpell((int)LbxSpell.SelectedValue);
+        ActiveSpellDetail = DBClient.GetSpellDetail((int)LbxSpell.SelectedValue);
+
+        LoadActiveSpell();
       }
     }
   }

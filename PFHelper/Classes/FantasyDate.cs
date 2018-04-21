@@ -7,10 +7,7 @@ namespace PFHelper.Classes
     public int Year { get; set; }
     public int Month { get; set; }
     public int Day { get; set; }
-    public virtual int Season
-    {
-      get { return (Month - 1) % MonthsInSeason; }
-    }
+
     public virtual string ShortDate
     {
       get { return Year.ToString() + "-" + Month.ToString() + "-" + Day.ToString(); }
@@ -18,20 +15,17 @@ namespace PFHelper.Classes
 
     private int MonthsInYear;
     private int DaysInMonth;
-    private int MonthsInSeason;
 
     public FantasyDate()
     {
       MonthsInYear = 12;
       DaysInMonth = 28;
-      MonthsInSeason = 4;
     }
 
-    public FantasyDate(int monthsInYear, int daysInMonth, int monthsInSeason)
+    public FantasyDate(int monthsInYear, int daysInMonth)
     {
       MonthsInYear = monthsInYear;
       DaysInMonth = daysInMonth;
-      MonthsInSeason = monthsInSeason;
     }
 
     public FantasyDate AddDays(int d)

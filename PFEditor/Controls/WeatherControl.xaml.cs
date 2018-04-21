@@ -336,9 +336,9 @@ namespace PFEditor.Controls
 
     private void LbxWeather_MouseDoubleClick(object sender, System.Windows.Input.MouseButtonEventArgs e)
     {
-      if (LbxWeather.SelectedItem != null)
+      if (LbxWeather.SelectedValue != null)
       {
-        ActiveWeather = DBClient.GetWeather((int)LbxWeather.SelectedItem);
+        ActiveWeather = DBClient.GetWeather((int)LbxWeather.SelectedValue);
 
         LoadActiveWeather();
       }
@@ -353,9 +353,9 @@ namespace PFEditor.Controls
 
     private void BtnDelWeather_Click(object sender, System.Windows.RoutedEventArgs e)
     {
-      if (LbxWeather.SelectedItem != null && MessageBox.Show("WARNING\nAre you sure you want to delete the selected Weather?") == MessageBoxResult.OK)
+      if (LbxWeather.SelectedValue != null && MessageBox.Show("WARNING\nAre you sure you want to delete the selected Weather?") == MessageBoxResult.OK)
       {
-        if (DBClient.DeleteWeather((int)LbxWeather.SelectedItem))
+        if (DBClient.DeleteWeather((int)LbxWeather.SelectedValue))
           WeatherList.Remove((ListItemResult)LbxWeather.SelectedItem);
       }
     }
@@ -380,7 +380,12 @@ namespace PFEditor.Controls
         saved = DBClient.UpdateWeather(ActiveWeather);
 
       if (saved)
+      {
         MessageBox.Show("Saved");
+        WeatherList.Clear();
+        WeatherList.AddRange(DBClient.GetList("Weather"));
+        LoadActiveWeather();
+      }
       else
         MessageBox.Show("ERROR - failed to save");
     }
@@ -396,8 +401,8 @@ namespace PFEditor.Controls
     {
       if (LbxContinentWeather.SelectedItem != null && MessageBox.Show("WARNING\nAre you sure you want to delete the selected ContinentWeather?") == MessageBoxResult.OK)
       {
-        if (DBClient.DeleteContinentWeather((int)LbxContinentWeather.SelectedItem))
-          ContinentWeatherList.Remove((ContinentWeather)LbxContinentWeather.SelectedItem);
+        if (DBClient.DeleteContinentWeather((int)LbxContinentWeather.SelectedValue))
+          ContinentWeatherList.Remove((ContinentWeather)LbxContinentWeather.SelectedValue);
       }
     }
 
@@ -436,7 +441,7 @@ namespace PFEditor.Controls
     {
       if (LbxContinentWeather.SelectedItem != null)
       {
-        ActiveContinentWeather = DBClient.GetContinentWeather((int)LbxContinentWeather.SelectedItem);
+        ActiveContinentWeather = DBClient.GetContinentWeather((int)LbxContinentWeather.SelectedValue);
 
         LoadActiveContinentWeather();
       }
@@ -463,9 +468,9 @@ namespace PFEditor.Controls
         SeasonList.Clear();
         ContinentWeatherList.Clear();
 
-        WeatherList.AddRange(DBClient.GetList("Weather"));
-        ContinentList.AddRange(DBClient.GetList("Continent"));
-        SeasonList.AddRange(DBClient.GetList("Season"));
+        WeatherList.AddRange(DBClient.GetList("Weather").OrderBy(x => x.Name));
+        ContinentList.AddRange(DBClient.GetList("Continent").OrderBy(x => x.Name));
+        SeasonList.AddRange(DBClient.GetList("Season").OrderBy(x => x.Name));
 
         if (ContinentId > 0 && SeasonId > 0)
           ContinentWeatherList.AddRange(DBClient.GetContinentWeathers(ContinentId.Value, SeasonId.Value));

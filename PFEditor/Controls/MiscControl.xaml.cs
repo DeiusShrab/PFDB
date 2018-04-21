@@ -1,4 +1,5 @@
 ﻿using System.Collections.ObjectModel;
+using System.Linq;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
@@ -212,11 +213,11 @@ namespace PFEditor.Controls
       TerrainList = new ObservableCollection<ListItemResult>();
       EnvironmentList = new ObservableCollection<ListItemResult>();
 
-      LbxMonth.DisplayMemberPath = LbxPlane.DisplayMemberPath = LbxSeason.DisplayMemberPath =
-        LbxTime.DisplayMemberPath = LbxTerrain.DisplayMemberPath = LbxEnvironment.DisplayMemberPath = "Name";
+      LbxMonth.DisplayMemberPath = LbxPlane.DisplayMemberPath = LbxSeason.DisplayMemberPath = LbxTime.DisplayMemberPath =
+        LbxTerrain.DisplayMemberPath = LbxEnvironment.DisplayMemberPath = DrpMonthSeasonId.DisplayMemberPath = "Name";
 
-      LbxMonth.SelectedValuePath = LbxPlane.SelectedValuePath = LbxSeason.SelectedValuePath =
-        LbxTime.SelectedValuePath = LbxTerrain.SelectedValuePath = LbxEnvironment.SelectedValuePath = "Id";
+      LbxMonth.SelectedValuePath = LbxPlane.SelectedValuePath = LbxSeason.SelectedValuePath = LbxTime.SelectedValuePath =
+        LbxTerrain.SelectedValuePath = LbxEnvironment.SelectedValuePath = DrpMonthSeasonId.SelectedValuePath = "Id";
 
       LbxMonth.ItemsSource = MonthList;
       LbxPlane.ItemsSource = PlaneList;
@@ -339,7 +340,7 @@ namespace PFEditor.Controls
     {
       if (LbxTerrain.SelectedItem != null)
       {
-        ActiveTerrain = DBClient.GetTerrain((int)LbxTerrain.SelectedItem);
+        ActiveTerrain = DBClient.GetTerrain((int)LbxTerrain.SelectedValue);
 
         TerrainDescription = ActiveTerrain.Description;
         TerrainBroken = ActiveTerrain.IsBroken;
@@ -356,7 +357,7 @@ namespace PFEditor.Controls
     {
       if (LbxEnvironment.SelectedItem != null)
       {
-        ActiveEnvironment = DBClient.GetEnvironment((int)LbxEnvironment.SelectedItem);
+        ActiveEnvironment = DBClient.GetEnvironment((int)LbxEnvironment.SelectedValue);
 
         EnvironmentId = ActiveEnvironment.EnvironmentId;
         EnvironmentName = ActiveEnvironment.Name;
@@ -485,12 +486,12 @@ namespace PFEditor.Controls
         TerrainList.Clear();
         EnvironmentList.Clear();
 
-        MonthList.AddRange(DBClient.GetList("Month"));
-        SeasonList.AddRange(DBClient.GetList("Season"));
-        TimeList.AddRange(DBClient.GetList("Time"));
-        PlaneList.AddRange(DBClient.GetList("Plane"));
-        TerrainList.AddRange(DBClient.GetList("Terrain"));
-        EnvironmentList.AddRange(DBClient.GetList("Environment"));
+        MonthList.AddRange(DBClient.GetList("Month").OrderBy(x => x.Name));
+        SeasonList.AddRange(DBClient.GetList("Season").OrderBy(x => x.Name));
+        TimeList.AddRange(DBClient.GetList("Time").OrderBy(x => x.Name));
+        PlaneList.AddRange(DBClient.GetList("Plane").OrderBy(x => x.Name));
+        TerrainList.AddRange(DBClient.GetList("Terrain").OrderBy(x => x.Name));
+        EnvironmentList.AddRange(DBClient.GetList("Environment").OrderBy(x => x.Name));
 
         e.Handled = true;
       }

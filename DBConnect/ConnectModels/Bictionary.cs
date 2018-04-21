@@ -61,11 +61,9 @@ namespace DBConnect.ConnectModels
       if (key == null || value == null)
         throw new ArgumentNullException();
 
-      if (!dictA.ContainsKey(key) && !dictB.ContainsValue(key))
+      if (!dictA.ContainsKey(key) && !dictB.ContainsKey(value))
       {
-        var x = dictA[key];
-        dictA[key] = value;
-        dictB.Remove(x);
+        dictA.Add(key, value);
         dictB.Add(value, key);
       }
       else
@@ -77,11 +75,9 @@ namespace DBConnect.ConnectModels
       if (key == null || value == null)
         throw new ArgumentNullException();
 
-      if (!dictB.ContainsKey(key) && !dictA.ContainsValue(key))
+      if (!dictB.ContainsKey(key) && !dictA.ContainsKey(value))
       {
-        var x = dictB[key];
-        dictB[key] = value;
-        dictA.Remove(x);
+        dictB.Add(key, value);
         dictA.Add(value, key);
       }
       else
