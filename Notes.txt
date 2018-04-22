@@ -1,4 +1,5 @@
 TODO AT WORK
+Sorting combat (and other) lists in PFHelper
 Manually set weather
 Lock weather (prevent duration from advancing, for perma-storms)
 Autoselect creature detail when added to detail tab
@@ -8,6 +9,9 @@ MonsterSpawn
 	Special behavior for ALL NIGHT and ALL DAY checkboxes
 	Make checkboxes unchecked instead of unknown
 	Select by cell, space to multi-toggle
+Events!
+	Daily events, like bank interest
+	Calendar events, like holidays
 
 TODO AT HOME
 Set up HTTPS on Apache
