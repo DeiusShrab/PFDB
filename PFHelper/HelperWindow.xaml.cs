@@ -332,7 +332,7 @@ namespace PFHelper
       LbxEncounterCRs.ItemsSource = encounterResults;
       LbxContinent.ItemsSource = continentList;
       LbxCreatureInfo.ItemsSource = creatureInfos;
-      
+
       UpdateDate();
     }
 
@@ -380,6 +380,7 @@ namespace PFHelper
         RationsInfinite = saveObject.CbxInfRations;
         ContinentId = saveObject.ContinentId;
         CombatRound = saveObject.CombatRound;
+        CbxWeatherLock.IsChecked = saveObject.CbxWeatherLock;
 
         RationsLeft = saveObject.Rations;
         CurrentDate = saveObject.Date;
@@ -423,6 +424,7 @@ namespace PFHelper
       saveObject.CbxInfRations = RationsInfinite;
       saveObject.ContinentId = ContinentId;
       saveObject.CombatRound = CombatRound;
+      saveObject.CbxWeatherLock = CbxWeatherLock.IsChecked == true;
 
       saveObject.Rations = RationsLeft;
       saveObject.Date = CurrentDate;
@@ -462,7 +464,7 @@ namespace PFHelper
 
       for (int i = 0; i < num; i++)
       {
-        var roll = random.Next(d + 1);
+        var roll = random.Next(d) + 1;
         var result = addPos ? (roll + add) : (roll - add);
         var itm = new DisplayResult
         {
@@ -642,8 +644,23 @@ namespace PFHelper
         {
           if (!creatureInfos.Select(x => x.Result).Contains(item.Result))
             creatureInfos.Add(item);
+
+          selectedCombatMonsterId = item.Result;
         }
+
+        LoadCreatureInfo();
       }
+    }
+
+    private void LoadCreatureInfo()
+    {
+      var desc = DBClient.GetBestiaryDetail(selectedCombatMonsterId);
+      if (desc != null)
+        selectedCombatMonsterHtml = desc.FullText;
+      else
+        selectedCombatMonsterHtml = "<html><body><h1>NOT FOUND</h1></body></html>";
+
+      BrowserCreature.NavigateToString(selectedCombatMonsterHtml);
     }
 
     private void CombatNextRound()
@@ -678,6 +695,9 @@ namespace PFHelper
 
     private void NextWeather(int d = 1)
     {
+      if (CbxWeatherLock.IsChecked == true)
+        return;
+
       // DEBUG
       LblCurrentWeather.Content = random.Next(100);
       LblCurrentWeatherGroup.Content = "DEBUG";
@@ -742,7 +762,7 @@ namespace PFHelper
 
       LblNumericDate.Content = $"{CurrentDate.Year} / {CurrentMonth.MonthOrder} / {CurrentDate.Day}";
 
-      LblTextDate.Content = $"{DayNames[(CurrentDate.Day - 1) % 7]}, {CurrentMonth.Name.Substring(0,3)} {CurrentDate.Day}";
+      LblTextDate.Content = $"{DayNames[(CurrentDate.Day - 1) % 7]}, {CurrentMonth.Name.Substring(0, 3)} {CurrentDate.Day}";
 
       if (CurrentDate.Day <= 3 && CurrentDate.Day > 0)
         MoonPhase = "FULL MOON";
@@ -771,7 +791,7 @@ namespace PFHelper
         ContinentId = ContinentId,
         SeasonId = CurrentMonth.SeasonId
       };
-      
+
       WeatherResult = DBClient.GetRandomWeatherList(reqWeather);
     }
 
@@ -944,7 +964,7 @@ namespace PFHelper
 
     private void BtnCombatSort_Click(object sender, RoutedEventArgs e)
     {
-      var temp = combatGridItems.OrderBy(x => x.Init);
+      var temp = new List<CombatGridItem>(combatGridItems.OrderBy(x => x.Init));
       combatGridItems.Clear();
       combatGridItems.AddRange(temp);
     }
@@ -1003,17 +1023,8 @@ namespace PFHelper
       if (LbxCreatureInfo.SelectedItem != null)
       {
         var selectedItem = (DisplayResult)LbxCreatureInfo.SelectedItem;
-        if (selectedCombatMonsterId != selectedItem.Result)
-        {
-          selectedCombatMonsterId = selectedItem.Result;
-          var desc = DBClient.GetBestiaryDetail(selectedCombatMonsterId);
-          if (desc != null)
-            selectedCombatMonsterHtml = desc.FullText;
-          else
-            selectedCombatMonsterHtml = "<html><body><h1>NOT FOUND</h1></body></html>";
-
-          BrowserCreature.NavigateToString(selectedCombatMonsterHtml);
-        }
+        selectedCombatMonsterId = selectedItem.Result;
+        LoadCreatureInfo();
       }
     }
 
@@ -1037,7 +1048,7 @@ namespace PFHelper
 
     private void BtnNextWeather_Click(object sender, RoutedEventArgs e)
     {
-        NextWeather();
+      NextWeather();
     }
 
     private void MenuEditConfig_Click(object sender, RoutedEventArgs e)
@@ -1061,9 +1072,28 @@ namespace PFHelper
       var weatherList = DBClient.GetList("Weather");
       var popup = new ListPopUp(weatherList, "Select the new Weather:");
       popup.ShowDialog();
-      if (popup.SelectedResult > 0)
+      if (popup.DialogResult == true && popup.SelectedResult > 0)
       {
         CurrentWeather = DBClient.GetWeather(popup.SelectedResult);
+        LblCurrentWeather.Content = CurrentWeather.Name;
+      }
+    }
+
+    private void BtnCombatAddFromBestiary_Click(object sender, RoutedEventArgs e)
+    {
+      var bList = DBClient.GetList("Bestiary");
+      var popup = new ListPopUp(bList);
+      popup.ShowDialog();
+
+      if (popup.DialogResult == true && popup.SelectedResult > 0)
+      {
+        var bItem = bList.First(x => x.Id == popup.SelectedResult);
+
+        var b = DBClient.GetBestiary(bItem.Id);
+        combatGridItems.Add(new CombatGridItem(b));
+
+        if (!creatureInfos.Select(x => x.Result).Contains(bItem.Id))
+          creatureInfos.Add(new DisplayResult() { Display = bItem.Name, Result = bItem.Id });
       }
     }
   }

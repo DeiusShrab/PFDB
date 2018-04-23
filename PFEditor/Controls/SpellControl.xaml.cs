@@ -694,13 +694,17 @@ namespace PFEditor.Controls
     #region Private Variables
 
     private ObservableCollection<ListItemResult> SpellList;
+    private ObservableCollection<ListItemResult> SpellList_Filter;
     private ObservableCollection<ListItemResult> SpellSchoolList;
     private ObservableCollection<ListItemResult> SpellSubSchoolList;
     private ObservableCollection<ListItemResult> SpellSubSchoolList_Filter;
     private List<DisplayResult> Mag_LevelList;
 
     private Spell ActiveSpell = new Spell();
-    private SpellDetail ActiveSpellDetail = new SpellDetail();    
+    private SpellDetail ActiveSpellDetail = new SpellDetail();
+
+    private bool sortNameAsc = true;
+    private bool sortLevelAsc = true;
 
     #endregion
 
@@ -730,6 +734,7 @@ namespace PFEditor.Controls
       };
 
       SpellList = new ObservableCollection<ListItemResult>();
+      SpellList_Filter = new ObservableCollection<ListItemResult>();
       SpellSchoolList = new ObservableCollection<ListItemResult>();
       SpellSubSchoolList = new ObservableCollection<ListItemResult>();
       SpellSubSchoolList_Filter = new ObservableCollection<ListItemResult>();
@@ -989,14 +994,16 @@ namespace PFEditor.Controls
         // Reload lists
 
         SpellList.Clear();
+        SpellList_Filter.Clear();
         SpellSchoolList.Clear();
         SpellSubSchoolList.Clear();
         SpellSubSchoolList_Filter.Clear();
 
         SpellList.AddRange(DBClient.GetList("Spell").OrderBy(x => x.Name));
+        SpellList_Filter.AddRange(SpellList);
         SpellSchoolList.AddRange(DBClient.GetList("SpellSchool").OrderBy(x => x.Name));
         SpellSubSchoolList.AddRange(DBClient.GetList("SpellSubSchool").OrderBy(x => x.Name));
-        SpellSubSchoolList_Filter.AddRange(SpellSubSchoolList.Where(x => x.Notes == SelectedSpellSubSchoolId.ToString()));
+        SpellSubSchoolList_Filter.AddRange(SpellSubSchoolList);
 
         e.Handled = true;
       }
@@ -1010,6 +1017,55 @@ namespace PFEditor.Controls
         ActiveSpellDetail = DBClient.GetSpellDetail((int)LbxSpell.SelectedValue);
 
         LoadActiveSpell();
+      }
+    }
+
+    private void BtnSortName_Click(object sender, System.Windows.RoutedEventArgs e)
+    {
+      var temp = new List<ListItemResult>();
+
+      if (sortNameAsc)
+        temp.AddRange(SpellList_Filter.OrderBy(x => x.Name));
+      else
+        temp.AddRange(SpellList_Filter.OrderByDescending(x => x.Name));
+
+      SpellList_Filter.Clear();
+      SpellList_Filter.AddRange(temp);
+
+      sortNameAsc = !sortNameAsc;
+      sortLevelAsc = true;
+    }
+
+    private void BtnSortLevel_Click(object sender, System.Windows.RoutedEventArgs e)
+    {
+      var temp = new List<ListItemResult>();
+
+      if (sortLevelAsc)
+        temp.AddRange(SpellList_Filter.OrderBy(x => x.Notes));
+      else
+        temp.AddRange(SpellList_Filter.OrderByDescending(x => x.Notes));
+
+      SpellList_Filter.Clear();
+      SpellList_Filter.AddRange(temp);
+
+      sortLevelAsc = !sortLevelAsc;
+      sortNameAsc = true;
+    }
+
+    private void TxtSearch_TextChanged(object sender, TextChangedEventArgs e)
+    {
+      if (SpellList != null)
+      {
+        if (string.IsNullOrWhiteSpace(Search))
+        {
+          SpellList_Filter.Clear();
+          SpellList_Filter.AddRange(SpellList);
+        }
+        else if (Search.Length >= 3)
+        {
+          SpellList_Filter.Clear();
+          SpellList_Filter.AddRange(SpellList.Where(x => x.Name.ToLower().Contains(Search.ToLower())));
+        }
       }
     }
   }

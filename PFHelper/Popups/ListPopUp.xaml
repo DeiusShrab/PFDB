@@ -7,8 +7,10 @@
         mc:Ignorable="d"
         Title="ListPopUp" Height="150" Width="250">
     <Grid>
-        <ComboBox x:Name="DrpContent" HorizontalAlignment="Left" Margin="10,75,0,0" VerticalAlignment="Top" Width="222"/>
+        <ComboBox x:Name="DrpContent" HorizontalAlignment="Left" Margin="10,55,0,0" VerticalAlignment="Top" Width="222"/>
         <Label x:Name="LblMessage" Content="Select an option from the List:" HorizontalAlignment="Left" Margin="36,10,0,0" VerticalAlignment="Top"/>
+        <Button x:Name="BtnOkay" Content="OK" HorizontalAlignment="Left" Margin="157,89,0,0" VerticalAlignment="Top" Width="75" Click="BtnOkay_Click"/>
+        <Button x:Name="BtnCancel" Content="Cancel" HorizontalAlignment="Left" Margin="10,89,0,0" VerticalAlignment="Top" Width="75" Click="BtnCancel_Click"/>
 
     </Grid>
 </Window>

@@ -1,26 +1,26 @@
 TODO AT WORK
-Sorting combat (and other) lists in PFHelper
-Manually set weather
-Lock weather (prevent duration from advancing, for perma-storms)
-Autoselect creature detail when added to detail tab
-Dice roller rolling 0s?
-Tab Order!
 MonsterSpawn
 	Special behavior for ALL NIGHT and ALL DAY checkboxes
-	Make checkboxes unchecked instead of unknown
 	Select by cell, space to multi-toggle
 Events!
 	Daily events, like bank interest
 	Calendar events, like holidays
+Update big text fields like Attack, Defense, and Special to something machine-readable
+	or split them into a new datatype. AbilityId, BestiaryId
+		(Melee/Ranged), Attack Bonus, Damage, Crit, Range, Type (P/S/B, Cone, Burst), Effects (+1d6 cold, etc)
+		(Special), Range, Type (Cone, Burst, etc), Target, Effect
 
 TODO AT HOME
+Remove ALL from season, time, etc
 Set up HTTPS on Apache
 	Set up HTTPS to access the api (but not the main site)
 Backup DB somehow
+	Set up regular auto-backup once a month in addition to first manual backup
 Get the got-dang MAPS UP
 	Touch them up first with more locations and proper city names
 	Remember that maps only show "major" locations, small towns and villages won't be there
 Make some kind of DB Importer that pulls PFSRD stuff, runs it through the formatter from Test, and adds it to the DB
+Add DELETE code to PFDBSite (ONLY AFTER BACKUP SETUP)
 
 Generating code-first from existing DB
 https://docs.microsoft.com/en-us/ef/core/get-started/aspnetcore/existing-db
@@ -35,7 +35,7 @@ DB STUFF
 Use the CharacterFlag column for NPCs, and have it set for intelligent beings that might interact with the party instead of fight them
 Dump the NPC table into the Bestiary table with appropriate transformations and this flag set
 
-Continent-Terrain
+Continent-Terrain-Season
 Use for automatic encounter chances, tie an encounter % to each one
 When encounter is rolled, randomize Time list. List can then be adjusted if needed before grabbing monsters.
 

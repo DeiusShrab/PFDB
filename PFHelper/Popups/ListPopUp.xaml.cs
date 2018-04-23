@@ -67,5 +67,17 @@ namespace PFHelper
       if (!string.IsNullOrWhiteSpace(message))
         LblMessage.Content = message;
     }
+
+    private void BtnCancel_Click(object sender, RoutedEventArgs e)
+    {
+      DialogResult = false;
+      Close();
+    }
+
+    private void BtnOkay_Click(object sender, RoutedEventArgs e)
+    {
+      DialogResult = true;
+      Close();
+    }
   }
 }

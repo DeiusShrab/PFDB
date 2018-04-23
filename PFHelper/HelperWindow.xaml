@@ -38,66 +38,66 @@
         </Grid.ColumnDefinitions>
         <Label x:Name="LblGrandDate" Content="YEAR 000000 AA, Season of Earth, Month of Embers, Day 00" HorizontalAlignment="Left" Margin="10,21,0,0" VerticalAlignment="Top" FontFamily="Old English Text MT" FontSize="36"/>
         <Label HorizontalAlignment="Left" Margin="675,82,0,0" VerticalAlignment="Top" FontSize="16"/>
-        <Button x:Name="BtnNextDay" Content="NEXT DAY" HorizontalAlignment="Left" Margin="898,80,0,0" VerticalAlignment="Top" Width="75" Height="47" Click="BtnNextDay_Click"/>
-        <Button x:Name="BtnAddDays" Content="Add Days" HorizontalAlignment="Left" Margin="818,107,0,0" VerticalAlignment="Top" Width="75" Click="BtnAddDays_Click"/>
-        <xctk:IntegerUpDown x:Name="IntAddDays" Value="0" HorizontalAlignment="Left" Margin="818,82,0,0" VerticalAlignment="Top" Width="75" />
+        <Button x:Name="BtnNextDay" Content="NEXT DAY" HorizontalAlignment="Left" Margin="898,80,0,0" VerticalAlignment="Top" Width="75" Height="47" Click="BtnNextDay_Click" TabIndex="1103"/>
+        <Button x:Name="BtnAddDays" Content="Add Days" HorizontalAlignment="Left" Margin="818,107,0,0" VerticalAlignment="Top" Width="75" Click="BtnAddDays_Click" TabIndex="1102"/>
+        <xctk:IntegerUpDown x:Name="IntAddDays" Value="0" HorizontalAlignment="Left" Margin="818,82,0,0" VerticalAlignment="Top" Width="75" IsTabStop="True" TabIndex="1101" />
         <ListBox x:Name="LbxD20" HorizontalAlignment="Left" Height="100" Margin="1226,26,0,0" VerticalAlignment="Top" Width="120"/>
-        <Button x:Name="BtnRollD20" Content="Roll D20s" HorizontalAlignment="Left" Margin="1111,49,0,0" VerticalAlignment="Top" Width="110" Click="BtnRollD20_Click"/>
-        <RadioButton x:Name="RadPlusD20" Content="+" HorizontalAlignment="Left" Margin="1111,77,0,0" VerticalAlignment="Top" RenderTransformOrigin="2.826,0.497" GroupName="D20pm" IsChecked="True"/>
-        <RadioButton x:Name="RadMinusD20" Content="-" HorizontalAlignment="Left" Margin="1143,77,0,0" VerticalAlignment="Top" RenderTransformOrigin="-2.197,0.729" GroupName="D20pm"/>
-        <xctk:IntegerUpDown x:Name="IntAddD20" Value="0" HorizontalAlignment="Left" Margin="1172,74,0,0" VerticalAlignment="Top" Width="49" />
+        <Button x:Name="BtnRollD20" Content="Roll D20s" HorizontalAlignment="Left" Margin="1111,49,0,0" VerticalAlignment="Top" Width="110" Click="BtnRollD20_Click" TabIndex="1004"/>
+        <RadioButton x:Name="RadPlusD20" Content="+" HorizontalAlignment="Left" Margin="1111,77,0,0" VerticalAlignment="Top" RenderTransformOrigin="2.826,0.497" GroupName="D20pm" IsChecked="True" TabIndex="1001"/>
+        <RadioButton x:Name="RadMinusD20" Content="-" HorizontalAlignment="Left" Margin="1143,77,0,0" VerticalAlignment="Top" RenderTransformOrigin="-2.197,0.729" GroupName="D20pm" TabIndex="1002"/>
+        <xctk:IntegerUpDown x:Name="IntAddD20" Value="0" HorizontalAlignment="Left" Margin="1172,74,0,0" VerticalAlignment="Top" Width="49" TabIndex="1003" IsTabStop="True" />
         <Label Content="Current Weather:" HorizontalAlignment="Left" Margin="456,79,0,0" VerticalAlignment="Top"/>
         <Label x:Name="LblCurrentWeather" Content="Meteor Storm!" HorizontalAlignment="Left" Margin="561,79,0,0" VerticalAlignment="Top"/>
         <Label Content="Moon Phase:" HorizontalAlignment="Left" Margin="478,141,0,0" VerticalAlignment="Top"/>
         <Label x:Name="LblMoonPhase" Content="MOON MOON" HorizontalAlignment="Left" Margin="561,141,0,0" VerticalAlignment="Top"/>
-        <Button x:Name="BtnNextWeather" Content="Next Weather" HorizontalAlignment="Left" Margin="356,82,0,0" VerticalAlignment="Top" Width="95" Click="BtnNextWeather_Click"/>
+        <Button x:Name="BtnNextWeather" Content="Next Weather" HorizontalAlignment="Left" Margin="356,82,0,0" VerticalAlignment="Top" Width="95" Click="BtnNextWeather_Click" TabIndex="1201"/>
         <Label Content="Rations:" HorizontalAlignment="Left" Margin="818,132,0,0" VerticalAlignment="Top"/>
         <Label x:Name="LblRationsLeft" Content="00" HorizontalAlignment="Left" Margin="898,132,0,0" VerticalAlignment="Top" FontSize="18" Height="49" Width="75"/>
-        <TextBox x:Name="TxtRations" HorizontalAlignment="Left" Height="23" Margin="818,158,0,0" TextWrapping="Wrap" Text="000" VerticalAlignment="Top" Width="52"/>
-        <xctk:ButtonSpinner x:Name="SpinRations" HorizontalAlignment="Left" Margin="872,132,0,0" VerticalAlignment="Top" Height="49" Spin="SpinRations_Spin"/>
-        <CheckBox x:Name="CbxRationsInfinite" Content="∞" HorizontalAlignment="Left" Margin="902,166,0,0" VerticalAlignment="Top"/>
+        <TextBox x:Name="TxtRations" HorizontalAlignment="Left" Height="23" Margin="818,158,0,0" TextWrapping="Wrap" Text="000" VerticalAlignment="Top" Width="52" TabIndex="1104"/>
+        <xctk:ButtonSpinner x:Name="SpinRations" HorizontalAlignment="Left" Margin="872,132,0,0" VerticalAlignment="Top" Height="49" Spin="SpinRations_Spin" TabIndex="1105"/>
+        <CheckBox x:Name="CbxRationsInfinite" Content="∞" HorizontalAlignment="Left" Margin="902,166,0,0" VerticalAlignment="Top" TabIndex="1106"/>
         <ListBox x:Name="LbxD4" HorizontalAlignment="Left" Height="100" Margin="1226,131,0,0" VerticalAlignment="Top" Width="120"/>
-        <Button x:Name="BtnRollD4" Content="Roll D4s" HorizontalAlignment="Left" Margin="1111,159,0,0" VerticalAlignment="Top" Width="110" Click="BtnRollD4_Click"/>
-        <RadioButton x:Name="RadPlusD4" Content="+" HorizontalAlignment="Left" Margin="1111,187,0,0" VerticalAlignment="Top" RenderTransformOrigin="2.826,0.497" GroupName="D4pm" IsChecked="True"/>
-        <RadioButton x:Name="RadMinusD4" Content="-" HorizontalAlignment="Left" Margin="1143,187,0,0" VerticalAlignment="Top" RenderTransformOrigin="-2.197,0.729" GroupName="D4pm"/>
-        <xctk:IntegerUpDown x:Name="IntAddD4" Value="0" HorizontalAlignment="Left" Margin="1172,184,0,0" VerticalAlignment="Top" Width="49" />
-        <xctk:IntegerUpDown x:Name="IntNumD4" Value="0" HorizontalAlignment="Left" Margin="1172,134,0,0" VerticalAlignment="Top" Width="49" />
-        <xctk:IntegerUpDown x:Name="IntNumD20" Value="0" HorizontalAlignment="Left" Margin="1172,26,0,0" VerticalAlignment="Top" Width="49" />
+        <Button x:Name="BtnRollD4" Content="Roll D4s" HorizontalAlignment="Left" Margin="1111,159,0,0" VerticalAlignment="Top" Width="110" Click="BtnRollD4_Click" TabIndex="1009"/>
+        <RadioButton x:Name="RadPlusD4" Content="+" HorizontalAlignment="Left" Margin="1111,187,0,0" VerticalAlignment="Top" RenderTransformOrigin="2.826,0.497" GroupName="D4pm" IsChecked="True" TabIndex="1006"/>
+        <RadioButton x:Name="RadMinusD4" Content="-" HorizontalAlignment="Left" Margin="1143,187,0,0" VerticalAlignment="Top" RenderTransformOrigin="-2.197,0.729" GroupName="D4pm" TabIndex="1007"/>
+        <xctk:IntegerUpDown x:Name="IntAddD4" Value="0" HorizontalAlignment="Left" Margin="1172,184,0,0" VerticalAlignment="Top" Width="49" IsTabStop="True" TabIndex="1008" />
+        <xctk:IntegerUpDown x:Name="IntNumD4" Value="0" HorizontalAlignment="Left" Margin="1172,134,0,0" VerticalAlignment="Top" Width="49" TabIndex="1005" IsTabStop="True" />
+        <xctk:IntegerUpDown x:Name="IntNumD20" Value="0" HorizontalAlignment="Left" Margin="1172,26,0,0" VerticalAlignment="Top" Width="49" TabIndex="1000" IsTabStop="True" />
         <Label Content="Total:" HorizontalAlignment="Left" Margin="1111,209,0,0" VerticalAlignment="Top" FontSize="14"/>
         <Label x:Name="LblTotalD4" Content="000" HorizontalAlignment="Left" Margin="1168,209,0,0" VerticalAlignment="Top" FontSize="14" Width="53"/>
         <ListBox x:Name="LbxD6" HorizontalAlignment="Left" Height="100" Margin="1226,236,0,0" VerticalAlignment="Top" Width="120"/>
-        <Button x:Name="BtnRollD6" Content="Roll D6s" HorizontalAlignment="Left" Margin="1111,264,0,0" VerticalAlignment="Top" Width="110" Click="BtnRollD6_Click"/>
-        <RadioButton x:Name="RadPlusD6" Content="+" HorizontalAlignment="Left" Margin="1111,292,0,0" VerticalAlignment="Top" RenderTransformOrigin="2.826,0.497" GroupName="D6pm" IsChecked="True"/>
-        <RadioButton x:Name="RadMinusD6" Content="-" HorizontalAlignment="Left" Margin="1143,292,0,0" VerticalAlignment="Top" RenderTransformOrigin="-2.197,0.729" GroupName="D6pm"/>
-        <xctk:IntegerUpDown x:Name="IntAddD6" Value="0" HorizontalAlignment="Left" Margin="1172,289,0,0" VerticalAlignment="Top" Width="49" />
-        <xctk:IntegerUpDown x:Name="IntNumD6" Value="0" HorizontalAlignment="Left" Margin="1172,239,0,0" VerticalAlignment="Top" Width="49" />
+        <Button x:Name="BtnRollD6" Content="Roll D6s" HorizontalAlignment="Left" Margin="1111,264,0,0" VerticalAlignment="Top" Width="110" Click="BtnRollD6_Click" TabIndex="1014"/>
+        <RadioButton x:Name="RadPlusD6" Content="+" HorizontalAlignment="Left" Margin="1111,292,0,0" VerticalAlignment="Top" RenderTransformOrigin="2.826,0.497" GroupName="D6pm" IsChecked="True" TabIndex="1011"/>
+        <RadioButton x:Name="RadMinusD6" Content="-" HorizontalAlignment="Left" Margin="1143,292,0,0" VerticalAlignment="Top" RenderTransformOrigin="-2.197,0.729" GroupName="D6pm" TabIndex="1012"/>
+        <xctk:IntegerUpDown x:Name="IntAddD6" Value="0" HorizontalAlignment="Left" Margin="1172,289,0,0" VerticalAlignment="Top" Width="49" TabIndex="1013" IsTabStop="True" />
+        <xctk:IntegerUpDown x:Name="IntNumD6" Value="0" HorizontalAlignment="Left" Margin="1172,239,0,0" VerticalAlignment="Top" Width="49" TabIndex="1010" IsTabStop="True" />
         <Label Content="Total:" HorizontalAlignment="Left" Margin="1111,312,0,0" VerticalAlignment="Top" FontSize="14"/>
         <Label x:Name="LblTotalD6" Content="000" HorizontalAlignment="Left" Margin="1168,312,0,0" VerticalAlignment="Top" FontSize="14" Width="53"/>
         <ListBox x:Name="LbxD8" HorizontalAlignment="Left" Height="100" Margin="1226,341,0,0" VerticalAlignment="Top" Width="120"/>
         <ListBox x:Name="LbxD10" Margin="1226,446,0,0" Height="100" HorizontalAlignment="Left" Width="120" VerticalAlignment="Top"/>
         <ListBox x:Name="LbxD12" Margin="1226,551,0,0" Height="100" HorizontalAlignment="Left" Width="120" VerticalAlignment="Top"/>
-        <Button x:Name="BtnRollD8" Content="Roll D8s" HorizontalAlignment="Left" Margin="1111,369,0,0" VerticalAlignment="Top" Width="110" Click="BtnRollD8_Click"/>
-        <RadioButton x:Name="RadPlusD8" Content="+" HorizontalAlignment="Left" Margin="1111,397,0,0" VerticalAlignment="Top" RenderTransformOrigin="2.826,0.497" GroupName="D8pm" IsChecked="True"/>
-        <RadioButton x:Name="RadMinusD8" Content="-" HorizontalAlignment="Left" Margin="1143,397,0,0" VerticalAlignment="Top" RenderTransformOrigin="-2.197,0.729" GroupName="D8pm"/>
-        <xctk:IntegerUpDown x:Name="IntAddD8" Value="0" HorizontalAlignment="Left" Margin="1172,394,0,0" VerticalAlignment="Top" Width="49" />
-        <xctk:IntegerUpDown x:Name="IntNumD8" Value="0" HorizontalAlignment="Left" Margin="1172,344,0,0" VerticalAlignment="Top" Width="49" />
+        <Button x:Name="BtnRollD8" Content="Roll D8s" HorizontalAlignment="Left" Margin="1111,369,0,0" VerticalAlignment="Top" Width="110" Click="BtnRollD8_Click" TabIndex="1019"/>
+        <RadioButton x:Name="RadPlusD8" Content="+" HorizontalAlignment="Left" Margin="1111,397,0,0" VerticalAlignment="Top" RenderTransformOrigin="2.826,0.497" GroupName="D8pm" IsChecked="True" TabIndex="1016"/>
+        <RadioButton x:Name="RadMinusD8" Content="-" HorizontalAlignment="Left" Margin="1143,397,0,0" VerticalAlignment="Top" RenderTransformOrigin="-2.197,0.729" GroupName="D8pm" TabIndex="1017"/>
+        <xctk:IntegerUpDown x:Name="IntAddD8" Value="0" HorizontalAlignment="Left" Margin="1172,394,0,0" VerticalAlignment="Top" Width="49" TabIndex="1018" IsTabStop="True" />
+        <xctk:IntegerUpDown x:Name="IntNumD8" Value="0" HorizontalAlignment="Left" Margin="1172,344,0,0" VerticalAlignment="Top" Width="49" TabIndex="1015" IsTabStop="True" />
         <Label Content="Total:" HorizontalAlignment="Left" Margin="1111,417,0,0" VerticalAlignment="Top" FontSize="14"/>
         <Label x:Name="LblTotalD8" Content="000" HorizontalAlignment="Left" Margin="1168,417,0,0" VerticalAlignment="Top" FontSize="14" Width="53"/>
-        <Button x:Name="BtnRollD10" Content="Roll D10s" HorizontalAlignment="Left" Margin="1111,474,0,0" VerticalAlignment="Top" Width="110" Click="BtnRollD10_Click"/>
-        <RadioButton x:Name="RadPlusD10" Content="+" HorizontalAlignment="Left" Margin="1111,502,0,0" VerticalAlignment="Top" RenderTransformOrigin="2.826,0.497" GroupName="D10pm" IsChecked="True"/>
-        <RadioButton x:Name="RadMinusD10" Content="-" HorizontalAlignment="Left" Margin="1143,502,0,0" VerticalAlignment="Top" RenderTransformOrigin="-2.197,0.729" GroupName="D10pm"/>
-        <xctk:IntegerUpDown x:Name="IntAddD10" Value="0" HorizontalAlignment="Left" Margin="1172,499,0,0" VerticalAlignment="Top" Width="49" />
-        <xctk:IntegerUpDown x:Name="IntNumD10" Value="0" HorizontalAlignment="Left" Margin="1172,449,0,0" VerticalAlignment="Top" Width="49" />
+        <Button x:Name="BtnRollD10" Content="Roll D10s" HorizontalAlignment="Left" Margin="1111,474,0,0" VerticalAlignment="Top" Width="110" Click="BtnRollD10_Click" TabIndex="1024"/>
+        <RadioButton x:Name="RadPlusD10" Content="+" HorizontalAlignment="Left" Margin="1111,502,0,0" VerticalAlignment="Top" RenderTransformOrigin="2.826,0.497" GroupName="D10pm" IsChecked="True" TabIndex="1021"/>
+        <RadioButton x:Name="RadMinusD10" Content="-" HorizontalAlignment="Left" Margin="1143,502,0,0" VerticalAlignment="Top" RenderTransformOrigin="-2.197,0.729" GroupName="D10pm" TabIndex="1022"/>
+        <xctk:IntegerUpDown x:Name="IntAddD10" Value="0" HorizontalAlignment="Left" Margin="1172,499,0,0" VerticalAlignment="Top" Width="49" TabIndex="1023" IsTabStop="True" />
+        <xctk:IntegerUpDown x:Name="IntNumD10" Value="0" HorizontalAlignment="Left" Margin="1172,449,0,0" VerticalAlignment="Top" Width="49" IsTabStop="True" TabIndex="1020" />
         <Label Content="Total:" HorizontalAlignment="Left" Margin="1111,524,0,0" VerticalAlignment="Top" FontSize="14"/>
         <Label x:Name="LblTotalD10" Content="000" HorizontalAlignment="Left" Margin="1168,524,0,0" VerticalAlignment="Top" FontSize="14" Width="53"/>
-        <Button x:Name="BtnRollD12" Content="Roll D12s" HorizontalAlignment="Left" Margin="1111,579,0,0" VerticalAlignment="Top" Width="110" Click="BtnRollD12_Click"/>
-        <RadioButton x:Name="RadPlusD12" Content="+" HorizontalAlignment="Left" Margin="1111,607,0,0" VerticalAlignment="Top" RenderTransformOrigin="2.826,0.497" GroupName="D12pm" IsChecked="True"/>
-        <RadioButton x:Name="RadMinusD12" Content="-" HorizontalAlignment="Left" Margin="1143,607,0,0" VerticalAlignment="Top" RenderTransformOrigin="-2.197,0.729" GroupName="D12pm"/>
-        <xctk:IntegerUpDown x:Name="IntAddD12" Value="0" HorizontalAlignment="Left" Margin="1172,604,0,0" VerticalAlignment="Top" Width="49" />
-        <xctk:IntegerUpDown x:Name="IntNumD12" Value="0" HorizontalAlignment="Left" Margin="1172,554,0,0" VerticalAlignment="Top" Width="49" />
+        <Button x:Name="BtnRollD12" Content="Roll D12s" HorizontalAlignment="Left" Margin="1111,579,0,0" VerticalAlignment="Top" Width="110" Click="BtnRollD12_Click" TabIndex="1029"/>
+        <RadioButton x:Name="RadPlusD12" Content="+" HorizontalAlignment="Left" Margin="1111,607,0,0" VerticalAlignment="Top" RenderTransformOrigin="2.826,0.497" GroupName="D12pm" IsChecked="True" TabIndex="1026"/>
+        <RadioButton x:Name="RadMinusD12" Content="-" HorizontalAlignment="Left" Margin="1143,607,0,0" VerticalAlignment="Top" RenderTransformOrigin="-2.197,0.729" GroupName="D12pm" TabIndex="1027"/>
+        <xctk:IntegerUpDown x:Name="IntAddD12" Value="0" HorizontalAlignment="Left" Margin="1172,604,0,0" VerticalAlignment="Top" Width="49" TabIndex="1028" IsTabStop="True" />
+        <xctk:IntegerUpDown x:Name="IntNumD12" Value="0" HorizontalAlignment="Left" Margin="1172,554,0,0" VerticalAlignment="Top" Width="49" IsTabStop="True" TabIndex="1025" />
         <Label Content="Total:" HorizontalAlignment="Left" Margin="1111,627,0,0" VerticalAlignment="Top" FontSize="14"/>
         <Label x:Name="LblTotalD12" Content="000" HorizontalAlignment="Left" Margin="1168,627,0,0" VerticalAlignment="Top" FontSize="14" Width="53"/>
-        <Button x:Name="BtnRollD100" Content="Roll D100" HorizontalAlignment="Left" Margin="10,103,0,0" VerticalAlignment="Top" Width="110" Click="BtnRollD100_Click"/>
+        <Button x:Name="BtnRollD100" Content="Roll D100" HorizontalAlignment="Left" Margin="10,103,0,0" VerticalAlignment="Top" Width="110" Click="BtnRollD100_Click" TabIndex="1999"/>
         <Label x:Name="LblTotalD100" Content="100" HorizontalAlignment="Left" Margin="125,96,0,0" VerticalAlignment="Top" FontSize="16"/>
         <Label Content="#" HorizontalAlignment="Left" Margin="1150,131,0,0" VerticalAlignment="Top"/>
         <Label Content="#" HorizontalAlignment="Left" Margin="1150,236,0,0" VerticalAlignment="Top"/>
@@ -136,16 +136,16 @@
             </TabItem>
             <TabItem x:Name="TabCombat" Header="Combat" Margin="-2,-2,-2,0">
                 <Grid Background="#FFE5E5E5">
-                    <Button x:Name="BtnCombatSort" Content="Sort" HorizontalAlignment="Left" Margin="20,437,0,0" VerticalAlignment="Top" Width="75" Click="BtnCombatSort_Click"/>
-                    <Button x:Name="BtnCombatDuplicate" Content="Duplicate" HorizontalAlignment="Left" Margin="100,437,0,0" VerticalAlignment="Top" Width="75" Click="BtnCombatDuplicate_Click"/>
-                    <Button x:Name="BtnCombatDelete" Content="Delete" HorizontalAlignment="Left" Margin="180,437,0,0" VerticalAlignment="Top" Width="75" Click="BtnCombatDelete_Click"/>
-                    <Button x:Name="BtnCombatAddFromBestiary" Content="Add from Bestiary..." HorizontalAlignment="Left" Margin="953,437,0,0" VerticalAlignment="Top" Width="127"/>
+                    <Button x:Name="BtnCombatSort" Content="Sort" HorizontalAlignment="Left" Margin="20,437,0,0" VerticalAlignment="Top" Width="75" Click="BtnCombatSort_Click" TabIndex="113"/>
+                    <Button x:Name="BtnCombatDuplicate" Content="Duplicate" HorizontalAlignment="Left" Margin="100,437,0,0" VerticalAlignment="Top" Width="75" Click="BtnCombatDuplicate_Click" TabIndex="114"/>
+                    <Button x:Name="BtnCombatDelete" Content="Delete" HorizontalAlignment="Left" Margin="180,437,0,0" VerticalAlignment="Top" Width="75" Click="BtnCombatDelete_Click" TabIndex="115"/>
+                    <Button x:Name="BtnCombatAddFromBestiary" Content="Add from Bestiary..." HorizontalAlignment="Left" Margin="953,437,0,0" VerticalAlignment="Top" Width="127" TabIndex="199" Click="BtnCombatAddFromBestiary_Click"/>
                     <Label Content="Round #" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top" FontSize="16"/>
                     <Label x:Name="LblCombatRound" Content="00" HorizontalAlignment="Left" Margin="85,10,0,0" VerticalAlignment="Top" FontSize="16" FontWeight="Bold"/>
                     <Button x:Name="BtnCombatNextRound" Content="Next Round ==&gt;" HorizontalAlignment="Left" Margin="144,10,0,0" VerticalAlignment="Top" Width="101" Height="31" Click="BtnCombatNextRound_Click"/>
-                    <TextBox x:Name="TxtCombatInit" HorizontalAlignment="Left" Height="23" Margin="10,72,0,0" TextWrapping="Wrap" Text="00" VerticalAlignment="Top" Width="27"/>
+                    <TextBox x:Name="TxtCombatInit" HorizontalAlignment="Left" Height="23" Margin="10,72,0,0" TextWrapping="Wrap" Text="00" VerticalAlignment="Top" Width="27" TabIndex="101"/>
                     <Label Content="Init" HorizontalAlignment="Left" Margin="10,46,0,0" VerticalAlignment="Top"/>
-                    <DataGrid x:Name="DgCombatGrid" HorizontalAlignment="Left" Height="332" Margin="10,100,0,0" VerticalAlignment="Top" Width="755" AutoGenerateColumns="False" CanUserAddRows="False" ItemsSource="{Binding CombatGridItems}">
+                    <DataGrid x:Name="DgCombatGrid" HorizontalAlignment="Left" Height="332" Margin="10,100,0,0" VerticalAlignment="Top" Width="755" AutoGenerateColumns="False" CanUserAddRows="False" ItemsSource="{Binding CombatGridItems}" TabIndex="112">
                         <DataGrid.Columns>
                             <DataGridTextColumn Binding="{Binding Init}" Header="Init" Width="30"/>
                             <DataGridTextColumn Binding="{Binding Name}" Header="Name" Width="150"/>
@@ -165,14 +165,14 @@
                             <DataGridTextColumn Binding="{Binding Note}" Header="Note" Width="*"/>
                         </DataGrid.Columns>
                     </DataGrid>
-                    <DataGrid x:Name="DgCombatEffects" HorizontalAlignment="Left" Height="332" Margin="770,100,0,0" VerticalAlignment="Top" Width="310" AutoGenerateColumns="False" CanUserAddRows="False" ItemsSource="{Binding CombatEffectItems}">
+                    <DataGrid x:Name="DgCombatEffects" HorizontalAlignment="Left" Height="332" Margin="770,100,0,0" VerticalAlignment="Top" Width="310" AutoGenerateColumns="False" CanUserAddRows="False" ItemsSource="{Binding CombatEffectItems}" TabIndex="154">
                         <DataGrid.Columns>
                             <DataGridTextColumn Binding="{Binding Effect}" Header="Effect" Width="*"/>
                             <DataGridTextColumn Binding="{Binding Target}" Header="Target" Width="70"/>
                             <DataGridTextColumn Binding="{Binding Rounds}" Header="Rds" Width="30"/>
                         </DataGrid.Columns>
                     </DataGrid>
-                    <TextBox x:Name="TxtCombatName" HorizontalAlignment="Left" Height="23" Margin="42,72,0,0" TextWrapping="Wrap" Text="Big Ugly Monster II" VerticalAlignment="Top" Width="153"/>
+                    <TextBox x:Name="TxtCombatName" HorizontalAlignment="Left" Height="23" Margin="42,72,0,0" TextWrapping="Wrap" Text="Big Ugly Monster II" VerticalAlignment="Top" Width="153" TabIndex="102"/>
                     <Label Content="Name" HorizontalAlignment="Left" Margin="42,46,0,0" VerticalAlignment="Top"/>
                     <Label Content="PC?" HorizontalAlignment="Left" Margin="200,46,0,0" VerticalAlignment="Top"/>
                     <Label Content="Touch" HorizontalAlignment="Left" Margin="294,46,0,0" VerticalAlignment="Top"/>
@@ -181,22 +181,22 @@
                     <Label Content="Fort" HorizontalAlignment="Left" Margin="374,46,0,0" VerticalAlignment="Top"/>
                     <Label Content="Ref" HorizontalAlignment="Left" Margin="410,46,0,0" VerticalAlignment="Top"/>
                     <Label Content="Will" HorizontalAlignment="Left" Margin="442,46,0,0" VerticalAlignment="Top"/>
-                    <TextBox x:Name="TxtCombatAC" HorizontalAlignment="Left" Height="23" Margin="265,72,0,0" TextWrapping="Wrap" Text="22" VerticalAlignment="Top" Width="22"/>
-                    <CheckBox x:Name="CbxCombatPC" Content="" HorizontalAlignment="Left" Margin="206,75,0,0" VerticalAlignment="Top"/>
-                    <TextBox x:Name="TxtCombatTouch" HorizontalAlignment="Left" Height="23" Margin="304,72,0,0" TextWrapping="Wrap" Text="22" VerticalAlignment="Top" Width="22"/>
-                    <TextBox x:Name="TxtCombatFlat" HorizontalAlignment="Left" Height="23" Margin="343,72,0,0" TextWrapping="Wrap" Text="22" VerticalAlignment="Top" Width="22"/>
-                    <TextBox x:Name="TxtCombatFort" HorizontalAlignment="Left" Height="23" Margin="378,72,0,0" TextWrapping="Wrap" Text="22" VerticalAlignment="Top" Width="22"/>
-                    <TextBox x:Name="TxtCombatRef" HorizontalAlignment="Left" Height="23" Margin="413,72,0,0" TextWrapping="Wrap" Text="22" VerticalAlignment="Top" Width="22"/>
-                    <TextBox x:Name="TxtCombatWill" HorizontalAlignment="Left" Height="23" Margin="446,72,0,0" TextWrapping="Wrap" Text="22" VerticalAlignment="Top" Width="22"/>
+                    <TextBox x:Name="TxtCombatAC" HorizontalAlignment="Left" Height="23" Margin="265,72,0,0" TextWrapping="Wrap" Text="22" VerticalAlignment="Top" Width="22" TabIndex="105"/>
+                    <CheckBox x:Name="CbxCombatPC" Content="" HorizontalAlignment="Left" Margin="206,75,0,0" VerticalAlignment="Top" TabIndex="103"/>
+                    <TextBox x:Name="TxtCombatTouch" HorizontalAlignment="Left" Height="23" Margin="304,72,0,0" TextWrapping="Wrap" Text="22" VerticalAlignment="Top" Width="22" TabIndex="106"/>
+                    <TextBox x:Name="TxtCombatFlat" HorizontalAlignment="Left" Height="23" Margin="343,72,0,0" TextWrapping="Wrap" Text="22" VerticalAlignment="Top" Width="22" TabIndex="107"/>
+                    <TextBox x:Name="TxtCombatFort" HorizontalAlignment="Left" Height="23" Margin="378,72,0,0" TextWrapping="Wrap" Text="22" VerticalAlignment="Top" Width="22" TabIndex="108"/>
+                    <TextBox x:Name="TxtCombatRef" HorizontalAlignment="Left" Height="23" Margin="413,72,0,0" TextWrapping="Wrap" Text="22" VerticalAlignment="Top" Width="22" TabIndex="109"/>
+                    <TextBox x:Name="TxtCombatWill" HorizontalAlignment="Left" Height="23" Margin="446,72,0,0" TextWrapping="Wrap" Text="22" VerticalAlignment="Top" Width="22" TabIndex="110"/>
                     <Button x:Name="BtnCombatClearAll" Content="CLEAR ALL" HorizontalAlignment="Left" Margin="664,10,0,0" VerticalAlignment="Top" Width="101" Height="31" Click="BtnCombatClearAll_Click"/>
                     <Button x:Name="BtnCombatEnd" Content="End Combat" HorizontalAlignment="Left" Margin="558,10,0,0" VerticalAlignment="Top" Width="101" Height="31" Click="BtnCombatEnd_Click"/>
-                    <TextBox x:Name="TxtCombatEffect" HorizontalAlignment="Left" Height="23" Margin="770,72,0,0" TextWrapping="Wrap" Text="Makes 'im bigger and uglier" VerticalAlignment="Top" Width="215"/>
-                    <xctk:IntegerUpDown x:Name="IntCombatEffectRounds" HorizontalAlignment="Left" Margin="1039,47,0,0" VerticalAlignment="Top"/>
-                    <Button x:Name="BtnCombatAddEffect" Content="Add Effect" HorizontalAlignment="Left" Margin="990,72,0,0" VerticalAlignment="Top" Width="90" Height="23" Click="BtnCombatAddEffect_Click"/>
+                    <TextBox x:Name="TxtCombatEffect" HorizontalAlignment="Left" Height="23" Margin="770,72,0,0" TextWrapping="Wrap" Text="Makes 'im bigger and uglier" VerticalAlignment="Top" Width="215" TabIndex="151"/>
+                    <xctk:IntegerUpDown x:Name="IntCombatEffectRounds" HorizontalAlignment="Left" Margin="1039,47,0,0" VerticalAlignment="Top" TabIndex="152"/>
+                    <Button x:Name="BtnCombatAddEffect" Content="Add Effect" HorizontalAlignment="Left" Margin="990,72,0,0" VerticalAlignment="Top" Width="90" Height="23" Click="BtnCombatAddEffect_Click" TabIndex="153"/>
                     <Label Content="Effect Name" HorizontalAlignment="Left" Margin="770,43,0,0" VerticalAlignment="Top"/>
                     <Label Content="Rounds" HorizontalAlignment="Left" Margin="985,43,0,0" VerticalAlignment="Top"/>
-                    <Button x:Name="BtnCombatAddNew" Content="Add" HorizontalAlignment="Left" Margin="709,72,0,0" VerticalAlignment="Top" Width="56" Height="23" Click="BtnCombatAddNew_Click"/>
-                    <TextBox x:Name="TxtCombatHP" HorizontalAlignment="Left" Height="23" Margin="236,72,0,0" TextWrapping="Wrap" Text="22" VerticalAlignment="Top" Width="22"/>
+                    <Button x:Name="BtnCombatAddNew" Content="Add" HorizontalAlignment="Left" Margin="709,72,0,0" VerticalAlignment="Top" Width="56" Height="23" Click="BtnCombatAddNew_Click" TabIndex="111"/>
+                    <TextBox x:Name="TxtCombatHP" HorizontalAlignment="Left" Height="23" Margin="236,72,0,0" TextWrapping="Wrap" Text="22" VerticalAlignment="Top" Width="22" TabIndex="104"/>
                     <Label Content="HP" HorizontalAlignment="Left" Margin="235,46,0,0" VerticalAlignment="Top"/>
                 </Grid>
             </TabItem>
@@ -226,7 +226,8 @@
         </Menu>
         <Label Content="Weather Group:" HorizontalAlignment="Left" Margin="462,110,0,0" VerticalAlignment="Top"/>
         <Label x:Name="LblCurrentWeatherGroup" Content="Apocalypse!" HorizontalAlignment="Left" Margin="561,110,0,0" VerticalAlignment="Top"/>
-        <Button x:Name="BtnManualWeather" Content="Manual Weather" HorizontalAlignment="Left" Margin="356,107,0,0" VerticalAlignment="Top" Width="95" Click="BtnManualWeather_Click"/>
+        <Button x:Name="BtnManualWeather" Content="Manual Weather" HorizontalAlignment="Left" Margin="356,107,0,0" VerticalAlignment="Top" Width="95" Click="BtnManualWeather_Click" TabIndex="1202"/>
+        <CheckBox x:Name="CbxWeatherLock" Content="Lock Weather" HorizontalAlignment="Left" Margin="356,131,0,0" VerticalAlignment="Top" TabIndex="1203"/>
 
     </Grid>
 </Window>

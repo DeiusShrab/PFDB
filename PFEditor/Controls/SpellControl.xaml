@@ -10,10 +10,10 @@
     <Grid KeyDown="Grid_KeyDown">
 
         <ListBox x:Name="LbxSpell" HorizontalAlignment="Left" Height="527" Margin="10,87,0,0" VerticalAlignment="Top" Width="200" MouseDoubleClick="LbxSpell_MouseDoubleClick"/>
-        <TextBox x:Name="TxtSearch" HorizontalAlignment="Left" Height="23" Margin="10,10,0,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="200"/>
-        <Button x:Name="BtnSortName" Content="Name" HorizontalAlignment="Left" Margin="47,617,0,0" VerticalAlignment="Top" Width="50"/>
+        <TextBox x:Name="TxtSearch" HorizontalAlignment="Left" Height="23" Margin="10,10,0,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="200" TextChanged="TxtSearch_TextChanged"/>
+        <Button x:Name="BtnSortName" Content="Name" HorizontalAlignment="Left" Margin="47,617,0,0" VerticalAlignment="Top" Width="50" Click="BtnSortName_Click"/>
         <Label Content="Sort" HorizontalAlignment="Left" Margin="10,614,0,0" VerticalAlignment="Top"/>
-        <Button x:Name="BtnSortLevel" Content="Level" HorizontalAlignment="Left" Margin="102,617,0,0" VerticalAlignment="Top" Width="50"/>
+        <Button x:Name="BtnSortLevel" Content="Level" HorizontalAlignment="Left" Margin="102,617,0,0" VerticalAlignment="Top" Width="50" Click="BtnSortLevel_Click"/>
         <Label Content="Search" HorizontalAlignment="Left" Margin="10,33,0,0" VerticalAlignment="Top"/>
         <RadioButton x:Name="RadSearchName" Content="Name" HorizontalAlignment="Left" Margin="60,39,0,0" VerticalAlignment="Top" GroupName="SplSearch" IsChecked="True"/>
         <RadioButton x:Name="RadSearchDesc" Content="Descriptor" HorizontalAlignment="Left" Margin="116,39,0,0" VerticalAlignment="Top" GroupName="SplSearch"/>

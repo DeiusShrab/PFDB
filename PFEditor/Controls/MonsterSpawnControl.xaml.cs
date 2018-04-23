@@ -31,6 +31,7 @@ namespace PFEditor.Controls
     private int MonsterSpawnBestiaryId;
     private bool sortNameAsc = true;
     private bool sortCrAsc = true;
+    private bool suppress = false;
 
     public MonsterSpawnControl()
     {
@@ -55,6 +56,8 @@ namespace PFEditor.Controls
 
     private void LoadMonsterSpawnData()
     {
+      suppress = true;
+
       BiContinents = new Bictionary<int, string>();
       foreach (var item in ContinentList)
       {
@@ -109,17 +112,21 @@ namespace PFEditor.Controls
       TabsMonsterSpawn.Items.Clear();
       foreach (DataTable table in DsMonsterSpawns.Tables)
       {
+        var dg = new DataGrid()
+        {
+          DataContext = table.DefaultView,
+          ItemsSource = table.DefaultView
+        };
+
         var tab = new TabItem
         {
           Header = table.TableName,
-          Content = new DataGrid()
-          {
-            DataContext = table.DefaultView,
-            ItemsSource = table.DefaultView
-          }
+          Content = dg
         };
         TabsMonsterSpawn.Items.Add(tab);
       }
+
+      suppress = false;
     }
 
     private List<MonsterSpawn> ExportMonsterSpawnData()
@@ -175,13 +182,13 @@ namespace PFEditor.Controls
     {
       if (sortNameAsc)
       {
-        var temp = MonsterSpawnList_Filter.OrderBy(x => x.Name);
+        var temp = new List<ListItemResult>(MonsterSpawnList_Filter.OrderBy(x => x.Name));
         MonsterSpawnList_Filter.Clear();
         MonsterSpawnList_Filter.AddRange(temp);
       }
       else
       {
-        var temp = MonsterSpawnList_Filter.OrderByDescending(x => x.Name);
+        var temp = new List<ListItemResult>(MonsterSpawnList_Filter.OrderByDescending(x => x.Name));
         MonsterSpawnList_Filter.Clear();
         MonsterSpawnList_Filter.AddRange(temp);
       }
@@ -203,13 +210,13 @@ namespace PFEditor.Controls
     {
       if (sortCrAsc)
       {
-        var temp = MonsterSpawnList_Filter.OrderBy(x => x.Id);
+        var temp = new List<ListItemResult>(MonsterSpawnList_Filter.OrderBy(x => x.Id));
         MonsterSpawnList_Filter.Clear();
         MonsterSpawnList_Filter.AddRange(temp);
       }
       else
       {
-        var temp = MonsterSpawnList_Filter.OrderByDescending(x => x.Id);
+        var temp = new List<ListItemResult>(MonsterSpawnList_Filter.OrderByDescending(x => x.Id));
         MonsterSpawnList_Filter.Clear();
         MonsterSpawnList_Filter.AddRange(temp);
       }

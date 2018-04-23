@@ -869,13 +869,13 @@ namespace PFEditor.Controls
     {
       if (sortNameAsc)
       {
-        var temp = BestiaryList_Filter.OrderBy(x => x.Name);
+        var temp = new List<ListItemResult>(BestiaryList_Filter.OrderBy(x => x.Name));
         BestiaryList_Filter.Clear();
         BestiaryList_Filter.AddRange(temp);
       }
       else
       {
-        var temp = BestiaryList_Filter.OrderByDescending(x => x.Name);
+        var temp = new List<ListItemResult>(BestiaryList_Filter.OrderByDescending(x => x.Name));
         BestiaryList_Filter.Clear();
         BestiaryList_Filter.AddRange(temp);
       }
@@ -888,13 +888,13 @@ namespace PFEditor.Controls
     {
       if (sortCrAsc)
       {
-        var temp = BestiaryList_Filter.OrderBy(x => x.Notes);
+        var temp = new List<ListItemResult>(BestiaryList_Filter.OrderBy(x => x.Notes));
         BestiaryList_Filter.Clear();
         BestiaryList_Filter.AddRange(temp);
       }
       else
       {
-        var temp = BestiaryList_Filter.OrderByDescending(x => x.Notes);
+        var temp = new List<ListItemResult>(BestiaryList_Filter.OrderByDescending(x => x.Notes));
         BestiaryList_Filter.Clear();
         BestiaryList_Filter.AddRange(temp);
       }
