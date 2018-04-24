@@ -1,4 +1,4 @@
-﻿namespace PFEditor.Classes
+﻿namespace DBConnect.ConnectModels
 {
   public class DisplayResult
     {

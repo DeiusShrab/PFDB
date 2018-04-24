@@ -698,10 +698,12 @@ namespace PFHelper
       if (CbxWeatherLock.IsChecked == true)
         return;
 
-      // DEBUG
-      LblCurrentWeather.Content = random.Next(100);
-      LblCurrentWeatherGroup.Content = "DEBUG";
-      return;
+      if (WeatherResult == null && CurrentWeather == null)// DEBUG
+      {
+        LblCurrentWeather.Content = random.Next(100);
+        LblCurrentWeatherGroup.Content = "DEBUG";
+        return;
+      }
 
       if (WeatherResult == null || ContinentId != WeatherResult.ContinentId)
       {

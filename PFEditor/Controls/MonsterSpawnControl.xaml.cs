@@ -31,7 +31,6 @@ namespace PFEditor.Controls
     private int MonsterSpawnBestiaryId;
     private bool sortNameAsc = true;
     private bool sortCrAsc = true;
-    private bool suppress = false;
 
     public MonsterSpawnControl()
     {
@@ -56,8 +55,6 @@ namespace PFEditor.Controls
 
     private void LoadMonsterSpawnData()
     {
-      suppress = true;
-
       BiContinents = new Bictionary<int, string>();
       foreach (var item in ContinentList)
       {
@@ -125,8 +122,6 @@ namespace PFEditor.Controls
         };
         TabsMonsterSpawn.Items.Add(tab);
       }
-
-      suppress = false;
     }
 
     private List<MonsterSpawn> ExportMonsterSpawnData()

@@ -1,7 +1,4 @@
 TODO AT WORK
-MonsterSpawn
-	Special behavior for ALL NIGHT and ALL DAY checkboxes
-	Select by cell, space to multi-toggle
 Events!
 	Daily events, like bank interest
 	Calendar events, like holidays
@@ -9,9 +6,12 @@ Update big text fields like Attack, Defense, and Special to something machine-re
 	or split them into a new datatype. AbilityId, BestiaryId
 		(Melee/Ranged), Attack Bonus, Damage, Crit, Range, Type (P/S/B, Cone, Burst), Effects (+1d6 cold, etc)
 		(Special), Range, Type (Cone, Burst, etc), Target, Effect
+Half-Sheets for NPCs and PCs
+	A new tab where I can store/edit PC and NPC info
 
 TODO AT HOME
 Remove ALL from season, time, etc
+Add Season/Month of Stars, a time when magic is at its strongest
 Set up HTTPS on Apache
 	Set up HTTPS to access the api (but not the main site)
 Backup DB somehow

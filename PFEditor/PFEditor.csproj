@@ -143,7 +143,6 @@
     <Compile Include="Controls\BestiaryAbilitiesControl.xaml.cs">
       <DependentUpon>BestiaryAbilitiesControl.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Classes\DisplayResult.cs" />
     <Compile Include="Popups\SpellSelectPopup.xaml.cs">
       <DependentUpon>SpellSelectPopup.xaml</DependentUpon>
     </Compile>

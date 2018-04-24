@@ -185,6 +185,7 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="Classes\LiveEvent.cs" />
     <Compile Include="Popups\ListPopUp.xaml.cs">
       <DependentUpon>ListPopUp.xaml</DependentUpon>
     </Compile>
@@ -202,8 +203,6 @@
     </Compile>
     <Compile Include="Classes\CombatEffect.cs" />
     <Compile Include="Classes\CombatGridItem.cs" />
-    <Compile Include="Classes\DisplayResult.cs" />
-    <Compile Include="Classes\DisplayValues.cs" />
     <Compile Include="Classes\FantasyDate.cs" />
     <Compile Include="Classes\SaveObject.cs" />
     <Compile Include="Controls\ConfigEditor.xaml.cs">

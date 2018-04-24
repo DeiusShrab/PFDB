@@ -8,7 +8,6 @@ using System.Windows.Input;
 using DBConnect;
 using DBConnect.ConnectModels;
 using DBConnect.DBModels;
-using PFEditor.Classes;
 
 namespace PFEditor.Controls
 {

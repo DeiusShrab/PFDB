@@ -10,7 +10,7 @@ namespace PFHelper.Classes
 
     public virtual string ShortDate
     {
-      get { return Year.ToString() + "-" + Month.ToString() + "-" + Day.ToString(); }
+      get { return this.ToNumDate(); }
     }
 
     private int MonthsInYear;
@@ -18,8 +18,15 @@ namespace PFHelper.Classes
 
     public FantasyDate()
     {
-      MonthsInYear = 12;
+      MonthsInYear = 13;
       DaysInMonth = 28;
+    }
+
+    public FantasyDate(string parseDate, int monthsInYear = 13, int daysInMonth = 28)
+    {
+      FromNumDate(parseDate);
+      MonthsInYear = monthsInYear;
+      DaysInMonth = daysInMonth;
     }
 
     public FantasyDate(int monthsInYear, int daysInMonth)
@@ -69,7 +76,7 @@ namespace PFHelper.Classes
     {
       // yy...yymmdd
 
-      var ret = $"{Year.ToString()}{Month.ToString("D2")}{Day.ToString("D2")}";
+      var ret = $"{Year.ToString()}-{Month.ToString("D2")}-{Day.ToString("D2")}";
 
       return ret;
     }
@@ -81,6 +88,18 @@ namespace PFHelper.Classes
       Year = Convert.ToInt32(fromDate.Substring(0, fromDate.Length - 4));
 
       return this;
+    }
+
+    public int DaysSince(FantasyDate otherDate)
+    {
+      if (otherDate.DaysInMonth != DaysInMonth || otherDate.MonthsInYear != MonthsInYear)
+        throw new ArgumentException("Incompatible date formats! Check MonthsInYear and DaysInMonth");
+
+      var y = Year - otherDate.Year;
+      var m = (y * MonthsInYear) + Month - otherDate.Month;
+      var d = (m * DaysInMonth) + Day - otherDate.Day;
+
+      return d;
     }
   }
 }

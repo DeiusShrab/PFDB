@@ -1,4 +1,4 @@
-﻿namespace PFHelper.Classes
+﻿namespace DBConnect.ConnectModels
 {
   public class DisplayValues
     {
