@@ -264,15 +264,21 @@ namespace PFHelper
 
     private ObservableCollection<CombatGridItem> combatGridItems;
     private ObservableCollection<CombatEffectItem> combatEffectItems;
+    private ObservableCollection<LiveEvent> liveEventList;
     private ObservableCollection<DisplayResult> randomEncounterItems;
     private ObservableCollection<DisplayResult> continentList;
     private ObservableCollection<DisplayValues> encounterResults;
     private ObservableCollection<DisplayResult> creatureInfos;
+    private ObservableCollection<DisplayResult> planeList;
+    private ObservableCollection<DisplayResult> timeList;
 
     private List<TrackedEvent> trackedEvents;
     private List<Continent> continents;
     private List<Season> seasons;
     private List<Month> months;
+    private List<Time> times;
+    private List<Plane> planes;
+    private Dictionary<string, string> CampaignData;
 
     private RandomWeatherResult WeatherResult;
     private Random random;
@@ -297,33 +303,29 @@ namespace PFHelper
       random = new Random();
       CurrentDate = new FantasyDate();
 
-      if (!LoadDBData())
-      {
-        MessageBox.Show("ERROR - Failed to connect to server. Is the config set correctly?");
-        continents = new List<Continent>();
-        seasons = new List<Season>();
-        months = new List<Month>();
-        trackedEvents = new List<TrackedEvent>();
-      }
-
       encounterResults = new ObservableCollection<DisplayValues>();
       randomEncounterItems = new ObservableCollection<DisplayResult>();
       combatEffectItems = new ObservableCollection<CombatEffectItem>();
       combatGridItems = new ObservableCollection<CombatGridItem>();
       continentList = new ObservableCollection<DisplayResult>();
       creatureInfos = new ObservableCollection<DisplayResult>();
+      planeList = new ObservableCollection<DisplayResult>();
+      timeList = new ObservableCollection<DisplayResult>();
+      liveEventList = new ObservableCollection<LiveEvent>();
+
+      if (!LoadDBData())
+      {
+        MessageBox.Show("ERROR - Failed to connect to server. Is the config set correctly?");
+      }
 
       LoadSavedData();
 
-      foreach (var item in continents)
-      {
-        continentList.Add(new DisplayResult() { Display = item.Name, Result = item.ContinentId });
-      }
-
       LbxD20.DisplayMemberPath = LbxD4.DisplayMemberPath = LbxD6.DisplayMemberPath = LbxD8.DisplayMemberPath = LbxD10.DisplayMemberPath = LbxD12.DisplayMemberPath
-        = LbxEncounterCreatures.DisplayMemberPath = LbxContinent.DisplayMemberPath = LbxCreatureInfo.DisplayMemberPath = "Display";
+        = LbxEncounterCreatures.DisplayMemberPath = LbxContinent.DisplayMemberPath = LbxCreatureInfo.DisplayMemberPath = LbxPlane.DisplayMemberPath
+        = LbxTime.DisplayMemberPath = LbxTerrain.DisplayMemberPath = "Display";
       LbxD20.SelectedValuePath = LbxD4.SelectedValuePath = LbxD6.SelectedValuePath = LbxD8.SelectedValuePath = LbxD10.SelectedValuePath = LbxD12.SelectedValuePath
-        = LbxEncounterCreatures.SelectedValuePath = LbxContinent.SelectedValuePath = LbxCreatureInfo.SelectedValuePath = "Result";
+        = LbxEncounterCreatures.SelectedValuePath = LbxContinent.SelectedValuePath = LbxCreatureInfo.SelectedValuePath = LbxPlane.SelectedValuePath
+        = LbxTime.SelectedValuePath = LbxTerrain.SelectedValuePath = "Result";
 
       LbxEncounterCRs.DisplayMemberPath = "Display";
       LbxEncounterCRs.SelectedValuePath = "Values";
@@ -332,6 +334,8 @@ namespace PFHelper
       LbxEncounterCRs.ItemsSource = encounterResults;
       LbxContinent.ItemsSource = continentList;
       LbxCreatureInfo.ItemsSource = creatureInfos;
+      LbxPlane.ItemsSource = planeList;
+      LbxTime.ItemsSource = timeList;
 
       UpdateDate();
     }
@@ -344,16 +348,48 @@ namespace PFHelper
     {
       var ret = false;
 
+      continents = new List<Continent>();
+      seasons = new List<Season>();
+      months = new List<Month>();
+      times = new List<Time>();
+      planes = new List<Plane>();
+      trackedEvents = new List<TrackedEvent>();
+
       if (DBClient.ConfigExists())
       {
         try
         {
           DBClient.ConnectToApi();
 
-          continents = DBClient.GetContinents();
-          seasons = DBClient.GetSeasons();
-          months = DBClient.GetMonths();
-          trackedEvents = DBClient.GetTrackedEvents();
+          continents.AddRange(DBClient.GetContinents());
+          seasons.AddRange(DBClient.GetSeasons());
+          months.AddRange(DBClient.GetMonths());
+          times.AddRange(DBClient.GetTimes());
+          planes.AddRange(DBClient.GetPlanes());
+          trackedEvents.AddRange(DBClient.GetTrackedEvents());
+
+          continentList.Clear();
+          timeList.Clear();
+          planeList.Clear();
+          liveEventList.Clear();
+
+          foreach (var item in continents)
+          {
+            continentList.Add(new DisplayResult() { Display = item.Name, Result = item.ContinentId });
+          }
+          foreach (var item in times)
+          {
+            timeList.Add(new DisplayResult() { Display = item.Name, Result = item.TimeId });
+          }
+          foreach (var item in planes)
+          {
+            planeList.Add(new DisplayResult() { Display = item.Name, Result = item.PlaneId });
+          }
+          foreach (var item in trackedEvents)
+          {
+            liveEventList.Add(new LiveEvent(item));
+          }
+
           ret = true;
         }
         catch (Exception ex)
@@ -435,6 +471,29 @@ namespace PFHelper
       saveObject.CombatGridItems = combatGridItems.ToList();
 
       File.WriteAllText(saveDataPath, Newtonsoft.Json.JsonConvert.SerializeObject(saveObject));
+
+      try
+      {
+        foreach (var item in liveEventList)
+        {
+          if (item.EventId > 0)
+            DBClient.UpdateTrackedEvent(item.Export());
+          else
+            DBClient.CreateTrackedEvent(item.Export());
+        }
+
+        trackedEvents = DBClient.GetTrackedEvents();
+        liveEventList.Clear();
+        foreach (var item in trackedEvents)
+        {
+          liveEventList.Add(new LiveEvent(item));
+        }
+      }
+      catch (Exception ex)
+      {
+        File.WriteAllText(Path.Combine(Path.GetDirectoryName(saveDataPath), $"Events {DateTime.Now.ToString("yyyyMMdd-hhmmss")}.log"), Newtonsoft.Json.JsonConvert.SerializeObject(liveEventList));
+        MessageBox.Show("Failed to save Events!\n" + ex.Message);
+      }
     }
 
     private void ClearCombatAdd()
@@ -691,6 +750,8 @@ namespace PFHelper
 
       if (!RationsInfinite && i > 0)
         AddRations(i * -1);
+
+      // TODO Update events, switch over to event tab if a non-daily event occurs (freq > 1)
     }
 
     private void NextWeather(int d = 1)
@@ -1096,6 +1157,18 @@ namespace PFHelper
 
         if (!creatureInfos.Select(x => x.Result).Contains(bItem.Id))
           creatureInfos.Add(new DisplayResult() { Display = bItem.Name, Result = bItem.Id });
+      }
+    }
+
+    private void Grid_KeyDown(object sender, System.Windows.Input.KeyEventArgs e)
+    {
+      if (e.Key == System.Windows.Input.Key.F5)
+      {
+        e.Handled = true;
+        if (!LoadDBData())
+        {
+          MessageBox.Show("ERROR - Failed to connect to server. Is the config set correctly?");
+        }
       }
     }
   }

@@ -18,6 +18,7 @@ namespace DBConnect
     API_PASS,
     API_ADDR,
     MAX_CACHE_SIZE,
+    CAMPAIGN_NAME,
   }
 
   public static class DBClient
@@ -142,6 +143,24 @@ namespace DBConnect
     #endregion
 
     #region Queries
+
+    public static Dictionary<string, string> GetCampaignData()
+    {
+      Dictionary<string, string> ret = null;
+      var campaign = Configuration[ConfigValues.CAMPAIGN_NAME.ToString()];
+
+      if (!string.IsNullOrWhiteSpace(campaign))
+      {
+        var response = client.GetAsync(API_ADDR + "CampaignData/" + campaign).Result;
+        if (response.IsSuccessStatusCode)
+        {
+          var content = response.Content;
+          ret = JsonConvert.DeserializeObject<Dictionary<string, string>>(content.ReadAsStringAsync().Result);
+        }
+      }
+
+      return ret;
+    }
 
     public static List<ListItemResult> GetList(string listType)
     {

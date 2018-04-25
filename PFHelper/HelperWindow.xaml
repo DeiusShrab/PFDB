@@ -32,7 +32,7 @@
     <Window.InputBindings>
         <KeyBinding Key="S" Modifiers="Ctrl" Command="Save"/>
     </Window.InputBindings>
-    <Grid Margin="0,0,2,2">
+    <Grid Margin="0,0,2,2" KeyDown="Grid_KeyDown">
         <Grid.ColumnDefinitions>
             <ColumnDefinition/>
         </Grid.ColumnDefinitions>
@@ -207,7 +207,9 @@
                 </Grid>
             </TabItem>
             <TabItem x:Name="TabEventTracker" Header="Event Tracker" Margin="-2,-2,-2,0">
-                <Grid Background="#FFE5E5E5"/>
+                <Grid Background="#FFE5E5E5">
+                    <DataGrid HorizontalAlignment="Left" Height="447" Margin="695,10,0,0" VerticalAlignment="Top" Width="385"/>
+                </Grid>
             </TabItem>
         </TabControl>
         <Label x:Name="LblTextDate" Content="Wed, Emb 00" HorizontalAlignment="Left" Margin="689,116,0,0" VerticalAlignment="Top" FontSize="16"/>

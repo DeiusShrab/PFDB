@@ -9,14 +9,15 @@ namespace PFHelper.Classes
 {
   public class LiveEvent
   {
-    private int EventId;
-    private string Name;
-    private string Notes;
-    private int ReoccurFreq;
+    public int EventId;
+    public string Name;
+    public string Notes;
+    public int ReoccurFreq;
+    public string Location;
 
-    private FantasyDate DateCreated;
-    private FantasyDate DateNextOccurring;
-    private FantasyDate DateLastOccurred;
+    public FantasyDate DateCreated;
+    public FantasyDate DateNextOccurring;
+    public FantasyDate DateLastOccurred;
 
     public LiveEvent(TrackedEvent evt)
     {
@@ -28,6 +29,7 @@ namespace PFHelper.Classes
       Notes = evt.Notes;
       ReoccurFreq = evt.ReoccurFreq;
       EventId = evt.TrackedEventId;
+      Location = evt.Location;
     }
 
     public TrackedEvent Export()
@@ -39,7 +41,8 @@ namespace PFHelper.Classes
         Name = Name,
         Notes = Notes,
         ReoccurFreq = ReoccurFreq,
-        TrackedEventId = EventId
+        TrackedEventId = EventId,
+        Location = Location
       };
 
       if (DateLastOccurred != null)

@@ -1,4 +1,6 @@
 TODO AT WORK
+Campaign Data
+	Key/Value table of stuff like campaign name, bank interest, etc
 Events!
 	Daily events, like bank interest
 	Calendar events, like holidays
