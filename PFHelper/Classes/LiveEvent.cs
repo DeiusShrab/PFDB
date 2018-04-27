@@ -14,14 +14,20 @@ namespace PFHelper.Classes
     public string Notes;
     public int ReoccurFreq;
     public string Location;
+    public int CampaignId;
+    public string Data;
 
-    public FantasyDate DateCreated;
+    public TrackedEventType EventType;
     public FantasyDate DateNextOccurring;
     public FantasyDate DateLastOccurred;
 
+    public LiveEvent()
+    {
+      
+    }
+
     public LiveEvent(TrackedEvent evt)
     {
-      DateCreated = new FantasyDate(evt.DateCreated);
       DateNextOccurring = new FantasyDate(evt.DateOccurring);
       DateLastOccurred = string.IsNullOrWhiteSpace(evt.DateLastOccurred) ? null : new FantasyDate(evt.DateLastOccurred);
 
@@ -30,19 +36,24 @@ namespace PFHelper.Classes
       ReoccurFreq = evt.ReoccurFreq;
       EventId = evt.TrackedEventId;
       Location = evt.Location;
+      CampaignId = evt.CampaignId;
+      EventType = (TrackedEventType)evt.TrackedEventType;
+      Data = evt.TrackedEventData;
     }
 
     public TrackedEvent Export()
     {
       var evt = new TrackedEvent
       {
-        DateCreated = DateCreated.ToNumDate(),
         DateOccurring = DateNextOccurring.ToNumDate(),
         Name = Name,
         Notes = Notes,
         ReoccurFreq = ReoccurFreq,
         TrackedEventId = EventId,
-        Location = Location
+        Location = Location,
+        CampaignId = CampaignId,
+        TrackedEventData = Data,
+        TrackedEventType = (int)EventType,
       };
 
       if (DateLastOccurred != null)

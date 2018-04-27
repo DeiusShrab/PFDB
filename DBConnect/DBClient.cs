@@ -18,7 +18,7 @@ namespace DBConnect
     API_PASS,
     API_ADDR,
     MAX_CACHE_SIZE,
-    CAMPAIGN_NAME,
+    CAMPAIGN_ID,
   }
 
   public static class DBClient
@@ -147,7 +147,7 @@ namespace DBConnect
     public static Dictionary<string, string> GetCampaignData()
     {
       Dictionary<string, string> ret = null;
-      var campaign = Configuration[ConfigValues.CAMPAIGN_NAME.ToString()];
+      var campaign = Configuration[ConfigValues.CAMPAIGN_ID.ToString()];
 
       if (!string.IsNullOrWhiteSpace(campaign))
       {
@@ -160,6 +160,20 @@ namespace DBConnect
       }
 
       return ret;
+    }
+
+    public static bool UpdateCampaignData(Dictionary<string, string> campaignData)
+    {
+      var campaign = Configuration[ConfigValues.CAMPAIGN_ID.ToString()];
+      if (campaignData != null && campaign != null)
+      {
+        var body = JsonConvert.SerializeObject(campaignData);
+        var response = client.PostAsync(API_ADDR + "CampaignData/" + campaign, new StringContent(body, Encoding.UTF8, "application/json")).Result;
+        if (response.IsSuccessStatusCode)
+          return true;
+      }
+
+      return false;
     }
 
     public static List<ListItemResult> GetList(string listType)

@@ -13,7 +13,9 @@ Half-Sheets for NPCs and PCs
 
 TODO AT HOME
 Remove ALL from season, time, etc
+CampaignData table
 Add Season/Month of Stars, a time when magic is at its strongest
+Add Events (Bank interest monthly, NOT daily)
 Set up HTTPS on Apache
 	Set up HTTPS to access the api (but not the main site)
 Backup DB somehow

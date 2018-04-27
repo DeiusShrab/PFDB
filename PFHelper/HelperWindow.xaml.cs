@@ -5,6 +5,7 @@ using System.IO;
 using System.Linq;
 using System.Text;
 using System.Windows;
+using System.Windows.Data;
 using System.Windows.Media;
 using DBConnect;
 using DBConnect.ConnectModels;
@@ -258,6 +259,65 @@ namespace PFHelper
       get => combatEffectItems;
     }
 
+    public string EventName
+    {
+      get { return TxtEvtName.Text; }
+      set { TxtEvtName.Text = value; }
+    }
+
+    public string EventDate
+    {
+      get { return TxtEvtDate.Text; }
+      set { TxtEvtDate.Text = value; }
+    }
+
+    public string EventLastDate
+    {
+      get { return TxtEvtLastDate.Text; }
+      set { TxtEvtLastDate.Text = value; }
+    }
+
+    public string EventLocation
+    {
+      get { return TxtEvtLocation.Text; }
+      set { TxtEvtLocation.Text = value; }
+    }
+
+    public int EventFrequency
+    {
+      get { return IntEvtFreq.Value ?? 0; }
+      set {
+        if (value > 0)
+          IntEvtFreq.Value = value;
+        else
+          IntEvtFreq.Value = null;
+      }
+    }
+
+    public int EventTypeId
+    {
+      get
+      {
+        if (DrpEvtType.SelectedItem != null)
+          return (int)DrpEvtType.SelectedValue;
+
+        return 0;
+      }
+      set { DrpEvtType.SelectedValue = value; }
+    }
+
+    public string EventData
+    {
+      get { return TxtEvtData.Text; }
+      set { TxtEvtData.Text = value; }
+    }
+
+    public string EventNotes
+    {
+      get { return TxtEvtNotes.Text; }
+      set { TxtEvtNotes.Text = value; }
+    }
+
     #endregion
 
     #region Data Properties
@@ -285,6 +345,7 @@ namespace PFHelper
     private FantasyDate CurrentDate;
     private Month CurrentMonth;
     private Weather CurrentWeather;
+    private LiveEvent CurrentEvent;
     private ContinentWeather CurrentWeatherGroup;
     private string saveDataPath = Path.Combine(System.Environment.CurrentDirectory, "pfdat.dat");
     private string selectedCombatMonsterHtml;
@@ -322,10 +383,10 @@ namespace PFHelper
 
       LbxD20.DisplayMemberPath = LbxD4.DisplayMemberPath = LbxD6.DisplayMemberPath = LbxD8.DisplayMemberPath = LbxD10.DisplayMemberPath = LbxD12.DisplayMemberPath
         = LbxEncounterCreatures.DisplayMemberPath = LbxContinent.DisplayMemberPath = LbxCreatureInfo.DisplayMemberPath = LbxPlane.DisplayMemberPath
-        = LbxTime.DisplayMemberPath = LbxTerrain.DisplayMemberPath = "Display";
+        = LbxTime.DisplayMemberPath = LbxTerrain.DisplayMemberPath = DrpEvtType.DisplayMemberPath = "Display";
       LbxD20.SelectedValuePath = LbxD4.SelectedValuePath = LbxD6.SelectedValuePath = LbxD8.SelectedValuePath = LbxD10.SelectedValuePath = LbxD12.SelectedValuePath
         = LbxEncounterCreatures.SelectedValuePath = LbxContinent.SelectedValuePath = LbxCreatureInfo.SelectedValuePath = LbxPlane.SelectedValuePath
-        = LbxTime.SelectedValuePath = LbxTerrain.SelectedValuePath = "Result";
+        = LbxTime.SelectedValuePath = LbxTerrain.SelectedValuePath = DrpEvtType.SelectedValuePath = "Result";
 
       LbxEncounterCRs.DisplayMemberPath = "Display";
       LbxEncounterCRs.SelectedValuePath = "Values";
@@ -338,6 +399,11 @@ namespace PFHelper
       LbxTime.ItemsSource = timeList;
 
       UpdateDate();
+
+      foreach (TrackedEventType item in Enum.GetValues(typeof(TrackedEventType)))
+      {
+        DrpEvtType.Items.Add(new DisplayResult() { Display = item.ToString(), Result = (int)item });
+      }
     }
 
     #endregion
@@ -354,6 +420,7 @@ namespace PFHelper
       times = new List<Time>();
       planes = new List<Plane>();
       trackedEvents = new List<TrackedEvent>();
+      CampaignData = new Dictionary<string, string>();
 
       if (DBClient.ConfigExists())
       {
@@ -367,6 +434,8 @@ namespace PFHelper
           times.AddRange(DBClient.GetTimes());
           planes.AddRange(DBClient.GetPlanes());
           trackedEvents.AddRange(DBClient.GetTrackedEvents());
+
+          CampaignData = DBClient.GetCampaignData();
 
           continentList.Clear();
           timeList.Clear();
@@ -446,7 +515,7 @@ namespace PFHelper
       }
     }
 
-    private void SaveData()
+    private void SaveDataToDisk()
     {
       var saveObject = new SaveObject();
 
@@ -471,7 +540,10 @@ namespace PFHelper
       saveObject.CombatGridItems = combatGridItems.ToList();
 
       File.WriteAllText(saveDataPath, Newtonsoft.Json.JsonConvert.SerializeObject(saveObject));
+    }
 
+    private void SaveDataToDB()
+    {
       try
       {
         foreach (var item in liveEventList)
@@ -492,6 +564,16 @@ namespace PFHelper
       catch (Exception ex)
       {
         File.WriteAllText(Path.Combine(Path.GetDirectoryName(saveDataPath), $"Events {DateTime.Now.ToString("yyyyMMdd-hhmmss")}.log"), Newtonsoft.Json.JsonConvert.SerializeObject(liveEventList));
+        MessageBox.Show("Failed to save Events!\n" + ex.Message);
+      }
+
+      try
+      {
+        DBClient.UpdateCampaignData(CampaignData);
+      }
+      catch (Exception ex)
+      {
+        File.WriteAllText(Path.Combine(Path.GetDirectoryName(saveDataPath), $"CampaignData {DateTime.Now.ToString("yyyyMMdd-hhmmss")}.log"), Newtonsoft.Json.JsonConvert.SerializeObject(CampaignData));
         MessageBox.Show("Failed to save Events!\n" + ex.Message);
       }
     }
@@ -744,6 +826,7 @@ namespace PFHelper
 
     private void AddDays(int i)
     {
+      var oldDate = new FantasyDate(CurrentDate.ShortDate);
       CurrentDate.AddDays(i);
       NextWeather(i);
       UpdateDate();
@@ -752,6 +835,56 @@ namespace PFHelper
         AddRations(i * -1);
 
       // TODO Update events, switch over to event tab if a non-daily event occurs (freq > 1)
+      for (int j = 1; j <= i; j++)
+      {
+        foreach (var evt in liveEventList)
+        {
+          if (evt.DateNextOccurring == oldDate.AddDays(j))
+            RunLiveEvent(evt);
+        }
+      }
+    }
+
+    private void RunLiveEvent(LiveEvent e)
+    {
+      e.DateLastOccurred = new FantasyDate(e.DateNextOccurring.ShortDate);
+      e.DateNextOccurring.AddDays(e.ReoccurFreq);
+
+      try
+      {
+        switch (e.EventType)
+        {
+          case TrackedEventType.UpdateCampaignNumber:
+            UpdateCampaignNumber(e.Data);
+            break;
+        }
+      }
+      catch (Exception ex)
+      {
+        MessageBox.Show($"Failed to run event '{e.Name}'\n{ex.Message}");
+      }
+    }
+
+    private void UpdateCampaignNumber(string data)
+    {
+      var split = data.Split(';');
+      var key = split[0];
+      var op = split[1];
+      var num = Convert.ToDecimal(split[2]);
+      var value = Convert.ToInt32(CampaignData[key]);
+      switch (op)
+      {
+        case "*":
+          value = Convert.ToInt32(Math.Floor(d: value * num));
+          break;
+        case "+":
+          value += Convert.ToInt32(num);
+          break;
+        case "-":
+          value -= Convert.ToInt32(num);
+          break;
+      }
+      CampaignData[key] = value.ToString();
     }
 
     private void NextWeather(int d = 1)
@@ -856,6 +989,32 @@ namespace PFHelper
       };
 
       WeatherResult = DBClient.GetRandomWeatherList(reqWeather);
+    }
+
+    private void LoadTrackedEvent()
+    {
+      if (CurrentEvent != null)
+      {
+        EventDate = CurrentEvent.DateNextOccurring.ShortDate;
+        EventLastDate = CurrentEvent.DateLastOccurred != null ? CurrentEvent.DateLastOccurred.ShortDate : string.Empty;
+        EventLocation = CurrentEvent.Location;
+        EventName = CurrentEvent.Name;
+        EventNotes = CurrentEvent.Notes;
+        EventFrequency = CurrentEvent.ReoccurFreq;
+      }
+    }
+
+    private void SaveTrackedEvent()
+    {
+      if (CurrentEvent == null)
+        CurrentEvent = new LiveEvent();
+
+      CurrentEvent.DateNextOccurring = new FantasyDate(EventDate);
+      CurrentEvent.DateLastOccurred = string.IsNullOrWhiteSpace(EventLastDate) ? null : new FantasyDate(EventLastDate);
+      CurrentEvent.Location = EventLocation;
+      CurrentEvent.Name = EventName;
+      CurrentEvent.Notes = EventNotes;
+      CurrentEvent.ReoccurFreq = EventFrequency;
     }
 
     #endregion
@@ -1061,12 +1220,12 @@ namespace PFHelper
 
     private void Window_Closing(object sender, System.ComponentModel.CancelEventArgs e)
     {
-      SaveData();
+      SaveDataToDisk();
     }
 
     private void CommandSave_Executed(object sender, System.Windows.Input.ExecutedRoutedEventArgs e)
     {
-      SaveData();
+      SaveDataToDisk();
     }
 
     private void BtnCombatClearAll_Click(object sender, RoutedEventArgs e)
@@ -1170,6 +1329,48 @@ namespace PFHelper
           MessageBox.Show("ERROR - Failed to connect to server. Is the config set correctly?");
         }
       }
+    }
+
+    private void BtnEvtSave_Click(object sender, RoutedEventArgs e)
+    {
+      SaveTrackedEvent();
+
+      if (CurrentEvent.EventId == 0)
+        CurrentEvent = new LiveEvent(DBClient.CreateTrackedEvent(CurrentEvent.Export()));
+      else
+        DBClient.UpdateTrackedEvent(CurrentEvent.Export());
+    }
+
+    private void BtnEvtNew_Click(object sender, RoutedEventArgs e)
+    {
+      CurrentEvent = new LiveEvent();
+
+      LoadTrackedEvent();
+    }
+
+    private void DgEvt_MouseDoubleClick(object sender, System.Windows.Input.MouseButtonEventArgs e)
+    {
+      if (DgEvt.SelectedItem != null)
+      {
+        CurrentEvent = liveEventList.First(x => x.EventId == ((LiveEvent)DgEvt.SelectedItem).EventId);
+        LoadTrackedEvent();
+      }
+    }
+
+    private void BtnEvtSortName_Click(object sender, RoutedEventArgs e)
+    {
+      var temp = new List<LiveEvent>(liveEventList.OrderBy(x => x.Name));
+      liveEventList.Clear();
+      liveEventList.AddRange(temp);
+    }
+
+    private void BtnEvtSortNext_Click(object sender, RoutedEventArgs e)
+    {
+      var temp = new List<LiveEvent>(liveEventList.Where(x => x.DateNextOccurring >= CurrentDate).OrderBy(x => x.DateNextOccurring));
+      temp.AddRange(liveEventList.Where(x => x.DateNextOccurring < CurrentDate).OrderBy(x => x.DateNextOccurring));
+
+      liveEventList.Clear();
+      liveEventList.AddRange(temp);
     }
   }
 }

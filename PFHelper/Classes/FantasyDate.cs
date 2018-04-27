@@ -2,7 +2,7 @@
 
 namespace PFHelper.Classes
 {
-  public class FantasyDate
+  public class FantasyDate : IComparable<FantasyDate>
   {
     public int Year { get; set; }
     public int Month { get; set; }
@@ -83,9 +83,22 @@ namespace PFHelper.Classes
 
     public FantasyDate FromNumDate(string fromDate)
     {
-      Day = Convert.ToInt32(fromDate.Substring(fromDate.Length - 2, 2));
-      Month = Convert.ToInt32(fromDate.Substring(fromDate.Length - 4, 2));
-      Year = Convert.ToInt32(fromDate.Substring(0, fromDate.Length - 4));
+      if (fromDate.Contains("-"))
+      {
+        var split = fromDate.Split('-');
+        if (split.Length == 3)
+        {
+          Day = Convert.ToInt32(split[2]);
+          Month = Convert.ToInt32(split[1]);
+          Year = Convert.ToInt32(split[0]);
+        }
+      }
+      else if (fromDate.Length > 4)
+      {
+        Day = Convert.ToInt32(fromDate.Substring(fromDate.Length - 2, 2));
+        Month = Convert.ToInt32(fromDate.Substring(fromDate.Length - 4, 2));
+        Year = Convert.ToInt32(fromDate.Substring(0, fromDate.Length - 4));
+      }
 
       return this;
     }
@@ -100,6 +113,123 @@ namespace PFHelper.Classes
       var d = (m * DaysInMonth) + Day - otherDate.Day;
 
       return d;
+    }
+
+    public int CompareTo(FantasyDate other)
+    {
+      if (other == null)
+        return 1;
+
+      if (MonthsInYear > other.MonthsInYear)
+        return 1;
+      else if (MonthsInYear < other.MonthsInYear)
+        return -1;
+
+      if (DaysInMonth > other.MonthsInYear)
+        return 1;
+      else if (DaysInMonth < other.DaysInMonth)
+        return -1;
+
+      if (this > other)
+        return 1;
+      else if (this < other)
+        return -1;
+
+      return 0;
+    }
+
+    public override bool Equals(object obj)
+    {
+      var date = obj as FantasyDate;
+      return date != null &&
+             Year == date.Year &&
+             Month == date.Month &&
+             Day == date.Day &&
+             MonthsInYear == date.MonthsInYear &&
+             DaysInMonth == date.DaysInMonth;
+    }
+
+    public override int GetHashCode()
+    {
+      var hashCode = -1683302929;
+      hashCode = hashCode * -1521134295 + Year.GetHashCode();
+      hashCode = hashCode * -1521134295 + Month.GetHashCode();
+      hashCode = hashCode * -1521134295 + Day.GetHashCode();
+      hashCode = hashCode * -1521134295 + MonthsInYear.GetHashCode();
+      hashCode = hashCode * -1521134295 + DaysInMonth.GetHashCode();
+      return hashCode;
+    }
+
+    public static bool operator <(FantasyDate d1, FantasyDate d2)
+    {
+      if (d1 == null || d2 == null)
+        return false;
+
+      if (d1.DaysInMonth != d2.DaysInMonth || d1.MonthsInYear != d2.MonthsInYear)
+        throw new ArgumentException("Incompatible date formats! Check MonthsInYear and DaysInMonth");
+
+      if (d1.Year < d2.Year)
+        return true;
+
+      if (d1.Year == d2.Year && d1.Month < d2.Month)
+        return true;
+
+      if (d1.Year == d2.Year && d1.Month == d2.Month && d1.Day < d2.Day)
+        return true;
+
+      return false;
+    }
+
+    public static bool operator >(FantasyDate d1, FantasyDate d2)
+    {
+      if (d1 == null || d2 == null)
+        return false;
+
+      if (d1.DaysInMonth != d2.DaysInMonth || d1.MonthsInYear != d2.MonthsInYear)
+        throw new ArgumentException("Incompatible date formats! Check MonthsInYear and DaysInMonth");
+
+      if (d1.Year > d2.Year)
+        return true;
+
+      if (d1.Year == d2.Year && d1.Month > d2.Month)
+        return true;
+
+      if (d1.Year == d2.Year && d1.Month == d2.Month && d1.Day > d2.Day)
+        return true;
+
+      return false;
+    }
+
+    public static bool operator ==(FantasyDate d1, FantasyDate d2)
+    {
+      if (d1 == null && d2 == null)
+        return true;
+
+      if (d1 == null || d2 == null)
+        return false;
+      
+      if (d1.DaysInMonth != d2.DaysInMonth || d1.MonthsInYear != d2.MonthsInYear)
+        throw new ArgumentException("Incompatible date formats! Check MonthsInYear and DaysInMonth");
+
+      if (d1.Year == d2.Year && d1.Month == d2.Month && d1.Day == d2.Day)
+        return true;
+
+      return false;
+    }
+
+    public static bool operator !=(FantasyDate d1, FantasyDate d2)
+    {
+      return !(d1 == d2);
+    }
+
+    public static bool operator <=(FantasyDate d1, FantasyDate d2)
+    {
+      return d1 == d2 || d1 < d2;
+    }
+
+    public static bool operator >=(FantasyDate d1, FantasyDate d2)
+    {
+      return d1 == d2 || d1 > d2;
     }
   }
 }

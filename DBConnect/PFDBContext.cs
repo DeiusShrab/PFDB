@@ -14,6 +14,7 @@ namespace DBConnect
     public virtual DbSet<BestiarySkill> BestiarySkill { get; set; }
     public virtual DbSet<BestiarySubType> BestiarySubType { get; set; }
     public virtual DbSet<BestiaryType> BestiaryType { get; set; }
+    public virtual DbSet<CampaignData> CampaignData { get; set; }
     public virtual DbSet<Continent> Continent { get; set; }
     public virtual DbSet<ContinentWeather> ContinentWeather { get; set; }
     public virtual DbSet<Environment> Environment { get; set; }
@@ -407,6 +408,16 @@ namespace DBConnect
             .IsRequired()
             .HasMaxLength(100)
             .IsUnicode(false);
+      });
+
+      modelBuilder.Entity<CampaignData>(entity =>
+      {
+        entity.HasKey(e => new { e.CampaignId, e.Key });
+
+        entity.Property(e => e.Value)
+              .HasMaxLength(500)
+              .IsUnicode(false);
+        
       });
 
       modelBuilder.Entity<Continent>(entity =>
@@ -1165,11 +1176,6 @@ namespace DBConnect
 
       modelBuilder.Entity<TrackedEvent>(entity =>
       {
-        entity.Property(e => e.DateCreated)
-            .IsRequired()
-            .HasMaxLength(100)
-            .IsUnicode(false);
-
         entity.Property(e => e.DateOccurring)
             .IsRequired()
             .HasMaxLength(100)

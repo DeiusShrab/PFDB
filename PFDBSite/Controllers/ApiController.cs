@@ -10,6 +10,7 @@ using Microsoft.IdentityModel.Tokens;
 using System.Text;
 using Newtonsoft.Json.Linq;
 using DBConnect.DBModels;
+using System.Collections.Generic;
 
 namespace PFDBSite.Controllers
 {
@@ -53,6 +54,66 @@ namespace PFDBSite.Controllers
     }
 
     #region Queries
+    [HttpGet("CampaignData/{campaignId:int}")]
+    public IActionResult GetCampaignData(int campaignId)
+    {
+      var data = PFDAL.GetContext().CampaignData.Where(x => x.CampaignId == campaignId);
+
+      if (data == null)
+        return NotFound();
+
+      var dict = new Dictionary<string, string>();
+      foreach (var item in data)
+      {
+        dict.Add(item.Key, item.Value);
+      }
+
+      return new JsonResult(dict);
+    }
+
+    [HttpPost("CampaignData/{campaignId:int}")]
+    public IActionResult UpdateCampaignData([FromBody] Dictionary<string, string> campaignData, int campaignId)
+    {
+      if (campaignData == null)
+      {
+        return BadRequest();
+      }
+
+      var context = PFDAL.GetContext();
+      var oldData = PFDAL.GetContext().CampaignData.Where(x => x.CampaignId == campaignId);
+
+      if (oldData != null)
+      {
+        var removeList = new List<string>();
+        foreach (var key in campaignData.Keys)
+        {
+          var data = oldData.FirstOrDefault(x => x.Key == key);
+          if (data != null)
+          {
+            removeList.Add(key);
+            data.Value = campaignData[key];
+            context.SaveChanges();
+          }
+        }
+
+        foreach (var key in removeList)
+        {
+          campaignData.Remove(key);
+        }
+      }
+
+      foreach (var key in campaignData.Keys)
+      {
+        var data = new CampaignData();
+        context.CampaignData.Attach(data);
+        data.CampaignId = campaignId;
+        data.Key = key;
+        data.Value = campaignData[key];
+        context.SaveChanges();
+      }
+
+      return Ok();
+    }
 
     [HttpGet("List/{listType}")]
     public IActionResult ObjectList(string listType)

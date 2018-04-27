@@ -18,6 +18,7 @@ namespace DBConnect
     public DbSet<BestiarySkill> BestiarySkill { get; set; }
     public DbSet<BestiarySubType> BestiarySubType { get; set; }
     public DbSet<BestiaryType> BestiaryType { get; set; }
+    public DbSet<CampaignData> CampaignData { get; set; }
     public DbSet<Continent> Continent { get; set; }
     public DbSet<ContinentWeather> ContinentWeather { get; set; }
     public DbSet<Environment> Environment { get; set; }
@@ -55,6 +56,7 @@ namespace DBConnect
     private List<BestiarySkill> _BestiarySkill = new List<BestiarySkill>();
     private List<BestiarySubType> _BestiarySubType = new List<BestiarySubType>();
     private List<BestiaryType> _BestiaryType = new List<BestiaryType>();
+    private List<CampaignData> _CampaignData = new List<CampaignData>();
     private List<Continent> _Continent = new List<Continent>();
     private List<ContinentWeather> _ContinentWeather = new List<ContinentWeather>();
     private List<Environment> _Environment = new List<Environment>();
@@ -94,6 +96,7 @@ namespace DBConnect
       BestiarySkill = GetQueryableMockDbSet(_BestiarySkill);
       BestiarySubType = GetQueryableMockDbSet(_BestiarySubType);
       BestiaryType = GetQueryableMockDbSet(_BestiaryType);
+      CampaignData = GetQueryableMockDbSet(_CampaignData);
       Continent = GetQueryableMockDbSet(_Continent);
       ContinentWeather = GetQueryableMockDbSet(_ContinentWeather);
       Environment = GetQueryableMockDbSet(_Environment);

@@ -6,6 +6,7 @@
         xmlns:local="clr-namespace:PFHelper"
         xmlns:me="clr-namespace:PFHelper.Classes"
         xmlns:xctk="http://schemas.xceed.com/wpf/xaml/toolkit"
+        xmlns:scm="clr-namespace:System.ComponentModel;assembly=WindowsBase"
         mc:Ignorable="d"
         Title="PFHelper" Height="728" Width="1366" Closing="Window_Closing">
     <Window.Resources>
@@ -208,7 +209,36 @@
             </TabItem>
             <TabItem x:Name="TabEventTracker" Header="Event Tracker" Margin="-2,-2,-2,0">
                 <Grid Background="#FFE5E5E5">
-                    <DataGrid HorizontalAlignment="Left" Height="447" Margin="695,10,0,0" VerticalAlignment="Top" Width="385"/>
+                    <DataGrid x:Name="DgEvt" HorizontalAlignment="Left" Height="422" Margin="414,10,0,0" VerticalAlignment="Top" Width="666" MouseDoubleClick="DgEvt_MouseDoubleClick" ItemsSource="{Binding liveEventList}">
+                        <DataGrid.Columns>
+                            <DataGridTextColumn Binding="{Binding Name}" Header="Event Name" Width="150" />
+                            <DataGridTextColumn Binding="{Binding DateNextOccurring}" Header="Date" Width="100" />
+                            <DataGridTextColumn Binding="{Binding Location}" Header="Location" Width="150" />
+                            <DataGridTextColumn Binding="{Binding Notes}" Header="Notes" Width="*" />
+                        </DataGrid.Columns>
+                    </DataGrid>
+                    <Label Content="Event Name" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top"/>
+                    <Label Content="Date Occurring" HorizontalAlignment="Left" Margin="10,36,0,0" VerticalAlignment="Top"/>
+                    <Label Content="Last Occurrence" HorizontalAlignment="Left" Margin="10,62,0,0" VerticalAlignment="Top"/>
+                    <Label Content="Location" HorizontalAlignment="Left" Margin="10,88,0,0" VerticalAlignment="Top"/>
+                    <Label Content="Frequency" HorizontalAlignment="Left" Margin="10,114,0,0" VerticalAlignment="Top"/>
+                    <Label Content="Event Type" HorizontalAlignment="Left" Margin="10,140,0,0" VerticalAlignment="Top"/>
+                    <Label Content="Event Data" HorizontalAlignment="Left" Margin="10,166,0,0" VerticalAlignment="Top"/>
+                    <Label Content="Notes" HorizontalAlignment="Left" Margin="10,192,0,0" VerticalAlignment="Top"/>
+                    <TextBox x:Name="TxtEvtLastDate" HorizontalAlignment="Left" Height="23" Margin="109,65,0,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="300"/>
+                    <TextBox x:Name="TxtEvtDate" HorizontalAlignment="Left" Height="23" Margin="109,39,0,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="300"/>
+                    <TextBox x:Name="TxtEvtName" HorizontalAlignment="Left" Height="23" Margin="109,13,0,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="300"/>
+                    <TextBox x:Name="TxtEvtLocation" HorizontalAlignment="Left" Height="23" Margin="109,91,0,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="300"/>
+                    <TextBox x:Name="TxtEvtData" HorizontalAlignment="Left" Height="23" Margin="109,169,0,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="300"/>
+                    <TextBox x:Name="TxtEvtNotes" HorizontalAlignment="Left" Height="237" Margin="109,195,0,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="300"/>
+                    <xctk:IntegerUpDown x:Name="IntEvtFreq" HorizontalAlignment="Left" Margin="109,120,0,0" VerticalAlignment="Top" Width="80"/>
+                    <Label Content="days" HorizontalAlignment="Left" Margin="189,114,0,0" VerticalAlignment="Top"/>
+                    <ComboBox x:Name="DrpEvtType" HorizontalAlignment="Left" Margin="109,144,0,0" VerticalAlignment="Top" Width="200"/>
+                    <Button x:Name="BtnEvtSave" Content="Save" HorizontalAlignment="Left" Margin="315,437,0,0" VerticalAlignment="Top" Width="94" Click="BtnEvtSave_Click"/>
+                    <Button x:Name="BtnEvtNew" Content="New" HorizontalAlignment="Left" Margin="10,437,0,0" VerticalAlignment="Top" Width="94" Click="BtnEvtNew_Click"/>
+                    <Label Content="Sort by" HorizontalAlignment="Left" Margin="414,432,0,0" VerticalAlignment="Top"/>
+                    <Button x:Name="BtnEvtSortName" Content="Name" HorizontalAlignment="Left" Margin="462,437,0,0" VerticalAlignment="Top" Width="50" Click="BtnEvtSortName_Click"/>
+                    <Button x:Name="BtnEvtSortNext" Content="Next" HorizontalAlignment="Left" Margin="517,437,0,0" VerticalAlignment="Top" Width="50" Click="BtnEvtSortNext_Click"/>
                 </Grid>
             </TabItem>
         </TabControl>

@@ -17,6 +17,7 @@ namespace DBConnect
     DbSet<BestiarySkill> BestiarySkill { get; set; }
     DbSet<BestiarySubType> BestiarySubType { get; set; }
     DbSet<BestiaryType> BestiaryType { get; set; }
+    DbSet<CampaignData> CampaignData { get; set; }
     DbSet<Continent> Continent { get; set; }
     DbSet<ContinentWeather> ContinentWeather { get; set; }
     DbSet<Environment> Environment { get; set; }
