@@ -12,6 +12,7 @@ Half-Sheets for NPCs and PCs
 	A new tab where I can store/edit PC and NPC info
 
 TODO AT HOME
+Move NPCs to Bestiary, convert NPC table to PFNPC instead
 Remove ALL from season, time, etc
 CampaignData table
 Add Season/Month of Stars, a time when magic is at its strongest

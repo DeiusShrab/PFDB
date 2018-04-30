@@ -199,6 +199,7 @@
                     <Button x:Name="BtnCombatAddNew" Content="Add" HorizontalAlignment="Left" Margin="709,72,0,0" VerticalAlignment="Top" Width="56" Height="23" Click="BtnCombatAddNew_Click" TabIndex="111"/>
                     <TextBox x:Name="TxtCombatHP" HorizontalAlignment="Left" Height="23" Margin="236,72,0,0" TextWrapping="Wrap" Text="22" VerticalAlignment="Top" Width="22" TabIndex="104"/>
                     <Label Content="HP" HorizontalAlignment="Left" Margin="235,46,0,0" VerticalAlignment="Top"/>
+                    <Button x:Name="BtnCombatAddPC" Content="Add PC" HorizontalAlignment="Left" Margin="250,10,0,0" VerticalAlignment="Top" Width="76" Height="31" Click="BtnCombatAddNew_Click" TabIndex="111"/>
                 </Grid>
             </TabItem>
             <TabItem x:Name="TabCreatureInfo" Header="Creature Info" Margin="-2,-2,-2,0">
@@ -240,6 +241,32 @@
                     <Button x:Name="BtnEvtSortName" Content="Name" HorizontalAlignment="Left" Margin="462,437,0,0" VerticalAlignment="Top" Width="50" Click="BtnEvtSortName_Click"/>
                     <Button x:Name="BtnEvtSortNext" Content="Next" HorizontalAlignment="Left" Margin="517,437,0,0" VerticalAlignment="Top" Width="50" Click="BtnEvtSortNext_Click"/>
                 </Grid>
+            </TabItem>
+            <TabItem x:Name="TabCampaignInfo" Header="Campaign" Margin="-2,-2,-2,0">
+                <Grid Background="#FFE5E5E5">
+                    <ListBox x:Name="LbxCampaign" HorizontalAlignment="Left" Height="403" Margin="10,26,0,0" VerticalAlignment="Top" Width="240"/>
+                    <TextBox x:Name="TxtCampaignDataNew" HorizontalAlignment="Left" Height="23" Margin="10,434,0,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="175"/>
+                    <Button x:Name="BtnAddCampaignData" Content="Add" HorizontalAlignment="Left" Margin="190,434,0,0" VerticalAlignment="Top" Width="60" Height="23"/>
+                    <Label Content="Campaign Data" HorizontalAlignment="Left" Margin="10,0,0,0" VerticalAlignment="Top"/>
+                    <ComboBox x:Name="DrpCampaignSelect" HorizontalAlignment="Left" Margin="830,30,0,0" VerticalAlignment="Top" Width="250"/>
+                    <Label Content="Campaign Select" HorizontalAlignment="Left" Margin="830,0,0,0" VerticalAlignment="Top"/>
+                    <TextBox x:Name="TxtCampaignDataName" HorizontalAlignment="Left" Height="23" Margin="325,30,0,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="200"/>
+                    <TextBox x:Name="TxtCampaignDataValue" HorizontalAlignment="Left" Height="23" Margin="325,58,0,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="200"/>
+                    <Label Content="Data Name" HorizontalAlignment="Left" Margin="250,26,0,0" VerticalAlignment="Top"/>
+                    <Label Content="Data Value" HorizontalAlignment="Left" Margin="250,54,0,0" VerticalAlignment="Top"/>
+                    <Button x:Name="BtnSaveCampaignData" Content="Save" HorizontalAlignment="Left" Margin="450,86,0,0" VerticalAlignment="Top" Width="75"/>
+                    <TextBox x:Name="TxtCampaignDataName_Copy" HorizontalAlignment="Left" Height="23" Margin="876,82,0,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="200"/>
+                    <TextBox x:Name="TxtCampaignDataValue_Copy" HorizontalAlignment="Left" Height="100" Margin="876,110,0,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="200"/>
+                    <Label Content="Name" HorizontalAlignment="Left" Margin="830,78,0,0" VerticalAlignment="Top"/>
+                    <Label Content="Notes" HorizontalAlignment="Left" Margin="830,106,0,0" VerticalAlignment="Top"/>
+                    <Button x:Name="BtnCampaignSave" Content="Save" HorizontalAlignment="Left" Margin="1001,215,0,0" VerticalAlignment="Top" Width="75"/>
+                    <Button x:Name="BtnCampaignNew" Content="New" HorizontalAlignment="Left" Margin="876,215,0,0" VerticalAlignment="Top" Width="75"/>
+                    <Label Content="Campaign ID" HorizontalAlignment="Left" Margin="830,52,0,0" VerticalAlignment="Top"/>
+                    <Label Content="000" HorizontalAlignment="Left" Margin="909,52,0,0" VerticalAlignment="Top"/>
+                </Grid>
+            </TabItem>
+            <TabItem x:Name="TabPCInfo" Header="TabItem">
+                <Grid Background="#FFE5E5E5"/>
             </TabItem>
         </TabControl>
         <Label x:Name="LblTextDate" Content="Wed, Emb 00" HorizontalAlignment="Left" Margin="689,116,0,0" VerticalAlignment="Top" FontSize="16"/>

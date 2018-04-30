@@ -5,6 +5,7 @@ using System.IO;
 using System.Linq;
 using System.Text;
 using System.Windows;
+using System.Windows.Controls;
 using System.Windows.Data;
 using System.Windows.Media;
 using DBConnect;
@@ -286,7 +287,8 @@ namespace PFHelper
     public int EventFrequency
     {
       get { return IntEvtFreq.Value ?? 0; }
-      set {
+      set
+      {
         if (value > 0)
           IntEvtFreq.Value = value;
         else
@@ -826,6 +828,8 @@ namespace PFHelper
 
     private void AddDays(int i)
     {
+      BtnEvtSortNext_Click(null, null);
+
       var oldDate = new FantasyDate(CurrentDate.ShortDate);
       CurrentDate.AddDays(i);
       NextWeather(i);
@@ -834,14 +838,32 @@ namespace PFHelper
       if (!RationsInfinite && i > 0)
         AddRations(i * -1);
 
-      // TODO Update events, switch over to event tab if a non-daily event occurs (freq > 1)
+      var activeEventIds = new List<int>();
+
       for (int j = 1; j <= i; j++)
       {
         foreach (var evt in liveEventList)
         {
           if (evt.DateNextOccurring == oldDate.AddDays(j))
+          {
             RunLiveEvent(evt);
+
+            if (evt.ReoccurFreq > 1)
+              activeEventIds.Add(evt.EventId);
+          }
         }
+      }
+
+      if (activeEventIds.Count > 0)
+        HelperTabs.SelectedIndex = 3;
+
+      foreach (LiveEvent evt in DgEvt.ItemsSource)
+      {
+        var row = DgEvt.ItemContainerGenerator.ContainerFromItem(evt) as DataGridRow;
+        if (activeEventIds.Contains(evt.EventId))
+          row.Background = Brushes.Green;
+        else
+          row.Background = Brushes.White;
       }
     }
 
