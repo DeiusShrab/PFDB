@@ -10,6 +10,12 @@ Update big text fields like Attack, Defense, and Special to something machine-re
 		(Special), Range, Type (Cone, Burst, etc), Target, Effect
 Half-Sheets for NPCs and PCs
 	A new tab where I can store/edit PC and NPC info
+Copy From
+	Bestiary (and other?) option to create a new creature from an existing one
+	Basically leave everything loaded but reset the BID to 0
+NPC to Bestiary
+	Write a script in PFTest to convert NPCs to Bestiary entries
+Add DELETE code to PFDBSite (ONLY AFTER BACKUP SETUP)
 
 TODO AT HOME
 Move NPCs to Bestiary, convert NPC table to PFNPC instead
@@ -17,15 +23,12 @@ Remove ALL from season, time, etc
 CampaignData table
 Add Season/Month of Stars, a time when magic is at its strongest
 Add Events (Bank interest monthly, NOT daily)
-Set up HTTPS on Apache
-	Set up HTTPS to access the api (but not the main site)
 Backup DB somehow
 	Set up regular auto-backup once a month in addition to first manual backup
 Get the got-dang MAPS UP
 	Touch them up first with more locations and proper city names
 	Remember that maps only show "major" locations, small towns and villages won't be there
 Make some kind of DB Importer that pulls PFSRD stuff, runs it through the formatter from Test, and adds it to the DB
-Add DELETE code to PFDBSite (ONLY AFTER BACKUP SETUP)
 
 Generating code-first from existing DB
 https://docs.microsoft.com/en-us/ef/core/get-started/aspnetcore/existing-db
