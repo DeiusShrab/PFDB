@@ -27,13 +27,19 @@ namespace PFDALTest
             Console.WriteLine("Complete");
             break;
           case 3:
-            PopulateTables();
+            //PopulateTables();
+            Console.WriteLine("Complete");
             break;
           case 4:
-            UpdateTables();
+            //UpdateTables();
+            Console.WriteLine("Complete");
             break;
           case 5:
-            UpdateSpellSchools();
+            //UpdateSpellSchools();
+            Console.WriteLine("Complete");
+            break;
+          case 6:
+            UpdateNPC();
             break;
         }
       }
@@ -49,6 +55,7 @@ namespace PFDALTest
       Console.WriteLine("3 - PFDB Feat/Skill Update");
       Console.WriteLine("4 - Update Tables");
       Console.WriteLine("5 - Update SpellSchools");
+      Console.WriteLine("6 - Translate NPCs to Bestiary");
       Console.WriteLine("0 - EXIT");
       Console.Write("> ");
 
@@ -457,6 +464,7 @@ namespace PFDALTest
     // Menu 5
     private static void UpdateSpellSchools()
     {
+      /*
       var spellList = PFDAL.GetContext().Spell.Where(x => true);
 
       foreach (var spell in spellList)
@@ -503,6 +511,237 @@ namespace PFDALTest
           spell.SubSchoolId = "0";
 
         context.SaveChanges();
+      }
+      */
+    }
+
+    // Menu 6
+    private static void UpdateNPC()
+    {
+      int i = 0;
+      var npcList = PFDAL.GetContext(false).Npc;
+      foreach (var z in npcList)
+      {
+        try
+        {
+          var context = PFDAL.GetContext(false);
+          var npc = context.Npc.First(x => x.Npcid == z.Npcid);
+          var b = new Bestiary();
+          context.Bestiary.Attach(b);
+
+          // AbilityScores - split
+          // Str 12, Dex 14, Con 13, Int 9, Wis 10, Cha 9
+          // Handle creatures with no Con, Int, etc like undead or plants
+          foreach (var item in npc.AbilityScores.Split(','))
+          {
+            var stat = item.Trim();
+            if (stat.StartsWith("Str", StringComparison.InvariantCultureIgnoreCase))
+            {
+              if (int.TryParse(Regex.Match(stat, "[0-9]+").ToString(), out int val))
+                b.Str = val;
+            }
+            else if (stat.StartsWith("Dex", StringComparison.InvariantCultureIgnoreCase))
+            {
+              if (int.TryParse(Regex.Match(stat, "[0-9]+").ToString(), out int val))
+                b.Dex = val;
+            }
+            else if (stat.StartsWith("Con", StringComparison.InvariantCultureIgnoreCase))
+            {
+              if (int.TryParse(Regex.Match(stat, "[0-9]+").ToString(), out int val))
+                b.Con = val;
+            }
+            else if (stat.StartsWith("Int", StringComparison.InvariantCultureIgnoreCase))
+            {
+              if (int.TryParse(Regex.Match(stat, "[0-9]+").ToString(), out int val))
+                b.Int = val;
+            }
+            else if (stat.StartsWith("Wis", StringComparison.InvariantCultureIgnoreCase))
+            {
+              if (int.TryParse(Regex.Match(stat, "[0-9]+").ToString(), out int val))
+                b.Wis = val;
+            }
+            else if (stat.StartsWith("Cha", StringComparison.InvariantCultureIgnoreCase))
+            {
+              if (int.TryParse(Regex.Match(stat, "[0-9]+").ToString(), out int val))
+                b.Cha = val;
+            }
+          }
+
+          npc.AbilityScores = null;
+
+          // AC - split, make sure AC is an int
+          // 17, touch 17, flat-footed 12
+          foreach (Match item in Regex.Matches(npc.Ac, REGEX_SPLIT))
+          {
+            var ac = item.Groups[1].Value;
+            if (ac.StartsWith("touch"))
+            {
+              if (int.TryParse(Regex.Match(ac, "[0-9]+").ToString(), out int val))
+                b.Actouch = val;
+            }
+            else if (ac.StartsWith("flat"))
+            {
+              if (int.TryParse(Regex.Match(ac, "[0-9]+").ToString(), out int val))
+                b.Acflat = val;
+            }
+            else
+            {
+              if (int.TryParse(Regex.Match(ac, "[0-9]+").ToString(), out int val))
+                b.Ac = val;
+            }
+          }
+
+          // HD - remove parenthesis, make sure it's in AdB+C format
+          b.Hd = npc.Hd.Replace("(", "").Replace(")", "");
+          if (!b.Hd.Contains("d"))
+            b.Hd = "1d" + b.Hd;
+          if (!b.Hd.Contains("+") && !b.Hd.Contains("-"))
+            b.Hd = b.Hd + "+0";
+
+          b.BaseAtk = npc.BaseAtk ?? 0;
+
+          b.CharacterFlag = true;
+
+          b.Cmb = npc.Cmb ?? b.BaseAtk + GetAbilityMod(b.Str);
+
+          b.Cmd = npc.Cmd ?? 10 + b.BaseAtk + GetAbilityMod(b.Str) + GetAbilityMod(b.Dex);
+
+          b.CompanionFlag = npc.CompanionFlag ?? false;
+
+          if (npc.Cr.HasValue)
+            b.Cr = npc.Cr.Value;
+          else
+          {
+            int cr = -10;
+            int.TryParse(Regex.Match(npc.Hd, "[0-9]+").ToString(), out cr);
+            b.Cr = cr;
+          }
+
+          b.DontUseRacialHd = false;
+
+          b.Fortitude = npc.Fort ?? GetAbilityMod(b.Con);
+
+          b.Hp = npc.Hp ?? 0;
+
+          b.Init = npc.Init ?? GetAbilityMod(b.Dex);
+
+          b.IsTemplate = npc.IsTemplate ?? false;
+
+          b.Mr = npc.Mr ?? 0;
+
+          b.Mt = npc.Mt ?? 0;
+
+          b.Reflex = npc.Ref ?? GetAbilityMod(b.Dex);
+
+          int.TryParse(npc.Sr, out int sr);
+          b.Sr = sr;
+
+          b.UniqueMonster = npc.UniqueMonster ?? false;
+
+          b.Will = npc.Will ?? GetAbilityMod(b.Wis);
+
+          b.Xp = npc.Xp ?? 0;
+
+          context.SaveChanges(); // Make sure we have a BestiaryId for our new NPC
+
+          // Spawn
+          context.MonsterSpawn.Add(new MonsterSpawn() { BestiaryId = b.BestiaryId });
+
+          // Feat
+          // Improved Initiative, Iron Will, Lightning Reflexes, Skill Focus (Perception)
+          if (!string.IsNullOrWhiteSpace(b.Feats))
+          {
+            foreach (Match m in Regex.Matches(b.Feats, REGEX_SPLIT))
+            {
+              string feat = m.Groups[1].Value;
+              string notes = null;
+              if (feat.Contains("("))
+              {
+                notes = feat.Split('(')[1].TrimEnd(')');
+                feat = feat.Split('(')[0].Trim();
+              }
+              if (feat.EndsWith('B'))
+                feat = feat.Substring(0, feat.Length - 1);
+              var f = new BestiaryFeat
+              {
+                BestiaryId = b.BestiaryId,
+                FeatId = context.Feat.FirstOrDefault(x => feat.Equals(x.Name, StringComparison.InvariantCultureIgnoreCase))?.FeatId ?? 0,
+                Notes = notes
+              };
+
+              context.BestiaryFeat.Add(f);
+            }
+          }
+
+          // Skill
+          if (!string.IsNullOrWhiteSpace(b.Skills))
+          {
+            foreach (Match m in Regex.Matches(b.Skills, REGEX_SPLIT))
+            {
+              string skill = m.Groups[1].Value;
+              string notes = null;
+              int bonus = 0;
+
+              if (skill.Contains("("))
+              {
+                var idxA = skill.IndexOf('(') + 1;
+                var idxB = skill.LastIndexOf(')');
+                notes = skill.Substring(idxA, idxB - idxA);
+                var newName = skill.Substring(0, --idxA) + skill.Substring(++idxB, skill.Length - idxB); // -- and ++ to make sure parentheses are dropped
+                skill = newName.Trim();
+              }
+
+              if (skill.Contains("+"))
+              {
+                var skillsplit = skill.Split('+');
+                bonus = Convert.ToInt32(Regex.Match(skillsplit[1], "[0-9]+").Value);
+
+                skill = skill.Split('+')[0].Trim();
+              }
+              else if (skill.Contains("-"))
+              {
+                var skillsplit = skill.Split('-');
+                bonus = Convert.ToInt32(Regex.Match(skillsplit[1], "[0-9]+").Value) * -1;
+                skill = skillsplit[0].Trim();
+              }
+
+              if (!context.Skill.Select(x => x.Name.ToLower()).Contains(skill.ToLower()))
+              {
+                context.Skill.Add(new Skill()
+                {
+                  Name = skill,
+                  Description = "UPDATE ME",
+                  TrainedOnly = false
+                });
+                context.SaveChanges();
+              }
+
+              var s = new BestiarySkill
+              {
+                BestiaryId = b.BestiaryId,
+                SkillId = context.Skill.FirstOrDefault(x => skill.Equals(x.Name, StringComparison.InvariantCultureIgnoreCase))?.SkillId ?? 0,
+                Notes = notes
+              };
+
+              context.BestiarySkill.Add(s);
+              context.SaveChanges();
+            }
+          }
+
+          context.SaveChanges();
+
+          if (i++ >= 5)
+          {
+            i = 0;
+            Console.WriteLine("Finished NPCID " + npc.Npcid.ToString());
+          }
+        }
+        catch (Exception ex)
+        {
+          Console.WriteLine($"[{z.Npcid}] - {ex.Message}");
+          if (ex.InnerException != null)
+            Console.WriteLine("InnerException: " + ex.InnerException.Message);
+        }
       }
     }
 

@@ -16,6 +16,7 @@ Copy From
 NPC to Bestiary
 	Write a script in PFTest to convert NPCs to Bestiary entries
 Add DELETE code to PFDBSite (ONLY AFTER BACKUP SETUP)
+Update PFDBContext to get userid/pass from config instead of hardcoded
 
 TODO AT HOME
 Move NPCs to Bestiary, convert NPC table to PFNPC instead
