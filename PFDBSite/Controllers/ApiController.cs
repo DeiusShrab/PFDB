@@ -35,13 +35,13 @@ namespace PFDBSite.Controllers
     public IActionResult GetToken([FromBody] JObject info)
     {
       if (info.ContainsKey("username") && info.ContainsKey("password")
-          && info["username"].Value<string>() == DBClient.API_USER && info["password"].Value<string>() == DBClient.API_PASS)
+          && info["username"].Value<string>() == PFConfig.GetConfig(ConfigValues.API_USER) && info["password"].Value<string>() == PFConfig.GetConfig(ConfigValues.API_PASS))
       {
-        var key = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(DBClient.JWT_KEY));
+        var key = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(PFConfig.GetConfig(ConfigValues.JWT_KEY)));
         var creds = new SigningCredentials(key, SecurityAlgorithms.HmacSha256);
 
-        var token = new JwtSecurityToken(DBClient.JWT_ISSUER,
-          DBClient.JWT_ISSUER,
+        var token = new JwtSecurityToken(PFConfig.GetConfig(ConfigValues.JWT_ISSUER),
+          PFConfig.GetConfig(ConfigValues.JWT_ISSUER),
           expires: DateTime.Now.AddHours(24),
           signingCredentials: creds);
 
@@ -1696,7 +1696,411 @@ namespace PFDBSite.Controllers
 
     #region Delete
 
-    // Do this one after the first successful DB backup
+    [HttpDelete("Bestiary/{BestiaryId:int}")]
+    public IActionResult Bestiary_Delete(int BestiaryId)
+    {
+      var context = PFDAL.GetContext();
+
+      var obj = context.Bestiary.FirstOrDefault(x => x.BestiaryId == BestiaryId);
+      if (obj == null || obj.BestiaryId != BestiaryId)
+        return NotFound();
+
+      var obj2 = context.BestiaryDetail.FirstOrDefault(x => x.BestiaryId == BestiaryId);
+      if (obj != null)
+        context.BestiaryDetail.Remove(obj2);
+
+      context.Bestiary.Remove(obj);
+      context.SaveChanges();
+      return Ok();
+    }
+
+    // BestiaryDetail deleted with Bestiary
+
+    [HttpDelete("BestiaryEnvironment/{BestiaryEnvironmentId:int}")]
+    public IActionResult BestiaryEnvironment_Delete(int BestiaryEnvironmentId)
+    {
+      var context = PFDAL.GetContext();
+
+      var obj = context.BestiaryEnvironment.FirstOrDefault(x => x.BestiaryEnvironmentId == BestiaryEnvironmentId);
+      if (obj == null || obj.BestiaryEnvironmentId != BestiaryEnvironmentId)
+        return NotFound();
+
+      context.BestiaryEnvironment.Remove(obj);
+      context.SaveChanges();
+      return Ok();
+    }
+
+    [HttpDelete("BestiaryFeat/{BestiaryFeatId:int}")]
+    public IActionResult BestiaryFeat_Delete(int BestiaryFeatId)
+    {
+      var context = PFDAL.GetContext();
+
+      var obj = context.BestiaryFeat.FirstOrDefault(x => x.BestiaryFeatId == BestiaryFeatId);
+      if (obj == null || obj.BestiaryFeatId != BestiaryFeatId)
+        return NotFound();
+
+      context.BestiaryFeat.Remove(obj);
+      context.SaveChanges();
+      return Ok();
+    }
+
+    [HttpDelete("BestiaryLanguage/{BestiaryLanguageId:int}")]
+    public IActionResult BestiaryLanguage_Delete(int BestiaryLanguageId)
+    {
+      var context = PFDAL.GetContext();
+
+      var obj = context.BestiaryLanguage.FirstOrDefault(x => x.BestiaryLanguageId == BestiaryLanguageId);
+      if (obj == null || obj.BestiaryLanguageId != BestiaryLanguageId)
+        return NotFound();
+
+      context.BestiaryLanguage.Remove(obj);
+      context.SaveChanges();
+      return Ok();
+    }
+
+    [HttpDelete("BestiarySkill/{BestiarySkillId:int}")]
+    public IActionResult BestiarySkill_Delete(int BestiarySkillId)
+    {
+      var context = PFDAL.GetContext();
+
+      var obj = context.BestiarySkill.FirstOrDefault(x => x.BestiarySkillId == BestiarySkillId);
+      if (obj == null || obj.BestiarySkillId != BestiarySkillId)
+        return NotFound();
+
+      context.BestiarySkill.Remove(obj);
+      context.SaveChanges();
+      return Ok();
+    }
+
+    [HttpDelete("BestiarySubType/{BestiarySubTypeId:int}")]
+    public IActionResult BestiarySubType_Delete(int BestiarySubTypeId)
+    {
+      var context = PFDAL.GetContext();
+
+      var obj = context.BestiarySubType.FirstOrDefault(x => x.BestiarySubTypeId == BestiarySubTypeId);
+      if (obj == null || obj.BestiarySubTypeId != BestiarySubTypeId)
+        return NotFound();
+
+      context.BestiarySubType.Remove(obj);
+      context.SaveChanges();
+      return Ok();
+    }
+
+    [HttpDelete("BestiaryType/{BestiaryTypeId:int}")]
+    public IActionResult BestiaryType_Delete(int BestiaryTypeId)
+    {
+      var context = PFDAL.GetContext();
+
+      var obj = context.BestiaryType.FirstOrDefault(x => x.BestiaryTypeId == BestiaryTypeId);
+      if (obj == null || obj.BestiaryTypeId != BestiaryTypeId)
+        return NotFound();
+
+      context.BestiaryType.Remove(obj);
+      context.SaveChanges();
+      return Ok();
+    }
+
+    [HttpDelete("Continent/{ContinentId:int}")]
+    public IActionResult Continent_Delete(int ContinentId)
+    {
+      var context = PFDAL.GetContext();
+
+      var obj = context.Continent.FirstOrDefault(x => x.ContinentId == ContinentId);
+      if (obj == null || obj.ContinentId != ContinentId)
+        return NotFound();
+
+      context.Continent.Remove(obj);
+      context.SaveChanges();
+      return Ok();
+    }
+
+    [HttpDelete("ContinentWeather/{ContinentWeatherId:int}")]
+    public IActionResult ContinentWeather_Delete(int ContinentWeatherId)
+    {
+      var context = PFDAL.GetContext();
+
+      var obj = context.ContinentWeather.FirstOrDefault(x => x.CWID == ContinentWeatherId);
+      if (obj == null || obj.CWID != ContinentWeatherId)
+        return NotFound();
+
+      context.ContinentWeather.Remove(obj);
+      context.SaveChanges();
+      return Ok();
+    }
+
+    [HttpDelete("Environment/{EnvironmentId:int}")]
+    public IActionResult Environment_Delete(int EnvironmentId)
+    {
+      var context = PFDAL.GetContext();
+
+      var obj = context.Environment.FirstOrDefault(x => x.EnvironmentId == EnvironmentId);
+      if (obj == null || obj.EnvironmentId != EnvironmentId)
+        return NotFound();
+
+      context.Environment.Remove(obj);
+      context.SaveChanges();
+      return Ok();
+    }
+
+    [HttpDelete("Faction/{FactionId:int}")]
+    public IActionResult Faction_Delete(int FactionId)
+    {
+      var context = PFDAL.GetContext();
+
+      var obj = context.Faction.FirstOrDefault(x => x.FactionId == FactionId);
+      if (obj == null || obj.FactionId != FactionId)
+        return NotFound();
+
+      context.Faction.Remove(obj);
+      context.SaveChanges();
+      return Ok();
+    }
+
+    [HttpDelete("Feat/{FeatId:int}")]
+    public IActionResult Feat_Delete(int FeatId)
+    {
+      var context = PFDAL.GetContext();
+
+      var obj = context.Feat.FirstOrDefault(x => x.FeatId == FeatId);
+      if (obj == null || obj.FeatId != FeatId)
+        return NotFound();
+
+      context.Feat.Remove(obj);
+      context.SaveChanges();
+      return Ok();
+    }
+
+    [HttpDelete("Language/{LanguageId:int}")]
+    public IActionResult Language_Delete(int LanguageId)
+    {
+      var context = PFDAL.GetContext();
+
+      var obj = context.Language.FirstOrDefault(x => x.LanguageId == LanguageId);
+      if (obj == null || obj.LanguageId != LanguageId)
+        return NotFound();
+
+      context.Language.Remove(obj);
+      context.SaveChanges();
+      return Ok();
+    }
+
+    [HttpDelete("Location/{LocationId:int}")]
+    public IActionResult Location_Delete(int LocationId)
+    {
+      var context = PFDAL.GetContext();
+
+      var obj = context.Location.FirstOrDefault(x => x.LocationId == LocationId);
+      if (obj == null || obj.LocationId != LocationId)
+        return NotFound();
+
+      context.Location.Remove(obj);
+      context.SaveChanges();
+      return Ok();
+    }
+
+    [HttpDelete("MagicItem/{MagicItemId:int}")]
+    public IActionResult MagicItem_Delete(int MagicItemId)
+    {
+      var context = PFDAL.GetContext();
+
+      var obj = context.MagicItem.FirstOrDefault(x => x.MagicItemId == MagicItemId);
+      if (obj == null || obj.MagicItemId != MagicItemId)
+        return NotFound();
+
+      context.MagicItem.Remove(obj);
+      context.SaveChanges();
+      return Ok();
+    }
+
+    [HttpDelete("MonsterSpawn/{MonsterSpawnId:int}")]
+    public IActionResult MonsterSpawn_Delete(int MonsterSpawnId)
+    {
+      var context = PFDAL.GetContext();
+
+      var obj = context.MonsterSpawn.FirstOrDefault(x => x.SpawnId == MonsterSpawnId);
+      if (obj == null || obj.SpawnId != MonsterSpawnId)
+        return NotFound();
+
+      context.MonsterSpawn.Remove(obj);
+      context.SaveChanges();
+      return Ok();
+    }
+
+    [HttpDelete("Month/{MonthId:int}")]
+    public IActionResult Month_Delete(int MonthId)
+    {
+      var context = PFDAL.GetContext();
+
+      var obj = context.Month.FirstOrDefault(x => x.MonthId == MonthId);
+      if (obj == null || obj.MonthId != MonthId)
+        return NotFound();
+
+      context.Month.Remove(obj);
+      context.SaveChanges();
+      return Ok();
+    }
+
+    [HttpDelete("Plane/{PlaneId:int}")]
+    public IActionResult Plane_Delete(int PlaneId)
+    {
+      var context = PFDAL.GetContext();
+
+      var obj = context.Plane.FirstOrDefault(x => x.PlaneId == PlaneId);
+      if (obj == null || obj.PlaneId != PlaneId)
+        return NotFound();
+
+      context.Plane.Remove(obj);
+      context.SaveChanges();
+      return Ok();
+    }
+
+    [HttpDelete("Season/{SeasonId:int}")]
+    public IActionResult Season_Delete(int SeasonId)
+    {
+      var context = PFDAL.GetContext();
+
+      var obj = context.Season.FirstOrDefault(x => x.SeasonId == SeasonId);
+      if (obj == null || obj.SeasonId != SeasonId)
+        return NotFound();
+
+      context.Season.Remove(obj);
+      context.SaveChanges();
+      return Ok();
+    }
+
+    [HttpDelete("Skill/{SkillId:int}")]
+    public IActionResult Skill_Delete(int SkillId)
+    {
+      var context = PFDAL.GetContext();
+
+      var obj = context.Skill.FirstOrDefault(x => x.SkillId == SkillId);
+      if (obj == null || obj.SkillId != SkillId)
+        return NotFound();
+
+      context.Skill.Remove(obj);
+      context.SaveChanges();
+      return Ok();
+    }
+
+    [HttpDelete("Spell/{SpellId:int}")]
+    public IActionResult Spell_Delete(int SpellId)
+    {
+      var context = PFDAL.GetContext();
+
+      var obj = context.Spell.FirstOrDefault(x => x.SpellId == SpellId);
+      if (obj == null || obj.SpellId != SpellId)
+        return NotFound();
+
+      var obj2 = context.SpellDetail.FirstOrDefault(x => x.SpellId == SpellId);
+      if (obj != null)
+        context.SpellDetail.Remove(obj2);
+
+      context.Spell.Remove(obj);
+      context.SaveChanges();
+      return Ok();
+    }
+
+    // SpellDetail deleted with Spell;
+
+    [HttpDelete("SpellSchool/{SpellSchoolId:int}")]
+    public IActionResult SpellSchool_Delete(int SpellSchoolId)
+    {
+      var context = PFDAL.GetContext();
+
+      var obj = context.SpellSchool.FirstOrDefault(x => x.SpellSchoolId == SpellSchoolId);
+      if (obj == null || obj.SpellSchoolId != SpellSchoolId)
+        return NotFound();
+
+      context.SpellSchool.Remove(obj);
+      context.SaveChanges();
+      return Ok();
+    }
+
+    [HttpDelete("SpellSubSchool/{SpellSubSchoolId:int}")]
+    public IActionResult SpellSubSchool_Delete(int SpellSubSchoolId)
+    {
+      var context = PFDAL.GetContext();
+
+      var obj = context.SpellSubSchool.FirstOrDefault(x => x.SpellSubSchoolId == SpellSubSchoolId);
+      if (obj == null || obj.SpellSubSchoolId != SpellSubSchoolId)
+        return NotFound();
+
+      context.SpellSubSchool.Remove(obj);
+      context.SaveChanges();
+      return Ok();
+    }
+
+    [HttpDelete("Terrain/{TerrainId:int}")]
+    public IActionResult Terrain_Delete(int TerrainId)
+    {
+      var context = PFDAL.GetContext();
+
+      var obj = context.Terrain.FirstOrDefault(x => x.TerrainId == TerrainId);
+      if (obj == null || obj.TerrainId != TerrainId)
+        return NotFound();
+
+      context.Terrain.Remove(obj);
+      context.SaveChanges();
+      return Ok();
+    }
+
+    [HttpDelete("Territory/{TerritoryId:int}")]
+    public IActionResult Territory_Delete(int TerritoryId)
+    {
+      var context = PFDAL.GetContext();
+
+      var obj = context.Territory.FirstOrDefault(x => x.TerritoryId == TerritoryId);
+      if (obj == null || obj.TerritoryId != TerritoryId)
+        return NotFound();
+
+      context.Territory.Remove(obj);
+      context.SaveChanges();
+      return Ok();
+    }
+
+    [HttpDelete("Time/{TimeId:int}")]
+    public IActionResult Time_Delete(int TimeId)
+    {
+      var context = PFDAL.GetContext();
+
+      var obj = context.Time.FirstOrDefault(x => x.TimeId == TimeId);
+      if (obj == null || obj.TimeId != TimeId)
+        return NotFound();
+
+      context.Time.Remove(obj);
+      context.SaveChanges();
+      return Ok();
+    }
+
+    [HttpDelete("TrackedEvent/{TrackedEventId:int}")]
+    public IActionResult TrackedEvent_Delete(int TrackedEventId)
+    {
+      var context = PFDAL.GetContext();
+
+      var obj = context.TrackedEvent.FirstOrDefault(x => x.TrackedEventId == TrackedEventId);
+      if (obj == null || obj.TrackedEventId != TrackedEventId)
+        return NotFound();
+
+      context.TrackedEvent.Remove(obj);
+      context.SaveChanges();
+      return Ok();
+    }
+
+    [HttpDelete("Weather/{WeatherId:int}")]
+    public IActionResult Weather_Delete(int WeatherId)
+    {
+      var context = PFDAL.GetContext();
+
+      var obj = context.Weather.FirstOrDefault(x => x.WeatherId == WeatherId);
+      if (obj == null || obj.WeatherId != WeatherId)
+        return NotFound();
+
+      context.Weather.Remove(obj);
+      context.SaveChanges();
+      return Ok();
+    }
+
+
 
     #endregion
 

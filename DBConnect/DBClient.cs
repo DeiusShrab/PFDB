@@ -10,103 +10,23 @@ using Newtonsoft.Json.Linq;
 
 namespace DBConnect
 {
-  public enum ConfigValues
-  {
-    JWT_KEY,
-    JWT_ISSUER,
-    API_USER,
-    API_PASS,
-    API_ADDR,
-    MAX_CACHE_SIZE,
-    CAMPAIGN_ID,
-  }
 
   public static class DBClient
   {
-    private static string CONFIG_FILE = "PFConfig.json";
-
-
-    //public static string JWT_KEY = "AAAAAAAAAAAAAAAAAAAAAAAAAA";
-    public static string JWT_KEY { get { return GetConfig(ConfigValues.JWT_KEY); } }
-    public static string JWT_ISSUER { get { return GetConfig(ConfigValues.JWT_ISSUER); } }
-    public static string API_USER { get { return GetConfig(ConfigValues.API_USER); } }
-    public static string API_PASS { get { return GetConfig(ConfigValues.API_PASS); } }
-
-    private static string API_ADDR;
-    private static int MAX_CACHE_SIZE;
     private static readonly HttpClient client = new HttpClient();
     private static DBCache<BestiaryDetail> DetailCache;
-    private static Dictionary<string, string> Configuration;
     private static string API_TOKEN;
+    private static string API_ADDR;
+    private static int MAX_CACHE_SIZE;
     private static System.DateTime TOKEN_DATE;
     private static Timer ApiTimer;
 
-    #region Constructor
-
     static DBClient()
     {
-      if (ConfigExists())
-        Configuration = JsonConvert.DeserializeObject<Dictionary<string, string>>(File.ReadAllText(CONFIG_FILE));
-      else
-      {
-        Configuration = new Dictionary<string, string>();
-      }
-
-      foreach (ConfigValues item in System.Enum.GetValues(typeof(ConfigValues)))
-      {
-        if (!Configuration.ContainsKey(item.ToString()))
-          Configuration[item.ToString()] = string.Empty;
-      }
-
       ReloadConfig(false);
     }
 
-    #endregion
-
-    #region Token and Config
-
-    public static bool ConfigExists()
-    {
-      return File.Exists(CONFIG_FILE);
-    }
-
-    public static void ReloadConfig(bool reconnectToApi)
-    {
-      API_ADDR = GetConfig(ConfigValues.API_ADDR);
-      int.TryParse(GetConfig(ConfigValues.MAX_CACHE_SIZE), out int mcs);
-      MAX_CACHE_SIZE = mcs;
-
-      if (reconnectToApi)
-        ConnectToApi();
-    }
-
-    public static void UpdateConfigValues(IDictionary<string, string> newValues)
-    {
-      foreach (var key in newValues.Keys)
-      {
-        Configuration[key] = newValues[key];
-      }
-
-      File.WriteAllText(CONFIG_FILE, JsonConvert.SerializeObject(Configuration));
-    }
-
-    public static Dictionary<string, string> GetAllConfigValues()
-    {
-      return Configuration;
-    }
-
-    public static string GetConfig(string config)
-    {
-      if (Configuration.ContainsKey(config))
-        return Configuration[config];
-
-      return null;
-    }
-
-    private static string GetConfig(ConfigValues config)
-    {
-      return GetConfig(config.ToString());
-    }
+    #region Token
 
     // Called by applications to connect, not needed by PFDBSite
     public static void ConnectToApi()
@@ -115,9 +35,19 @@ namespace DBConnect
       RefreshToken();
     }
 
+    public static void ReloadConfig(bool reconnectToApi)
+    {
+      API_ADDR = PFConfig.GetConfig(ConfigValues.API_ADDR);
+      int.TryParse(PFConfig.GetConfig(ConfigValues.MAX_CACHE_SIZE), out int mcs);
+      MAX_CACHE_SIZE = mcs;
+
+      if (reconnectToApi)
+        ConnectToApi();
+    }
+
     private static void RefreshToken()
     {
-      var body = "{" + $"'username': '{API_USER}', 'password': '{API_PASS}'" + "}";
+      var body = "{" + $"'username': '{PFConfig.GetConfig(ConfigValues.API_USER)}', 'password': '{PFConfig.GetConfig(ConfigValues.API_PASS)}'" + "}";
       var response = client.PostAsync(API_ADDR + "GetToken/pls", new StringContent(body, Encoding.UTF8, "application/json")).Result;
       if (response.IsSuccessStatusCode)
       {
@@ -147,7 +77,7 @@ namespace DBConnect
     public static Dictionary<string, string> GetCampaignData()
     {
       Dictionary<string, string> ret = null;
-      var campaign = Configuration[ConfigValues.CAMPAIGN_ID.ToString()];
+      var campaign = PFConfig.GetConfig(ConfigValues.CAMPAIGN_ID);
 
       if (!string.IsNullOrWhiteSpace(campaign))
       {
@@ -164,7 +94,7 @@ namespace DBConnect
 
     public static bool UpdateCampaignData(Dictionary<string, string> campaignData)
     {
-      var campaign = Configuration[ConfigValues.CAMPAIGN_ID.ToString()];
+      var campaign = PFConfig.GetConfig(ConfigValues.CAMPAIGN_ID);
       if (campaignData != null && campaign != null)
       {
         var body = JsonConvert.SerializeObject(campaignData);

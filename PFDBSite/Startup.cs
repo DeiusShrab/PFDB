@@ -14,7 +14,6 @@ namespace PFDBSite
     public Startup(IConfiguration configuration)
     {
       Configuration = configuration;
-
     }
 
     public IConfiguration Configuration { get; }
@@ -31,9 +30,9 @@ namespace PFDBSite
             ValidateAudience = true,
             ValidateLifetime = true,
             ValidateIssuerSigningKey = true,
-            ValidIssuer = DBConnect.DBClient.JWT_ISSUER,
-            ValidAudience = DBConnect.DBClient.JWT_ISSUER,
-            IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(DBConnect.DBClient.JWT_KEY))
+            ValidIssuer = DBConnect.PFConfig.GetConfig("JWT_ISSUER"),
+            ValidAudience = DBConnect.PFConfig.GetConfig("JWT_ISSUER"),
+            IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(DBConnect.PFConfig.GetConfig("JWT_KEY")))
           };
         });
 

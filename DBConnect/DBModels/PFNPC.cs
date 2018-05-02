@@ -39,6 +39,7 @@ namespace DBConnect.DBModels
     public int SpellTouch { get; set; }
     public int SpellRangeTouch { get; set; }
     public int SpellDC { get; set; }
+    public string SpellsPerDay { get; set; }
     public int STR { get; set; }
     public int CON { get; set; }
     public int DEX { get; set; }
@@ -54,6 +55,17 @@ namespace DBConnect.DBModels
     public List<string> SpecialDef { get; set; }
     public List<string> SpecialOff { get; set; }
     public List<Attack> Attacks { get; set; }
-    public int[][] SpellsPerDay { get; set; }
+    public List<string> Items { get; set; }
+
+    public PFNPC()
+    {
+      Feats = new List<Feat>();
+      Skills = new List<Skill>();
+      Spells = new List<Spell>();
+      SpecialDef = new List<string>();
+      SpecialOff = new List<string>();
+      Attacks = new List<Attack>();
+      Items = new List<string>();
+    }
   }
 }

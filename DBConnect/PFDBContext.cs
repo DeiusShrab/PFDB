@@ -44,11 +44,9 @@ namespace DBConnect
     {
       if (!optionsBuilder.IsConfigured)
       {
-#if DEBUG
-        optionsBuilder.UseSqlServer("Server=192.168.1.150;Database=PFDB;User Id=PFDBSite;Password=ayy lmao ayy lmao AYY 1m40");
-#else
+        //optionsBuilder.UseSqlServer("Server=192.168.1.150;Database=PFDB;User Id=PFDBSite;Password=ayy lmao ayy lmao AYY 1m40");
         optionsBuilder.UseSqlServer("Server=localhost;Database=PFDB;User Id=PFDBSite;Password=ayy lmao ayy lmao AYY 1m40");
-#endif
+        optionsBuilder.UseSqlServer($"Server={PFConfig.GetConfig(ConfigValues.DB_ADDR)};Database={PFConfig.GetConfig(ConfigValues.DB_DB)};User Id={PFConfig.GetConfig(ConfigValues.DB_USER)};Password={PFConfig.GetConfig(ConfigValues.DB_PASS)}");
       }
     }
 
