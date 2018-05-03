@@ -424,7 +424,7 @@ namespace PFHelper
       trackedEvents = new List<TrackedEvent>();
       CampaignData = new Dictionary<string, string>();
 
-      if (DBClient.ConfigExists())
+      if (PFConfig.ConfigExists())
       {
         try
         {
@@ -1300,7 +1300,7 @@ namespace PFHelper
       var popup = new Controls.ConfigEditor();
       popup.ShowDialog();
 
-      if (DBClient.ConfigExists())
+      if (PFConfig.ConfigExists())
         DBClient.ReloadConfig(true);
 
       if (!LoadDBData())

@@ -265,9 +265,6 @@
                     <Label Content="000" HorizontalAlignment="Left" Margin="909,52,0,0" VerticalAlignment="Top"/>
                 </Grid>
             </TabItem>
-            <TabItem x:Name="TabPCInfo" Header="TabItem">
-                <Grid Background="#FFE5E5E5"/>
-            </TabItem>
         </TabControl>
         <Label x:Name="LblTextDate" Content="Wed, Emb 00" HorizontalAlignment="Left" Margin="689,116,0,0" VerticalAlignment="Top" FontSize="16"/>
         <Label x:Name="LblNumericDate" Content="000000 / 00 / 00" HorizontalAlignment="Left" Margin="687,80,0,0" VerticalAlignment="Top" FontSize="16"/>

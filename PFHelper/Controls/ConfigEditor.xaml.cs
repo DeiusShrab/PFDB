@@ -20,7 +20,7 @@ namespace PFHelper.Controls
       this.DataContext = this;
       InitializeComponent();
 
-      var config = DBClient.GetAllConfigValues();
+      var config = PFConfig.GetAllConfigValues();
       foreach (var key in config.Keys)
       {
         configValues.Add(new ListItemResult() { Name = key, Notes = config[key] });
@@ -46,7 +46,7 @@ namespace PFHelper.Controls
         config.Add(item.Name, item.Notes);
       }
 
-      DBClient.UpdateConfigValues(config);
+      PFConfig.UpdateConfigValues(config);
 
       MessageBox.Show("Remember to copy the new config file over to the server and restart it");
     }

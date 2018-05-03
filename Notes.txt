@@ -16,11 +16,16 @@ Copy From
 
 
 TODO AT HOME
+Publish
+	Set up a publish script for the server that gets the latest and runs dotnet publish
+	For the client, set up a publish profile that puts everything in a zip file and throws it into dropbox
 Add new DB_ configs to PFConfig, Update PFDBContext to get userid/pass from config instead of hardcoded
 Run NPC to Bestiary script
 Remove ALL from season, time, etc
 CampaignData table
 Add Season/Month of Stars, a time when magic is at its strongest
+	Magical beasts and aberrations MUCH more common
+	ALL spells are considered Maximized
 Add Events (Bank interest monthly, NOT daily)
 	Full Moon!
 MORE MAP WORK

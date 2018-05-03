@@ -16,7 +16,7 @@ namespace PFEditor
       if (System.ComponentModel.DesignerProperties.GetIsInDesignMode(this))
         return;
 
-      if (!DBClient.ConfigExists())
+      if (!PFConfig.ConfigExists())
       {
         MessageBox.Show("Not configured - please run configuration tool in PFHelper");
         Application.Current.Shutdown();
