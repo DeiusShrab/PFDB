@@ -35,13 +35,13 @@ namespace PFDBSite.Controllers
     public IActionResult GetToken([FromBody] JObject info)
     {
       if (info.ContainsKey("username") && info.ContainsKey("password")
-          && info["username"].Value<string>() == PFConfig.GetConfig(ConfigValues.API_USER) && info["password"].Value<string>() == PFConfig.GetConfig(ConfigValues.API_PASS))
+          && info["username"].Value<string>() == PFConfig.API_USER && info["password"].Value<string>() == PFConfig.API_PASS)
       {
-        var key = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(PFConfig.GetConfig(ConfigValues.JWT_KEY)));
+        var key = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(PFConfig.JWT_KEY));
         var creds = new SigningCredentials(key, SecurityAlgorithms.HmacSha256);
 
-        var token = new JwtSecurityToken(PFConfig.GetConfig(ConfigValues.JWT_ISSUER),
-          PFConfig.GetConfig(ConfigValues.JWT_ISSUER),
+        var token = new JwtSecurityToken(PFConfig.JWT_ISSUER,
+          PFConfig.JWT_ISSUER,
           expires: DateTime.Now.AddHours(24),
           signingCredentials: creds);
 
@@ -54,6 +54,7 @@ namespace PFDBSite.Controllers
     }
 
     #region Queries
+
     [HttpGet("CampaignData/{campaignId:int}")]
     public IActionResult GetCampaignData(int campaignId)
     {
@@ -299,6 +300,13 @@ namespace PFDBSite.Controllers
       return new JsonResult(context.BestiaryType.ToList());
     }
 
+    [HttpGet("Campaign")]
+    public IActionResult Campaign_All()
+    {
+      var context = PFDAL.GetContext();
+      return new JsonResult(context.Campaign.ToList());
+    }
+
     [HttpGet("Continent")]
     public IActionResult Continent_All()
     {
@@ -478,6 +486,13 @@ namespace PFDBSite.Controllers
     {
       var context = PFDAL.GetContext();
       return new JsonResult(context.BestiaryType.FirstOrDefault(x => x.BestiaryTypeId == BestiaryTypeId));
+    }
+
+    [HttpGet("Campaign/{CampaignId:int}")]
+    public IActionResult Campaign_Detail(int CampaignId)
+    {
+      var context = PFDAL.GetContext();
+      return new JsonResult(context.Campaign.FirstOrDefault(x => x.CampaignId == CampaignId));
     }
 
     [HttpGet("Continent/{ContinentId:int}")]
@@ -754,6 +769,25 @@ namespace PFDBSite.Controllers
         context.BestiaryType.Add(obj);
         context.SaveChanges();
         return Created("BestiaryType/" + obj.BestiaryTypeId.ToString(), obj);
+      }
+      catch (Exception ex)
+      {
+        return BadRequest(ex.Message);
+      }
+    }
+
+    [HttpPost("Campaign")]
+    public IActionResult Campaign_Create([FromBody] Campaign obj)
+    {
+      var context = PFDAL.GetContext();
+      if (obj == null || obj.CampaignId != 0)
+        return BadRequest();
+
+      try
+      {
+        context.Campaign.Add(obj);
+        context.SaveChanges();
+        return Created("Campaign/" + obj.CampaignId.ToString(), obj);
       }
       catch (Exception ex)
       {
@@ -1291,6 +1325,26 @@ namespace PFDBSite.Controllers
       }
     }
 
+    [HttpPut("Campaign/{CampaignId:int}")]
+    public IActionResult Campaign_Update([FromBody] Campaign obj, int CampaignId)
+    {
+      var context = PFDAL.GetContext();
+
+      if (obj == null || obj.CampaignId == 0 || obj.CampaignId != CampaignId)
+        return BadRequest();
+
+      try
+      {
+        context.Campaign.Attach(obj).State = Microsoft.EntityFrameworkCore.EntityState.Modified;
+        context.SaveChanges();
+        return NoContent();
+      }
+      catch (Exception ex)
+      {
+        return BadRequest(ex.Message);
+      }
+    }
+
     [HttpPut("Continent/{ContinentId:int}")]
     public IActionResult Continent_Update([FromBody] Continent obj, int ContinentId)
     {
@@ -1796,6 +1850,20 @@ namespace PFDBSite.Controllers
         return NotFound();
 
       context.BestiaryType.Remove(obj);
+      context.SaveChanges();
+      return Ok();
+    }
+
+    [HttpDelete("Campaign/{CampaignId:int}")]
+    public IActionResult Campaign_Delete(int CampaignId)
+    {
+      var context = PFDAL.GetContext();
+
+      var obj = context.Campaign.FirstOrDefault(x => x.CampaignId == CampaignId);
+      if (obj == null || obj.CampaignId != CampaignId)
+        return NotFound();
+
+      context.Campaign.Remove(obj);
       context.SaveChanges();
       return Ok();
     }

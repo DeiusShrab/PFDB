@@ -4,6 +4,11 @@
   {
     public static IPFDBContext GetContext()
     {
+      if (PFConfig.ConfigExists())
+      {
+        return GetContext(PFConfig.DEBUG.Equals("true", System.StringComparison.InvariantCultureIgnoreCase));
+      }
+
 #if DEBUG
       return GetContext(true);
 #else
@@ -13,21 +18,10 @@
 
     public static IPFDBContext GetContext(bool isTest)
     {
-      //if (isTest)
-      //  return new TestContext();
+      if (isTest)
+        return new TestContext();
 
       return new PFDBContext();
-    }
-
-    public static IPFDBContext GetContext(string environment)
-    {
-      return GetContext(!environment.Equals(Env.LIVE.ToString()));
-    }
-
-    public enum Env
-    {
-      LIVE,
-      TEST
     }
   }
 }

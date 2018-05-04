@@ -34,13 +34,13 @@ namespace PFDBSite.Controllers
     public IActionResult Login(JObject info)
     {
       if (info.ContainsKey("username") && info.ContainsKey("password")
-          && info["username"].Value<string>() == PFConfig.GetConfig(ConfigValues.API_USER) && info["password"].Value<string>() == PFConfig.GetConfig(ConfigValues.API_PASS))
+          && info["username"].Value<string>() == PFConfig.API_USER && info["password"].Value<string>() == PFConfig.API_PASS)
       {
-        var key = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(PFConfig.GetConfig(ConfigValues.JWT_KEY)));
+        var key = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(PFConfig.JWT_KEY));
         var creds = new SigningCredentials(key, SecurityAlgorithms.HmacSha256);
 
-        var token = new JwtSecurityToken(PFConfig.GetConfig(ConfigValues.JWT_ISSUER),
-          PFConfig.GetConfig(ConfigValues.JWT_ISSUER),
+        var token = new JwtSecurityToken(PFConfig.JWT_ISSUER,
+          PFConfig.JWT_ISSUER,
           expires: DateTime.Now.AddHours(24),
           signingCredentials: creds);
 

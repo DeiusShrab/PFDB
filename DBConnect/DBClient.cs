@@ -37,8 +37,8 @@ namespace DBConnect
 
     public static void ReloadConfig(bool reconnectToApi)
     {
-      API_ADDR = PFConfig.GetConfig(ConfigValues.API_ADDR);
-      int.TryParse(PFConfig.GetConfig(ConfigValues.MAX_CACHE_SIZE), out int mcs);
+      API_ADDR = PFConfig.API_ADDR;
+      int.TryParse(PFConfig.MAX_CACHE_SIZE, out int mcs);
       MAX_CACHE_SIZE = mcs;
 
       if (reconnectToApi)
@@ -47,7 +47,7 @@ namespace DBConnect
 
     private static void RefreshToken()
     {
-      var body = "{" + $"'username': '{PFConfig.GetConfig(ConfigValues.API_USER)}', 'password': '{PFConfig.GetConfig(ConfigValues.API_PASS)}'" + "}";
+      var body = "{" + $"'username': '{PFConfig.API_USER}', 'password': '{PFConfig.API_PASS}'" + "}";
       var response = client.PostAsync(API_ADDR + "GetToken/pls", new StringContent(body, Encoding.UTF8, "application/json")).Result;
       if (response.IsSuccessStatusCode)
       {
@@ -77,7 +77,7 @@ namespace DBConnect
     public static Dictionary<string, string> GetCampaignData()
     {
       Dictionary<string, string> ret = null;
-      var campaign = PFConfig.GetConfig(ConfigValues.CAMPAIGN_ID);
+      var campaign = PFConfig.CAMPAIGN_ID;
 
       if (!string.IsNullOrWhiteSpace(campaign))
       {
@@ -94,7 +94,7 @@ namespace DBConnect
 
     public static bool UpdateCampaignData(Dictionary<string, string> campaignData)
     {
-      var campaign = PFConfig.GetConfig(ConfigValues.CAMPAIGN_ID);
+      var campaign = PFConfig.CAMPAIGN_ID;
       if (campaignData != null && campaign != null)
       {
         var body = JsonConvert.SerializeObject(campaignData);
@@ -335,6 +335,20 @@ namespace DBConnect
       {
         var content = response.Content;
         ret = JsonConvert.DeserializeObject<BestiaryType>(content.ReadAsStringAsync().Result);
+      }
+
+      return ret;
+    }
+
+    public static Campaign GetCampaign(int CampaignId)
+    {
+      Campaign ret = null;
+
+      var response = client.GetAsync(API_ADDR + "Campaign/" + CampaignId.ToString()).Result;
+      if (response.IsSuccessStatusCode)
+      {
+        var content = response.Content;
+        ret = JsonConvert.DeserializeObject<Campaign>(content.ReadAsStringAsync().Result);
       }
 
       return ret;
@@ -695,6 +709,20 @@ namespace DBConnect
       return ret;
     }
 
+    public static List<Campaign> GetCampaigns()
+    {
+      List<Campaign> ret = new List<Campaign>();
+
+      var response = client.GetAsync(API_ADDR + "Campaign").Result;
+      if (response.IsSuccessStatusCode)
+      {
+        var content = response.Content;
+        ret = JsonConvert.DeserializeObject<List<Campaign>>(content.ReadAsStringAsync().Result);
+      }
+
+      return ret;
+    }
+
     public static List<Continent> GetContinents()
     {
       List<Continent> ret = new List<Continent>();
@@ -1011,6 +1039,21 @@ namespace DBConnect
       {
         var content = response.Content;
         ret = JsonConvert.DeserializeObject<BestiaryType>(content.ReadAsStringAsync().Result);
+      }
+
+      return ret;
+    }
+
+    public static Campaign CreateCampaign(Campaign obj)
+    {
+      Campaign ret = null;
+
+      var body = JsonConvert.SerializeObject(obj);
+      var response = client.PostAsync(API_ADDR + "Campaign", new StringContent(body, Encoding.UTF8, "application/json")).Result;
+      if (response.IsSuccessStatusCode)
+      {
+        var content = response.Content;
+        ret = JsonConvert.DeserializeObject<Campaign>(content.ReadAsStringAsync().Result);
       }
 
       return ret;
@@ -1434,6 +1477,18 @@ namespace DBConnect
       return ret;
     }
 
+    public static bool UpdateCampaign(Campaign obj)
+    {
+      var ret = false;
+
+      var body = JsonConvert.SerializeObject(obj);
+      var response = client.PutAsync(API_ADDR + "Campaign/" + obj.CampaignId.ToString(), new StringContent(body, Encoding.UTF8, "application/json")).Result;
+      if (response.IsSuccessStatusCode)
+        ret = true;
+
+      return ret;
+    }
+
     public static bool UpdateContinent(Continent obj)
     {
       var ret = false;
@@ -1737,6 +1792,15 @@ namespace DBConnect
     public static bool DeleteBestiaryType(int BestiaryTypeId)
     {
       var response = client.DeleteAsync(API_ADDR + "BestiaryType/" + BestiaryTypeId.ToString()).Result;
+      if (response.IsSuccessStatusCode)
+        return true;
+
+      return false;
+    }
+
+    public static bool DeleteCampaign(int CampaignId)
+    {
+      var response = client.DeleteAsync(API_ADDR + "Campaign/" + CampaignId.ToString()).Result;
       if (response.IsSuccessStatusCode)
         return true;
 

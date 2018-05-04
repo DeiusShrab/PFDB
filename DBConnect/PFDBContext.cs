@@ -14,6 +14,7 @@ namespace DBConnect
     public virtual DbSet<BestiarySkill> BestiarySkill { get; set; }
     public virtual DbSet<BestiarySubType> BestiarySubType { get; set; }
     public virtual DbSet<BestiaryType> BestiaryType { get; set; }
+    public virtual DbSet<Campaign> Campaign { get; set; }
     public virtual DbSet<CampaignData> CampaignData { get; set; }
     public virtual DbSet<Continent> Continent { get; set; }
     public virtual DbSet<ContinentWeather> ContinentWeather { get; set; }
@@ -46,7 +47,7 @@ namespace DBConnect
       {
         //optionsBuilder.UseSqlServer("Server=192.168.1.150;Database=PFDB;User Id=PFDBSite;Password=ayy lmao ayy lmao AYY 1m40");
         optionsBuilder.UseSqlServer("Server=localhost;Database=PFDB;User Id=PFDBSite;Password=ayy lmao ayy lmao AYY 1m40");
-        optionsBuilder.UseSqlServer($"Server={PFConfig.GetConfig(ConfigValues.DB_ADDR)};Database={PFConfig.GetConfig(ConfigValues.DB_DB)};User Id={PFConfig.GetConfig(ConfigValues.DB_USER)};Password={PFConfig.GetConfig(ConfigValues.DB_PASS)}");
+        //optionsBuilder.UseSqlServer($"Server={PFConfig.DB_ADDR};Database={PFConfig.DB_DB};User Id={PFConfig.DB_USER};Password={PFConfig.DB_PASS}");
       }
     }
 
@@ -405,6 +406,20 @@ namespace DBConnect
         entity.Property(e => e.Name)
             .IsRequired()
             .HasMaxLength(100)
+            .IsUnicode(false);
+      });
+
+      modelBuilder.Entity<Campaign>(entity =>
+      {
+        entity.HasKey(e => e.CampaignId);
+
+        entity.Property(e => e.CampaignName)
+            .IsRequired()
+            .HasMaxLength(100)
+            .IsUnicode(false);
+
+        entity.Property(e => e.CampaignNotes)
+            .HasMaxLength(2000)
             .IsUnicode(false);
       });
 

@@ -320,6 +320,42 @@ namespace PFHelper
       set { TxtEvtNotes.Text = value; }
     }
 
+    public int CampaignId
+    {
+      get { return Convert.ToInt32(LblCampaignId.Content.ToString()); }
+      set { LblCampaignId.Content = value; }
+    }
+
+    public string CampaignName
+    {
+      get { return TxtCampaignName.Text; }
+      set { TxtCampaignName.Text = value; }
+    }
+
+    public string CampaignNotes
+    {
+      get { return TxtCampaignNotes.Text; }
+      set { TxtCampaignNotes.Text = value; }
+    }
+
+    public string CampaignDataName
+    {
+      get { return TxtCampaignDataName.Text; }
+      set { TxtCampaignDataName.Text = value; }
+    }
+
+    public string CampaignDataValue
+    {
+      get { return TxtCampaignDataValue.Text; }
+      set { TxtCampaignDataValue.Text = value; }
+    }
+
+    public string CampaignDataNew
+    {
+      get { return TxtCampaignDataNew.Text; }
+      set { TxtCampaignDataNew.Text = value; }
+    }
+
     #endregion
 
     #region Data Properties
@@ -333,6 +369,8 @@ namespace PFHelper
     private ObservableCollection<DisplayResult> creatureInfos;
     private ObservableCollection<DisplayResult> planeList;
     private ObservableCollection<DisplayResult> timeList;
+    private ObservableCollection<DisplayResult> campaignList;
+    private ObservableCollection<string> campaignDataList;
 
     private List<TrackedEvent> trackedEvents;
     private List<Continent> continents;
@@ -349,6 +387,7 @@ namespace PFHelper
     private Weather CurrentWeather;
     private LiveEvent CurrentEvent;
     private ContinentWeather CurrentWeatherGroup;
+    private Campaign ActiveCampaign;
     private string saveDataPath = Path.Combine(System.Environment.CurrentDirectory, "pfdat.dat");
     private string selectedCombatMonsterHtml;
     private int selectedCombatMonsterId;
@@ -375,6 +414,8 @@ namespace PFHelper
       planeList = new ObservableCollection<DisplayResult>();
       timeList = new ObservableCollection<DisplayResult>();
       liveEventList = new ObservableCollection<LiveEvent>();
+      campaignDataList = new ObservableCollection<string>();
+      campaignList = new ObservableCollection<DisplayResult>();
 
       if (!LoadDBData())
       {
@@ -385,10 +426,10 @@ namespace PFHelper
 
       LbxD20.DisplayMemberPath = LbxD4.DisplayMemberPath = LbxD6.DisplayMemberPath = LbxD8.DisplayMemberPath = LbxD10.DisplayMemberPath = LbxD12.DisplayMemberPath
         = LbxEncounterCreatures.DisplayMemberPath = LbxContinent.DisplayMemberPath = LbxCreatureInfo.DisplayMemberPath = LbxPlane.DisplayMemberPath
-        = LbxTime.DisplayMemberPath = LbxTerrain.DisplayMemberPath = DrpEvtType.DisplayMemberPath = "Display";
+        = LbxTime.DisplayMemberPath = LbxTerrain.DisplayMemberPath = DrpEvtType.DisplayMemberPath = DrpCampaignSelect.DisplayMemberPath = "Display";
       LbxD20.SelectedValuePath = LbxD4.SelectedValuePath = LbxD6.SelectedValuePath = LbxD8.SelectedValuePath = LbxD10.SelectedValuePath = LbxD12.SelectedValuePath
         = LbxEncounterCreatures.SelectedValuePath = LbxContinent.SelectedValuePath = LbxCreatureInfo.SelectedValuePath = LbxPlane.SelectedValuePath
-        = LbxTime.SelectedValuePath = LbxTerrain.SelectedValuePath = DrpEvtType.SelectedValuePath = "Result";
+        = LbxTime.SelectedValuePath = LbxTerrain.SelectedValuePath = DrpEvtType.SelectedValuePath = DrpCampaignSelect.SelectedValuePath = "Result";
 
       LbxEncounterCRs.DisplayMemberPath = "Display";
       LbxEncounterCRs.SelectedValuePath = "Values";
@@ -399,6 +440,8 @@ namespace PFHelper
       LbxCreatureInfo.ItemsSource = creatureInfos;
       LbxPlane.ItemsSource = planeList;
       LbxTime.ItemsSource = timeList;
+      LbxCampaignData.ItemsSource = campaignDataList;
+      DrpCampaignSelect.ItemsSource = campaignList;
 
       UpdateDate();
 
@@ -443,6 +486,7 @@ namespace PFHelper
           timeList.Clear();
           planeList.Clear();
           liveEventList.Clear();
+          campaignDataList.Clear();
 
           foreach (var item in continents)
           {
@@ -460,6 +504,8 @@ namespace PFHelper
           {
             liveEventList.Add(new LiveEvent(item));
           }
+
+          campaignDataList.AddRange(CampaignData.Keys);
 
           ret = true;
         }
@@ -1393,6 +1439,67 @@ namespace PFHelper
 
       liveEventList.Clear();
       liveEventList.AddRange(temp);
+    }
+
+    private void BtnSaveCampaignData_Click(object sender, RoutedEventArgs e)
+    {
+      if (!string.IsNullOrWhiteSpace(CampaignDataName))
+      {
+        if (!CampaignData.ContainsKey(CampaignDataName))
+          CampaignData.Add(CampaignDataName, CampaignDataValue);
+        else
+          CampaignData[CampaignDataName] = CampaignDataValue;
+
+        DBClient.UpdateCampaignData(CampaignData);
+        campaignDataList.Clear();
+        campaignDataList.AddRange(CampaignData.Keys);
+      }
+    }
+
+    private void BtnAddCampaignData_Click(object sender, RoutedEventArgs e)
+    {
+      if (!string.IsNullOrWhiteSpace(CampaignDataNew) && !CampaignData.ContainsKey(CampaignDataNew))
+      {
+        CampaignData.Add(CampaignDataNew, string.Empty);
+        DBClient.UpdateCampaignData(CampaignData);
+        campaignDataList.Clear();
+        campaignDataList.AddRange(CampaignData.Keys);
+      }
+    }
+
+    private void BtnCampaignNew_Click(object sender, RoutedEventArgs e)
+    {
+      ActiveCampaign = new Campaign();
+      CampaignId = 0;
+      CampaignName = CampaignNotes = string.Empty;
+    }
+
+    private void BtnCampaignSave_Click(object sender, RoutedEventArgs e)
+    {
+      ActiveCampaign.CampaignId = CampaignId;
+      ActiveCampaign.CampaignName = CampaignName;
+      ActiveCampaign.CampaignNotes = CampaignNotes;
+
+      if (ActiveCampaign.CampaignId == 0)
+        ActiveCampaign = DBClient.CreateCampaign(ActiveCampaign);
+      else
+        DBClient.UpdateCampaign(ActiveCampaign);
+    }
+
+    private void LbxCampaign_MouseDoubleClick(object sender, System.Windows.Input.MouseButtonEventArgs e)
+    {
+      if (LbxCampaignData.SelectedItem != null)
+      {
+        var data = LbxCampaignData.SelectedItem as string;
+        CampaignDataName = data;
+        CampaignDataValue = CampaignData[data];
+      }
+    }
+
+    private void DrpCampaignSelect_SelectionChanged(object sender, SelectionChangedEventArgs e)
+    {
+      if (DrpCampaignSelect.SelectedItem != null)
+        ActiveCampaign = DrpCampaignSelect.SelectedItem as Campaign;
     }
   }
 }

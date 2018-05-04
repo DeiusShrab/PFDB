@@ -8,12 +8,9 @@ Update big text fields like Attack, Defense, and Special to something machine-re
 	or split them into a new datatype. AbilityId, BestiaryId
 		(Melee/Ranged), Attack Bonus, Damage, Crit, Range, Type (P/S/B, Cone, Burst), Effects (+1d6 cold, etc)
 		(Special), Range, Type (Cone, Burst, etc), Target, Effect
-Half-Sheets for NPCs and PCs
-	A new tab where I can store/edit PC and NPC info
 Copy From
 	Bestiary (and other?) option to create a new creature from an existing one
 	Basically leave everything loaded but reset the BID to 0
-
 
 TODO AT HOME
 Publish
@@ -33,7 +30,7 @@ MORE MAP WORK
 	Touch them up first with more locations and proper city names
 	Remember that maps only show "major" locations, small towns and villages won't be there
 	Add small roads, towns, and villages to DM map. Write up a couple tiny settlements that could be tossed down mid-game.
-Make some kind of DB Importer that pulls PFSRD stuff, runs it through the formatter from Test, and adds it to the DB
+Make some kind of DB Importer that pulls PFSRD stuff (and nethys?), runs it through the formatter from Test, and adds it to the DB
 
 Generating code-first from existing DB
 https://docs.microsoft.com/en-us/ef/core/get-started/aspnetcore/existing-db
