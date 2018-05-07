@@ -6,7 +6,8 @@
     {
       if (PFConfig.ConfigExists())
       {
-        return GetContext(PFConfig.DEBUG.Equals("true", System.StringComparison.InvariantCultureIgnoreCase));
+        // Only return live config if APP_MODE == "LIVE"
+        return GetContext(!PFConfig.APP_MODE.Equals("LIVE", System.StringComparison.InvariantCultureIgnoreCase));
       }
 
 #if DEBUG

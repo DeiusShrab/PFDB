@@ -1021,6 +1021,12 @@ namespace PFHelper
 
     private void UpdateDate()
     {
+      if (CurrentDate == null || seasons == null || CurrentMonth == null)
+      {
+        LblGrandDate.Content = "NO DATA";
+        return;
+      }
+
       CurrentMonth = months.FirstOrDefault(x => x.MonthOrder == CurrentDate.Month);
       LblGrandDate.Content = $"YEAR {CurrentDate.Year} AA, Season of {seasons.First(x => x.SeasonId == CurrentMonth.SeasonId).Name}, Month of {CurrentMonth.Name}, Day {CurrentDate.Day}";
 

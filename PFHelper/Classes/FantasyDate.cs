@@ -202,11 +202,8 @@ namespace PFHelper.Classes
 
     public static bool operator ==(FantasyDate d1, FantasyDate d2)
     {
-      if (d1 == null && d2 == null)
-        return true;
-
-      if (d1 == null || d2 == null)
-        return false;
+      if (object.ReferenceEquals(null, d2))
+        return object.ReferenceEquals(null, d1);
       
       if (d1.DaysInMonth != d2.DaysInMonth || d1.MonthsInYear != d2.MonthsInYear)
         throw new ArgumentException("Incompatible date formats! Check MonthsInYear and DaysInMonth");

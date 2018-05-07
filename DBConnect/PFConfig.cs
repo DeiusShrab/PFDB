@@ -8,7 +8,7 @@ namespace DBConnect
 {
   public enum ConfigValues // Values found in "PFConfig.json"
   {
-    DEBUG, // If the application is in Debug mode
+    APP_MODE, // If the application is in Debug mode
     JWT_KEY, // JWT Key to be used in authentication
     JWT_ISSUER, // JWT Issuer (and audience)
     API_USER, // Username for API authentication
@@ -24,7 +24,7 @@ namespace DBConnect
 
   public static class PFConfig
   {
-    public static string DEBUG => GetConfig(ConfigValues.DEBUG);
+    public static string APP_MODE => GetConfig(ConfigValues.APP_MODE);
     public static string JWT_KEY => GetConfig(ConfigValues.JWT_KEY);
     public static string JWT_ISSUER => GetConfig(ConfigValues.JWT_ISSUER);
     public static string API_USER => GetConfig(ConfigValues.API_USER);
