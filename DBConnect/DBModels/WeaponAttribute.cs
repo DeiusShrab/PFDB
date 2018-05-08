@@ -1,12 +1,13 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
+using System.Text;
 
 namespace DBConnect.DBModels
 {
-  public partial class BestiaryType
+  public class WeaponAttribute
   {
-    public int BestiaryTypeId { get; set; }
+    public int WpnAttId { get; set; }
     public string Name { get; set; }
+    public string Effect { get; set; }
   }
 }
