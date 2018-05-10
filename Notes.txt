@@ -11,8 +11,25 @@ Update big text fields like Attack, Defense, and Special to something machine-re
 Copy From
 	Bestiary (and other?) option to create a new creature from an existing one
 	Basically leave everything loaded but reset the BID to 0
+NPC Builder (Looking like its own entirely new tool atm) (YEAH TIME TO WRITE A FULL CHARACTER CREATION UTILITY AAAAAAAAAA)
+	Start with a Bestiary entry
+		OR A RACE. WELP.
+	Apply templates as desired
+	Add Class levels (oh god I have to implement all the PF Classes...)
+		Prestige classes...
+		AND ARCHETYPES OH JESUS WHY DO I DO THIS TO MYSELF
+	Add equipment (custom-build enchanted gear)
+Web Tools!
+	Character sheets for the players
+		Interactive?
+		Live rolls and HP tracking?
+		Gear
+		Use the equipment build rules for magical gear WELP
+W E L P
 
 TODO AT HOME
+Git dat HTTPS
+	https://letsencrypt.org/getting-started/
 Publish
 	Set up a publish script for the server that gets the latest and runs dotnet publish
 	For the client, set up a publish profile that puts everything in a zip file and throws it into dropbox

@@ -46,13 +46,18 @@ namespace DBConnect
       if (!optionsBuilder.IsConfigured)
       {
         //optionsBuilder.UseSqlServer("Server=192.168.1.150;Database=PFDB;User Id=PFDBSite;Password=ayy lmao ayy lmao AYY 1m40");
-        optionsBuilder.UseSqlServer("Server=localhost;Database=PFDB;User Id=PFDBSite;Password=ayy lmao ayy lmao AYY 1m40");
-        //optionsBuilder.UseSqlServer($"Server={PFConfig.DB_ADDR};Database={PFConfig.DB_DB};User Id={PFConfig.DB_USER};Password={PFConfig.DB_PASS}");
+        //optionsBuilder.UseSqlServer("Server=localhost;Database=PFDB;User Id=PFDBSite;Password=ayy lmao ayy lmao AYY 1m40");
+        optionsBuilder.UseSqlServer($"Server={PFConfig.DB_ADDR};Database={PFConfig.DB_DB};User Id={PFConfig.DB_USER};Password={PFConfig.DB_PASS}");
       }
     }
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
+      modelBuilder.Entity<Armor>(entity =>
+      {
+        entity.ToTable("Armor");
+      });
+
       modelBuilder.Entity<Bestiary>(entity =>
       {
         entity.Property(e => e.AbilityScoreMods)
@@ -1208,6 +1213,11 @@ namespace DBConnect
             .IsRequired()
             .HasMaxLength(100)
             .IsUnicode(false);
+      });
+
+      modelBuilder.Entity<Weapon>(entity =>
+      {
+        entity.ToTable("Weapon");
       });
 
       modelBuilder.Entity<Weather>(entity =>
