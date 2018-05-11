@@ -53,6 +53,8 @@ namespace DBConnect
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
+      //modelBuilder.Properties()
+
       modelBuilder.Entity<Armor>(entity =>
       {
         entity.ToTable("Armor");
