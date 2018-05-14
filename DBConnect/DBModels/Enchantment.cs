@@ -13,6 +13,8 @@ namespace DBConnect.DBModels
     public int EnchantmentType { get; set; }
     public int BonusType { get; set; }
     public int Bonus { get; set; }
+
+    public ICollection<CharacterGear> EnchantedGear { get; set; }
   }
 
   public enum EnchantType

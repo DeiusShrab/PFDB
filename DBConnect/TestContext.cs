@@ -44,6 +44,16 @@ namespace DBConnect
     public DbSet<Skill> Skill { get; set; }
     public DbSet<SpellSchool> SpellSchool { get; set; }
     public DbSet<SpellSubSchool> SpellSubSchool { get; set; }
+    public DbSet<Armor> Armor { get; set; }
+    public DbSet<CharacterClass> CharacterClass { get; set; }
+    public DbSet<CharacterGear> CharacterGear { get; set; }
+    public DbSet<CharacterRace> CharacterRace { get; set; }
+    public DbSet<ClassAbility> ClassAbility { get; set; }
+    public DbSet<Enchantment> Enchantment { get; set; }
+    public DbSet<FavoredClass> FavoredClass { get; set; }
+    public DbSet<Gear> Gear { get; set; }
+    public DbSet<Weapon> Weapon { get; set; }
+    public DbSet<WeaponAttribute> WeaponAttribute { get; set; }
     #endregion
 
     #region Lists
@@ -83,6 +93,17 @@ namespace DBConnect
     private List<Skill> _Skill = new List<Skill>();
     private List<SpellSchool> _SpellSchool = new List<SpellSchool>();
     private List<SpellSubSchool> _SpellSubSchool = new List<SpellSubSchool>();
+    private List<Armor> _Armor = new List<Armor>();
+    private List<CharacterClass> _CharacterClass = new List<CharacterClass>();
+    private List<CharacterGear> _CharacterGear = new List<CharacterGear>();
+    private List<CharacterRace> _CharacterRace = new List<CharacterRace>();
+    private List<ClassAbility> _ClassAbility = new List<ClassAbility>();
+    private List<Enchantment> _Enchantment = new List<Enchantment>();
+    private List<FavoredClass> _FavoredClass = new List<FavoredClass>();
+    private List<Gear> _Gear = new List<Gear>();
+    private List<Weapon> _Weapon = new List<Weapon>();
+    private List<WeaponAttribute> _WeaponAttribute = new List<WeaponAttribute>();
+
     #endregion
 
     private int _changes;
@@ -124,6 +145,16 @@ namespace DBConnect
       Skill = GetQueryableMockDbSet(_Skill);
       SpellSchool = GetQueryableMockDbSet(_SpellSchool);
       SpellSubSchool = GetQueryableMockDbSet(_SpellSubSchool);
+      Armor = GetQueryableMockDbSet(_Armor);
+      CharacterClass = GetQueryableMockDbSet(_CharacterClass);
+      CharacterGear = GetQueryableMockDbSet(_CharacterGear);
+      CharacterRace = GetQueryableMockDbSet(_CharacterRace);
+      ClassAbility = GetQueryableMockDbSet(_ClassAbility);
+      Enchantment = GetQueryableMockDbSet(_Enchantment);
+      FavoredClass = GetQueryableMockDbSet(_FavoredClass);
+      Gear = GetQueryableMockDbSet(_Gear);
+      Weapon = GetQueryableMockDbSet(_Weapon);
+      WeaponAttribute = GetQueryableMockDbSet(_WeaponAttribute);
     }
 
     private DbSet<T> GetQueryableMockDbSet<T>(List<T> sourceList) where T : class

@@ -40,6 +40,16 @@ namespace DBConnect
     public virtual DbSet<Time> Time { get; set; }
     public virtual DbSet<TrackedEvent> TrackedEvent { get; set; }
     public virtual DbSet<Weather> Weather { get; set; }
+    public virtual DbSet<Armor> Armor { get; set; }
+    public virtual DbSet<CharacterClass> CharacterClass { get; set; }
+    public virtual DbSet<CharacterGear> CharacterGear { get; set; }
+    public virtual DbSet<CharacterRace> CharacterRace { get; set; }
+    public virtual DbSet<ClassAbility> ClassAbility { get; set; }
+    public virtual DbSet<Enchantment> Enchantment { get; set; }
+    public virtual DbSet<FavoredClass> FavoredClass { get; set; }
+    public virtual DbSet<Gear> Gear { get; set; }
+    public virtual DbSet<Weapon> Weapon { get; set; }
+    public virtual DbSet<WeaponAttribute> WeaponAttribute { get; set; }
 
     protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
     {
@@ -53,8 +63,6 @@ namespace DBConnect
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
-      //modelBuilder.Properties()
-
       modelBuilder.Entity<Armor>(entity =>
       {
         entity.ToTable("Armor");
@@ -438,6 +446,16 @@ namespace DBConnect
               .HasMaxLength(500)
               .IsUnicode(false);
         
+      });
+
+      modelBuilder.Entity<CharacterClass>(entity =>
+      {
+
+      });
+
+      modelBuilder.Entity<CharacterGear>(entity =>
+      {
+
       });
 
       modelBuilder.Entity<Continent>(entity =>

@@ -24,7 +24,9 @@ Web Tools!
 		Interactive?
 		Live rolls and HP tracking?
 		Gear
-		Use the equipment build rules for magical gear WELP
+			Use the equipment build rules for magical gear WELP
+			Export gear to string (json object that's base64 encoded), import from string
+			Add gear from library (all non-custom gear)
 W E L P
 
 TODO AT HOME

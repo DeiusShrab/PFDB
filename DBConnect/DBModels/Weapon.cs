@@ -12,15 +12,24 @@ namespace DBConnect.DBModels
     public int CritMin { get; set; }
     public int CritMult { get; set; }
     public int Range { get; set; }
-    public int Weight { get; set; }
-    public WpnType WeaponType { get; set; }
+    public DmgType DamageType { get; set; }
     public virtual List<WeaponAttribute> Special { get; set; }
   }
   
-  public enum WpnType
+  public enum DmgType
   {
     B = 1,
     S = 2,
     P = 3,
+  }
+
+  public enum WpnType
+  {
+    MeleeL,
+    Melee1H,
+    Melee2H,
+    RangedL,
+    Ranged1H,
+    Ranged2H,
   }
 }

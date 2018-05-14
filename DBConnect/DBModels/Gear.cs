@@ -7,24 +7,18 @@ namespace DBConnect.DBModels
   public class Gear
   {
     public int GearId { get; set; }
-    public decimal Cost { get; set; } // Cost in GP
+    public decimal Cost { get; set; } // Cost in GP, decimal is SP and CP
     public string Name { get; set; }
     public int Type { get; set; }
+    public int Weight { get; set; }
   }
 
   public enum GearType
   {
     Misc,
-    Consum, // Consumables
-    WpnMLgt,
-    WpnM1H,
-    WpnM2H,
-    WpnRLgt,
-    WpnR1H,
-    WpnR2H,
-    ArmLgt,
-    ArmMed,
-    ArmHvy,
+    Consumable,
+    WeaponMelee,
+    WeaponRanged,
     Shield,
     Head,
     Headband,
