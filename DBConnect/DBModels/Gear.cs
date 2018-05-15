@@ -12,26 +12,4 @@ namespace DBConnect.DBModels
     public int Type { get; set; }
     public int Weight { get; set; }
   }
-
-  public enum GearType
-  {
-    Misc,
-    Consumable,
-    WeaponMelee,
-    WeaponRanged,
-    Shield,
-    Head,
-    Headband,
-    Eyes,
-    Shoulders,
-    Neck,
-    Chest,
-    Body,
-    Armor,
-    Belt,
-    Wrists,
-    Hands,
-    Ring,
-    Feet,
-  }
 }

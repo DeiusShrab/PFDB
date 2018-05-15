@@ -41,6 +41,7 @@ namespace DBConnect
     public DbSet<Time> Time { get; set; }
     public DbSet<TrackedEvent> TrackedEvent { get; set; }
     public DbSet<Plane> Plane { get; set; }
+    public DbSet<Player> Player { get; set; }
     public DbSet<Skill> Skill { get; set; }
     public DbSet<SpellSchool> SpellSchool { get; set; }
     public DbSet<SpellSubSchool> SpellSubSchool { get; set; }
@@ -54,6 +55,7 @@ namespace DBConnect
     public DbSet<Gear> Gear { get; set; }
     public DbSet<Weapon> Weapon { get; set; }
     public DbSet<WeaponAttribute> WeaponAttribute { get; set; }
+    public DbSet<Character> Character { get; set; }
     #endregion
 
     #region Lists
@@ -103,6 +105,7 @@ namespace DBConnect
     private List<Gear> _Gear = new List<Gear>();
     private List<Weapon> _Weapon = new List<Weapon>();
     private List<WeaponAttribute> _WeaponAttribute = new List<WeaponAttribute>();
+    private List<Character> _Character = new List<Character>();
 
     #endregion
 
@@ -155,6 +158,7 @@ namespace DBConnect
       Gear = GetQueryableMockDbSet(_Gear);
       Weapon = GetQueryableMockDbSet(_Weapon);
       WeaponAttribute = GetQueryableMockDbSet(_WeaponAttribute);
+      Character = GetQueryableMockDbSet(_Character);
     }
 
     private DbSet<T> GetQueryableMockDbSet<T>(List<T> sourceList) where T : class

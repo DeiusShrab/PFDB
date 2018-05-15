@@ -15,21 +15,4 @@ namespace DBConnect.DBModels
     public DmgType DamageType { get; set; }
     public virtual List<WeaponAttribute> Special { get; set; }
   }
-  
-  public enum DmgType
-  {
-    B = 1,
-    S = 2,
-    P = 3,
-  }
-
-  public enum WpnType
-  {
-    MeleeL,
-    Melee1H,
-    Melee2H,
-    RangedL,
-    Ranged1H,
-    Ranged2H,
-  }
 }

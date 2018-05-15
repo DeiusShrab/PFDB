@@ -20,6 +20,7 @@ namespace DBConnect
     DbSet<BestiaryType> BestiaryType { get; set; }
     DbSet<Campaign> Campaign { get; set; }
     DbSet<CampaignData> CampaignData { get; set; }
+    DbSet<Character> Character { get; set; }
     DbSet<CharacterClass> CharacterClass { get; set; }
     DbSet<CharacterGear> CharacterGear { get; set; }
     DbSet<CharacterRace> CharacterRace { get; set; }
@@ -40,6 +41,7 @@ namespace DBConnect
     DbSet<Npc> Npc { get; set; }
     DbSet<Npcdetail> Npcdetail { get; set; }
     DbSet<Plane> Plane { get; set; }
+    DbSet<Player> Player { get; set; }
     DbSet<Season> Season { get; set; }
     DbSet<Skill> Skill { get; set; }
     DbSet<Spell> Spell { get; set; }

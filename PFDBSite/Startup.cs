@@ -1,4 +1,6 @@
-﻿using System.Text;
+﻿using System.Security.Claims;
+using System.Text;
+using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
@@ -21,20 +23,18 @@ namespace PFDBSite
     // This method gets called by the runtime. Use this method to add services to the container.
     public void ConfigureServices(IServiceCollection services)
     {
-      services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
-        .AddJwtBearer(options =>
-        {
-          options.TokenValidationParameters = new TokenValidationParameters
-          {
-            ValidateIssuer = true,
-            ValidateAudience = true,
-            ValidateLifetime = true,
-            ValidateIssuerSigningKey = true,
-            ValidIssuer = DBConnect.PFConfig.JWT_ISSUER,
-            ValidAudience = DBConnect.PFConfig.JWT_ISSUER,
-            IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(DBConnect.PFConfig.JWT_KEY))
-          };
-        });
+      services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme)
+              .AddCookie(options =>
+              {
+                options.AccessDeniedPath = "/Error";
+                options.LoginPath = "/Pathfinder/Login";
+                options.LogoutPath = "/Pathfinder/Logout";
+              });
+
+      services.AddAuthorization(options =>
+      {
+        options.AddPolicy("PlayerInfo", policy => policy.RequireClaim("PFPlayer"));
+      });
 
       services.AddMvc();
     }

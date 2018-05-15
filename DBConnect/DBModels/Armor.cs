@@ -14,12 +14,4 @@ namespace DBConnect.DBModels
     public int CheckPenalty { get; set; }
 
   }
-
-  public enum ArmorType
-  {
-    Light = 1,
-    Medium = 2,
-    Heavy = 3,
-    Shield = 4,
-  }
 }

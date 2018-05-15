@@ -3,7 +3,7 @@ using System.Linq;
 using Microsoft.AspNetCore.Mvc;
 using DBConnect;
 using DBConnect.ConnectModels;
-using PFDBSite.Helpers;
+using PFAPI.Helpers;
 using Microsoft.AspNetCore.Authorization;
 using System.IdentityModel.Tokens.Jwt;
 using Microsoft.IdentityModel.Tokens;
@@ -11,20 +11,28 @@ using System.Text;
 using Newtonsoft.Json.Linq;
 using DBConnect.DBModels;
 using System.Collections.Generic;
+using Microsoft.Extensions.Configuration;
+using System.IO;
 
-namespace PFDBSite.Controllers
+namespace PFAPI.Controllers
 {
   [Produces("application/json")]
   [Route("api")]
   [Authorize]
   [RequireHttps]
-  public class ApiController : PFDBController
+  public class ApiController : Controller
   {
     private RandomHelper helperRandom;
     private QueryHelper helperQuery;
+    public static IConfiguration Configuration { get; set; }
 
     public ApiController()
     {
+      var builder = new ConfigurationBuilder()
+          .SetBasePath(Directory.GetCurrentDirectory())
+          .AddJsonFile("appsettings.json");
+
+      Configuration = builder.Build();
       helperRandom = new RandomHelper();
       helperQuery = new QueryHelper();
     }

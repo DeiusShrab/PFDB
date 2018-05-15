@@ -7,6 +7,10 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PFDBSite", "PFDBSite\PFDBSi
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DBConnect", "DBConnect\DBConnect.csproj", "{8883E52B-E8A9-4733-96C0-C17D0404B73F}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PFAPI", "PFAPI\PFAPI.csproj", "{4112E1B0-69A8-4B2F-B58E-40A18F019F62}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TestSite", "TestSite\TestSite.csproj", "{6C6EDCD9-0001-46B5-A2B3-BB84A8047963}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -21,6 +25,14 @@ Global
 		{8883E52B-E8A9-4733-96C0-C17D0404B73F}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{8883E52B-E8A9-4733-96C0-C17D0404B73F}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{8883E52B-E8A9-4733-96C0-C17D0404B73F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{4112E1B0-69A8-4B2F-B58E-40A18F019F62}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4112E1B0-69A8-4B2F-B58E-40A18F019F62}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{4112E1B0-69A8-4B2F-B58E-40A18F019F62}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{4112E1B0-69A8-4B2F-B58E-40A18F019F62}.Release|Any CPU.Build.0 = Release|Any CPU
+		{6C6EDCD9-0001-46B5-A2B3-BB84A8047963}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6C6EDCD9-0001-46B5-A2B3-BB84A8047963}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6C6EDCD9-0001-46B5-A2B3-BB84A8047963}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6C6EDCD9-0001-46B5-A2B3-BB84A8047963}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

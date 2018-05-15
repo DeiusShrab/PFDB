@@ -16,10 +16,4 @@ namespace DBConnect.DBModels
     public string TrackedEventData { get; set; }
     public int CampaignId { get; set; }
   }
-
-  public enum TrackedEventType
-  {
-    CalendarEvent = 1,
-    UpdateCampaignNumber = 2 // Data Format: "Key(string);Operation(char);Amount(decimal)" - ex: "DaysUntilFestival;-;1", "GoblinBankAccount;*;1.0025"
-  }
 }

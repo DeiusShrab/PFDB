@@ -5,7 +5,7 @@ using DBConnect;
 using DBConnect.ConnectModels;
 using DBConnect.DBModels;
 
-namespace PFDBSite.Helpers
+namespace PFAPI.Helpers
 {
   public class RandomHelper
   {

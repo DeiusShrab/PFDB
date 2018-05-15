@@ -29,6 +29,7 @@ namespace DBConnect
     public virtual DbSet<Npc> Npc { get; set; }
     public virtual DbSet<Npcdetail> Npcdetail { get; set; }
     public virtual DbSet<Plane> Plane { get; set; }
+    public virtual DbSet<Player> Player { get; set; }
     public virtual DbSet<Season> Season { get; set; }
     public virtual DbSet<Skill> Skill { get; set; }
     public virtual DbSet<Spell> Spell { get; set; }
@@ -50,6 +51,7 @@ namespace DBConnect
     public virtual DbSet<Gear> Gear { get; set; }
     public virtual DbSet<Weapon> Weapon { get; set; }
     public virtual DbSet<WeaponAttribute> WeaponAttribute { get; set; }
+    public virtual DbSet<Character> Character { get; set; }
 
     protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
     {
@@ -445,7 +447,7 @@ namespace DBConnect
         entity.Property(e => e.Value)
               .HasMaxLength(500)
               .IsUnicode(false);
-        
+
       });
 
       modelBuilder.Entity<CharacterClass>(entity =>

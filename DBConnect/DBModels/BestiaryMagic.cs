@@ -14,13 +14,4 @@ namespace DBConnect.DBModels
     public int UsesPerDay { get; set; }
     public MagicType MagicTypeId { get; set; }
   }
-
-  public enum MagicType
-  {
-    Su = 1,
-    Sq = 2,
-    Ex = 3,
-    Prep = 4,
-    Spont = 5,
-  }
 }
