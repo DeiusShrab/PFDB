@@ -6,58 +6,8 @@ using DBConnect.DBModels;
 
 namespace DBConnect
 {
-  class TestContext : IPFDBContext
+  class TestContext : PFDBContext
   {
-    #region DBSets
-    public DbSet<Bestiary> Bestiary { get; set; }
-    public DbSet<BestiaryDetail> BestiaryDetail { get; set; }
-    public DbSet<BestiaryEnvironment> BestiaryEnvironment { get; set; }
-    public DbSet<BestiaryFeat> BestiaryFeat { get; set; }
-    public DbSet<BestiaryLanguage> BestiaryLanguage { get; set; }
-    public DbSet<BestiaryMagic> BestiaryMagic { get; set; }
-    public DbSet<BestiarySkill> BestiarySkill { get; set; }
-    public DbSet<BestiarySubType> BestiarySubType { get; set; }
-    public DbSet<BestiaryType> BestiaryType { get; set; }
-    public DbSet<Campaign> Campaign { get; set; }
-    public DbSet<CampaignData> CampaignData { get; set; }
-    public DbSet<Continent> Continent { get; set; }
-    public DbSet<ContinentWeather> ContinentWeather { get; set; }
-    public DbSet<Environment> Environment { get; set; }
-    public DbSet<Faction> Faction { get; set; }
-    public DbSet<Feat> Feat { get; set; }
-    public DbSet<Language> Language { get; set; }
-    public DbSet<Location> Location { get; set; }
-    public DbSet<MagicItem> MagicItem { get; set; }
-    public DbSet<MonsterSpawn> MonsterSpawn { get; set; }
-    public DbSet<Month> Month { get; set; }
-    public DbSet<Npc> Npc { get; set; }
-    public DbSet<Npcdetail> Npcdetail { get; set; }
-    public DbSet<Season> Season { get; set; }
-    public DbSet<Spell> Spell { get; set; }
-    public DbSet<SpellDetail> SpellDetail { get; set; }
-    public DbSet<Territory> Territory { get; set; }
-    public DbSet<Weather> Weather { get; set; }
-    public DbSet<Terrain> Terrain { get; set; }
-    public DbSet<Time> Time { get; set; }
-    public DbSet<TrackedEvent> TrackedEvent { get; set; }
-    public DbSet<Plane> Plane { get; set; }
-    public DbSet<Player> Player { get; set; }
-    public DbSet<Skill> Skill { get; set; }
-    public DbSet<SpellSchool> SpellSchool { get; set; }
-    public DbSet<SpellSubSchool> SpellSubSchool { get; set; }
-    public DbSet<Armor> Armor { get; set; }
-    public DbSet<CharacterClass> CharacterClass { get; set; }
-    public DbSet<CharacterGear> CharacterGear { get; set; }
-    public DbSet<CharacterRace> CharacterRace { get; set; }
-    public DbSet<ClassAbility> ClassAbility { get; set; }
-    public DbSet<Enchantment> Enchantment { get; set; }
-    public DbSet<FavoredClass> FavoredClass { get; set; }
-    public DbSet<Gear> Gear { get; set; }
-    public DbSet<Weapon> Weapon { get; set; }
-    public DbSet<WeaponAttribute> WeaponAttribute { get; set; }
-    public DbSet<Character> Character { get; set; }
-    #endregion
-
     #region Lists
 
     private List<Bestiary> _Bestiary = new List<Bestiary>();
@@ -106,6 +56,8 @@ namespace DBConnect
     private List<Weapon> _Weapon = new List<Weapon>();
     private List<WeaponAttribute> _WeaponAttribute = new List<WeaponAttribute>();
     private List<Character> _Character = new List<Character>();
+    private List<Player> _Player = new List<Player>();
+    private List<PlayerCampaign> _PlayerCampaign = new List<PlayerCampaign>();
 
     #endregion
 
@@ -159,6 +111,8 @@ namespace DBConnect
       Weapon = GetQueryableMockDbSet(_Weapon);
       WeaponAttribute = GetQueryableMockDbSet(_WeaponAttribute);
       Character = GetQueryableMockDbSet(_Character);
+      Player = GetQueryableMockDbSet(_Player);
+      PlayerCampaign = GetQueryableMockDbSet(_PlayerCampaign);
     }
 
     private DbSet<T> GetQueryableMockDbSet<T>(List<T> sourceList) where T : class
@@ -176,19 +130,19 @@ namespace DBConnect
       return dbSet.Object;
     }
 
-    public void Dispose()
+    public override void Dispose()
     {
       _changes = 0;
     }
 
-    public int SaveChanges()
+    public override int SaveChanges()
     {
       var i = _changes;
       _changes = 0;
       return i;
     }
 
-    public int SaveChanges(bool acceptAllChangesOnSuccess)
+    public override int SaveChanges(bool acceptAllChangesOnSuccess)
     {
       var i = _changes;
       _changes = 0;

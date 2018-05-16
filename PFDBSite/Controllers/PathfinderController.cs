@@ -11,7 +11,7 @@ using PFDBSite.Models;
 
 namespace PFDBSite.Controllers
 {
-  [Authorize(Policy = "PlayerInfo")]
+  [Authorize]
   public class PathfinderController : Controller
   {
     [AllowAnonymous]
@@ -28,12 +28,7 @@ namespace PFDBSite.Controllers
 
     public IActionResult Characters()
     {
-      var principal = Thread.CurrentPrincipal as ClaimsPrincipal;
-      var ident = principal.Identity as ClaimsIdentity;
-      var claim = ident.Claims.First(x => x.Type == ClaimTypes.Name);
-      var userName = claim.Value;
-      var context = PFDAL.GetContext();
-      var player = context.Player.Find(userName);
+      object player = null;
       if (player != null)
       {
         // List all player-owned characters and equipment, plus options to make new ones
@@ -42,56 +37,6 @@ namespace PFDBSite.Controllers
       }
 
       return BadRequest();
-    }
-
-    [AllowAnonymous]
-    public IActionResult Login()
-    {
-      return View();
-    }
-
-    [HttpPost]
-    [AllowAnonymous]
-    public IActionResult Login(LoginViewModel model)
-    {
-      if (ModelState.IsValid)
-      {
-        if (PFDAL.ValidatePassword(model.Username, model.Password))
-        {
-          var claims = new List<Claim>
-          {
-            new Claim("PFPlayer", model.Username),
-            new Claim(ClaimTypes.Role, "User")
-          };
-
-          var claimsIdentity = new ClaimsIdentity(claims, CookieAuthenticationDefaults.AuthenticationScheme);
-
-          var authProperties = new AuthenticationProperties
-          {
-            AllowRefresh = true,
-          };
-          
-          SignIn(claimsIdentity, authProperties);
-
-          return RedirectToAction("Index");
-        }
-        else
-        {
-          ModelState.AddModelError("", "Invalid Username and/or Password");
-        }
-      }
-      else
-      {
-        ModelState.AddModelError("", "Model Invalid");
-      }
-
-      return View(model);
-    }
-
-    public IActionResult Logout()
-    {
-      SignOut();
-      return RedirectToAction("Index");
     }
 
     [HttpGet("Characters/{characterId:int}")]

@@ -28,6 +28,9 @@ Web Tools!
 			Export gear to string (json object that's base64 encoded), import from string
 			Add gear from library (all non-custom gear)
 W E L P
+Code First Mapping
+	Add-Migration -Context PFDBContext
+	https://blog.oneunicorn.com/2017/09/25/many-to-many-relationships-in-ef-core-2-0-part-1-the-basics/
 
 TODO AT HOME
 Git dat HTTPS

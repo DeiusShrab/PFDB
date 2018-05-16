@@ -14,6 +14,6 @@ namespace DBConnect.DBModels
     public int BonusType { get; set; }
     public int Bonus { get; set; }
 
-    public ICollection<CharacterGear> EnchantedGear { get; set; }
+    public virtual ICollection<CharacterGearEnchantment> CharacterGearEnchantments { get; } = new List<CharacterGearEnchantment>();
   }
 }

@@ -9,6 +9,6 @@ namespace DBConnect.DBModels
     public int CharacterGearId { get; set; }
     public int GearId { get; set; }
     public int CharacterId { get; set; }
-    public List<Enchantment> Enchantments { get; set; }
+    public virtual ICollection<CharacterGearEnchantment> CharacterGearEnchantments { get; } = new List<CharacterGearEnchantment>();
   }
 }

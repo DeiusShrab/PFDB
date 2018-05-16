@@ -10,5 +10,6 @@ namespace DBConnect.DBModels
     public int CampaignId { get; set; }
     public string CampaignNotes { get; set; }
     public string CampaignName { get; set; }
+    public bool IsActive { get; set; }
   }
 }

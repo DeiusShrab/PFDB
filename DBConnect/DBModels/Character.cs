@@ -8,6 +8,7 @@ namespace DBConnect.DBModels
   {
     public int CharacterId { get; set; }
     public int PlayerId { get; set; } // 0 for NPCs and DM-created characters
+    public int CampaignId { get; set; } // For campaign-specific characters like PCs
     public string Name { get; set; }
     public string Deity { get; set; }
 

@@ -3,55 +3,60 @@ using DBConnect.DBModels;
 
 namespace DBConnect
 {
-  public partial class PFDBContext : DbContext, IPFDBContext
+  public class PFDBContext : DbContext
   {
-    public virtual DbSet<Bestiary> Bestiary { get; set; }
-    public virtual DbSet<BestiaryDetail> BestiaryDetail { get; set; }
-    public virtual DbSet<BestiaryEnvironment> BestiaryEnvironment { get; set; }
-    public virtual DbSet<BestiaryFeat> BestiaryFeat { get; set; }
-    public virtual DbSet<BestiaryLanguage> BestiaryLanguage { get; set; }
-    public virtual DbSet<BestiaryMagic> BestiaryMagic { get; set; }
-    public virtual DbSet<BestiarySkill> BestiarySkill { get; set; }
-    public virtual DbSet<BestiarySubType> BestiarySubType { get; set; }
-    public virtual DbSet<BestiaryType> BestiaryType { get; set; }
-    public virtual DbSet<Campaign> Campaign { get; set; }
-    public virtual DbSet<CampaignData> CampaignData { get; set; }
-    public virtual DbSet<Continent> Continent { get; set; }
-    public virtual DbSet<ContinentWeather> ContinentWeather { get; set; }
-    public virtual DbSet<Environment> Environment { get; set; }
-    public virtual DbSet<Faction> Faction { get; set; }
-    public virtual DbSet<Feat> Feat { get; set; }
-    public virtual DbSet<Language> Language { get; set; }
-    public virtual DbSet<Location> Location { get; set; }
-    public virtual DbSet<MagicItem> MagicItem { get; set; }
-    public virtual DbSet<MonsterSpawn> MonsterSpawn { get; set; }
-    public virtual DbSet<Month> Month { get; set; }
-    public virtual DbSet<Npc> Npc { get; set; }
-    public virtual DbSet<Npcdetail> Npcdetail { get; set; }
-    public virtual DbSet<Plane> Plane { get; set; }
-    public virtual DbSet<Player> Player { get; set; }
-    public virtual DbSet<Season> Season { get; set; }
-    public virtual DbSet<Skill> Skill { get; set; }
-    public virtual DbSet<Spell> Spell { get; set; }
-    public virtual DbSet<SpellDetail> SpellDetail { get; set; }
-    public virtual DbSet<SpellSchool> SpellSchool { get; set; }
-    public virtual DbSet<SpellSubSchool> SpellSubSchool { get; set; }
-    public virtual DbSet<Terrain> Terrain { get; set; }
-    public virtual DbSet<Territory> Territory { get; set; }
-    public virtual DbSet<Time> Time { get; set; }
-    public virtual DbSet<TrackedEvent> TrackedEvent { get; set; }
-    public virtual DbSet<Weather> Weather { get; set; }
-    public virtual DbSet<Armor> Armor { get; set; }
-    public virtual DbSet<CharacterClass> CharacterClass { get; set; }
-    public virtual DbSet<CharacterGear> CharacterGear { get; set; }
-    public virtual DbSet<CharacterRace> CharacterRace { get; set; }
-    public virtual DbSet<ClassAbility> ClassAbility { get; set; }
-    public virtual DbSet<Enchantment> Enchantment { get; set; }
-    public virtual DbSet<FavoredClass> FavoredClass { get; set; }
-    public virtual DbSet<Gear> Gear { get; set; }
-    public virtual DbSet<Weapon> Weapon { get; set; }
-    public virtual DbSet<WeaponAttribute> WeaponAttribute { get; set; }
-    public virtual DbSet<Character> Character { get; set; }
+    public DbSet<Bestiary> Bestiary { get; set; }
+    public DbSet<BestiaryDetail> BestiaryDetail { get; set; }
+    public DbSet<BestiaryEnvironment> BestiaryEnvironment { get; set; }
+    public DbSet<BestiaryFeat> BestiaryFeat { get; set; }
+    public DbSet<BestiaryLanguage> BestiaryLanguage { get; set; }
+    public DbSet<BestiaryMagic> BestiaryMagic { get; set; }
+    public DbSet<BestiarySkill> BestiarySkill { get; set; }
+    public DbSet<BestiarySubType> BestiarySubType { get; set; }
+    public DbSet<BestiaryType> BestiaryType { get; set; }
+    public DbSet<Campaign> Campaign { get; set; }
+    public DbSet<CampaignData> CampaignData { get; set; }
+    public DbSet<Continent> Continent { get; set; }
+    public DbSet<ContinentWeather> ContinentWeather { get; set; }
+    public DbSet<Environment> Environment { get; set; }
+    public DbSet<Faction> Faction { get; set; }
+    public DbSet<Feat> Feat { get; set; }
+    public DbSet<Language> Language { get; set; }
+    public DbSet<Location> Location { get; set; }
+    public DbSet<MagicItem> MagicItem { get; set; }
+    public DbSet<MonsterSpawn> MonsterSpawn { get; set; }
+    public DbSet<Month> Month { get; set; }
+    public DbSet<Npc> Npc { get; set; }
+    public DbSet<Npcdetail> Npcdetail { get; set; }
+    public DbSet<Plane> Plane { get; set; }
+    public DbSet<Player> Player { get; set; }
+    public DbSet<PlayerCampaign> PlayerCampaign { get; set; }
+    public DbSet<Season> Season { get; set; }
+    public DbSet<Skill> Skill { get; set; }
+    public DbSet<Spell> Spell { get; set; }
+    public DbSet<SpellDetail> SpellDetail { get; set; }
+    public DbSet<SpellSchool> SpellSchool { get; set; }
+    public DbSet<SpellSubSchool> SpellSubSchool { get; set; }
+    public DbSet<Terrain> Terrain { get; set; }
+    public DbSet<Territory> Territory { get; set; }
+    public DbSet<Time> Time { get; set; }
+    public DbSet<TrackedEvent> TrackedEvent { get; set; }
+    public DbSet<Weather> Weather { get; set; }
+    public DbSet<Armor> Armor { get; set; }
+    public DbSet<CharacterClass> CharacterClass { get; set; }
+    public DbSet<CharacterGear> CharacterGear { get; set; }
+    public DbSet<CharacterRace> CharacterRace { get; set; }
+    public DbSet<ClassAbility> ClassAbility { get; set; }
+    public DbSet<Enchantment> Enchantment { get; set; }
+    public DbSet<FavoredClass> FavoredClass { get; set; }
+    public DbSet<Gear> Gear { get; set; }
+    public DbSet<Weapon> Weapon { get; set; }
+    public DbSet<WeaponAttribute> WeaponAttribute { get; set; }
+    public DbSet<Character> Character { get; set; }
+
+    public PFDBContext() { }
+
+    public PFDBContext(DbContextOptions<PFDBContext> contextOptions) : base(contextOptions) { }
 
     protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
     {
@@ -452,12 +457,17 @@ namespace DBConnect
 
       modelBuilder.Entity<CharacterClass>(entity =>
       {
-
+        entity.HasKey(e => e.ClassId);
       });
 
       modelBuilder.Entity<CharacterGear>(entity =>
       {
+        entity.HasKey(e => e.CharacterGearId);
+      });
 
+      modelBuilder.Entity<CharacterGearEnchantment>(entity =>
+      {
+        entity.HasKey(key => new { key.CharacterGearId, key.EnchantmentId });
       });
 
       modelBuilder.Entity<Continent>(entity =>
