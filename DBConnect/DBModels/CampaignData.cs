@@ -11,5 +11,7 @@ namespace DBConnect.DBModels
     public int CampaignId { get; set; }
     public string Key { get; set; }
     public string Value { get; set; }
+
+    public virtual Campaign Campaign { get; set; }
   }
 }

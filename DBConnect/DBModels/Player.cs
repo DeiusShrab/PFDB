@@ -8,5 +8,7 @@ namespace DBConnect.DBModels
   {
     public int PlayerId { get; set; }
     public string DisplayName { get; set; }
+
+    public virtual ICollection<PlayerCampaign> PlayerCampaigns { get; } = new List<PlayerCampaign>();
   }
 }

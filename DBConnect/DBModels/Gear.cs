@@ -11,5 +11,7 @@ namespace DBConnect.DBModels
     public string Name { get; set; }
     public int Type { get; set; }
     public int Weight { get; set; }
+
+    public virtual ICollection<CharacterGear> CharacterGear { get; } = new List<CharacterGear>();
   }
 }

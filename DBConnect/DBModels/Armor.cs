@@ -12,6 +12,5 @@ namespace DBConnect.DBModels
     public int SpellFailure { get; set; }
     public int ArmorBonus { get; set; }
     public int CheckPenalty { get; set; }
-
   }
 }

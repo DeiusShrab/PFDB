@@ -11,16 +11,20 @@ namespace DBConnect.DBModels
     public string Name { get; set; }
     public int HD { get; set; }
     public int SkillPts { get; set; }
-    public int StartingGold { get; set; }
+    public string StartingGold { get; set; }
     public string Alignment { get; set; }
-    public int BAB { get; set; }
-    public int Fort { get; set; }
-    public int Ref { get; set; }
-    public int Will { get; set; }
-    public string SpellsPerDay { get; set; }
-    public string SpellsKnown { get; set; }
-    public string CastingStat { get; set; }
+    // Redo all these as ClassAbilities since they scale with level
+    //public int BAB { get; set; }
+    //public int Fort { get; set; }
+    //public int Ref { get; set; }
+    //public int Will { get; set; }
+    //public string SpellsPerDay { get; set; }
+    //public string SpellsKnown { get; set; }
+    public Stat CastingStat { get; set; }
 
-    public virtual List<Skill> ClassSkills { get; set; }
+    public virtual ICollection<Skill> ClassSkills { get; } = new List<Skill>();
+    public virtual ICollection<ClassAbility> ClassAbilities { get; } = new List<ClassAbility>();
+    public virtual ICollection<CharacterClassLevel> CharacterClassLevels { get; } = new List<CharacterClassLevel>();
+    public virtual ICollection<FavoredClass> FavoredClasses { get; } = new List<FavoredClass>();
   }
 }

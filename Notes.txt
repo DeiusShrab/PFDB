@@ -1,4 +1,7 @@
 TODO AT WORK
+String dice roller
+	Use the DiceExpression I found
+	See if I can improve it to add modifiers (ex: +1d6 cold => 5 cold)
 Campaign Data
 	Key/Value table of stuff like campaign name, bank interest, etc
 Events!
@@ -15,6 +18,7 @@ NPC Builder (Looking like its own entirely new tool atm) (YEAH TIME TO WRITE A F
 	Start with a Bestiary entry
 		OR A RACE. WELP.
 	Apply templates as desired
+	Ability Scores (preset for Bestiary, point buy for Race)
 	Add Class levels (oh god I have to implement all the PF Classes...)
 		Prestige classes...
 		AND ARCHETYPES OH JESUS WHY DO I DO THIS TO MYSELF

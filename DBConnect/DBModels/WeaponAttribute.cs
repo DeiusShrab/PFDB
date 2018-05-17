@@ -9,5 +9,7 @@ namespace DBConnect.DBModels
     public int WpnAttId { get; set; }
     public string Name { get; set; }
     public string Effect { get; set; }
+
+    public virtual ICollection<Weapon> Weapons { get; } = new List<Weapon>();
   }
 }

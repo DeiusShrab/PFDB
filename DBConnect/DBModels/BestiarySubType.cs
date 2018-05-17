@@ -9,5 +9,8 @@ namespace DBConnect.DBModels
     public int BestiarySubTypeId { get; set; }
     public int BestiaryId { get; set; }
     public int BestiaryTypeId { get; set; }
+
+    public virtual Bestiary Bestiary { get; set; }
+    public virtual BestiaryType BestiaryType { get; set; }
   }
 }

@@ -11,5 +11,8 @@ namespace DBConnect.DBModels
     public int BestiaryId { get; set; }
     public int LanguageId { get; set; }
     public string Notes { get; set; }
+
+    public virtual Bestiary Bestiary { get; set; }
+    public virtual Language Language { get; set; }
   }
 }

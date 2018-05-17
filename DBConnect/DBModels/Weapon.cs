@@ -13,6 +13,7 @@ namespace DBConnect.DBModels
     public int CritMult { get; set; }
     public int Range { get; set; }
     public DmgType DamageType { get; set; }
-    public virtual List<WeaponAttribute> Special { get; set; }
+
+    public virtual ICollection<WeaponAttribute> WeaponAttributes { get; } = new List<WeaponAttribute>();
   }
 }

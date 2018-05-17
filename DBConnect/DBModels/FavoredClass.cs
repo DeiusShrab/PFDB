@@ -10,5 +10,8 @@ namespace DBConnect.DBModels
     public int ClassId { get; set; }
     public int RaceId { get; set; }
     public string Description { get; set; }
+
+    public virtual CharacterClass CharacterClass { get; set; }
+    public virtual CharacterRace CharacterRace { get; set; }
   }
 }

@@ -6,24 +6,24 @@ namespace DBConnect
 {
   public enum GearType
   {
-    Misc,
-    Consumable,
-    WeaponMelee,
-    WeaponRanged,
-    Shield,
-    Head,
-    Headband,
-    Eyes,
-    Shoulders,
-    Neck,
-    Chest,
-    Body,
-    Armor,
-    Belt,
-    Wrists,
-    Hands,
-    Ring,
-    Feet,
+    Misc = 1,
+    Consumable = 2,
+    WeaponMelee = 3,
+    WeaponRanged = 4,
+    Shield = 5,
+    Head = 6,
+    Headband = 7,
+    Eyes = 8,
+    Shoulders = 9,
+    Neck = 10,
+    Chest = 11,
+    Body = 12,
+    Armor = 13,
+    Belt = 14,
+    Wrists = 15,
+    Hands = 16,
+    Ring = 17,
+    Feet = 18,
   }
 
   public enum ArmorType
@@ -93,11 +93,36 @@ namespace DBConnect
 
   public enum WpnType
   {
-    MeleeL,
-    Melee1H,
-    Melee2H,
-    RangedL,
-    Ranged1H,
-    Ranged2H,
+    MeleeL = 1,
+    Melee1H = 2,
+    Melee2H = 3,
+    RangedL = 4,
+    Ranged1H = 5,
+    Ranged2H = 6,
+  }
+
+  public enum Stat
+  {
+    STR = 1,
+    DEX = 2,
+    CON = 3,
+    INT = 4,
+    WIS = 5,
+    CHA = 6,
+  }
+
+  public enum ClassAbilityType
+  {
+    BAB = 1,
+    Fort = 2,
+    Ref = 3,
+    Will = 4,
+    SpellsPerDay = 5,
+    SpellsKnown = 6,
+    Sq = 7,
+    Su = 8,
+    Ex = 9,
+    Other = 10,
+    Familiar = 11,
   }
 }

@@ -13,5 +13,8 @@ namespace DBConnect.DBModels
     public int CasterLevel { get; set; }
     public int UsesPerDay { get; set; }
     public MagicType MagicTypeId { get; set; }
+
+    public virtual Bestiary Bestiary { get; set; }
+    public virtual Spell Spell { get; set; }
   }
 }

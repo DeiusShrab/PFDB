@@ -11,7 +11,9 @@ namespace DBConnect.DBModels
     public int LevelRequirement { get; set; }
     public int ReplacesAbilityId { get; set; } // For abilities that increase in strength with levels
     public string Name { get; set; }
-    public string Note { get; set; } // ex: Favored Enemy (Goblinoids)
     public string Description { get; set; }
+
+    public virtual CharacterClass CharacterClass { get; set; }
+    public virtual ICollection<CharacterClassAbility> CharacterClassAbilities { get; } = new List<CharacterClassAbility>();
   }
 }

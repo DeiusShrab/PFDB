@@ -9,5 +9,8 @@ namespace DBConnect.DBModels
     public int PlayerId { get; set; }
     public int CampaignId { get; set; }
     public bool IsDM { get; set; }
+
+    public virtual Player Player { get; set; }
+    public virtual Campaign Campaign { get; set; }
   }
 }

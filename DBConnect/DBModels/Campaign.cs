@@ -11,5 +11,8 @@ namespace DBConnect.DBModels
     public string CampaignNotes { get; set; }
     public string CampaignName { get; set; }
     public bool IsActive { get; set; }
+
+    public virtual ICollection<CampaignData> CampaignData { get; } = new List<CampaignData>();
+    public virtual ICollection<PlayerCampaign> PlayerCampaigns { get; } = new List<PlayerCampaign>();
   }
 }

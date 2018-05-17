@@ -11,5 +11,8 @@ namespace DBConnect.DBModels
     public int SkillId { get; set; }
     public int Bonus { get; set; }
     public string Notes { get; set; }
+
+    public virtual Bestiary Bestiary { get; set; }
+    public virtual Skill Skill { get; set; }
   }
 }

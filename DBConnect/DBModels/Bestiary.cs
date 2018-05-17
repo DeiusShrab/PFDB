@@ -108,5 +108,15 @@ namespace DBConnect.DBModels
     public int Wis { get; set; }
     public int Int { get; set; }
     public int Cha { get; set; }
+
+    public virtual BestiaryDetail BestiaryDetail { get; set; }
+    public virtual BestiaryType BestiaryType { get; set; }
+    public virtual ICollection<BestiaryEnvironment> BestiaryEnvironments { get; } = new List<BestiaryEnvironment>();
+    public virtual ICollection<BestiaryFeat> BestiaryFeats { get; } = new List<BestiaryFeat>();
+    public virtual ICollection<BestiaryLanguage> BestiaryLanguages { get; } = new List<BestiaryLanguage>();
+    public virtual ICollection<BestiaryMagic> BestiaryMagics { get; } = new List<BestiaryMagic>();
+    public virtual ICollection<BestiarySkill> BestiarySkills { get; } = new List<BestiarySkill>();
+    public virtual ICollection<BestiarySubType> BestiarySubTypes { get; } = new List<BestiarySubType>();
+    public virtual ICollection<MonsterSpawn> MonsterSpawns { get; } = new List<MonsterSpawn>();
   }
 }
