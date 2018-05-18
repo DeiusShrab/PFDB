@@ -7,10 +7,6 @@ namespace DBConnect
 {
   public static class PFDAL
   {
-    private static int ITERATIONS = 999;
-    private static int SALTSIZE = 16;
-    private static int KEYSIZE = 32;
-
     public static PFDBContext GetContext()
     {
       if (PFConfig.ConfigExists())
