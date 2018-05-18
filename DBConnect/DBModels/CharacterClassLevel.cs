@@ -11,6 +11,6 @@ namespace DBConnect.DBModels
     public int Level { get; set; }
 
     public virtual Character Character { get; set; }
-    public virtual CharacterClass CharacterClass { get; set; }
+    public virtual Class Class { get; set; }
   }
 }

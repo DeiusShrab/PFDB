@@ -4,7 +4,7 @@ using System.Text;
 
 namespace DBConnect.DBModels
 {
-  public class CharacterClass
+  public class Class
   {
     public int ClassId { get; set; }
     public int ArchetypeForClassId { get; set; }
@@ -22,7 +22,7 @@ namespace DBConnect.DBModels
     //public string SpellsKnown { get; set; }
     public Stat CastingStat { get; set; }
 
-    public virtual ICollection<Skill> ClassSkills { get; } = new List<Skill>();
+    public virtual ICollection<ClassSkill> ClassSkills { get; } = new List<ClassSkill>();
     public virtual ICollection<ClassAbility> ClassAbilities { get; } = new List<ClassAbility>();
     public virtual ICollection<CharacterClassLevel> CharacterClassLevels { get; } = new List<CharacterClassLevel>();
     public virtual ICollection<FavoredClass> FavoredClasses { get; } = new List<FavoredClass>();

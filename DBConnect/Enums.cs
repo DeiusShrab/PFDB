@@ -109,6 +109,8 @@ namespace DBConnect
     INT = 4,
     WIS = 5,
     CHA = 6,
+    Level = 7,
+    BAB = 8,
   }
 
   public enum ClassAbilityType
@@ -124,5 +126,12 @@ namespace DBConnect
     Ex = 9,
     Other = 10,
     Familiar = 11,
+  }
+
+  public enum PrereqType
+  {
+    Task = 1,
+    Feat = 2,
+    Skill = 3,
   }
 }

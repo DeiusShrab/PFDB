@@ -15,7 +15,7 @@ namespace DBConnect.DBModels
     public string Class { get; set; }
     public string Alignment { get; set; }
     public string Size { get; set; }
-    public int Type { get; set; }
+    public int? Type { get; set; }
     public string SubType { get; set; }
     public int Init { get; set; }
     public string Senses { get; set; }
@@ -118,5 +118,6 @@ namespace DBConnect.DBModels
     public virtual ICollection<BestiarySkill> BestiarySkills { get; } = new List<BestiarySkill>();
     public virtual ICollection<BestiarySubType> BestiarySubTypes { get; } = new List<BestiarySubType>();
     public virtual ICollection<MonsterSpawn> MonsterSpawns { get; } = new List<MonsterSpawn>();
+    public virtual ICollection<Race> CharacterRaces { get; } = new List<Race>();
   }
 }

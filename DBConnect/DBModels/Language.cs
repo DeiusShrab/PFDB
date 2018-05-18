@@ -12,5 +12,6 @@ namespace DBConnect.DBModels
     public virtual ICollection<BestiaryLanguage> BestiaryLanguages { get; } = new List<BestiaryLanguage>();
     public virtual ICollection<CharacterLanguage> CharacterLanguages { get; } = new List<CharacterLanguage>();
     public virtual ICollection<Continent> ContinentPrimaryLanguages { get; } = new List<Continent>();
+    public virtual ICollection<Faction> FactionPrimaryLanguages { get; } = new List<Faction>();
   }
 }

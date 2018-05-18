@@ -5,6 +5,7 @@ namespace DBConnect
 {
   public class PFDBContext : DbContext
   {
+    public DbSet<Armor> Armor { get; set; }
     public DbSet<Bestiary> Bestiary { get; set; }
     public DbSet<BestiaryDetail> BestiaryDetail { get; set; }
     public DbSet<BestiaryEnvironment> BestiaryEnvironment { get; set; }
@@ -16,11 +17,26 @@ namespace DBConnect
     public DbSet<BestiaryType> BestiaryType { get; set; }
     public DbSet<Campaign> Campaign { get; set; }
     public DbSet<CampaignData> CampaignData { get; set; }
+    public DbSet<Character> Character { get; set; }
+    public DbSet<CharacterClassAbility> CharacterClassAbility { get; set; }
+    public DbSet<CharacterClassLevel> CharacterClassLevel { get; set; }
+    public DbSet<CharacterFeat> CharacterFeat { get; set; }
+    public DbSet<CharacterGear> CharacterGear { get; set; }
+    public DbSet<CharacterGearEnchantment> CharacterGearEnchantment { get; set; }
+    public DbSet<CharacterLanguage> CharacterLanguage { get; set; }
+    public DbSet<CharacterMagic> CharacterMagic { get; set; }
+    public DbSet<CharacterSkill> CharacterSkill { get; set; }
+    public DbSet<Class> Class { get; set; }
+    public DbSet<ClassAbility> ClassAbility { get; set; }
+    public DbSet<ClassSkill> ClassSkill { get; set; }
     public DbSet<Continent> Continent { get; set; }
     public DbSet<ContinentWeather> ContinentWeather { get; set; }
+    public DbSet<Enchantment> Enchantment { get; set; }
     public DbSet<Environment> Environment { get; set; }
     public DbSet<Faction> Faction { get; set; }
+    public DbSet<FavoredClass> FavoredClass { get; set; }
     public DbSet<Feat> Feat { get; set; }
+    public DbSet<Gear> Gear { get; set; }
     public DbSet<Language> Language { get; set; }
     public DbSet<Location> Location { get; set; }
     public DbSet<MagicItem> MagicItem { get; set; }
@@ -31,6 +47,9 @@ namespace DBConnect
     public DbSet<Plane> Plane { get; set; }
     public DbSet<Player> Player { get; set; }
     public DbSet<PlayerCampaign> PlayerCampaign { get; set; }
+    public DbSet<Prerequisite> Prerequisite { get; set; }
+    public DbSet<Race> Race { get; set; }
+    public DbSet<RaceSubType> RaceSubType { get; set; }
     public DbSet<Season> Season { get; set; }
     public DbSet<Skill> Skill { get; set; }
     public DbSet<Spell> Spell { get; set; }
@@ -41,18 +60,10 @@ namespace DBConnect
     public DbSet<Territory> Territory { get; set; }
     public DbSet<Time> Time { get; set; }
     public DbSet<TrackedEvent> TrackedEvent { get; set; }
-    public DbSet<Weather> Weather { get; set; }
-    public DbSet<Armor> Armor { get; set; }
-    public DbSet<CharacterClass> CharacterClass { get; set; }
-    public DbSet<CharacterGear> CharacterGear { get; set; }
-    public DbSet<CharacterRace> CharacterRace { get; set; }
-    public DbSet<ClassAbility> ClassAbility { get; set; }
-    public DbSet<Enchantment> Enchantment { get; set; }
-    public DbSet<FavoredClass> FavoredClass { get; set; }
-    public DbSet<Gear> Gear { get; set; }
     public DbSet<Weapon> Weapon { get; set; }
     public DbSet<WeaponAttribute> WeaponAttribute { get; set; }
-    public DbSet<Character> Character { get; set; }
+    public DbSet<WeaponAttributeApplied> WeaponAttributeApplied { get; set; }
+    public DbSet<Weather> Weather { get; set; }
 
     public PFDBContext() { }
 
@@ -372,7 +383,39 @@ namespace DBConnect
 
         entity.HasOne<BestiaryType>()
               .WithMany()
-              .HasForeignKey(e => e.BestiaryType);
+              .HasForeignKey(e => e.Type);
+
+        entity.HasMany<BestiaryEnvironment>()
+              .WithOne()
+              .HasForeignKey(e => e.BestiaryId);
+
+        entity.HasMany<BestiaryFeat>()
+              .WithOne()
+              .HasForeignKey(e => e.BestiaryId);
+
+        entity.HasMany<BestiaryLanguage>()
+              .WithOne()
+              .HasForeignKey(e => e.BestiaryId);
+
+        entity.HasMany<BestiaryMagic>()
+              .WithOne()
+              .HasForeignKey(e => e.BestiaryId);
+
+        entity.HasMany<BestiarySkill>()
+              .WithOne()
+              .HasForeignKey(e => e.BestiaryId);
+
+        entity.HasMany<BestiarySubType>()
+              .WithOne()
+              .HasForeignKey(e => e.BestiaryId);
+
+        entity.HasMany<MonsterSpawn>()
+              .WithOne()
+              .HasForeignKey(e => e.BestiaryId);
+
+        entity.HasMany<Race>()
+              .WithOne()
+              .HasForeignKey(e => e.BestiaryId);
       });
 
       modelBuilder.Entity<BestiaryDetail>(entity =>
@@ -392,7 +435,9 @@ namespace DBConnect
             .IsUnicode(false);
 
         entity.HasOne<Bestiary>()
-              .WithOne();
+              .WithOne()
+              .IsRequired()
+              .HasForeignKey("BestiaryDetail", "BestiaryId");
       });
 
       modelBuilder.Entity<BestiaryEnvironment>(entity =>
@@ -401,10 +446,12 @@ namespace DBConnect
 
         entity.HasOne<Bestiary>()
               .WithMany()
+              .IsRequired()
               .HasForeignKey(e => e.BestiaryId);
 
         entity.HasOne<Environment>()
               .WithMany()
+              .IsRequired()
               .HasForeignKey(e => e.EnvironmentId);
 
         entity.Property(e => e.Notes)
@@ -418,10 +465,12 @@ namespace DBConnect
 
         entity.HasOne<Bestiary>()
               .WithMany()
+              .IsRequired()
               .HasForeignKey(e => e.BestiaryId);
 
         entity.HasOne<Feat>()
               .WithMany()
+              .IsRequired()
               .HasForeignKey(e => e.FeatId);
 
         entity.Property(e => e.Notes)
@@ -435,10 +484,12 @@ namespace DBConnect
 
         entity.HasOne<Bestiary>()
               .WithMany()
+              .IsRequired()
               .HasForeignKey(e => e.BestiaryId);
 
         entity.HasOne<Language>()
               .WithMany()
+              .IsRequired()
               .HasForeignKey(e => e.LanguageId);
 
         entity.Property(e => e.Notes)
@@ -452,10 +503,12 @@ namespace DBConnect
 
         entity.HasOne<Bestiary>()
               .WithMany()
+              .IsRequired()
               .HasForeignKey(e => e.BestiaryId);
 
         entity.HasOne<Spell>()
               .WithMany()
+              .IsRequired()
               .HasForeignKey(e => e.SpellId);
 
         entity.Property(e => e.Notes)
@@ -469,10 +522,12 @@ namespace DBConnect
 
         entity.HasOne<Bestiary>()
               .WithMany()
+              .IsRequired()
               .HasForeignKey(e => e.BestiaryId);
 
         entity.HasOne<Skill>()
               .WithMany()
+              .IsRequired()
               .HasForeignKey(e => e.SkillId);
 
         entity.Property(e => e.Notes)
@@ -486,10 +541,12 @@ namespace DBConnect
 
         entity.HasOne<Bestiary>()
               .WithMany()
+              .IsRequired()
               .HasForeignKey(e => e.BestiaryId);
 
         entity.HasOne<BestiaryType>()
               .WithMany()
+              .IsRequired()
               .HasForeignKey(e => e.BestiaryTypeId);
       });
 
@@ -500,10 +557,6 @@ namespace DBConnect
         entity.HasMany<Bestiary>()
               .WithOne()
               .HasForeignKey(e => e.Type);
-
-        entity.HasMany<CharacterRace>()
-              .WithOne()
-              .HasForeignKey(e => e.RaceTypeId);
 
         entity.HasMany<BestiarySubType>()
               .WithOne()
@@ -547,6 +600,7 @@ namespace DBConnect
 
         entity.HasOne<Campaign>()
               .WithMany()
+              .IsRequired()
               .HasForeignKey(e => e.CampaignId);
 
       });
@@ -563,7 +617,7 @@ namespace DBConnect
               .WithMany()
               .HasForeignKey(e => e.CampaignId);
 
-        entity.HasOne<CharacterRace>()
+        entity.HasOne<Race>()
               .WithMany()
               .HasForeignKey(e => e.RaceId);
 
@@ -600,7 +654,7 @@ namespace DBConnect
               .IsUnicode(false);
       });
 
-      modelBuilder.Entity<CharacterClass>(entity =>
+      modelBuilder.Entity<Class>(entity =>
       {
         entity.HasKey(e => e.ClassId);
 
@@ -627,10 +681,12 @@ namespace DBConnect
 
         entity.HasOne<Character>()
               .WithMany()
+              .IsRequired()
               .HasForeignKey(e => e.CharacterId);
 
         entity.HasOne<ClassAbility>()
               .WithMany()
+              .IsRequired()
               .HasForeignKey(e => e.ClassAbilityId);
       });
 
@@ -640,10 +696,12 @@ namespace DBConnect
 
         entity.HasOne<Character>()
               .WithMany()
+              .IsRequired()
               .HasForeignKey(e => e.CharacterId);
 
-        entity.HasOne<CharacterClass>()
+        entity.HasOne<Class>()
               .WithMany()
+              .IsRequired()
               .HasForeignKey(e => e.CharacterClassId);
       });
 
@@ -657,10 +715,12 @@ namespace DBConnect
 
         entity.HasOne<Character>()
               .WithMany()
+              .IsRequired()
               .HasForeignKey(e => e.CharacterId);
 
         entity.HasOne<Feat>()
               .WithMany()
+              .IsRequired()
               .HasForeignKey(e => e.FeatId);
       });
 
@@ -674,10 +734,12 @@ namespace DBConnect
 
         entity.HasOne<Character>()
               .WithMany()
+              .IsRequired()
               .HasForeignKey(e => e.CharacterId);
 
         entity.HasOne<Gear>()
               .WithMany()
+              .IsRequired()
               .HasForeignKey(e => e.GearId);
 
         entity.HasMany<CharacterGearEnchantment>()
@@ -691,10 +753,12 @@ namespace DBConnect
 
         entity.HasOne<CharacterGear>()
               .WithMany()
+              .IsRequired()
               .HasForeignKey(e => e.CharacterGearId);
 
         entity.HasOne<Enchantment>()
               .WithMany()
+              .IsRequired()
               .HasForeignKey(e => e.EnchantmentId);
       });
 
@@ -704,10 +768,12 @@ namespace DBConnect
 
         entity.HasOne<Character>()
               .WithMany()
+              .IsRequired()
               .HasForeignKey(e => e.CharacterId);
 
         entity.HasOne<Language>()
               .WithMany()
+              .IsRequired()
               .HasForeignKey(e => e.LanguageId);
       });
 
@@ -717,14 +783,16 @@ namespace DBConnect
 
         entity.HasOne<Character>()
               .WithMany()
+              .IsRequired()
               .HasForeignKey(e => e.CharacterId);
 
         entity.HasOne<Spell>()
               .WithMany()
+              .IsRequired()
               .HasForeignKey(e => e.SpellId);
       });
 
-      modelBuilder.Entity<CharacterRace>(entity =>
+      modelBuilder.Entity<Race>(entity =>
       {
         entity.HasKey(e => e.RaceId);
 
@@ -732,9 +800,9 @@ namespace DBConnect
               .WithMany()
               .HasForeignKey(e => e.RaceTypeId);
 
-        entity.HasMany<CharacterRaceSubType>()
+        entity.HasMany<RaceSubType>()
               .WithOne()
-              .HasForeignKey(e => e.CharacterRaceId);
+              .HasForeignKey(e => e.RaceId);
 
         entity.HasMany<Character>()
               .WithOne()
@@ -745,16 +813,18 @@ namespace DBConnect
               .HasForeignKey(e => e.RaceId);
       });
 
-      modelBuilder.Entity<CharacterRaceSubType>(entity =>
+      modelBuilder.Entity<RaceSubType>(entity =>
       {
-        entity.HasKey(e => new { e.BestiaryTypeId, e.CharacterRaceId });
+        entity.HasKey(e => new { e.BestiaryTypeId, e.RaceId });
 
         entity.HasOne<Character>()
               .WithMany()
-              .HasForeignKey(e => e.CharacterRaceId);
+              .IsRequired()
+              .HasForeignKey(e => e.RaceId);
 
         entity.HasOne<BestiaryType>()
               .WithMany()
+              .IsRequired()
               .HasForeignKey(e => e.BestiaryTypeId);
       });
 
@@ -764,10 +834,12 @@ namespace DBConnect
 
         entity.HasOne<Character>()
               .WithMany()
+              .IsRequired()
               .HasForeignKey(e => e.CharacterId);
 
         entity.HasOne<Skill>()
               .WithMany()
+              .IsRequired()
               .HasForeignKey(e => e.SkillId);
       });
 
@@ -782,9 +854,25 @@ namespace DBConnect
         entity.Property(e => e.Description)
               .IsUnicode(false);
 
-        entity.HasOne<CharacterClass>()
+        entity.HasOne<Class>()
               .WithMany()
+              .IsRequired()
               .HasForeignKey(e => e.ClassId);
+      });
+
+      modelBuilder.Entity<ClassSkill>(entity =>
+      {
+        entity.HasKey(e => new { e.ClassId, e.SkillId });
+
+        entity.HasOne<Class>()
+              .WithMany()
+              .IsRequired()
+              .HasForeignKey(e => e.ClassId);
+
+        entity.HasOne<Skill>()
+              .WithMany()
+              .IsRequired()
+              .HasForeignKey(e => e.SkillId);
       });
 
       modelBuilder.Entity<Continent>(entity =>
@@ -839,127 +927,258 @@ namespace DBConnect
 
         entity.HasOne<Continent>()
               .WithMany()
+              .IsRequired()
               .HasForeignKey(e => e.ContinentId);
 
         entity.HasOne<Weather>()
               .WithMany()
+              .IsRequired()
               .HasForeignKey(e => e.WeatherId);
 
         entity.HasOne<Season>()
               .WithMany()
+              .IsRequired()
               .HasForeignKey(e => e.SeasonId);
+      });
+
+      modelBuilder.Entity<Enchantment>(entity =>
+      {
+        entity.HasKey(e => e.EnchantmentId);
+
+        entity.Property(e => e.Name)
+              .HasMaxLength(100)
+              .IsUnicode(false);
+
+        entity.Property(e => e.Effect)
+              .HasMaxLength(1000)
+              .IsUnicode(false);
+
+        entity.HasMany<CharacterGearEnchantment>()
+              .WithOne()
+              .HasForeignKey(e => e.EnchantmentId);
       });
 
       modelBuilder.Entity<Environment>(entity =>
       {
+        entity.HasKey(e => e.EnvironmentId);
+
         entity.Property(e => e.Name)
             .IsRequired()
             .HasMaxLength(100)
             .IsUnicode(false);
 
         entity.Property(e => e.Notes)
-            .HasMaxLength(100)
+            .HasMaxLength(500)
             .IsUnicode(false);
 
         entity.Property(e => e.Temperature)
             .HasMaxLength(100)
             .IsUnicode(false);
+
+        entity.HasMany<BestiaryEnvironment>()
+              .WithOne()
+              .HasForeignKey(e => e.EnvironmentId);
+
+        entity.HasMany<Location>()
+              .WithOne()
+              .HasForeignKey(e => e.EnvironmentId);
       });
 
       modelBuilder.Entity<Faction>(entity =>
       {
-        entity.Property(e => e.Language)
-            .HasMaxLength(100)
-            .IsUnicode(false);
+        entity.HasKey(e => e.FactionId);
 
         entity.Property(e => e.Name)
-            .HasMaxLength(100)
-            .IsUnicode(false);
-
-        entity.Property(e => e.PrimaryRace)
-            .HasMaxLength(100)
-            .IsUnicode(false);
+              .HasMaxLength(100)
+              .IsUnicode(false);
 
         entity.Property(e => e.Type)
-            .HasMaxLength(100)
-            .IsUnicode(false);
+              .HasMaxLength(200)
+              .IsUnicode(false);
+
+        entity.HasOne<Language>()
+              .WithMany()
+              .HasForeignKey(e => e.PrimaryLanguageId);
+
+        entity.HasOne<Race>()
+              .WithMany()
+              .HasForeignKey(e => e.PrimaryRaceId);
+
+        entity.HasMany<Location>()
+              .WithOne()
+              .HasForeignKey(e => e.FactionId);
+
+        entity.HasMany<Territory>()
+              .WithOne()
+              .HasForeignKey(e => e.FactionId);
+      });
+
+      modelBuilder.Entity<FavoredClass>(entity =>
+      {
+        entity.HasKey(e => e.FavoredClassId);
+
+        entity.Property(e => e.Description)
+              .HasMaxLength(500)
+              .IsUnicode(false);
+
+        entity.HasOne<Class>()
+              .WithMany()
+              .IsRequired()
+              .HasForeignKey(e => e.ClassId);
+
+        entity.HasOne<Race>()
+              .WithMany()
+              .IsRequired()
+              .HasForeignKey(e => e.RaceId);
       });
 
       modelBuilder.Entity<Feat>(entity =>
       {
-        entity.Property(e => e.Benefit).IsUnicode(false);
+        entity.HasKey(e => e.FeatId);
 
-        entity.Property(e => e.CompletionBenefit).IsUnicode(false);
+        entity.Property(e => e.Benefit)
+              .IsUnicode(false);
+
+        entity.Property(e => e.CompletionBenefit)
+              .IsUnicode(false);
 
         entity.Property(e => e.Description)
-            .HasMaxLength(500)
-            .IsUnicode(false);
+              .HasMaxLength(500)
+              .IsUnicode(false);
 
-        entity.Property(e => e.Fulltext).IsUnicode(false);
+        entity.Property(e => e.Fulltext)
+              .IsUnicode(false);
 
-        entity.Property(e => e.Goal).IsUnicode(false);
+        entity.Property(e => e.Goal)
+              .IsUnicode(false);
 
         entity.Property(e => e.Name)
-            .HasMaxLength(50)
-            .IsUnicode(false);
+              .HasMaxLength(100)
+              .IsUnicode(false);
 
         entity.Property(e => e.Normal)
-            .HasMaxLength(500)
-            .IsUnicode(false);
+              .HasMaxLength(500)
+              .IsUnicode(false);
 
         entity.Property(e => e.Note)
-            .HasMaxLength(500)
-            .IsUnicode(false);
+              .HasMaxLength(500)
+              .IsUnicode(false);
+
+        entity.Property(e => e.Prerequisites)
+              .HasMaxLength(200)
+              .IsUnicode(false);
 
         entity.Property(e => e.PrerequisiteFeats)
-            .HasMaxLength(200)
-            .IsUnicode(false);
+              .HasMaxLength(200)
+              .IsUnicode(false);
 
         entity.Property(e => e.PrerequisiteSkills)
-            .HasMaxLength(250)
-            .IsUnicode(false);
+              .HasMaxLength(250)
+              .IsUnicode(false);
 
-        entity.Property(e => e.Prerequisites).IsUnicode(false);
+        entity.Property(e => e.Prerequisites)
+              .IsUnicode(false);
 
         entity.Property(e => e.RaceName)
-            .HasMaxLength(50)
-            .IsUnicode(false);
+              .HasMaxLength(50)
+              .IsUnicode(false);
 
         entity.Property(e => e.Source)
-            .HasMaxLength(50)
-            .IsUnicode(false);
+              .HasMaxLength(50)
+              .IsUnicode(false);
 
         entity.Property(e => e.Special)
-            .HasMaxLength(750)
-            .IsUnicode(false);
+              .HasMaxLength(750)
+              .IsUnicode(false);
 
         entity.Property(e => e.SuggestedTraits)
-            .HasMaxLength(100)
-            .IsUnicode(false);
+              .HasMaxLength(100)
+              .IsUnicode(false);
 
         entity.Property(e => e.Type)
-            .HasColumnName("Type_")
-            .HasMaxLength(25)
-            .IsUnicode(false);
+              .HasColumnName("Type_")
+              .HasMaxLength(25)
+              .IsUnicode(false);
+
+        entity.HasMany<BestiaryFeat>()
+              .WithOne()
+              .HasForeignKey(e => e.FeatId);
+
+        entity.HasMany<CharacterFeat>()
+              .WithOne()
+              .HasForeignKey(e => e.FeatId);
+      });
+
+      modelBuilder.Entity<Gear>(entity =>
+      {
+        entity.HasKey(e => e.GearId);
+
+        entity.Property(e => e.Name)
+              .HasMaxLength(100)
+              .IsUnicode(false);
+
+        entity.HasMany<CharacterGear>()
+              .WithOne()
+              .HasForeignKey(e => e.GearId);
       });
 
       modelBuilder.Entity<Language>(entity =>
       {
+        entity.HasKey(e => e.LanguageId);
+
         entity.Property(e => e.Name)
             .IsRequired()
             .HasMaxLength(100)
             .IsUnicode(false);
 
         entity.Property(e => e.Notes)
-            .HasMaxLength(100)
+            .HasMaxLength(200)
             .IsUnicode(false);
+
+        entity.HasMany<BestiaryLanguage>()
+              .WithOne()
+              .HasForeignKey(e => e.LanguageId);
+
+        entity.HasMany<CharacterLanguage>()
+              .WithOne()
+              .HasForeignKey(e => e.LanguageId);
+
+        entity.HasMany<Continent>()
+              .WithOne()
+              .HasForeignKey(e => e.PrimaryLanguageId);
+
+        entity.HasMany<Faction>()
+              .WithOne()
+              .HasForeignKey(e => e.PrimaryLanguageId);
       });
 
       modelBuilder.Entity<Location>(entity =>
       {
+        entity.HasKey(e => e.LocationId);
+
         entity.Property(e => e.Name)
             .HasMaxLength(100)
             .IsUnicode(false);
+
+        entity.HasOne<Continent>()
+              .WithMany()
+              .HasForeignKey(e => e.ContinentId);
+
+        entity.HasOne<Faction>()
+              .WithMany()
+              .HasForeignKey(e => e.FactionId);
+
+        entity.HasOne<Territory>()
+              .WithMany()
+              .HasForeignKey(e => e.TerritoryId);
+
+        entity.HasOne<Terrain>()
+              .WithMany()
+              .HasForeignKey(e => e.TerrainId);
+
+        entity.HasOne<Environment>()
+              .WithMany()
+              .HasForeignKey(e => e.EnvironmentId);
       });
 
       modelBuilder.Entity<MagicItem>(entity =>
@@ -1054,6 +1273,31 @@ namespace DBConnect
       modelBuilder.Entity<MonsterSpawn>(entity =>
       {
         entity.HasKey(e => e.SpawnId);
+
+        entity.HasOne<Continent>()
+              .WithMany()
+              .IsRequired()
+              .HasForeignKey(e => e.ContinentId);
+
+        entity.HasOne<Season>()
+              .WithMany()
+              .IsRequired()
+              .HasForeignKey(e => e.SeasonId);
+
+        entity.HasOne<Bestiary>()
+              .WithMany()
+              .IsRequired()
+              .HasForeignKey(e => e.BestiaryId);
+
+        entity.HasOne<Time>()
+              .WithMany()
+              .IsRequired()
+              .HasForeignKey(e => e.TimeId);
+
+        entity.HasOne<Plane>()
+              .WithMany()
+              .IsRequired()
+              .HasForeignKey(e => e.PlaneId);
       });
 
       modelBuilder.Entity<Month>(entity =>
@@ -1062,6 +1306,10 @@ namespace DBConnect
             .IsRequired()
             .HasMaxLength(100)
             .IsUnicode(false);
+
+        entity.HasOne<Season>()
+              .WithMany()
+              .HasForeignKey(e => e.SeasonId);
       });
 
       modelBuilder.Entity<Npc>(entity =>
@@ -1391,26 +1639,84 @@ namespace DBConnect
         entity.Property(e => e.MonsterSource)
             .HasMaxLength(250)
             .IsUnicode(false);
+
+        entity.HasOne<Npc>()
+              .WithOne()
+              .IsRequired()
+              .HasForeignKey("Npcdetail", "Npcid");
       });
 
       modelBuilder.Entity<Plane>(entity =>
       {
+        entity.HasKey(e => e.PlaneId);
+
         entity.Property(e => e.Name)
             .IsRequired()
             .HasMaxLength(100)
             .IsUnicode(false);
+
+        entity.HasMany<MonsterSpawn>()
+              .WithOne()
+              .HasForeignKey(e => e.PlaneId);
       });
+
+      modelBuilder.Entity<Player>(entity =>
+      {
+        entity.HasKey(e => e.PlayerId);
+
+        entity.Property(e => e.DisplayName)
+              .HasMaxLength(100)
+              .IsUnicode(false)
+              .IsRequired();
+
+        entity.HasMany<PlayerCampaign>()
+              .WithOne()
+              .HasForeignKey(e => e.PlayerId);
+      });
+
+      modelBuilder.Entity<PlayerCampaign>(entity =>
+      {
+        entity.HasKey(e => new { e.PlayerId, e.CampaignId });
+
+        entity.HasOne<Player>()
+              .WithMany()
+              .IsRequired()
+              .HasForeignKey(e => e.PlayerId);
+
+        entity.HasOne<Campaign>()
+              .WithMany()
+              .IsRequired()
+              .HasForeignKey(e => e.CampaignId);
+      });
+
+      // Prerequisite
 
       modelBuilder.Entity<Season>(entity =>
       {
+        entity.HasKey(e => e.SeasonId);
+
         entity.Property(e => e.Name)
             .IsRequired()
             .HasMaxLength(100)
             .IsUnicode(false);
+
+        entity.HasMany<MonsterSpawn>()
+              .WithOne()
+              .HasForeignKey(e => e.SeasonId);
+
+        entity.HasMany<Month>()
+              .WithOne()
+              .HasForeignKey(e => e.SeasonId);
+
+        entity.HasMany<ContinentWeather>()
+              .WithOne()
+              .HasForeignKey(e => e.SeasonId);
       });
 
       modelBuilder.Entity<Skill>(entity =>
       {
+        entity.HasKey(e => e.SkillId);
+
         entity.Property(e => e.Description)
             .IsRequired()
             .HasMaxLength(500)
@@ -1420,6 +1726,18 @@ namespace DBConnect
             .IsRequired()
             .HasMaxLength(100)
             .IsUnicode(false);
+
+        entity.HasMany<BestiarySkill>()
+              .WithOne()
+              .HasForeignKey(e => e.SkillId);
+
+        entity.HasMany<CharacterSkill>()
+              .WithOne()
+              .HasForeignKey(e => e.SkillId);
+
+        entity.HasMany<ClassSkill>()
+              .WithOne()
+              .HasForeignKey(e => e.SkillId);
       });
 
       modelBuilder.Entity<Spell>(entity =>
@@ -1519,6 +1837,22 @@ namespace DBConnect
         entity.Property(e => e.Targets)
             .HasMaxLength(200)
             .IsUnicode(false);
+
+        entity.HasOne<SpellSchool>()
+              .WithMany()
+              .HasForeignKey(e => e.SchoolId);
+
+        entity.HasOne<SpellSubSchool>()
+              .WithMany()
+              .HasForeignKey(e => e.SubSchoolId);
+
+        entity.HasMany<BestiaryMagic>()
+              .WithOne()
+              .HasForeignKey(e => e.SpellId);
+
+        entity.HasMany<CharacterMagic>()
+              .WithOne()
+              .HasForeignKey(e => e.SpellId);
       });
 
       modelBuilder.Entity<SpellDetail>(entity =>
@@ -1530,28 +1864,50 @@ namespace DBConnect
         entity.Property(e => e.DescriptionFormatted).IsUnicode(false);
 
         entity.Property(e => e.FullText).IsUnicode(false);
+
+        entity.HasOne<Spell>()
+              .WithOne()
+              .IsRequired()
+              .HasForeignKey("SpellDetail", "SpellId");
       });
 
       modelBuilder.Entity<SpellSchool>(entity =>
       {
+        entity.HasKey(e => e.SpellSchoolId);
+
         entity.Property(e => e.Name)
             .IsRequired()
             .HasMaxLength(100)
             .IsUnicode(false);
+
+        entity.HasMany<Spell>()
+              .WithOne()
+              .HasForeignKey(e => e.SchoolId);
+
+        entity.HasMany<SpellSubSchool>()
+              .WithOne()
+              .HasForeignKey(e => e.SpellSchoolId);
       });
 
       modelBuilder.Entity<SpellSubSchool>(entity =>
       {
+        entity.HasKey(e => e.SpellSubSchoolId);
+
         entity.Property(e => e.Name)
             .IsRequired()
             .HasMaxLength(100)
             .IsUnicode(false);
+
+        entity.HasMany<Spell>()
+              .WithOne()
+              .HasForeignKey(e => e.SubSchoolId);
       });
 
       modelBuilder.Entity<Terrain>(entity =>
       {
+        entity.HasKey(e => e.TerrainId);
+
         entity.Property(e => e.Description)
-            .IsRequired()
             .HasMaxLength(500)
             .IsUnicode(false);
 
@@ -1559,25 +1915,52 @@ namespace DBConnect
             .IsRequired()
             .HasMaxLength(100)
             .IsUnicode(false);
+
+        entity.HasMany<Location>()
+              .WithOne()
+              .HasForeignKey(e => e.TerrainId);
       });
 
       modelBuilder.Entity<Territory>(entity =>
       {
+        entity.HasKey(e => e.TerritoryId);
+
         entity.Property(e => e.Name)
             .HasMaxLength(100)
-            .IsUnicode(false);
+            .IsUnicode(false)
+            .IsRequired();
+
+        entity.HasOne<Continent>()
+              .WithMany()
+              .HasForeignKey(e => e.ContinentId);
+
+        entity.HasOne<Faction>()
+              .WithMany()
+              .HasForeignKey(e => e.FactionId);
+
+        entity.HasMany<Location>()
+              .WithOne()
+              .HasForeignKey(e => e.TerritoryId);
       });
 
       modelBuilder.Entity<Time>(entity =>
       {
+        entity.HasKey(e => e.TimeId);
+
         entity.Property(e => e.Name)
             .IsRequired()
             .HasMaxLength(100)
             .IsUnicode(false);
+
+        entity.HasMany<MonsterSpawn>()
+              .WithOne()
+              .HasForeignKey(e => e.TimeId);
       });
 
       modelBuilder.Entity<TrackedEvent>(entity =>
       {
+        entity.HasKey(e => e.TrackedEventId);
+
         entity.Property(e => e.DateOccurring)
             .IsRequired()
             .HasMaxLength(100)
@@ -1597,15 +1980,58 @@ namespace DBConnect
             .IsRequired()
             .HasMaxLength(100)
             .IsUnicode(false);
+
+        entity.HasOne<Campaign>()
+              .WithMany()
+              .HasForeignKey(e => e.CampaignId);
       });
 
       modelBuilder.Entity<Weapon>(entity =>
       {
         entity.ToTable("Weapon");
+
+        entity.HasMany<WeaponAttributeApplied>()
+              .WithOne()
+              .HasForeignKey(e => e.GearId);
+      });
+
+      modelBuilder.Entity<WeaponAttribute>(entity =>
+      {
+        entity.HasKey(e => e.WpnAttId);
+
+        entity.Property(e => e.Name)
+              .IsRequired()
+              .HasMaxLength(100)
+              .IsUnicode(false);
+
+        entity.Property(e => e.Effect)
+              .HasMaxLength(200)
+              .IsUnicode(false);
+
+        entity.HasMany<WeaponAttributeApplied>()
+              .WithOne()
+              .HasForeignKey(e => e.WeaponAttributeId);
+      });
+
+      modelBuilder.Entity<WeaponAttributeApplied>(entity =>
+      {
+        entity.HasKey(e => new { e.GearId, e.WeaponAttributeId });
+
+        entity.HasOne<Weapon>()
+              .WithMany()
+              .IsRequired()
+              .HasForeignKey(e => e.GearId);
+
+        entity.HasOne<WeaponAttribute>()
+              .WithMany()
+              .IsRequired()
+              .HasForeignKey(e => e.WeaponAttributeId);
       });
 
       modelBuilder.Entity<Weather>(entity =>
       {
+        entity.HasKey(e => e.WeatherId);
+
         entity.Property(e => e.Description)
             .HasMaxLength(1000)
             .IsUnicode(false);
@@ -1618,6 +2044,10 @@ namespace DBConnect
             .IsRequired()
             .HasMaxLength(100)
             .IsUnicode(false);
+
+        entity.HasMany<ContinentWeather>()
+              .WithOne()
+              .HasForeignKey(e => e.WeatherId);
       });
     }
   }

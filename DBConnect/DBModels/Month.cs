@@ -7,7 +7,7 @@ namespace DBConnect.DBModels
   {
     public int MonthId { get; set; }
     public string Name { get; set; }
-    public int SeasonId { get; set; }
+    public int? SeasonId { get; set; }
     public int Days { get; set; }
     public int MonthOrder { get; set; }
 

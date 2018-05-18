@@ -7,8 +7,8 @@ namespace DBConnect.DBModels
   {
     public int SpellId { get; set; }
     public string Name { get; set; }
-    public int SchoolId { get; set; }
-    public int SubSchoolId { get; set; }
+    public int? SchoolId { get; set; }
+    public int? SubSchoolId { get; set; }
     public string Descriptor { get; set; }
     public string SpellLevel { get; set; }
     public string CastingTime { get; set; }

@@ -9,7 +9,7 @@ namespace DBConnect.DBModels
     public string Name { get; set; }
     public bool IsUnderground { get; set; }
     public bool IsWater { get; set; }
-    public int PrimaryLanguageId { get; set; }
+    public int? PrimaryLanguageId { get; set; }
     public string MapPath { get; set; }
 
     public virtual Language PrimaryLanguage { get; set; }

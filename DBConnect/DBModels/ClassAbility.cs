@@ -13,7 +13,7 @@ namespace DBConnect.DBModels
     public string Name { get; set; }
     public string Description { get; set; }
 
-    public virtual CharacterClass CharacterClass { get; set; }
+    public virtual Class Class { get; set; }
     public virtual ICollection<CharacterClassAbility> CharacterClassAbilities { get; } = new List<CharacterClassAbility>();
   }
 }

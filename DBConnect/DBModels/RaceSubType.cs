@@ -4,12 +4,12 @@ using System.Text;
 
 namespace DBConnect.DBModels
 {
-  public class CharacterRaceSubType
+  public class RaceSubType
   {
-    public int CharacterRaceId { get; set; }
+    public int RaceId { get; set; }
     public int BestiaryTypeId { get; set; }
 
-    public virtual CharacterRace CharacterRace { get; set; }
+    public virtual Race Race { get; set; }
     public virtual BestiaryType BestiaryType { get; set; }
   }
 }

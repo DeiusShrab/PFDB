@@ -7,7 +7,7 @@ namespace DBConnect.DBModels
   {
     public int TerritoryId { get; set; }
     public int ContinentId { get; set; }
-    public int Factionid { get; set; }
+    public int FactionId { get; set; }
     public string Name { get; set; }
     public string Notes { get; set; }
 

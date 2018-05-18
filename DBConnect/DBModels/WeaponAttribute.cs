@@ -10,6 +10,6 @@ namespace DBConnect.DBModels
     public string Name { get; set; }
     public string Effect { get; set; }
 
-    public virtual ICollection<Weapon> Weapons { get; } = new List<Weapon>();
+    public virtual ICollection<WeaponAttributeApplied> WeaponAttributesApplied { get; } = new List<WeaponAttributeApplied>();
   }
 }

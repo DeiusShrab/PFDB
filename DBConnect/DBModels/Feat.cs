@@ -10,7 +10,7 @@ namespace DBConnect.DBModels
     public string Type { get; set; }
     public string Description { get; set; }
     public string Prerequisites { get; set; }
-    public string PrerequisiteFeats { get; set; }
+    public string PrerequisiteFeats { get; set; } // TODO: convert to relationship
     public string Benefit { get; set; }
     public string Normal { get; set; }
     public string Special { get; set; }
@@ -23,13 +23,13 @@ namespace DBConnect.DBModels
     public bool Performance { get; set; }
     public bool Racial { get; set; }
     public bool CompanionFamiliar { get; set; }
-    public string RaceName { get; set; }
+    public string RaceName { get; set; } // TODO: convert to relationship
     public string Note { get; set; }
     public string Goal { get; set; }
     public string CompletionBenefit { get; set; }
     public bool Multiples { get; set; }
-    public string SuggestedTraits { get; set; }
-    public string PrerequisiteSkills { get; set; }
+    public string SuggestedTraits { get; set; } // TODO: convert to relationship
+    public string PrerequisiteSkills { get; set; } // TODO: convert to relationship
     public bool Panache { get; set; }
     public bool Betrayal { get; set; }
     public bool Targeting { get; set; }

@@ -11,7 +11,7 @@ namespace DBConnect.DBModels
     public int RaceId { get; set; }
     public string Description { get; set; }
 
-    public virtual CharacterClass CharacterClass { get; set; }
-    public virtual CharacterRace CharacterRace { get; set; }
+    public virtual Class Class { get; set; }
+    public virtual Race CharacterRace { get; set; }
   }
 }

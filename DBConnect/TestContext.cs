@@ -10,6 +10,7 @@ namespace DBConnect
   {
     #region Lists
 
+    private List<Armor> _Armor = new List<Armor>();
     private List<Bestiary> _Bestiary = new List<Bestiary>();
     private List<BestiaryDetail> _BestiaryDetail = new List<BestiaryDetail>();
     private List<BestiaryEnvironment> _BestiaryEnvironment = new List<BestiaryEnvironment>();
@@ -21,11 +22,26 @@ namespace DBConnect
     private List<BestiaryType> _BestiaryType = new List<BestiaryType>();
     private List<Campaign> _Campaign = new List<Campaign>();
     private List<CampaignData> _CampaignData = new List<CampaignData>();
+    private List<Character> _Character = new List<Character>();
+    private List<CharacterClassAbility> _CharacterClassAbility = new List<CharacterClassAbility>();
+    private List<CharacterClassLevel> _CharacterClassLevel = new List<CharacterClassLevel>();
+    private List<CharacterFeat> _CharacterFeat = new List<CharacterFeat>();
+    private List<CharacterGear> _CharacterGear = new List<CharacterGear>();
+    private List<CharacterGearEnchantment> _CharacterGearEnchantment = new List<CharacterGearEnchantment>();
+    private List<CharacterLanguage> _CharacterLanguage = new List<CharacterLanguage>();
+    private List<CharacterMagic> _CharacterMagic = new List<CharacterMagic>();
+    private List<CharacterSkill> _CharacterSkill = new List<CharacterSkill>();
+    private List<Class> _Class = new List<Class>();
+    private List<ClassAbility> _ClassAbility = new List<ClassAbility>();
+    private List<ClassSkill> _ClassSkill = new List<ClassSkill>();
     private List<Continent> _Continent = new List<Continent>();
     private List<ContinentWeather> _ContinentWeather = new List<ContinentWeather>();
+    private List<Enchantment> _Enchantment = new List<Enchantment>();
     private List<Environment> _Environment = new List<Environment>();
     private List<Faction> _Faction = new List<Faction>();
+    private List<FavoredClass> _FavoredClass = new List<FavoredClass>();
     private List<Feat> _Feat = new List<Feat>();
+    private List<Gear> _Gear = new List<Gear>();
     private List<Language> _Language = new List<Language>();
     private List<Location> _Location = new List<Location>();
     private List<MagicItem> _MagicItem = new List<MagicItem>();
@@ -33,31 +49,27 @@ namespace DBConnect
     private List<Month> _Month = new List<Month>();
     private List<Npc> _Npc = new List<Npc>();
     private List<Npcdetail> _Npcdetail = new List<Npcdetail>();
-    private List<Season> _Season = new List<Season>();
-    private List<Spell> _Spell = new List<Spell>();
-    private List<SpellDetail> _SpellDetail = new List<SpellDetail>();
-    private List<Territory> _Territory = new List<Territory>();
-    private List<Weather> _Weather = new List<Weather>();
-    private List<Terrain> _Terrain = new List<Terrain>();
-    private List<Time> _Time = new List<Time>();
-    private List<TrackedEvent> _TrackedEvent = new List<TrackedEvent>();
     private List<Plane> _Plane = new List<Plane>();
-    private List<Skill> _Skill = new List<Skill>();
-    private List<SpellSchool> _SpellSchool = new List<SpellSchool>();
-    private List<SpellSubSchool> _SpellSubSchool = new List<SpellSubSchool>();
-    private List<Armor> _Armor = new List<Armor>();
-    private List<CharacterClass> _CharacterClass = new List<CharacterClass>();
-    private List<CharacterGear> _CharacterGear = new List<CharacterGear>();
-    private List<CharacterRace> _CharacterRace = new List<CharacterRace>();
-    private List<ClassAbility> _ClassAbility = new List<ClassAbility>();
-    private List<Enchantment> _Enchantment = new List<Enchantment>();
-    private List<FavoredClass> _FavoredClass = new List<FavoredClass>();
-    private List<Gear> _Gear = new List<Gear>();
-    private List<Weapon> _Weapon = new List<Weapon>();
-    private List<WeaponAttribute> _WeaponAttribute = new List<WeaponAttribute>();
-    private List<Character> _Character = new List<Character>();
     private List<Player> _Player = new List<Player>();
     private List<PlayerCampaign> _PlayerCampaign = new List<PlayerCampaign>();
+    private List<Prerequisite> _Prerequisite = new List<Prerequisite>();
+    private List<Race> _Race = new List<Race>();
+    private List<RaceSubType> _RaceSubType = new List<RaceSubType>();
+    private List<Season> _Season = new List<Season>();
+    private List<Skill> _Skill = new List<Skill>();
+    private List<Spell> _Spell = new List<Spell>();
+    private List<SpellDetail> _SpellDetail = new List<SpellDetail>();
+    private List<SpellSchool> _SpellSchool = new List<SpellSchool>();
+    private List<SpellSubSchool> _SpellSubSchool = new List<SpellSubSchool>();
+    private List<Terrain> _Terrain = new List<Terrain>();
+    private List<Territory> _Territory = new List<Territory>();
+    private List<Time> _Time = new List<Time>();
+    private List<TrackedEvent> _TrackedEvent = new List<TrackedEvent>();
+    private List<Weapon> _Weapon = new List<Weapon>();
+    private List<WeaponAttribute> _WeaponAttribute = new List<WeaponAttribute>();
+    private List<WeaponAttributeApplied> _WeaponAttributeApplied = new List<WeaponAttributeApplied>();
+    private List<Weather> _Weather = new List<Weather>();
+
 
     #endregion
 
@@ -65,6 +77,7 @@ namespace DBConnect
 
     public TestContext()
     {
+      Armor = GetQueryableMockDbSet(_Armor);
       Bestiary = GetQueryableMockDbSet(_Bestiary);
       BestiaryDetail = GetQueryableMockDbSet(_BestiaryDetail);
       BestiaryEnvironment = GetQueryableMockDbSet(_BestiaryEnvironment);
@@ -76,11 +89,26 @@ namespace DBConnect
       BestiaryType = GetQueryableMockDbSet(_BestiaryType);
       Campaign = GetQueryableMockDbSet(_Campaign);
       CampaignData = GetQueryableMockDbSet(_CampaignData);
+      Character = GetQueryableMockDbSet(_Character);
+      CharacterClassAbility = GetQueryableMockDbSet(_CharacterClassAbility);
+      CharacterClassLevel = GetQueryableMockDbSet(_CharacterClassLevel);
+      CharacterFeat = GetQueryableMockDbSet(_CharacterFeat);
+      CharacterGear = GetQueryableMockDbSet(_CharacterGear);
+      CharacterGearEnchantment = GetQueryableMockDbSet(_CharacterGearEnchantment);
+      CharacterLanguage = GetQueryableMockDbSet(_CharacterLanguage);
+      CharacterMagic = GetQueryableMockDbSet(_CharacterMagic);
+      CharacterSkill = GetQueryableMockDbSet(_CharacterSkill);
+      Class = GetQueryableMockDbSet(_Class);
+      ClassAbility = GetQueryableMockDbSet(_ClassAbility);
+      ClassSkill = GetQueryableMockDbSet(_ClassSkill);
       Continent = GetQueryableMockDbSet(_Continent);
       ContinentWeather = GetQueryableMockDbSet(_ContinentWeather);
+      Enchantment = GetQueryableMockDbSet(_Enchantment);
       Environment = GetQueryableMockDbSet(_Environment);
       Faction = GetQueryableMockDbSet(_Faction);
+      FavoredClass = GetQueryableMockDbSet(_FavoredClass);
       Feat = GetQueryableMockDbSet(_Feat);
+      Gear = GetQueryableMockDbSet(_Gear);
       Language = GetQueryableMockDbSet(_Language);
       Location = GetQueryableMockDbSet(_Location);
       MagicItem = GetQueryableMockDbSet(_MagicItem);
@@ -88,31 +116,27 @@ namespace DBConnect
       Month = GetQueryableMockDbSet(_Month);
       Npc = GetQueryableMockDbSet(_Npc);
       Npcdetail = GetQueryableMockDbSet(_Npcdetail);
-      Season = GetQueryableMockDbSet(_Season);
-      Spell = GetQueryableMockDbSet(_Spell);
-      SpellDetail = GetQueryableMockDbSet(_SpellDetail);
-      Territory = GetQueryableMockDbSet(_Territory);
-      Weather = GetQueryableMockDbSet(_Weather);
-      Terrain = GetQueryableMockDbSet(_Terrain);
-      Time = GetQueryableMockDbSet(_Time);
-      TrackedEvent = GetQueryableMockDbSet(_TrackedEvent);
       Plane = GetQueryableMockDbSet(_Plane);
-      Skill = GetQueryableMockDbSet(_Skill);
-      SpellSchool = GetQueryableMockDbSet(_SpellSchool);
-      SpellSubSchool = GetQueryableMockDbSet(_SpellSubSchool);
-      Armor = GetQueryableMockDbSet(_Armor);
-      CharacterClass = GetQueryableMockDbSet(_CharacterClass);
-      CharacterGear = GetQueryableMockDbSet(_CharacterGear);
-      CharacterRace = GetQueryableMockDbSet(_CharacterRace);
-      ClassAbility = GetQueryableMockDbSet(_ClassAbility);
-      Enchantment = GetQueryableMockDbSet(_Enchantment);
-      FavoredClass = GetQueryableMockDbSet(_FavoredClass);
-      Gear = GetQueryableMockDbSet(_Gear);
-      Weapon = GetQueryableMockDbSet(_Weapon);
-      WeaponAttribute = GetQueryableMockDbSet(_WeaponAttribute);
-      Character = GetQueryableMockDbSet(_Character);
       Player = GetQueryableMockDbSet(_Player);
       PlayerCampaign = GetQueryableMockDbSet(_PlayerCampaign);
+      Prerequisite = GetQueryableMockDbSet(_Prerequisite);
+      Race = GetQueryableMockDbSet(_Race);
+      RaceSubType = GetQueryableMockDbSet(_RaceSubType);
+      Season = GetQueryableMockDbSet(_Season);
+      Skill = GetQueryableMockDbSet(_Skill);
+      Spell = GetQueryableMockDbSet(_Spell);
+      SpellDetail = GetQueryableMockDbSet(_SpellDetail);
+      SpellSchool = GetQueryableMockDbSet(_SpellSchool);
+      SpellSubSchool = GetQueryableMockDbSet(_SpellSubSchool);
+      Terrain = GetQueryableMockDbSet(_Terrain);
+      Territory = GetQueryableMockDbSet(_Territory);
+      Time = GetQueryableMockDbSet(_Time);
+      TrackedEvent = GetQueryableMockDbSet(_TrackedEvent);
+      Weapon = GetQueryableMockDbSet(_Weapon);
+      WeaponAttribute = GetQueryableMockDbSet(_WeaponAttribute);
+      WeaponAttributeApplied = GetQueryableMockDbSet(_WeaponAttributeApplied);
+      Weather = GetQueryableMockDbSet(_Weather);
+
     }
 
     private DbSet<T> GetQueryableMockDbSet<T>(List<T> sourceList) where T : class

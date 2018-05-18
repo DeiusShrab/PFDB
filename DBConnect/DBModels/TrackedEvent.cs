@@ -15,5 +15,7 @@ namespace DBConnect.DBModels
     public int TrackedEventType { get; set; }
     public string TrackedEventData { get; set; }
     public int CampaignId { get; set; }
+
+    public virtual Campaign Campaign { get; set; }
   }
 }

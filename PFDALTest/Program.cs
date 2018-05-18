@@ -70,6 +70,7 @@ namespace PFDALTest
     private static void Test()
     {
       var context = PFDAL.GetContext(false);
+      PFDBInitializer.Initialize(context);
       Console.WriteLine(context.Bestiary.First().Name);
     }
 

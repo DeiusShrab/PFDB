@@ -14,6 +14,6 @@ namespace DBConnect.DBModels
     public int Range { get; set; }
     public DmgType DamageType { get; set; }
 
-    public virtual ICollection<WeaponAttribute> WeaponAttributes { get; } = new List<WeaponAttribute>();
+    public virtual ICollection<WeaponAttributeApplied> WeaponAttributesApplied { get; } = new List<WeaponAttributeApplied>();
   }
 }

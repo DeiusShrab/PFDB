@@ -13,5 +13,6 @@ namespace DBConnect.DBModels
 
     public virtual ICollection<BestiarySkill> BestiarySkills { get; } = new List<BestiarySkill>();
     public virtual ICollection<CharacterSkill> CharacterSkills { get; } = new List<CharacterSkill>();
+    public virtual ICollection<ClassSkill> ClassSkills { get; } = new List<ClassSkill>();
   }
 }
