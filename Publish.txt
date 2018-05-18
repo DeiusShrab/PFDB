@@ -1,1 +1,1 @@
-dotnet publish PFDBSite.sln -c Release
+dotnet publish PFDBSite.sln -c Release -o /var/www/pfdbsite/publish
