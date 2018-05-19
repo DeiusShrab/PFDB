@@ -37,6 +37,13 @@ namespace PFAPI.Controllers
       helperQuery = new QueryHelper();
     }
 
+    [AllowAnonymous]
+    [Route("test")]
+    public IActionResult Test()
+    {
+      return Ok("API is listening!");
+    }
+
     [HttpPost]
     [AllowAnonymous]
     [Route("GetToken/pls")]
