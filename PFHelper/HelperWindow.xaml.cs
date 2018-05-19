@@ -1021,7 +1021,7 @@ namespace PFHelper
 
     private void UpdateDate()
     {
-      if (CurrentDate == null || seasons == null || CurrentMonth == null)
+      if (CurrentDate == null || seasons == null || months == null)
       {
         LblGrandDate.Content = "NO DATA";
         return;
