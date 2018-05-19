@@ -22,5 +22,6 @@ namespace DBConnect.DBModels
     public virtual ICollection<CharacterFeat> CharacterFeats { get; } = new List<CharacterFeat>();
     public virtual ICollection<CharacterSkill> CharacterSkills { get; } = new List<CharacterSkill>();
     public virtual ICollection<CharacterMagic> CharacterMagics { get; } = new List<CharacterMagic>();
+    public virtual ICollection<CharacterLanguage> CharacterLanguages { get; } = new List<CharacterLanguage>();
   }
 }

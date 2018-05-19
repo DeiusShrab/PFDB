@@ -381,41 +381,50 @@ namespace DBConnect
 
         entity.Property(e => e.Xp).HasColumnName("XP");
 
-        entity.HasOne<BestiaryType>()
-              .WithMany()
-              .HasForeignKey(e => e.Type);
+        entity.HasOne(e => e.BestiaryType)
+              .WithMany(e => e.Bestiaries)
+              .HasForeignKey(e => e.Type)
+              .OnDelete(DeleteBehavior.Restrict);
 
-        entity.HasMany<BestiaryEnvironment>()
-              .WithOne()
-              .HasForeignKey(e => e.BestiaryId);
+        entity.HasMany(e => e.BestiaryEnvironments)
+              .WithOne(e => e.Bestiary)
+              .HasForeignKey(e => e.BestiaryId)
+              .OnDelete(DeleteBehavior.Cascade);
 
-        entity.HasMany<BestiaryFeat>()
-              .WithOne()
-              .HasForeignKey(e => e.BestiaryId);
+        entity.HasMany(e => e.BestiaryFeats)
+              .WithOne(e => e.Bestiary)
+              .HasForeignKey(e => e.BestiaryId)
+              .OnDelete(DeleteBehavior.Cascade);
 
-        entity.HasMany<BestiaryLanguage>()
-              .WithOne()
-              .HasForeignKey(e => e.BestiaryId);
+        entity.HasMany(e => e.BestiaryLanguages)
+              .WithOne(e => e.Bestiary)
+              .HasForeignKey(e => e.BestiaryId)
+              .OnDelete(DeleteBehavior.Cascade);
 
-        entity.HasMany<BestiaryMagic>()
-              .WithOne()
-              .HasForeignKey(e => e.BestiaryId);
+        entity.HasMany(e => e.BestiaryMagics)
+              .WithOne(e => e.Bestiary)
+              .HasForeignKey(e => e.BestiaryId)
+              .OnDelete(DeleteBehavior.Cascade);
 
-        entity.HasMany<BestiarySkill>()
-              .WithOne()
-              .HasForeignKey(e => e.BestiaryId);
+        entity.HasMany(e => e.BestiarySkills)
+              .WithOne(e => e.Bestiary)
+              .HasForeignKey(e => e.BestiaryId)
+              .OnDelete(DeleteBehavior.Cascade);
 
-        entity.HasMany<BestiarySubType>()
-              .WithOne()
-              .HasForeignKey(e => e.BestiaryId);
+        entity.HasMany(e => e.BestiarySubTypes)
+              .WithOne(e => e.Bestiary)
+              .HasForeignKey(e => e.BestiaryId)
+              .OnDelete(DeleteBehavior.Cascade);
 
-        entity.HasMany<MonsterSpawn>()
-              .WithOne()
-              .HasForeignKey(e => e.BestiaryId);
+        entity.HasMany(e => e.MonsterSpawns)
+              .WithOne(e => e.Bestiary)
+              .HasForeignKey(e => e.BestiaryId)
+              .OnDelete(DeleteBehavior.Cascade);
 
-        entity.HasMany<Race>()
-              .WithOne()
-              .HasForeignKey(e => e.BestiaryId);
+        entity.HasMany(e => e.BestiaryRaces)
+              .WithOne(e => e.RaceBestiary)
+              .HasForeignKey(e => e.BestiaryId)
+              .OnDelete(DeleteBehavior.SetNull);
       });
 
       modelBuilder.Entity<BestiaryDetail>(entity =>
@@ -434,25 +443,28 @@ namespace DBConnect
             .HasMaxLength(50)
             .IsUnicode(false);
 
-        entity.HasOne<Bestiary>()
-              .WithOne()
+        entity.HasOne(e => e.Bestiary)
+              .WithOne(e => e.BestiaryDetail)
               .IsRequired()
-              .HasForeignKey("BestiaryDetail", "BestiaryId");
+              .HasForeignKey("BestiaryDetail", "BestiaryId")
+              .OnDelete(DeleteBehavior.Cascade);
       });
 
       modelBuilder.Entity<BestiaryEnvironment>(entity =>
       {
         entity.HasKey(e => e.BestiaryEnvironmentId);
 
-        entity.HasOne<Bestiary>()
-              .WithMany()
+        entity.HasOne(e => e.Bestiary)
+              .WithMany(e => e.BestiaryEnvironments)
               .IsRequired()
-              .HasForeignKey(e => e.BestiaryId);
+              .HasForeignKey(e => e.BestiaryId)
+              .OnDelete(DeleteBehavior.Cascade);
 
-        entity.HasOne<Environment>()
-              .WithMany()
+        entity.HasOne(e => e.Environment)
+              .WithMany(e => e.BestiaryEnvironments)
               .IsRequired()
-              .HasForeignKey(e => e.EnvironmentId);
+              .HasForeignKey(e => e.EnvironmentId)
+              .OnDelete(DeleteBehavior.Cascade);
 
         entity.Property(e => e.Notes)
             .HasMaxLength(500)
@@ -463,15 +475,17 @@ namespace DBConnect
       {
         entity.HasKey(e => e.BestiaryFeatId);
 
-        entity.HasOne<Bestiary>()
-              .WithMany()
+        entity.HasOne(e => e.Bestiary)
+              .WithMany(e => e.BestiaryFeats)
               .IsRequired()
-              .HasForeignKey(e => e.BestiaryId);
+              .HasForeignKey(e => e.BestiaryId)
+              .OnDelete(DeleteBehavior.Cascade);
 
-        entity.HasOne<Feat>()
-              .WithMany()
+        entity.HasOne(e => e.Feat)
+              .WithMany(e => e.BestiaryFeats)
               .IsRequired()
-              .HasForeignKey(e => e.FeatId);
+              .HasForeignKey(e => e.FeatId)
+              .OnDelete(DeleteBehavior.Cascade);
 
         entity.Property(e => e.Notes)
             .HasMaxLength(500)
@@ -482,15 +496,17 @@ namespace DBConnect
       {
         entity.HasKey(e => e.BestiaryLanguageId);
 
-        entity.HasOne<Bestiary>()
-              .WithMany()
+        entity.HasOne(e => e.Bestiary)
+              .WithMany(e => e.BestiaryLanguages)
               .IsRequired()
-              .HasForeignKey(e => e.BestiaryId);
+              .HasForeignKey(e => e.BestiaryId)
+              .OnDelete(DeleteBehavior.Cascade);
 
-        entity.HasOne<Language>()
-              .WithMany()
+        entity.HasOne(e => e.Language)
+              .WithMany(e => e.BestiaryLanguages)
               .IsRequired()
-              .HasForeignKey(e => e.LanguageId);
+              .HasForeignKey(e => e.LanguageId)
+              .OnDelete(DeleteBehavior.Cascade);
 
         entity.Property(e => e.Notes)
             .HasMaxLength(500)
@@ -501,15 +517,17 @@ namespace DBConnect
       {
         entity.HasKey(e => e.BestiaryMagicId);
 
-        entity.HasOne<Bestiary>()
-              .WithMany()
+        entity.HasOne(e => e.Bestiary)
+              .WithMany(e => e.BestiaryMagics)
               .IsRequired()
-              .HasForeignKey(e => e.BestiaryId);
+              .HasForeignKey(e => e.BestiaryId)
+              .OnDelete(DeleteBehavior.Cascade);
 
-        entity.HasOne<Spell>()
-              .WithMany()
+        entity.HasOne(e => e.Spell)
+              .WithMany(e => e.BestiaryMagics)
               .IsRequired()
-              .HasForeignKey(e => e.SpellId);
+              .HasForeignKey(e => e.SpellId)
+              .OnDelete(DeleteBehavior.Cascade);
 
         entity.Property(e => e.Notes)
             .HasMaxLength(500)
@@ -520,15 +538,17 @@ namespace DBConnect
       {
         entity.HasKey(e => e.BestiarySkillId);
 
-        entity.HasOne<Bestiary>()
-              .WithMany()
+        entity.HasOne(e => e.Bestiary)
+              .WithMany(e => e.BestiarySkills)
               .IsRequired()
-              .HasForeignKey(e => e.BestiaryId);
+              .HasForeignKey(e => e.BestiaryId)
+              .OnDelete(DeleteBehavior.Cascade);
 
-        entity.HasOne<Skill>()
-              .WithMany()
+        entity.HasOne(e => e.Skill)
+              .WithMany(e => e.BestiarySkills)
               .IsRequired()
-              .HasForeignKey(e => e.SkillId);
+              .HasForeignKey(e => e.SkillId)
+              .OnDelete(DeleteBehavior.Cascade);
 
         entity.Property(e => e.Notes)
             .HasMaxLength(500)
@@ -539,28 +559,32 @@ namespace DBConnect
       {
         entity.HasKey(e => e.BestiarySubTypeId);
 
-        entity.HasOne<Bestiary>()
-              .WithMany()
+        entity.HasOne(e => e.Bestiary)
+              .WithMany(e => e.BestiarySubTypes)
               .IsRequired()
-              .HasForeignKey(e => e.BestiaryId);
+              .HasForeignKey(e => e.BestiaryId)
+              .OnDelete(DeleteBehavior.Cascade);
 
-        entity.HasOne<BestiaryType>()
-              .WithMany()
+        entity.HasOne(e => e.BestiaryType)
+              .WithMany(e => e.BestiarySubTypes)
               .IsRequired()
-              .HasForeignKey(e => e.BestiaryTypeId);
+              .HasForeignKey(e => e.BestiaryTypeId)
+              .OnDelete(DeleteBehavior.Cascade);
       });
 
       modelBuilder.Entity<BestiaryType>(entity =>
       {
         entity.HasKey(e => e.BestiaryTypeId);
 
-        entity.HasMany<Bestiary>()
-              .WithOne()
-              .HasForeignKey(e => e.Type);
+        entity.HasMany(e => e.Bestiaries)
+              .WithOne(e => e.BestiaryType)
+              .HasForeignKey(e => e.Type)
+              .OnDelete(DeleteBehavior.Restrict);
 
-        entity.HasMany<BestiarySubType>()
-              .WithOne()
-              .HasForeignKey(e => e.BestiaryTypeId);
+        entity.HasMany(e => e.BestiarySubTypes)
+              .WithOne(e => e.BestiaryType)
+              .HasForeignKey(e => e.BestiaryTypeId)
+              .OnDelete(DeleteBehavior.Cascade);
 
         entity.Property(e => e.Name)
             .IsRequired()
@@ -581,9 +605,10 @@ namespace DBConnect
             .HasMaxLength(2000)
             .IsUnicode(false);
 
-        entity.HasMany<CampaignData>()
-              .WithOne()
-              .HasForeignKey(e => e.CampaignId);
+        entity.HasMany(e => e.CampaignData)
+              .WithOne(e => e.Campaign)
+              .HasForeignKey(e => e.CampaignId)
+              .OnDelete(DeleteBehavior.Cascade);
       });
 
       modelBuilder.Entity<CampaignData>(entity =>
@@ -598,10 +623,11 @@ namespace DBConnect
               .HasMaxLength(500)
               .IsUnicode(false);
 
-        entity.HasOne<Campaign>()
-              .WithMany()
+        entity.HasOne(e => e.Campaign)
+              .WithMany(e => e.CampaignData)
               .IsRequired()
-              .HasForeignKey(e => e.CampaignId);
+              .HasForeignKey(e => e.CampaignId)
+              .OnDelete(DeleteBehavior.Cascade);
 
       });
 
@@ -609,41 +635,50 @@ namespace DBConnect
       {
         entity.HasKey(e => e.CharacterId);
 
-        entity.HasOne<Player>()
-              .WithMany()
-              .HasForeignKey(e => e.PlayerId);
+        entity.HasOne(e => e.Player)
+              .WithMany(e => e.Characters)
+              .HasForeignKey(e => e.PlayerId)
+              .OnDelete(DeleteBehavior.SetNull);
 
-        entity.HasOne<Campaign>()
-              .WithMany()
-              .HasForeignKey(e => e.CampaignId);
+        entity.HasOne(e => e.Campaign)
+              .WithMany(e => e.Characters)
+              .HasForeignKey(e => e.CampaignId)
+              .OnDelete(DeleteBehavior.SetNull);
 
-        entity.HasOne<Race>()
-              .WithMany()
-              .HasForeignKey(e => e.RaceId);
+        entity.HasOne(e => e.Race)
+              .WithMany(e => e.Characters)
+              .HasForeignKey(e => e.RaceId)
+              .OnDelete(DeleteBehavior.SetNull);
 
-        entity.HasMany<CharacterClassLevel>()
-              .WithOne()
-              .HasForeignKey(e => e.CharacterId);
+        entity.HasMany(e => e.CharacterClassLevels)
+              .WithOne(e => e.Character)
+              .HasForeignKey(e => e.CharacterId)
+              .OnDelete(DeleteBehavior.Cascade);
 
-        entity.HasMany<CharacterClassAbility>()
-              .WithOne()
-              .HasForeignKey(e => e.CharacterId);
+        entity.HasMany(e => e.CharacterClassAbilities)
+              .WithOne(e => e.Character)
+              .HasForeignKey(e => e.CharacterId)
+              .OnDelete(DeleteBehavior.Cascade);
 
-        entity.HasMany<CharacterGear>()
-              .WithOne()
-              .HasForeignKey(e => e.CharacterId);
+        entity.HasMany(e => e.CharacterGear)
+              .WithOne(e => e.Character)
+              .HasForeignKey(e => e.CharacterId)
+              .OnDelete(DeleteBehavior.Cascade);
 
-        entity.HasMany<CharacterFeat>()
-              .WithOne()
-              .HasForeignKey(e => e.CharacterId);
+        entity.HasMany(e => e.CharacterFeats)
+              .WithOne(e => e.Character)
+              .HasForeignKey(e => e.CharacterId)
+              .OnDelete(DeleteBehavior.Cascade);
 
-        entity.HasMany<CharacterSkill>()
-              .WithOne()
-              .HasForeignKey(e => e.CharacterId);
+        entity.HasMany(e => e.CharacterSkills)
+              .WithOne(e => e.Character)
+              .HasForeignKey(e => e.CharacterId)
+              .OnDelete(DeleteBehavior.Cascade);
 
-        entity.HasMany<CharacterMagic>()
-              .WithOne()
-              .HasForeignKey(e => e.CharacterId);
+        entity.HasMany(e => e.CharacterMagics)
+              .WithOne(e => e.Character)
+              .HasForeignKey(e => e.CharacterId)
+              .OnDelete(DeleteBehavior.Cascade);
 
         entity.Property(e => e.Name)
               .HasMaxLength(100)
@@ -669,6 +704,26 @@ namespace DBConnect
         entity.Property(e => e.Alignment)
               .HasMaxLength(100)
               .IsUnicode(false);
+
+        entity.HasMany(e => e.ClassAbilities)
+              .WithOne(e => e.Class)
+              .HasForeignKey(e => e.ClassId)
+              .OnDelete(DeleteBehavior.Cascade);
+
+        entity.HasMany(e => e.ClassSkills)
+              .WithOne(e => e.Class)
+              .HasForeignKey(e => e.ClassId)
+              .OnDelete(DeleteBehavior.Cascade);
+
+        entity.HasMany(e => e.CharacterClassLevels)
+              .WithOne(e => e.Class)
+              .HasForeignKey(e => e.ClassId)
+              .OnDelete(DeleteBehavior.Cascade);
+
+        entity.HasMany(e => e.FavoredClasses)
+              .WithOne(e => e.Class)
+              .HasForeignKey(e => e.ClassId)
+              .OnDelete(DeleteBehavior.Cascade);
       });
 
       modelBuilder.Entity<CharacterClassAbility>(entity =>
@@ -679,30 +734,34 @@ namespace DBConnect
               .HasMaxLength(500)
               .IsUnicode(false);
 
-        entity.HasOne<Character>()
-              .WithMany()
+        entity.HasOne(e => e.Character)
+              .WithMany(e => e.CharacterClassAbilities)
               .IsRequired()
-              .HasForeignKey(e => e.CharacterId);
+              .HasForeignKey(e => e.CharacterId)
+              .OnDelete(DeleteBehavior.Cascade);
 
-        entity.HasOne<ClassAbility>()
-              .WithMany()
+        entity.HasOne(e => e.ClassAbility)
+              .WithMany(e => e.CharacterClassAbilities)
               .IsRequired()
-              .HasForeignKey(e => e.ClassAbilityId);
+              .HasForeignKey(e => e.ClassAbilityId)
+              .OnDelete(DeleteBehavior.Cascade);
       });
 
       modelBuilder.Entity<CharacterClassLevel>(entity =>
       {
-        entity.HasKey(e => new { e.CharacterId, e.CharacterClassId });
+        entity.HasKey(e => new { e.CharacterId, e.ClassId });
 
-        entity.HasOne<Character>()
-              .WithMany()
+        entity.HasOne(e => e.Character)
+              .WithMany(e => e.CharacterClassLevels)
               .IsRequired()
-              .HasForeignKey(e => e.CharacterId);
+              .HasForeignKey(e => e.CharacterId)
+              .OnDelete(DeleteBehavior.Cascade);
 
-        entity.HasOne<Class>()
-              .WithMany()
+        entity.HasOne(e => e.Class)
+              .WithMany(e => e.CharacterClassLevels)
               .IsRequired()
-              .HasForeignKey(e => e.CharacterClassId);
+              .HasForeignKey(e => e.ClassId)
+              .OnDelete(DeleteBehavior.Cascade);
       });
 
       modelBuilder.Entity<CharacterFeat>(entity =>
@@ -713,15 +772,17 @@ namespace DBConnect
               .HasMaxLength(500)
               .IsUnicode(false);
 
-        entity.HasOne<Character>()
-              .WithMany()
+        entity.HasOne(e => e.Character)
+              .WithMany(e => e.CharacterFeats)
               .IsRequired()
-              .HasForeignKey(e => e.CharacterId);
+              .HasForeignKey(e => e.CharacterId)
+              .OnDelete(DeleteBehavior.Cascade);
 
-        entity.HasOne<Feat>()
-              .WithMany()
+        entity.HasOne(e => e.Feat)
+              .WithMany(e => e.CharacterFeats)
               .IsRequired()
-              .HasForeignKey(e => e.FeatId);
+              .HasForeignKey(e => e.FeatId)
+              .OnDelete(DeleteBehavior.Cascade);
       });
 
       modelBuilder.Entity<CharacterGear>(entity =>
@@ -732,115 +793,132 @@ namespace DBConnect
               .HasMaxLength(500)
               .IsUnicode(false);
 
-        entity.HasOne<Character>()
-              .WithMany()
+        entity.HasOne(e => e.Character)
+              .WithMany(e => e.CharacterGear)
               .IsRequired()
-              .HasForeignKey(e => e.CharacterId);
+              .HasForeignKey(e => e.CharacterId)
+              .OnDelete(DeleteBehavior.Cascade);
 
-        entity.HasOne<Gear>()
-              .WithMany()
+        entity.HasOne(e => e.Gear)
+              .WithMany(e => e.CharacterGear)
               .IsRequired()
-              .HasForeignKey(e => e.GearId);
+              .HasForeignKey(e => e.GearId)
+              .OnDelete(DeleteBehavior.Cascade);
 
-        entity.HasMany<CharacterGearEnchantment>()
-              .WithOne()
-              .HasForeignKey(e => e.CharacterGearId);
+        entity.HasMany(e => e.CharacterGearEnchantments)
+              .WithOne(e => e.CharacterGear)
+              .HasForeignKey(e => e.CharacterGearId)
+              .OnDelete(DeleteBehavior.Cascade);
       });
 
       modelBuilder.Entity<CharacterGearEnchantment>(entity =>
       {
         entity.HasKey(key => new { key.CharacterGearId, key.EnchantmentId });
 
-        entity.HasOne<CharacterGear>()
-              .WithMany()
+        entity.HasOne(e => e.CharacterGear)
+              .WithMany(e => e.CharacterGearEnchantments)
               .IsRequired()
-              .HasForeignKey(e => e.CharacterGearId);
+              .HasForeignKey(e => e.CharacterGearId)
+              .OnDelete(DeleteBehavior.Cascade);
 
-        entity.HasOne<Enchantment>()
-              .WithMany()
+        entity.HasOne(e => e.Enchantment)
+              .WithMany(e => e.CharacterGearEnchantments)
               .IsRequired()
-              .HasForeignKey(e => e.EnchantmentId);
+              .HasForeignKey(e => e.EnchantmentId)
+              .OnDelete(DeleteBehavior.Cascade);
       });
 
       modelBuilder.Entity<CharacterLanguage>(entity =>
       {
         entity.HasKey(e => new { e.CharacterId, e.LanguageId });
 
-        entity.HasOne<Character>()
-              .WithMany()
+        entity.HasOne(e => e.Character)
+              .WithMany(e => e.CharacterLanguages)
               .IsRequired()
-              .HasForeignKey(e => e.CharacterId);
+              .HasForeignKey(e => e.CharacterId)
+              .OnDelete(DeleteBehavior.Cascade);
 
-        entity.HasOne<Language>()
-              .WithMany()
+        entity.HasOne(e => e.Language)
+              .WithMany(e => e.CharacterLanguages)
               .IsRequired()
-              .HasForeignKey(e => e.LanguageId);
+              .HasForeignKey(e => e.LanguageId)
+              .OnDelete(DeleteBehavior.Cascade);
       });
 
       modelBuilder.Entity<CharacterMagic>(entity =>
       {
         entity.HasKey(e => e.CharacterMagicId);
 
-        entity.HasOne<Character>()
-              .WithMany()
+        entity.HasOne(e => e.Character)
+              .WithMany(e => e.CharacterMagics)
               .IsRequired()
-              .HasForeignKey(e => e.CharacterId);
+              .HasForeignKey(e => e.CharacterId)
+              .OnDelete(DeleteBehavior.Cascade);
 
-        entity.HasOne<Spell>()
-              .WithMany()
+        entity.HasOne(e => e.Spell)
+              .WithMany(e => e.CharacterMagics)
               .IsRequired()
-              .HasForeignKey(e => e.SpellId);
+              .HasForeignKey(e => e.SpellId)
+              .OnDelete(DeleteBehavior.Cascade);
       });
 
       modelBuilder.Entity<Race>(entity =>
       {
         entity.HasKey(e => e.RaceId);
 
-        entity.HasOne<BestiaryType>()
-              .WithMany()
-              .HasForeignKey(e => e.RaceTypeId);
+        entity.HasOne(e => e.RaceBestiary)
+              .WithMany(e => e.BestiaryRaces)
+              .HasForeignKey(e => e.RaceTypeId)
+              .OnDelete(DeleteBehavior.Restrict);
 
-        entity.HasMany<RaceSubType>()
-              .WithOne()
-              .HasForeignKey(e => e.RaceId);
+        entity.HasMany(e => e.RaceSubTypes)
+              .WithOne(e => e.Race)
+              .HasForeignKey(e => e.RaceId)
+              .OnDelete(DeleteBehavior.Cascade);
 
-        entity.HasMany<Character>()
-              .WithOne()
-              .HasForeignKey(e => e.RaceId);
+        entity.HasMany(e => e.Characters)
+              .WithOne(e => e.Race)
+              .HasForeignKey(e => e.RaceId)
+              .OnDelete(DeleteBehavior.Cascade);
 
-        entity.HasMany<FavoredClass>()
-              .WithOne()
-              .HasForeignKey(e => e.RaceId);
+        entity.HasMany(e => e.FavoredClasses)
+              .WithOne(e => e.Race)
+              .HasForeignKey(e => e.RaceId)
+              .OnDelete(DeleteBehavior.Cascade);
       });
 
       modelBuilder.Entity<RaceSubType>(entity =>
       {
         entity.HasKey(e => new { e.BestiaryTypeId, e.RaceId });
 
-        entity.HasOne<Character>()
-              .WithMany()
+        entity.HasOne(e => e.Race)
+              .WithMany(e => e.RaceSubTypes)
               .IsRequired()
-              .HasForeignKey(e => e.RaceId);
+              .HasForeignKey(e => e.RaceId)
+              .OnDelete(DeleteBehavior.Cascade);
 
-        entity.HasOne<BestiaryType>()
-              .WithMany()
+        entity.HasOne(e => e.BestiaryType)
+              .WithMany(e => e.RaceSubTypes)
               .IsRequired()
-              .HasForeignKey(e => e.BestiaryTypeId);
+              .HasForeignKey(e => e.BestiaryTypeId)
+              .OnDelete(DeleteBehavior.Cascade);
       });
 
       modelBuilder.Entity<CharacterSkill>(entity =>
       {
         entity.HasKey(e => new { e.CharacterId, e.SkillId });
 
-        entity.HasOne<Character>()
-              .WithMany()
+        entity.HasOne(e => e.Character)
+              .WithMany(e => e.CharacterSkills)
               .IsRequired()
-              .HasForeignKey(e => e.CharacterId);
+              .HasForeignKey(e => e.CharacterId)
+              .OnDelete(DeleteBehavior.Cascade);
 
-        entity.HasOne<Skill>()
-              .WithMany()
+        entity.HasOne(e => e.Skill)
+              .WithMany(e => e.CharacterSkills)
               .IsRequired()
-              .HasForeignKey(e => e.SkillId);
+              .HasForeignKey(e => e.SkillId)
+              .OnDelete(DeleteBehavior.Cascade);
       });
 
       modelBuilder.Entity<ClassAbility>(entity =>
@@ -854,25 +932,28 @@ namespace DBConnect
         entity.Property(e => e.Description)
               .IsUnicode(false);
 
-        entity.HasOne<Class>()
-              .WithMany()
+        entity.HasOne(e => e.Class)
+              .WithMany(e => e.ClassAbilities)
               .IsRequired()
-              .HasForeignKey(e => e.ClassId);
+              .HasForeignKey(e => e.ClassId)
+              .OnDelete(DeleteBehavior.Cascade);
       });
 
       modelBuilder.Entity<ClassSkill>(entity =>
       {
         entity.HasKey(e => new { e.ClassId, e.SkillId });
 
-        entity.HasOne<Class>()
-              .WithMany()
+        entity.HasOne(e => e.Class)
+              .WithMany(e => e.ClassSkills)
               .IsRequired()
-              .HasForeignKey(e => e.ClassId);
+              .HasForeignKey(e => e.ClassId)
+              .OnDelete(DeleteBehavior.Cascade);
 
-        entity.HasOne<Skill>()
-              .WithMany()
+        entity.HasOne(e => e.Skill)
+              .WithMany(e => e.ClassSkills)
               .IsRequired()
-              .HasForeignKey(e => e.SkillId);
+              .HasForeignKey(e => e.SkillId)
+              .OnDelete(DeleteBehavior.Cascade);
       });
 
       modelBuilder.Entity<Continent>(entity =>
@@ -887,25 +968,30 @@ namespace DBConnect
             .HasMaxLength(100)
             .IsUnicode(false);
 
-        entity.HasOne<Language>()
-              .WithMany()
-              .HasForeignKey(e => e.PrimaryLanguageId);
+        entity.HasOne(e => e.PrimaryLanguage)
+              .WithMany(e => e.ContinentPrimaryLanguages)
+              .HasForeignKey(e => e.PrimaryLanguageId)
+              .OnDelete(DeleteBehavior.SetNull);
 
-        entity.HasMany<ContinentWeather>()
-              .WithOne()
-              .HasForeignKey(e => e.ContinentId);
+        entity.HasMany(e => e.ContinentWeathers)
+              .WithOne(e => e.Continent)
+              .HasForeignKey(e => e.ContinentId)
+              .OnDelete(DeleteBehavior.Cascade);
 
-        entity.HasMany<Location>()
-              .WithOne()
-              .HasForeignKey(e => e.ContinentId);
+        entity.HasMany(e => e.Locations)
+              .WithOne(e => e.Continent)
+              .HasForeignKey(e => e.ContinentId)
+              .OnDelete(DeleteBehavior.SetNull);
 
-        entity.HasMany<MonsterSpawn>()
-              .WithOne()
-              .HasForeignKey(e => e.ContinentId);
+        entity.HasMany(e => e.MonsterSpawns)
+              .WithOne(e => e.Continent)
+              .HasForeignKey(e => e.ContinentId)
+              .OnDelete(DeleteBehavior.Cascade);
 
-        entity.HasMany<Territory>()
-              .WithOne()
-              .HasForeignKey(e => e.ContinentId);
+        entity.HasMany(e => e.Territories)
+              .WithOne(e => e.Continent)
+              .HasForeignKey(e => e.ContinentId)
+              .OnDelete(DeleteBehavior.Cascade);
       });
 
       modelBuilder.Entity<ContinentWeather>(entity =>
@@ -925,20 +1011,23 @@ namespace DBConnect
               .HasMaxLength(100)
               .IsUnicode(false);
 
-        entity.HasOne<Continent>()
-              .WithMany()
+        entity.HasOne(e => e.Continent)
+              .WithMany(e => e.ContinentWeathers)
               .IsRequired()
-              .HasForeignKey(e => e.ContinentId);
+              .HasForeignKey(e => e.ContinentId)
+              .OnDelete(DeleteBehavior.Cascade);
 
-        entity.HasOne<Weather>()
-              .WithMany()
+        entity.HasOne(e => e.Weather)
+              .WithMany(e => e.ContinentWeathers)
               .IsRequired()
-              .HasForeignKey(e => e.WeatherId);
+              .HasForeignKey(e => e.WeatherId)
+              .OnDelete(DeleteBehavior.Cascade);
 
-        entity.HasOne<Season>()
-              .WithMany()
+        entity.HasOne(e => e.Season)
+              .WithMany(e => e.ContinentWeathers)
               .IsRequired()
-              .HasForeignKey(e => e.SeasonId);
+              .HasForeignKey(e => e.SeasonId)
+              .OnDelete(DeleteBehavior.Cascade);
       });
 
       modelBuilder.Entity<Enchantment>(entity =>
@@ -953,9 +1042,10 @@ namespace DBConnect
               .HasMaxLength(1000)
               .IsUnicode(false);
 
-        entity.HasMany<CharacterGearEnchantment>()
-              .WithOne()
-              .HasForeignKey(e => e.EnchantmentId);
+        entity.HasMany(e => e.CharacterGearEnchantments)
+              .WithOne(e => e.Enchantment)
+              .HasForeignKey(e => e.EnchantmentId)
+              .OnDelete(DeleteBehavior.Cascade);
       });
 
       modelBuilder.Entity<Environment>(entity =>
@@ -975,13 +1065,15 @@ namespace DBConnect
             .HasMaxLength(100)
             .IsUnicode(false);
 
-        entity.HasMany<BestiaryEnvironment>()
-              .WithOne()
-              .HasForeignKey(e => e.EnvironmentId);
+        entity.HasMany(e => e.BestiaryEnvironments)
+              .WithOne(e => e.Environment)
+              .HasForeignKey(e => e.EnvironmentId)
+              .OnDelete(DeleteBehavior.Cascade);
 
-        entity.HasMany<Location>()
-              .WithOne()
-              .HasForeignKey(e => e.EnvironmentId);
+        entity.HasMany(e => e.Locations)
+              .WithOne(e => e.Environment)
+              .HasForeignKey(e => e.EnvironmentId)
+              .OnDelete(DeleteBehavior.SetNull);
       });
 
       modelBuilder.Entity<Faction>(entity =>
@@ -996,21 +1088,25 @@ namespace DBConnect
               .HasMaxLength(200)
               .IsUnicode(false);
 
-        entity.HasOne<Language>()
-              .WithMany()
-              .HasForeignKey(e => e.PrimaryLanguageId);
+        entity.HasOne(e => e.PrimaryLanguage)
+              .WithMany(e => e.FactionPrimaryLanguages)
+              .HasForeignKey(e => e.PrimaryLanguageId)
+              .OnDelete(DeleteBehavior.SetNull);
 
-        entity.HasOne<Race>()
-              .WithMany()
-              .HasForeignKey(e => e.PrimaryRaceId);
+        entity.HasOne(e => e.PrimaryRace)
+              .WithMany(e => e.FactionPrimaryRaces)
+              .HasForeignKey(e => e.PrimaryRaceId)
+              .OnDelete(DeleteBehavior.SetNull);
 
-        entity.HasMany<Location>()
-              .WithOne()
-              .HasForeignKey(e => e.FactionId);
+        entity.HasMany(e => e.Locations)
+              .WithOne(e => e.Faction)
+              .HasForeignKey(e => e.FactionId)
+              .OnDelete(DeleteBehavior.SetNull);
 
-        entity.HasMany<Territory>()
-              .WithOne()
-              .HasForeignKey(e => e.FactionId);
+        entity.HasMany(e => e.Territories)
+              .WithOne(e => e.Faction)
+              .HasForeignKey(e => e.FactionId)
+              .OnDelete(DeleteBehavior.Cascade);
       });
 
       modelBuilder.Entity<FavoredClass>(entity =>
@@ -1021,15 +1117,17 @@ namespace DBConnect
               .HasMaxLength(500)
               .IsUnicode(false);
 
-        entity.HasOne<Class>()
-              .WithMany()
+        entity.HasOne(e => e.Class)
+              .WithMany(e => e.FavoredClasses)
               .IsRequired()
-              .HasForeignKey(e => e.ClassId);
+              .HasForeignKey(e => e.ClassId)
+              .OnDelete(DeleteBehavior.Cascade);
 
-        entity.HasOne<Race>()
-              .WithMany()
+        entity.HasOne(e => e.Race)
+              .WithMany(e => e.FavoredClasses)
               .IsRequired()
-              .HasForeignKey(e => e.RaceId);
+              .HasForeignKey(e => e.RaceId)
+              .OnDelete(DeleteBehavior.Cascade);
       });
 
       modelBuilder.Entity<Feat>(entity =>
@@ -1065,7 +1163,6 @@ namespace DBConnect
               .IsUnicode(false);
 
         entity.Property(e => e.Prerequisites)
-              .HasMaxLength(200)
               .IsUnicode(false);
 
         entity.Property(e => e.PrerequisiteFeats)
@@ -1100,13 +1197,15 @@ namespace DBConnect
               .HasMaxLength(25)
               .IsUnicode(false);
 
-        entity.HasMany<BestiaryFeat>()
-              .WithOne()
-              .HasForeignKey(e => e.FeatId);
+        entity.HasMany(e => e.BestiaryFeats)
+              .WithOne(e => e.Feat)
+              .HasForeignKey(e => e.FeatId)
+              .OnDelete(DeleteBehavior.Cascade);
 
-        entity.HasMany<CharacterFeat>()
-              .WithOne()
-              .HasForeignKey(e => e.FeatId);
+        entity.HasMany(e => e.CharacterFeats)
+              .WithOne(e => e.Feat)
+              .HasForeignKey(e => e.FeatId)
+              .OnDelete(DeleteBehavior.Cascade);
       });
 
       modelBuilder.Entity<Gear>(entity =>
@@ -1117,9 +1216,10 @@ namespace DBConnect
               .HasMaxLength(100)
               .IsUnicode(false);
 
-        entity.HasMany<CharacterGear>()
-              .WithOne()
-              .HasForeignKey(e => e.GearId);
+        entity.HasMany(e => e.CharacterGear)
+              .WithOne(e => e.Gear)
+              .HasForeignKey(e => e.GearId)
+              .OnDelete(DeleteBehavior.Cascade);
       });
 
       modelBuilder.Entity<Language>(entity =>
@@ -1135,21 +1235,25 @@ namespace DBConnect
             .HasMaxLength(200)
             .IsUnicode(false);
 
-        entity.HasMany<BestiaryLanguage>()
-              .WithOne()
-              .HasForeignKey(e => e.LanguageId);
+        entity.HasMany(e => e.BestiaryLanguages)
+              .WithOne(e => e.Language)
+              .HasForeignKey(e => e.LanguageId)
+              .OnDelete(DeleteBehavior.Cascade);
 
-        entity.HasMany<CharacterLanguage>()
-              .WithOne()
-              .HasForeignKey(e => e.LanguageId);
+        entity.HasMany(e => e.CharacterLanguages)
+              .WithOne(e => e.Language)
+              .HasForeignKey(e => e.LanguageId)
+              .OnDelete(DeleteBehavior.Cascade);
 
-        entity.HasMany<Continent>()
-              .WithOne()
-              .HasForeignKey(e => e.PrimaryLanguageId);
+        entity.HasMany(e => e.ContinentPrimaryLanguages)
+              .WithOne(e => e.PrimaryLanguage)
+              .HasForeignKey(e => e.PrimaryLanguageId)
+              .OnDelete(DeleteBehavior.SetNull);
 
-        entity.HasMany<Faction>()
-              .WithOne()
-              .HasForeignKey(e => e.PrimaryLanguageId);
+        entity.HasMany(e => e.FactionPrimaryLanguages)
+              .WithOne(e => e.PrimaryLanguage)
+              .HasForeignKey(e => e.PrimaryLanguageId)
+              .OnDelete(DeleteBehavior.SetNull);
       });
 
       modelBuilder.Entity<Location>(entity =>
@@ -1160,25 +1264,30 @@ namespace DBConnect
             .HasMaxLength(100)
             .IsUnicode(false);
 
-        entity.HasOne<Continent>()
-              .WithMany()
-              .HasForeignKey(e => e.ContinentId);
+        entity.HasOne(e => e.Continent)
+              .WithMany(e => e.Locations)
+              .HasForeignKey(e => e.ContinentId)
+              .OnDelete(DeleteBehavior.SetNull);
 
-        entity.HasOne<Faction>()
-              .WithMany()
-              .HasForeignKey(e => e.FactionId);
+        entity.HasOne(e => e.Faction)
+              .WithMany(e => e.Locations)
+              .HasForeignKey(e => e.FactionId)
+              .OnDelete(DeleteBehavior.SetNull);
 
-        entity.HasOne<Territory>()
-              .WithMany()
-              .HasForeignKey(e => e.TerritoryId);
+        entity.HasOne(e => e.Territory)
+              .WithMany(e => e.Locations)
+              .HasForeignKey(e => e.TerritoryId)
+              .OnDelete(DeleteBehavior.SetNull);
 
-        entity.HasOne<Terrain>()
-              .WithMany()
-              .HasForeignKey(e => e.TerrainId);
+        entity.HasOne(e => e.Terrain)
+              .WithMany(e => e.Locations)
+              .HasForeignKey(e => e.TerrainId)
+              .OnDelete(DeleteBehavior.SetNull);
 
-        entity.HasOne<Environment>()
-              .WithMany()
-              .HasForeignKey(e => e.EnvironmentId);
+        entity.HasOne(e => e.Environment)
+              .WithMany(e => e.Locations)
+              .HasForeignKey(e => e.EnvironmentId)
+              .OnDelete(DeleteBehavior.SetNull);
       });
 
       modelBuilder.Entity<MagicItem>(entity =>
@@ -1274,30 +1383,35 @@ namespace DBConnect
       {
         entity.HasKey(e => e.SpawnId);
 
-        entity.HasOne<Continent>()
-              .WithMany()
+        entity.HasOne(e => e.Continent)
+              .WithMany(e => e.MonsterSpawns)
               .IsRequired()
-              .HasForeignKey(e => e.ContinentId);
+              .HasForeignKey(e => e.ContinentId)
+              .OnDelete(DeleteBehavior.Cascade);
 
-        entity.HasOne<Season>()
-              .WithMany()
+        entity.HasOne(e => e.Season)
+              .WithMany(e => e.MonsterSpawns)
               .IsRequired()
-              .HasForeignKey(e => e.SeasonId);
+              .HasForeignKey(e => e.SeasonId)
+              .OnDelete(DeleteBehavior.Cascade);
 
-        entity.HasOne<Bestiary>()
-              .WithMany()
+        entity.HasOne(e => e.Bestiary)
+              .WithMany(e => e.MonsterSpawns)
               .IsRequired()
-              .HasForeignKey(e => e.BestiaryId);
+              .HasForeignKey(e => e.BestiaryId)
+              .OnDelete(DeleteBehavior.Cascade);
 
-        entity.HasOne<Time>()
-              .WithMany()
+        entity.HasOne(e => e.Time)
+              .WithMany(e => e.MonsterSpawns)
               .IsRequired()
-              .HasForeignKey(e => e.TimeId);
+              .HasForeignKey(e => e.TimeId)
+              .OnDelete(DeleteBehavior.Cascade);
 
-        entity.HasOne<Plane>()
-              .WithMany()
+        entity.HasOne(e => e.Plane)
+              .WithMany(e => e.MonsterSpawns)
               .IsRequired()
-              .HasForeignKey(e => e.PlaneId);
+              .HasForeignKey(e => e.PlaneId)
+              .OnDelete(DeleteBehavior.Cascade);
       });
 
       modelBuilder.Entity<Month>(entity =>
@@ -1307,9 +1421,10 @@ namespace DBConnect
             .HasMaxLength(100)
             .IsUnicode(false);
 
-        entity.HasOne<Season>()
-              .WithMany()
-              .HasForeignKey(e => e.SeasonId);
+        entity.HasOne(e => e.Season)
+              .WithMany(e => e.Months)
+              .HasForeignKey(e => e.SeasonId)
+              .OnDelete(DeleteBehavior.SetNull);
       });
 
       modelBuilder.Entity<Npc>(entity =>
@@ -1640,10 +1755,11 @@ namespace DBConnect
             .HasMaxLength(250)
             .IsUnicode(false);
 
-        entity.HasOne<Npc>()
-              .WithOne()
+        entity.HasOne(e => e.Npc)
+              .WithOne(e => e.Npcdetail)
               .IsRequired()
-              .HasForeignKey("Npcdetail", "Npcid");
+              .HasForeignKey("Npcdetail", "Npcid")
+              .OnDelete(DeleteBehavior.Cascade);
       });
 
       modelBuilder.Entity<Plane>(entity =>
@@ -1655,9 +1771,10 @@ namespace DBConnect
             .HasMaxLength(100)
             .IsUnicode(false);
 
-        entity.HasMany<MonsterSpawn>()
-              .WithOne()
-              .HasForeignKey(e => e.PlaneId);
+        entity.HasMany(e => e.MonsterSpawns)
+              .WithOne(e => e.Plane)
+              .HasForeignKey(e => e.PlaneId)
+              .OnDelete(DeleteBehavior.Cascade);
       });
 
       modelBuilder.Entity<Player>(entity =>
@@ -1669,24 +1786,27 @@ namespace DBConnect
               .IsUnicode(false)
               .IsRequired();
 
-        entity.HasMany<PlayerCampaign>()
-              .WithOne()
-              .HasForeignKey(e => e.PlayerId);
+        entity.HasMany(e => e.PlayerCampaigns)
+              .WithOne(e => e.Player)
+              .HasForeignKey(e => e.PlayerId)
+              .OnDelete(DeleteBehavior.Cascade);
       });
 
       modelBuilder.Entity<PlayerCampaign>(entity =>
       {
         entity.HasKey(e => new { e.PlayerId, e.CampaignId });
 
-        entity.HasOne<Player>()
-              .WithMany()
+        entity.HasOne(e => e.Player)
+              .WithMany(e => e.PlayerCampaigns)
               .IsRequired()
-              .HasForeignKey(e => e.PlayerId);
+              .HasForeignKey(e => e.PlayerId)
+              .OnDelete(DeleteBehavior.Cascade);
 
-        entity.HasOne<Campaign>()
-              .WithMany()
+        entity.HasOne(e => e.Campaign)
+              .WithMany(e => e.PlayerCampaigns)
               .IsRequired()
-              .HasForeignKey(e => e.CampaignId);
+              .HasForeignKey(e => e.CampaignId)
+              .OnDelete(DeleteBehavior.Cascade);
       });
 
       // Prerequisite
@@ -1700,17 +1820,20 @@ namespace DBConnect
             .HasMaxLength(100)
             .IsUnicode(false);
 
-        entity.HasMany<MonsterSpawn>()
-              .WithOne()
-              .HasForeignKey(e => e.SeasonId);
+        entity.HasMany(e => e.MonsterSpawns)
+              .WithOne(e => e.Season)
+              .HasForeignKey(e => e.SeasonId)
+              .OnDelete(DeleteBehavior.Cascade);
 
-        entity.HasMany<Month>()
-              .WithOne()
-              .HasForeignKey(e => e.SeasonId);
+        entity.HasMany(e => e.Months)
+              .WithOne(e => e.Season)
+              .HasForeignKey(e => e.SeasonId)
+              .OnDelete(DeleteBehavior.SetNull);
 
-        entity.HasMany<ContinentWeather>()
-              .WithOne()
-              .HasForeignKey(e => e.SeasonId);
+        entity.HasMany(e => e.ContinentWeathers)
+              .WithOne(e => e.Season)
+              .HasForeignKey(e => e.SeasonId)
+              .OnDelete(DeleteBehavior.Cascade);
       });
 
       modelBuilder.Entity<Skill>(entity =>
@@ -1727,17 +1850,20 @@ namespace DBConnect
             .HasMaxLength(100)
             .IsUnicode(false);
 
-        entity.HasMany<BestiarySkill>()
-              .WithOne()
-              .HasForeignKey(e => e.SkillId);
+        entity.HasMany(e => e.BestiarySkills)
+              .WithOne(e => e.Skill)
+              .HasForeignKey(e => e.SkillId)
+              .OnDelete(DeleteBehavior.Cascade);
 
-        entity.HasMany<CharacterSkill>()
-              .WithOne()
-              .HasForeignKey(e => e.SkillId);
+        entity.HasMany(e => e.CharacterSkills)
+              .WithOne(e => e.Skill)
+              .HasForeignKey(e => e.SkillId)
+              .OnDelete(DeleteBehavior.Cascade);
 
-        entity.HasMany<ClassSkill>()
-              .WithOne()
-              .HasForeignKey(e => e.SkillId);
+        entity.HasMany(e => e.ClassSkills)
+              .WithOne(e => e.Skill)
+              .HasForeignKey(e => e.SkillId)
+              .OnDelete(DeleteBehavior.Cascade);
       });
 
       modelBuilder.Entity<Spell>(entity =>
@@ -1838,21 +1964,25 @@ namespace DBConnect
             .HasMaxLength(200)
             .IsUnicode(false);
 
-        entity.HasOne<SpellSchool>()
-              .WithMany()
-              .HasForeignKey(e => e.SchoolId);
+        entity.HasOne(e => e.SpellSchool)
+              .WithMany(e => e.Spells)
+              .HasForeignKey(e => e.SchoolId)
+              .OnDelete(DeleteBehavior.SetNull);
 
-        entity.HasOne<SpellSubSchool>()
-              .WithMany()
-              .HasForeignKey(e => e.SubSchoolId);
+        entity.HasOne(e => e.SpellSubSchool)
+              .WithMany(e => e.Spells)
+              .HasForeignKey(e => e.SubSchoolId)
+              .OnDelete(DeleteBehavior.SetNull);
 
-        entity.HasMany<BestiaryMagic>()
-              .WithOne()
-              .HasForeignKey(e => e.SpellId);
+        entity.HasMany(e => e.BestiaryMagics)
+              .WithOne(e => e.Spell)
+              .HasForeignKey(e => e.SpellId)
+              .OnDelete(DeleteBehavior.Cascade);
 
-        entity.HasMany<CharacterMagic>()
-              .WithOne()
-              .HasForeignKey(e => e.SpellId);
+        entity.HasMany(e => e.CharacterMagics)
+              .WithOne(e => e.Spell)
+              .HasForeignKey(e => e.SpellId)
+              .OnDelete(DeleteBehavior.Cascade);
       });
 
       modelBuilder.Entity<SpellDetail>(entity =>
@@ -1865,10 +1995,11 @@ namespace DBConnect
 
         entity.Property(e => e.FullText).IsUnicode(false);
 
-        entity.HasOne<Spell>()
-              .WithOne()
+        entity.HasOne(e => e.Spell)
+              .WithOne(e => e.SpellDetail)
               .IsRequired()
-              .HasForeignKey("SpellDetail", "SpellId");
+              .HasForeignKey("SpellDetail", "SpellId")
+              .OnDelete(DeleteBehavior.Cascade);
       });
 
       modelBuilder.Entity<SpellSchool>(entity =>
@@ -1880,13 +2011,15 @@ namespace DBConnect
             .HasMaxLength(100)
             .IsUnicode(false);
 
-        entity.HasMany<Spell>()
-              .WithOne()
-              .HasForeignKey(e => e.SchoolId);
+        entity.HasMany(e => e.Spells)
+              .WithOne(e => e.SpellSchool)
+              .HasForeignKey(e => e.SchoolId)
+              .OnDelete(DeleteBehavior.SetNull);
 
-        entity.HasMany<SpellSubSchool>()
-              .WithOne()
-              .HasForeignKey(e => e.SpellSchoolId);
+        entity.HasMany(e => e.SpellSubSchools)
+              .WithOne(e => e.SpellSchool)
+              .HasForeignKey(e => e.SpellSchoolId)
+              .OnDelete(DeleteBehavior.Cascade);
       });
 
       modelBuilder.Entity<SpellSubSchool>(entity =>
@@ -1898,9 +2031,10 @@ namespace DBConnect
             .HasMaxLength(100)
             .IsUnicode(false);
 
-        entity.HasMany<Spell>()
-              .WithOne()
-              .HasForeignKey(e => e.SubSchoolId);
+        entity.HasMany(e => e.Spells)
+              .WithOne(e => e.SpellSubSchool)
+              .HasForeignKey(e => e.SubSchoolId)
+              .OnDelete(DeleteBehavior.SetNull);
       });
 
       modelBuilder.Entity<Terrain>(entity =>
@@ -1916,9 +2050,10 @@ namespace DBConnect
             .HasMaxLength(100)
             .IsUnicode(false);
 
-        entity.HasMany<Location>()
-              .WithOne()
-              .HasForeignKey(e => e.TerrainId);
+        entity.HasMany(e => e.Locations)
+              .WithOne(e => e.Terrain)
+              .HasForeignKey(e => e.TerrainId)
+              .OnDelete(DeleteBehavior.SetNull);
       });
 
       modelBuilder.Entity<Territory>(entity =>
@@ -1930,17 +2065,20 @@ namespace DBConnect
             .IsUnicode(false)
             .IsRequired();
 
-        entity.HasOne<Continent>()
-              .WithMany()
-              .HasForeignKey(e => e.ContinentId);
+        entity.HasOne(e => e.Continent)
+              .WithMany(e => e.Territories)
+              .HasForeignKey(e => e.ContinentId)
+              .OnDelete(DeleteBehavior.SetNull);
 
-        entity.HasOne<Faction>()
-              .WithMany()
-              .HasForeignKey(e => e.FactionId);
+        entity.HasOne(e => e.Faction)
+              .WithMany(e => e.Territories)
+              .HasForeignKey(e => e.FactionId)
+              .OnDelete(DeleteBehavior.SetNull);
 
-        entity.HasMany<Location>()
-              .WithOne()
-              .HasForeignKey(e => e.TerritoryId);
+        entity.HasMany(e => e.Locations)
+              .WithOne(e => e.Territory)
+              .HasForeignKey(e => e.TerritoryId)
+              .OnDelete(DeleteBehavior.SetNull);
       });
 
       modelBuilder.Entity<Time>(entity =>
@@ -1952,9 +2090,10 @@ namespace DBConnect
             .HasMaxLength(100)
             .IsUnicode(false);
 
-        entity.HasMany<MonsterSpawn>()
-              .WithOne()
-              .HasForeignKey(e => e.TimeId);
+        entity.HasMany(e => e.MonsterSpawns)
+              .WithOne(e => e.Time)
+              .HasForeignKey(e => e.TimeId)
+              .OnDelete(DeleteBehavior.Cascade);
       });
 
       modelBuilder.Entity<TrackedEvent>(entity =>
@@ -1981,18 +2120,20 @@ namespace DBConnect
             .HasMaxLength(100)
             .IsUnicode(false);
 
-        entity.HasOne<Campaign>()
-              .WithMany()
-              .HasForeignKey(e => e.CampaignId);
+        entity.HasOne(e => e.Campaign)
+              .WithMany(e => e.TrackedEvents)
+              .HasForeignKey(e => e.CampaignId)
+              .OnDelete(DeleteBehavior.Cascade);
       });
 
       modelBuilder.Entity<Weapon>(entity =>
       {
         entity.ToTable("Weapon");
 
-        entity.HasMany<WeaponAttributeApplied>()
-              .WithOne()
-              .HasForeignKey(e => e.GearId);
+        entity.HasMany(e => e.WeaponAttributesApplied)
+              .WithOne(e => e.Weapon)
+              .HasForeignKey(e => e.GearId)
+              .OnDelete(DeleteBehavior.Cascade);
       });
 
       modelBuilder.Entity<WeaponAttribute>(entity =>
@@ -2008,24 +2149,27 @@ namespace DBConnect
               .HasMaxLength(200)
               .IsUnicode(false);
 
-        entity.HasMany<WeaponAttributeApplied>()
-              .WithOne()
-              .HasForeignKey(e => e.WeaponAttributeId);
+        entity.HasMany(e => e.WeaponAttributesApplied)
+              .WithOne(e => e.Attribute)
+              .HasForeignKey(e => e.WeaponAttributeId)
+              .OnDelete(DeleteBehavior.Cascade);
       });
 
       modelBuilder.Entity<WeaponAttributeApplied>(entity =>
       {
         entity.HasKey(e => new { e.GearId, e.WeaponAttributeId });
 
-        entity.HasOne<Weapon>()
-              .WithMany()
+        entity.HasOne(e => e.Weapon)
+              .WithMany(e => e.WeaponAttributesApplied)
               .IsRequired()
-              .HasForeignKey(e => e.GearId);
+              .HasForeignKey(e => e.GearId)
+              .OnDelete(DeleteBehavior.Cascade);
 
-        entity.HasOne<WeaponAttribute>()
-              .WithMany()
+        entity.HasOne(e => e.Attribute)
+              .WithMany(e => e.WeaponAttributesApplied)
               .IsRequired()
-              .HasForeignKey(e => e.WeaponAttributeId);
+              .HasForeignKey(e => e.WeaponAttributeId)
+              .OnDelete(DeleteBehavior.Cascade);
       });
 
       modelBuilder.Entity<Weather>(entity =>
@@ -2045,9 +2189,10 @@ namespace DBConnect
             .HasMaxLength(100)
             .IsUnicode(false);
 
-        entity.HasMany<ContinentWeather>()
-              .WithOne()
-              .HasForeignKey(e => e.WeatherId);
+        entity.HasMany(e => e.ContinentWeathers)
+              .WithOne(e => e.Weather)
+              .HasForeignKey(e => e.WeatherId)
+              .OnDelete(DeleteBehavior.Cascade);
       });
     }
   }

@@ -33,16 +33,13 @@ Web Tools!
 			Add gear from library (all non-custom gear)
 W E L P
 Code First Mapping
-	Add-Migration <NAME> -Context PFDBContext
+	Add-Migration -Context PFDBContext
+	Update-Database -Context PFDBContext
 	https://blog.oneunicorn.com/2017/09/25/many-to-many-relationships-in-ef-core-2-0-part-1-the-basics/
 
 TODO AT HOME
-DB Migration
-	Delete all the DBContext models/db
-	Run the 'code first from existing DB' script
-	Create an initial migration from that
-	Git latest for new and shiny scripts
-	Create a second migration
+Git dat HTTPS
+	https://letsencrypt.org/getting-started/
 Publish
 	Set up a publish script for the server that gets the latest and runs dotnet publish
 	For the client, set up a publish profile that puts everything in a zip file and throws it into dropbox

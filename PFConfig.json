@@ -1,12 +1,13 @@
 {
-"JWT_KEY":""
-,"JWT_ISSUER":""
-,"API_USER":""
-,"API_PASS":""
-,"API_ADDR":""
-,"MAX_CACHE_SIZE":""
-,"DB_ADDR":""
-,"DB_DB":""
-,"DB_USER":""
-,"DB_PASS":""
+	"JWT_KEY":"ayy lmao ayy lmao ayy lmao ayy lmao",
+	"JWT_ISSUER":"https://zratsewk.duckdns.org",
+	"API_USER":"PFHelper",
+	"API_PASS":"PFHelper",
+	"API_ADDR":"http://zratsewk.duckdns.org/api/",
+	"MAX_CACHE_SIZE":"32",
+	"DB_ADDR":"192.168.1.150",
+	"DB_USER":"PFDBSite",
+    "DB_PASS":"ayy lmao ayy lmao AYY 1m40",
+    "DB_DB":"PFDB",
+	"APP_MODE":"LIVE",
 }

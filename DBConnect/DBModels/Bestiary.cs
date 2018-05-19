@@ -118,6 +118,6 @@ namespace DBConnect.DBModels
     public virtual ICollection<BestiarySkill> BestiarySkills { get; } = new List<BestiarySkill>();
     public virtual ICollection<BestiarySubType> BestiarySubTypes { get; } = new List<BestiarySubType>();
     public virtual ICollection<MonsterSpawn> MonsterSpawns { get; } = new List<MonsterSpawn>();
-    public virtual ICollection<Race> CharacterRaces { get; } = new List<Race>();
+    public virtual ICollection<Race> BestiaryRaces { get; } = new List<Race>();
   }
 }

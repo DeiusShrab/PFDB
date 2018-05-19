@@ -21,5 +21,6 @@ namespace DBConnect.DBModels
     public virtual ICollection<Character> Characters { get; } = new List<Character>();
     public virtual ICollection<FavoredClass> FavoredClasses { get; } = new List<FavoredClass>();
     public virtual ICollection<RaceSubType> RaceSubTypes { get; } = new List<RaceSubType>();
+    public virtual ICollection<Faction> FactionPrimaryRaces { get; } = new List<Faction>();
   }
 }

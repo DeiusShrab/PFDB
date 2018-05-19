@@ -11,5 +11,6 @@ namespace DBConnect.DBModels
 
     public virtual ICollection<Bestiary> Bestiaries { get; } = new List<Bestiary>();
     public virtual ICollection<BestiarySubType> BestiarySubTypes { get; } = new List<BestiarySubType>();
+    public virtual ICollection<RaceSubType> RaceSubTypes { get; } = new List<RaceSubType>();
   }
 }

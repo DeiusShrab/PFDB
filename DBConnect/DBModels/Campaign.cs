@@ -14,5 +14,7 @@ namespace DBConnect.DBModels
 
     public virtual ICollection<CampaignData> CampaignData { get; } = new List<CampaignData>();
     public virtual ICollection<PlayerCampaign> PlayerCampaigns { get; } = new List<PlayerCampaign>();
+    public virtual ICollection<TrackedEvent> TrackedEvents { get; } = new List<TrackedEvent>();
+    public virtual ICollection<Character> Characters { get; } = new List<Character>();
   }
 }

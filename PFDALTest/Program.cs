@@ -39,7 +39,11 @@ namespace PFDALTest
             Console.WriteLine("Complete");
             break;
           case 6:
-            UpdateNPC();
+            //UpdateNPC();
+            Console.WriteLine("NOT READY YET");
+            break;
+          case 99:
+
             break;
         }
       }
@@ -56,6 +60,8 @@ namespace PFDALTest
       Console.WriteLine("4 - Update Tables");
       Console.WriteLine("5 - Update SpellSchools");
       Console.WriteLine("6 - Translate NPCs to Bestiary");
+
+      Console.WriteLine("99 - Apply Database Migrations");
       Console.WriteLine("0 - EXIT");
       Console.Write("> ");
 
@@ -69,6 +75,8 @@ namespace PFDALTest
     // Menu 1
     private static void Test()
     {
+      var cs = $"Server={PFConfig.DB_ADDR};Database={PFConfig.DB_DB};User Id={PFConfig.DB_USER};Password={PFConfig.DB_PASS}";
+      Console.WriteLine(cs);
       var context = PFDAL.GetContext(false);
       PFDBInitializer.Initialize(context);
       Console.WriteLine(context.Bestiary.First().Name);

@@ -12,7 +12,7 @@ using System;
 namespace DBConnect.Migrations
 {
     [DbContext(typeof(PFDBContext))]
-    [Migration("20180518220554_Initial")]
+    [Migration("20180519061140_Initial")]
     partial class Initial
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -24,7 +24,8 @@ namespace DBConnect.Migrations
 
             modelBuilder.Entity("DBConnect.DBModels.Bestiary", b =>
                 {
-                    b.Property<int>("BestiaryId");
+                    b.Property<int>("BestiaryId")
+                        .ValueGeneratedOnAdd();
 
                     b.Property<string>("AbilityScoreMods")
                         .HasMaxLength(50)
@@ -73,8 +74,6 @@ namespace DBConnect.Migrations
                     b.Property<string>("BeforeCombat")
                         .HasMaxLength(25)
                         .IsUnicode(false);
-
-                    b.Property<int?>("BestiaryTypeId");
 
                     b.Property<string>("Bloodline")
                         .HasMaxLength(25)
@@ -379,8 +378,6 @@ namespace DBConnect.Migrations
 
                     b.HasKey("BestiaryId");
 
-                    b.HasIndex("BestiaryTypeId");
-
                     b.HasIndex("Type");
 
                     b.ToTable("Bestiary");
@@ -416,11 +413,7 @@ namespace DBConnect.Migrations
 
                     b.Property<int>("BestiaryId");
 
-                    b.Property<int?>("BestiaryId1");
-
                     b.Property<int>("EnvironmentId");
-
-                    b.Property<int?>("EnvironmentId1");
 
                     b.Property<string>("Notes")
                         .HasMaxLength(500)
@@ -430,11 +423,7 @@ namespace DBConnect.Migrations
 
                     b.HasIndex("BestiaryId");
 
-                    b.HasIndex("BestiaryId1");
-
                     b.HasIndex("EnvironmentId");
-
-                    b.HasIndex("EnvironmentId1");
 
                     b.ToTable("BestiaryEnvironment");
                 });
@@ -446,11 +435,7 @@ namespace DBConnect.Migrations
 
                     b.Property<int>("BestiaryId");
 
-                    b.Property<int?>("BestiaryId1");
-
                     b.Property<int>("FeatId");
-
-                    b.Property<int?>("FeatId1");
 
                     b.Property<string>("Notes")
                         .HasMaxLength(500)
@@ -460,11 +445,7 @@ namespace DBConnect.Migrations
 
                     b.HasIndex("BestiaryId");
 
-                    b.HasIndex("BestiaryId1");
-
                     b.HasIndex("FeatId");
-
-                    b.HasIndex("FeatId1");
 
                     b.ToTable("BestiaryFeat");
                 });
@@ -476,11 +457,7 @@ namespace DBConnect.Migrations
 
                     b.Property<int>("BestiaryId");
 
-                    b.Property<int?>("BestiaryId1");
-
                     b.Property<int>("LanguageId");
-
-                    b.Property<int?>("LanguageId1");
 
                     b.Property<string>("Notes")
                         .HasMaxLength(500)
@@ -490,11 +467,7 @@ namespace DBConnect.Migrations
 
                     b.HasIndex("BestiaryId");
 
-                    b.HasIndex("BestiaryId1");
-
                     b.HasIndex("LanguageId");
-
-                    b.HasIndex("LanguageId1");
 
                     b.ToTable("BestiaryLanguage");
                 });
@@ -506,8 +479,6 @@ namespace DBConnect.Migrations
 
                     b.Property<int>("BestiaryId");
 
-                    b.Property<int?>("BestiaryId1");
-
                     b.Property<int>("CasterLevel");
 
                     b.Property<int>("MagicTypeId");
@@ -518,19 +489,13 @@ namespace DBConnect.Migrations
 
                     b.Property<int>("SpellId");
 
-                    b.Property<int?>("SpellId1");
-
                     b.Property<int>("UsesPerDay");
 
                     b.HasKey("BestiaryMagicId");
 
                     b.HasIndex("BestiaryId");
 
-                    b.HasIndex("BestiaryId1");
-
                     b.HasIndex("SpellId");
-
-                    b.HasIndex("SpellId1");
 
                     b.ToTable("BestiaryMagic");
                 });
@@ -542,8 +507,6 @@ namespace DBConnect.Migrations
 
                     b.Property<int>("BestiaryId");
 
-                    b.Property<int?>("BestiaryId1");
-
                     b.Property<int>("Bonus");
 
                     b.Property<string>("Notes")
@@ -552,17 +515,11 @@ namespace DBConnect.Migrations
 
                     b.Property<int>("SkillId");
 
-                    b.Property<int?>("SkillId1");
-
                     b.HasKey("BestiarySkillId");
 
                     b.HasIndex("BestiaryId");
 
-                    b.HasIndex("BestiaryId1");
-
                     b.HasIndex("SkillId");
-
-                    b.HasIndex("SkillId1");
 
                     b.ToTable("BestiarySkill");
                 });
@@ -574,21 +531,13 @@ namespace DBConnect.Migrations
 
                     b.Property<int>("BestiaryId");
 
-                    b.Property<int?>("BestiaryId1");
-
                     b.Property<int>("BestiaryTypeId");
-
-                    b.Property<int?>("BestiaryTypeId1");
 
                     b.HasKey("BestiarySubTypeId");
 
                     b.HasIndex("BestiaryId");
 
-                    b.HasIndex("BestiaryId1");
-
                     b.HasIndex("BestiaryTypeId");
-
-                    b.HasIndex("BestiaryTypeId1");
 
                     b.ToTable("BestiarySubType");
                 });
@@ -637,15 +586,11 @@ namespace DBConnect.Migrations
                         .HasMaxLength(500)
                         .IsUnicode(false);
 
-                    b.Property<int?>("CampaignId1");
-
                     b.Property<string>("Value")
                         .HasMaxLength(500)
                         .IsUnicode(false);
 
                     b.HasKey("CampaignId", "Key");
-
-                    b.HasIndex("CampaignId1");
 
                     b.ToTable("CampaignData");
                 });
@@ -657,8 +602,6 @@ namespace DBConnect.Migrations
 
                     b.Property<int?>("CampaignId");
 
-                    b.Property<int?>("CampaignId1");
-
                     b.Property<string>("Deity")
                         .HasMaxLength(100)
                         .IsUnicode(false);
@@ -669,25 +612,15 @@ namespace DBConnect.Migrations
 
                     b.Property<int?>("PlayerId");
 
-                    b.Property<int?>("PlayerId1");
-
                     b.Property<int?>("RaceId");
-
-                    b.Property<int?>("RaceId1");
 
                     b.HasKey("CharacterId");
 
                     b.HasIndex("CampaignId");
 
-                    b.HasIndex("CampaignId1");
-
                     b.HasIndex("PlayerId");
 
-                    b.HasIndex("PlayerId1");
-
                     b.HasIndex("RaceId");
-
-                    b.HasIndex("RaceId1");
 
                     b.ToTable("Character");
                 });
@@ -699,11 +632,7 @@ namespace DBConnect.Migrations
 
                     b.Property<int>("CharacterId");
 
-                    b.Property<int?>("CharacterId1");
-
                     b.Property<int>("ClassAbilityId");
-
-                    b.Property<int?>("ClassAbilityId1");
 
                     b.Property<string>("Note")
                         .HasMaxLength(500)
@@ -713,11 +642,7 @@ namespace DBConnect.Migrations
 
                     b.HasIndex("CharacterId");
 
-                    b.HasIndex("CharacterId1");
-
                     b.HasIndex("ClassAbilityId");
-
-                    b.HasIndex("ClassAbilityId1");
 
                     b.ToTable("CharacterClassAbility");
                 });
@@ -726,19 +651,11 @@ namespace DBConnect.Migrations
                 {
                     b.Property<int>("CharacterId");
 
-                    b.Property<int>("CharacterClassId");
-
-                    b.Property<int?>("CharacterId1");
-
-                    b.Property<int?>("ClassId");
+                    b.Property<int>("ClassId");
 
                     b.Property<int>("Level");
 
-                    b.HasKey("CharacterId", "CharacterClassId");
-
-                    b.HasIndex("CharacterClassId");
-
-                    b.HasIndex("CharacterId1");
+                    b.HasKey("CharacterId", "ClassId");
 
                     b.HasIndex("ClassId");
 
@@ -752,11 +669,7 @@ namespace DBConnect.Migrations
 
                     b.Property<int>("CharacterId");
 
-                    b.Property<int?>("CharacterId1");
-
                     b.Property<int>("FeatId");
-
-                    b.Property<int?>("FeatId1");
 
                     b.Property<string>("Notes")
                         .HasMaxLength(500)
@@ -766,11 +679,7 @@ namespace DBConnect.Migrations
 
                     b.HasIndex("CharacterId");
 
-                    b.HasIndex("CharacterId1");
-
                     b.HasIndex("FeatId");
-
-                    b.HasIndex("FeatId1");
 
                     b.ToTable("CharacterFeat");
                 });
@@ -782,11 +691,7 @@ namespace DBConnect.Migrations
 
                     b.Property<int>("CharacterId");
 
-                    b.Property<int?>("CharacterId1");
-
                     b.Property<int>("GearId");
-
-                    b.Property<int?>("GearId1");
 
                     b.Property<string>("Notes")
                         .HasMaxLength(500)
@@ -798,11 +703,7 @@ namespace DBConnect.Migrations
 
                     b.HasIndex("CharacterId");
 
-                    b.HasIndex("CharacterId1");
-
                     b.HasIndex("GearId");
-
-                    b.HasIndex("GearId1");
 
                     b.ToTable("CharacterGear");
                 });
@@ -813,17 +714,9 @@ namespace DBConnect.Migrations
 
                     b.Property<int>("EnchantmentId");
 
-                    b.Property<int?>("CharacterGearId1");
-
-                    b.Property<int?>("EnchantmentId1");
-
                     b.HasKey("CharacterGearId", "EnchantmentId");
 
-                    b.HasIndex("CharacterGearId1");
-
                     b.HasIndex("EnchantmentId");
-
-                    b.HasIndex("EnchantmentId1");
 
                     b.ToTable("CharacterGearEnchantment");
                 });
@@ -834,17 +727,9 @@ namespace DBConnect.Migrations
 
                     b.Property<int>("LanguageId");
 
-                    b.Property<int?>("CharacterId1");
-
-                    b.Property<int?>("LanguageId1");
-
                     b.HasKey("CharacterId", "LanguageId");
 
-                    b.HasIndex("CharacterId1");
-
                     b.HasIndex("LanguageId");
-
-                    b.HasIndex("LanguageId1");
 
                     b.ToTable("CharacterLanguage");
                 });
@@ -856,25 +741,17 @@ namespace DBConnect.Migrations
 
                     b.Property<int>("CharacterId");
 
-                    b.Property<int?>("CharacterId1");
-
                     b.Property<int>("MagicType");
 
                     b.Property<string>("Notes");
 
                     b.Property<int>("SpellId");
 
-                    b.Property<int?>("SpellId1");
-
                     b.HasKey("CharacterMagicId");
 
                     b.HasIndex("CharacterId");
 
-                    b.HasIndex("CharacterId1");
-
                     b.HasIndex("SpellId");
-
-                    b.HasIndex("SpellId1");
 
                     b.ToTable("CharacterMagic");
                 });
@@ -885,19 +762,11 @@ namespace DBConnect.Migrations
 
                     b.Property<int>("SkillId");
 
-                    b.Property<int?>("CharacterId1");
-
                     b.Property<int>("Ranks");
-
-                    b.Property<int?>("SkillId1");
 
                     b.HasKey("CharacterId", "SkillId");
 
-                    b.HasIndex("CharacterId1");
-
                     b.HasIndex("SkillId");
-
-                    b.HasIndex("SkillId1");
 
                     b.ToTable("CharacterSkill");
                 });
@@ -939,8 +808,6 @@ namespace DBConnect.Migrations
 
                     b.Property<int>("ClassId");
 
-                    b.Property<int?>("ClassId1");
-
                     b.Property<string>("Description")
                         .IsUnicode(false);
 
@@ -956,8 +823,6 @@ namespace DBConnect.Migrations
 
                     b.HasIndex("ClassId");
 
-                    b.HasIndex("ClassId1");
-
                     b.ToTable("ClassAbility");
                 });
 
@@ -967,17 +832,9 @@ namespace DBConnect.Migrations
 
                     b.Property<int>("SkillId");
 
-                    b.Property<int?>("ClassId1");
-
-                    b.Property<int?>("SkillId1");
-
                     b.HasKey("ClassId", "SkillId");
 
-                    b.HasIndex("ClassId1");
-
                     b.HasIndex("SkillId");
-
-                    b.HasIndex("SkillId1");
 
                     b.ToTable("ClassSkill");
                 });
@@ -1001,13 +858,9 @@ namespace DBConnect.Migrations
 
                     b.Property<int?>("PrimaryLanguageId");
 
-                    b.Property<int?>("PrimaryLanguageLanguageId");
-
                     b.HasKey("ContinentId");
 
                     b.HasIndex("PrimaryLanguageId");
-
-                    b.HasIndex("PrimaryLanguageLanguageId");
 
                     b.ToTable("Continent");
                 });
@@ -1024,8 +877,6 @@ namespace DBConnect.Migrations
 
                     b.Property<int>("ContinentId");
 
-                    b.Property<int?>("ContinentId1");
-
                     b.Property<int>("Duration");
 
                     b.Property<int?>("NextCWID")
@@ -1038,11 +889,7 @@ namespace DBConnect.Migrations
 
                     b.Property<int>("SeasonId");
 
-                    b.Property<int?>("SeasonId1");
-
                     b.Property<int>("WeatherId");
-
-                    b.Property<int?>("WeatherId1");
 
                     b.Property<int>("Weight");
 
@@ -1050,15 +897,9 @@ namespace DBConnect.Migrations
 
                     b.HasIndex("ContinentId");
 
-                    b.HasIndex("ContinentId1");
-
                     b.HasIndex("SeasonId");
 
-                    b.HasIndex("SeasonId1");
-
                     b.HasIndex("WeatherId");
-
-                    b.HasIndex("WeatherId1");
 
                     b.ToTable("ContinentWeather");
                 });
@@ -1127,11 +968,7 @@ namespace DBConnect.Migrations
 
                     b.Property<int?>("PrimaryLanguageId");
 
-                    b.Property<int?>("PrimaryLanguageLanguageId");
-
                     b.Property<int?>("PrimaryRaceId");
-
-                    b.Property<int?>("PrimaryRaceRaceId");
 
                     b.Property<string>("Type")
                         .HasMaxLength(200)
@@ -1141,11 +978,7 @@ namespace DBConnect.Migrations
 
                     b.HasIndex("PrimaryLanguageId");
 
-                    b.HasIndex("PrimaryLanguageLanguageId");
-
                     b.HasIndex("PrimaryRaceId");
-
-                    b.HasIndex("PrimaryRaceRaceId");
 
                     b.ToTable("Faction");
                 });
@@ -1155,11 +988,7 @@ namespace DBConnect.Migrations
                     b.Property<int>("FavoredClassId")
                         .ValueGeneratedOnAdd();
 
-                    b.Property<int?>("CharacterRaceRaceId");
-
                     b.Property<int>("ClassId");
-
-                    b.Property<int?>("ClassId1");
 
                     b.Property<string>("Description")
                         .HasMaxLength(500)
@@ -1169,11 +998,7 @@ namespace DBConnect.Migrations
 
                     b.HasKey("FavoredClassId");
 
-                    b.HasIndex("CharacterRaceRaceId");
-
                     b.HasIndex("ClassId");
-
-                    b.HasIndex("ClassId1");
 
                     b.HasIndex("RaceId");
 
@@ -1244,7 +1069,6 @@ namespace DBConnect.Migrations
                         .IsUnicode(false);
 
                     b.Property<string>("Prerequisites")
-                        .HasMaxLength(200)
                         .IsUnicode(false);
 
                     b.Property<string>("RaceName")
@@ -1338,15 +1162,9 @@ namespace DBConnect.Migrations
 
                     b.Property<int?>("ContinentId");
 
-                    b.Property<int?>("ContinentId1");
-
                     b.Property<int?>("EnvironmentId");
 
-                    b.Property<int?>("EnvironmentId1");
-
                     b.Property<int?>("FactionId");
-
-                    b.Property<int?>("FactionId1");
 
                     b.Property<int>("GridX");
 
@@ -1358,33 +1176,19 @@ namespace DBConnect.Migrations
 
                     b.Property<int?>("TerrainId");
 
-                    b.Property<int?>("TerrainId1");
-
                     b.Property<int?>("TerritoryId");
-
-                    b.Property<int?>("TerritoryId1");
 
                     b.HasKey("LocationId");
 
                     b.HasIndex("ContinentId");
 
-                    b.HasIndex("ContinentId1");
-
                     b.HasIndex("EnvironmentId");
-
-                    b.HasIndex("EnvironmentId1");
 
                     b.HasIndex("FactionId");
 
-                    b.HasIndex("FactionId1");
-
                     b.HasIndex("TerrainId");
 
-                    b.HasIndex("TerrainId1");
-
                     b.HasIndex("TerritoryId");
-
-                    b.HasIndex("TerritoryId1");
 
                     b.ToTable("Location");
                 });
@@ -1536,45 +1340,25 @@ namespace DBConnect.Migrations
 
                     b.Property<int>("BestiaryId");
 
-                    b.Property<int?>("BestiaryId1");
-
                     b.Property<int>("ContinentId");
-
-                    b.Property<int?>("ContinentId1");
 
                     b.Property<int>("PlaneId");
 
-                    b.Property<int?>("PlaneId1");
-
                     b.Property<int>("SeasonId");
 
-                    b.Property<int?>("SeasonId1");
-
                     b.Property<int>("TimeId");
-
-                    b.Property<int?>("TimeId1");
 
                     b.HasKey("SpawnId");
 
                     b.HasIndex("BestiaryId");
 
-                    b.HasIndex("BestiaryId1");
-
                     b.HasIndex("ContinentId");
-
-                    b.HasIndex("ContinentId1");
 
                     b.HasIndex("PlaneId");
 
-                    b.HasIndex("PlaneId1");
-
                     b.HasIndex("SeasonId");
 
-                    b.HasIndex("SeasonId1");
-
                     b.HasIndex("TimeId");
-
-                    b.HasIndex("TimeId1");
 
                     b.ToTable("MonsterSpawn");
                 });
@@ -1595,13 +1379,9 @@ namespace DBConnect.Migrations
 
                     b.Property<int?>("SeasonId");
 
-                    b.Property<int?>("SeasonId1");
-
                     b.HasKey("MonthId");
 
                     b.HasIndex("SeasonId");
-
-                    b.HasIndex("SeasonId1");
 
                     b.ToTable("Month");
                 });
@@ -1609,6 +1389,7 @@ namespace DBConnect.Migrations
             modelBuilder.Entity("DBConnect.DBModels.Npc", b =>
                 {
                     b.Property<int>("Npcid")
+                        .ValueGeneratedOnAdd()
                         .HasColumnName("NPCID");
 
                     b.Property<string>("AbilityScoreMods")
@@ -2027,19 +1808,11 @@ namespace DBConnect.Migrations
 
                     b.Property<int>("CampaignId");
 
-                    b.Property<int?>("CampaignId1");
-
                     b.Property<bool>("IsDM");
-
-                    b.Property<int?>("PlayerId1");
 
                     b.HasKey("PlayerId", "CampaignId");
 
                     b.HasIndex("CampaignId");
-
-                    b.HasIndex("CampaignId1");
-
-                    b.HasIndex("PlayerId1");
 
                     b.ToTable("PlayerCampaign");
                 });
@@ -2089,15 +1862,9 @@ namespace DBConnect.Migrations
 
                     b.Property<int>("RP");
 
-                    b.Property<int?>("RaceBestiaryBestiaryId");
-
                     b.Property<int?>("RaceTypeId");
 
                     b.HasKey("RaceId");
-
-                    b.HasIndex("BestiaryId");
-
-                    b.HasIndex("RaceBestiaryBestiaryId");
 
                     b.HasIndex("RaceTypeId");
 
@@ -2110,17 +1877,9 @@ namespace DBConnect.Migrations
 
                     b.Property<int>("RaceId");
 
-                    b.Property<int?>("BestiaryTypeId1");
-
-                    b.Property<int?>("RaceId1");
-
                     b.HasKey("BestiaryTypeId", "RaceId");
 
-                    b.HasIndex("BestiaryTypeId1");
-
                     b.HasIndex("RaceId");
-
-                    b.HasIndex("RaceId1");
 
                     b.ToTable("RaceSubType");
                 });
@@ -2168,7 +1927,8 @@ namespace DBConnect.Migrations
 
             modelBuilder.Entity("DBConnect.DBModels.Spell", b =>
                 {
-                    b.Property<int>("SpellId");
+                    b.Property<int>("SpellId")
+                        .ValueGeneratedOnAdd();
 
                     b.Property<bool>("Acid");
 
@@ -2368,10 +2128,6 @@ namespace DBConnect.Migrations
                         .HasMaxLength(50)
                         .IsUnicode(false);
 
-                    b.Property<int?>("SpellSchoolId");
-
-                    b.Property<int?>("SpellSubSchoolId");
-
                     b.Property<int?>("Spiritualist");
 
                     b.Property<int?>("SubSchoolId")
@@ -2395,10 +2151,6 @@ namespace DBConnect.Migrations
                     b.HasKey("SpellId");
 
                     b.HasIndex("SchoolId");
-
-                    b.HasIndex("SpellSchoolId");
-
-                    b.HasIndex("SpellSubSchoolId");
 
                     b.HasIndex("SubSchoolId");
 
@@ -2450,13 +2202,9 @@ namespace DBConnect.Migrations
 
                     b.Property<int>("SpellSchoolId");
 
-                    b.Property<int?>("SpellSchoolId1");
-
                     b.HasKey("SpellSubSchoolId");
 
                     b.HasIndex("SpellSchoolId");
-
-                    b.HasIndex("SpellSchoolId1");
 
                     b.ToTable("SpellSubSchool");
                 });
@@ -2495,13 +2243,9 @@ namespace DBConnect.Migrations
                     b.Property<int>("TerritoryId")
                         .ValueGeneratedOnAdd();
 
-                    b.Property<int>("ContinentId");
+                    b.Property<int?>("ContinentId");
 
-                    b.Property<int?>("ContinentId1");
-
-                    b.Property<int>("FactionId");
-
-                    b.Property<int?>("FactionId1");
+                    b.Property<int?>("FactionId");
 
                     b.Property<string>("Name")
                         .IsRequired()
@@ -2514,11 +2258,7 @@ namespace DBConnect.Migrations
 
                     b.HasIndex("ContinentId");
 
-                    b.HasIndex("ContinentId1");
-
                     b.HasIndex("FactionId");
-
-                    b.HasIndex("FactionId1");
 
                     b.ToTable("Territory");
                 });
@@ -2548,8 +2288,6 @@ namespace DBConnect.Migrations
                         .ValueGeneratedOnAdd();
 
                     b.Property<int>("CampaignId");
-
-                    b.Property<int?>("CampaignId1");
 
                     b.Property<string>("DateLastOccurred");
 
@@ -2582,8 +2320,6 @@ namespace DBConnect.Migrations
 
                     b.HasIndex("CampaignId");
 
-                    b.HasIndex("CampaignId1");
-
                     b.ToTable("TrackedEvent");
                 });
 
@@ -2612,19 +2348,11 @@ namespace DBConnect.Migrations
 
                     b.Property<int>("WeaponAttributeId");
 
-                    b.Property<int?>("AttributeWpnAttId");
-
                     b.Property<string>("Note");
-
-                    b.Property<int?>("WeaponGearId");
 
                     b.HasKey("GearId", "WeaponAttributeId");
 
-                    b.HasIndex("AttributeWpnAttId");
-
                     b.HasIndex("WeaponAttributeId");
-
-                    b.HasIndex("WeaponGearId");
 
                     b.ToTable("WeaponAttributeApplied");
                 });
@@ -2712,612 +2440,384 @@ namespace DBConnect.Migrations
 
             modelBuilder.Entity("DBConnect.DBModels.Bestiary", b =>
                 {
-                    b.HasOne("DBConnect.DBModels.BestiaryDetail", "BestiaryDetail")
-                        .WithOne("Bestiary")
-                        .HasForeignKey("DBConnect.DBModels.Bestiary", "BestiaryId")
-                        .OnDelete(DeleteBehavior.Cascade);
-
                     b.HasOne("DBConnect.DBModels.BestiaryType", "BestiaryType")
                         .WithMany("Bestiaries")
-                        .HasForeignKey("BestiaryTypeId");
-
-                    b.HasOne("DBConnect.DBModels.BestiaryType")
-                        .WithMany()
-                        .HasForeignKey("Type");
+                        .HasForeignKey("Type")
+                        .OnDelete(DeleteBehavior.Restrict);
                 });
 
             modelBuilder.Entity("DBConnect.DBModels.BestiaryDetail", b =>
                 {
-                    b.HasOne("DBConnect.DBModels.Bestiary")
-                        .WithOne()
+                    b.HasOne("DBConnect.DBModels.Bestiary", "Bestiary")
+                        .WithOne("BestiaryDetail")
                         .HasForeignKey("DBConnect.DBModels.BestiaryDetail", "BestiaryId")
                         .OnDelete(DeleteBehavior.Cascade);
                 });
 
             modelBuilder.Entity("DBConnect.DBModels.BestiaryEnvironment", b =>
                 {
-                    b.HasOne("DBConnect.DBModels.Bestiary")
-                        .WithMany()
-                        .HasForeignKey("BestiaryId")
-                        .OnDelete(DeleteBehavior.Cascade);
-
                     b.HasOne("DBConnect.DBModels.Bestiary", "Bestiary")
                         .WithMany("BestiaryEnvironments")
-                        .HasForeignKey("BestiaryId1");
-
-                    b.HasOne("DBConnect.DBModels.Environment")
-                        .WithMany()
-                        .HasForeignKey("EnvironmentId")
+                        .HasForeignKey("BestiaryId")
                         .OnDelete(DeleteBehavior.Cascade);
 
                     b.HasOne("DBConnect.DBModels.Environment", "Environment")
                         .WithMany("BestiaryEnvironments")
-                        .HasForeignKey("EnvironmentId1");
+                        .HasForeignKey("EnvironmentId")
+                        .OnDelete(DeleteBehavior.Cascade);
                 });
 
             modelBuilder.Entity("DBConnect.DBModels.BestiaryFeat", b =>
                 {
-                    b.HasOne("DBConnect.DBModels.Bestiary")
-                        .WithMany()
-                        .HasForeignKey("BestiaryId")
-                        .OnDelete(DeleteBehavior.Cascade);
-
                     b.HasOne("DBConnect.DBModels.Bestiary", "Bestiary")
                         .WithMany("BestiaryFeats")
-                        .HasForeignKey("BestiaryId1");
-
-                    b.HasOne("DBConnect.DBModels.Feat")
-                        .WithMany()
-                        .HasForeignKey("FeatId")
+                        .HasForeignKey("BestiaryId")
                         .OnDelete(DeleteBehavior.Cascade);
 
                     b.HasOne("DBConnect.DBModels.Feat", "Feat")
                         .WithMany("BestiaryFeats")
-                        .HasForeignKey("FeatId1");
+                        .HasForeignKey("FeatId")
+                        .OnDelete(DeleteBehavior.Cascade);
                 });
 
             modelBuilder.Entity("DBConnect.DBModels.BestiaryLanguage", b =>
                 {
-                    b.HasOne("DBConnect.DBModels.Bestiary")
-                        .WithMany()
-                        .HasForeignKey("BestiaryId")
-                        .OnDelete(DeleteBehavior.Cascade);
-
                     b.HasOne("DBConnect.DBModels.Bestiary", "Bestiary")
                         .WithMany("BestiaryLanguages")
-                        .HasForeignKey("BestiaryId1");
-
-                    b.HasOne("DBConnect.DBModels.Language")
-                        .WithMany()
-                        .HasForeignKey("LanguageId")
+                        .HasForeignKey("BestiaryId")
                         .OnDelete(DeleteBehavior.Cascade);
 
                     b.HasOne("DBConnect.DBModels.Language", "Language")
                         .WithMany("BestiaryLanguages")
-                        .HasForeignKey("LanguageId1");
+                        .HasForeignKey("LanguageId")
+                        .OnDelete(DeleteBehavior.Cascade);
                 });
 
             modelBuilder.Entity("DBConnect.DBModels.BestiaryMagic", b =>
                 {
-                    b.HasOne("DBConnect.DBModels.Bestiary")
-                        .WithMany()
-                        .HasForeignKey("BestiaryId")
-                        .OnDelete(DeleteBehavior.Cascade);
-
                     b.HasOne("DBConnect.DBModels.Bestiary", "Bestiary")
                         .WithMany("BestiaryMagics")
-                        .HasForeignKey("BestiaryId1");
-
-                    b.HasOne("DBConnect.DBModels.Spell")
-                        .WithMany()
-                        .HasForeignKey("SpellId")
+                        .HasForeignKey("BestiaryId")
                         .OnDelete(DeleteBehavior.Cascade);
 
                     b.HasOne("DBConnect.DBModels.Spell", "Spell")
                         .WithMany("BestiaryMagics")
-                        .HasForeignKey("SpellId1");
+                        .HasForeignKey("SpellId")
+                        .OnDelete(DeleteBehavior.Cascade);
                 });
 
             modelBuilder.Entity("DBConnect.DBModels.BestiarySkill", b =>
                 {
-                    b.HasOne("DBConnect.DBModels.Bestiary")
-                        .WithMany()
-                        .HasForeignKey("BestiaryId")
-                        .OnDelete(DeleteBehavior.Cascade);
-
                     b.HasOne("DBConnect.DBModels.Bestiary", "Bestiary")
                         .WithMany("BestiarySkills")
-                        .HasForeignKey("BestiaryId1");
-
-                    b.HasOne("DBConnect.DBModels.Skill")
-                        .WithMany()
-                        .HasForeignKey("SkillId")
+                        .HasForeignKey("BestiaryId")
                         .OnDelete(DeleteBehavior.Cascade);
 
                     b.HasOne("DBConnect.DBModels.Skill", "Skill")
                         .WithMany("BestiarySkills")
-                        .HasForeignKey("SkillId1");
+                        .HasForeignKey("SkillId")
+                        .OnDelete(DeleteBehavior.Cascade);
                 });
 
             modelBuilder.Entity("DBConnect.DBModels.BestiarySubType", b =>
                 {
-                    b.HasOne("DBConnect.DBModels.Bestiary")
-                        .WithMany()
-                        .HasForeignKey("BestiaryId")
-                        .OnDelete(DeleteBehavior.Cascade);
-
                     b.HasOne("DBConnect.DBModels.Bestiary", "Bestiary")
                         .WithMany("BestiarySubTypes")
-                        .HasForeignKey("BestiaryId1");
-
-                    b.HasOne("DBConnect.DBModels.BestiaryType")
-                        .WithMany()
-                        .HasForeignKey("BestiaryTypeId")
+                        .HasForeignKey("BestiaryId")
                         .OnDelete(DeleteBehavior.Cascade);
 
                     b.HasOne("DBConnect.DBModels.BestiaryType", "BestiaryType")
                         .WithMany("BestiarySubTypes")
-                        .HasForeignKey("BestiaryTypeId1");
+                        .HasForeignKey("BestiaryTypeId")
+                        .OnDelete(DeleteBehavior.Cascade);
                 });
 
             modelBuilder.Entity("DBConnect.DBModels.CampaignData", b =>
                 {
-                    b.HasOne("DBConnect.DBModels.Campaign")
-                        .WithMany()
-                        .HasForeignKey("CampaignId")
-                        .OnDelete(DeleteBehavior.Cascade);
-
                     b.HasOne("DBConnect.DBModels.Campaign", "Campaign")
                         .WithMany("CampaignData")
-                        .HasForeignKey("CampaignId1");
+                        .HasForeignKey("CampaignId")
+                        .OnDelete(DeleteBehavior.Cascade);
                 });
 
             modelBuilder.Entity("DBConnect.DBModels.Character", b =>
                 {
-                    b.HasOne("DBConnect.DBModels.Campaign")
-                        .WithMany()
-                        .HasForeignKey("CampaignId");
-
                     b.HasOne("DBConnect.DBModels.Campaign", "Campaign")
-                        .WithMany()
-                        .HasForeignKey("CampaignId1");
-
-                    b.HasOne("DBConnect.DBModels.Player")
-                        .WithMany()
-                        .HasForeignKey("PlayerId");
+                        .WithMany("Characters")
+                        .HasForeignKey("CampaignId")
+                        .OnDelete(DeleteBehavior.SetNull);
 
                     b.HasOne("DBConnect.DBModels.Player", "Player")
-                        .WithMany()
-                        .HasForeignKey("PlayerId1");
-
-                    b.HasOne("DBConnect.DBModels.Race")
-                        .WithMany()
-                        .HasForeignKey("RaceId");
+                        .WithMany("Characters")
+                        .HasForeignKey("PlayerId")
+                        .OnDelete(DeleteBehavior.SetNull);
 
                     b.HasOne("DBConnect.DBModels.Race", "Race")
                         .WithMany("Characters")
-                        .HasForeignKey("RaceId1");
+                        .HasForeignKey("RaceId")
+                        .OnDelete(DeleteBehavior.Cascade);
                 });
 
             modelBuilder.Entity("DBConnect.DBModels.CharacterClassAbility", b =>
                 {
-                    b.HasOne("DBConnect.DBModels.Character")
-                        .WithMany()
-                        .HasForeignKey("CharacterId")
-                        .OnDelete(DeleteBehavior.Cascade);
-
                     b.HasOne("DBConnect.DBModels.Character", "Character")
                         .WithMany("CharacterClassAbilities")
-                        .HasForeignKey("CharacterId1");
-
-                    b.HasOne("DBConnect.DBModels.ClassAbility")
-                        .WithMany()
-                        .HasForeignKey("ClassAbilityId")
+                        .HasForeignKey("CharacterId")
                         .OnDelete(DeleteBehavior.Cascade);
 
                     b.HasOne("DBConnect.DBModels.ClassAbility", "ClassAbility")
                         .WithMany("CharacterClassAbilities")
-                        .HasForeignKey("ClassAbilityId1");
+                        .HasForeignKey("ClassAbilityId")
+                        .OnDelete(DeleteBehavior.Cascade);
                 });
 
             modelBuilder.Entity("DBConnect.DBModels.CharacterClassLevel", b =>
                 {
-                    b.HasOne("DBConnect.DBModels.Class")
-                        .WithMany()
-                        .HasForeignKey("CharacterClassId")
-                        .OnDelete(DeleteBehavior.Cascade);
-
-                    b.HasOne("DBConnect.DBModels.Character")
-                        .WithMany()
+                    b.HasOne("DBConnect.DBModels.Character", "Character")
+                        .WithMany("CharacterClassLevels")
                         .HasForeignKey("CharacterId")
                         .OnDelete(DeleteBehavior.Cascade);
 
-                    b.HasOne("DBConnect.DBModels.Character", "Character")
-                        .WithMany("CharacterClassLevels")
-                        .HasForeignKey("CharacterId1");
-
                     b.HasOne("DBConnect.DBModels.Class", "Class")
                         .WithMany("CharacterClassLevels")
-                        .HasForeignKey("ClassId");
+                        .HasForeignKey("ClassId")
+                        .OnDelete(DeleteBehavior.Cascade);
                 });
 
             modelBuilder.Entity("DBConnect.DBModels.CharacterFeat", b =>
                 {
-                    b.HasOne("DBConnect.DBModels.Character")
-                        .WithMany()
-                        .HasForeignKey("CharacterId")
-                        .OnDelete(DeleteBehavior.Cascade);
-
                     b.HasOne("DBConnect.DBModels.Character", "Character")
                         .WithMany("CharacterFeats")
-                        .HasForeignKey("CharacterId1");
-
-                    b.HasOne("DBConnect.DBModels.Feat")
-                        .WithMany()
-                        .HasForeignKey("FeatId")
+                        .HasForeignKey("CharacterId")
                         .OnDelete(DeleteBehavior.Cascade);
 
                     b.HasOne("DBConnect.DBModels.Feat", "Feat")
                         .WithMany("CharacterFeats")
-                        .HasForeignKey("FeatId1");
+                        .HasForeignKey("FeatId")
+                        .OnDelete(DeleteBehavior.Cascade);
                 });
 
             modelBuilder.Entity("DBConnect.DBModels.CharacterGear", b =>
                 {
-                    b.HasOne("DBConnect.DBModels.Character")
-                        .WithMany()
-                        .HasForeignKey("CharacterId")
-                        .OnDelete(DeleteBehavior.Cascade);
-
                     b.HasOne("DBConnect.DBModels.Character", "Character")
                         .WithMany("CharacterGear")
-                        .HasForeignKey("CharacterId1");
-
-                    b.HasOne("DBConnect.DBModels.Gear")
-                        .WithMany()
-                        .HasForeignKey("GearId")
+                        .HasForeignKey("CharacterId")
                         .OnDelete(DeleteBehavior.Cascade);
 
                     b.HasOne("DBConnect.DBModels.Gear", "Gear")
                         .WithMany("CharacterGear")
-                        .HasForeignKey("GearId1");
+                        .HasForeignKey("GearId")
+                        .OnDelete(DeleteBehavior.Cascade);
                 });
 
             modelBuilder.Entity("DBConnect.DBModels.CharacterGearEnchantment", b =>
                 {
-                    b.HasOne("DBConnect.DBModels.CharacterGear")
-                        .WithMany()
-                        .HasForeignKey("CharacterGearId")
-                        .OnDelete(DeleteBehavior.Cascade);
-
                     b.HasOne("DBConnect.DBModels.CharacterGear", "CharacterGear")
                         .WithMany("CharacterGearEnchantments")
-                        .HasForeignKey("CharacterGearId1");
-
-                    b.HasOne("DBConnect.DBModels.Enchantment")
-                        .WithMany()
-                        .HasForeignKey("EnchantmentId")
+                        .HasForeignKey("CharacterGearId")
                         .OnDelete(DeleteBehavior.Cascade);
 
                     b.HasOne("DBConnect.DBModels.Enchantment", "Enchantment")
                         .WithMany("CharacterGearEnchantments")
-                        .HasForeignKey("EnchantmentId1");
+                        .HasForeignKey("EnchantmentId")
+                        .OnDelete(DeleteBehavior.Cascade);
                 });
 
             modelBuilder.Entity("DBConnect.DBModels.CharacterLanguage", b =>
                 {
-                    b.HasOne("DBConnect.DBModels.Character")
-                        .WithMany()
-                        .HasForeignKey("CharacterId")
-                        .OnDelete(DeleteBehavior.Cascade);
-
                     b.HasOne("DBConnect.DBModels.Character", "Character")
-                        .WithMany()
-                        .HasForeignKey("CharacterId1");
-
-                    b.HasOne("DBConnect.DBModels.Language")
-                        .WithMany()
-                        .HasForeignKey("LanguageId")
+                        .WithMany("CharacterLanguages")
+                        .HasForeignKey("CharacterId")
                         .OnDelete(DeleteBehavior.Cascade);
 
                     b.HasOne("DBConnect.DBModels.Language", "Language")
                         .WithMany("CharacterLanguages")
-                        .HasForeignKey("LanguageId1");
+                        .HasForeignKey("LanguageId")
+                        .OnDelete(DeleteBehavior.Cascade);
                 });
 
             modelBuilder.Entity("DBConnect.DBModels.CharacterMagic", b =>
                 {
-                    b.HasOne("DBConnect.DBModels.Character")
-                        .WithMany()
-                        .HasForeignKey("CharacterId")
-                        .OnDelete(DeleteBehavior.Cascade);
-
                     b.HasOne("DBConnect.DBModels.Character", "Character")
                         .WithMany("CharacterMagics")
-                        .HasForeignKey("CharacterId1");
-
-                    b.HasOne("DBConnect.DBModels.Spell")
-                        .WithMany()
-                        .HasForeignKey("SpellId")
+                        .HasForeignKey("CharacterId")
                         .OnDelete(DeleteBehavior.Cascade);
 
                     b.HasOne("DBConnect.DBModels.Spell", "Spell")
                         .WithMany("CharacterMagics")
-                        .HasForeignKey("SpellId1");
+                        .HasForeignKey("SpellId")
+                        .OnDelete(DeleteBehavior.Cascade);
                 });
 
             modelBuilder.Entity("DBConnect.DBModels.CharacterSkill", b =>
                 {
-                    b.HasOne("DBConnect.DBModels.Character")
-                        .WithMany()
-                        .HasForeignKey("CharacterId")
-                        .OnDelete(DeleteBehavior.Cascade);
-
                     b.HasOne("DBConnect.DBModels.Character", "Character")
                         .WithMany("CharacterSkills")
-                        .HasForeignKey("CharacterId1");
-
-                    b.HasOne("DBConnect.DBModels.Skill")
-                        .WithMany()
-                        .HasForeignKey("SkillId")
+                        .HasForeignKey("CharacterId")
                         .OnDelete(DeleteBehavior.Cascade);
 
                     b.HasOne("DBConnect.DBModels.Skill", "Skill")
                         .WithMany("CharacterSkills")
-                        .HasForeignKey("SkillId1");
+                        .HasForeignKey("SkillId")
+                        .OnDelete(DeleteBehavior.Cascade);
                 });
 
             modelBuilder.Entity("DBConnect.DBModels.ClassAbility", b =>
                 {
-                    b.HasOne("DBConnect.DBModels.Class")
-                        .WithMany()
-                        .HasForeignKey("ClassId")
-                        .OnDelete(DeleteBehavior.Cascade);
-
                     b.HasOne("DBConnect.DBModels.Class", "Class")
                         .WithMany("ClassAbilities")
-                        .HasForeignKey("ClassId1");
+                        .HasForeignKey("ClassId")
+                        .OnDelete(DeleteBehavior.Cascade);
                 });
 
             modelBuilder.Entity("DBConnect.DBModels.ClassSkill", b =>
                 {
-                    b.HasOne("DBConnect.DBModels.Class")
-                        .WithMany()
-                        .HasForeignKey("ClassId")
-                        .OnDelete(DeleteBehavior.Cascade);
-
                     b.HasOne("DBConnect.DBModels.Class", "Class")
                         .WithMany("ClassSkills")
-                        .HasForeignKey("ClassId1");
-
-                    b.HasOne("DBConnect.DBModels.Skill")
-                        .WithMany()
-                        .HasForeignKey("SkillId")
+                        .HasForeignKey("ClassId")
                         .OnDelete(DeleteBehavior.Cascade);
 
                     b.HasOne("DBConnect.DBModels.Skill", "Skill")
                         .WithMany("ClassSkills")
-                        .HasForeignKey("SkillId1");
+                        .HasForeignKey("SkillId")
+                        .OnDelete(DeleteBehavior.Cascade);
                 });
 
             modelBuilder.Entity("DBConnect.DBModels.Continent", b =>
                 {
-                    b.HasOne("DBConnect.DBModels.Language")
-                        .WithMany()
-                        .HasForeignKey("PrimaryLanguageId");
-
                     b.HasOne("DBConnect.DBModels.Language", "PrimaryLanguage")
                         .WithMany("ContinentPrimaryLanguages")
-                        .HasForeignKey("PrimaryLanguageLanguageId");
+                        .HasForeignKey("PrimaryLanguageId")
+                        .OnDelete(DeleteBehavior.SetNull);
                 });
 
             modelBuilder.Entity("DBConnect.DBModels.ContinentWeather", b =>
                 {
-                    b.HasOne("DBConnect.DBModels.Continent")
-                        .WithMany()
-                        .HasForeignKey("ContinentId")
-                        .OnDelete(DeleteBehavior.Cascade);
-
                     b.HasOne("DBConnect.DBModels.Continent", "Continent")
                         .WithMany("ContinentWeathers")
-                        .HasForeignKey("ContinentId1");
-
-                    b.HasOne("DBConnect.DBModels.Season")
-                        .WithMany()
-                        .HasForeignKey("SeasonId")
+                        .HasForeignKey("ContinentId")
                         .OnDelete(DeleteBehavior.Cascade);
 
                     b.HasOne("DBConnect.DBModels.Season", "Season")
                         .WithMany("ContinentWeathers")
-                        .HasForeignKey("SeasonId1");
-
-                    b.HasOne("DBConnect.DBModels.Weather")
-                        .WithMany()
-                        .HasForeignKey("WeatherId")
+                        .HasForeignKey("SeasonId")
                         .OnDelete(DeleteBehavior.Cascade);
 
                     b.HasOne("DBConnect.DBModels.Weather", "Weather")
                         .WithMany("ContinentWeathers")
-                        .HasForeignKey("WeatherId1");
+                        .HasForeignKey("WeatherId")
+                        .OnDelete(DeleteBehavior.Cascade);
                 });
 
             modelBuilder.Entity("DBConnect.DBModels.Faction", b =>
                 {
-                    b.HasOne("DBConnect.DBModels.Language")
-                        .WithMany()
-                        .HasForeignKey("PrimaryLanguageId");
-
                     b.HasOne("DBConnect.DBModels.Language", "PrimaryLanguage")
                         .WithMany("FactionPrimaryLanguages")
-                        .HasForeignKey("PrimaryLanguageLanguageId");
-
-                    b.HasOne("DBConnect.DBModels.Race")
-                        .WithMany()
-                        .HasForeignKey("PrimaryRaceId");
+                        .HasForeignKey("PrimaryLanguageId")
+                        .OnDelete(DeleteBehavior.SetNull);
 
                     b.HasOne("DBConnect.DBModels.Race", "PrimaryRace")
-                        .WithMany()
-                        .HasForeignKey("PrimaryRaceRaceId");
+                        .WithMany("FactionPrimaryRaces")
+                        .HasForeignKey("PrimaryRaceId")
+                        .OnDelete(DeleteBehavior.SetNull);
                 });
 
             modelBuilder.Entity("DBConnect.DBModels.FavoredClass", b =>
                 {
-                    b.HasOne("DBConnect.DBModels.Race", "CharacterRace")
+                    b.HasOne("DBConnect.DBModels.Class", "Class")
                         .WithMany("FavoredClasses")
-                        .HasForeignKey("CharacterRaceRaceId");
-
-                    b.HasOne("DBConnect.DBModels.Class")
-                        .WithMany()
                         .HasForeignKey("ClassId")
                         .OnDelete(DeleteBehavior.Cascade);
 
-                    b.HasOne("DBConnect.DBModels.Class", "Class")
+                    b.HasOne("DBConnect.DBModels.Race", "Race")
                         .WithMany("FavoredClasses")
-                        .HasForeignKey("ClassId1");
-
-                    b.HasOne("DBConnect.DBModels.Race")
-                        .WithMany()
                         .HasForeignKey("RaceId")
                         .OnDelete(DeleteBehavior.Cascade);
                 });
 
             modelBuilder.Entity("DBConnect.DBModels.Location", b =>
                 {
-                    b.HasOne("DBConnect.DBModels.Continent")
-                        .WithMany()
-                        .HasForeignKey("ContinentId");
-
                     b.HasOne("DBConnect.DBModels.Continent", "Continent")
                         .WithMany("Locations")
-                        .HasForeignKey("ContinentId1");
-
-                    b.HasOne("DBConnect.DBModels.Environment")
-                        .WithMany()
-                        .HasForeignKey("EnvironmentId");
+                        .HasForeignKey("ContinentId")
+                        .OnDelete(DeleteBehavior.SetNull);
 
                     b.HasOne("DBConnect.DBModels.Environment", "Environment")
                         .WithMany("Locations")
-                        .HasForeignKey("EnvironmentId1");
-
-                    b.HasOne("DBConnect.DBModels.Faction")
-                        .WithMany()
-                        .HasForeignKey("FactionId");
+                        .HasForeignKey("EnvironmentId")
+                        .OnDelete(DeleteBehavior.SetNull);
 
                     b.HasOne("DBConnect.DBModels.Faction", "Faction")
                         .WithMany("Locations")
-                        .HasForeignKey("FactionId1");
-
-                    b.HasOne("DBConnect.DBModels.Terrain")
-                        .WithMany()
-                        .HasForeignKey("TerrainId");
+                        .HasForeignKey("FactionId")
+                        .OnDelete(DeleteBehavior.SetNull);
 
                     b.HasOne("DBConnect.DBModels.Terrain", "Terrain")
                         .WithMany("Locations")
-                        .HasForeignKey("TerrainId1");
-
-                    b.HasOne("DBConnect.DBModels.Territory")
-                        .WithMany()
-                        .HasForeignKey("TerritoryId");
+                        .HasForeignKey("TerrainId")
+                        .OnDelete(DeleteBehavior.SetNull);
 
                     b.HasOne("DBConnect.DBModels.Territory", "Territory")
                         .WithMany("Locations")
-                        .HasForeignKey("TerritoryId1");
+                        .HasForeignKey("TerritoryId")
+                        .OnDelete(DeleteBehavior.SetNull);
                 });
 
             modelBuilder.Entity("DBConnect.DBModels.MonsterSpawn", b =>
                 {
-                    b.HasOne("DBConnect.DBModels.Bestiary")
-                        .WithMany()
-                        .HasForeignKey("BestiaryId")
-                        .OnDelete(DeleteBehavior.Cascade);
-
                     b.HasOne("DBConnect.DBModels.Bestiary", "Bestiary")
                         .WithMany("MonsterSpawns")
-                        .HasForeignKey("BestiaryId1");
-
-                    b.HasOne("DBConnect.DBModels.Continent")
-                        .WithMany()
-                        .HasForeignKey("ContinentId")
+                        .HasForeignKey("BestiaryId")
                         .OnDelete(DeleteBehavior.Cascade);
 
                     b.HasOne("DBConnect.DBModels.Continent", "Continent")
                         .WithMany("MonsterSpawns")
-                        .HasForeignKey("ContinentId1");
-
-                    b.HasOne("DBConnect.DBModels.Plane")
-                        .WithMany()
-                        .HasForeignKey("PlaneId")
+                        .HasForeignKey("ContinentId")
                         .OnDelete(DeleteBehavior.Cascade);
 
                     b.HasOne("DBConnect.DBModels.Plane", "Plane")
                         .WithMany("MonsterSpawns")
-                        .HasForeignKey("PlaneId1");
-
-                    b.HasOne("DBConnect.DBModels.Season")
-                        .WithMany()
-                        .HasForeignKey("SeasonId")
+                        .HasForeignKey("PlaneId")
                         .OnDelete(DeleteBehavior.Cascade);
 
                     b.HasOne("DBConnect.DBModels.Season", "Season")
                         .WithMany("MonsterSpawns")
-                        .HasForeignKey("SeasonId1");
-
-                    b.HasOne("DBConnect.DBModels.Time")
-                        .WithMany()
-                        .HasForeignKey("TimeId")
+                        .HasForeignKey("SeasonId")
                         .OnDelete(DeleteBehavior.Cascade);
 
                     b.HasOne("DBConnect.DBModels.Time", "Time")
                         .WithMany("MonsterSpawns")
-                        .HasForeignKey("TimeId1");
+                        .HasForeignKey("TimeId")
+                        .OnDelete(DeleteBehavior.Cascade);
                 });
 
             modelBuilder.Entity("DBConnect.DBModels.Month", b =>
                 {
-                    b.HasOne("DBConnect.DBModels.Season")
-                        .WithMany()
-                        .HasForeignKey("SeasonId");
-
                     b.HasOne("DBConnect.DBModels.Season", "Season")
                         .WithMany("Months")
-                        .HasForeignKey("SeasonId1");
-                });
-
-            modelBuilder.Entity("DBConnect.DBModels.Npc", b =>
-                {
-                    b.HasOne("DBConnect.DBModels.Npcdetail", "Npcdetail")
-                        .WithOne("Npc")
-                        .HasForeignKey("DBConnect.DBModels.Npc", "Npcid")
-                        .OnDelete(DeleteBehavior.Cascade);
+                        .HasForeignKey("SeasonId")
+                        .OnDelete(DeleteBehavior.SetNull);
                 });
 
             modelBuilder.Entity("DBConnect.DBModels.Npcdetail", b =>
                 {
-                    b.HasOne("DBConnect.DBModels.Npc")
-                        .WithOne()
+                    b.HasOne("DBConnect.DBModels.Npc", "Npc")
+                        .WithOne("Npcdetail")
                         .HasForeignKey("DBConnect.DBModels.Npcdetail", "Npcid")
                         .OnDelete(DeleteBehavior.Cascade);
                 });
 
             modelBuilder.Entity("DBConnect.DBModels.PlayerCampaign", b =>
                 {
-                    b.HasOne("DBConnect.DBModels.Campaign")
-                        .WithMany()
-                        .HasForeignKey("CampaignId")
-                        .OnDelete(DeleteBehavior.Cascade);
-
                     b.HasOne("DBConnect.DBModels.Campaign", "Campaign")
                         .WithMany("PlayerCampaigns")
-                        .HasForeignKey("CampaignId1");
-
-                    b.HasOne("DBConnect.DBModels.Player")
-                        .WithMany()
-                        .HasForeignKey("PlayerId")
+                        .HasForeignKey("CampaignId")
                         .OnDelete(DeleteBehavior.Cascade);
 
                     b.HasOne("DBConnect.DBModels.Player", "Player")
                         .WithMany("PlayerCampaigns")
-                        .HasForeignKey("PlayerId1");
+                        .HasForeignKey("PlayerId")
+                        .OnDelete(DeleteBehavior.Cascade);
                 });
 
             modelBuilder.Entity("DBConnect.DBModels.Prerequisite", b =>
@@ -3333,141 +2833,86 @@ namespace DBConnect.Migrations
 
             modelBuilder.Entity("DBConnect.DBModels.Race", b =>
                 {
-                    b.HasOne("DBConnect.DBModels.Bestiary")
-                        .WithMany()
-                        .HasForeignKey("BestiaryId");
-
                     b.HasOne("DBConnect.DBModels.Bestiary", "RaceBestiary")
-                        .WithMany("CharacterRaces")
-                        .HasForeignKey("RaceBestiaryBestiaryId");
-
-                    b.HasOne("DBConnect.DBModels.BestiaryType")
-                        .WithMany()
-                        .HasForeignKey("RaceTypeId");
+                        .WithMany("BestiaryRaces")
+                        .HasForeignKey("RaceTypeId")
+                        .OnDelete(DeleteBehavior.Restrict);
                 });
 
             modelBuilder.Entity("DBConnect.DBModels.RaceSubType", b =>
                 {
-                    b.HasOne("DBConnect.DBModels.BestiaryType")
-                        .WithMany()
-                        .HasForeignKey("BestiaryTypeId")
-                        .OnDelete(DeleteBehavior.Cascade);
-
                     b.HasOne("DBConnect.DBModels.BestiaryType", "BestiaryType")
-                        .WithMany()
-                        .HasForeignKey("BestiaryTypeId1");
-
-                    b.HasOne("DBConnect.DBModels.Character")
-                        .WithMany()
-                        .HasForeignKey("RaceId")
-                        .OnDelete(DeleteBehavior.Cascade);
-
-                    b.HasOne("DBConnect.DBModels.Race")
-                        .WithMany()
-                        .HasForeignKey("RaceId")
+                        .WithMany("RaceSubTypes")
+                        .HasForeignKey("BestiaryTypeId")
                         .OnDelete(DeleteBehavior.Cascade);
 
                     b.HasOne("DBConnect.DBModels.Race", "Race")
                         .WithMany("RaceSubTypes")
-                        .HasForeignKey("RaceId1");
+                        .HasForeignKey("RaceId")
+                        .OnDelete(DeleteBehavior.Cascade);
                 });
 
             modelBuilder.Entity("DBConnect.DBModels.Spell", b =>
                 {
-                    b.HasOne("DBConnect.DBModels.SpellSchool")
-                        .WithMany()
-                        .HasForeignKey("SchoolId");
-
-                    b.HasOne("DBConnect.DBModels.SpellDetail", "SpellDetail")
-                        .WithOne("Spell")
-                        .HasForeignKey("DBConnect.DBModels.Spell", "SpellId")
-                        .OnDelete(DeleteBehavior.Cascade);
-
                     b.HasOne("DBConnect.DBModels.SpellSchool", "SpellSchool")
                         .WithMany("Spells")
-                        .HasForeignKey("SpellSchoolId");
+                        .HasForeignKey("SchoolId")
+                        .OnDelete(DeleteBehavior.SetNull);
 
                     b.HasOne("DBConnect.DBModels.SpellSubSchool", "SpellSubSchool")
                         .WithMany("Spells")
-                        .HasForeignKey("SpellSubSchoolId");
-
-                    b.HasOne("DBConnect.DBModels.SpellSubSchool")
-                        .WithMany()
-                        .HasForeignKey("SubSchoolId");
+                        .HasForeignKey("SubSchoolId")
+                        .OnDelete(DeleteBehavior.SetNull);
                 });
 
             modelBuilder.Entity("DBConnect.DBModels.SpellDetail", b =>
                 {
-                    b.HasOne("DBConnect.DBModels.Spell")
-                        .WithOne()
+                    b.HasOne("DBConnect.DBModels.Spell", "Spell")
+                        .WithOne("SpellDetail")
                         .HasForeignKey("DBConnect.DBModels.SpellDetail", "SpellId")
                         .OnDelete(DeleteBehavior.Cascade);
                 });
 
             modelBuilder.Entity("DBConnect.DBModels.SpellSubSchool", b =>
                 {
-                    b.HasOne("DBConnect.DBModels.SpellSchool")
-                        .WithMany()
-                        .HasForeignKey("SpellSchoolId")
-                        .OnDelete(DeleteBehavior.Cascade);
-
                     b.HasOne("DBConnect.DBModels.SpellSchool", "SpellSchool")
                         .WithMany("SpellSubSchools")
-                        .HasForeignKey("SpellSchoolId1");
+                        .HasForeignKey("SpellSchoolId")
+                        .OnDelete(DeleteBehavior.Cascade);
                 });
 
             modelBuilder.Entity("DBConnect.DBModels.Territory", b =>
                 {
-                    b.HasOne("DBConnect.DBModels.Continent")
-                        .WithMany()
-                        .HasForeignKey("ContinentId")
-                        .OnDelete(DeleteBehavior.Cascade);
-
                     b.HasOne("DBConnect.DBModels.Continent", "Continent")
                         .WithMany("Territories")
-                        .HasForeignKey("ContinentId1");
-
-                    b.HasOne("DBConnect.DBModels.Faction")
-                        .WithMany()
-                        .HasForeignKey("FactionId")
-                        .OnDelete(DeleteBehavior.Cascade);
+                        .HasForeignKey("ContinentId")
+                        .OnDelete(DeleteBehavior.SetNull);
 
                     b.HasOne("DBConnect.DBModels.Faction", "Faction")
                         .WithMany("Territories")
-                        .HasForeignKey("FactionId1");
+                        .HasForeignKey("FactionId")
+                        .OnDelete(DeleteBehavior.SetNull);
                 });
 
             modelBuilder.Entity("DBConnect.DBModels.TrackedEvent", b =>
                 {
-                    b.HasOne("DBConnect.DBModels.Campaign")
-                        .WithMany()
+                    b.HasOne("DBConnect.DBModels.Campaign", "Campaign")
+                        .WithMany("TrackedEvents")
                         .HasForeignKey("CampaignId")
                         .OnDelete(DeleteBehavior.Cascade);
-
-                    b.HasOne("DBConnect.DBModels.Campaign", "Campaign")
-                        .WithMany()
-                        .HasForeignKey("CampaignId1");
                 });
 
             modelBuilder.Entity("DBConnect.DBModels.WeaponAttributeApplied", b =>
                 {
-                    b.HasOne("DBConnect.DBModels.WeaponAttribute", "Attribute")
+                    b.HasOne("DBConnect.DBModels.Weapon", "Weapon")
                         .WithMany("WeaponAttributesApplied")
-                        .HasForeignKey("AttributeWpnAttId");
-
-                    b.HasOne("DBConnect.DBModels.Weapon")
-                        .WithMany()
                         .HasForeignKey("GearId")
                         .OnDelete(DeleteBehavior.Cascade);
 
-                    b.HasOne("DBConnect.DBModels.WeaponAttribute")
-                        .WithMany()
+                    b.HasOne("DBConnect.DBModels.WeaponAttribute", "Attribute")
+                        .WithMany("WeaponAttributesApplied")
                         .HasForeignKey("WeaponAttributeId")
                         .OnDelete(DeleteBehavior.Cascade);
-
-                    b.HasOne("DBConnect.DBModels.Weapon", "Weapon")
-                        .WithMany("WeaponAttributesApplied")
-                        .HasForeignKey("WeaponGearId");
                 });
 #pragma warning restore 612, 618
         }
