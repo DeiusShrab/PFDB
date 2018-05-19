@@ -10,4 +10,5 @@
     "DB_PASS":"ayy lmao ayy lmao AYY 1m40",
     "DB_DB":"PFDB",
 	"APP_MODE":"LIVE",
+	"CERT_PASS":"pfhelper",
 }

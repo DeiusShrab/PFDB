@@ -20,6 +20,7 @@ namespace DBConnect
     DB_USER, // Database Username
     DB_PASS, // Database Password
     DB_DB, // Database DB to use
+    CERT_PASS, // Password for SSL Cert
   }
 
   public static class PFConfig
@@ -36,6 +37,7 @@ namespace DBConnect
     public static string DB_USER => GetConfig(ConfigValues.DB_USER);
     public static string DB_PASS => GetConfig(ConfigValues.DB_PASS);
     public static string DB_DB => GetConfig(ConfigValues.DB_DB);
+    public static string CERT_PASS => GetConfig(ConfigValues.CERT_PASS);
 
     private static string CONFIG_FILE = "PFConfig.json";
     private static Dictionary<string, string> Configuration;
