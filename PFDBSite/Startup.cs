@@ -7,6 +7,8 @@ using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpOverrides;
 using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Rewrite;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
@@ -28,6 +30,11 @@ namespace PFDBSite
     // This method gets called by the runtime. Use this method to add services to the container.
     public void ConfigureServices(IServiceCollection services)
     {
+      services.Configure<MvcOptions>(options =>
+      {
+        options.Filters.Add(new RequireHttpsAttribute());
+      });
+
       services.AddDbContext<PFDBContext>(options =>
                 options.UseSqlServer($"Server={PFConfig.DB_ADDR};Database={PFConfig.DB_DB};User Id={PFConfig.DB_USER};Password={PFConfig.DB_PASS}"));
 
@@ -92,6 +99,11 @@ namespace PFDBSite
       {
         ForwardedHeaders = ForwardedHeaders.XForwardedFor | ForwardedHeaders.XForwardedProto
       });
+
+      var options = new RewriteOptions()
+                        .AddRedirectToHttps();
+
+      app.UseRewriter(options);
 
       app.UseStaticFiles();
 
