@@ -17,7 +17,7 @@ using System.IO;
 namespace PFAPI.Controllers
 {
   [Produces("application/json")]
-  [Route("api")]
+  [Route("api/v1")]
   [Authorize]
   [RequireHttps]
   public class ApiController : Controller

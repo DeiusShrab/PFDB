@@ -28,7 +28,7 @@ namespace PFAPI
               options.Listen(IPAddress.Any, 5556);
               options.Listen(IPAddress.Any, 5566, listenOptions =>
               {
-                listenOptions.UseHttps("certificate.pfx", DBConnect.PFConfig.CERT_PASS);
+                listenOptions.UseHttps("apicertificate.pfx", DBConnect.PFConfig.CERT_PASS);
               });
             })
 #endif
