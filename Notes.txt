@@ -1,12 +1,9 @@
 TODO AT WORK
+Config Centralization
+	Find a way to use the same config file (in the PFDB root) regardless of which exe or dll I'm running
 String dice roller
 	Use the DiceExpression I found
 	See if I can improve it to add modifiers (ex: +1d6 cold => 5 cold)
-Campaign Data
-	Key/Value table of stuff like campaign name, bank interest, etc
-Events!
-	Daily events, like bank interest
-	Calendar events, like holidays
 Update big text fields like Attack, Defense, and Special to something machine-readable
 	or split them into a new datatype. AbilityId, BestiaryId
 		(Melee/Ranged), Attack Bonus, Damage, Crit, Range, Type (P/S/B, Cone, Burst), Effects (+1d6 cold, etc)
@@ -38,15 +35,11 @@ Code First Mapping
 	https://blog.oneunicorn.com/2017/09/25/many-to-many-relationships-in-ef-core-2-0-part-1-the-basics/
 
 TODO AT HOME
-Git dat HTTPS
-	https://letsencrypt.org/getting-started/
 Publish
 	Set up a publish script for the server that gets the latest and runs dotnet publish
 	For the client, set up a publish profile that puts everything in a zip file and throws it into dropbox
-Add new DB_ configs to PFConfig, Update PFDBContext to get userid/pass from config instead of hardcoded
 Run NPC to Bestiary script
 Remove ALL from season, time, etc
-CampaignData table
 Add Season/Month of Stars, a time when magic is at its strongest
 	Magical beasts and aberrations MUCH more common
 	ALL spells are considered Maximized
