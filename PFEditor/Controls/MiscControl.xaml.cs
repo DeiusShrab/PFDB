@@ -94,9 +94,15 @@ namespace PFEditor.Controls
       set { IntTimeOrder.Value = value; }
     }
 
-    public int MonthSeasonId
+    public int? MonthSeasonId
     {
-      get { return System.Convert.ToInt32(DrpMonthSeasonId.SelectedValue); }
+      get
+      {
+        if (DrpMonthSeasonId.SelectedIndex > 0)
+          return System.Convert.ToInt32(DrpMonthSeasonId.SelectedValue);
+
+        return null;
+      }
       set { DrpMonthSeasonId.SelectedValue = value; }
     }
 

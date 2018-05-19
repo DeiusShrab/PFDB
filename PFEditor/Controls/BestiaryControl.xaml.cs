@@ -516,9 +516,15 @@ namespace PFEditor.Controls
       set { IntSkillBonus.Value = value; }
     }
 
-    public int Type
+    public int? Type
     {
-      get { return Convert.ToInt32(DrpType.SelectedValue); }
+      get
+      {
+        if (DrpType.SelectedIndex > 0)
+          return Convert.ToInt32(DrpType.SelectedValue);
+
+        return null;
+      }
       set { DrpType.SelectedValue = value; }
     }
 

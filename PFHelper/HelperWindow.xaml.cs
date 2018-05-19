@@ -1059,7 +1059,7 @@ namespace PFHelper
       var reqWeather = new RandomWeatherRequest()
       {
         ContinentId = ContinentId,
-        SeasonId = CurrentMonth.SeasonId
+        SeasonId = CurrentMonth.SeasonId ?? 0
       };
 
       WeatherResult = DBClient.GetRandomWeatherList(reqWeather);
