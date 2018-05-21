@@ -111,7 +111,7 @@ namespace PFHelper
     public int CombatRound
     {
       get { return _combatRound; }
-      set { LblCombatRound.Content = _combatRound = value; }
+      set { LblCombatRound.Content = (_combatRound = value).ToString("D2"); }
     }
     private int _combatRound;
 
@@ -378,6 +378,7 @@ namespace PFHelper
     private List<Month> months;
     private List<Time> times;
     private List<Plane> planes;
+    private List<Campaign> campaigns;
     private Dictionary<string, string> CampaignData;
 
     private RandomWeatherResult WeatherResult;
@@ -465,6 +466,7 @@ namespace PFHelper
       times = new List<Time>();
       planes = new List<Plane>();
       trackedEvents = new List<TrackedEvent>();
+      campaigns = new List<Campaign>();
       CampaignData = new Dictionary<string, string>();
 
       if (PFConfig.ConfigExists())
@@ -479,13 +481,16 @@ namespace PFHelper
           times.AddRange(DBClient.GetTimes());
           planes.AddRange(DBClient.GetPlanes());
           trackedEvents.AddRange(DBClient.GetTrackedEvents());
+          campaigns.AddRange(DBClient.GetCampaigns());
 
+          ActiveCampaign = DBClient.GetCampaign(int.Parse(PFConfig.CAMPAIGN_ID));
           CampaignData = DBClient.GetCampaignData();
 
           continentList.Clear();
           timeList.Clear();
           planeList.Clear();
           liveEventList.Clear();
+          campaignList.Clear();
           campaignDataList.Clear();
 
           foreach (var item in continents)
@@ -503,6 +508,10 @@ namespace PFHelper
           foreach (var item in trackedEvents)
           {
             liveEventList.Add(new LiveEvent(item));
+          }
+          foreach (var item in campaigns)
+          {
+            campaignList.Add(new DisplayResult() { Display = item.CampaignName, Result = item.CampaignId });
           }
 
           campaignDataList.AddRange(CampaignData.Keys);
@@ -796,15 +805,15 @@ namespace PFHelper
     {
       switch (cr)
       {
-        case 0:
+        case (int)CRSpecial.Half:
           return "1/2";
-        case -1:
+        case (int)CRSpecial.Third:
           return "1/3";
-        case -2:
+        case (int)CRSpecial.Fourth:
           return "1/4";
-        case -3:
+        case (int)CRSpecial.Sixth:
           return "1/6";
-        case -4:
+        case (int)CRSpecial.Eighth:
           return "1/8";
         default:
           return cr.ToString();
@@ -1002,9 +1011,17 @@ namespace PFHelper
 
     private ContinentWeather GetRandomWeather()
     {
+      ContinentWeather weather;
       var initialWeathers = WeatherResult.WeatherList.Where(x => x.ParentCWID == 0);
-      var weather = initialWeathers.ElementAt(random.Next(initialWeathers.Count()));
-      weather.Duration = weather.Duration - random.Next(weather.Duration);
+      if (initialWeathers.Count() == 0)
+      {
+        weather = new ContinentWeather() { CWName = "ERR" };
+      }
+      else
+      {
+        weather = initialWeathers.ElementAt(random.Next(initialWeathers.Count()));
+        weather.Duration = weather.Duration - random.Next(weather.Duration);
+      }
 
       return weather;
     }
@@ -1021,14 +1038,14 @@ namespace PFHelper
 
     private void UpdateDate()
     {
-      if (CurrentDate == null || seasons == null || months == null)
+      if (CurrentDate == null || seasons.Count == 0 || months.Count == 0)
       {
         LblGrandDate.Content = "NO DATA";
         return;
       }
 
       CurrentMonth = months.FirstOrDefault(x => x.MonthOrder == CurrentDate.Month);
-      LblGrandDate.Content = $"YEAR {CurrentDate.Year} AA, Season of {seasons.First(x => x.SeasonId == CurrentMonth.SeasonId).Name}, Month of {CurrentMonth.Name}, Day {CurrentDate.Day}";
+      LblGrandDate.Content = $"YEAR {CurrentDate.Year} AA, Season of {seasons.FirstOrDefault(x => x.SeasonId == CurrentMonth.SeasonId).Name}, Month of {CurrentMonth.Name}, Day {CurrentDate.Day}";
 
       LblNumericDate.Content = $"{CurrentDate.Year} / {CurrentMonth.MonthOrder} / {CurrentDate.Day}";
 
@@ -1089,6 +1106,26 @@ namespace PFHelper
       CurrentEvent.Name = EventName;
       CurrentEvent.Notes = EventNotes;
       CurrentEvent.ReoccurFreq = EventFrequency;
+    }
+
+    private void LoadCampaign()
+    {
+      if (ActiveCampaign == null)
+        ActiveCampaign = new Campaign();
+
+      CampaignId = ActiveCampaign.CampaignId;
+      CampaignName = ActiveCampaign.CampaignName;
+      CampaignNotes = ActiveCampaign.CampaignNotes;
+    }
+
+    private void SaveCampaign()
+    {
+      if (ActiveCampaign == null)
+        ActiveCampaign = new Campaign();
+
+      ActiveCampaign.CampaignId = CampaignId;
+      ActiveCampaign.CampaignName = CampaignName;
+      ActiveCampaign.CampaignNotes = CampaignNotes;
     }
 
     #endregion
@@ -1260,7 +1297,7 @@ namespace PFHelper
 
     private void BtnCombatSort_Click(object sender, RoutedEventArgs e)
     {
-      var temp = new List<CombatGridItem>(combatGridItems.OrderBy(x => x.Init));
+      var temp = new List<CombatGridItem>(combatGridItems.OrderByDescending(x => x.Init));
       combatGridItems.Clear();
       combatGridItems.AddRange(temp);
     }
@@ -1482,14 +1519,32 @@ namespace PFHelper
 
     private void BtnCampaignSave_Click(object sender, RoutedEventArgs e)
     {
-      ActiveCampaign.CampaignId = CampaignId;
-      ActiveCampaign.CampaignName = CampaignName;
-      ActiveCampaign.CampaignNotes = CampaignNotes;
+      if (string.IsNullOrWhiteSpace(CampaignName))
+      {
+        TxtCampaignName.BorderThickness = new Thickness(2);
+        TxtCampaignName.BorderBrush = new SolidColorBrush(Colors.Red);
+      }
+      else
+      {
+        TxtCampaignName.BorderThickness = new Thickness(1);
+        TxtCampaignName.BorderBrush = null;
+      }
+
+      SaveCampaign();
 
       if (ActiveCampaign.CampaignId == 0)
         ActiveCampaign = DBClient.CreateCampaign(ActiveCampaign);
       else
         DBClient.UpdateCampaign(ActiveCampaign);
+
+      campaigns = DBClient.GetCampaigns();
+      campaignList.Clear();
+      foreach (var item in campaigns.OrderBy(x => x.CampaignName))
+      {
+        campaignList.Add(new DisplayResult() { Display = item.CampaignName, Result = item.CampaignId });
+      }
+
+      LoadCampaign();
     }
 
     private void LbxCampaign_MouseDoubleClick(object sender, System.Windows.Input.MouseButtonEventArgs e)
@@ -1505,7 +1560,10 @@ namespace PFHelper
     private void DrpCampaignSelect_SelectionChanged(object sender, SelectionChangedEventArgs e)
     {
       if (DrpCampaignSelect.SelectedItem != null)
-        ActiveCampaign = DrpCampaignSelect.SelectedItem as Campaign;
+      {
+        ActiveCampaign = DBClient.GetCampaign((int)DrpCampaignSelect.SelectedValue);
+        LoadCampaign();
+      }
     }
   }
 }

@@ -10,15 +10,15 @@
     <Grid KeyDown="Grid_KeyDown">
         <ListBox x:Name="LbxContinentWeather" HorizontalAlignment="Left" Height="546" Margin="665,68,0,0" VerticalAlignment="Top" Width="180" MouseDoubleClick="LbxContinentWeather_MouseDoubleClick"/>
         <ListBox x:Name="LbxWeather" HorizontalAlignment="Left" Height="576" Margin="10,38,0,0" VerticalAlignment="Top" Width="180" MouseDoubleClick="LbxWeather_MouseDoubleClick"/>
-        <TextBox x:Name="TxtSearchContinentWeather" HorizontalAlignment="Left" Height="23" Margin="665,38,0,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="180" TabIndex="53"/>
-        <TextBox x:Name="TxtSearchWeather" HorizontalAlignment="Left" Height="23" Margin="10,10,0,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="180" TabIndex="0"/>
-        <TextBox x:Name="TxtName" HorizontalAlignment="Left" Height="23" Margin="260,68,0,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="400" TabIndex="1"/>
+        <TextBox x:Name="TxtSearchContinentWeather" HorizontalAlignment="Left" Height="23" Margin="665,38,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="180" TabIndex="53"/>
+        <TextBox x:Name="TxtSearchWeather" HorizontalAlignment="Left" Height="23" Margin="10,10,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="180" TabIndex="0"/>
+        <TextBox x:Name="TxtName" HorizontalAlignment="Left" Height="23" Margin="260,68,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="400" TabIndex="1"/>
         <Label Content="WID" HorizontalAlignment="Left" Margin="190,38,0,0" VerticalAlignment="Top"/>
         <Label x:Name="LblWeatherId" Content="0000" HorizontalAlignment="Left" Margin="260,38,0,0" VerticalAlignment="Top"/>
         <Label Content="Name" HorizontalAlignment="Left" Margin="190,64,0,0" VerticalAlignment="Top"/>
-        <TextBox x:Name="TxtDescription" HorizontalAlignment="Left" Height="70" Margin="260,96,0,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="400" TabIndex="2"/>
+        <TextBox x:Name="TxtDescription" HorizontalAlignment="Left" Height="70" Margin="260,96,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="400" TabIndex="2"/>
         <Label Content="Description" HorizontalAlignment="Left" Margin="190,92,0,0" VerticalAlignment="Top"/>
-        <TextBox x:Name="TxtEffects" HorizontalAlignment="Left" Height="23" Margin="260,171,0,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="400" TabIndex="3"/>
+        <TextBox x:Name="TxtEffects" HorizontalAlignment="Left" Height="23" Margin="260,171,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="400" TabIndex="3"/>
         <Label Content="Effects" HorizontalAlignment="Left" Margin="190,167,0,0" VerticalAlignment="Top"/>
         <CheckBox x:Name="CbxHeatDanger" Content="Heat (Fatigue)" HorizontalAlignment="Left" Margin="260,204,0,0" VerticalAlignment="Top" TabIndex="4"/>
         <Label Content="Attributes" HorizontalAlignment="Left" Margin="190,198,0,0" VerticalAlignment="Top"/>
@@ -40,7 +40,7 @@
         <ComboBox x:Name="DrpSeason" HorizontalAlignment="Left" Margin="850,10,0,0" VerticalAlignment="Top" Width="180" SelectionChanged="DrpSeason_SelectionChanged" TabIndex="52"/>
         <Label Content="CWID" HorizontalAlignment="Left" Margin="845,68,0,0" VerticalAlignment="Top"/>
         <Label x:Name="LblCWID" Content="0000" HorizontalAlignment="Left" Margin="936,68,0,0" VerticalAlignment="Top"/>
-        <TextBox x:Name="TxtGroupPhase" HorizontalAlignment="Left" Height="23" Margin="936,96,0,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="261" TabIndex="54"/>
+        <TextBox x:Name="TxtGroupPhase" HorizontalAlignment="Left" Height="23" Margin="936,96,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="261" TabIndex="54"/>
         <Label Content="Group (Phase)" HorizontalAlignment="Left" Margin="846,92,0,0" VerticalAlignment="Top"/>
 
         <xctk:IntegerUpDown x:Name="IntWeight" HorizontalAlignment="Left" Margin="937,152,0,0" VerticalAlignment="Top" TabIndex="56"/>

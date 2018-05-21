@@ -1,0 +1,537 @@
+﻿@page
+@model PFDBSite.Views.DM.Bestiary_.CreateModel
+
+@{
+    ViewData["Title"] = "Create";
+}
+
+<h2>Create</h2>
+
+<h4>Bestiary</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form method="post">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <label asp-for="Bestiary.Name" class="control-label"></label>
+                <input asp-for="Bestiary.Name" class="form-control" />
+                <span asp-validation-for="Bestiary.Name" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Bestiary.Cr" class="control-label"></label>
+                <input asp-for="Bestiary.Cr" class="form-control" />
+                <span asp-validation-for="Bestiary.Cr" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Bestiary.Xp" class="control-label"></label>
+                <input asp-for="Bestiary.Xp" class="form-control" />
+                <span asp-validation-for="Bestiary.Xp" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Bestiary.Race" class="control-label"></label>
+                <input asp-for="Bestiary.Race" class="form-control" />
+                <span asp-validation-for="Bestiary.Race" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Bestiary.Class" class="control-label"></label>
+                <input asp-for="Bestiary.Class" class="form-control" />
+                <span asp-validation-for="Bestiary.Class" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Bestiary.Alignment" class="control-label"></label>
+                <input asp-for="Bestiary.Alignment" class="form-control" />
+                <span asp-validation-for="Bestiary.Alignment" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Bestiary.Size" class="control-label"></label>
+                <input asp-for="Bestiary.Size" class="form-control" />
+                <span asp-validation-for="Bestiary.Size" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Bestiary.Type" class="control-label"></label>
+                <select asp-for="Bestiary.Type" class ="form-control" asp-items="ViewBag.Type"></select>
+            </div>
+            <div class="form-group">
+                <label asp-for="Bestiary.SubType" class="control-label"></label>
+                <input asp-for="Bestiary.SubType" class="form-control" />
+                <span asp-validation-for="Bestiary.SubType" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Bestiary.Init" class="control-label"></label>
+                <input asp-for="Bestiary.Init" class="form-control" />
+                <span asp-validation-for="Bestiary.Init" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Bestiary.Senses" class="control-label"></label>
+                <input asp-for="Bestiary.Senses" class="form-control" />
+                <span asp-validation-for="Bestiary.Senses" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Bestiary.Aura" class="control-label"></label>
+                <input asp-for="Bestiary.Aura" class="form-control" />
+                <span asp-validation-for="Bestiary.Aura" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Bestiary.Ac" class="control-label"></label>
+                <input asp-for="Bestiary.Ac" class="form-control" />
+                <span asp-validation-for="Bestiary.Ac" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Bestiary.Acmods" class="control-label"></label>
+                <input asp-for="Bestiary.Acmods" class="form-control" />
+                <span asp-validation-for="Bestiary.Acmods" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Bestiary.Hp" class="control-label"></label>
+                <input asp-for="Bestiary.Hp" class="form-control" />
+                <span asp-validation-for="Bestiary.Hp" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Bestiary.Hd" class="control-label"></label>
+                <input asp-for="Bestiary.Hd" class="form-control" />
+                <span asp-validation-for="Bestiary.Hd" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Bestiary.Hpmods" class="control-label"></label>
+                <input asp-for="Bestiary.Hpmods" class="form-control" />
+                <span asp-validation-for="Bestiary.Hpmods" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Bestiary.Fortitude" class="control-label"></label>
+                <input asp-for="Bestiary.Fortitude" class="form-control" />
+                <span asp-validation-for="Bestiary.Fortitude" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Bestiary.Reflex" class="control-label"></label>
+                <input asp-for="Bestiary.Reflex" class="form-control" />
+                <span asp-validation-for="Bestiary.Reflex" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Bestiary.Will" class="control-label"></label>
+                <input asp-for="Bestiary.Will" class="form-control" />
+                <span asp-validation-for="Bestiary.Will" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Bestiary.SaveMods" class="control-label"></label>
+                <input asp-for="Bestiary.SaveMods" class="form-control" />
+                <span asp-validation-for="Bestiary.SaveMods" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Bestiary.DefensiveAbilities" class="control-label"></label>
+                <input asp-for="Bestiary.DefensiveAbilities" class="form-control" />
+                <span asp-validation-for="Bestiary.DefensiveAbilities" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Bestiary.Dr" class="control-label"></label>
+                <input asp-for="Bestiary.Dr" class="form-control" />
+                <span asp-validation-for="Bestiary.Dr" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Bestiary.Immune" class="control-label"></label>
+                <input asp-for="Bestiary.Immune" class="form-control" />
+                <span asp-validation-for="Bestiary.Immune" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Bestiary.Resist" class="control-label"></label>
+                <input asp-for="Bestiary.Resist" class="form-control" />
+                <span asp-validation-for="Bestiary.Resist" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Bestiary.Sr" class="control-label"></label>
+                <input asp-for="Bestiary.Sr" class="form-control" />
+                <span asp-validation-for="Bestiary.Sr" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Bestiary.Weaknesses" class="control-label"></label>
+                <input asp-for="Bestiary.Weaknesses" class="form-control" />
+                <span asp-validation-for="Bestiary.Weaknesses" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Bestiary.Speed" class="control-label"></label>
+                <input asp-for="Bestiary.Speed" class="form-control" />
+                <span asp-validation-for="Bestiary.Speed" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Bestiary.SpeedMod" class="control-label"></label>
+                <input asp-for="Bestiary.SpeedMod" class="form-control" />
+                <span asp-validation-for="Bestiary.SpeedMod" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Bestiary.Melee" class="control-label"></label>
+                <input asp-for="Bestiary.Melee" class="form-control" />
+                <span asp-validation-for="Bestiary.Melee" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Bestiary.Ranged" class="control-label"></label>
+                <input asp-for="Bestiary.Ranged" class="form-control" />
+                <span asp-validation-for="Bestiary.Ranged" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Bestiary.Space" class="control-label"></label>
+                <input asp-for="Bestiary.Space" class="form-control" />
+                <span asp-validation-for="Bestiary.Space" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Bestiary.Reach" class="control-label"></label>
+                <input asp-for="Bestiary.Reach" class="form-control" />
+                <span asp-validation-for="Bestiary.Reach" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Bestiary.SpecialAttacks" class="control-label"></label>
+                <input asp-for="Bestiary.SpecialAttacks" class="form-control" />
+                <span asp-validation-for="Bestiary.SpecialAttacks" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Bestiary.SpellLikeAbilities" class="control-label"></label>
+                <input asp-for="Bestiary.SpellLikeAbilities" class="form-control" />
+                <span asp-validation-for="Bestiary.SpellLikeAbilities" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Bestiary.SpellsKnown" class="control-label"></label>
+                <input asp-for="Bestiary.SpellsKnown" class="form-control" />
+                <span asp-validation-for="Bestiary.SpellsKnown" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Bestiary.SpellsPrepared" class="control-label"></label>
+                <input asp-for="Bestiary.SpellsPrepared" class="form-control" />
+                <span asp-validation-for="Bestiary.SpellsPrepared" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Bestiary.SpellDomains" class="control-label"></label>
+                <input asp-for="Bestiary.SpellDomains" class="form-control" />
+                <span asp-validation-for="Bestiary.SpellDomains" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Bestiary.AbilityScores" class="control-label"></label>
+                <input asp-for="Bestiary.AbilityScores" class="form-control" />
+                <span asp-validation-for="Bestiary.AbilityScores" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Bestiary.AbilityScoreMods" class="control-label"></label>
+                <input asp-for="Bestiary.AbilityScoreMods" class="form-control" />
+                <span asp-validation-for="Bestiary.AbilityScoreMods" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Bestiary.BaseAtk" class="control-label"></label>
+                <input asp-for="Bestiary.BaseAtk" class="form-control" />
+                <span asp-validation-for="Bestiary.BaseAtk" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Bestiary.Cmb" class="control-label"></label>
+                <input asp-for="Bestiary.Cmb" class="form-control" />
+                <span asp-validation-for="Bestiary.Cmb" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Bestiary.Cmd" class="control-label"></label>
+                <input asp-for="Bestiary.Cmd" class="form-control" />
+                <span asp-validation-for="Bestiary.Cmd" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Bestiary.Feats" class="control-label"></label>
+                <input asp-for="Bestiary.Feats" class="form-control" />
+                <span asp-validation-for="Bestiary.Feats" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Bestiary.Skills" class="control-label"></label>
+                <input asp-for="Bestiary.Skills" class="form-control" />
+                <span asp-validation-for="Bestiary.Skills" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Bestiary.RacialMods" class="control-label"></label>
+                <input asp-for="Bestiary.RacialMods" class="form-control" />
+                <span asp-validation-for="Bestiary.RacialMods" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Bestiary.Languages" class="control-label"></label>
+                <input asp-for="Bestiary.Languages" class="form-control" />
+                <span asp-validation-for="Bestiary.Languages" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Bestiary.Sq" class="control-label"></label>
+                <input asp-for="Bestiary.Sq" class="form-control" />
+                <span asp-validation-for="Bestiary.Sq" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Bestiary.Environment" class="control-label"></label>
+                <input asp-for="Bestiary.Environment" class="form-control" />
+                <span asp-validation-for="Bestiary.Environment" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Bestiary.Organization" class="control-label"></label>
+                <input asp-for="Bestiary.Organization" class="form-control" />
+                <span asp-validation-for="Bestiary.Organization" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Bestiary.Treasure" class="control-label"></label>
+                <input asp-for="Bestiary.Treasure" class="form-control" />
+                <span asp-validation-for="Bestiary.Treasure" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Bestiary.DescriptionVisual" class="control-label"></label>
+                <input asp-for="Bestiary.DescriptionVisual" class="form-control" />
+                <span asp-validation-for="Bestiary.DescriptionVisual" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Bestiary.Group" class="control-label"></label>
+                <input asp-for="Bestiary.Group" class="form-control" />
+                <span asp-validation-for="Bestiary.Group" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <div class="checkbox">
+                    <label>
+                        <input asp-for="Bestiary.IsTemplate" /> @Html.DisplayNameFor(model => model.IsTemplate))
+                    </label>
+                </div>
+            </div>
+            <div class="form-group">
+                <label asp-for="Bestiary.SpecialAbilities" class="control-label"></label>
+                <input asp-for="Bestiary.SpecialAbilities" class="form-control" />
+                <span asp-validation-for="Bestiary.SpecialAbilities" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Bestiary.Gender" class="control-label"></label>
+                <input asp-for="Bestiary.Gender" class="form-control" />
+                <span asp-validation-for="Bestiary.Gender" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Bestiary.Bloodline" class="control-label"></label>
+                <input asp-for="Bestiary.Bloodline" class="form-control" />
+                <span asp-validation-for="Bestiary.Bloodline" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Bestiary.ProhibitedSchools" class="control-label"></label>
+                <input asp-for="Bestiary.ProhibitedSchools" class="form-control" />
+                <span asp-validation-for="Bestiary.ProhibitedSchools" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Bestiary.BeforeCombat" class="control-label"></label>
+                <input asp-for="Bestiary.BeforeCombat" class="form-control" />
+                <span asp-validation-for="Bestiary.BeforeCombat" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Bestiary.DuringCombat" class="control-label"></label>
+                <input asp-for="Bestiary.DuringCombat" class="form-control" />
+                <span asp-validation-for="Bestiary.DuringCombat" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Bestiary.Morale" class="control-label"></label>
+                <input asp-for="Bestiary.Morale" class="form-control" />
+                <span asp-validation-for="Bestiary.Morale" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Bestiary.Gear" class="control-label"></label>
+                <input asp-for="Bestiary.Gear" class="form-control" />
+                <span asp-validation-for="Bestiary.Gear" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Bestiary.OtherGear" class="control-label"></label>
+                <input asp-for="Bestiary.OtherGear" class="form-control" />
+                <span asp-validation-for="Bestiary.OtherGear" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Bestiary.Vulnerability" class="control-label"></label>
+                <input asp-for="Bestiary.Vulnerability" class="form-control" />
+                <span asp-validation-for="Bestiary.Vulnerability" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Bestiary.Note" class="control-label"></label>
+                <input asp-for="Bestiary.Note" class="form-control" />
+                <span asp-validation-for="Bestiary.Note" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <div class="checkbox">
+                    <label>
+                        <input asp-for="Bestiary.CharacterFlag" /> @Html.DisplayNameFor(model => model.CharacterFlag))
+                    </label>
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="checkbox">
+                    <label>
+                        <input asp-for="Bestiary.CompanionFlag" /> @Html.DisplayNameFor(model => model.CompanionFlag))
+                    </label>
+                </div>
+            </div>
+            <div class="form-group">
+                <label asp-for="Bestiary.Fly" class="control-label"></label>
+                <input asp-for="Bestiary.Fly" class="form-control" />
+                <span asp-validation-for="Bestiary.Fly" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Bestiary.Climb" class="control-label"></label>
+                <input asp-for="Bestiary.Climb" class="form-control" />
+                <span asp-validation-for="Bestiary.Climb" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Bestiary.Burrow" class="control-label"></label>
+                <input asp-for="Bestiary.Burrow" class="form-control" />
+                <span asp-validation-for="Bestiary.Burrow" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Bestiary.Swim" class="control-label"></label>
+                <input asp-for="Bestiary.Swim" class="form-control" />
+                <span asp-validation-for="Bestiary.Swim" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Bestiary.Land" class="control-label"></label>
+                <input asp-for="Bestiary.Land" class="form-control" />
+                <span asp-validation-for="Bestiary.Land" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Bestiary.TemplatesApplied" class="control-label"></label>
+                <input asp-for="Bestiary.TemplatesApplied" class="form-control" />
+                <span asp-validation-for="Bestiary.TemplatesApplied" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Bestiary.OffenseNote" class="control-label"></label>
+                <input asp-for="Bestiary.OffenseNote" class="form-control" />
+                <span asp-validation-for="Bestiary.OffenseNote" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Bestiary.BaseStatistics" class="control-label"></label>
+                <input asp-for="Bestiary.BaseStatistics" class="form-control" />
+                <span asp-validation-for="Bestiary.BaseStatistics" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Bestiary.ExtractsPrepared" class="control-label"></label>
+                <input asp-for="Bestiary.ExtractsPrepared" class="form-control" />
+                <span asp-validation-for="Bestiary.ExtractsPrepared" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Bestiary.AgeCategory" class="control-label"></label>
+                <input asp-for="Bestiary.AgeCategory" class="form-control" />
+                <span asp-validation-for="Bestiary.AgeCategory" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <div class="checkbox">
+                    <label>
+                        <input asp-for="Bestiary.DontUseRacialHd" /> @Html.DisplayNameFor(model => model.DontUseRacialHd))
+                    </label>
+                </div>
+            </div>
+            <div class="form-group">
+                <label asp-for="Bestiary.VariantParent" class="control-label"></label>
+                <input asp-for="Bestiary.VariantParent" class="form-control" />
+                <span asp-validation-for="Bestiary.VariantParent" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Bestiary.Mystery" class="control-label"></label>
+                <input asp-for="Bestiary.Mystery" class="form-control" />
+                <span asp-validation-for="Bestiary.Mystery" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Bestiary.ClassArchetypes" class="control-label"></label>
+                <input asp-for="Bestiary.ClassArchetypes" class="form-control" />
+                <span asp-validation-for="Bestiary.ClassArchetypes" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Bestiary.Patron" class="control-label"></label>
+                <input asp-for="Bestiary.Patron" class="form-control" />
+                <span asp-validation-for="Bestiary.Patron" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Bestiary.CompanionFamiliarLink" class="control-label"></label>
+                <input asp-for="Bestiary.CompanionFamiliarLink" class="form-control" />
+                <span asp-validation-for="Bestiary.CompanionFamiliarLink" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Bestiary.FocusedSchool" class="control-label"></label>
+                <input asp-for="Bestiary.FocusedSchool" class="form-control" />
+                <span asp-validation-for="Bestiary.FocusedSchool" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Bestiary.Traits" class="control-label"></label>
+                <input asp-for="Bestiary.Traits" class="form-control" />
+                <span asp-validation-for="Bestiary.Traits" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Bestiary.AlternateNameForm" class="control-label"></label>
+                <input asp-for="Bestiary.AlternateNameForm" class="form-control" />
+                <span asp-validation-for="Bestiary.AlternateNameForm" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Bestiary.StatisticsNote" class="control-label"></label>
+                <input asp-for="Bestiary.StatisticsNote" class="form-control" />
+                <span asp-validation-for="Bestiary.StatisticsNote" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Bestiary.LinkText" class="control-label"></label>
+                <input asp-for="Bestiary.LinkText" class="form-control" />
+                <span asp-validation-for="Bestiary.LinkText" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <div class="checkbox">
+                    <label>
+                        <input asp-for="Bestiary.UniqueMonster" /> @Html.DisplayNameFor(model => model.UniqueMonster))
+                    </label>
+                </div>
+            </div>
+            <div class="form-group">
+                <label asp-for="Bestiary.Mr" class="control-label"></label>
+                <input asp-for="Bestiary.Mr" class="form-control" />
+                <span asp-validation-for="Bestiary.Mr" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <div class="checkbox">
+                    <label>
+                        <input asp-for="Bestiary.Mythic" /> @Html.DisplayNameFor(model => model.Mythic))
+                    </label>
+                </div>
+            </div>
+            <div class="form-group">
+                <label asp-for="Bestiary.Mt" class="control-label"></label>
+                <input asp-for="Bestiary.Mt" class="form-control" />
+                <span asp-validation-for="Bestiary.Mt" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Bestiary.Actouch" class="control-label"></label>
+                <input asp-for="Bestiary.Actouch" class="form-control" />
+                <span asp-validation-for="Bestiary.Actouch" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Bestiary.Acflat" class="control-label"></label>
+                <input asp-for="Bestiary.Acflat" class="form-control" />
+                <span asp-validation-for="Bestiary.Acflat" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Bestiary.Str" class="control-label"></label>
+                <input asp-for="Bestiary.Str" class="form-control" />
+                <span asp-validation-for="Bestiary.Str" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Bestiary.Dex" class="control-label"></label>
+                <input asp-for="Bestiary.Dex" class="form-control" />
+                <span asp-validation-for="Bestiary.Dex" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Bestiary.Con" class="control-label"></label>
+                <input asp-for="Bestiary.Con" class="form-control" />
+                <span asp-validation-for="Bestiary.Con" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Bestiary.Wis" class="control-label"></label>
+                <input asp-for="Bestiary.Wis" class="form-control" />
+                <span asp-validation-for="Bestiary.Wis" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Bestiary.Int" class="control-label"></label>
+                <input asp-for="Bestiary.Int" class="form-control" />
+                <span asp-validation-for="Bestiary.Int" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Bestiary.Cha" class="control-label"></label>
+                <input asp-for="Bestiary.Cha" class="form-control" />
+                <span asp-validation-for="Bestiary.Cha" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Create" class="btn btn-default" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-page="Index">Back to List</a>
+</div>
+

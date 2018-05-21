@@ -115,7 +115,7 @@
                     <ListBox x:Name="LbxEncounterCRs" HorizontalAlignment="Left" Height="420" Margin="10,41,0,0" VerticalAlignment="Top" Width="193" MouseDoubleClick="LbxEncounterCRs_MouseDoubleClick"/>
                     <Label Content="APL:" HorizontalAlignment="Left" Margin="10,12,0,0" VerticalAlignment="Top"/>
                     <TextBox x:Name="TxtAPL" HorizontalAlignment="Left" Height="20" Margin="48,16,0,0" TextWrapping="Wrap" Text="000" VerticalAlignment="Top" Width="30" RenderTransformOrigin="1.967,0.565"/>
-                    <ListBox x:Name="LbxEncounterCreatures" HorizontalAlignment="Left" Height="420" Margin="208,41,0,0" VerticalAlignment="Top" Width="550" MouseDoubleClick="LbxEncounterCreatures_MouseDoubleClick"/>
+                    <ListBox x:Name="LbxEncounterCreatures" HorizontalAlignment="Left" Height="420" Margin="208,41,0,0" VerticalAlignment="Top" Width="550" MouseDoubleClick="LbxEncounterCreatures_MouseDoubleClick" SelectionMode="Extended"/>
                     <CheckBox x:Name="CbxEncounterGroup" Content="Group" HorizontalAlignment="Left" Margin="208,19,0,0" VerticalAlignment="Top"/>
                     <CheckBox x:Name="CbxEncounterZone" Content="Zone" HorizontalAlignment="Left" Margin="266,19,0,0" VerticalAlignment="Top"/>
                     <CheckBox x:Name="CbxEncounterNPC" Content="NPC" HorizontalAlignment="Left" Margin="369,19,0,0" VerticalAlignment="Top"/>
@@ -142,9 +142,9 @@
                     <Button x:Name="BtnCombatDelete" Content="Delete" HorizontalAlignment="Left" Margin="180,437,0,0" VerticalAlignment="Top" Width="75" Click="BtnCombatDelete_Click" TabIndex="115"/>
                     <Button x:Name="BtnCombatAddFromBestiary" Content="Add from Bestiary..." HorizontalAlignment="Left" Margin="953,437,0,0" VerticalAlignment="Top" Width="127" TabIndex="199" Click="BtnCombatAddFromBestiary_Click"/>
                     <Label Content="Round #" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top" FontSize="16"/>
-                    <Label x:Name="LblCombatRound" Content="00" HorizontalAlignment="Left" Margin="85,10,0,0" VerticalAlignment="Top" FontSize="16" FontWeight="Bold"/>
+                    <Label x:Name="LblCombatRound" Content="01" HorizontalAlignment="Left" Margin="85,10,0,0" VerticalAlignment="Top" FontSize="16" FontWeight="Bold"/>
                     <Button x:Name="BtnCombatNextRound" Content="Next Round ==&gt;" HorizontalAlignment="Left" Margin="144,10,0,0" VerticalAlignment="Top" Width="101" Height="31" Click="BtnCombatNextRound_Click"/>
-                    <TextBox x:Name="TxtCombatInit" HorizontalAlignment="Left" Height="23" Margin="10,72,0,0" TextWrapping="Wrap" Text="00" VerticalAlignment="Top" Width="27" TabIndex="101"/>
+                    <TextBox x:Name="TxtCombatInit" HorizontalAlignment="Left" Height="23" Margin="10,72,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="27" TabIndex="101"/>
                     <Label Content="Init" HorizontalAlignment="Left" Margin="10,46,0,0" VerticalAlignment="Top"/>
                     <DataGrid x:Name="DgCombatGrid" HorizontalAlignment="Left" Height="332" Margin="10,100,0,0" VerticalAlignment="Top" Width="755" AutoGenerateColumns="False" CanUserAddRows="False" ItemsSource="{Binding CombatGridItems}" TabIndex="112">
                         <DataGrid.Columns>
@@ -173,7 +173,7 @@
                             <DataGridTextColumn Binding="{Binding Rounds}" Header="Rds" Width="30"/>
                         </DataGrid.Columns>
                     </DataGrid>
-                    <TextBox x:Name="TxtCombatName" HorizontalAlignment="Left" Height="23" Margin="42,72,0,0" TextWrapping="Wrap" Text="Big Ugly Monster II" VerticalAlignment="Top" Width="153" TabIndex="102"/>
+                    <TextBox x:Name="TxtCombatName" HorizontalAlignment="Left" Height="23" Margin="42,72,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="153" TabIndex="102"/>
                     <Label Content="Name" HorizontalAlignment="Left" Margin="42,46,0,0" VerticalAlignment="Top"/>
                     <Label Content="PC?" HorizontalAlignment="Left" Margin="200,46,0,0" VerticalAlignment="Top"/>
                     <Label Content="Touch" HorizontalAlignment="Left" Margin="294,46,0,0" VerticalAlignment="Top"/>
@@ -182,24 +182,24 @@
                     <Label Content="Fort" HorizontalAlignment="Left" Margin="374,46,0,0" VerticalAlignment="Top"/>
                     <Label Content="Ref" HorizontalAlignment="Left" Margin="410,46,0,0" VerticalAlignment="Top"/>
                     <Label Content="Will" HorizontalAlignment="Left" Margin="442,46,0,0" VerticalAlignment="Top"/>
-                    <TextBox x:Name="TxtCombatAC" HorizontalAlignment="Left" Height="23" Margin="265,72,0,0" TextWrapping="Wrap" Text="22" VerticalAlignment="Top" Width="22" TabIndex="105"/>
+                    <TextBox x:Name="TxtCombatAC" HorizontalAlignment="Left" Height="23" Margin="265,72,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="22" TabIndex="105"/>
                     <CheckBox x:Name="CbxCombatPC" Content="" HorizontalAlignment="Left" Margin="206,75,0,0" VerticalAlignment="Top" TabIndex="103"/>
-                    <TextBox x:Name="TxtCombatTouch" HorizontalAlignment="Left" Height="23" Margin="304,72,0,0" TextWrapping="Wrap" Text="22" VerticalAlignment="Top" Width="22" TabIndex="106"/>
-                    <TextBox x:Name="TxtCombatFlat" HorizontalAlignment="Left" Height="23" Margin="343,72,0,0" TextWrapping="Wrap" Text="22" VerticalAlignment="Top" Width="22" TabIndex="107"/>
-                    <TextBox x:Name="TxtCombatFort" HorizontalAlignment="Left" Height="23" Margin="378,72,0,0" TextWrapping="Wrap" Text="22" VerticalAlignment="Top" Width="22" TabIndex="108"/>
-                    <TextBox x:Name="TxtCombatRef" HorizontalAlignment="Left" Height="23" Margin="413,72,0,0" TextWrapping="Wrap" Text="22" VerticalAlignment="Top" Width="22" TabIndex="109"/>
-                    <TextBox x:Name="TxtCombatWill" HorizontalAlignment="Left" Height="23" Margin="446,72,0,0" TextWrapping="Wrap" Text="22" VerticalAlignment="Top" Width="22" TabIndex="110"/>
+                    <TextBox x:Name="TxtCombatTouch" HorizontalAlignment="Left" Height="23" Margin="304,72,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="22" TabIndex="106"/>
+                    <TextBox x:Name="TxtCombatFlat" HorizontalAlignment="Left" Height="23" Margin="343,72,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="22" TabIndex="107"/>
+                    <TextBox x:Name="TxtCombatFort" HorizontalAlignment="Left" Height="23" Margin="378,72,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="22" TabIndex="108"/>
+                    <TextBox x:Name="TxtCombatRef" HorizontalAlignment="Left" Height="23" Margin="413,72,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="22" TabIndex="109"/>
+                    <TextBox x:Name="TxtCombatWill" HorizontalAlignment="Left" Height="23" Margin="446,72,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="22" TabIndex="110"/>
                     <Button x:Name="BtnCombatClearAll" Content="CLEAR ALL" HorizontalAlignment="Left" Margin="664,10,0,0" VerticalAlignment="Top" Width="101" Height="31" Click="BtnCombatClearAll_Click"/>
                     <Button x:Name="BtnCombatEnd" Content="End Combat" HorizontalAlignment="Left" Margin="558,10,0,0" VerticalAlignment="Top" Width="101" Height="31" Click="BtnCombatEnd_Click"/>
-                    <TextBox x:Name="TxtCombatEffect" HorizontalAlignment="Left" Height="23" Margin="770,72,0,0" TextWrapping="Wrap" Text="Makes 'im bigger and uglier" VerticalAlignment="Top" Width="215" TabIndex="151"/>
+                    <TextBox x:Name="TxtCombatEffect" HorizontalAlignment="Left" Height="23" Margin="770,72,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="215" TabIndex="151"/>
                     <xctk:IntegerUpDown x:Name="IntCombatEffectRounds" HorizontalAlignment="Left" Margin="1039,47,0,0" VerticalAlignment="Top" TabIndex="152"/>
                     <Button x:Name="BtnCombatAddEffect" Content="Add Effect" HorizontalAlignment="Left" Margin="990,72,0,0" VerticalAlignment="Top" Width="90" Height="23" Click="BtnCombatAddEffect_Click" TabIndex="153"/>
                     <Label Content="Effect Name" HorizontalAlignment="Left" Margin="770,43,0,0" VerticalAlignment="Top"/>
                     <Label Content="Rounds" HorizontalAlignment="Left" Margin="985,43,0,0" VerticalAlignment="Top"/>
                     <Button x:Name="BtnCombatAddNew" Content="Add" HorizontalAlignment="Left" Margin="709,72,0,0" VerticalAlignment="Top" Width="56" Height="23" Click="BtnCombatAddNew_Click" TabIndex="111"/>
-                    <TextBox x:Name="TxtCombatHP" HorizontalAlignment="Left" Height="23" Margin="236,72,0,0" TextWrapping="Wrap" Text="22" VerticalAlignment="Top" Width="22" TabIndex="104"/>
+                    <TextBox x:Name="TxtCombatHP" HorizontalAlignment="Left" Height="23" Margin="236,72,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="22" TabIndex="104"/>
                     <Label Content="HP" HorizontalAlignment="Left" Margin="235,46,0,0" VerticalAlignment="Top"/>
-                </Grid>
+        </Grid>
             </TabItem>
             <TabItem x:Name="TabCreatureInfo" Header="Creature Info" Margin="-2,-2,-2,0">
                 <Grid Background="#FFE5E5E5">
@@ -225,12 +225,12 @@
                     <Label Content="Event Type" HorizontalAlignment="Left" Margin="10,140,0,0" VerticalAlignment="Top"/>
                     <Label Content="Event Data" HorizontalAlignment="Left" Margin="10,166,0,0" VerticalAlignment="Top"/>
                     <Label Content="Notes" HorizontalAlignment="Left" Margin="10,192,0,0" VerticalAlignment="Top"/>
-                    <TextBox x:Name="TxtEvtLastDate" HorizontalAlignment="Left" Height="23" Margin="109,65,0,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="300"/>
-                    <TextBox x:Name="TxtEvtDate" HorizontalAlignment="Left" Height="23" Margin="109,39,0,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="300"/>
-                    <TextBox x:Name="TxtEvtName" HorizontalAlignment="Left" Height="23" Margin="109,13,0,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="300"/>
-                    <TextBox x:Name="TxtEvtLocation" HorizontalAlignment="Left" Height="23" Margin="109,91,0,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="300"/>
-                    <TextBox x:Name="TxtEvtData" HorizontalAlignment="Left" Height="23" Margin="109,169,0,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="300"/>
-                    <TextBox x:Name="TxtEvtNotes" HorizontalAlignment="Left" Height="237" Margin="109,195,0,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="300"/>
+                    <TextBox x:Name="TxtEvtLastDate" HorizontalAlignment="Left" Height="23" Margin="109,65,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="300"/>
+                    <TextBox x:Name="TxtEvtDate" HorizontalAlignment="Left" Height="23" Margin="109,39,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="300"/>
+                    <TextBox x:Name="TxtEvtName" HorizontalAlignment="Left" Height="23" Margin="109,13,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="300"/>
+                    <TextBox x:Name="TxtEvtLocation" HorizontalAlignment="Left" Height="23" Margin="109,91,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="300"/>
+                    <TextBox x:Name="TxtEvtData" HorizontalAlignment="Left" Height="23" Margin="109,169,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="300"/>
+                    <TextBox x:Name="TxtEvtNotes" HorizontalAlignment="Left" Height="237" Margin="109,195,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="300"/>
                     <xctk:IntegerUpDown x:Name="IntEvtFreq" HorizontalAlignment="Left" Margin="109,120,0,0" VerticalAlignment="Top" Width="80"/>
                     <Label Content="days" HorizontalAlignment="Left" Margin="189,114,0,0" VerticalAlignment="Top"/>
                     <ComboBox x:Name="DrpEvtType" HorizontalAlignment="Left" Margin="109,144,0,0" VerticalAlignment="Top" Width="200"/>
@@ -244,18 +244,18 @@
             <TabItem x:Name="TabCampaignInfo" Header="Campaign" Margin="-2,-2,-2,0">
                 <Grid Background="#FFE5E5E5">
                     <ListBox x:Name="LbxCampaignData" HorizontalAlignment="Left" Height="403" Margin="10,26,0,0" VerticalAlignment="Top" Width="240" MouseDoubleClick="LbxCampaign_MouseDoubleClick"/>
-                    <TextBox x:Name="TxtCampaignDataNew" HorizontalAlignment="Left" Height="23" Margin="10,434,0,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="175"/>
+                    <TextBox x:Name="TxtCampaignDataNew" HorizontalAlignment="Left" Height="23" Margin="10,434,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="175"/>
                     <Button x:Name="BtnAddCampaignData" Content="Add" HorizontalAlignment="Left" Margin="190,434,0,0" VerticalAlignment="Top" Width="60" Height="23" Click="BtnAddCampaignData_Click"/>
                     <Label Content="Campaign Data" HorizontalAlignment="Left" Margin="10,0,0,0" VerticalAlignment="Top"/>
                     <ComboBox x:Name="DrpCampaignSelect" HorizontalAlignment="Left" Margin="830,30,0,0" VerticalAlignment="Top" Width="250" SelectionChanged="DrpCampaignSelect_SelectionChanged"/>
                     <Label Content="Campaign Select" HorizontalAlignment="Left" Margin="830,0,0,0" VerticalAlignment="Top"/>
-                    <TextBox x:Name="TxtCampaignDataName" HorizontalAlignment="Left" Height="23" Margin="325,30,0,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="200"/>
-                    <TextBox x:Name="TxtCampaignDataValue" HorizontalAlignment="Left" Height="23" Margin="325,58,0,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="200"/>
+                    <TextBox x:Name="TxtCampaignDataName" HorizontalAlignment="Left" Height="23" Margin="325,30,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="200"/>
+                    <TextBox x:Name="TxtCampaignDataValue" HorizontalAlignment="Left" Height="23" Margin="325,58,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="200"/>
                     <Label Content="Data Name" HorizontalAlignment="Left" Margin="250,26,0,0" VerticalAlignment="Top"/>
                     <Label Content="Data Value" HorizontalAlignment="Left" Margin="250,54,0,0" VerticalAlignment="Top"/>
                     <Button x:Name="BtnSaveCampaignData" Content="Save" HorizontalAlignment="Left" Margin="450,86,0,0" VerticalAlignment="Top" Width="75" Click="BtnSaveCampaignData_Click"/>
-                    <TextBox x:Name="TxtCampaignName" HorizontalAlignment="Left" Height="23" Margin="876,82,0,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="200"/>
-                    <TextBox x:Name="TxtCampaignNotes" HorizontalAlignment="Left" Height="100" Margin="876,110,0,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="200"/>
+                    <TextBox x:Name="TxtCampaignName" HorizontalAlignment="Left" Height="23" Margin="876,82,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="200"/>
+                    <TextBox x:Name="TxtCampaignNotes" HorizontalAlignment="Left" Height="100" Margin="876,110,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="200"/>
                     <Label Content="Name" HorizontalAlignment="Left" Margin="830,78,0,0" VerticalAlignment="Top"/>
                     <Label Content="Notes" HorizontalAlignment="Left" Margin="830,106,0,0" VerticalAlignment="Top"/>
                     <Button x:Name="BtnCampaignSave" Content="Save" HorizontalAlignment="Left" Margin="1001,215,0,0" VerticalAlignment="Top" Width="75" Click="BtnCampaignSave_Click"/>

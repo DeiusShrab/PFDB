@@ -1,0 +1,622 @@
+﻿@page
+@model PFDBSite.Views.DM.Bestiary_.DeleteModel
+
+@{
+    ViewData["Title"] = "Delete";
+}
+
+<h2>Delete</h2>
+
+<h3>Are you sure you want to delete this?</h3>
+<div>
+    <h4>Bestiary</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Bestiary.Name)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Bestiary.Name)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Bestiary.Cr)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Bestiary.Cr)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Bestiary.Xp)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Bestiary.Xp)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Bestiary.Race)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Bestiary.Race)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Bestiary.Class)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Bestiary.Class)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Bestiary.Alignment)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Bestiary.Alignment)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Bestiary.Size)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Bestiary.Size)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Bestiary.SubType)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Bestiary.SubType)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Bestiary.Init)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Bestiary.Init)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Bestiary.Senses)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Bestiary.Senses)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Bestiary.Aura)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Bestiary.Aura)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Bestiary.Ac)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Bestiary.Ac)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Bestiary.Acmods)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Bestiary.Acmods)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Bestiary.Hp)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Bestiary.Hp)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Bestiary.Hd)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Bestiary.Hd)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Bestiary.Hpmods)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Bestiary.Hpmods)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Bestiary.Fortitude)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Bestiary.Fortitude)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Bestiary.Reflex)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Bestiary.Reflex)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Bestiary.Will)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Bestiary.Will)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Bestiary.SaveMods)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Bestiary.SaveMods)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Bestiary.DefensiveAbilities)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Bestiary.DefensiveAbilities)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Bestiary.Dr)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Bestiary.Dr)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Bestiary.Immune)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Bestiary.Immune)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Bestiary.Resist)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Bestiary.Resist)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Bestiary.Sr)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Bestiary.Sr)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Bestiary.Weaknesses)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Bestiary.Weaknesses)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Bestiary.Speed)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Bestiary.Speed)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Bestiary.SpeedMod)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Bestiary.SpeedMod)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Bestiary.Melee)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Bestiary.Melee)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Bestiary.Ranged)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Bestiary.Ranged)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Bestiary.Space)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Bestiary.Space)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Bestiary.Reach)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Bestiary.Reach)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Bestiary.SpecialAttacks)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Bestiary.SpecialAttacks)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Bestiary.SpellLikeAbilities)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Bestiary.SpellLikeAbilities)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Bestiary.SpellsKnown)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Bestiary.SpellsKnown)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Bestiary.SpellsPrepared)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Bestiary.SpellsPrepared)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Bestiary.SpellDomains)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Bestiary.SpellDomains)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Bestiary.AbilityScores)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Bestiary.AbilityScores)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Bestiary.AbilityScoreMods)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Bestiary.AbilityScoreMods)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Bestiary.BaseAtk)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Bestiary.BaseAtk)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Bestiary.Cmb)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Bestiary.Cmb)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Bestiary.Cmd)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Bestiary.Cmd)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Bestiary.Feats)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Bestiary.Feats)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Bestiary.Skills)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Bestiary.Skills)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Bestiary.RacialMods)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Bestiary.RacialMods)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Bestiary.Languages)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Bestiary.Languages)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Bestiary.Sq)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Bestiary.Sq)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Bestiary.Environment)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Bestiary.Environment)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Bestiary.Organization)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Bestiary.Organization)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Bestiary.Treasure)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Bestiary.Treasure)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Bestiary.DescriptionVisual)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Bestiary.DescriptionVisual)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Bestiary.Group)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Bestiary.Group)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Bestiary.IsTemplate)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Bestiary.IsTemplate)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Bestiary.SpecialAbilities)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Bestiary.SpecialAbilities)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Bestiary.Gender)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Bestiary.Gender)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Bestiary.Bloodline)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Bestiary.Bloodline)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Bestiary.ProhibitedSchools)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Bestiary.ProhibitedSchools)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Bestiary.BeforeCombat)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Bestiary.BeforeCombat)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Bestiary.DuringCombat)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Bestiary.DuringCombat)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Bestiary.Morale)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Bestiary.Morale)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Bestiary.Gear)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Bestiary.Gear)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Bestiary.OtherGear)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Bestiary.OtherGear)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Bestiary.Vulnerability)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Bestiary.Vulnerability)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Bestiary.Note)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Bestiary.Note)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Bestiary.CharacterFlag)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Bestiary.CharacterFlag)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Bestiary.CompanionFlag)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Bestiary.CompanionFlag)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Bestiary.Fly)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Bestiary.Fly)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Bestiary.Climb)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Bestiary.Climb)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Bestiary.Burrow)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Bestiary.Burrow)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Bestiary.Swim)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Bestiary.Swim)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Bestiary.Land)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Bestiary.Land)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Bestiary.TemplatesApplied)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Bestiary.TemplatesApplied)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Bestiary.OffenseNote)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Bestiary.OffenseNote)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Bestiary.BaseStatistics)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Bestiary.BaseStatistics)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Bestiary.ExtractsPrepared)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Bestiary.ExtractsPrepared)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Bestiary.AgeCategory)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Bestiary.AgeCategory)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Bestiary.DontUseRacialHd)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Bestiary.DontUseRacialHd)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Bestiary.VariantParent)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Bestiary.VariantParent)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Bestiary.Mystery)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Bestiary.Mystery)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Bestiary.ClassArchetypes)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Bestiary.ClassArchetypes)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Bestiary.Patron)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Bestiary.Patron)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Bestiary.CompanionFamiliarLink)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Bestiary.CompanionFamiliarLink)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Bestiary.FocusedSchool)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Bestiary.FocusedSchool)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Bestiary.Traits)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Bestiary.Traits)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Bestiary.AlternateNameForm)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Bestiary.AlternateNameForm)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Bestiary.StatisticsNote)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Bestiary.StatisticsNote)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Bestiary.LinkText)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Bestiary.LinkText)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Bestiary.UniqueMonster)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Bestiary.UniqueMonster)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Bestiary.Mr)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Bestiary.Mr)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Bestiary.Mythic)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Bestiary.Mythic)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Bestiary.Mt)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Bestiary.Mt)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Bestiary.Actouch)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Bestiary.Actouch)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Bestiary.Acflat)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Bestiary.Acflat)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Bestiary.Str)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Bestiary.Str)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Bestiary.Dex)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Bestiary.Dex)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Bestiary.Con)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Bestiary.Con)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Bestiary.Wis)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Bestiary.Wis)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Bestiary.Int)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Bestiary.Int)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Bestiary.Cha)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Bestiary.Cha)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Bestiary.BestiaryType)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Bestiary.BestiaryType.Name)
+        </dd>
+    </dl>
+    
+    <form method="post">
+        <input type="hidden" asp-for="Bestiary.BestiaryId" />
+        <input type="submit" value="Delete" class="btn btn-default" /> |
+        <a asp-page="./Index">Back to List</a>
+    </form>
+</div>

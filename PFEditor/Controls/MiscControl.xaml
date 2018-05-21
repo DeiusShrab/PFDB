@@ -13,61 +13,61 @@
         <Label Content="Plane" HorizontalAlignment="Left" Margin="749,10,0,0" VerticalAlignment="Top"/>
         <Label Content="Month" HorizontalAlignment="Left" Margin="10,338,0,0" VerticalAlignment="Top"/>
         <Label Content="Season" HorizontalAlignment="Left" Margin="376,10,0,0" VerticalAlignment="Top"/>
-        <ListBox x:Name="LbxTime" HorizontalAlignment="Left" Height="250" Margin="10,36,0,0" VerticalAlignment="Top" Width="150" MouseDoubleClick="LbxTime_MouseDoubleClick"/>
+        <ListBox x:Name="LbxTime" HorizontalAlignment="Left" Height="275" Margin="10,36,0,0" VerticalAlignment="Top" Width="150" MouseDoubleClick="LbxTime_MouseDoubleClick"/>
         <Label Content="TimeId" HorizontalAlignment="Left" Margin="160,36,0,0" VerticalAlignment="Top"/>
         <Label x:Name="LblTimeId" Content="0000" HorizontalAlignment="Left" Margin="211,36,0,0" VerticalAlignment="Top"/>
         <Label Content="Name" HorizontalAlignment="Left" Margin="160,62,0,0" VerticalAlignment="Top"/>
-        <TextBox x:Name="TxtTimeName" HorizontalAlignment="Left" Height="23" Margin="211,65,0,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="160"/>
+        <TextBox x:Name="TxtTimeName" HorizontalAlignment="Left" Height="23" Margin="211,65,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="160"/>
         <xctk:IntegerUpDown x:Name="IntTimeOrder" HorizontalAlignment="Left" Margin="211,94,0,0" VerticalAlignment="Top"/>
         <Label Content="Order" HorizontalAlignment="Left" Margin="160,88,0,0" VerticalAlignment="Top"/>
         <Label Content="Night" HorizontalAlignment="Left" Margin="160,114,0,0" VerticalAlignment="Top"/>
         <CheckBox x:Name="CbxTimeNight" Content="" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="211,120,0,0"/>
-        <ListBox x:Name="LbxSeason" HorizontalAlignment="Left" Height="250" Margin="376,36,0,0" VerticalAlignment="Top" Width="150" MouseDoubleClick="LbxSeason_MouseDoubleClick"/>
+        <ListBox x:Name="LbxSeason" HorizontalAlignment="Left" Height="275" Margin="376,36,0,0" VerticalAlignment="Top" Width="150" MouseDoubleClick="LbxSeason_MouseDoubleClick"/>
         <Label Content="SeasonId" HorizontalAlignment="Left" Margin="526,36,0,0" VerticalAlignment="Top"/>
         <Label x:Name="LblSeasonId" Content="0000" HorizontalAlignment="Left" Margin="584,36,0,0" VerticalAlignment="Top"/>
         <Label Content="Name" HorizontalAlignment="Left" Margin="526,62,0,0" VerticalAlignment="Top"/>
-        <TextBox x:Name="TxtSeasonName" HorizontalAlignment="Left" Height="23" Margin="584,65,0,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="160"/>
+        <TextBox x:Name="TxtSeasonName" HorizontalAlignment="Left" Height="23" Margin="584,65,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="160"/>
         <xctk:IntegerUpDown x:Name="IntSeasonOrder" HorizontalAlignment="Left" Margin="584,94,0,0" VerticalAlignment="Top"/>
         <Label Content="Order" HorizontalAlignment="Left" Margin="526,88,0,0" VerticalAlignment="Top"/>
-        <ListBox x:Name="LbxPlane" HorizontalAlignment="Left" Height="250" Margin="749,36,0,0" VerticalAlignment="Top" Width="150" MouseDoubleClick="LbxPlane_MouseDoubleClick"/>
+        <ListBox x:Name="LbxPlane" HorizontalAlignment="Left" Height="275" Margin="749,36,0,0" VerticalAlignment="Top" Width="150" MouseDoubleClick="LbxPlane_MouseDoubleClick"/>
         <Label Content="PlaneId" HorizontalAlignment="Left" Margin="899,36,0,0" VerticalAlignment="Top"/>
         <Label x:Name="LblPlaneId" Content="0000" HorizontalAlignment="Left" Margin="957,36,0,0" VerticalAlignment="Top"/>
         <Label Content="Name" HorizontalAlignment="Left" Margin="899,62,0,0" VerticalAlignment="Top"/>
-        <TextBox x:Name="TxtPlaneName" HorizontalAlignment="Left" Height="23" Margin="957,65,0,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="160"/>
-        <ListBox x:Name="LbxMonth" HorizontalAlignment="Left" Height="250" Margin="10,364,0,0" VerticalAlignment="Top" Width="150" MouseDoubleClick="LbxMonth_MouseDoubleClick"/>
+        <TextBox x:Name="TxtPlaneName" HorizontalAlignment="Left" Height="23" Margin="957,65,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="160"/>
+        <ListBox x:Name="LbxMonth" HorizontalAlignment="Left" Height="275" Margin="10,364,0,0" VerticalAlignment="Top" Width="150" MouseDoubleClick="LbxMonth_MouseDoubleClick"/>
         <Label Content="MonthId" HorizontalAlignment="Left" Margin="160,364,0,0" VerticalAlignment="Top"/>
         <Label x:Name="LblMonthId" Content="0000" HorizontalAlignment="Left" Margin="218,364,0,0" VerticalAlignment="Top"/>
         <Label Content="Name" HorizontalAlignment="Left" Margin="160,390,0,0" VerticalAlignment="Top"/>
-        <TextBox x:Name="TxtMonthName" HorizontalAlignment="Left" Height="23" Margin="211,393,0,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="160"/>
+        <TextBox x:Name="TxtMonthName" HorizontalAlignment="Left" Height="23" Margin="211,393,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="160"/>
         <xctk:IntegerUpDown x:Name="IntMonthOrder" HorizontalAlignment="Left" Margin="211,422,0,0" VerticalAlignment="Top"/>
         <Label Content="Order" HorizontalAlignment="Left" Margin="160,416,0,0" VerticalAlignment="Top"/>
         <xctk:IntegerUpDown x:Name="IntMonthDays" HorizontalAlignment="Left" Margin="211,448,0,0" VerticalAlignment="Top"/>
         <Label Content="Days" HorizontalAlignment="Left" Margin="160,442,0,0" VerticalAlignment="Top"/>
         <ComboBox x:Name="DrpMonthSeasonId" HorizontalAlignment="Left" Margin="211,472,0,0" VerticalAlignment="Top" Width="113"/>
         <Label Content="Season" HorizontalAlignment="Left" Margin="160,468,0,0" VerticalAlignment="Top"/>
-        <Button x:Name="BtnSeasonAdd" Content="Add" HorizontalAlignment="Left" Margin="376,291,0,0" VerticalAlignment="Top" Width="48" Click="BtnSeasonAdd_Click"/>
-        <Button x:Name="BtnSeasonDel" Content="Del" HorizontalAlignment="Left" Margin="478,291,0,0" VerticalAlignment="Top" Width="48"/>
-        <Button x:Name="BtnTimeAdd" Content="Add" HorizontalAlignment="Left" Margin="10,291,0,0" VerticalAlignment="Top" Width="48" Click="BtnTimeAdd_Click"/>
-        <Button x:Name="BtnTimeDel" Content="Del" HorizontalAlignment="Left" Margin="112,291,0,0" VerticalAlignment="Top" Width="48"/>
-        <Button x:Name="BtnPlaneAdd" Content="Add" HorizontalAlignment="Left" Margin="749,291,0,0" VerticalAlignment="Top" Width="48" Click="BtnPlaneAdd_Click"/>
-        <Button x:Name="BtnPlaneDel" Content="Del" HorizontalAlignment="Left" Margin="851,291,0,0" VerticalAlignment="Top" Width="48"/>
-        <Button x:Name="BtnMonthAdd" Content="Add" HorizontalAlignment="Left" Margin="10,619,0,0" VerticalAlignment="Top" Width="48" Click="BtnMonthAdd_Click"/>
-        <Button x:Name="BtnMonthDel" Content="Del" HorizontalAlignment="Left" Margin="112,619,0,0" VerticalAlignment="Top" Width="48"/>
+        <Button x:Name="BtnSeasonAdd" Content="New" HorizontalAlignment="Left" Margin="643,291,0,0" VerticalAlignment="Top" Width="48" Click="BtnSeasonAdd_Click"/>
+        <Button x:Name="BtnSeasonDel" Content="Del" HorizontalAlignment="Left" Margin="531,291,0,0" VerticalAlignment="Top" Width="48"/>
+        <Button x:Name="BtnTimeAdd" Content="New" HorizontalAlignment="Left" Margin="270,291,0,0" VerticalAlignment="Top" Width="48" Click="BtnTimeAdd_Click"/>
+        <Button x:Name="BtnTimeDel" Content="Del" HorizontalAlignment="Left" Margin="165,291,0,0" VerticalAlignment="Top" Width="48"/>
+        <Button x:Name="BtnPlaneAdd" Content="New" HorizontalAlignment="Left" Margin="1016,291,0,0" VerticalAlignment="Top" Width="48" Click="BtnPlaneAdd_Click"/>
+        <Button x:Name="BtnPlaneDel" Content="Del" HorizontalAlignment="Left" Margin="904,291,0,0" VerticalAlignment="Top" Width="48"/>
+        <Button x:Name="BtnMonthAdd" Content="New" HorizontalAlignment="Left" Margin="270,619,0,0" VerticalAlignment="Top" Width="48" Click="BtnMonthAdd_Click"/>
+        <Button x:Name="BtnMonthDel" Content="Del" HorizontalAlignment="Left" Margin="165,619,0,0" VerticalAlignment="Top" Width="48"/>
         <Button x:Name="BtnMonthSave" Content="Save" HorizontalAlignment="Left" Margin="323,619,0,0" VerticalAlignment="Top" Width="48" Click="BtnMonthSave_Click"/>
         <Button x:Name="BtnTimeSave" Content="Save" HorizontalAlignment="Left" Margin="323,291,0,0" VerticalAlignment="Top" Width="48" Click="BtnTimeSave_Click"/>
         <Button x:Name="BtnSeasonSave" Content="Save" HorizontalAlignment="Left" Margin="696,291,0,0" VerticalAlignment="Top" Width="48" Click="BtnSeasonSave_Click"/>
         <Button x:Name="BtnPlaneSave" Content="Save" HorizontalAlignment="Left" Margin="1069,291,0,0" VerticalAlignment="Top" Width="48" Click="BtnPlaneSave_Click"/>
         <Label Content="Terrain" HorizontalAlignment="Left" Margin="376,338,0,0" VerticalAlignment="Top"/>
-        <ListBox x:Name="LbxTerrain" HorizontalAlignment="Left" Height="250" Margin="376,364,0,0" VerticalAlignment="Top" Width="150" MouseDoubleClick="LbxTerrain_MouseDoubleClick"/>
+        <ListBox x:Name="LbxTerrain" HorizontalAlignment="Left" Height="275" Margin="376,364,0,0" VerticalAlignment="Top" Width="150" MouseDoubleClick="LbxTerrain_MouseDoubleClick"/>
         <Label Content="TerrainId" HorizontalAlignment="Left" Margin="526,364,0,0" VerticalAlignment="Top"/>
         <Label x:Name="LblTerrainId" Content="0000" HorizontalAlignment="Left" Margin="584,364,0,0" VerticalAlignment="Top"/>
         <Label Content="Name" HorizontalAlignment="Left" Margin="526,390,0,0" VerticalAlignment="Top"/>
-        <TextBox x:Name="TxtTerrainName" HorizontalAlignment="Left" Height="23" Margin="584,393,0,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="160"/>
-        <Button x:Name="BtnTerrainAdd" Content="Add" HorizontalAlignment="Left" Margin="376,619,0,0" VerticalAlignment="Top" Width="48" Click="BtnTerrainAdd_Click"/>
-        <Button x:Name="BtnTerrainDel" Content="Del" HorizontalAlignment="Left" Margin="478,619,0,0" VerticalAlignment="Top" Width="48"/>
+        <TextBox x:Name="TxtTerrainName" HorizontalAlignment="Left" Height="23" Margin="584,393,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="160"/>
+        <Button x:Name="BtnTerrainAdd" Content="New" HorizontalAlignment="Left" Margin="643,619,0,0" VerticalAlignment="Top" Width="48" Click="BtnTerrainAdd_Click"/>
+        <Button x:Name="BtnTerrainDel" Content="Del" HorizontalAlignment="Left" Margin="531,619,0,0" VerticalAlignment="Top" Width="48"/>
         <Button x:Name="BtnTerrainSave" Content="Save" HorizontalAlignment="Left" Margin="696,619,0,0" VerticalAlignment="Top" Width="48" Click="BtnTerrainSave_Click"/>
         <Label Content="Desc" HorizontalAlignment="Left" Margin="526,418,0,0" VerticalAlignment="Top"/>
-        <TextBox x:Name="TxtTerrainDescription" HorizontalAlignment="Left" Height="23" Margin="584,421,0,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="160"/>
+        <TextBox x:Name="TxtTerrainDescription" HorizontalAlignment="Left" Height="23" Margin="584,421,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="160"/>
         <Label Content="Movement Mod" HorizontalAlignment="Left" Margin="526,444,0,0" VerticalAlignment="Top"/>
         <Label Content="Water" HorizontalAlignment="Left" Margin="526,468,0,0" VerticalAlignment="Top"/>
         <Label Content="Broken" HorizontalAlignment="Left" Margin="526,546,0,0" VerticalAlignment="Top"/>
@@ -78,20 +78,20 @@
         <CheckBox x:Name="CbxTerrainBroken" Content="" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="610,553,0,0"/>
         <CheckBox x:Name="CbxTerrainUnderground" Content="" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="610,501,0,0"/>
         <Label Content="Environment" HorizontalAlignment="Left" Margin="749,338,0,0" VerticalAlignment="Top"/>
-        <ListBox x:Name="LbxEnvironment" HorizontalAlignment="Left" Height="250" Margin="749,364,0,0" VerticalAlignment="Top" Width="150" MouseDoubleClick="LbxEnvironment_MouseDoubleClick"/>
+        <ListBox x:Name="LbxEnvironment" HorizontalAlignment="Left" Height="275" Margin="749,364,0,0" VerticalAlignment="Top" Width="150" MouseDoubleClick="LbxEnvironment_MouseDoubleClick"/>
         <Label Content="EnvId" HorizontalAlignment="Left" Margin="899,364,0,0" VerticalAlignment="Top"/>
         <Label x:Name="LblEnvironmentId" Content="0000" HorizontalAlignment="Left" Margin="957,364,0,0" VerticalAlignment="Top"/>
         <Label Content="Name" HorizontalAlignment="Left" Margin="899,390,0,0" VerticalAlignment="Top"/>
-        <TextBox x:Name="TxtEnvironmentName" HorizontalAlignment="Left" Height="23" Margin="957,393,0,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="160"/>
+        <TextBox x:Name="TxtEnvironmentName" HorizontalAlignment="Left" Height="23" Margin="957,393,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="160"/>
         <xctk:IntegerUpDown x:Name="IntEnvironmentTravelSpeed" HorizontalAlignment="Left" Margin="957,509,0,0" VerticalAlignment="Top"/>
         <Label Content="Speed" HorizontalAlignment="Left" Margin="899,503,0,0" VerticalAlignment="Top"/>
-        <Button x:Name="BtnEnvironmentAdd" Content="Add" HorizontalAlignment="Left" Margin="749,619,0,0" VerticalAlignment="Top" Width="48" Click="BtnEnvironmentAdd_Click"/>
-        <Button x:Name="BtnEnvironmentDel" Content="Del" HorizontalAlignment="Left" Margin="851,619,0,0" VerticalAlignment="Top" Width="48"/>
+        <Button x:Name="BtnEnvironmentAdd" Content="New" HorizontalAlignment="Left" Margin="1016,619,0,0" VerticalAlignment="Top" Width="48" Click="BtnEnvironmentAdd_Click"/>
+        <Button x:Name="BtnEnvironmentDel" Content="Del" HorizontalAlignment="Left" Margin="904,619,0,0" VerticalAlignment="Top" Width="48"/>
         <Button x:Name="BtnEnvironmentSave" Content="Save" HorizontalAlignment="Left" Margin="1069,619,0,0" VerticalAlignment="Top" Width="48" Click="BtnEnvironmentSave_Click"/>
         <Label Content="Temp" HorizontalAlignment="Left" Margin="899,418,0,0" VerticalAlignment="Top"/>
-        <TextBox x:Name="TxtEnvironmentTemp" HorizontalAlignment="Left" Height="23" Margin="957,421,0,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="160"/>
+        <TextBox x:Name="TxtEnvironmentTemp" HorizontalAlignment="Left" Height="23" Margin="957,421,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="160"/>
         <Label Content="Notes" HorizontalAlignment="Left" Margin="899,446,0,0" VerticalAlignment="Top"/>
-        <TextBox x:Name="TxtEnvironmentNotes" HorizontalAlignment="Left" Height="55" Margin="957,449,0,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="160"/>
+        <TextBox x:Name="TxtEnvironmentNotes" HorizontalAlignment="Left" Height="55" Margin="957,449,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="160"/>
         <xctk:DecimalUpDown x:Name="DecTerrainMovementMod" HorizontalAlignment="Left" Margin="626,449,0,0" VerticalAlignment="Top"/>
 
     </Grid>

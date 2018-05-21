@@ -8,37 +8,37 @@
              mc:Ignorable="d" d:DesignWidth="800" Width="372" MinHeight="528" Height="1081.674">
     <Grid Background="#FFE5E5E5" Width="372">
         <Label Content="Offense" HorizontalAlignment="Left" VerticalAlignment="Top"/>
-        <TextBox x:Name="Txt_Offense" HorizontalAlignment="Left" Height="100" Margin="0,26,0,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="372"/>
+        <TextBox x:Name="Txt_Offense" HorizontalAlignment="Left" Height="100" Margin="0,26,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="372"/>
         <Label Content="Senses" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="0,379,0,0"/>
-        <TextBox x:Name="Txt_Senses" HorizontalAlignment="Left" Height="23" Margin="0,405,0,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="372"/>
+        <TextBox x:Name="Txt_Senses" HorizontalAlignment="Left" Height="23" Margin="0,405,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="372"/>
         <Label Content="Defense" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="0,127,0,0"/>
-        <TextBox x:Name="Txt_Defense" HorizontalAlignment="Left" Height="100" Margin="0,153,0,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="372"/>
+        <TextBox x:Name="Txt_Defense" HorizontalAlignment="Left" Height="100" Margin="0,153,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="372"/>
         <Label Content="AC Mods" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="0,428,0,0"/>
-        <TextBox x:Name="Txt_ACMods" HorizontalAlignment="Left" Height="23" Margin="0,454,0,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="372"/>
+        <TextBox x:Name="Txt_ACMods" HorizontalAlignment="Left" Height="23" Margin="0,454,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="372"/>
         <Label Content="Save Mods" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="0,477,0,0"/>
-        <TextBox x:Name="Txt_SaveMods" HorizontalAlignment="Left" Height="23" Margin="0,503,0,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="372"/>
+        <TextBox x:Name="Txt_SaveMods" HorizontalAlignment="Left" Height="23" Margin="0,503,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="372"/>
         <Label Content="Aura" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="0,526,0,0"/>
-        <TextBox x:Name="Txt_Aura" HorizontalAlignment="Left" Height="23" Margin="0,552,0,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="372"/>
+        <TextBox x:Name="Txt_Aura" HorizontalAlignment="Left" Height="23" Margin="0,552,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="372"/>
         <Label Content="Space" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="0,575,0,0"/>
-        <TextBox x:Name="Txt_Space" HorizontalAlignment="Left" Height="23" Margin="0,601,0,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="372"/>
+        <TextBox x:Name="Txt_Space" HorizontalAlignment="Left" Height="23" Margin="0,601,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="372"/>
         <Label Content="Reach" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="0,624,0,0"/>
-        <TextBox x:Name="Txt_Reach" HorizontalAlignment="Left" Height="23" Margin="0,650,0,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="372"/>
+        <TextBox x:Name="Txt_Reach" HorizontalAlignment="Left" Height="23" Margin="0,650,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="372"/>
         <Label Content="Resist" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="0,673,0,0"/>
-        <TextBox x:Name="Txt_Resist" HorizontalAlignment="Left" Height="23" Margin="0,699,0,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="372"/>
+        <TextBox x:Name="Txt_Resist" HorizontalAlignment="Left" Height="23" Margin="0,699,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="372"/>
         <Label Content="Immune" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="0,722,0,0"/>
-        <TextBox x:Name="Txt_Immune" HorizontalAlignment="Left" Height="23" Margin="0,748,0,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="372"/>
+        <TextBox x:Name="Txt_Immune" HorizontalAlignment="Left" Height="23" Margin="0,748,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="372"/>
         <Label Content="Speed Mods" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="0,771,0,0"/>
-        <TextBox x:Name="Txt_SpeedMods" HorizontalAlignment="Left" Height="23" Margin="0,797,0,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="372"/>
+        <TextBox x:Name="Txt_SpeedMods" HorizontalAlignment="Left" Height="23" Margin="0,797,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="372"/>
         <Label Content="Special Qualities" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="0,820,0,0"/>
-        <TextBox x:Name="Txt_SpecialQualities" HorizontalAlignment="Left" Height="23" Margin="0,846,0,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="372"/>
+        <TextBox x:Name="Txt_SpecialQualities" HorizontalAlignment="Left" Height="23" Margin="0,846,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="372"/>
         <Label Content="Offense Note" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="0,869,0,0"/>
-        <TextBox x:Name="Txt_OffenseNote" HorizontalAlignment="Left" Height="23" Margin="0,895,0,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="372"/>
+        <TextBox x:Name="Txt_OffenseNote" HorizontalAlignment="Left" Height="23" Margin="0,895,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="372"/>
         <Label Content="Racial Mods" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="0,918,0,0"/>
-        <TextBox x:Name="Txt_RacialMods" HorizontalAlignment="Left" Height="23" Margin="0,944,0,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="372"/>
+        <TextBox x:Name="Txt_RacialMods" HorizontalAlignment="Left" Height="23" Margin="0,944,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="372"/>
         <Label Content="Languages" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="0,967,0,0"/>
-        <TextBox x:Name="Txt_Languages" HorizontalAlignment="Left" Height="51" Margin="0,993,0,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="372"/>
+        <TextBox x:Name="Txt_Languages" HorizontalAlignment="Left" Height="51" Margin="0,993,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="372"/>
         <Label Content="Special Abilities" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="0,253,0,0"/>
-        <TextBox x:Name="Txt_SpecialAbilities" HorizontalAlignment="Left" Height="100" Margin="0,279,0,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="372"/>
+        <TextBox x:Name="Txt_SpecialAbilities" HorizontalAlignment="Left" Height="100" Margin="0,279,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="372"/>
 
     </Grid>
 </UserControl>

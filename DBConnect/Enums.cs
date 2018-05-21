@@ -134,4 +134,14 @@ namespace DBConnect
     Feat = 2,
     Skill = 3,
   }
+
+  public enum CRSpecial
+  {
+    ALL = -999,
+    Half = 0,
+    Third = -1,
+    Fourth = -2,
+    Sixth = -3,
+    Eighth = -4,
+  }
 }

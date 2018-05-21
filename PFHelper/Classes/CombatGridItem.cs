@@ -5,6 +5,8 @@ namespace PFHelper.Classes
 {
   public class CombatGridItem : ICloneable
   {
+    private static Random rand = new Random();
+
     public int BestiaryId { get; set; }
     public int Init { get; set; }
     public string Name { get; set; }
@@ -28,7 +30,7 @@ namespace PFHelper.Classes
     public CombatGridItem(Bestiary b)
     {
       BestiaryId = b.BestiaryId;
-      Init = b.Init;
+      Init = rand.Next(1,21) + b.Init;
       Name = b.Name;
       PC = false;
       HP = b.Hp;

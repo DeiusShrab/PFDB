@@ -27,13 +27,13 @@ namespace PFAPI.Helpers
       foreach (var cr in request.Crs)
       {
         Bestiary mon = new Bestiary();
-        if (request.Group && groupMon.Select(x => x.Cr).Contains(cr))
+        if (request.Group && (groupMon.Select(x => x.Cr).Contains(cr)))
         {
           mon = groupMon.First(x => x.Cr == cr);
         }
         else
         {
-          var monList = validSpawns.Where(x => x.Cr == cr).ToList();
+          var monList = validSpawns.Where(x => x.Cr == cr || cr == (int)CRSpecial.ALL).ToList();
           mon = monList.ElementAt(random.Next(monList.Count));
         }
 
