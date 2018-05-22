@@ -22,6 +22,22 @@ namespace PFDBSite.Controllers
       return View();
     }
 
+    [HttpGet("Bestiary")]
+    public IActionResult BestiaryList()
+    {
+      var context = PFDAL.GetContext();
+      var model = new Views.DM.Bestiary_.CreateModel(context);
+      return View(model);
+    }
+
+    [HttpGet("Bestiary/Details")]
+    public IActionResult BestiaryDetail()
+    {
+      var context = PFDAL.GetContext();
+      var model = new Views.DM.Bestiary_.DetailsModel(context);
+      return View(model);
+    }
+
     #endregion
   }
 }

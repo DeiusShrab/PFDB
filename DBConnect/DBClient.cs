@@ -210,6 +210,20 @@ namespace DBConnect
         return false;
     }
 
+    public static List<Environment> GetEnvironmentsForContinent(int continentId)
+    {
+      var ret = new List<Environment>();
+
+      var response = client.GetAsync($"{API_ADDR}EnvironmentsForContinent?continentId={continentId}").Result;
+      if (response.IsSuccessStatusCode)
+      {
+        var content = response.Content;
+        ret = JsonConvert.DeserializeObject<List<Environment>>(content.ReadAsStringAsync().Result);
+      }
+
+      return ret;
+    }
+
     #endregion
 
     #region Details

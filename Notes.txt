@@ -8,9 +8,6 @@ Update big text fields like Attack, Defense, and Special to something machine-re
 	or split them into a new datatype. AbilityId, BestiaryId
 		(Melee/Ranged), Attack Bonus, Damage, Crit, Range, Type (P/S/B, Cone, Burst), Effects (+1d6 cold, etc)
 		(Special), Range, Type (Cone, Burst, etc), Target, Effect
-Copy From
-	Bestiary (and other?) option to create a new creature from an existing one
-	Basically leave everything loaded but reset the BID to 0
 NPC Builder (Looking like its own entirely new tool atm) (YEAH TIME TO WRITE A FULL CHARACTER CREATION UTILITY AAAAAAAAAA)
 	Start with a Bestiary entry
 		OR A RACE. WELP.
@@ -36,7 +33,6 @@ Code First Mapping
 
 TODO AT HOME
 Publish
-	Set up a publish script for the server that gets the latest and runs dotnet publish
 	For the client, set up a publish profile that puts everything in a zip file and throws it into dropbox
 Run NPC to Bestiary script
 Remove ALL from season, time, etc

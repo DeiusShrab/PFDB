@@ -8,9 +8,10 @@ namespace DBConnect.ConnectModels
     public bool Group { get; set; }
     public bool Npc { get; set; }
     public int ContinentId { get; set; }
-    public int TerrainId { get; set; }
+    public int EnvironmentId { get; set; }
     public int TimeId { get; set; }
     public int SeasonId { get; set; }
+    public int PlaneId { get; set; }
   }
   public class RandomEncounterResult
   {

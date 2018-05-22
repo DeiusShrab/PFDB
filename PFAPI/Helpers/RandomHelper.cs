@@ -18,9 +18,9 @@ namespace PFAPI.Helpers
       var groupMon = new List<Bestiary>();
       var validSpawns = from s in context.MonsterSpawn
                         join b in context.Bestiary on s.BestiaryId equals b.BestiaryId
-                        where (s.ContinentId == request.ContinentId || request.ContinentId == 0)
-                            && (s.SeasonId == request.SeasonId || request.SeasonId == 0)
-                            && (s.TimeId == request.TimeId || request.TimeId == 0)
+                        where (s.ContinentId == request.ContinentId || request.ContinentId <= 0)
+                            && (s.SeasonId == request.SeasonId || request.SeasonId <= 0)
+                            && (s.TimeId == request.TimeId || request.TimeId <= 0)
                             && b.CharacterFlag == request.Npc
                         select b;
 

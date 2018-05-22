@@ -74,7 +74,7 @@ namespace PFHelper.Classes
 
     public string ToNumDate()
     {
-      // yy...yymmdd
+      // yy...yy-mm-dd
 
       var ret = $"{Year.ToString()}-{Month.ToString("D2")}-{Day.ToString("D2")}";
 

@@ -62,7 +62,10 @@ namespace PFHelper
       }
       set
       {
-        LbxContinent.SelectedValue = value;
+        if (continentList.Select(x => x.Result).Contains(value))
+          LbxContinent.SelectedValue = value;
+        else
+          LbxContinent.SelectedValue = null;
       }
     }
 
@@ -76,7 +79,10 @@ namespace PFHelper
       }
       set
       {
-        LbxTime.SelectedValue = value;
+        if (timeList.Select(x => x.Result).Contains(value))
+          LbxTime.SelectedValue = value;
+        else
+          LbxTime.SelectedValue = null;
       }
     }
 
@@ -90,21 +96,27 @@ namespace PFHelper
       }
       set
       {
-        LbxPlane.SelectedValue = value;
+        if (planeList.Select(x => x.Result).Contains(value))
+          LbxPlane.SelectedValue = value;
+        else
+          LbxPlane.SelectedValue = null;
       }
     }
 
-    public int TerrainId
+    public int EnvironmentId
     {
       get
       {
-        if (LbxTerrain.SelectedItem != null)
-          return (int)LbxTerrain.SelectedValue;
+        if (LbxEnvironment.SelectedItem != null)
+          return (int)LbxEnvironment.SelectedValue;
         return 0;
       }
       set
       {
-        LbxTerrain.SelectedValue = value;
+        if (environmentList.Select(x => x.Result).Contains(value))
+          LbxEnvironment.SelectedValue = value;
+        else
+          LbxEnvironment.SelectedValue = null;
       }
     }
 
@@ -305,7 +317,10 @@ namespace PFHelper
 
         return 0;
       }
-      set { DrpEvtType.SelectedValue = value; }
+      set
+      {
+        DrpEvtType.SelectedValue = value;
+      }
     }
 
     public string EventData
@@ -370,6 +385,7 @@ namespace PFHelper
     private ObservableCollection<DisplayResult> planeList;
     private ObservableCollection<DisplayResult> timeList;
     private ObservableCollection<DisplayResult> campaignList;
+    private ObservableCollection<DisplayResult> environmentList;
     private ObservableCollection<string> campaignDataList;
 
     private List<TrackedEvent> trackedEvents;
@@ -379,6 +395,7 @@ namespace PFHelper
     private List<Time> times;
     private List<Plane> planes;
     private List<Campaign> campaigns;
+    private List<DBConnect.DBModels.Environment> environments;
     private Dictionary<string, string> CampaignData;
 
     private RandomWeatherResult WeatherResult;
@@ -417,20 +434,19 @@ namespace PFHelper
       liveEventList = new ObservableCollection<LiveEvent>();
       campaignDataList = new ObservableCollection<string>();
       campaignList = new ObservableCollection<DisplayResult>();
+      environmentList = new ObservableCollection<DisplayResult>();
 
       if (!LoadDBData())
       {
         MessageBox.Show("ERROR - Failed to connect to server. Is the config set correctly?");
       }
 
-      LoadSavedData();
-
       LbxD20.DisplayMemberPath = LbxD4.DisplayMemberPath = LbxD6.DisplayMemberPath = LbxD8.DisplayMemberPath = LbxD10.DisplayMemberPath = LbxD12.DisplayMemberPath
         = LbxEncounterCreatures.DisplayMemberPath = LbxContinent.DisplayMemberPath = LbxCreatureInfo.DisplayMemberPath = LbxPlane.DisplayMemberPath
-        = LbxTime.DisplayMemberPath = LbxTerrain.DisplayMemberPath = DrpEvtType.DisplayMemberPath = DrpCampaignSelect.DisplayMemberPath = "Display";
+        = LbxTime.DisplayMemberPath = LbxEnvironment.DisplayMemberPath = DrpEvtType.DisplayMemberPath = DrpCampaignSelect.DisplayMemberPath = "Display";
       LbxD20.SelectedValuePath = LbxD4.SelectedValuePath = LbxD6.SelectedValuePath = LbxD8.SelectedValuePath = LbxD10.SelectedValuePath = LbxD12.SelectedValuePath
         = LbxEncounterCreatures.SelectedValuePath = LbxContinent.SelectedValuePath = LbxCreatureInfo.SelectedValuePath = LbxPlane.SelectedValuePath
-        = LbxTime.SelectedValuePath = LbxTerrain.SelectedValuePath = DrpEvtType.SelectedValuePath = DrpCampaignSelect.SelectedValuePath = "Result";
+        = LbxTime.SelectedValuePath = LbxEnvironment.SelectedValuePath = DrpEvtType.SelectedValuePath = DrpCampaignSelect.SelectedValuePath = "Result";
 
       LbxEncounterCRs.DisplayMemberPath = "Display";
       LbxEncounterCRs.SelectedValuePath = "Values";
@@ -443,7 +459,9 @@ namespace PFHelper
       LbxTime.ItemsSource = timeList;
       LbxCampaignData.ItemsSource = campaignDataList;
       DrpCampaignSelect.ItemsSource = campaignList;
-
+      
+      LoadSavedData();
+      LoadContinentEnvironments();
       UpdateDate();
 
       foreach (TrackedEventType item in Enum.GetValues(typeof(TrackedEventType)))
@@ -460,6 +478,14 @@ namespace PFHelper
     {
       var ret = false;
 
+      continentList.Clear();
+      timeList.Clear();
+      planeList.Clear();
+
+      continentList.Add(new DisplayResult { Display = "ALL", Result = -1 });
+      timeList.Add(new DisplayResult { Display = "ALL", Result = -1 });
+      planeList.Add(new DisplayResult { Display = "ALL", Result = -1 });
+
       continents = new List<Continent>();
       seasons = new List<Season>();
       months = new List<Month>();
@@ -467,6 +493,7 @@ namespace PFHelper
       planes = new List<Plane>();
       trackedEvents = new List<TrackedEvent>();
       campaigns = new List<Campaign>();
+      environments = new List<DBConnect.DBModels.Environment>();
       CampaignData = new Dictionary<string, string>();
 
       if (PFConfig.ConfigExists())
@@ -493,15 +520,15 @@ namespace PFHelper
           campaignList.Clear();
           campaignDataList.Clear();
 
-          foreach (var item in continents)
+          foreach (var item in continents.OrderBy(x => x.Name))
           {
             continentList.Add(new DisplayResult() { Display = item.Name, Result = item.ContinentId });
           }
-          foreach (var item in times)
+          foreach (var item in times.OrderBy(x => x.Name))
           {
             timeList.Add(new DisplayResult() { Display = item.Name, Result = item.TimeId });
           }
-          foreach (var item in planes)
+          foreach (var item in planes.OrderBy(x => x.Name))
           {
             planeList.Add(new DisplayResult() { Display = item.Name, Result = item.PlaneId });
           }
@@ -509,10 +536,12 @@ namespace PFHelper
           {
             liveEventList.Add(new LiveEvent(item));
           }
-          foreach (var item in campaigns)
+          foreach (var item in campaigns.OrderBy(x => x.CampaignName))
           {
             campaignList.Add(new DisplayResult() { Display = item.CampaignName, Result = item.CampaignId });
           }
+
+          BtnEvtSortNext_Click(null, null);
 
           campaignDataList.AddRange(CampaignData.Keys);
 
@@ -541,6 +570,9 @@ namespace PFHelper
         EncounterZone = saveObject.CbxZone;
         RationsInfinite = saveObject.CbxInfRations;
         ContinentId = saveObject.ContinentId;
+        TimeId = saveObject.TimeId;
+        PlaneId = saveObject.PlaneId;
+        EnvironmentId = saveObject.EnvironmentId;
         CombatRound = saveObject.CombatRound;
         CbxWeatherLock.IsChecked = saveObject.CbxWeatherLock;
 
@@ -585,6 +617,9 @@ namespace PFHelper
       saveObject.CbxZone = EncounterZone;
       saveObject.CbxInfRations = RationsInfinite;
       saveObject.ContinentId = ContinentId;
+      saveObject.EnvironmentId = EnvironmentId;
+      saveObject.PlaneId = PlaneId;
+      saveObject.TimeId = TimeId;
       saveObject.CombatRound = CombatRound;
       saveObject.CbxWeatherLock = CbxWeatherLock.IsChecked == true;
 
@@ -631,7 +666,7 @@ namespace PFHelper
       catch (Exception ex)
       {
         File.WriteAllText(Path.Combine(Path.GetDirectoryName(saveDataPath), $"CampaignData {DateTime.Now.ToString("yyyyMMdd-hhmmss")}.log"), Newtonsoft.Json.JsonConvert.SerializeObject(CampaignData));
-        MessageBox.Show("Failed to save Events!\n" + ex.Message);
+        MessageBox.Show("Failed to save CampaignData!\n" + ex.Message);
       }
     }
 
@@ -779,7 +814,7 @@ namespace PFHelper
         Group = EncounterGroup,
         Npc = EncounterNPC,
         ContinentId = EncounterZone ? ContinentId : 0,
-        TerrainId = EncounterZone ? TerrainId : 0,
+        EnvironmentId = EncounterZone ? EnvironmentId : 0,
         TimeId = EncounterTime ? TimeId : 0
       };
 
@@ -920,6 +955,8 @@ namespace PFHelper
         else
           row.Background = Brushes.White;
       }
+
+      UpdateCampaignData("CurrentDate", CurrentDate.ToNumDate());
     }
 
     private void RunLiveEvent(LiveEvent e)
@@ -961,7 +998,7 @@ namespace PFHelper
           value -= Convert.ToInt32(num);
           break;
       }
-      CampaignData[key] = value.ToString();
+      UpdateCampaignData(key, value.ToString());
     }
 
     private void NextWeather(int d = 1)
@@ -1126,6 +1163,30 @@ namespace PFHelper
       ActiveCampaign.CampaignId = CampaignId;
       ActiveCampaign.CampaignName = CampaignName;
       ActiveCampaign.CampaignNotes = CampaignNotes;
+    }
+
+    private void LoadContinentEnvironments()
+    {
+      environmentList.Clear();
+
+      if (ContinentId > 0)
+      {
+        environments.Clear();
+        environments.AddRange(DBClient.GetEnvironmentsForContinent(ContinentId));
+
+        environmentList.Add(new DisplayResult { Display = "ALL", Result = -1 });
+
+        foreach (var item in environments.OrderBy(x => x.Name))
+        {
+          environmentList.Add(new DisplayResult { Display = item.Name, Result = item.EnvironmentId });
+        }
+      }
+    }
+
+    private void UpdateCampaignData(string key, string value)
+    {
+      CampaignData[key] = value;
+      SaveDataToDB();
     }
 
     #endregion
@@ -1488,12 +1549,8 @@ namespace PFHelper
     {
       if (!string.IsNullOrWhiteSpace(CampaignDataName))
       {
-        if (!CampaignData.ContainsKey(CampaignDataName))
-          CampaignData.Add(CampaignDataName, CampaignDataValue);
-        else
-          CampaignData[CampaignDataName] = CampaignDataValue;
+        UpdateCampaignData(CampaignDataName, CampaignDataValue);
 
-        DBClient.UpdateCampaignData(CampaignData);
         campaignDataList.Clear();
         campaignDataList.AddRange(CampaignData.Keys);
       }
@@ -1503,8 +1560,8 @@ namespace PFHelper
     {
       if (!string.IsNullOrWhiteSpace(CampaignDataNew) && !CampaignData.ContainsKey(CampaignDataNew))
       {
-        CampaignData.Add(CampaignDataNew, string.Empty);
-        DBClient.UpdateCampaignData(CampaignData);
+        UpdateCampaignData(CampaignDataNew, string.Empty);
+
         campaignDataList.Clear();
         campaignDataList.AddRange(CampaignData.Keys);
       }

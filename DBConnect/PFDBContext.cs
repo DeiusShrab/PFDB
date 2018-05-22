@@ -30,6 +30,7 @@ namespace DBConnect
     public DbSet<ClassAbility> ClassAbility { get; set; }
     public DbSet<ClassSkill> ClassSkill { get; set; }
     public DbSet<Continent> Continent { get; set; }
+    public DbSet<ContinentEnvironment> ContinentEnvironment { get; set; }
     public DbSet<ContinentWeather> ContinentWeather { get; set; }
     public DbSet<Enchantment> Enchantment { get; set; }
     public DbSet<Environment> Environment { get; set; }
@@ -994,6 +995,21 @@ namespace DBConnect
               .OnDelete(DeleteBehavior.Cascade);
       });
 
+      modelBuilder.Entity<ContinentEnvironment>(entity =>
+      {
+        entity.HasKey(e => new { e.ContinentId, e.EnvironmentId });
+
+        entity.HasOne(e => e.Continent)
+              .WithMany(e => e.ContinentEnvironments)
+              .HasForeignKey(e => e.ContinentId)
+              .OnDelete(DeleteBehavior.Cascade);
+
+        entity.HasOne(e => e.Environment)
+              .WithMany(e => e.ContinentEnvironments)
+              .HasForeignKey(e => e.EnvironmentId)
+              .OnDelete(DeleteBehavior.Cascade);
+      });
+
       modelBuilder.Entity<ContinentWeather>(entity =>
       {
         entity.HasKey(e => e.CWID);
@@ -1790,6 +1806,11 @@ namespace DBConnect
               .WithOne(e => e.Player)
               .HasForeignKey(e => e.PlayerId)
               .OnDelete(DeleteBehavior.Cascade);
+
+        entity.HasMany(e => e.Characters)
+              .WithOne(e => e.Player)
+              .HasForeignKey(e => e.PlayerId)
+              .OnDelete(DeleteBehavior.SetNull);
       });
 
       modelBuilder.Entity<PlayerCampaign>(entity =>

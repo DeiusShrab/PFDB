@@ -39,7 +39,7 @@ namespace PFDBSite
       services.AddDbContext<PFDBContext>(options =>
                 options.UseSqlServer($"Server={PFConfig.DB_ADDR};Database={PFConfig.DB_DB};User Id={PFConfig.DB_USER};Password={PFConfig.DB_PASS}"));
 
-      services.AddIdentity<ApplicationUser, IdentityRole>()
+      services.AddIdentity<DBConnect.DBModels.Player, IdentityRole>()
           .AddEntityFrameworkStores<PFDBContext>()
           .AddDefaultTokenProviders();
 

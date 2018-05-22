@@ -13,5 +13,6 @@ namespace DBConnect.DBModels
 
     public virtual ICollection<BestiaryEnvironment> BestiaryEnvironments { get; } = new List<BestiaryEnvironment>();
     public virtual ICollection<Location> Locations { get; } = new List<Location>();
+    public virtual ICollection<ContinentEnvironment> ContinentEnvironments { get; } = new List<ContinentEnvironment>();
   }
 }

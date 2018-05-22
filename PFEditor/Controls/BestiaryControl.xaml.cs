@@ -956,5 +956,13 @@ namespace PFEditor.Controls
         e.Handled = true;
       }
     }
+
+    private void BtnClone_Click(object sender, RoutedEventArgs e)
+    {
+      if (BestiaryId > 0)
+      {
+        ActiveBestiary.BestiaryId = BestiaryId = 0;
+      }
+    }
   }
 }

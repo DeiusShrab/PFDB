@@ -223,12 +223,6 @@ namespace PFAPI.Controllers
       return new JsonResult(helperQuery.SpellLookup(request));
     }
 
-    [HttpGet("FantasyDate")]
-    public IActionResult GetFantasyDate()
-    {
-      return Ok("11110101");
-    }
-
     [HttpPost("Spawns/{bestiaryId:int}")]
     public IActionResult UpdateSpawns([FromBody] SpawnUpdateRequest request, int bestiaryId)
     {
@@ -263,6 +257,15 @@ namespace PFAPI.Controllers
       helperQuery.UpdateContinentWeathers(request);
 
       return Ok();
+    }
+
+    [HttpGet("EnvironmentsForContinent")]
+    public IActionResult GetEnvironmentsForContinent(int continentId)
+    {
+      if (continentId <= 0)
+        return BadRequest();
+
+      return new JsonResult(helperQuery.EnvironmentsForContinent(continentId));
     }
 
     #endregion

@@ -23,6 +23,7 @@ Class
 ClassAbility
 ClassSkill
 Continent
+ContinentEnvironment
 ContinentWeather
 Enchantment
 Environment

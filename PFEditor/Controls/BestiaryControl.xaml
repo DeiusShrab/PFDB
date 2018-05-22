@@ -223,6 +223,7 @@
         <Button x:Name="BtnSortName" Content="Name" HorizontalAlignment="Left" Margin="47,619,0,0" VerticalAlignment="Top" Width="50" Click="BtnSortName_Click"/>
         <Label Content="Sort" HorizontalAlignment="Left" Margin="10,616,0,0" VerticalAlignment="Top"/>
         <Button x:Name="BtnSortCR" Content="CR" HorizontalAlignment="Left" Margin="102,619,0,0" VerticalAlignment="Top" Width="50" Click="BtnSortCR_Click"/>
+        <Button x:Name="BtnClone" Content="Clone This" HorizontalAlignment="Left" Margin="275,619,0,0" VerticalAlignment="Top" Width="75" Click="BtnClone_Click"/>
 
     </Grid>
 </UserControl>

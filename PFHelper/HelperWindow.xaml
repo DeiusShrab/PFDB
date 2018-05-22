@@ -128,7 +128,7 @@
                     <Label Content="Mysterious" HorizontalAlignment="Left" Margin="767,273,0,0" VerticalAlignment="Top"/>
                     <Label x:Name="LblChanceMysterious" Content="N/A" HorizontalAlignment="Left" Margin="764,283,0,0" VerticalAlignment="Top" FontSize="36"/>
                     <Label Content="Terrain" HorizontalAlignment="Left" Margin="980,226,0,0" VerticalAlignment="Top"/>
-                    <ListBox x:Name="LbxTerrain" HorizontalAlignment="Left" Height="180" Margin="980,257,0,0" VerticalAlignment="Top" Width="100"/>
+                    <ListBox x:Name="LbxEnvironment" HorizontalAlignment="Left" Height="180" Margin="980,257,0,0" VerticalAlignment="Top" Width="100"/>
                     <CheckBox x:Name="CbxEncounterTime" Content="Time" HorizontalAlignment="Left" Margin="318,19,0,0" VerticalAlignment="Top"/>
                     <ListBox x:Name="LbxTime" HorizontalAlignment="Left" Height="180" Margin="875,257,0,0" VerticalAlignment="Top" Width="100"/>
                     <Label Content="Time" HorizontalAlignment="Left" Margin="875,226,0,0" VerticalAlignment="Top"/>

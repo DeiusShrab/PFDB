@@ -126,5 +126,27 @@ namespace PFAPI.Helpers
         }
       }
     }
+
+    public List<Environment> EnvironmentsForContinent(int continentId)
+    {
+      var ret = new List<Environment>();
+      var context = PFDAL.GetContext();
+
+      if (continentId == 0)
+      {
+        ret.AddRange(context.Environment);
+      }
+      else
+      {
+        var envList = from ce in context.ContinentEnvironment
+                      join e in context.Environment on ce.EnvironmentId equals e.EnvironmentId
+                      where ce.ContinentId == continentId
+                      select e;
+
+        ret.AddRange(envList);
+      }
+
+      return ret;
+    }
   }
 }

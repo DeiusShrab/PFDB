@@ -17,5 +17,6 @@ namespace DBConnect.DBModels
     public virtual ICollection<Location> Locations { get; } = new List<Location>();
     public virtual ICollection<MonsterSpawn> MonsterSpawns { get; } = new List<MonsterSpawn>();
     public virtual ICollection<Territory> Territories { get; } = new List<Territory>();
+    public virtual ICollection<ContinentEnvironment> ContinentEnvironments { get; } = new List<ContinentEnvironment>();
   }
 }

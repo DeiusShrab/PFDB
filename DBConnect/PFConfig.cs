@@ -21,6 +21,10 @@ namespace DBConnect
     DB_PASS, // Database Password
     DB_DB, // Database DB to use
     CERT_PASS, // Password for SSL Cert
+    UDB_DB, // User DB to use for User Logins
+    UDB_USER, // User DB Username
+    UDB_PASS, // User DB Password
+    UDB_ADDR, // User DB Address
   }
 
   public static class PFConfig
@@ -37,6 +41,10 @@ namespace DBConnect
     public static string DB_USER => GetConfig(ConfigValues.DB_USER);
     public static string DB_PASS => GetConfig(ConfigValues.DB_PASS);
     public static string DB_DB => GetConfig(ConfigValues.DB_DB);
+    public static string UDB_ADDR => GetConfig(ConfigValues.UDB_ADDR);
+    public static string UDB_DB => GetConfig(ConfigValues.UDB_DB);
+    public static string UDB_USER => GetConfig(ConfigValues.UDB_USER);
+    public static string UDB_PASS => GetConfig(ConfigValues.UDB_PASS);
     public static string CERT_PASS => GetConfig(ConfigValues.CERT_PASS);
 
     private static string CONFIG_FILE = "PFConfig.json";
