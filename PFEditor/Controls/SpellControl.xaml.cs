@@ -1067,5 +1067,15 @@ namespace PFEditor.Controls
         }
       }
     }
+
+    private void BtnCloneSpell_Click(object sender, System.Windows.RoutedEventArgs e)
+    {
+      if (ActiveSpell != null)
+      {
+        ActiveSpell.SpellId = 0;
+        ActiveSpellDetail.SpellId = 0;
+        LoadActiveSpell();
+      }
+    }
   }
 }

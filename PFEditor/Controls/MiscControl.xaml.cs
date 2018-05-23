@@ -502,5 +502,89 @@ namespace PFEditor.Controls
         e.Handled = true;
       }
     }
+
+    private void BtnTimeDel_Click(object sender, RoutedEventArgs e)
+    {
+      if (LbxTime.SelectedItem != null)
+      {
+        var delTime = DBClient.GetTime((int)LbxTime.SelectedValue);
+        if (delTime != null && MessageBox.Show("Are you sure you wish to delete " + delTime.Name) == MessageBoxResult.OK)
+        {
+          DBClient.DeleteTime(delTime.TimeId);
+          TimeList.Clear();
+          TimeList.AddRange(DBClient.GetList("Time").OrderBy(x => x.Name));
+        }
+      }
+    }
+
+    private void BtnSeasonDel_Click(object sender, RoutedEventArgs e)
+    {
+      if (LbxSeason.SelectedItem != null)
+      {
+        var delSeason = DBClient.GetSeason((int)LbxSeason.SelectedValue);
+        if (delSeason != null && MessageBox.Show("Are you sure you wish to delete " + delSeason.Name) == MessageBoxResult.OK)
+        {
+          DBClient.DeleteSeason(delSeason.SeasonId);
+          SeasonList.Clear();
+          SeasonList.AddRange(DBClient.GetList("Season").OrderBy(x => x.Name));
+        }
+      }
+    }
+
+    private void BtnPlaneDel_Click(object sender, RoutedEventArgs e)
+    {
+      if (LbxPlane.SelectedItem != null)
+      {
+        var delPlane = DBClient.GetPlane((int)LbxPlane.SelectedValue);
+        if (delPlane != null && MessageBox.Show("Are you sure you wish to delete " + delPlane.Name) == MessageBoxResult.OK)
+        {
+          DBClient.DeletePlane(delPlane.PlaneId);
+          PlaneList.Clear();
+          PlaneList.AddRange(DBClient.GetList("Plane").OrderBy(x => x.Name));
+        }
+      }
+    }
+
+    private void BtnMonthDel_Click(object sender, RoutedEventArgs e)
+    {
+      if (LbxMonth.SelectedItem != null)
+      {
+        var delMonth = DBClient.GetMonth((int)LbxMonth.SelectedValue);
+        if (delMonth != null && MessageBox.Show("Are you sure you wish to delete " + delMonth.Name) == MessageBoxResult.OK)
+        {
+          DBClient.DeleteMonth(delMonth.MonthId);
+          MonthList.Clear();
+          MonthList.AddRange(DBClient.GetList("Month").OrderBy(x => x.Name));
+        }
+      }
+    }
+
+    private void BtnTerrainDel_Click(object sender, RoutedEventArgs e)
+    {
+      if (LbxTerrain.SelectedItem != null)
+      {
+        var delTerrain = DBClient.GetTerrain((int)LbxTerrain.SelectedValue);
+        if (delTerrain != null && MessageBox.Show("Are you sure you wish to delete " + delTerrain.Name) == MessageBoxResult.OK)
+        {
+          DBClient.DeleteTerrain(delTerrain.TerrainId);
+          TerrainList.Clear();
+          TerrainList.AddRange(DBClient.GetList("Terrain").OrderBy(x => x.Name));
+        }
+      }
+    }
+
+    private void BtnEnvironmentDel_Click(object sender, RoutedEventArgs e)
+    {
+      if (LbxEnvironment.SelectedItem != null)
+      {
+        var delEnvironment = DBClient.GetEnvironment((int)LbxEnvironment.SelectedValue);
+        if (delEnvironment != null && MessageBox.Show("Are you sure you wish to delete " + delEnvironment.Name) == MessageBoxResult.OK)
+        {
+          DBClient.DeleteEnvironment(delEnvironment.EnvironmentId);
+          EnvironmentList.Clear();
+          EnvironmentList.AddRange(DBClient.GetList("Environment").OrderBy(x => x.Name));
+        }
+      }
+    }
   }
 }

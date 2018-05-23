@@ -371,6 +371,12 @@ namespace PFHelper
       set { TxtCampaignDataNew.Text = value; }
     }
 
+    public bool WeatherLock
+    {
+      get { return CbxWeatherLock.IsChecked ?? false; }
+      set { CbxWeatherLock.IsChecked = value; }
+    }
+
     #endregion
 
     #region Data Properties
@@ -462,7 +468,10 @@ namespace PFHelper
       
       LoadSavedData();
       LoadContinentEnvironments();
-      UpdateDate();
+      UpdateDateDisplay();
+      UpdateWeatherDisplay();
+
+      IntNumD20.Value = IntNumD12.Value = IntNumD10.Value = IntNumD8.Value = IntNumD6.Value = IntNumD4.Value = 1;
 
       foreach (TrackedEventType item in Enum.GetValues(typeof(TrackedEventType)))
       {
@@ -574,7 +583,7 @@ namespace PFHelper
         PlaneId = saveObject.PlaneId;
         EnvironmentId = saveObject.EnvironmentId;
         CombatRound = saveObject.CombatRound;
-        CbxWeatherLock.IsChecked = saveObject.CbxWeatherLock;
+        WeatherLock = saveObject.WeatherLock;
 
         RationsLeft = saveObject.Rations;
         CurrentDate = saveObject.Date;
@@ -621,7 +630,7 @@ namespace PFHelper
       saveObject.PlaneId = PlaneId;
       saveObject.TimeId = TimeId;
       saveObject.CombatRound = CombatRound;
-      saveObject.CbxWeatherLock = CbxWeatherLock.IsChecked == true;
+      saveObject.WeatherLock = WeatherLock;
 
       saveObject.Rations = RationsLeft;
       saveObject.Date = CurrentDate;
@@ -923,7 +932,7 @@ namespace PFHelper
       var oldDate = new FantasyDate(CurrentDate.ShortDate);
       CurrentDate.AddDays(i);
       NextWeather(i);
-      UpdateDate();
+      UpdateDateDisplay();
 
       if (!RationsInfinite && i > 0)
         AddRations(i * -1);
@@ -1003,7 +1012,7 @@ namespace PFHelper
 
     private void NextWeather(int d = 1)
     {
-      if (CbxWeatherLock.IsChecked == true)
+      if (WeatherLock)
         return;
 
       if (WeatherResult == null && CurrentWeather == null)// DEBUG
@@ -1046,18 +1055,31 @@ namespace PFHelper
       CurrentWeather = DBClient.GetWeather(CurrentWeatherGroup.WeatherId);
     }
 
-    private ContinentWeather GetRandomWeather()
+    private ContinentWeather GetRandomWeather(bool onlyParentWeather = true)
     {
-      ContinentWeather weather;
-      var initialWeathers = WeatherResult.WeatherList.Where(x => x.ParentCWID == 0);
+      ContinentWeather weather = null;
+      var initialWeathers = WeatherResult.WeatherList.Where(x => x.ParentCWID == 0 || !onlyParentWeather);
       if (initialWeathers.Count() == 0)
       {
         weather = new ContinentWeather() { CWName = "ERR" };
       }
       else
       {
-        weather = initialWeathers.ElementAt(random.Next(initialWeathers.Count()));
-        weather.Duration = weather.Duration - random.Next(weather.Duration);
+        var totalWeight = initialWeathers.Sum(x => x.Weight);
+        var randW = random.Next(totalWeight);
+        foreach (var w in initialWeathers)
+        {
+          if (randW < w.Weight)
+          {
+            weather = w;
+            break;
+          }
+        }
+        if (weather == null)
+          weather = initialWeathers.ElementAt(random.Next(initialWeathers.Count()));
+
+        if (!onlyParentWeather)
+          weather.Duration = weather.Duration - random.Next(weather.Duration);
       }
 
       return weather;
@@ -1073,7 +1095,7 @@ namespace PFHelper
       }
     }
 
-    private void UpdateDate()
+    private void UpdateDateDisplay()
     {
       if (CurrentDate == null || seasons.Count == 0 || months.Count == 0)
       {
@@ -1106,6 +1128,20 @@ namespace PFHelper
         MoonPhase = "Waxing Gibbous";
       else
         MoonPhase = "MOON MOON";
+    }
+
+    private void UpdateWeatherDisplay()
+    {
+      if (CurrentWeather == null)
+      {
+        LblCurrentWeather.Content = "NONE";
+        LblCurrentWeatherGroup.Content = "NONE";
+      }
+      else
+      {
+        LblCurrentWeather.Content = CurrentWeather.Name;
+        LblCurrentWeatherGroup.Content = CurrentWeatherGroup.CWName;
+      }
     }
 
     private void ReloadWeatherTable()
@@ -1470,6 +1506,7 @@ namespace PFHelper
       {
         CurrentWeather = DBClient.GetWeather(popup.SelectedResult);
         LblCurrentWeather.Content = CurrentWeather.Name;
+        WeatherLock = true;
       }
     }
 
@@ -1621,6 +1658,12 @@ namespace PFHelper
         ActiveCampaign = DBClient.GetCampaign((int)DrpCampaignSelect.SelectedValue);
         LoadCampaign();
       }
+    }
+
+    private void BtnRandomWeather_Click(object sender, RoutedEventArgs e)
+    {
+      CurrentWeatherGroup = GetRandomWeather(false);
+      CurrentWeather = DBClient.GetWeather(CurrentWeatherGroup.WeatherId);
     }
   }
 }

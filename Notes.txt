@@ -32,6 +32,10 @@ Code First Mapping
 	https://blog.oneunicorn.com/2017/09/25/many-to-many-relationships-in-ef-core-2-0-part-1-the-basics/
 
 TODO AT HOME
+Strip out home page
+	Move the silly home page out of PFSite, instead make a separate home page that has links to various services.
+	PFSite home page will be PathfinderController/Index
+	Change pfsite config to use /pathfinder instead of / as root
 Publish
 	For the client, set up a publish profile that puts everything in a zip file and throws it into dropbox
 Run NPC to Bestiary script

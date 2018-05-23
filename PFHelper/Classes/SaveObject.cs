@@ -24,6 +24,6 @@ namespace PFHelper.Classes
     public bool CbxZone { get; set; }
     public bool CbxTime { get; set; }
     public bool CbxNpc { get; set; }
-    public bool CbxWeatherLock { get; set; }
+    public bool WeatherLock { get; set; }
   }
 }

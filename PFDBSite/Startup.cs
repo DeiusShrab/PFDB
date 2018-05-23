@@ -36,11 +36,16 @@ namespace PFDBSite
         options.Filters.Add(new RequireHttpsAttribute());
       });
 #endif
-      services.AddDbContext<PFDBContext>(options =>
-                options.UseSqlServer($"Server={PFConfig.DB_ADDR};Database={PFConfig.DB_DB};User Id={PFConfig.DB_USER};Password={PFConfig.DB_PASS}"));
+      services.AddDbContext<PFUserContext>(options =>
+                options.UseSqlServer($"Server={PFConfig.UDB_ADDR};Database={PFConfig.UDB_DB};User Id={PFConfig.UDB_USER};Password={PFConfig.UDB_PASS}"));
 
-      services.AddIdentity<DBConnect.DBModels.Player, IdentityRole>()
-          .AddEntityFrameworkStores<PFDBContext>()
+      var a = PFConfig.UDB_ADDR;
+      var b = PFConfig.UDB_DB;
+      var c = PFConfig.UDB_USER;
+      var d = PFConfig.UDB_PASS;
+
+      services.AddIdentity<ApplicationUser, IdentityRole>()
+          .AddEntityFrameworkStores<PFUserContext>()
           .AddDefaultTokenProviders();
 
       services.Configure<IdentityOptions>(options =>
