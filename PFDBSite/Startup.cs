@@ -1,5 +1,7 @@
-﻿using System.Security.Claims;
+﻿using System;
+using System.Security.Claims;
 using System.Text;
+using System.Threading.Tasks;
 using DBConnect;
 using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
@@ -120,6 +122,34 @@ namespace PFDBSite
                   name: "default",
                   template: "{controller=Home}/{action=Index}/{id?}");
       });
+    }
+
+    private async Task CreateRoles(IServiceProvider serviceProvider)
+    {
+      //adding custom roles
+      var RoleManager = serviceProvider.GetRequiredService<RoleManager<IdentityRole>>();
+      var UserManager = serviceProvider.GetRequiredService<UserManager<ApplicationUser>>();
+      string[] roleNames = { "Admin", "DM" };
+      IdentityResult roleResult;
+      
+      foreach (var roleName in roleNames)
+      {
+        //creating the roles and seeding them to the database
+        var roleExist = await RoleManager.RoleExistsAsync(roleName);
+        if (!roleExist)
+        {
+          roleResult = await RoleManager.CreateAsync(new IdentityRole(roleName));
+        }
+      }
+
+      var user = await UserManager.FindByEmailAsync(PFConfig.SITE_ADMIN_EMAIL);
+            
+      if (user != null)
+      {
+        var isAdmin = await UserManager.IsInRoleAsync(user, "Admin");
+        if (!isAdmin)
+          await UserManager.AddToRoleAsync(user, "Admin");
+      }
     }
   }
 }

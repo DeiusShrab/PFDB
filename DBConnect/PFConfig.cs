@@ -25,6 +25,7 @@ namespace DBConnect
     UDB_USER, // User DB Username
     UDB_PASS, // User DB Password
     UDB_ADDR, // User DB Address
+    SITE_ADMIN_EMAIL, // Email Address for the site admin
   }
 
   public static class PFConfig
@@ -46,6 +47,7 @@ namespace DBConnect
     public static string UDB_USER => GetConfig(ConfigValues.UDB_USER);
     public static string UDB_PASS => GetConfig(ConfigValues.UDB_PASS);
     public static string CERT_PASS => GetConfig(ConfigValues.CERT_PASS);
+    public static string SITE_ADMIN_EMAIL => GetConfig(ConfigValues.SITE_ADMIN_EMAIL);
 
     private static string CONFIG_FILE = "PFConfig.json";
     private static Dictionary<string, string> Configuration;
