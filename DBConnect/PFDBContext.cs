@@ -993,6 +993,11 @@ namespace DBConnect
               .WithOne(e => e.Continent)
               .HasForeignKey(e => e.ContinentId)
               .OnDelete(DeleteBehavior.Cascade);
+
+        entity.HasMany(e => e.ContinentEvents)
+              .WithOne(e => e.Continent)
+              .HasForeignKey(e => e.ContinentId)
+              .OnDelete(DeleteBehavior.Cascade);
       });
 
       modelBuilder.Entity<ContinentEnvironment>(entity =>
@@ -2144,6 +2149,11 @@ namespace DBConnect
         entity.HasOne(e => e.Campaign)
               .WithMany(e => e.TrackedEvents)
               .HasForeignKey(e => e.CampaignId)
+              .OnDelete(DeleteBehavior.Cascade);
+
+        entity.HasOne(e => e.Continent)
+              .WithMany(e => e.ContinentEvents)
+              .HasForeignKey(e => e.ContinentId)
               .OnDelete(DeleteBehavior.Cascade);
       });
 

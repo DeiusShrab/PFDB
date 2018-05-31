@@ -4,11 +4,11 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Identity;
 
-namespace PFDBSite.Models.ManageViewModels
+namespace PFDBSite.Models.AdminModels
 {
-  public class ManageRolesViewModel
+  public class UsersEditViewModel
   {
-    public List<ApplicationUser> Users { get; set; }
+    public ApplicationUser User { get; set; }
     public List<Tuple<IdentityRole, bool>> Roles { get; set; }
   }
 }

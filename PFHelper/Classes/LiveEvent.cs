@@ -17,6 +17,7 @@ namespace PFHelper.Classes
     public string Location;
     public int CampaignId;
     public string Data;
+    public int ContinentId;
 
     public TrackedEventType EventType;
     public FantasyDate DateNextOccurring;

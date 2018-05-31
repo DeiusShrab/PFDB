@@ -44,6 +44,8 @@ namespace PFDBSite.Controllers
       _emailSender = emailSender;
       _logger = logger;
       _urlEncoder = urlEncoder;
+
+      //CreateRoles();
     }
 
     [TempData]
@@ -494,30 +496,6 @@ namespace PFDBSite.Controllers
       return View(nameof(ShowRecoveryCodes), model);
     }
 
-    [HttpGet]
-    [Authorize(Roles = "Admin")]
-    public async Task<IActionResult> ManageRoles()
-    {
-      // Fix this one to be a list of users with links to individual manage pages
-      return NotFound();
-      var user = await _userManager.GetUserAsync(User);
-      if (user == null)
-      {
-        throw new ApplicationException($"Unable to load user with ID '{_userManager.GetUserId(User)}'.");
-      }
-
-      var model = new ManageRolesViewModel();
-
-      model.Users = _userManager.Users.ToList();
-      model.Roles = new List<Tuple<IdentityRole, bool>>();
-      foreach (var role in _roleManager.Roles.ToList())
-      {
-        model.Roles.Add(new Tuple<IdentityRole, bool>(role, _userManager.IsInRoleAsync()))
-      }
-
-      return View(model);
-    }
-
     #region Helpers
 
     private void AddErrors(IdentityResult result)
@@ -565,6 +543,32 @@ namespace PFDBSite.Controllers
 
       model.SharedKey = FormatKey(unformattedKey);
       model.AuthenticatorUri = GenerateQrCodeUri(user.Email, unformattedKey);
+    }
+
+    private void CreateRoles()
+    {
+      //adding custom roles
+      string[] roleNames = { "Admin", "DM" };
+      IdentityResult roleResult;
+
+      foreach (var roleName in roleNames)
+      {
+        //creating the roles and seeding them to the database
+        var roleExist = _roleManager.RoleExistsAsync(roleName).Result;
+        if (!roleExist)
+        {
+          roleResult = _roleManager.CreateAsync(new IdentityRole(roleName)).Result;
+        }
+      }
+
+      var user = _userManager.FindByEmailAsync(DBConnect.PFConfig.SITE_ADMIN_EMAIL).Result;
+
+      if (user != null)
+      {
+        var isAdmin = _userManager.IsInRoleAsync(user, "Admin").Result;
+        if (!isAdmin)
+          _userManager.AddToRoleAsync(user, "Admin");
+      }
     }
 
     #endregion

@@ -1,0 +1,102 @@
+﻿@model PFDBSite.Models.ManageViewModels.ManageUsersEditViewModel
+
+@{
+    ViewData["Title"] = "ManageUsersEdit";
+}
+
+<h2>ManageUsersEdit</h2>
+
+<hr />
+<div class="row">
+  <div class="col-md-4">
+    <h4>User Data</h4>
+    <form asp-action="ManageUsersEdit">
+      <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+      <div class="form-group">
+        <label asp-for="User.PlayerId" class="control-label"></label>
+        <input asp-for="User.PlayerId" class="form-control" />
+        <span asp-validation-for="User.PlayerId" class="text-danger"></span>
+      </div>
+      <input type="hidden" asp-for="User.Id" />
+      <div class="form-group">
+        <label asp-for="User.UserName" class="control-label"></label>
+        <input asp-for="User.UserName" class="form-control" />
+        <span asp-validation-for="User.UserName" class="text-danger"></span>
+      </div>
+      <div class="form-group">
+        <label asp-for="User.NormalizedUserName" class="control-label"></label>
+        <input asp-for="User.NormalizedUserName" class="form-control" />
+        <span asp-validation-for="User.NormalizedUserName" class="text-danger"></span>
+      </div>
+      <div class="form-group">
+        <label asp-for="User.Email" class="control-label"></label>
+        <input asp-for="User.Email" class="form-control" />
+        <span asp-validation-for="User.Email" class="text-danger"></span>
+      </div>
+      <div class="form-group">
+        <label asp-for="User.NormalizedEmail" class="control-label"></label>
+        <input asp-for="User.NormalizedEmail" class="form-control" />
+        <span asp-validation-for="User.NormalizedEmail" class="text-danger"></span>
+      </div>
+      <div class="form-group">
+        <div class="checkbox">
+          <label>
+            <input asp-for="User.EmailConfirmed" /> @Html.DisplayNameFor(model => model.User.EmailConfirmed)
+          </label>
+        </div>
+      </div>
+      <div class="form-group">
+        <label asp-for="User.PhoneNumber" class="control-label"></label>
+        <input asp-for="User.PhoneNumber" class="form-control" />
+        <span asp-validation-for="User.PhoneNumber" class="text-danger"></span>
+      </div>
+      <div class="form-group">
+        <div class="checkbox">
+          <label>
+            <input asp-for="User.PhoneNumberConfirmed" /> @Html.DisplayNameFor(model => model.User.PhoneNumberConfirmed)
+          </label>
+        </div>
+      </div>
+      <div class="form-group">
+        <div class="checkbox">
+          <label>
+            <input asp-for="User.TwoFactorEnabled" /> @Html.DisplayNameFor(model => model.User.TwoFactorEnabled)
+          </label>
+        </div>
+      </div>
+      <div class="form-group">
+        <label asp-for="User.LockoutEnd" class="control-label"></label>
+        <input asp-for="User.LockoutEnd" class="form-control" />
+        <span asp-validation-for="User.LockoutEnd" class="text-danger"></span>
+      </div>
+      <div class="form-group">
+        <div class="checkbox">
+          <label>
+            <input asp-for="User.LockoutEnabled" /> @Html.DisplayNameFor(model => model.User.LockoutEnabled)
+          </label>
+        </div>
+      </div>
+      <div class="form-group">
+        <label asp-for="User.AccessFailedCount" class="control-label"></label>
+        <input asp-for="User.AccessFailedCount" class="form-control" />
+        <span asp-validation-for="User.AccessFailedCount" class="text-danger"></span>
+      </div>
+      <div class="form-group">
+        <input type="submit" value="Save" class="btn btn-default" />
+      </div>
+    </form>
+  </div>
+  <div class="col-md-4">
+    <h4>User Roles</h4>
+    @foreach (var role in Model.Roles)
+    {
+      @Html.LabelFor(r => role.Item1.Name)
+      @Html.CheckBoxFor(r => role.Item2)
+    }
+  </div>
+</div>
+
+<div>
+    <a asp-action="Index">Back to List</a>
+</div>
+

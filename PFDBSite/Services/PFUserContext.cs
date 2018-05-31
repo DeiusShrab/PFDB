@@ -13,6 +13,8 @@ namespace PFDBSite.Services
   {
     public virtual DbSet<ApplicationUser> ApplicationUsers { get; set; }
 
+    public PFUserContext() : base() { }
+
     public PFUserContext(DbContextOptions<PFUserContext> options) : base(options) { }
 
     protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
