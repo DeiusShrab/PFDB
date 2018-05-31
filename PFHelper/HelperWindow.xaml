@@ -209,7 +209,7 @@
       </TabItem>
       <TabItem x:Name="TabEventTracker" Header="Event Tracker" Margin="-2,-2,-2,0">
         <Grid Background="#FFE5E5E5">
-          <DataGrid x:Name="DgEvt" HorizontalAlignment="Left" Height="422" Margin="414,10,0,0" VerticalAlignment="Top" Width="666" MouseDoubleClick="DgEvt_MouseDoubleClick" ItemsSource="{Binding liveEventList}">
+          <DataGrid x:Name="DgEvt" HorizontalAlignment="Left" Height="422" Margin="414,10,0,0" VerticalAlignment="Top" Width="666" MouseDoubleClick="DgEvt_MouseDoubleClick" ItemsSource="{Binding LiveEvents}">
             <DataGrid.Columns>
               <DataGridTextColumn Binding="{Binding Name}" Header="Event Name" Width="150" />
               <DataGridTextColumn Binding="{Binding DateNextOccurring}" Header="Date" Width="100" />

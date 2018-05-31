@@ -272,6 +272,11 @@ namespace PFHelper
       get => combatEffectItems;
     }
 
+    public ObservableCollection<LiveEvent> LiveEvents
+    {
+      get => liveEventList;
+    }
+
     public string EventName
     {
       get { return TxtEvtName.Text; }
@@ -465,7 +470,7 @@ namespace PFHelper
       LbxTime.ItemsSource = timeList;
       LbxCampaignData.ItemsSource = campaignDataList;
       DrpCampaignSelect.ItemsSource = campaignList;
-      
+
       LoadSavedData();
       LoadContinentEnvironments();
       UpdateDateDisplay();
@@ -1030,7 +1035,7 @@ namespace PFHelper
       else if (CurrentMonth.SeasonId != WeatherResult.SeasonId)
         ReloadWeatherTable();
 
-      while (d >= 0)
+      while (d > 0 && CurrentWeatherGroup.Duration > 0)
       {
         if (CurrentWeatherGroup.Duration >= d)
         {
@@ -1132,16 +1137,8 @@ namespace PFHelper
 
     private void UpdateWeatherDisplay()
     {
-      if (CurrentWeather == null)
-      {
-        LblCurrentWeather.Content = "NONE";
-        LblCurrentWeatherGroup.Content = "NONE";
-      }
-      else
-      {
-        LblCurrentWeather.Content = CurrentWeather.Name;
-        LblCurrentWeatherGroup.Content = CurrentWeatherGroup.CWName;
-      }
+      LblCurrentWeather.Content = CurrentWeather == null ? "NONE" : CurrentWeather.Name;
+      LblCurrentWeatherGroup.Content = CurrentWeatherGroup == null ? "NONE" : CurrentWeatherGroup.CWName;
     }
 
     private void ReloadWeatherTable()
