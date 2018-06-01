@@ -122,7 +122,7 @@ namespace PFDBSite
       {
         routes.MapRoute(
                   name: "default",
-                  template: "{controller=Home}/{action=Index}/{id?}");
+                  template: "{controller=Pathfinder}/{action=Index}/{id?}");
       });
     }
   }

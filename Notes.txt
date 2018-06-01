@@ -28,6 +28,8 @@ Web Tools!
 			Add gear from library (all non-custom gear)
 	Display Pages
 		Overview - shows a map with position marker and player icons with condition labels
+			https://www.pubnub.com/blog/2014-09-03-multiuser-draw-html5-canvas-tutorial/
+			https://www.pubnub.com/blog/2014-09-16-collaborative-whiteboard-with-html5-canvas-and-history/
 		Combat - shows a list of all creatures engaged in combat (add a HiddenFromPlayers tag)
 			Also rough health displays (Blue >100%, Green >50%, Yellow >20%, Red <=20%)
 W E L P

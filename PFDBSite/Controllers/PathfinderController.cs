@@ -12,7 +12,7 @@ using PFDBSite.Models;
 namespace PFDBSite.Controllers
 {
   [Authorize]
-  public class PathfinderController : Controller
+  public class PathfinderController : PFDBController
   {
     [AllowAnonymous]
     public IActionResult Index()
@@ -26,19 +26,33 @@ namespace PFDBSite.Controllers
       return View();
     }
 
+    public IActionResult Campaigns(bool redirectToActive = true)
+    {
+      if (redirectToActive && Player != null)
+      {
+        var campaign = Player.PlayerCampaigns.Where(x => x.Campaign.IsActive).FirstOrDefault()?.CampaignId;
+        if (campaign.HasValue)
+          return CampaignLiveDisplay(campaign.Value);
+      }
+
+      return View();
+    }
+
+    [HttpGet("Campaigns/{campaignId}")]
+    public IActionResult CampaignLiveDisplay(int campaignId)
+    {
+      return View();
+    }
+
+    [Authorize(Roles = "Player")]
     public IActionResult Characters()
     {
-      object player = null;
-      if (player != null)
-      {
         // List all player-owned characters and equipment, plus options to make new ones
 
         return View();
-      }
-
-      return BadRequest();
     }
 
+    [Authorize(Roles = "Player")]
     [HttpGet("Characters/{characterId:int}")]
     public IActionResult CharacterSheet(int characterId)
     {
