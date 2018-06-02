@@ -416,6 +416,9 @@ namespace PFHelper
     private Weather CurrentWeather;
     private LiveEvent CurrentEvent;
     private Continent CurrentContinent;
+    private Plane CurrentPlane;
+    private Time CurrentTime;
+    private Terrain CurrentTerrain;
     private ContinentWeather CurrentWeatherGroup;
     private Campaign ActiveCampaign;
     private string saveDataPath = Path.Combine(System.Environment.CurrentDirectory, "pfdat.dat");
@@ -598,6 +601,9 @@ namespace PFHelper
         CurrentWeather = saveObject.Weather;
         WeatherResult = saveObject.WeatherResult;
         CurrentContinent = saveObject.Continent;
+        CurrentPlane = saveObject.Plane;
+        CurrentTime = saveObject.Time;
+        CurrentTerrain = saveObject.Terrain;
 
         combatEffectItems.Clear();
         combatGridItems.Clear();
@@ -616,6 +622,10 @@ namespace PFHelper
         RationsLeft = 60;
         CurrentDate = new FantasyDate() { Year = 10000, Month = 1, Day = 1 };
         CurrentWeather = new Weather();
+        CurrentContinent = null;
+        CurrentPlane = null;
+        CurrentTime = null;
+        CurrentTerrain = null;
 
         combatEffectItems.Clear();
         combatGridItems.Clear();
@@ -645,6 +655,9 @@ namespace PFHelper
       saveObject.Weather = CurrentWeather;
       saveObject.WeatherResult = WeatherResult;
       saveObject.Continent = CurrentContinent;
+      saveObject.Plane = CurrentPlane;
+      saveObject.Time = CurrentTime;
+      saveObject.Terrain = CurrentTerrain;
 
       saveObject.CombatEffects = combatEffectItems.ToList();
       saveObject.CombatGridItems = combatGridItems.ToList();
@@ -1147,7 +1160,10 @@ namespace PFHelper
 
     private void UpdateLocationDisplay()
     {
-
+      LblCurrentContinent.Content = CurrentContinent?.Name ?? "NONE";
+      LblCurrentPlane.Content = CurrentPlane?.Name ?? "NONE";
+      LblCurrentTime.Content = CurrentTime?.Name ?? "NONE";
+      LblCurrentTerrain.Content = CurrentTerrain?.Name ?? "NONE";
     }
 
     private void UpdateDisplays()

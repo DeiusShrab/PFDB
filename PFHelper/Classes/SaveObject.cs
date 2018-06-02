@@ -12,6 +12,9 @@ namespace PFHelper.Classes
     public FantasyDate Date { get; set; }
     public Weather Weather { get; set; }
     public Continent Continent { get; set; }
+    public Plane Plane { get; set; }
+    public Time Time { get; set; }
+    public Terrain Terrain { get; set; }
     public string ApiPass { get; set; }
     public int Apl { get; set; }
     public int Rations { get; set; }

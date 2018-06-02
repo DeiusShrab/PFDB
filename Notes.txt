@@ -1,6 +1,7 @@
 TODO AT WORK
 Config Centralization
 	Find a way to use the same config file (in the PFDB root) regardless of which exe or dll I'm running
+	Copy configs from work VS to home VS for color consistency >_>
 String dice roller
 	Use the DiceExpression I found
 	See if I can improve it to add modifiers (ex: +1d6 cold => 5 cold)
