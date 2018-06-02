@@ -15,7 +15,9 @@ namespace DBConnect.DBModels
     public int TrackedEventType { get; set; }
     public string TrackedEventData { get; set; }
     public int CampaignId { get; set; }
+    public int ContinentId { get; set; } // <= 0 for globally recognized events, otherwise the ID of the continent that observes the event
 
     public virtual Campaign Campaign { get; set; }
+    public virtual Continent Continent { get; set; }
   }
 }

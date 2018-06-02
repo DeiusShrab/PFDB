@@ -12,6 +12,9 @@ namespace DBConnect.DBModels
     public int? RaceId { get; set; }
     public string Name { get; set; }
     public string Deity { get; set; }
+    public int HPMax { get; set; }
+    public int HPCurrent { get; set; }
+    public int HPSubdual { get; set; }
 
     public virtual Campaign Campaign { get; set; }
     public virtual Player Player { get; set; }

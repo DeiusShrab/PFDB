@@ -54,19 +54,7 @@ namespace PFHelper
 
     public int ContinentId
     {
-      get
-      {
-        if (LbxContinent.SelectedItem != null)
-          return (int)LbxContinent.SelectedValue;
-        return 0;
-      }
-      set
-      {
-        if (continentList.Select(x => x.Result).Contains(value))
-          LbxContinent.SelectedValue = value;
-        else
-          LbxContinent.SelectedValue = null;
-      }
+      get { return CurrentContinent?.ContinentId ?? 0; }
     }
 
     public int TimeId
@@ -382,6 +370,18 @@ namespace PFHelper
       set { CbxWeatherLock.IsChecked = value; }
     }
 
+    public int EventContinentId
+    {
+      get
+      {
+        if (DrpEvtContinent.SelectedIndex >= 0)
+          return (int)DrpEvtContinent.SelectedValue;
+
+        return 0;
+      }
+      set { DrpEvtContinent.SelectedValue = value; }
+    }
+
     #endregion
 
     #region Data Properties
@@ -415,6 +415,7 @@ namespace PFHelper
     private Month CurrentMonth;
     private Weather CurrentWeather;
     private LiveEvent CurrentEvent;
+    private Continent CurrentContinent;
     private ContinentWeather CurrentWeatherGroup;
     private Campaign ActiveCampaign;
     private string saveDataPath = Path.Combine(System.Environment.CurrentDirectory, "pfdat.dat");
@@ -454,10 +455,12 @@ namespace PFHelper
 
       LbxD20.DisplayMemberPath = LbxD4.DisplayMemberPath = LbxD6.DisplayMemberPath = LbxD8.DisplayMemberPath = LbxD10.DisplayMemberPath = LbxD12.DisplayMemberPath
         = LbxEncounterCreatures.DisplayMemberPath = LbxContinent.DisplayMemberPath = LbxCreatureInfo.DisplayMemberPath = LbxPlane.DisplayMemberPath
-        = LbxTime.DisplayMemberPath = LbxEnvironment.DisplayMemberPath = DrpEvtType.DisplayMemberPath = DrpCampaignSelect.DisplayMemberPath = "Display";
+        = LbxTime.DisplayMemberPath = LbxEnvironment.DisplayMemberPath = DrpEvtType.DisplayMemberPath = DrpCampaignSelect.DisplayMemberPath
+        = DrpEvtContinent.DisplayMemberPath = "Display";
       LbxD20.SelectedValuePath = LbxD4.SelectedValuePath = LbxD6.SelectedValuePath = LbxD8.SelectedValuePath = LbxD10.SelectedValuePath = LbxD12.SelectedValuePath
         = LbxEncounterCreatures.SelectedValuePath = LbxContinent.SelectedValuePath = LbxCreatureInfo.SelectedValuePath = LbxPlane.SelectedValuePath
-        = LbxTime.SelectedValuePath = LbxEnvironment.SelectedValuePath = DrpEvtType.SelectedValuePath = DrpCampaignSelect.SelectedValuePath = "Result";
+        = LbxTime.SelectedValuePath = LbxEnvironment.SelectedValuePath = DrpEvtType.SelectedValuePath = DrpCampaignSelect.SelectedValuePath
+        = DrpEvtContinent.SelectedValuePath = "Result";
 
       LbxEncounterCRs.DisplayMemberPath = "Display";
       LbxEncounterCRs.SelectedValuePath = "Values";
@@ -470,11 +473,13 @@ namespace PFHelper
       LbxTime.ItemsSource = timeList;
       LbxCampaignData.ItemsSource = campaignDataList;
       DrpCampaignSelect.ItemsSource = campaignList;
-
+      DrpEvtContinent.ItemsSource = continentList;
+      
       LoadSavedData();
       LoadContinentEnvironments();
       UpdateDateDisplay();
       UpdateWeatherDisplay();
+      UpdateContinentDisplay();
 
       IntNumD20.Value = IntNumD12.Value = IntNumD10.Value = IntNumD8.Value = IntNumD6.Value = IntNumD4.Value = 1;
 
@@ -583,7 +588,6 @@ namespace PFHelper
         EncounterTime = saveObject.CbxTime;
         EncounterZone = saveObject.CbxZone;
         RationsInfinite = saveObject.CbxInfRations;
-        ContinentId = saveObject.ContinentId;
         TimeId = saveObject.TimeId;
         PlaneId = saveObject.PlaneId;
         EnvironmentId = saveObject.EnvironmentId;
@@ -594,6 +598,7 @@ namespace PFHelper
         CurrentDate = saveObject.Date;
         CurrentWeather = saveObject.Weather;
         WeatherResult = saveObject.WeatherResult;
+        CurrentContinent = saveObject.Continent;
 
         combatEffectItems.Clear();
         combatGridItems.Clear();
@@ -630,7 +635,6 @@ namespace PFHelper
       saveObject.CbxTime = EncounterTime;
       saveObject.CbxZone = EncounterZone;
       saveObject.CbxInfRations = RationsInfinite;
-      saveObject.ContinentId = ContinentId;
       saveObject.EnvironmentId = EnvironmentId;
       saveObject.PlaneId = PlaneId;
       saveObject.TimeId = TimeId;
@@ -641,6 +645,7 @@ namespace PFHelper
       saveObject.Date = CurrentDate;
       saveObject.Weather = CurrentWeather;
       saveObject.WeatherResult = WeatherResult;
+      saveObject.Continent = CurrentContinent;
 
       saveObject.CombatEffects = combatEffectItems.ToList();
       saveObject.CombatGridItems = combatGridItems.ToList();
@@ -1162,6 +1167,7 @@ namespace PFHelper
         EventName = CurrentEvent.Name;
         EventNotes = CurrentEvent.Notes;
         EventFrequency = CurrentEvent.ReoccurFreq;
+        EventContinentId = CurrentEvent.ContinentId;
       }
     }
 
@@ -1176,6 +1182,7 @@ namespace PFHelper
       CurrentEvent.Name = EventName;
       CurrentEvent.Notes = EventNotes;
       CurrentEvent.ReoccurFreq = EventFrequency;
+      CurrentEvent.ContinentId = EventContinentId;
     }
 
     private void LoadCampaign()
@@ -1196,6 +1203,12 @@ namespace PFHelper
       ActiveCampaign.CampaignId = CampaignId;
       ActiveCampaign.CampaignName = CampaignName;
       ActiveCampaign.CampaignNotes = CampaignNotes;
+    }
+
+    private void SwitchContinents(int continentId)
+    {
+      CurrentContinent = DBClient.GetContinent(continentId);
+      UpdateContinentDisplay();
     }
 
     private void LoadContinentEnvironments()
@@ -1661,6 +1674,12 @@ namespace PFHelper
     {
       CurrentWeatherGroup = GetRandomWeather(false);
       CurrentWeather = DBClient.GetWeather(CurrentWeatherGroup.WeatherId);
+    }
+
+    private void LbxContinent_MouseDoubleClick(object sender, System.Windows.Input.MouseButtonEventArgs e)
+    {
+      if (LbxContinent.SelectedItem != null)
+        SwitchContinents((int)LbxContinent.SelectedValue);
     }
   }
 }

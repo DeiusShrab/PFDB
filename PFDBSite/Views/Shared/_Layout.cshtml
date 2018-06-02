@@ -20,20 +20,25 @@
           {
             <li class="nav-item"><a class="nav-link" asp-area="" asp-controller="Account" asp-action="Login">Player Login</a></li>
           }
-          @if (User != null && User.IsInRole("DM"))
-          {
-            <li class="nav-item"><a class="nav-link" asp-area="" asp-controller="DM" asp-action="Index">DM Menu</a></li>
-          }
-          @if (User != null)
+          else
           {
             <li class="nav-item"><a class="nav-link" asp-area="" asp-controller="Manage" asp-action="Index">Manage Profile</a></li>
             <li class="nav-item"><a class="nav-link" asp-area="" asp-controller="Account" asp-action="Logout">Logout</a></li>
+            @if (User.IsInRole("DM"))
+            {
+              <li class="nav-item"><a class="nav-link" asp-area="" asp-controller="DM" asp-action="Index">DM Menu</a></li>
+            }
+
+            @if (User.IsInRole("Admin"))
+            {
+              <li class="nav-item"><a class="nav-link" asp-area="" asp-controller="Admin" asp-action="ManageUsers">Admin</a></li>
+            }
           }
         </ul>
       </div>
     </nav>
-    <div class="row-fluid">
-      <div class="container body-content">
+    <div class="row">
+      <div class="container-fluid body-content">
         @RenderBody()
         <hr />
         <footer>

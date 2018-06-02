@@ -17,6 +17,7 @@ NPC Builder (Looking like its own entirely new tool atm) (YEAH TIME TO WRITE A F
 		Prestige classes...
 		AND ARCHETYPES OH JESUS WHY DO I DO THIS TO MYSELF
 	Add equipment (custom-build enchanted gear)
+Move all data from PFData to server, basically most classes in PFHelper and PFSite need to be in PFDB, add a CampaignId to them
 Web Tools!
 	Character sheets for the players
 		Interactive?
@@ -25,6 +26,12 @@ Web Tools!
 			Use the equipment build rules for magical gear WELP
 			Export gear to string (json object that's base64 encoded), import from string
 			Add gear from library (all non-custom gear)
+	Display Pages
+		Overview - shows a map with position marker and player icons with condition labels
+			https://www.pubnub.com/blog/2014-09-03-multiuser-draw-html5-canvas-tutorial/
+			https://www.pubnub.com/blog/2014-09-16-collaborative-whiteboard-with-html5-canvas-and-history/
+		Combat - shows a list of all creatures engaged in combat (add a HiddenFromPlayers tag)
+			Also rough health displays (Blue >100%, Green >50%, Yellow >20%, Red <=20%)
 W E L P
 Code First Mapping
 	Add-Migration -Context PFDBContext
