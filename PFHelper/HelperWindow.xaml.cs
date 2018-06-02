@@ -477,9 +477,8 @@ namespace PFHelper
       
       LoadSavedData();
       LoadContinentEnvironments();
-      UpdateDateDisplay();
-      UpdateWeatherDisplay();
-      UpdateContinentDisplay();
+
+      UpdateDisplays();
 
       IntNumD20.Value = IntNumD12.Value = IntNumD10.Value = IntNumD8.Value = IntNumD6.Value = IntNumD4.Value = 1;
 
@@ -1146,6 +1145,18 @@ namespace PFHelper
       LblCurrentWeatherGroup.Content = CurrentWeatherGroup == null ? "NONE" : CurrentWeatherGroup.CWName;
     }
 
+    private void UpdateLocationDisplay()
+    {
+
+    }
+
+    private void UpdateDisplays()
+    {
+      UpdateDateDisplay();
+      UpdateWeatherDisplay();
+      UpdateLocationDisplay();
+    }
+
     private void ReloadWeatherTable()
     {
       var reqWeather = new RandomWeatherRequest()
@@ -1208,7 +1219,7 @@ namespace PFHelper
     private void SwitchContinents(int continentId)
     {
       CurrentContinent = DBClient.GetContinent(continentId);
-      UpdateContinentDisplay();
+      UpdateLocationDisplay();
     }
 
     private void LoadContinentEnvironments()
