@@ -45,6 +45,7 @@ namespace DBConnect
     public DbSet<Month> Month { get; set; }
     public DbSet<Npc> Npc { get; set; }
     public DbSet<Npcdetail> Npcdetail { get; set; }
+    public DbSet<OverridePrerequisite> OverridePrerequisite { get; set; }
     public DbSet<Plane> Plane { get; set; }
     public DbSet<Player> Player { get; set; }
     public DbSet<PlayerCampaign> PlayerCampaign { get; set; }
@@ -1780,6 +1781,21 @@ namespace DBConnect
               .WithOne(e => e.Npcdetail)
               .IsRequired()
               .HasForeignKey("Npcdetail", "Npcid")
+              .OnDelete(DeleteBehavior.Cascade);
+      });
+
+      modelBuilder.Entity<OverridePrerequisite>(entity =>
+      {
+        entity.HasKey(e => new { e.ClassAbilityId, e.PrerequisiteId });
+
+        entity.HasOne(e => e.ClassAbility)
+              .WithMany(e => e.OverridePrerequisites)
+              .HasForeignKey(e => e.ClassAbilityId)
+              .OnDelete(DeleteBehavior.Cascade);
+
+        entity.HasOne(e => e.Prerequisite)
+              .WithMany(e => e.OverridePrerequisites)
+              .HasForeignKey(e => e.PrerequisiteId)
               .OnDelete(DeleteBehavior.Cascade);
       });
 

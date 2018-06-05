@@ -37,8 +37,8 @@
         <Grid.ColumnDefinitions>
             <ColumnDefinition/>
         </Grid.ColumnDefinitions>
-        <Label x:Name="LblGrandDate" Content="YEAR 000000 AA, Season of Earth, Month of Embers, Day 00" HorizontalAlignment="Left" Margin="10,21,0,0" VerticalAlignment="Top" FontFamily="Old English Text MT" FontSize="36"/>
-        <Label HorizontalAlignment="Left" Margin="675,82,0,0" VerticalAlignment="Top" FontSize="16"/>
+    <Label x:Name="LblGrandDate" Content="YEAR 000000 AA, Season of Earth, Month of Embers, Day 00" HorizontalAlignment="Left" Margin="10,21,0,0" VerticalAlignment="Top" FontFamily="Old English Text MT" FontSize="36"/>
+    <Label HorizontalAlignment="Left" Margin="675,82,0,0" VerticalAlignment="Top" FontSize="16"/>
         <Button x:Name="BtnNextDay" Content="NEXT DAY" HorizontalAlignment="Left" Margin="898,80,0,0" VerticalAlignment="Top" Width="75" Height="47" Click="BtnNextDay_Click" TabIndex="1103"/>
         <Button x:Name="BtnAddDays" Content="Add Days" HorizontalAlignment="Left" Margin="818,107,0,0" VerticalAlignment="Top" Width="75" Click="BtnAddDays_Click" TabIndex="1102"/>
         <xctk:IntegerUpDown x:Name="IntAddDays" Value="0" HorizontalAlignment="Left" Margin="818,82,0,0" VerticalAlignment="Top" Width="75" IsTabStop="True" TabIndex="1101" />

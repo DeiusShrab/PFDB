@@ -15,5 +15,6 @@ namespace DBConnect.DBModels
 
     public virtual Class Class { get; set; }
     public virtual ICollection<CharacterClassAbility> CharacterClassAbilities { get; } = new List<CharacterClassAbility>();
+    public virtual ICollection<OverridePrerequisite> OverridePrerequisites { get; } = new List<OverridePrerequisite>();
   }
 }
