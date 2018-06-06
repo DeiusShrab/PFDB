@@ -268,6 +268,40 @@ namespace PFAPI.Controllers
       return new JsonResult(helperQuery.EnvironmentsForContinent(continentId));
     }
 
+    [HttpGet("SaveData/{campaignId:int}/{saveDataType:int}")]
+    public IActionResult GetSaveData(int campaignId, int saveDataType)
+    {
+      if (campaignId > 0 && Enum.IsDefined(typeof(SaveDataType), saveDataType))
+      {
+        var context = PFDAL.GetContext();
+        var data = context.SaveData.Find(campaignId, saveDataType);
+        return Ok(data);
+      }
+
+      return BadRequest();
+    }
+
+    [HttpPost("SaveData/{campaignId:int}/{saveDataType:int}")]
+    public IActionResult UpdateSaveData(int campaignId, int saveDataType, [FromBody] string data)
+    {
+      if (campaignId > 0 && Enum.IsDefined(typeof(SaveDataType), saveDataType))
+      {
+        var context = PFDAL.GetContext();
+        var saveData = context.SaveData.Find(campaignId, saveDataType);
+        if (saveData == null)
+        {
+          saveData = new SaveData { CampaignId = campaignId, SaveDataType = (SaveDataType)saveDataType };
+          context.SaveData.Attach(saveData);
+        }
+
+        saveData.Data = data;
+        if (context.SaveChanges() == 1)
+          return Ok();
+      }
+
+      return BadRequest();
+    }
+
     #endregion
 
     #region All

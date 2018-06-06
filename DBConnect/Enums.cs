@@ -144,4 +144,12 @@ namespace DBConnect
     Sixth = -3,
     Eighth = -4,
   }
+
+  public enum SaveDataType
+  {
+    PFHelper = 1,
+    PFEditor = 2,
+    PFSite = 3,
+    PFAPI = 4,
+  }
 }
