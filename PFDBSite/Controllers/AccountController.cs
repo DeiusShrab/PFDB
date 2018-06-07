@@ -248,7 +248,7 @@ namespace PFDBSite.Controllers
       await _signInManager.SignOutAsync();
       _logger.LogInformation("User logged out.");
       var u = User;
-      return RedirectToAction(nameof(HomeController.Index), "Home");
+      return RedirectToAction(nameof(PathfinderController.Index), "Home");
     }
 
     [HttpPost]
@@ -336,7 +336,7 @@ namespace PFDBSite.Controllers
     {
       if (userId == null || code == null)
       {
-        return RedirectToAction(nameof(HomeController.Index), "Home");
+        return RedirectToAction(nameof(PathfinderController.Index), "Home");
       }
       var user = await _userManager.FindByIdAsync(userId);
       if (user == null)
@@ -456,7 +456,7 @@ namespace PFDBSite.Controllers
       }
       else
       {
-        return RedirectToAction(nameof(HomeController.Index), "Home");
+        return RedirectToAction(nameof(PathfinderController.Index), "Home");
       }
     }
 

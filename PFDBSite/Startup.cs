@@ -86,9 +86,12 @@ namespace PFDBSite
       // Add application services.
       services.AddTransient<IEmailSender, EmailSender>();
 
-      services.AddMvc();
+      services.AddMvc()
+              .AddSessionStateTempDataProvider();
 
-      
+      services.AddSession();
+
+      services.AddSignalR();
     }
 
     // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -118,11 +121,18 @@ namespace PFDBSite
 
       app.UseAuthentication();
 
+      app.UseSession();
+
       app.UseMvc(routes =>
       {
         routes.MapRoute(
                   name: "default",
                   template: "{controller=Pathfinder}/{action=Index}/{id?}");
+      });
+
+      app.UseSignalR(routes =>
+      {
+        routes.MapHub<LiveDisplayHub>("/livedisplayhub");
       });
     }
   }

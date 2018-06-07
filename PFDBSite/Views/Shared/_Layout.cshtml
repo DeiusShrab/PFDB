@@ -16,24 +16,26 @@
         <ul class="navbar-nav mr-auto">
           <li class="nav-item"><a class="nav-link" asp-area="" asp-controller="Pathfinder" asp-action="Index">Home</a></li>
           <li class="nav-item"><a class="nav-link" asp-area="" asp-controller="Pathfinder" asp-action="Maps">Maps</a></li>
-          @if (User == null)
-          {
-            <li class="nav-item"><a class="nav-link" asp-area="" asp-controller="Account" asp-action="Login">Player Login</a></li>
-          }
-          else
-          {
-            <li class="nav-item"><a class="nav-link" asp-area="" asp-controller="Manage" asp-action="Index">Manage Profile</a></li>
-            <li class="nav-item"><a class="nav-link" asp-area="" asp-controller="Account" asp-action="Logout">Logout</a></li>
-            @if (User.IsInRole("DM"))
-            {
-              <li class="nav-item"><a class="nav-link" asp-area="" asp-controller="DM" asp-action="Index">DM Menu</a></li>
-            }
+          @if (User.IsInRole("DM"))
+  {
+        <li class="nav-item"><a class="nav-link" asp-area="" asp-controller="DM" asp-action="Index">DM Menu</a></li>
+}
 
-            @if (User.IsInRole("Admin"))
-            {
-              <li class="nav-item"><a class="nav-link" asp-area="" asp-controller="Admin" asp-action="ManageUsers">Admin</a></li>
-            }
-          }
+          @if (User.IsInRole("Admin"))
+  {
+        <li class="nav-item"><a class="nav-link" asp-area="" asp-controller="Admin" asp-action="ManageUsers">Admin</a></li>
+}
+          @if (User.IsInRole("Player"))
+  {
+
+        <li class="nav-item"><a class="nav-link" asp-area="" asp-controller="Manage" asp-action="Index">Manage Profile</a></li>
+        <li class="nav-item"><a class="nav-link" asp-area="" asp-controller="Pathfinder" asp-action="LiveDisplay">Live Map [WIP]</a></li>
+        <li class="nav-item"><a class="nav-link" asp-area="" asp-controller="Account" asp-action="Logout">Logout</a></li>
+}
+else
+{
+        <li class="nav-item"><a class="nav-link" asp-area="" asp-controller="Account" asp-action="Login">Player Login</a></li>
+}
         </ul>
       </div>
     </nav>

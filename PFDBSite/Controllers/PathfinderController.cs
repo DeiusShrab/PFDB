@@ -44,6 +44,15 @@ namespace PFDBSite.Controllers
       return View();
     }
 
+    public IActionResult LiveDisplay()
+    {
+      var model = new LiveDisplayModel
+      {
+        ActivePlayer = Player
+      };
+      return View();
+    }
+
     [Authorize(Roles = "Player")]
     public IActionResult Characters()
     {
