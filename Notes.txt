@@ -1,4 +1,7 @@
 TODO AT WORK
+Live Display
+	Parse /commands
+	Store Chat History, display recent messages to users who join (max x lines, no max age)
 String dice roller
 	Use the DiceExpression I found
 	See if I can improve it to add modifiers (ex: +1d6 cold => 5 cold)

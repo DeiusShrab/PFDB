@@ -11,8 +11,7 @@ const connection = new signalR.HubConnectionBuilder()
   .build();
 
 connection.on("ReceiveMessage", (user, message) => {
-  const msg = message.replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;");
-  const encodedMsg = user + " says " + msg;
+  const encodedMsg = user + ": " + msg;
   const li = document.createElement("li");
   li.textContent = encodedMsg;
   document.getElementById("messagesList").appendChild(li);
