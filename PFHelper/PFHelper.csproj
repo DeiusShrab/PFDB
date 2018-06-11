@@ -215,9 +215,6 @@
       <SubType>Designer</SubType>
     </ApplicationDefinition>
     <Compile Include="Classes\LiveEvent.cs" />
-    <Compile Include="Popups\ListPopUp.xaml.cs">
-      <DependentUpon>ListPopUp.xaml</DependentUpon>
-    </Compile>
     <Page Include="Controls\ConfigEditor.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -241,10 +238,6 @@
       <DependentUpon>HelperWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
-    <Page Include="Popups\ListPopUp.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Properties\AssemblyInfo.cs">
@@ -277,6 +270,10 @@
     </None>
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\CommonUI\CommonUI.csproj">
+      <Project>{5f02fe82-0ff1-4d2d-8f1e-e875f3365dd6}</Project>
+      <Name>CommonUI</Name>
+    </ProjectReference>
     <ProjectReference Include="..\DBConnect\DBConnect.csproj">
       <Project>{0C3CAB3F-CD2E-4EAD-815E-4AE425864D0B}</Project>
       <Name>DBConnect</Name>

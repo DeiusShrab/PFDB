@@ -7,10 +7,11 @@
 <div class="container-fluid">
   <div class="row">&nbsp;</div>
   <div class="row" style="min-height:80%">
-    <div class="col-lg-9">
-      <img class="img-responsive" src="~/images/TestMap.png" alt="TestMap" />
+    <div class="col-md-9 hidden-sm-down" id="liveDiv">
+      <canvas id="liveCanvas" class="img-responsive" onload="canvasLoad()"></canvas>
+      <img class="hidden" src="~/images/TestMap.png" alt="TestMap" />
     </div>
-    <div class="col-lg-3">
+    <div class="col-md-3 col-sm-12">
       <div class="row" style="min-height:80%">
         <div class="col-12" style="min-height:80%;overflow:scroll">
           <ul id="messagesList"></ul>

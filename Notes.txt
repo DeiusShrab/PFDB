@@ -39,6 +39,8 @@ Code First Mapping
 	Update-Database -Context PFDBContext
 
 TODO AT HOME
+Add Titan to LiveDisplay for discord chat integration
+	https://titanembeds.com/
 Strip out home page
 	Move the silly home page out of PFSite, instead make a separate home page that has links to various services.
 	PFSite home page will be PathfinderController/Index
@@ -49,7 +51,7 @@ Run NPC to Bestiary script
 Remove ALL from season, time, etc
 Add Season/Month of Stars, a time when magic is at its strongest
 	Magical beasts and aberrations MUCH more common
-	ALL spells are considered Maximized
+	Random metamagic applied to spells
 Add Events (Bank interest monthly, NOT daily)
 	Full Moon!
 MORE MAP WORK

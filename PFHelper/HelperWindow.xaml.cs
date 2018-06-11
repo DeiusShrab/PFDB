@@ -8,6 +8,7 @@ using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Data;
 using System.Windows.Media;
+using CommonUI;
 using DBConnect;
 using DBConnect.ConnectModels;
 using DBConnect.DBModels;

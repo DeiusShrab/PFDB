@@ -12,8 +12,17 @@ namespace PFDBSite.Services
     {
       if (message.StartsWith('/'))
       {
-        var cmd = message.Substring(1, message.IndexOf(' '));
-        message = message.Substring(cmd.Length + 2);
+        var cmd = string.Empty;
+        if (message.Contains(' '))
+        {
+          cmd = message.Substring(1, message.IndexOf(' ') - 1);
+          message = message.Substring(cmd.Length + 2);
+        }
+        else
+        {
+          cmd = message.Substring(1);
+          message = string.Empty;
+        }
 
         if (cmd.Equals("roll", StringComparison.InvariantCultureIgnoreCase) || cmd.Equals("r", StringComparison.InvariantCultureIgnoreCase))
         {
@@ -30,12 +39,13 @@ namespace PFDBSite.Services
         else if (cmd.Equals("flip", StringComparison.InvariantCultureIgnoreCase) || cmd.Equals("f", StringComparison.InvariantCultureIgnoreCase))
         {
           // Flip table
+          message = $"**{user} flips the table in a fit of rage!**";
         }
       }
 
       message = message.Replace("&", "&amp;").Replace("<", "&lt;").Replace(">", "&gt;");
 
-      // Symbols = [#0000] => &#0000;
+      // Emojis?
 
       // Tags = [T]text[/] - B, I, U, S, numbers for 16 colors
 
@@ -48,6 +58,11 @@ namespace PFDBSite.Services
     public async Task SendDrawing(string user, string drawing)
     {
       await Clients.All.SendAsync("ReceiveDrawing", user, drawing);
+    }
+
+    public async Task UpdateCombat(string combatJson)
+    {
+      await Clients.All.SendAsync("UpdateCombat", combatJson);
     }
   }
 }

@@ -6723,3 +6723,10 @@ button.close {
     display: none !important;
   }
 }
+
+
+#liveDiv {
+  max-height: 768px;
+  max-width: 1024px;
+  overflow: scroll;
+}

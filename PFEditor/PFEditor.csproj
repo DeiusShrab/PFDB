@@ -136,15 +136,27 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
+    <Page Include="Controls\ClassControl.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Controls\FeatSkillControl.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Controls\PrerequisiteControl.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Controls\CharacterControl.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
     <Page Include="Controls\_BaseControl.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Controls\BestiaryAbilitiesControl.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="Popups\SpellSelectPopup.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -178,14 +190,23 @@
     <Compile Include="Controls\LocationControl.xaml.cs">
       <DependentUpon>LocationControl.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Controls\ClassControl.xaml.cs">
+      <DependentUpon>ClassControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\FeatSkillControl.xaml.cs">
+      <DependentUpon>FeatSkillControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\PrerequisiteControl.xaml.cs">
+      <DependentUpon>PrerequisiteControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\CharacterControl.xaml.cs">
+      <DependentUpon>CharacterControl.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Controls\_BaseControl.xaml.cs">
       <DependentUpon>_BaseControl.xaml</DependentUpon>
     </Compile>
     <Compile Include="Controls\BestiaryAbilitiesControl.xaml.cs">
       <DependentUpon>BestiaryAbilitiesControl.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="Popups\SpellSelectPopup.xaml.cs">
-      <DependentUpon>SpellSelectPopup.xaml</DependentUpon>
     </Compile>
     <Compile Include="Controls\WeatherControl.xaml.cs">
       <DependentUpon>WeatherControl.xaml</DependentUpon>
@@ -224,6 +245,10 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\CommonUI\CommonUI.csproj">
+      <Project>{5f02fe82-0ff1-4d2d-8f1e-e875f3365dd6}</Project>
+      <Name>CommonUI</Name>
+    </ProjectReference>
     <ProjectReference Include="..\DBConnect\DBConnect.csproj">
       <Project>{0C3CAB3F-CD2E-4EAD-815E-4AE425864D0B}</Project>
       <Name>DBConnect</Name>

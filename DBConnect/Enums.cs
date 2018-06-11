@@ -115,6 +115,7 @@ namespace DBConnect
 
   public enum ClassAbilityType
   {
+    SELECT = 0,
     BAB = 1,
     Fort = 2,
     Ref = 3,

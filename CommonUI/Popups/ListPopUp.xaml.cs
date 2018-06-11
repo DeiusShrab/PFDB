@@ -12,11 +12,10 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
-using PFHelper.Classes;
 using DBConnect;
 using DBConnect.ConnectModels;
 
-namespace PFHelper
+namespace CommonUI
 {
   /// <summary>
   /// Interaction logic for WeatherPopUp.xaml
