@@ -14,6 +14,7 @@ namespace DBConnect.DBModels
     public string Description { get; set; }
 
     public virtual Race Race { get; set; }
+    public virtual ICollection<CharacterRaceAbility> CharacterRaceAbilities { get; } = new List<CharacterRaceAbility>();
     public virtual List<int> ReplacesRaceAbilitiesList
     {
       get

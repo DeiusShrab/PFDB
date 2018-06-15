@@ -25,6 +25,7 @@ namespace DBConnect
     public DbSet<CharacterGearEnchantment> CharacterGearEnchantment { get; set; }
     public DbSet<CharacterLanguage> CharacterLanguage { get; set; }
     public DbSet<CharacterMagic> CharacterMagic { get; set; }
+    public DbSet<CharacterRaceAbility> CharacterRaceAbility { get; set; }
     public DbSet<CharacterSkill> CharacterSkill { get; set; }
     public DbSet<Class> Class { get; set; }
     public DbSet<ClassAbility> ClassAbility { get; set; }
@@ -865,6 +866,23 @@ namespace DBConnect
               .OnDelete(DeleteBehavior.Cascade);
       });
 
+      modelBuilder.Entity<CharacterRaceAbility>(entity =>
+      {
+        entity.HasKey(e => new { e.CharacterId, e.RaceAbilityId });
+
+        entity.HasOne(e => e.Character)
+              .WithMany(e => e.CharacterRaceAbilities)
+              .IsRequired()
+              .HasForeignKey(e => e.CharacterId)
+              .OnDelete(DeleteBehavior.Cascade);
+
+        entity.HasOne(e => e.RaceAbility)
+              .WithMany(e => e.CharacterRaceAbilities)
+              .IsRequired()
+              .HasForeignKey(e => e.RaceAbilityId)
+              .OnDelete(DeleteBehavior.Cascade);
+      });
+
       modelBuilder.Entity<Race>(entity =>
       {
         entity.HasKey(e => e.RaceId);
@@ -916,6 +934,7 @@ namespace DBConnect
 
         entity.HasOne(e => e.Campaign)
               .WithMany(e => e.SaveData)
+              .IsRequired()
               .HasForeignKey(e => e.CampaignId)
               .OnDelete(DeleteBehavior.Cascade);
       });
@@ -1021,11 +1040,13 @@ namespace DBConnect
 
         entity.HasOne(e => e.Continent)
               .WithMany(e => e.ContinentEnvironments)
+              .IsRequired()
               .HasForeignKey(e => e.ContinentId)
               .OnDelete(DeleteBehavior.Cascade);
 
         entity.HasOne(e => e.Environment)
               .WithMany(e => e.ContinentEnvironments)
+              .IsRequired()
               .HasForeignKey(e => e.EnvironmentId)
               .OnDelete(DeleteBehavior.Cascade);
       });
@@ -1804,11 +1825,13 @@ namespace DBConnect
 
         entity.HasOne(e => e.ClassAbility)
               .WithMany(e => e.OverridePrerequisites)
+              .IsRequired()
               .HasForeignKey(e => e.ClassAbilityId)
               .OnDelete(DeleteBehavior.Cascade);
 
         entity.HasOne(e => e.Prerequisite)
               .WithMany(e => e.OverridePrerequisites)
+              .IsRequired()
               .HasForeignKey(e => e.PrerequisiteId)
               .OnDelete(DeleteBehavior.Cascade);
       });
@@ -1865,7 +1888,15 @@ namespace DBConnect
               .OnDelete(DeleteBehavior.Cascade);
       });
 
-      // Prerequisite
+      modelBuilder.Entity<Prerequisite>(entity =>
+      {
+        entity.HasKey(e => e.PrerequisiteId);
+
+        entity.HasMany(e => e.OverridePrerequisites)
+              .WithOne(e => e.Prerequisite)
+              .HasForeignKey(e => e.PrerequisiteId)
+              .OnDelete(DeleteBehavior.Cascade);
+      });
 
       modelBuilder.Entity<Season>(entity =>
       {

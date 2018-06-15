@@ -86,9 +86,23 @@ namespace DBConnect
 
   public enum DmgType
   {
+    Untyped = 0,
     B = 1,
     S = 2,
     P = 3,
+    Fire = 4,
+    Cold = 5,
+    Acid = 6,
+    Electricity = 7,
+    Sonic = 8,
+    Necrotic = 9, // Negative Energy
+    Radiant = 10, // Positive Energy
+    Force = 11,
+    Ability = 12,
+    Nonlethal = 13,
+    Precision = 14, // Sneak Attack
+    Poison = 15,
+    Death = 16,
   }
 
   public enum WpnType
@@ -103,6 +117,7 @@ namespace DBConnect
 
   public enum Stat
   {
+    None = 0,
     STR = 1,
     DEX = 2,
     CON = 3,
@@ -111,6 +126,8 @@ namespace DBConnect
     CHA = 6,
     Level = 7,
     BAB = 8,
+    CMB = 9,
+    CMD = 10,
   }
 
   public enum ClassAbilityType
@@ -131,9 +148,12 @@ namespace DBConnect
 
   public enum PrereqType
   {
+    Other = 0,
     Task = 1,
     Feat = 2,
     Skill = 3,
+    Class = 4,
+    Stat = 5,
   }
 
   public enum CRSpecial

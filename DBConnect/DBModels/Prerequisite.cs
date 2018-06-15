@@ -8,16 +8,15 @@ namespace DBConnect.DBModels
   {
     public int PrerequisiteId { get; set; }
     public string Description { get; set; }
-    public PrereqType PrereqType { get; }
-    public int? FeatId { get; set; }
-    public int? SkillId { get; set; }
-    public int? ClassId { get; set; }
+    public PrereqType PrereqTypeNeed { get; set; }
+    public PrereqType PrereqTypeFor { get; set; }
+    public int NeedId { get; set; }
+    public int ForId { get; set; }
     public Stat Stat { get; set; }
     public int Value { get; set; }
 
-    public virtual Feat Feat { get; set; }
-    public virtual Skill Skill { get; set; }
-    public virtual Class Class { get; set; }
+    public virtual object Need { get; set; }
+    public virtual object For { get; set; }
 
     public virtual ICollection<OverridePrerequisite> OverridePrerequisites { get; } = new List<OverridePrerequisite>();
   }

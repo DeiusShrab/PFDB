@@ -4,7 +4,7 @@ using System.Text;
 
 namespace DBConnect.DBModels
 {
-  class CharacterRaceAbility
+  public class CharacterRaceAbility
   {
     public int CharacterId { get; set; }
     public int RaceAbilityId { get; set; }
