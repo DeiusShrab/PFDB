@@ -224,26 +224,6 @@ namespace DBConnect
       return ret;
     }
 
-    public static string GetSaveData(int campaignId, SaveDataType saveDataType)
-    {
-      var ret = string.Empty;
-
-      var response = client.GetAsync($"{API_ADDR}SaveData/{campaignId}/{saveDataType}").Result;
-      if (response.IsSuccessStatusCode)
-      {
-        var content = response.Content;
-        ret = content.ReadAsStringAsync().Result;
-      }
-
-      return ret;
-    }
-
-    public static bool UpdateSaveData(int campaignId, SaveDataType saveDataType, string data)
-    {
-      var response = client.PostAsync($"{API_ADDR}SaveData/{campaignId}/{saveDataType}", new StringContent(data, Encoding.UTF8, "application/json")).Result;
-      return response.IsSuccessStatusCode;
-    }
-
     #endregion
 
     #region Details

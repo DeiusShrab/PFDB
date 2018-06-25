@@ -173,4 +173,18 @@ namespace DBConnect
     PFSite = 3,
     PFAPI = 4,
   }
+
+  public enum ClassType
+  {
+    Core = 1,
+    Base = 2,
+    Hybrid = 3,
+    Occult = 4,
+    Alternate = 5,
+    Unchained = 6,
+    Prestige = 7,
+    NPC = 8,
+    ThirdParty = 9,
+    Custom = 10,
+  }
 }

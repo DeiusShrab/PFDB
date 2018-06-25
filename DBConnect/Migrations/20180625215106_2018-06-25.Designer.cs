@@ -12,9 +12,10 @@ using System;
 namespace DBConnect.Migrations
 {
     [DbContext(typeof(PFDBContext))]
-    partial class PFDBContextModelSnapshot : ModelSnapshot
+    [Migration("20180625215106_2018-06-25")]
+    partial class _20180625
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder

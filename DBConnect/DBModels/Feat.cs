@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 
 namespace DBConnect.DBModels
 {
@@ -43,5 +44,25 @@ namespace DBConnect.DBModels
 
     public virtual ICollection<BestiaryFeat> BestiaryFeats { get; } = new List<BestiaryFeat>();
     public virtual ICollection<CharacterFeat> CharacterFeats { get; } = new List<CharacterFeat>();
+    
+    public List<Prerequisite> GetPrerequisites()
+    {
+      var ret = new List<Prerequisite>();
+      var context = PFDAL.GetContext();
+
+      ret.AddRange(context.Prerequisite.Where(x => x.ForId == FeatId && x.PrereqTypeFor == PrereqType.Feat));
+
+      return ret;
+    }
+
+    public List<Prerequisite> IsPrerequisiteFor()
+    {
+      var ret = new List<Prerequisite>();
+      var context = PFDAL.GetContext();
+
+      ret.AddRange(context.Prerequisite.Where(x => x.NeedId == FeatId && x.PrereqTypeNeed == PrereqType.Feat));
+
+      return ret;
+    }
   }
 }

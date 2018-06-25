@@ -1,7 +1,7 @@
 ﻿using System.ComponentModel;
 using System.Runtime.CompilerServices;
 
-namespace PFHelper.Classes
+namespace DBConnect.ConnectModels
 {
   public class CombatEffectItem : INotifyPropertyChanged
     {

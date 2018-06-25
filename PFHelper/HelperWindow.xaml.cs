@@ -422,7 +422,8 @@ namespace PFHelper
     private Terrain CurrentTerrain;
     private ContinentWeather CurrentWeatherGroup;
     private Campaign ActiveCampaign;
-    private string saveDataPath = Path.Combine(System.Environment.CurrentDirectory, "pfdat.dat");
+    private string saveDataFile = "pfdat";
+    private string saveDataExtension = ".dat";
     private string selectedCombatMonsterHtml;
     private int selectedCombatMonsterId;
     private string[] DayNames = { "Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat" };
@@ -478,8 +479,8 @@ namespace PFHelper
       LbxCampaignData.ItemsSource = campaignDataList;
       DrpCampaignSelect.ItemsSource = campaignList;
       DrpEvtContinent.ItemsSource = continentList;
-      
-      LoadSavedData();
+
+      LoadDataFromDisk();
       LoadContinentEnvironments();
 
       UpdateDisplays();
@@ -575,15 +576,21 @@ namespace PFHelper
         }
       }
 
+      if (CampaignData.ContainsKey(PFConfig.STR_SAVEDATA))
+      {
+        var saveObject = Newtonsoft.Json.JsonConvert.DeserializeObject<SaveObject>(CampaignData[PFConfig.STR_SAVEDATA]);
+        LoadSavedData(saveObject);
+      }
+
       return ret;
     }
 
-    private void LoadSavedData()
+    private bool LoadSavedData(SaveObject saveObject)
     {
-      if (File.Exists(saveDataPath))
-      {
-        var saveObject = Newtonsoft.Json.JsonConvert.DeserializeObject<SaveObject>(File.ReadAllText(saveDataPath));
+      var ret = false;
 
+      if (saveObject != null && saveObject.Date != null)
+      {
         TxtAPL.Text = saveObject.Apl.ToString();
 
         EncounterGroup = saveObject.CbxGroup;
@@ -610,6 +617,8 @@ namespace PFHelper
         combatGridItems.Clear();
         combatEffectItems.AddRange(saveObject.CombatEffects);
         combatGridItems.AddRange(saveObject.CombatGridItems);
+
+        ret = true;
       }
       else
       {
@@ -631,9 +640,60 @@ namespace PFHelper
         combatEffectItems.Clear();
         combatGridItems.Clear();
       }
+
+      return ret;
     }
 
-    private void SaveDataToDisk()
+    private void SaveDataToDisk(string path = "")
+    {
+      if (string.IsNullOrWhiteSpace(path))
+        path = Path.Combine(System.Environment.CurrentDirectory, saveDataFile + saveDataExtension);
+
+      var saveObject = new SaveObject();
+
+      if (int.TryParse(TxtAPL.Text, out int apl))
+        saveObject.Apl = apl;
+
+      saveObject.CbxGroup = EncounterGroup;
+      saveObject.CbxNpc = EncounterNPC;
+      saveObject.CbxTime = EncounterTime;
+      saveObject.CbxZone = EncounterZone;
+      saveObject.CbxInfRations = RationsInfinite;
+      saveObject.EnvironmentId = EnvironmentId;
+      saveObject.PlaneId = PlaneId;
+      saveObject.TimeId = TimeId;
+      saveObject.CombatRound = CombatRound;
+      saveObject.WeatherLock = WeatherLock;
+
+      saveObject.Rations = RationsLeft;
+      saveObject.Date = CurrentDate;
+      saveObject.Weather = CurrentWeather;
+      saveObject.WeatherResult = WeatherResult;
+      saveObject.Continent = CurrentContinent;
+      saveObject.Plane = CurrentPlane;
+      saveObject.Time = CurrentTime;
+      saveObject.Terrain = CurrentTerrain;
+
+      saveObject.CombatEffects = combatEffectItems.ToList();
+      saveObject.CombatGridItems = combatGridItems.ToList();
+      
+      File.WriteAllText(path, Newtonsoft.Json.JsonConvert.SerializeObject(saveObject));
+    }
+
+    private bool LoadDataFromDisk(string path = "")
+    {
+      if (string.IsNullOrWhiteSpace(path))
+        path = Path.Combine(System.Environment.CurrentDirectory, saveDataFile + saveDataExtension);
+
+      SaveObject saveObject = null;
+
+      if (File.Exists(path) && Path.GetExtension(path).Equals(saveDataExtension, StringComparison.InvariantCultureIgnoreCase))
+        saveObject = Newtonsoft.Json.JsonConvert.DeserializeObject<SaveObject>(File.ReadAllText(path));
+
+      return LoadSavedData(saveObject);
+    }
+
+    private void SaveCampaignData()
     {
       var saveObject = new SaveObject();
 
@@ -663,7 +723,13 @@ namespace PFHelper
       saveObject.CombatEffects = combatEffectItems.ToList();
       saveObject.CombatGridItems = combatGridItems.ToList();
 
-      File.WriteAllText(saveDataPath, Newtonsoft.Json.JsonConvert.SerializeObject(saveObject));
+      if (!CampaignData.ContainsKey(PFConfig.STR_SAVEDATA))
+        CampaignData.Add(PFConfig.STR_SAVEDATA, string.Empty);
+
+      CampaignData[PFConfig.STR_SAVEDATA] = Newtonsoft.Json.JsonConvert.SerializeObject(saveObject);
+
+      SaveDataToDisk();
+      SaveDataToDB();
     }
 
     private void SaveDataToDB()
@@ -687,7 +753,7 @@ namespace PFHelper
       }
       catch (Exception ex)
       {
-        File.WriteAllText(Path.Combine(Path.GetDirectoryName(saveDataPath), $"Events {DateTime.Now.ToString("yyyyMMdd-hhmmss")}.log"), Newtonsoft.Json.JsonConvert.SerializeObject(liveEventList));
+        File.WriteAllText(Path.Combine(System.Environment.CurrentDirectory, $"Events {DateTime.Now.ToString("yyyyMMdd-hhmmss")}.log"), Newtonsoft.Json.JsonConvert.SerializeObject(liveEventList));
         MessageBox.Show("Failed to save Events!\n" + ex.Message);
       }
 
@@ -697,7 +763,7 @@ namespace PFHelper
       }
       catch (Exception ex)
       {
-        File.WriteAllText(Path.Combine(Path.GetDirectoryName(saveDataPath), $"CampaignData {DateTime.Now.ToString("yyyyMMdd-hhmmss")}.log"), Newtonsoft.Json.JsonConvert.SerializeObject(CampaignData));
+        File.WriteAllText(Path.Combine(System.Environment.CurrentDirectory, $"CampaignData {DateTime.Now.ToString("yyyyMMdd-hhmmss")}.log"), Newtonsoft.Json.JsonConvert.SerializeObject(CampaignData));
         MessageBox.Show("Failed to save CampaignData!\n" + ex.Message);
       }
     }
@@ -1466,12 +1532,16 @@ namespace PFHelper
 
     private void Window_Closing(object sender, System.ComponentModel.CancelEventArgs e)
     {
-      SaveDataToDisk();
+      SaveDataToDB();
+      var savePath = Path.Combine(System.Environment.CurrentDirectory, saveDataFile + saveDataExtension);
+      SaveDataToDisk(savePath);
     }
 
     private void CommandSave_Executed(object sender, System.Windows.Input.ExecutedRoutedEventArgs e)
     {
-      SaveDataToDisk();
+      SaveDataToDB();
+      var savePath = Path.Combine(System.Environment.CurrentDirectory, saveDataFile + saveDataExtension);
+      SaveDataToDisk(savePath);
     }
 
     private void BtnCombatClearAll_Click(object sender, RoutedEventArgs e)
@@ -1532,8 +1602,6 @@ namespace PFHelper
         MessageBox.Show("ERROR - Failed to connect to server. Is the config set correctly?");
       }
     }
-
-    #endregion
 
     private void BtnManualWeather_Click(object sender, RoutedEventArgs e)
     {
@@ -1709,5 +1777,7 @@ namespace PFHelper
       if (LbxContinent.SelectedItem != null)
         SwitchContinents((int)LbxContinent.SelectedValue);
     }
+
+    #endregion
   }
 }

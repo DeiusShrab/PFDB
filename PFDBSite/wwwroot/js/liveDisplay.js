@@ -30,6 +30,17 @@ connection.on("ReceiveMessage", (user, message) => {
   document.getElementById("messagesList").appendChild(li);
 });
 
+connection.on("ReceiveDrawing", (user, drawObj) => {
+
+  ctx.beginPath();
+  ctx.moveTo(drawObj.prevX, drawObj.prevY);
+  ctx.lineTo(drawObj.currX, drawObj.currY);
+  ctx.strokeStyle = drawObj.x;
+  ctx.lineWidth = drawObj.y;
+  ctx.stroke();
+  ctx.closePath();
+});
+
 connection.start().catch(err => console.error(err.toString()));
 
 document.getElementById("sendButton").addEventListener("click", event => {
@@ -96,11 +107,12 @@ function color(obj) {
     case "purple":
       x = "purple";
       break;
-    case "black":
-      x = "black";
-      break;
     case "white":
       x = "white";
+      break;
+
+    default:
+      x = "black";
       break;
   }
 }
@@ -113,4 +125,53 @@ function draw() {
   ctx.lineWidth = y;
   ctx.stroke();
   ctx.closePath();
+
+  var drawObj;
+  drawObj.prevX = prevX;
+  drawObj.prevY = prevY;
+  drawObj.currX = currX;
+  drawObj.currY = currY;
+  drawObj.x = x;
+  drawObj.y = y;
+
+  const user = document.getElementById("userInput").value;
+  connection.invoke("SendDrawing", user, drawObj).catch(err => console.error(err.toString()));
+}
+
+function save() {
+  document.getElementById("canvasimg").style.border = "2px solid";
+  var dataURL = canvas.toDataURL();
+  document.getElementById("canvasimg").src = dataURL;
+  document.getElementById("canvasimg").style.display = "inline";
+}
+
+function findxy(res, e) {
+  if (res == 'down') {
+    prevX = currX;
+    prevY = currY;
+    currX = e.clientX - canvas.offsetLeft;
+    currY = e.clientY - canvas.offsetTop;
+
+    flag = true;
+    dot_flag = true;
+    if (dot_flag) {
+      ctx.beginPath();
+      ctx.fillStyle = x;
+      ctx.fillRect(currX, currY, 2, 2);
+      ctx.closePath();
+      dot_flag = false;
+    }
+  }
+  if (res == 'up' || res == "out") {
+    flag = false;
+  }
+  if (res == 'move') {
+    if (flag) {
+      prevX = currX;
+      prevY = currY;
+      currX = e.clientX - canvas.offsetLeft;
+      currY = e.clientY - canvas.offsetTop;
+      draw();
+    }
+  }
 }

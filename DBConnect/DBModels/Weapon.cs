@@ -14,6 +14,7 @@ namespace DBConnect.DBModels
     public int Range { get; set; }
     private string DmgTypeString { get; set; }
 
+    [NotMapped]
     public virtual List<DmgType> DamageTypes
     {
       get

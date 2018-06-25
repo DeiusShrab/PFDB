@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Text;
 
 namespace DBConnect.DBModels
@@ -9,6 +10,7 @@ namespace DBConnect.DBModels
     public int ClassId { get; set; }
     public int ArchetypeForClassId { get; set; }
     public string Name { get; set; }
+    public string Description { get; set; }
     public int HD { get; set; }
     public int SkillPts { get; set; }
     public string StartingGold { get; set; }
@@ -21,10 +23,31 @@ namespace DBConnect.DBModels
     //public string SpellsPerDay { get; set; }
     //public string SpellsKnown { get; set; }
     public Stat CastingStat { get; set; }
+    public ClassType ClassType { get; set; }
 
     public virtual ICollection<ClassSkill> ClassSkills { get; } = new List<ClassSkill>();
     public virtual ICollection<ClassAbility> ClassAbilities { get; } = new List<ClassAbility>();
     public virtual ICollection<CharacterClassLevel> CharacterClassLevels { get; } = new List<CharacterClassLevel>();
     public virtual ICollection<FavoredClass> FavoredClasses { get; } = new List<FavoredClass>();
+
+    public List<Prerequisite> GetPrerequisites()
+    {
+      var ret = new List<Prerequisite>();
+      var context = PFDAL.GetContext();
+      
+      ret.AddRange(context.Prerequisite.Where(x => x.ForId == ClassId && x.PrereqTypeFor == PrereqType.Class));
+
+      return ret;
+    }
+
+    public List<Prerequisite> IsPrerequisiteFor()
+    {
+      var ret = new List<Prerequisite>();
+      var context = PFDAL.GetContext();
+
+      ret.AddRange(context.Prerequisite.Where(x => x.NeedId == ClassId && x.PrereqTypeNeed == PrereqType.Class));
+
+      return ret;
+    }
   }
 }

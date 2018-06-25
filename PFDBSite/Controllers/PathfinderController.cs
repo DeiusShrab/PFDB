@@ -3,6 +3,7 @@ using System.Linq;
 using System.Security.Claims;
 using System.Threading;
 using DBConnect;
+using DBConnect.ConnectModels;
 using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Authorization;
@@ -41,14 +42,36 @@ namespace PFDBSite.Controllers
     [HttpGet("Campaigns/{campaignId}")]
     public IActionResult CampaignLiveDisplay(int campaignId)
     {
+      var context = PFDAL.GetContext();
+      var campaign = context.Campaign.Find(campaignId);
+
+      if (campaign == null || campaign.CampaignId == 0)
+        return NotFound();
+
+      var campaignData = context.CampaignData.Where(x => x.CampaignId == campaign.CampaignId);
+      var displayDate = "NO DATE";
+      var campaignDate = campaignData.FirstOrDefault(x => x.Key == PFConfig.STR_FANTASYDATE);
+      if (campaignDate != null)
+        displayDate = new FantasyDate(campaignDate.Value).ShortDate;
+
+      var model = new LiveDisplayModel()
+      {
+        ActivePlayer = Player,
+      };
       return View();
     }
 
-    public IActionResult LiveDisplay()
+    public IActionResult LiveDisplayCombat(int campaignId)
     {
-      var model = new LiveDisplayModel
+      var context = PFDAL.GetContext();
+      var campaign = context.Campaign.Find(campaignId);
+
+      if (campaign == null || campaign.CampaignId == 0)
+        return NotFound();
+
+      var model = new LiveDisplayModel()
       {
-        ActivePlayer = Player
+        ActivePlayer = Player,
       };
       return View();
     }

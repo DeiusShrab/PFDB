@@ -53,7 +53,6 @@ namespace DBConnect
     public DbSet<Prerequisite> Prerequisite { get; set; }
     public DbSet<Race> Race { get; set; }
     public DbSet<RaceSubType> RaceSubType { get; set; }
-    public DbSet<SaveData> SaveData { get; set; }
     public DbSet<Season> Season { get; set; }
     public DbSet<Skill> Skill { get; set; }
     public DbSet<Spell> Spell { get; set; }
@@ -922,20 +921,6 @@ namespace DBConnect
               .WithMany(e => e.RaceSubTypes)
               .IsRequired()
               .HasForeignKey(e => e.BestiaryTypeId)
-              .OnDelete(DeleteBehavior.Cascade);
-      });
-
-      modelBuilder.Entity<SaveData>(entity =>
-      {
-        entity.HasKey(e => new { e.CampaignId, e.SaveDataType });
-
-        entity.Property(e => e.Data)
-              .IsUnicode(false);
-
-        entity.HasOne(e => e.Campaign)
-              .WithMany(e => e.SaveData)
-              .IsRequired()
-              .HasForeignKey(e => e.CampaignId)
               .OnDelete(DeleteBehavior.Cascade);
       });
 

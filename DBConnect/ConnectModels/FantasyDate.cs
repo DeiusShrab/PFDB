@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace PFHelper.Classes
+namespace DBConnect.ConnectModels
 {
   public class FantasyDate : IComparable<FantasyDate>
   {

@@ -12,6 +12,7 @@ namespace DBConnect.DBModels
     public string ReplacesAbilities { get; set; } // For abilities that increase in strength with levels and archetype abilities
     public string Name { get; set; }
     public string Description { get; set; }
+    public ClassAbilityType AbilityType { get; set; }
 
     public virtual List<int> ReplacesAbilitiesList
     {

@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using DBConnect;
+using DBConnect.ConnectModels;
 using DBConnect.DBModels;
 
 namespace PFHelper.Classes

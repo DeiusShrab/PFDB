@@ -1,7 +1,7 @@
 ﻿using System;
 using DBConnect.DBModels;
 
-namespace PFHelper.Classes
+namespace DBConnect.ConnectModels
 {
   public class CombatGridItem : ICloneable
   {

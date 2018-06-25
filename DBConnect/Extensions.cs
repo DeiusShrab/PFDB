@@ -19,5 +19,41 @@ namespace DBConnect
 
       return observable;
     }
+
+    public static string EnumToCommaString(this IEnumerable<object> enumerable)
+    {
+      if (enumerable == null)
+        return null;
+
+      var sb = new StringBuilder();
+      foreach (var item in enumerable)
+      {
+        sb.Append(item.ToString());
+        sb.Append(", ");
+      }
+
+      if (sb.Length > 0)
+        sb.Remove(sb.Length - 2, 2);
+
+      return sb.ToString();
+    }
+
+    public static string EnumToNewlineString(this IEnumerable<object> enumerable)
+    {
+      if (enumerable == null)
+        return null;
+
+      var sb = new StringBuilder();
+      foreach (var item in enumerable)
+      {
+        sb.Append(item.ToString());
+        sb.Append("\n");
+      }
+
+      if (sb.Length > 0)
+        sb.Remove(sb.Length - 1, 1);
+
+      return sb.ToString();
+    }
   }
 }

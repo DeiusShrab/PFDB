@@ -1,4 +1,6 @@
 TODO AT WORK
+Random Generator - Unique Encounters
+	Pick a completely random creature, possibly with a random template
 Live Display
 	Parse /commands
 	Store Chat History, display recent messages to users who join (max x lines, no max age)
@@ -35,8 +37,8 @@ Web Tools!
 			Also rough health displays (Blue >100%, Green >50%, Yellow >20%, Red <=20%)
 W E L P
 Code First Mapping
-	Add-Migration -Context PFDBContext
-	Update-Database -Context PFDBContext
+	Add-Migration <NAME> -Context PFDBContext
+	Update-Database <NAME> -Context PFDBContext
 
 TODO AT HOME
 Add Titan to LiveDisplay for discord chat integration

@@ -203,14 +203,32 @@ namespace PFAPI.Controllers
       return new JsonResult(helperRandom.GenerateRandomWeatherTable(request));
     }
 
-    [HttpPost("FantasyDate")]
-    public IActionResult UpdateFantasyDate([FromBody] string newDate)
+    [HttpGet("FantasyDate/{campaignId:int}")]
+    public IActionResult GetFantasyDate(int campaignId)
+    {
+      var data = PFDAL.GetContext().CampaignData.FirstOrDefault(x => x.CampaignId == campaignId && x.Key == PFConfig.STR_FANTASYDATE);
+
+      if (data == null)
+        return NotFound();
+
+      return Ok(data.Value);
+    }
+
+    [HttpPost("FantasyDate/{campaignId:int}")]
+    public IActionResult UpdateFantasyDate([FromBody] string newDate, int campaignId)
     {
       if (string.IsNullOrWhiteSpace(newDate))
         return BadRequest();
 
-      // Store the current date in the DB or something
-      // Campaign table?
+      var context = PFDAL.GetContext();
+      var data = context.CampaignData.FirstOrDefault(x => x.CampaignId == campaignId && x.Key == PFConfig.STR_FANTASYDATE);
+      if (data == null)
+        data = new CampaignData { CampaignId = campaignId, Key = PFConfig.STR_FANTASYDATE };
+
+      context.CampaignData.Attach(data);
+      data.Value = newDate;
+      context.SaveChanges();
+
       return Ok();
     }
 
@@ -266,40 +284,6 @@ namespace PFAPI.Controllers
         return BadRequest();
 
       return new JsonResult(helperQuery.EnvironmentsForContinent(continentId));
-    }
-
-    [HttpGet("SaveData/{campaignId:int}/{saveDataType:int}")]
-    public IActionResult GetSaveData(int campaignId, int saveDataType)
-    {
-      if (campaignId > 0 && Enum.IsDefined(typeof(SaveDataType), saveDataType))
-      {
-        var context = PFDAL.GetContext();
-        var data = context.SaveData.Find(campaignId, saveDataType);
-        return Ok(data);
-      }
-
-      return BadRequest();
-    }
-
-    [HttpPost("SaveData/{campaignId:int}/{saveDataType:int}")]
-    public IActionResult UpdateSaveData(int campaignId, int saveDataType, [FromBody] string data)
-    {
-      if (campaignId > 0 && Enum.IsDefined(typeof(SaveDataType), saveDataType))
-      {
-        var context = PFDAL.GetContext();
-        var saveData = context.SaveData.Find(campaignId, saveDataType);
-        if (saveData == null)
-        {
-          saveData = new SaveData { CampaignId = campaignId, SaveDataType = (SaveDataType)saveDataType };
-          context.SaveData.Attach(saveData);
-        }
-
-        saveData.Data = data;
-        if (context.SaveChanges() == 1)
-          return Ok();
-      }
-
-      return BadRequest();
     }
 
     #endregion
