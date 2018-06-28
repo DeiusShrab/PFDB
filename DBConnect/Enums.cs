@@ -84,6 +84,15 @@ namespace DBConnect
     UpdateCampaignNumber = 2 // Data Format: "Key(string);Operation(char);Amount(decimal)" - ex: "DaysUntilFestival;-;1", "GoblinBankAccount;*;1.0025"
   }
 
+  public enum TrackedEventFrequency
+  {
+    OneTime = 0,
+    Days = 1,
+    Weeks = 2,
+    Months = 3,
+    Years = 4,
+  }
+
   public enum DmgType
   {
     Untyped = 0,

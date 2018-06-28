@@ -251,20 +251,11 @@ namespace PFHelper
       set { LblMoonPhase.Content = value; }
     }
 
-    public ObservableCollection<CombatGridItem> CombatGridItems
-    {
-      get => combatGridItems;
-    }
+    public ObservableCollection<CombatGridItem> CombatGridItems { get; set; }
 
-    public ObservableCollection<CombatEffectItem> CombatEffectItems
-    {
-      get => combatEffectItems;
-    }
+    public ObservableCollection<CombatEffectItem> CombatEffectItems { get; set; }
 
-    public ObservableCollection<LiveEvent> LiveEvents
-    {
-      get => liveEventList;
-    }
+    public ObservableCollection<LiveEvent> LiveEvents { get; set; }
 
     public string EventName
     {
@@ -315,6 +306,27 @@ namespace PFHelper
       {
         DrpEvtType.SelectedValue = value;
       }
+    }
+
+    public int EventFreqId
+    {
+      get
+      {
+        if (DrpEvtFreqSpan != null)
+          return (int)DrpEvtFreqSpan.SelectedValue;
+
+        return 0;
+      }
+      set
+      {
+        DrpEvtFreqSpan.SelectedValue = value;
+      }
+    }
+
+    public bool EventLocalOnly
+    {
+      get { return CbxEvtShowLocal.IsChecked ?? false; }
+      set { CbxEvtShowLocal.IsChecked = value; }
     }
 
     public string EventData
@@ -380,16 +392,19 @@ namespace PFHelper
 
         return 0;
       }
-      set { DrpEvtContinent.SelectedValue = value; }
+      set
+      {
+        if (value > 0 && continentList.Select(x => x.Result).Contains(value))
+          DrpEvtContinent.SelectedValue = value;
+        else
+          DrpEvtContinent.SelectedIndex = -1;
+      }
     }
 
     #endregion
 
     #region Data Properties
-
-    private ObservableCollection<CombatGridItem> combatGridItems;
-    private ObservableCollection<CombatEffectItem> combatEffectItems;
-    private ObservableCollection<LiveEvent> liveEventList;
+    
     private ObservableCollection<DisplayResult> randomEncounterItems;
     private ObservableCollection<DisplayResult> continentList;
     private ObservableCollection<DisplayValues> encounterResults;
@@ -442,13 +457,13 @@ namespace PFHelper
 
       encounterResults = new ObservableCollection<DisplayValues>();
       randomEncounterItems = new ObservableCollection<DisplayResult>();
-      combatEffectItems = new ObservableCollection<CombatEffectItem>();
-      combatGridItems = new ObservableCollection<CombatGridItem>();
+      CombatEffectItems = new ObservableCollection<CombatEffectItem>();
+      CombatGridItems = new ObservableCollection<CombatGridItem>();
       continentList = new ObservableCollection<DisplayResult>();
       creatureInfos = new ObservableCollection<DisplayResult>();
       planeList = new ObservableCollection<DisplayResult>();
       timeList = new ObservableCollection<DisplayResult>();
-      liveEventList = new ObservableCollection<LiveEvent>();
+      LiveEvents = new ObservableCollection<LiveEvent>();
       campaignDataList = new ObservableCollection<string>();
       campaignList = new ObservableCollection<DisplayResult>();
       environmentList = new ObservableCollection<DisplayResult>();
@@ -461,11 +476,11 @@ namespace PFHelper
       LbxD20.DisplayMemberPath = LbxD4.DisplayMemberPath = LbxD6.DisplayMemberPath = LbxD8.DisplayMemberPath = LbxD10.DisplayMemberPath = LbxD12.DisplayMemberPath
         = LbxEncounterCreatures.DisplayMemberPath = LbxContinent.DisplayMemberPath = LbxCreatureInfo.DisplayMemberPath = LbxPlane.DisplayMemberPath
         = LbxTime.DisplayMemberPath = LbxEnvironment.DisplayMemberPath = DrpEvtType.DisplayMemberPath = DrpCampaignSelect.DisplayMemberPath
-        = DrpEvtContinent.DisplayMemberPath = "Display";
+        = DrpEvtContinent.DisplayMemberPath = DrpEvtFreqSpan.DisplayMemberPath = "Display";
       LbxD20.SelectedValuePath = LbxD4.SelectedValuePath = LbxD6.SelectedValuePath = LbxD8.SelectedValuePath = LbxD10.SelectedValuePath = LbxD12.SelectedValuePath
         = LbxEncounterCreatures.SelectedValuePath = LbxContinent.SelectedValuePath = LbxCreatureInfo.SelectedValuePath = LbxPlane.SelectedValuePath
         = LbxTime.SelectedValuePath = LbxEnvironment.SelectedValuePath = DrpEvtType.SelectedValuePath = DrpCampaignSelect.SelectedValuePath
-        = DrpEvtContinent.SelectedValuePath = "Result";
+        = DrpEvtContinent.SelectedValuePath = DrpEvtFreqSpan.SelectedValuePath = "Result";
 
       LbxEncounterCRs.DisplayMemberPath = "Display";
       LbxEncounterCRs.SelectedValuePath = "Values";
@@ -491,6 +506,12 @@ namespace PFHelper
       {
         DrpEvtType.Items.Add(new DisplayResult() { Display = item.ToString(), Result = (int)item });
       }
+
+      foreach (TrackedEventFrequency item in Enum.GetValues(typeof(TrackedEventFrequency)))
+      {
+        DrpEvtFreqSpan.Items.Add(new DisplayResult() { Display = item.ToString(), Result = (int)item });
+      }
+      EventFreqId = (int)TrackedEventFrequency.Days;
     }
 
     #endregion
@@ -539,7 +560,7 @@ namespace PFHelper
           continentList.Clear();
           timeList.Clear();
           planeList.Clear();
-          liveEventList.Clear();
+          LiveEvents.Clear();
           campaignList.Clear();
           campaignDataList.Clear();
 
@@ -557,7 +578,7 @@ namespace PFHelper
           }
           foreach (var item in trackedEvents)
           {
-            liveEventList.Add(new LiveEvent(item));
+            LiveEvents.Add(new LiveEvent(item));
           }
           foreach (var item in campaigns.OrderBy(x => x.CampaignName))
           {
@@ -603,6 +624,7 @@ namespace PFHelper
         EnvironmentId = saveObject.EnvironmentId;
         CombatRound = saveObject.CombatRound;
         WeatherLock = saveObject.WeatherLock;
+        EventLocalOnly = saveObject.CbxEvtLocal;
 
         RationsLeft = saveObject.Rations;
         CurrentDate = saveObject.Date;
@@ -613,10 +635,10 @@ namespace PFHelper
         CurrentTime = saveObject.Time;
         CurrentTerrain = saveObject.Terrain;
 
-        combatEffectItems.Clear();
-        combatGridItems.Clear();
-        combatEffectItems.AddRange(saveObject.CombatEffects);
-        combatGridItems.AddRange(saveObject.CombatGridItems);
+        CombatEffectItems.Clear();
+        CombatGridItems.Clear();
+        CombatEffectItems.AddRange(saveObject.CombatEffects);
+        CombatGridItems.AddRange(saveObject.CombatGridItems);
 
         ret = true;
       }
@@ -637,8 +659,8 @@ namespace PFHelper
         CurrentTime = null;
         CurrentTerrain = null;
 
-        combatEffectItems.Clear();
-        combatGridItems.Clear();
+        CombatEffectItems.Clear();
+        CombatGridItems.Clear();
       }
 
       return ret;
@@ -664,6 +686,7 @@ namespace PFHelper
       saveObject.TimeId = TimeId;
       saveObject.CombatRound = CombatRound;
       saveObject.WeatherLock = WeatherLock;
+      saveObject.CbxEvtLocal = EventLocalOnly;
 
       saveObject.Rations = RationsLeft;
       saveObject.Date = CurrentDate;
@@ -674,8 +697,8 @@ namespace PFHelper
       saveObject.Time = CurrentTime;
       saveObject.Terrain = CurrentTerrain;
 
-      saveObject.CombatEffects = combatEffectItems.ToList();
-      saveObject.CombatGridItems = combatGridItems.ToList();
+      saveObject.CombatEffects = CombatEffectItems.ToList();
+      saveObject.CombatGridItems = CombatGridItems.ToList();
       
       File.WriteAllText(path, Newtonsoft.Json.JsonConvert.SerializeObject(saveObject));
     }
@@ -720,8 +743,8 @@ namespace PFHelper
       saveObject.Time = CurrentTime;
       saveObject.Terrain = CurrentTerrain;
 
-      saveObject.CombatEffects = combatEffectItems.ToList();
-      saveObject.CombatGridItems = combatGridItems.ToList();
+      saveObject.CombatEffects = CombatEffectItems.ToList();
+      saveObject.CombatGridItems = CombatGridItems.ToList();
 
       if (!CampaignData.ContainsKey(PFConfig.STR_SAVEDATA))
         CampaignData.Add(PFConfig.STR_SAVEDATA, string.Empty);
@@ -736,7 +759,7 @@ namespace PFHelper
     {
       try
       {
-        foreach (var item in liveEventList)
+        foreach (var item in LiveEvents)
         {
           if (item.EventId > 0)
             DBClient.UpdateTrackedEvent(item.Export());
@@ -745,15 +768,15 @@ namespace PFHelper
         }
 
         trackedEvents = DBClient.GetTrackedEvents();
-        liveEventList.Clear();
+        LiveEvents.Clear();
         foreach (var item in trackedEvents)
         {
-          liveEventList.Add(new LiveEvent(item));
+          LiveEvents.Add(new LiveEvent(item));
         }
       }
       catch (Exception ex)
       {
-        File.WriteAllText(Path.Combine(System.Environment.CurrentDirectory, $"Events {DateTime.Now.ToString("yyyyMMdd-hhmmss")}.log"), Newtonsoft.Json.JsonConvert.SerializeObject(liveEventList));
+        File.WriteAllText(Path.Combine(System.Environment.CurrentDirectory, $"Events {DateTime.Now.ToString("yyyyMMdd-hhmmss")}.log"), Newtonsoft.Json.JsonConvert.SerializeObject(LiveEvents));
         MessageBox.Show("Failed to save Events!\n" + ex.Message);
       }
 
@@ -960,7 +983,7 @@ namespace PFHelper
         foreach (DisplayResult item in LbxEncounterCreatures.SelectedItems)
         {
           var b = DBClient.GetBestiary(item.Result);
-          combatGridItems.Add(new CombatGridItem(b));
+          CombatGridItems.Add(new CombatGridItem(b));
         }
 
         AddCreatureToCreatureInfo();
@@ -1000,7 +1023,7 @@ namespace PFHelper
 
       var removeItems = new List<CombatEffectItem>();
 
-      foreach (var item in combatEffectItems)
+      foreach (var item in CombatEffectItems)
       {
         if (item.Rounds <= 0)
           removeItems.Add(item);
@@ -1010,7 +1033,7 @@ namespace PFHelper
 
       foreach (var item in removeItems)
       {
-        combatEffectItems.Remove(item);
+        CombatEffectItems.Remove(item);
       }
     }
 
@@ -1030,13 +1053,13 @@ namespace PFHelper
 
       for (int j = 1; j <= i; j++)
       {
-        foreach (var evt in liveEventList)
+        foreach (var evt in LiveEvents)
         {
           if (evt.DateNextOccurring == oldDate.AddDays(j))
           {
             RunLiveEvent(evt);
 
-            if (evt.ReoccurFreq > 1)
+            if (evt.EventFrequency > 0)
               activeEventIds.Add(evt.EventId);
           }
         }
@@ -1060,7 +1083,7 @@ namespace PFHelper
     private void RunLiveEvent(LiveEvent e)
     {
       e.DateLastOccurred = new FantasyDate(e.DateNextOccurring.ShortDate);
-      e.DateNextOccurring.AddDays(e.ReoccurFreq);
+      //e.DateNextOccurring.AddDays(e.ReoccurFreq); // WORKING HERE
 
       try
       {
@@ -1104,14 +1127,14 @@ namespace PFHelper
       if (WeatherLock)
         return;
 
-      if (WeatherResult == null && CurrentWeather == null)// DEBUG
+      if (WeatherResult == null && CurrentWeather == null && CurrentWeatherGroup == null)// DEBUG
       {
         LblCurrentWeather.Content = random.Next(100);
         LblCurrentWeatherGroup.Content = "DEBUG";
         return;
       }
 
-      if (WeatherResult == null || ContinentId != WeatherResult.ContinentId)
+      if (WeatherResult == null || ContinentId != WeatherResult.ContinentId || CurrentWeatherGroup == null)
       {
         ReloadWeatherTable();
         CurrentWeatherGroup = GetRandomWeather();
@@ -1121,7 +1144,7 @@ namespace PFHelper
 
       while (d > 0 && CurrentWeatherGroup.Duration > 0)
       {
-        if (CurrentWeatherGroup.Duration >= d)
+        if (CurrentWeatherGroup.Duration > d)
         {
           CurrentWeatherGroup.Duration -= d;
           d = -1;
@@ -1137,7 +1160,7 @@ namespace PFHelper
               CurrentWeatherGroup = DBClient.GetContinentWeather(CurrentWeatherGroup.NextCWID.Value);
           }
           else
-            CurrentWeatherGroup = GetRandomWeather();
+            CurrentWeatherGroup = GetRandomWeather(true);
         }
       }
 
@@ -1255,7 +1278,7 @@ namespace PFHelper
     {
       if (CurrentEvent != null)
       {
-        EventDate = CurrentEvent.DateNextOccurring.ShortDate;
+        EventDate = CurrentEvent.DateNextOccurring != null ? CurrentEvent.DateNextOccurring.ShortDate : string.Empty;
         EventLastDate = CurrentEvent.DateLastOccurred != null ? CurrentEvent.DateLastOccurred.ShortDate : string.Empty;
         EventLocation = CurrentEvent.Location;
         EventName = CurrentEvent.Name;
@@ -1441,17 +1464,17 @@ namespace PFHelper
     private void BtnCombatEnd_Click(object sender, RoutedEventArgs e)
     {
       CombatRound = 0;
-      combatEffectItems.Clear();
+      CombatEffectItems.Clear();
 
       var removeItems = new List<CombatGridItem>();
-      foreach (var item in combatGridItems)
+      foreach (var item in CombatGridItems)
       {
         if (!item.PC)
           removeItems.Add(item);
       }
       foreach (var item in removeItems)
       {
-        combatGridItems.Remove(item);
+        CombatGridItems.Remove(item);
       }
     }
 
@@ -1474,7 +1497,7 @@ namespace PFHelper
           PC = CgiPC
         };
 
-        combatGridItems.Add(cgi);
+        CombatGridItems.Add(cgi);
 
         ClearCombatAdd();
       }
@@ -1490,7 +1513,7 @@ namespace PFHelper
           Effect = CefName
         };
 
-        combatEffectItems.Add(cef);
+        CombatEffectItems.Add(cef);
 
         ClearCombatEffectAdd();
       }
@@ -1498,9 +1521,9 @@ namespace PFHelper
 
     private void BtnCombatSort_Click(object sender, RoutedEventArgs e)
     {
-      var temp = new List<CombatGridItem>(combatGridItems.OrderByDescending(x => x.Init));
-      combatGridItems.Clear();
-      combatGridItems.AddRange(temp);
+      var temp = new List<CombatGridItem>(CombatGridItems.OrderByDescending(x => x.Init));
+      CombatGridItems.Clear();
+      CombatGridItems.AddRange(temp);
     }
 
     private void BtnCombatDuplicate_Click(object sender, RoutedEventArgs e)
@@ -1509,7 +1532,7 @@ namespace PFHelper
       {
         foreach (CombatGridItem item in DgCombatGrid.SelectedItems)
         {
-          combatGridItems.Add(new CombatGridItem(item));
+          CombatGridItems.Add(new CombatGridItem(item));
         }
       }
     }
@@ -1525,7 +1548,7 @@ namespace PFHelper
         }
         foreach (var item in removeItems)
         {
-          combatGridItems.Remove(item);
+          CombatGridItems.Remove(item);
         }
       }
     }
@@ -1548,8 +1571,8 @@ namespace PFHelper
     {
       if (MessageBox.Show("Are you sure you want to Clear All?") == MessageBoxResult.OK)
       {
-        combatEffectItems.Clear();
-        combatGridItems.Clear();
+        CombatEffectItems.Clear();
+        CombatGridItems.Clear();
         ClearCombatAdd();
         ClearCombatEffectAdd();
         CombatRound = 1;
@@ -1569,7 +1592,7 @@ namespace PFHelper
     private void BtnNextDay_Click(object sender, RoutedEventArgs e)
     {
       AddDays(1);
-      NextWeather();
+      //NextWeather();
       GenEncounters();
     }
 
@@ -1618,7 +1641,13 @@ namespace PFHelper
 
     private void BtnCombatAddFromBestiary_Click(object sender, RoutedEventArgs e)
     {
-      var bList = DBClient.GetList("Bestiary");
+      var bList = DBClient.GetList("Bestiary").OrderBy(x => x.Name);
+      var formattedList = new List<DisplayResult>();
+      foreach (var item in bList)
+      {
+        formattedList.Add(new DisplayResult { Display = $"[{ParseCR(int.Parse(item.Notes))}] {item.Name}", Result = item.Id });
+      }
+
       var popup = new ListPopUp(bList);
       popup.ShowDialog();
 
@@ -1627,7 +1656,7 @@ namespace PFHelper
         var bItem = bList.First(x => x.Id == popup.SelectedResult);
 
         var b = DBClient.GetBestiary(bItem.Id);
-        combatGridItems.Add(new CombatGridItem(b));
+        CombatGridItems.Add(new CombatGridItem(b));
 
         if (!creatureInfos.Select(x => x.Result).Contains(bItem.Id))
           creatureInfos.Add(new DisplayResult() { Display = bItem.Name, Result = bItem.Id });
@@ -1651,9 +1680,18 @@ namespace PFHelper
       SaveTrackedEvent();
 
       if (CurrentEvent.EventId == 0)
-        CurrentEvent = new LiveEvent(DBClient.CreateTrackedEvent(CurrentEvent.Export()));
+      {
+        var createdEvent = DBClient.CreateTrackedEvent(CurrentEvent.Export());
+        CurrentEvent = new LiveEvent(createdEvent ?? CurrentEvent.Export());
+      }
       else
         DBClient.UpdateTrackedEvent(CurrentEvent.Export());
+
+      if (CurrentEvent.EventId == 0)
+        MessageBox.Show("WARNING - Event not saved to DB!");
+
+      if (!EventLocalOnly || CurrentEvent.ContinentId == 0 || CurrentEvent.ContinentId == CurrentContinent.ContinentId)
+        LiveEvents.Add(CurrentEvent);
     }
 
     private void BtnEvtNew_Click(object sender, RoutedEventArgs e)
@@ -1667,25 +1705,25 @@ namespace PFHelper
     {
       if (DgEvt.SelectedItem != null)
       {
-        CurrentEvent = liveEventList.First(x => x.EventId == ((LiveEvent)DgEvt.SelectedItem).EventId);
+        CurrentEvent = LiveEvents.First(x => x.EventId == ((LiveEvent)DgEvt.SelectedItem).EventId);
         LoadTrackedEvent();
       }
     }
 
     private void BtnEvtSortName_Click(object sender, RoutedEventArgs e)
     {
-      var temp = new List<LiveEvent>(liveEventList.OrderBy(x => x.Name));
-      liveEventList.Clear();
-      liveEventList.AddRange(temp);
+      var temp = new List<LiveEvent>(LiveEvents.OrderBy(x => x.Name));
+      LiveEvents.Clear();
+      LiveEvents.AddRange(temp);
     }
 
     private void BtnEvtSortNext_Click(object sender, RoutedEventArgs e)
     {
-      var temp = new List<LiveEvent>(liveEventList.Where(x => x.DateNextOccurring >= CurrentDate).OrderBy(x => x.DateNextOccurring));
-      temp.AddRange(liveEventList.Where(x => x.DateNextOccurring < CurrentDate).OrderBy(x => x.DateNextOccurring));
+      var temp = new List<LiveEvent>(LiveEvents.Where(x => x.DateNextOccurring >= CurrentDate).OrderBy(x => x.DateNextOccurring));
+      temp.AddRange(LiveEvents.Where(x => x.DateNextOccurring < CurrentDate).OrderBy(x => x.DateNextOccurring));
 
-      liveEventList.Clear();
-      liveEventList.AddRange(temp);
+      LiveEvents.Clear();
+      LiveEvents.AddRange(temp);
     }
 
     private void BtnSaveCampaignData_Click(object sender, RoutedEventArgs e)
@@ -1778,6 +1816,40 @@ namespace PFHelper
         SwitchContinents((int)LbxContinent.SelectedValue);
     }
 
+    private void BtnEncounterAddFromBestiary_Click(object sender, RoutedEventArgs e)
+    {
+      var bList = DBClient.GetList("Bestiary").OrderBy(x => x.Name);
+      var formattedList = new List<DisplayResult>();
+      foreach (var item in bList)
+      {
+        formattedList.Add(new DisplayResult { Display = $"[{ParseCR(int.Parse(item.Notes))}] {item.Name}", Result = item.Id });
+      }
+
+      var popup = new ListPopUp(bList);
+      popup.ShowDialog();
+
+      if (popup.DialogResult == true && popup.SelectedResult > 0)
+      {
+        var bItem = bList.First(x => x.Id == popup.SelectedResult);
+
+        var b = DBClient.GetBestiary(bItem.Id);
+        randomEncounterItems.Add(new DisplayResult() { Display = $"{bItem.Name} [{ParseCR(int.Parse(bItem.Notes))}]", Result = bItem.Id });
+
+        if (!creatureInfos.Select(x => x.Result).Contains(bItem.Id))
+          creatureInfos.Add(new DisplayResult() { Display = bItem.Name, Result = bItem.Id });
+      }
+    }
+
     #endregion
+
+    private void CbxEvtShowLocal_Checked(object sender, RoutedEventArgs e)
+    {
+      LiveEvents.Clear();
+      foreach (var item in trackedEvents)
+      {
+        if (!EventLocalOnly || item.ContinentId == 0 || item.ContinentId == CurrentContinent.ContinentId)
+          LiveEvents.Add(new LiveEvent(item));
+      }
+    }
   }
 }

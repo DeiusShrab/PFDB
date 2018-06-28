@@ -5,12 +5,13 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:CommonUI"
         mc:Ignorable="d"
-        Title="ListPopUp" Height="150" Width="250">
-    <Grid>
-        <ComboBox x:Name="DrpContent" HorizontalAlignment="Left" Margin="10,55,0,0" VerticalAlignment="Top" Width="222"/>
-        <Label x:Name="LblMessage" Content="Select an option from the List:" HorizontalAlignment="Left" Margin="36,10,0,0" VerticalAlignment="Top"/>
-        <Button x:Name="BtnOkay" Content="OK" HorizontalAlignment="Left" Margin="157,89,0,0" VerticalAlignment="Top" Width="75" Click="BtnOkay_Click"/>
-        <Button x:Name="BtnCancel" Content="Cancel" HorizontalAlignment="Left" Margin="10,89,0,0" VerticalAlignment="Top" Width="75" Click="BtnCancel_Click"/>
+        Title="ListPopUp" Height="480" Width="320">
+  <Grid>
+    <Label x:Name="LblMessage" Content="Select an option from the List (Use the box to search):" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="9,0,0,0"/>
+    <Button x:Name="BtnOkay" Content="OK" HorizontalAlignment="Left" Margin="227,419,0,0" VerticalAlignment="Top" Width="75" Click="BtnOkay_Click"/>
+    <Button x:Name="BtnCancel" Content="Cancel" HorizontalAlignment="Left" Margin="10,419,0,0" VerticalAlignment="Top" Width="75" Click="BtnCancel_Click"/>
+    <TextBox x:Name="TxtSearch" HorizontalAlignment="Left" Height="23" Margin="10,26,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="292" TextChanged="TxtSearch_TextChanged"/>
+    <ListBox x:Name="LbxList" HorizontalAlignment="Left" Height="360" Margin="10,54,0,0" VerticalAlignment="Top" Width="292"/>
 
-    </Grid>
+  </Grid>
 </Window>

@@ -11,18 +11,22 @@ namespace PFHelper.Classes
 {
   public class LiveEvent
   {
-    public int EventId;
-    public string Name;
-    public string Notes;
-    public int ReoccurFreq;
-    public string Location;
-    public int CampaignId;
-    public string Data;
-    public int ContinentId;
+    public int EventId { get; set; }
+    public string Name { get; set; }
+    public string Notes { get; set; }
+    public int ReoccurFreq { get; set; }
+    public string Location { get; set; }
+    public int CampaignId { get; set; }
+    public string Data { get; set; }
+    public int ContinentId { get; set; }
 
-    public TrackedEventType EventType;
-    public FantasyDate DateNextOccurring;
-    public FantasyDate DateLastOccurred;
+    public TrackedEventType EventType { get; set; }
+    public TrackedEventFrequency EventFrequency { get; set; }
+    public FantasyDate DateNextOccurring { get; set; }
+    public FantasyDate DateLastOccurred { get; set; }
+
+    public string ShortDateNextOccurring => DateNextOccurring?.ShortDate;
+    public string ShortDateLastOccurred => DateLastOccurred?.ShortDate;
 
     public LiveEvent()
     {

@@ -85,7 +85,37 @@ namespace DBConnect.ConnectModels
     {
       if (fromDate.Contains("-"))
       {
-        var split = fromDate.Split('-');
+        var split = fromDate.Split(new char[] { '-' }, StringSplitOptions.RemoveEmptyEntries);
+        if (split.Length == 3)
+        {
+          Day = Convert.ToInt32(split[2]);
+          Month = Convert.ToInt32(split[1]);
+          Year = Convert.ToInt32(split[0]);
+        }
+      }
+      else if (fromDate.Contains("/"))
+      {
+        var split = fromDate.Split(new char[] { '/' }, StringSplitOptions.RemoveEmptyEntries);
+        if (split.Length == 3)
+        {
+          Day = Convert.ToInt32(split[2]);
+          Month = Convert.ToInt32(split[1]);
+          Year = Convert.ToInt32(split[0]);
+        }
+      }
+      else if (fromDate.Contains("\\"))
+      {
+        var split = fromDate.Split(new char[] { '\\' }, StringSplitOptions.RemoveEmptyEntries);
+        if (split.Length == 3)
+        {
+          Day = Convert.ToInt32(split[2]);
+          Month = Convert.ToInt32(split[1]);
+          Year = Convert.ToInt32(split[0]);
+        }
+      }
+      else if (fromDate.Contains("."))
+      {
+        var split = fromDate.Split(new char[] { '.' }, StringSplitOptions.RemoveEmptyEntries);
         if (split.Length == 3)
         {
           Day = Convert.ToInt32(split[2]);
@@ -119,16 +149,6 @@ namespace DBConnect.ConnectModels
     {
       if (other == null)
         return 1;
-
-      if (MonthsInYear > other.MonthsInYear)
-        return 1;
-      else if (MonthsInYear < other.MonthsInYear)
-        return -1;
-
-      if (DaysInMonth > other.MonthsInYear)
-        return 1;
-      else if (DaysInMonth < other.DaysInMonth)
-        return -1;
 
       if (this > other)
         return 1;
