@@ -290,9 +290,26 @@ namespace PFAPI.Controllers
 
     #region All
 
-    // Bestiary not implemented due to size of return, use List instead
+    [HttpGet("Armor")]
+    public IActionResult Armor_All()
+    {
+      var context = PFDAL.GetContext();
+      return new JsonResult(context.Armor.ToList());
+    }
 
-    // BestiaryDetail not implemented due to size of return, use List instead
+    [HttpGet("Bestiary")]
+    public IActionResult Bestiary_All()
+    {
+      var context = PFDAL.GetContext();
+      return new JsonResult(context.Bestiary.ToList());
+    }
+
+    [HttpGet("BestiaryDetail")]
+    public IActionResult BestiaryDetail_All()
+    {
+      var context = PFDAL.GetContext();
+      return new JsonResult(context.BestiaryDetail.ToList());
+    }
 
     [HttpGet("BestiaryEnvironment")]
     public IActionResult BestiaryEnvironment_All()
@@ -313,6 +330,13 @@ namespace PFAPI.Controllers
     {
       var context = PFDAL.GetContext();
       return new JsonResult(context.BestiaryLanguage.ToList());
+    }
+
+    [HttpGet("BestiaryMagic")]
+    public IActionResult BestiaryMagic_All()
+    {
+      var context = PFDAL.GetContext();
+      return new JsonResult(context.BestiaryMagic.ToList());
     }
 
     [HttpGet("BestiarySkill")]
@@ -343,6 +367,104 @@ namespace PFAPI.Controllers
       return new JsonResult(context.Campaign.ToList());
     }
 
+    [HttpGet("CampaignData")]
+    public IActionResult CampaignData_All()
+    {
+      var context = PFDAL.GetContext();
+      return new JsonResult(context.CampaignData.ToList());
+    }
+
+    [HttpGet("Character")]
+    public IActionResult Character_All()
+    {
+      var context = PFDAL.GetContext();
+      return new JsonResult(context.Character.ToList());
+    }
+
+    [HttpGet("CharacterClassAbility")]
+    public IActionResult CharacterClassAbility_All()
+    {
+      var context = PFDAL.GetContext();
+      return new JsonResult(context.CharacterClassAbility.ToList());
+    }
+
+    [HttpGet("CharacterClassLevel")]
+    public IActionResult CharacterClassLevel_All()
+    {
+      var context = PFDAL.GetContext();
+      return new JsonResult(context.CharacterClassLevel.ToList());
+    }
+
+    [HttpGet("CharacterFeat")]
+    public IActionResult CharacterFeat_All()
+    {
+      var context = PFDAL.GetContext();
+      return new JsonResult(context.CharacterFeat.ToList());
+    }
+
+    [HttpGet("CharacterGear")]
+    public IActionResult CharacterGear_All()
+    {
+      var context = PFDAL.GetContext();
+      return new JsonResult(context.CharacterGear.ToList());
+    }
+
+    [HttpGet("CharacterGearEnchantment")]
+    public IActionResult CharacterGearEnchantment_All()
+    {
+      var context = PFDAL.GetContext();
+      return new JsonResult(context.CharacterGearEnchantment.ToList());
+    }
+
+    [HttpGet("CharacterLanguage")]
+    public IActionResult CharacterLanguage_All()
+    {
+      var context = PFDAL.GetContext();
+      return new JsonResult(context.CharacterLanguage.ToList());
+    }
+
+    [HttpGet("CharacterMagic")]
+    public IActionResult CharacterMagic_All()
+    {
+      var context = PFDAL.GetContext();
+      return new JsonResult(context.CharacterMagic.ToList());
+    }
+
+    [HttpGet("CharacterRaceAbility")]
+    public IActionResult CharacterRaceAbility_All()
+    {
+      var context = PFDAL.GetContext();
+      return new JsonResult(context.CharacterRaceAbility.ToList());
+    }
+
+    [HttpGet("CharacterSkill")]
+    public IActionResult CharacterSkill_All()
+    {
+      var context = PFDAL.GetContext();
+      return new JsonResult(context.CharacterSkill.ToList());
+    }
+
+    [HttpGet("Class")]
+    public IActionResult Class_All()
+    {
+      var context = PFDAL.GetContext();
+      return new JsonResult(context.Class.ToList());
+    }
+
+    [HttpGet("ClassAbility")]
+    public IActionResult ClassAbility_All()
+    {
+      var context = PFDAL.GetContext();
+      return new JsonResult(context.ClassAbility.ToList());
+    }
+
+    [HttpGet("ClassSkill")]
+    public IActionResult ClassSkill_All()
+    {
+      var context = PFDAL.GetContext();
+      return new JsonResult(context.ClassSkill.ToList());
+    }
+
     [HttpGet("Continent")]
     public IActionResult Continent_All()
     {
@@ -350,11 +472,25 @@ namespace PFAPI.Controllers
       return new JsonResult(context.Continent.ToList());
     }
 
+    [HttpGet("ContinentEnvironment")]
+    public IActionResult ContinentEnvironment_All()
+    {
+      var context = PFDAL.GetContext();
+      return new JsonResult(context.ContinentEnvironment.ToList());
+    }
+
     [HttpGet("ContinentWeather")]
     public IActionResult ContinentWeather_All()
     {
       var context = PFDAL.GetContext();
       return new JsonResult(context.ContinentWeather.ToList());
+    }
+
+    [HttpGet("Enchantment")]
+    public IActionResult Enchantment_All()
+    {
+      var context = PFDAL.GetContext();
+      return new JsonResult(context.Enchantment.ToList());
     }
 
     [HttpGet("Environment")]
@@ -371,7 +507,26 @@ namespace PFAPI.Controllers
       return new JsonResult(context.Faction.ToList());
     }
 
-    // Feat not implemented due to size of return, use List instead
+    [HttpGet("FavoredClass")]
+    public IActionResult FavoredClass_All()
+    {
+      var context = PFDAL.GetContext();
+      return new JsonResult(context.FavoredClass.ToList());
+    }
+
+    [HttpGet("Feat")]
+    public IActionResult Feat_All()
+    {
+      var context = PFDAL.GetContext();
+      return new JsonResult(context.Feat.ToList());
+    }
+
+    [HttpGet("Gear")]
+    public IActionResult Gear_All()
+    {
+      var context = PFDAL.GetContext();
+      return new JsonResult(context.Gear.ToList());
+    }
 
     [HttpGet("Language")]
     public IActionResult Language_All()
@@ -408,11 +563,74 @@ namespace PFAPI.Controllers
       return new JsonResult(context.Month.ToList());
     }
 
+    [HttpGet("Npc")]
+    public IActionResult Npc_All()
+    {
+      var context = PFDAL.GetContext();
+      return new JsonResult(context.Npc.ToList());
+    }
+
+    [HttpGet("Npcdetail")]
+    public IActionResult Npcdetail_All()
+    {
+      var context = PFDAL.GetContext();
+      return new JsonResult(context.Npcdetail.ToList());
+    }
+
+    [HttpGet("OverridePrerequisite")]
+    public IActionResult OverridePrerequisite_All()
+    {
+      var context = PFDAL.GetContext();
+      return new JsonResult(context.OverridePrerequisite.ToList());
+    }
+
     [HttpGet("Plane")]
     public IActionResult Plane_All()
     {
       var context = PFDAL.GetContext();
       return new JsonResult(context.Plane.ToList());
+    }
+
+    [HttpGet("Player")]
+    public IActionResult Player_All()
+    {
+      var context = PFDAL.GetContext();
+      return new JsonResult(context.Player.ToList());
+    }
+
+    [HttpGet("PlayerCampaign")]
+    public IActionResult PlayerCampaign_All()
+    {
+      var context = PFDAL.GetContext();
+      return new JsonResult(context.PlayerCampaign.ToList());
+    }
+
+    [HttpGet("Prerequisite")]
+    public IActionResult Prerequisite_All()
+    {
+      var context = PFDAL.GetContext();
+      return new JsonResult(context.Prerequisite.ToList());
+    }
+
+    [HttpGet("Race")]
+    public IActionResult Race_All()
+    {
+      var context = PFDAL.GetContext();
+      return new JsonResult(context.Race.ToList());
+    }
+
+    [HttpGet("RaceAbility")]
+    public IActionResult RaceAbility_All()
+    {
+      var context = PFDAL.GetContext();
+      return new JsonResult(context.RaceAbility.ToList());
+    }
+
+    [HttpGet("RaceSubType")]
+    public IActionResult RaceSubType_All()
+    {
+      var context = PFDAL.GetContext();
+      return new JsonResult(context.RaceSubType.ToList());
     }
 
     [HttpGet("Season")]
@@ -422,11 +640,40 @@ namespace PFAPI.Controllers
       return new JsonResult(context.Season.ToList());
     }
 
-    // Skill not implemented due to size of return, use List instead
+    [HttpGet("Skill")]
+    public IActionResult Skill_All()
+    {
+      var context = PFDAL.GetContext();
+      return new JsonResult(context.Skill.ToList());
+    }
 
-    // Spell not implemented due to size of return, use List instead
+    [HttpGet("Spell")]
+    public IActionResult Spell_All()
+    {
+      var context = PFDAL.GetContext();
+      return new JsonResult(context.Spell.ToList());
+    }
 
-    // SpellDetail not implemented due to size of return, use List instead
+    [HttpGet("SpellDetail")]
+    public IActionResult SpellDetail_All()
+    {
+      var context = PFDAL.GetContext();
+      return new JsonResult(context.SpellDetail.ToList());
+    }
+
+    [HttpGet("SpellSchool")]
+    public IActionResult SpellSchool_All()
+    {
+      var context = PFDAL.GetContext();
+      return new JsonResult(context.SpellSchool.ToList());
+    }
+
+    [HttpGet("SpellSubSchool")]
+    public IActionResult SpellSubSchool_All()
+    {
+      var context = PFDAL.GetContext();
+      return new JsonResult(context.SpellSubSchool.ToList());
+    }
 
     [HttpGet("Terrain")]
     public IActionResult Terrain_All()
@@ -456,6 +703,27 @@ namespace PFAPI.Controllers
       return new JsonResult(context.TrackedEvent.ToList());
     }
 
+    [HttpGet("Weapon")]
+    public IActionResult Weapon_All()
+    {
+      var context = PFDAL.GetContext();
+      return new JsonResult(context.Weapon.ToList());
+    }
+
+    [HttpGet("WeaponAttribute")]
+    public IActionResult WeaponAttribute_All()
+    {
+      var context = PFDAL.GetContext();
+      return new JsonResult(context.WeaponAttribute.ToList());
+    }
+
+    [HttpGet("WeaponAttributeApplied")]
+    public IActionResult WeaponAttributeApplied_All()
+    {
+      var context = PFDAL.GetContext();
+      return new JsonResult(context.WeaponAttributeApplied.ToList());
+    }
+
     [HttpGet("Weather")]
     public IActionResult Weather_All()
     {
@@ -463,10 +731,16 @@ namespace PFAPI.Controllers
       return new JsonResult(context.Weather.ToList());
     }
 
-
     #endregion
 
     #region Details
+
+    [HttpGet("Armor/{ArmorId:int}")]
+    public IActionResult Armor_Detail(int ArmorId)
+    {
+      var context = PFDAL.GetContext();
+      return new JsonResult(context.Armor.FirstOrDefault(x => x.GearId == ArmorId));
+    }
 
     [HttpGet("Bestiary/{BestiaryId:int}")]
     public IActionResult Bestiary_Detail(int BestiaryId)
@@ -475,11 +749,11 @@ namespace PFAPI.Controllers
       return new JsonResult(context.Bestiary.FirstOrDefault(x => x.BestiaryId == BestiaryId));
     }
 
-    [HttpGet("BestiaryDetail/{BestiaryId:int}")]
-    public IActionResult BestiaryDetail_Detail(int BestiaryId)
+    [HttpGet("BestiaryDetail/{BestiaryDetailId:int}")]
+    public IActionResult BestiaryDetail_Detail(int BestiaryDetailId)
     {
       var context = PFDAL.GetContext();
-      return new JsonResult(context.BestiaryDetail.FirstOrDefault(x => x.BestiaryId == BestiaryId));
+      return new JsonResult(context.BestiaryDetail.FirstOrDefault(x => x.BestiaryId == BestiaryDetailId));
     }
 
     [HttpGet("BestiaryEnvironment/{BestiaryEnvironmentId:int}")]
@@ -501,6 +775,13 @@ namespace PFAPI.Controllers
     {
       var context = PFDAL.GetContext();
       return new JsonResult(context.BestiaryLanguage.FirstOrDefault(x => x.BestiaryLanguageId == BestiaryLanguageId));
+    }
+
+    [HttpGet("BestiaryMagic/{BestiaryMagicId:int}")]
+    public IActionResult BestiaryMagic_Detail(int BestiaryMagicId)
+    {
+      var context = PFDAL.GetContext();
+      return new JsonResult(context.BestiaryMagic.FirstOrDefault(x => x.BestiaryMagicId == BestiaryMagicId));
     }
 
     [HttpGet("BestiarySkill/{BestiarySkillId:int}")]
@@ -531,6 +812,104 @@ namespace PFAPI.Controllers
       return new JsonResult(context.Campaign.FirstOrDefault(x => x.CampaignId == CampaignId));
     }
 
+    [HttpGet("CampaignData/{CampaignId:int}/{CampaignDataKey}")]
+    public IActionResult CampaignData_Detail(int CampaignId, string Key)
+    {
+      var context = PFDAL.GetContext();
+      return new JsonResult(context.CampaignData.FirstOrDefault(x => x.CampaignId == CampaignId && x.Key.Equals(Key, StringComparison.InvariantCultureIgnoreCase)));
+    }
+
+    [HttpGet("Character/{CharacterId:int}")]
+    public IActionResult Character_Detail(int CharacterId)
+    {
+      var context = PFDAL.GetContext();
+      return new JsonResult(context.Character.FirstOrDefault(x => x.CharacterId == CharacterId));
+    }
+
+    [HttpGet("CharacterClassAbility/{CharacterClassAbilityId:int}")]
+    public IActionResult CharacterClassAbility_Detail(int CharacterClassAbilityId)
+    {
+      var context = PFDAL.GetContext();
+      return new JsonResult(context.CharacterClassAbility.FirstOrDefault(x => x.CharacterClassAbilityId == CharacterClassAbilityId));
+    }
+
+    [HttpGet("CharacterClassLevel/{CharacterId:int}/{ClassId:int}")]
+    public IActionResult CharacterClassLevel_Detail(int CharacterId, int ClassId)
+    {
+      var context = PFDAL.GetContext();
+      return new JsonResult(context.CharacterClassLevel.FirstOrDefault(x => x.CharacterId == CharacterId && x.ClassId == ClassId));
+    }
+
+    [HttpGet("CharacterFeat/{CharacterFeatId:int}")]
+    public IActionResult CharacterFeat_Detail(int CharacterFeatId)
+    {
+      var context = PFDAL.GetContext();
+      return new JsonResult(context.CharacterFeat.FirstOrDefault(x => x.CharacterFeatId == CharacterFeatId));
+    }
+
+    [HttpGet("CharacterGear/{CharacterGearId:int}")]
+    public IActionResult CharacterGear_Detail(int CharacterGearId)
+    {
+      var context = PFDAL.GetContext();
+      return new JsonResult(context.CharacterGear.FirstOrDefault(x => x.CharacterGearId == CharacterGearId));
+    }
+
+    [HttpGet("CharacterGearEnchantment/{CharacterGearId:int}/{EnchantmentId:int}")]
+    public IActionResult CharacterGearEnchantment_Detail(int CharacterGearId, int EnchantmentId)
+    {
+      var context = PFDAL.GetContext();
+      return new JsonResult(context.CharacterGearEnchantment.FirstOrDefault(x => x.CharacterGearId == CharacterGearId && x.EnchantmentId == EnchantmentId));
+    }
+
+    [HttpGet("CharacterLanguage/{CharacterId:int}/{LanguageId:int}")]
+    public IActionResult CharacterLanguage_Detail(int CharacterId, int LanguageId)
+    {
+      var context = PFDAL.GetContext();
+      return new JsonResult(context.CharacterLanguage.FirstOrDefault(x => x.CharacterId == CharacterId && x.LanguageId == LanguageId));
+    }
+
+    [HttpGet("CharacterMagic/{CharacterMagicId:int}")]
+    public IActionResult CharacterMagic_Detail(int CharacterMagicId)
+    {
+      var context = PFDAL.GetContext();
+      return new JsonResult(context.CharacterMagic.FirstOrDefault(x => x.CharacterMagicId == CharacterMagicId));
+    }
+
+    [HttpGet("CharacterRaceAbility/{CharacterId:int}/{RaceAbilityId:int}")]
+    public IActionResult CharacterRaceAbility_Detail(int CharacterId, int RaceAbilityId)
+    {
+      var context = PFDAL.GetContext();
+      return new JsonResult(context.CharacterRaceAbility.FirstOrDefault(x => x.CharacterId == CharacterId && x.RaceAbilityId == RaceAbilityId));
+    }
+
+    [HttpGet("CharacterSkill/{CharacterId:int}/{SkillId:int}")]
+    public IActionResult CharacterSkill_Detail(int CharacterId, int SkillId)
+    {
+      var context = PFDAL.GetContext();
+      return new JsonResult(context.CharacterSkill.FirstOrDefault(x => x.CharacterId == CharacterId && x.SkillId == SkillId));
+    }
+
+    [HttpGet("Class/{ClassId:int}")]
+    public IActionResult Class_Detail(int ClassId)
+    {
+      var context = PFDAL.GetContext();
+      return new JsonResult(context.Class.FirstOrDefault(x => x.ClassId == ClassId));
+    }
+
+    [HttpGet("ClassAbility/{ClassAbilityId:int}")]
+    public IActionResult ClassAbility_Detail(int ClassAbilityId)
+    {
+      var context = PFDAL.GetContext();
+      return new JsonResult(context.ClassAbility.FirstOrDefault(x => x.ClassAbilityId == ClassAbilityId));
+    }
+
+    [HttpGet("ClassSkill/{ClassId:int}/{SkillId:int}")]
+    public IActionResult ClassSkill_Detail(int ClassId, int SkillId)
+    {
+      var context = PFDAL.GetContext();
+      return new JsonResult(context.ClassSkill.FirstOrDefault(x => x.ClassId == ClassId));
+    }
+
     [HttpGet("Continent/{ContinentId:int}")]
     public IActionResult Continent_Detail(int ContinentId)
     {
@@ -538,11 +917,25 @@ namespace PFAPI.Controllers
       return new JsonResult(context.Continent.FirstOrDefault(x => x.ContinentId == ContinentId));
     }
 
+    [HttpGet("ContinentEnvironment/{ContinentId:int}/{EnvironmentId:int}")]
+    public IActionResult ContinentEnvironment_Detail(int ContinentId, int EnvironmentId)
+    {
+      var context = PFDAL.GetContext();
+      return new JsonResult(context.ContinentEnvironment.FirstOrDefault(x => x.ContinentId == ContinentId && x.EnvironmentId == EnvironmentId));
+    }
+
     [HttpGet("ContinentWeather/{ContinentWeatherId:int}")]
     public IActionResult ContinentWeather_Detail(int ContinentWeatherId)
     {
       var context = PFDAL.GetContext();
       return new JsonResult(context.ContinentWeather.FirstOrDefault(x => x.CWID == ContinentWeatherId));
+    }
+
+    [HttpGet("Enchantment/{EnchantmentId:int}")]
+    public IActionResult Enchantment_Detail(int EnchantmentId)
+    {
+      var context = PFDAL.GetContext();
+      return new JsonResult(context.Enchantment.FirstOrDefault(x => x.EnchantmentId == EnchantmentId));
     }
 
     [HttpGet("Environment/{EnvironmentId:int}")]
@@ -559,11 +952,25 @@ namespace PFAPI.Controllers
       return new JsonResult(context.Faction.FirstOrDefault(x => x.FactionId == FactionId));
     }
 
+    [HttpGet("FavoredClass/{FavoredClassId:int}")]
+    public IActionResult FavoredClass_Detail(int FavoredClassId)
+    {
+      var context = PFDAL.GetContext();
+      return new JsonResult(context.FavoredClass.FirstOrDefault(x => x.FavoredClassId == FavoredClassId));
+    }
+
     [HttpGet("Feat/{FeatId:int}")]
     public IActionResult Feat_Detail(int FeatId)
     {
       var context = PFDAL.GetContext();
       return new JsonResult(context.Feat.FirstOrDefault(x => x.FeatId == FeatId));
+    }
+
+    [HttpGet("Gear/{GearId:int}")]
+    public IActionResult Gear_Detail(int GearId)
+    {
+      var context = PFDAL.GetContext();
+      return new JsonResult(context.Gear.FirstOrDefault(x => x.GearId == GearId));
     }
 
     [HttpGet("Language/{LanguageId:int}")]
@@ -601,11 +1008,74 @@ namespace PFAPI.Controllers
       return new JsonResult(context.Month.FirstOrDefault(x => x.MonthId == MonthId));
     }
 
+    [HttpGet("Npc/{NpcId:int}")]
+    public IActionResult Npc_Detail(int NpcId)
+    {
+      var context = PFDAL.GetContext();
+      return new JsonResult(context.Npc.FirstOrDefault(x => x.Npcid == NpcId));
+    }
+
+    [HttpGet("Npcdetail/{NpcdetailId:int}")]
+    public IActionResult Npcdetail_Detail(int NpcdetailId)
+    {
+      var context = PFDAL.GetContext();
+      return new JsonResult(context.Npcdetail.FirstOrDefault(x => x.Npcid == NpcdetailId));
+    }
+
+    [HttpGet("OverridePrerequisite/{ClassAbilityId:int}/{PrerequisiteId:int}")]
+    public IActionResult OverridePrerequisite_Detail(int ClassAbilityId, int PrerequisiteId)
+    {
+      var context = PFDAL.GetContext();
+      return new JsonResult(context.OverridePrerequisite.FirstOrDefault(x => x.ClassAbilityId == ClassAbilityId && x.PrerequisiteId == PrerequisiteId));
+    }
+
     [HttpGet("Plane/{PlaneId:int}")]
     public IActionResult Plane_Detail(int PlaneId)
     {
       var context = PFDAL.GetContext();
       return new JsonResult(context.Plane.FirstOrDefault(x => x.PlaneId == PlaneId));
+    }
+
+    [HttpGet("Player/{PlayerId:int}")]
+    public IActionResult Player_Detail(int PlayerId)
+    {
+      var context = PFDAL.GetContext();
+      return new JsonResult(context.Player.FirstOrDefault(x => x.PlayerId == PlayerId));
+    }
+
+    [HttpGet("PlayerCampaign/{PlayerId:int}/{CampaignId:int}")]
+    public IActionResult PlayerCampaign_Detail(int PlayerId, int CampaignId)
+    {
+      var context = PFDAL.GetContext();
+      return new JsonResult(context.PlayerCampaign.FirstOrDefault(x => x.PlayerId == PlayerId && x.CampaignId == CampaignId));
+    }
+
+    [HttpGet("Prerequisite/{PrerequisiteId:int}")]
+    public IActionResult Prerequisite_Detail(int PrerequisiteId)
+    {
+      var context = PFDAL.GetContext();
+      return new JsonResult(context.Prerequisite.FirstOrDefault(x => x.PrerequisiteId == PrerequisiteId));
+    }
+
+    [HttpGet("Race/{RaceId:int}")]
+    public IActionResult Race_Detail(int RaceId)
+    {
+      var context = PFDAL.GetContext();
+      return new JsonResult(context.Race.FirstOrDefault(x => x.RaceId == RaceId));
+    }
+
+    [HttpGet("RaceAbility/{RaceAbilityId:int}")]
+    public IActionResult RaceAbility_Detail(int RaceAbilityId)
+    {
+      var context = PFDAL.GetContext();
+      return new JsonResult(context.RaceAbility.FirstOrDefault(x => x.RaceAbilityId == RaceAbilityId));
+    }
+
+    [HttpGet("RaceSubType/{RaceId:int}/{BestiaryTypeId:int}")]
+    public IActionResult RaceSubType_Detail(int RaceId, int BestiaryTypeId)
+    {
+      var context = PFDAL.GetContext();
+      return new JsonResult(context.RaceSubType.FirstOrDefault(x => x.RaceId == RaceId && x.BestiaryTypeId == BestiaryTypeId));
     }
 
     [HttpGet("Season/{SeasonId:int}")]
@@ -629,11 +1099,25 @@ namespace PFAPI.Controllers
       return new JsonResult(context.Spell.FirstOrDefault(x => x.SpellId == SpellId));
     }
 
-    [HttpGet("SpellDetail/{SpellId:int}")]
-    public IActionResult SpellDetail_Detail(int SpellId)
+    [HttpGet("SpellDetail/{SpellDetailId:int}")]
+    public IActionResult SpellDetail_Detail(int SpellDetailId)
     {
       var context = PFDAL.GetContext();
-      return new JsonResult(context.SpellDetail.FirstOrDefault(x => x.SpellId == SpellId));
+      return new JsonResult(context.SpellDetail.FirstOrDefault(x => x.SpellId == SpellDetailId));
+    }
+
+    [HttpGet("SpellSchool/{SpellSchoolId:int}")]
+    public IActionResult SpellSchool_Detail(int SpellSchoolId)
+    {
+      var context = PFDAL.GetContext();
+      return new JsonResult(context.SpellSchool.FirstOrDefault(x => x.SpellSchoolId == SpellSchoolId));
+    }
+
+    [HttpGet("SpellSubSchool/{SpellSubSchoolId:int}")]
+    public IActionResult SpellSubSchool_Detail(int SpellSubSchoolId)
+    {
+      var context = PFDAL.GetContext();
+      return new JsonResult(context.SpellSubSchool.FirstOrDefault(x => x.SpellSubSchoolId == SpellSubSchoolId));
     }
 
     [HttpGet("Terrain/{TerrainId:int}")]
@@ -664,6 +1148,27 @@ namespace PFAPI.Controllers
       return new JsonResult(context.TrackedEvent.FirstOrDefault(x => x.TrackedEventId == TrackedEventId));
     }
 
+    [HttpGet("Weapon/{WeaponId:int}")]
+    public IActionResult Weapon_Detail(int WeaponId)
+    {
+      var context = PFDAL.GetContext();
+      return new JsonResult(context.Weapon.FirstOrDefault(x => x.GearId == WeaponId));
+    }
+
+    [HttpGet("WeaponAttribute/{WeaponAttributeId:int}")]
+    public IActionResult WeaponAttribute_Detail(int WeaponAttributeId)
+    {
+      var context = PFDAL.GetContext();
+      return new JsonResult(context.WeaponAttribute.FirstOrDefault(x => x.WeaponAttributeId == WeaponAttributeId));
+    }
+
+    [HttpGet("WeaponAttributeApplied/{WeaponId:int}/{AttributeId:int}")]
+    public IActionResult WeaponAttributeApplied_Detail(int WeaponId, int AttributeId)
+    {
+      var context = PFDAL.GetContext();
+      return new JsonResult(context.WeaponAttributeApplied.FirstOrDefault(x => x.GearId == WeaponId && x.WeaponAttributeId == AttributeId));
+    }
+
     [HttpGet("Weather/{WeatherId:int}")]
     public IActionResult Weather_Detail(int WeatherId)
     {
@@ -675,12 +1180,33 @@ namespace PFAPI.Controllers
 
     #region Create
 
+    [HttpPost("Armor")]
+    public IActionResult Armor_Create([FromBody] Armor obj)
+    {
+      if (obj == null || obj.GearId != 0)
+        return BadRequest();
+
+      var context = PFDAL.GetContext();
+
+      try
+      {
+        context.Armor.Add(obj);
+        context.SaveChanges();
+        return Created($"Armor/{obj.GearId.ToString()}", obj);
+      }
+      catch (Exception ex)
+      {
+        return BadRequest(ex.Message);
+      }
+    }
+
     [HttpPost("Bestiary")]
     public IActionResult Bestiary_Create([FromBody] Bestiary obj)
     {
-      var context = PFDAL.GetContext();
       if (obj == null || obj.BestiaryId != 0)
         return BadRequest();
+
+      var context = PFDAL.GetContext();
 
       try
       {
@@ -701,15 +1227,16 @@ namespace PFAPI.Controllers
     [HttpPost("BestiaryEnvironment")]
     public IActionResult BestiaryEnvironment_Create([FromBody] BestiaryEnvironment obj)
     {
-      var context = PFDAL.GetContext();
       if (obj == null || obj.BestiaryEnvironmentId != 0)
         return BadRequest();
+
+      var context = PFDAL.GetContext();
 
       try
       {
         context.BestiaryEnvironment.Add(obj);
         context.SaveChanges();
-        return Created("BestiaryEnvironment/" + obj.BestiaryEnvironmentId.ToString(), obj);
+        return Created($"BestiaryEnvironment/{obj.BestiaryEnvironmentId.ToString()}", obj);
       }
       catch (Exception ex)
       {
@@ -720,15 +1247,16 @@ namespace PFAPI.Controllers
     [HttpPost("BestiaryFeat")]
     public IActionResult BestiaryFeat_Create([FromBody] BestiaryFeat obj)
     {
-      var context = PFDAL.GetContext();
       if (obj == null || obj.BestiaryFeatId != 0)
         return BadRequest();
+
+      var context = PFDAL.GetContext();
 
       try
       {
         context.BestiaryFeat.Add(obj);
         context.SaveChanges();
-        return Created("BestiaryFeat/" + obj.BestiaryFeatId.ToString(), obj);
+        return Created($"BestiaryFeat/{obj.BestiaryFeatId.ToString()}", obj);
       }
       catch (Exception ex)
       {
@@ -739,15 +1267,36 @@ namespace PFAPI.Controllers
     [HttpPost("BestiaryLanguage")]
     public IActionResult BestiaryLanguage_Create([FromBody] BestiaryLanguage obj)
     {
-      var context = PFDAL.GetContext();
       if (obj == null || obj.BestiaryLanguageId != 0)
         return BadRequest();
+
+      var context = PFDAL.GetContext();
 
       try
       {
         context.BestiaryLanguage.Add(obj);
         context.SaveChanges();
-        return Created("BestiaryLanguage/" + obj.BestiaryLanguageId.ToString(), obj);
+        return Created($"BestiaryLanguage/{obj.BestiaryLanguageId.ToString()}", obj);
+      }
+      catch (Exception ex)
+      {
+        return BadRequest(ex.Message);
+      }
+    }
+
+    [HttpPost("BestiaryMagic")]
+    public IActionResult BestiaryMagic_Create([FromBody] BestiaryMagic obj)
+    {
+      if (obj == null || obj.BestiaryMagicId != 0)
+        return BadRequest();
+
+      var context = PFDAL.GetContext();
+
+      try
+      {
+        context.BestiaryMagic.Add(obj);
+        context.SaveChanges();
+        return Created($"BestiaryMagic/{obj.BestiaryMagicId.ToString()}", obj);
       }
       catch (Exception ex)
       {
@@ -758,15 +1307,16 @@ namespace PFAPI.Controllers
     [HttpPost("BestiarySkill")]
     public IActionResult BestiarySkill_Create([FromBody] BestiarySkill obj)
     {
-      var context = PFDAL.GetContext();
       if (obj == null || obj.BestiarySkillId != 0)
         return BadRequest();
+
+      var context = PFDAL.GetContext();
 
       try
       {
         context.BestiarySkill.Add(obj);
         context.SaveChanges();
-        return Created("BestiarySkill/" + obj.BestiarySkillId.ToString(), obj);
+        return Created($"BestiarySkill/{obj.BestiarySkillId.ToString()}", obj);
       }
       catch (Exception ex)
       {
@@ -777,15 +1327,16 @@ namespace PFAPI.Controllers
     [HttpPost("BestiarySubType")]
     public IActionResult BestiarySubType_Create([FromBody] BestiarySubType obj)
     {
-      var context = PFDAL.GetContext();
       if (obj == null || obj.BestiarySubTypeId != 0)
         return BadRequest();
+
+      var context = PFDAL.GetContext();
 
       try
       {
         context.BestiarySubType.Add(obj);
         context.SaveChanges();
-        return Created("BestiarySubType/" + obj.BestiarySubTypeId.ToString(), obj);
+        return Created($"BestiarySubType/{obj.BestiarySubTypeId.ToString()}", obj);
       }
       catch (Exception ex)
       {
@@ -796,15 +1347,16 @@ namespace PFAPI.Controllers
     [HttpPost("BestiaryType")]
     public IActionResult BestiaryType_Create([FromBody] BestiaryType obj)
     {
-      var context = PFDAL.GetContext();
       if (obj == null || obj.BestiaryTypeId != 0)
         return BadRequest();
+
+      var context = PFDAL.GetContext();
 
       try
       {
         context.BestiaryType.Add(obj);
         context.SaveChanges();
-        return Created("BestiaryType/" + obj.BestiaryTypeId.ToString(), obj);
+        return Created($"BestiaryType/{obj.BestiaryTypeId.ToString()}", obj);
       }
       catch (Exception ex)
       {
@@ -815,15 +1367,310 @@ namespace PFAPI.Controllers
     [HttpPost("Campaign")]
     public IActionResult Campaign_Create([FromBody] Campaign obj)
     {
-      var context = PFDAL.GetContext();
       if (obj == null || obj.CampaignId != 0)
         return BadRequest();
+
+      var context = PFDAL.GetContext();
 
       try
       {
         context.Campaign.Add(obj);
         context.SaveChanges();
-        return Created("Campaign/" + obj.CampaignId.ToString(), obj);
+        return Created($"Campaign/{obj.CampaignId.ToString()}", obj);
+      }
+      catch (Exception ex)
+      {
+        return BadRequest(ex.Message);
+      }
+    }
+
+    [HttpPost("CampaignData")]
+    public IActionResult CampaignData_Create([FromBody] CampaignData obj)
+    {
+      if (obj == null || string.IsNullOrWhiteSpace(obj.Key) || obj.CampaignId == 0)
+        return BadRequest();
+
+      var context = PFDAL.GetContext();
+      if (context.CampaignData.Any(x => x.CampaignId == obj.CampaignId && x.Key.Equals(obj.Key, StringComparison.InvariantCultureIgnoreCase)))
+        return BadRequest("Object already exists");
+
+      try
+      {
+        context.CampaignData.Add(obj);
+        context.SaveChanges();
+        return Created($"CampaignData/{obj.Key}", obj);
+      }
+      catch (Exception ex)
+      {
+        return BadRequest(ex.Message);
+      }
+    }
+
+    [HttpPost("Character")]
+    public IActionResult Character_Create([FromBody] Character obj)
+    {
+      if (obj == null || obj.CharacterId != 0)
+        return BadRequest();
+
+      var context = PFDAL.GetContext();
+
+      try
+      {
+        context.Character.Add(obj);
+        context.SaveChanges();
+        return Created($"Character/{obj.CharacterId.ToString()}", obj);
+      }
+      catch (Exception ex)
+      {
+        return BadRequest(ex.Message);
+      }
+    }
+
+    [HttpPost("CharacterClassAbility")]
+    public IActionResult CharacterClassAbility_Create([FromBody] CharacterClassAbility obj)
+    {
+      if (obj == null || obj.CharacterClassAbilityId != 0)
+        return BadRequest();
+
+      var context = PFDAL.GetContext();
+
+      try
+      {
+        context.CharacterClassAbility.Add(obj);
+        context.SaveChanges();
+        return Created($"CharacterClassAbility/{obj.CharacterClassAbilityId.ToString()}", obj);
+      }
+      catch (Exception ex)
+      {
+        return BadRequest(ex.Message);
+      }
+    }
+
+    [HttpPost("CharacterClassLevel")]
+    public IActionResult CharacterClassLevel_Create([FromBody] CharacterClassLevel obj)
+    {
+      if (obj == null || obj.CharacterId == 0 || obj.ClassId == 0)
+        return BadRequest();
+
+      var context = PFDAL.GetContext();
+      if (context.CharacterClassLevel.Any(x => x.CharacterId == obj.CharacterId && x.ClassId == obj.ClassId))
+        return BadRequest("Object already exists");
+
+      try
+      {
+        context.CharacterClassLevel.Add(obj);
+        context.SaveChanges();
+        return Created($"CharacterClassLevel/{obj.CharacterId}/{obj.ClassId}", obj);
+      }
+      catch (Exception ex)
+      {
+        return BadRequest(ex.Message);
+      }
+    }
+
+    [HttpPost("CharacterFeat")]
+    public IActionResult CharacterFeat_Create([FromBody] CharacterFeat obj)
+    {
+      if (obj == null || obj.CharacterFeatId != 0)
+        return BadRequest();
+
+      var context = PFDAL.GetContext();
+
+      try
+      {
+        context.CharacterFeat.Add(obj);
+        context.SaveChanges();
+        return Created($"CharacterFeat/{obj.CharacterFeatId.ToString()}", obj);
+      }
+      catch (Exception ex)
+      {
+        return BadRequest(ex.Message);
+      }
+    }
+
+    [HttpPost("CharacterGear")]
+    public IActionResult CharacterGear_Create([FromBody] CharacterGear obj)
+    {
+      if (obj == null || obj.CharacterGearId != 0)
+        return BadRequest();
+
+      var context = PFDAL.GetContext();
+
+      try
+      {
+        context.CharacterGear.Add(obj);
+        context.SaveChanges();
+        return Created($"CharacterGear/{obj.CharacterGearId.ToString()}", obj);
+      }
+      catch (Exception ex)
+      {
+        return BadRequest(ex.Message);
+      }
+    }
+
+    [HttpPost("CharacterGearEnchantment")]
+    public IActionResult CharacterGearEnchantment_Create([FromBody] CharacterGearEnchantment obj)
+    {
+      if (obj == null || obj.CharacterGearId == 0 || obj.EnchantmentId == 0)
+        return BadRequest();
+
+      var context = PFDAL.GetContext();
+      if (context.CharacterGearEnchantment.Any(x => x.CharacterGearId == obj.CharacterGearId && x.EnchantmentId == obj.EnchantmentId))
+        return BadRequest("Object already exists");
+
+      try
+      {
+        context.CharacterGearEnchantment.Add(obj);
+        context.SaveChanges();
+        return Created($"CharacterGearEnchantment/{obj.CharacterGearId}/{obj.EnchantmentId}", obj);
+      }
+      catch (Exception ex)
+      {
+        return BadRequest(ex.Message);
+      }
+    }
+
+    [HttpPost("CharacterLanguage")]
+    public IActionResult CharacterLanguage_Create([FromBody] CharacterLanguage obj)
+    {
+      if (obj == null || obj.CharacterId == 0 || obj.LanguageId == 0)
+        return BadRequest();
+
+      var context = PFDAL.GetContext();
+      if (context.CharacterLanguage.Any(x => x.CharacterId == obj.CharacterId && x.LanguageId == obj.LanguageId))
+        return BadRequest("Object already exists");
+
+      try
+      {
+        context.CharacterLanguage.Add(obj);
+        context.SaveChanges();
+        return Created($"CharacterLanguage/{obj.CharacterId}/{obj.LanguageId}", obj);
+      }
+      catch (Exception ex)
+      {
+        return BadRequest(ex.Message);
+      }
+    }
+
+    [HttpPost("CharacterMagic")]
+    public IActionResult CharacterMagic_Create([FromBody] CharacterMagic obj)
+    {
+      if (obj == null || obj.CharacterMagicId != 0)
+        return BadRequest();
+
+      var context = PFDAL.GetContext();
+
+      try
+      {
+        context.CharacterMagic.Add(obj);
+        context.SaveChanges();
+        return Created($"CharacterMagic/{obj.CharacterMagicId.ToString()}", obj);
+      }
+      catch (Exception ex)
+      {
+        return BadRequest(ex.Message);
+      }
+    }
+
+    [HttpPost("CharacterRaceAbility")]
+    public IActionResult CharacterRaceAbility_Create([FromBody] CharacterRaceAbility obj)
+    {
+      if (obj == null || obj.CharacterId == 0 || obj.RaceAbilityId == 0)
+        return BadRequest();
+
+      var context = PFDAL.GetContext();
+      if (context.CharacterRaceAbility.Any(x => x.CharacterId == obj.CharacterId && x.RaceAbilityId == obj.RaceAbilityId))
+        return BadRequest("Object already exists");
+
+      try
+      {
+        context.CharacterRaceAbility.Add(obj);
+        context.SaveChanges();
+        return Created($"CharacterRaceAbility/{obj.CharacterId}/{obj.RaceAbilityId}", obj);
+      }
+      catch (Exception ex)
+      {
+        return BadRequest(ex.Message);
+      }
+    }
+
+    [HttpPost("CharacterSkill")]
+    public IActionResult CharacterSkill_Create([FromBody] CharacterSkill obj)
+    {
+      if (obj == null || obj.CharacterId == 0 || obj.SkillId == 0)
+        return BadRequest();
+
+      var context = PFDAL.GetContext();
+      if (context.CharacterSkill.Any(x => x.CharacterId == obj.CharacterId && x.SkillId == obj.SkillId))
+        return BadRequest("Object already exists");
+
+      try
+      {
+        context.CharacterSkill.Add(obj);
+        context.SaveChanges();
+        return Created($"CharacterSkill/{obj.CharacterId}/{obj.SkillId}", obj);
+      }
+      catch (Exception ex)
+      {
+        return BadRequest(ex.Message);
+      }
+    }
+
+    [HttpPost("Class")]
+    public IActionResult Class_Create([FromBody] Class obj)
+    {
+      if (obj == null || obj.ClassId != 0)
+        return BadRequest();
+
+      var context = PFDAL.GetContext();
+
+      try
+      {
+        context.Class.Add(obj);
+        context.SaveChanges();
+        return Created($"Class/{obj.ClassId.ToString()}", obj);
+      }
+      catch (Exception ex)
+      {
+        return BadRequest(ex.Message);
+      }
+    }
+
+    [HttpPost("ClassAbility")]
+    public IActionResult ClassAbility_Create([FromBody] ClassAbility obj)
+    {
+      if (obj == null || obj.ClassAbilityId != 0)
+        return BadRequest();
+
+      var context = PFDAL.GetContext();
+
+      try
+      {
+        context.ClassAbility.Add(obj);
+        context.SaveChanges();
+        return Created($"ClassAbility/{obj.ClassAbilityId.ToString()}", obj);
+      }
+      catch (Exception ex)
+      {
+        return BadRequest(ex.Message);
+      }
+    }
+
+    [HttpPost("ClassSkill")]
+    public IActionResult ClassSkill_Create([FromBody] ClassSkill obj)
+    {
+      if (obj == null || obj.ClassId == 0 || obj.SkillId == 0)
+        return BadRequest();
+
+      var context = PFDAL.GetContext();
+      if (context.ClassSkill.Any(x => x.ClassId == obj.ClassId && x.SkillId == obj.SkillId))
+        return BadRequest("Object already exists");
+
+      try
+      {
+        context.ClassSkill.Add(obj);
+        context.SaveChanges();
+        return Created($"ClassSkill/{obj.ClassId}/{obj.SkillId}", obj);
       }
       catch (Exception ex)
       {
@@ -834,15 +1681,38 @@ namespace PFAPI.Controllers
     [HttpPost("Continent")]
     public IActionResult Continent_Create([FromBody] Continent obj)
     {
-      var context = PFDAL.GetContext();
       if (obj == null || obj.ContinentId != 0)
         return BadRequest();
+
+      var context = PFDAL.GetContext();
 
       try
       {
         context.Continent.Add(obj);
         context.SaveChanges();
-        return Created("Continent/" + obj.ContinentId.ToString(), obj);
+        return Created($"Continent/{obj.ContinentId.ToString()}", obj);
+      }
+      catch (Exception ex)
+      {
+        return BadRequest(ex.Message);
+      }
+    }
+
+    [HttpPost("ContinentEnvironment")]
+    public IActionResult ContinentEnvironment_Create([FromBody] ContinentEnvironment obj)
+    {
+      if (obj == null || obj.ContinentId == 0 || obj.EnvironmentId == 0)
+        return BadRequest();
+
+      var context = PFDAL.GetContext();
+      if (context.ContinentEnvironment.Any(x => x.ContinentId == obj.ContinentId && x.EnvironmentId == obj.EnvironmentId))
+        return BadRequest("Object already exists");
+
+      try
+      {
+        context.ContinentEnvironment.Add(obj);
+        context.SaveChanges();
+        return Created($"ContinentEnvironment/{obj.ContinentId}/{obj.EnvironmentId}", obj);
       }
       catch (Exception ex)
       {
@@ -853,15 +1723,36 @@ namespace PFAPI.Controllers
     [HttpPost("ContinentWeather")]
     public IActionResult ContinentWeather_Create([FromBody] ContinentWeather obj)
     {
-      var context = PFDAL.GetContext();
       if (obj == null || obj.CWID != 0)
         return BadRequest();
+
+      var context = PFDAL.GetContext();
 
       try
       {
         context.ContinentWeather.Add(obj);
         context.SaveChanges();
-        return Created("ContinentWeather/" + obj.CWID.ToString(), obj);
+        return Created($"ContinentWeather/{obj.CWID.ToString()}", obj);
+      }
+      catch (Exception ex)
+      {
+        return BadRequest(ex.Message);
+      }
+    }
+
+    [HttpPost("Enchantment")]
+    public IActionResult Enchantment_Create([FromBody] Enchantment obj)
+    {
+      if (obj == null || obj.EnchantmentId != 0)
+        return BadRequest();
+
+      var context = PFDAL.GetContext();
+
+      try
+      {
+        context.Enchantment.Add(obj);
+        context.SaveChanges();
+        return Created($"Enchantment/{obj.EnchantmentId.ToString()}", obj);
       }
       catch (Exception ex)
       {
@@ -872,15 +1763,16 @@ namespace PFAPI.Controllers
     [HttpPost("Environment")]
     public IActionResult Environment_Create([FromBody] DBConnect.DBModels.Environment obj)
     {
-      var context = PFDAL.GetContext();
       if (obj == null || obj.EnvironmentId != 0)
         return BadRequest();
+
+      var context = PFDAL.GetContext();
 
       try
       {
         context.Environment.Add(obj);
         context.SaveChanges();
-        return Created("Environment/" + obj.EnvironmentId.ToString(), obj);
+        return Created($"Environment/{obj.EnvironmentId.ToString()}", obj);
       }
       catch (Exception ex)
       {
@@ -891,15 +1783,36 @@ namespace PFAPI.Controllers
     [HttpPost("Faction")]
     public IActionResult Faction_Create([FromBody] Faction obj)
     {
-      var context = PFDAL.GetContext();
       if (obj == null || obj.FactionId != 0)
         return BadRequest();
+
+      var context = PFDAL.GetContext();
 
       try
       {
         context.Faction.Add(obj);
         context.SaveChanges();
-        return Created("Faction/" + obj.FactionId.ToString(), obj);
+        return Created($"Faction/{obj.FactionId.ToString()}", obj);
+      }
+      catch (Exception ex)
+      {
+        return BadRequest(ex.Message);
+      }
+    }
+
+    [HttpPost("FavoredClass")]
+    public IActionResult FavoredClass_Create([FromBody] FavoredClass obj)
+    {
+      if (obj == null || obj.FavoredClassId != 0)
+        return BadRequest();
+
+      var context = PFDAL.GetContext();
+
+      try
+      {
+        context.FavoredClass.Add(obj);
+        context.SaveChanges();
+        return Created($"FavoredClass/{obj.FavoredClassId.ToString()}", obj);
       }
       catch (Exception ex)
       {
@@ -910,15 +1823,36 @@ namespace PFAPI.Controllers
     [HttpPost("Feat")]
     public IActionResult Feat_Create([FromBody] Feat obj)
     {
-      var context = PFDAL.GetContext();
       if (obj == null || obj.FeatId != 0)
         return BadRequest();
+
+      var context = PFDAL.GetContext();
 
       try
       {
         context.Feat.Add(obj);
         context.SaveChanges();
-        return Created("Feat/" + obj.FeatId.ToString(), obj);
+        return Created($"Feat/{obj.FeatId.ToString()}", obj);
+      }
+      catch (Exception ex)
+      {
+        return BadRequest(ex.Message);
+      }
+    }
+
+    [HttpPost("Gear")]
+    public IActionResult Gear_Create([FromBody] Gear obj)
+    {
+      if (obj == null || obj.GearId != 0)
+        return BadRequest();
+
+      var context = PFDAL.GetContext();
+
+      try
+      {
+        context.Gear.Add(obj);
+        context.SaveChanges();
+        return Created($"Gear/{obj.GearId.ToString()}", obj);
       }
       catch (Exception ex)
       {
@@ -929,15 +1863,16 @@ namespace PFAPI.Controllers
     [HttpPost("Language")]
     public IActionResult Language_Create([FromBody] Language obj)
     {
-      var context = PFDAL.GetContext();
       if (obj == null || obj.LanguageId != 0)
         return BadRequest();
+
+      var context = PFDAL.GetContext();
 
       try
       {
         context.Language.Add(obj);
         context.SaveChanges();
-        return Created("Language/" + obj.LanguageId.ToString(), obj);
+        return Created($"Language/{obj.LanguageId.ToString()}", obj);
       }
       catch (Exception ex)
       {
@@ -948,15 +1883,16 @@ namespace PFAPI.Controllers
     [HttpPost("Location")]
     public IActionResult Location_Create([FromBody] Location obj)
     {
-      var context = PFDAL.GetContext();
       if (obj == null || obj.LocationId != 0)
         return BadRequest();
+
+      var context = PFDAL.GetContext();
 
       try
       {
         context.Location.Add(obj);
         context.SaveChanges();
-        return Created("Location/" + obj.LocationId.ToString(), obj);
+        return Created($"Location/{obj.LocationId.ToString()}", obj);
       }
       catch (Exception ex)
       {
@@ -967,15 +1903,16 @@ namespace PFAPI.Controllers
     [HttpPost("MagicItem")]
     public IActionResult MagicItem_Create([FromBody] MagicItem obj)
     {
-      var context = PFDAL.GetContext();
       if (obj == null || obj.MagicItemId != 0)
         return BadRequest();
+
+      var context = PFDAL.GetContext();
 
       try
       {
         context.MagicItem.Add(obj);
         context.SaveChanges();
-        return Created("MagicItem/" + obj.MagicItemId.ToString(), obj);
+        return Created($"MagicItem/{obj.MagicItemId.ToString()}", obj);
       }
       catch (Exception ex)
       {
@@ -986,15 +1923,16 @@ namespace PFAPI.Controllers
     [HttpPost("MonsterSpawn")]
     public IActionResult MonsterSpawn_Create([FromBody] MonsterSpawn obj)
     {
-      var context = PFDAL.GetContext();
       if (obj == null || obj.SpawnId != 0)
         return BadRequest();
+
+      var context = PFDAL.GetContext();
 
       try
       {
         context.MonsterSpawn.Add(obj);
         context.SaveChanges();
-        return Created("MonsterSpawn/" + obj.SpawnId.ToString(), obj);
+        return Created($"MonsterSpawn/{obj.SpawnId.ToString()}", obj);
       }
       catch (Exception ex)
       {
@@ -1005,15 +1943,78 @@ namespace PFAPI.Controllers
     [HttpPost("Month")]
     public IActionResult Month_Create([FromBody] Month obj)
     {
-      var context = PFDAL.GetContext();
       if (obj == null || obj.MonthId != 0)
         return BadRequest();
+
+      var context = PFDAL.GetContext();
 
       try
       {
         context.Month.Add(obj);
         context.SaveChanges();
-        return Created("Month/" + obj.MonthId.ToString(), obj);
+        return Created($"Month/{obj.MonthId.ToString()}", obj);
+      }
+      catch (Exception ex)
+      {
+        return BadRequest(ex.Message);
+      }
+    }
+
+    [HttpPost("Npc")]
+    public IActionResult Npc_Create([FromBody] Npc obj)
+    {
+      if (obj == null || obj.Npcid != 0)
+        return BadRequest();
+
+      var context = PFDAL.GetContext();
+
+      try
+      {
+        context.Npc.Add(obj);
+        context.SaveChanges();
+        return Created($"Npc/{obj.Npcid.ToString()}", obj);
+      }
+      catch (Exception ex)
+      {
+        return BadRequest(ex.Message);
+      }
+    }
+
+    [HttpPost("Npcdetail")]
+    public IActionResult Npcdetail_Create([FromBody] Npcdetail obj)
+    {
+      if (obj == null || obj.Npcid != 0)
+        return BadRequest();
+
+      var context = PFDAL.GetContext();
+
+      try
+      {
+        context.Npcdetail.Add(obj);
+        context.SaveChanges();
+        return Created($"Npcdetail/{obj.Npcid.ToString()}", obj);
+      }
+      catch (Exception ex)
+      {
+        return BadRequest(ex.Message);
+      }
+    }
+
+    [HttpPost("OverridePrerequisite")]
+    public IActionResult OverridePrerequisite_Create([FromBody] OverridePrerequisite obj)
+    {
+      if (obj == null || obj.ClassAbilityId == 0 || obj.PrerequisiteId == 0)
+        return BadRequest();
+
+      var context = PFDAL.GetContext();
+      if (context.OverridePrerequisite.Any(x => x.ClassAbilityId == obj.ClassAbilityId && x.PrerequisiteId == obj.PrerequisiteId))
+        return BadRequest("Object already exists");
+
+      try
+      {
+        context.OverridePrerequisite.Add(obj);
+        context.SaveChanges();
+        return Created($"OverridePrerequisite/{obj.ClassAbilityId}/{obj.PrerequisiteId}", obj);
       }
       catch (Exception ex)
       {
@@ -1024,15 +2025,140 @@ namespace PFAPI.Controllers
     [HttpPost("Plane")]
     public IActionResult Plane_Create([FromBody] Plane obj)
     {
-      var context = PFDAL.GetContext();
       if (obj == null || obj.PlaneId != 0)
         return BadRequest();
+
+      var context = PFDAL.GetContext();
 
       try
       {
         context.Plane.Add(obj);
         context.SaveChanges();
-        return Created("Plane/" + obj.PlaneId.ToString(), obj);
+        return Created($"Plane/{obj.PlaneId.ToString()}", obj);
+      }
+      catch (Exception ex)
+      {
+        return BadRequest(ex.Message);
+      }
+    }
+
+    [HttpPost("Player")]
+    public IActionResult Player_Create([FromBody] Player obj)
+    {
+      if (obj == null || obj.PlayerId != 0)
+        return BadRequest();
+
+      var context = PFDAL.GetContext();
+
+      try
+      {
+        context.Player.Add(obj);
+        context.SaveChanges();
+        return Created($"Player/{obj.PlayerId.ToString()}", obj);
+      }
+      catch (Exception ex)
+      {
+        return BadRequest(ex.Message);
+      }
+    }
+
+    [HttpPost("PlayerCampaign")]
+    public IActionResult PlayerCampaign_Create([FromBody] PlayerCampaign obj)
+    {
+      if (obj == null || obj.PlayerId == 0 || obj.CampaignId == 0)
+        return BadRequest();
+
+      var context = PFDAL.GetContext();
+      if (context.PlayerCampaign.Any(x => x.PlayerId == obj.PlayerId && x.CampaignId == obj.CampaignId))
+        return BadRequest("Object already exists");
+
+      try
+      {
+        context.PlayerCampaign.Add(obj);
+        context.SaveChanges();
+        return Created($"PlayerCampaign/{obj.PlayerId}/{obj.CampaignId}", obj);
+      }
+      catch (Exception ex)
+      {
+        return BadRequest(ex.Message);
+      }
+    }
+
+    [HttpPost("Prerequisite")]
+    public IActionResult Prerequisite_Create([FromBody] Prerequisite obj)
+    {
+      if (obj == null || obj.PrerequisiteId != 0)
+        return BadRequest();
+
+      var context = PFDAL.GetContext();
+
+      try
+      {
+        context.Prerequisite.Add(obj);
+        context.SaveChanges();
+        return Created($"Prerequisite/{obj.PrerequisiteId.ToString()}", obj);
+      }
+      catch (Exception ex)
+      {
+        return BadRequest(ex.Message);
+      }
+    }
+
+    [HttpPost("Race")]
+    public IActionResult Race_Create([FromBody] Race obj)
+    {
+      if (obj == null || obj.RaceId != 0)
+        return BadRequest();
+
+      var context = PFDAL.GetContext();
+
+      try
+      {
+        context.Race.Add(obj);
+        context.SaveChanges();
+        return Created($"Race/{obj.RaceId.ToString()}", obj);
+      }
+      catch (Exception ex)
+      {
+        return BadRequest(ex.Message);
+      }
+    }
+
+    [HttpPost("RaceAbility")]
+    public IActionResult RaceAbility_Create([FromBody] RaceAbility obj)
+    {
+      if (obj == null || obj.RaceAbilityId != 0)
+        return BadRequest();
+
+      var context = PFDAL.GetContext();
+
+      try
+      {
+        context.RaceAbility.Add(obj);
+        context.SaveChanges();
+        return Created($"RaceAbility/{obj.RaceAbilityId.ToString()}", obj);
+      }
+      catch (Exception ex)
+      {
+        return BadRequest(ex.Message);
+      }
+    }
+
+    [HttpPost("RaceSubType")]
+    public IActionResult RaceSubType_Create([FromBody] RaceSubType obj)
+    {
+      if (obj == null || obj.RaceId == 0 || obj.BestiaryTypeId == 0)
+        return BadRequest();
+
+      var context = PFDAL.GetContext();
+      if (context.RaceSubType.Any(x => x.RaceId == obj.RaceId && x.BestiaryTypeId == obj.BestiaryTypeId))
+        return BadRequest("Object already exists");
+
+      try
+      {
+        context.RaceSubType.Add(obj);
+        context.SaveChanges();
+        return Created($"RaceSubType/{obj.RaceId}/{obj.BestiaryTypeId}", obj);
       }
       catch (Exception ex)
       {
@@ -1043,15 +2169,16 @@ namespace PFAPI.Controllers
     [HttpPost("Season")]
     public IActionResult Season_Create([FromBody] Season obj)
     {
-      var context = PFDAL.GetContext();
       if (obj == null || obj.SeasonId != 0)
         return BadRequest();
+
+      var context = PFDAL.GetContext();
 
       try
       {
         context.Season.Add(obj);
         context.SaveChanges();
-        return Created("Season/" + obj.SeasonId.ToString(), obj);
+        return Created($"Season/{obj.SeasonId.ToString()}", obj);
       }
       catch (Exception ex)
       {
@@ -1062,15 +2189,16 @@ namespace PFAPI.Controllers
     [HttpPost("Skill")]
     public IActionResult Skill_Create([FromBody] Skill obj)
     {
-      var context = PFDAL.GetContext();
       if (obj == null || obj.SkillId != 0)
         return BadRequest();
+
+      var context = PFDAL.GetContext();
 
       try
       {
         context.Skill.Add(obj);
         context.SaveChanges();
-        return Created("Skill/" + obj.SkillId.ToString(), obj);
+        return Created($"Skill/{obj.SkillId.ToString()}", obj);
       }
       catch (Exception ex)
       {
@@ -1081,9 +2209,10 @@ namespace PFAPI.Controllers
     [HttpPost("Spell")]
     public IActionResult Spell_Create([FromBody] Spell obj)
     {
-      var context = PFDAL.GetContext();
       if (obj == null || obj.SpellId != 0)
         return BadRequest();
+
+      var context = PFDAL.GetContext();
 
       try
       {
@@ -1099,20 +2228,61 @@ namespace PFAPI.Controllers
       }
     }
 
-    // SpellDetail not implemented, part of Spell
+    // SpellDetail created as part of Spell
+
+    [HttpPost("SpellSchool")]
+    public IActionResult SpellSchool_Create([FromBody] SpellSchool obj)
+    {
+      if (obj == null || obj.SpellSchoolId != 0)
+        return BadRequest();
+
+      var context = PFDAL.GetContext();
+
+      try
+      {
+        context.SpellSchool.Add(obj);
+        context.SaveChanges();
+        return Created($"SpellSchool/{obj.SpellSchoolId.ToString()}", obj);
+      }
+      catch (Exception ex)
+      {
+        return BadRequest(ex.Message);
+      }
+    }
+
+    [HttpPost("SpellSubSchool")]
+    public IActionResult SpellSubSchool_Create([FromBody] SpellSubSchool obj)
+    {
+      if (obj == null || obj.SpellSubSchoolId != 0)
+        return BadRequest();
+
+      var context = PFDAL.GetContext();
+
+      try
+      {
+        context.SpellSubSchool.Add(obj);
+        context.SaveChanges();
+        return Created($"SpellSubSchool/{obj.SpellSubSchoolId.ToString()}", obj);
+      }
+      catch (Exception ex)
+      {
+        return BadRequest(ex.Message);
+      }
+    }
 
     [HttpPost("Terrain")]
     public IActionResult Terrain_Create([FromBody] Terrain obj)
     {
-      var context = PFDAL.GetContext();
       if (obj == null || obj.TerrainId != 0)
         return BadRequest();
+
+      var context = PFDAL.GetContext();
 
       try
       {
         context.Terrain.Add(obj);
         context.SaveChanges();
-        return Created("Terrain/" + obj.TerrainId.ToString(), obj);
+        return Created($"Terrain/{obj.TerrainId.ToString()}", obj);
       }
       catch (Exception ex)
       {
@@ -1123,15 +2293,16 @@ namespace PFAPI.Controllers
     [HttpPost("Territory")]
     public IActionResult Territory_Create([FromBody] Territory obj)
     {
-      var context = PFDAL.GetContext();
       if (obj == null || obj.TerritoryId != 0)
         return BadRequest();
+
+      var context = PFDAL.GetContext();
 
       try
       {
         context.Territory.Add(obj);
         context.SaveChanges();
-        return Created("Territory/" + obj.TerritoryId.ToString(), obj);
+        return Created($"Territory/{obj.TerritoryId.ToString()}", obj);
       }
       catch (Exception ex)
       {
@@ -1142,15 +2313,16 @@ namespace PFAPI.Controllers
     [HttpPost("Time")]
     public IActionResult Time_Create([FromBody] Time obj)
     {
-      var context = PFDAL.GetContext();
       if (obj == null || obj.TimeId != 0)
         return BadRequest();
+
+      var context = PFDAL.GetContext();
 
       try
       {
         context.Time.Add(obj);
         context.SaveChanges();
-        return Created("Time/" + obj.TimeId.ToString(), obj);
+        return Created($"Time/{obj.TimeId.ToString()}", obj);
       }
       catch (Exception ex)
       {
@@ -1161,15 +2333,78 @@ namespace PFAPI.Controllers
     [HttpPost("TrackedEvent")]
     public IActionResult TrackedEvent_Create([FromBody] TrackedEvent obj)
     {
-      var context = PFDAL.GetContext();
       if (obj == null || obj.TrackedEventId != 0)
         return BadRequest();
+
+      var context = PFDAL.GetContext();
 
       try
       {
         context.TrackedEvent.Add(obj);
         context.SaveChanges();
-        return Created("TrackedEvent/" + obj.TrackedEventId.ToString(), obj);
+        return Created($"TrackedEvent/{obj.TrackedEventId.ToString()}", obj);
+      }
+      catch (Exception ex)
+      {
+        return BadRequest(ex.Message);
+      }
+    }
+
+    [HttpPost("Weapon")]
+    public IActionResult Weapon_Create([FromBody] Weapon obj)
+    {
+      if (obj == null || obj.GearId != 0)
+        return BadRequest();
+
+      var context = PFDAL.GetContext();
+
+      try
+      {
+        context.Weapon.Add(obj);
+        context.SaveChanges();
+        return Created($"Weapon/{obj.GearId.ToString()}", obj);
+      }
+      catch (Exception ex)
+      {
+        return BadRequest(ex.Message);
+      }
+    }
+
+    [HttpPost("WeaponAttribute")]
+    public IActionResult WeaponAttribute_Create([FromBody] WeaponAttribute obj)
+    {
+      if (obj == null || obj.WeaponAttributeId != 0)
+        return BadRequest();
+
+      var context = PFDAL.GetContext();
+
+      try
+      {
+        context.WeaponAttribute.Add(obj);
+        context.SaveChanges();
+        return Created($"WeaponAttribute/{obj.WeaponAttributeId.ToString()}", obj);
+      }
+      catch (Exception ex)
+      {
+        return BadRequest(ex.Message);
+      }
+    }
+
+    [HttpPost("WeaponAttributeApplied")]
+    public IActionResult WeaponAttributeApplied_Create([FromBody] WeaponAttributeApplied obj)
+    {
+      if (obj == null || obj.GearId == 0 || obj.WeaponAttributeId == 0)
+        return BadRequest();
+
+      var context = PFDAL.GetContext();
+      if (context.WeaponAttributeApplied.Any(x => x.GearId == obj.GearId && x.WeaponAttributeId == obj.WeaponAttributeId))
+        return BadRequest("Object already exists");
+
+      try
+      {
+        context.WeaponAttributeApplied.Add(obj);
+        context.SaveChanges();
+        return Created($"WeaponAttributeApplied/{obj.GearId}/{obj.WeaponAttributeId}", obj);
       }
       catch (Exception ex)
       {
@@ -1180,15 +2415,16 @@ namespace PFAPI.Controllers
     [HttpPost("Weather")]
     public IActionResult Weather_Create([FromBody] Weather obj)
     {
-      var context = PFDAL.GetContext();
       if (obj == null || obj.WeatherId != 0)
         return BadRequest();
+
+      var context = PFDAL.GetContext();
 
       try
       {
         context.Weather.Add(obj);
         context.SaveChanges();
-        return Created("Weather/" + obj.WeatherId.ToString(), obj);
+        return Created($"Weather/{obj.WeatherId.ToString()}", obj);
       }
       catch (Exception ex)
       {
@@ -1196,18 +2432,37 @@ namespace PFAPI.Controllers
       }
     }
 
-
     #endregion
 
     #region Update
 
+    [HttpPut("Armor/{ArmorId:int}")]
+    public IActionResult Armor_Update([FromBody] Armor obj, int ArmorId)
+    {
+      if (obj == null || ArmorId == 0 || obj.GearId != ArmorId)
+        return BadRequest();
+
+      var context = PFDAL.GetContext();
+
+      try
+      {
+        context.Armor.Attach(obj).State = Microsoft.EntityFrameworkCore.EntityState.Modified;
+        context.SaveChanges();
+        return NoContent();
+      }
+      catch (Exception ex)
+      {
+        return BadRequest(ex.Message);
+      }
+    }
+
     [HttpPut("Bestiary/{BestiaryId:int}")]
     public IActionResult Bestiary_Update([FromBody] Bestiary obj, int BestiaryId)
     {
-      var context = PFDAL.GetContext();
-
-      if (obj == null || obj.BestiaryId == 0 || obj.BestiaryId != BestiaryId)
+      if (obj == null || BestiaryId == 0 || obj.BestiaryId != BestiaryId)
         return BadRequest();
+
+      var context = PFDAL.GetContext();
 
       try
       {
@@ -1224,10 +2479,10 @@ namespace PFAPI.Controllers
     [HttpPut("BestiaryDetail/{BestiaryDetailId:int}")]
     public IActionResult BestiaryDetail_Update([FromBody] BestiaryDetail obj, int BestiaryDetailId)
     {
-      var context = PFDAL.GetContext();
-
-      if (obj == null || obj.BestiaryId == 0 || obj.BestiaryId != BestiaryDetailId)
+      if (obj == null || BestiaryDetailId == 0 || obj.BestiaryId != BestiaryDetailId)
         return BadRequest();
+
+      var context = PFDAL.GetContext();
 
       try
       {
@@ -1244,10 +2499,10 @@ namespace PFAPI.Controllers
     [HttpPut("BestiaryEnvironment/{BestiaryEnvironmentId:int}")]
     public IActionResult BestiaryEnvironment_Update([FromBody] BestiaryEnvironment obj, int BestiaryEnvironmentId)
     {
-      var context = PFDAL.GetContext();
-
-      if (obj == null || obj.BestiaryEnvironmentId == 0 || obj.BestiaryEnvironmentId != BestiaryEnvironmentId)
+      if (obj == null || BestiaryEnvironmentId == 0 || obj.BestiaryEnvironmentId != BestiaryEnvironmentId)
         return BadRequest();
+
+      var context = PFDAL.GetContext();
 
       try
       {
@@ -1264,10 +2519,10 @@ namespace PFAPI.Controllers
     [HttpPut("BestiaryFeat/{BestiaryFeatId:int}")]
     public IActionResult BestiaryFeat_Update([FromBody] BestiaryFeat obj, int BestiaryFeatId)
     {
-      var context = PFDAL.GetContext();
-
-      if (obj == null || obj.BestiaryFeatId == 0 || obj.BestiaryFeatId != BestiaryFeatId)
+      if (obj == null || BestiaryFeatId == 0 || obj.BestiaryFeatId != BestiaryFeatId)
         return BadRequest();
+
+      var context = PFDAL.GetContext();
 
       try
       {
@@ -1284,10 +2539,10 @@ namespace PFAPI.Controllers
     [HttpPut("BestiaryLanguage/{BestiaryLanguageId:int}")]
     public IActionResult BestiaryLanguage_Update([FromBody] BestiaryLanguage obj, int BestiaryLanguageId)
     {
-      var context = PFDAL.GetContext();
-
-      if (obj == null || obj.BestiaryLanguageId == 0 || obj.BestiaryLanguageId != BestiaryLanguageId)
+      if (obj == null || BestiaryLanguageId == 0 || obj.BestiaryLanguageId != BestiaryLanguageId)
         return BadRequest();
+
+      var context = PFDAL.GetContext();
 
       try
       {
@@ -1301,13 +2556,33 @@ namespace PFAPI.Controllers
       }
     }
 
+    [HttpPut("BestiaryMagic/{BestiaryMagicId:int}")]
+    public IActionResult BestiaryMagic_Update([FromBody] BestiaryMagic obj, int BestiaryMagicId)
+    {
+      if (obj == null || BestiaryMagicId == 0 || obj.BestiaryMagicId != BestiaryMagicId)
+        return BadRequest();
+
+      var context = PFDAL.GetContext();
+
+      try
+      {
+        context.BestiaryMagic.Attach(obj).State = Microsoft.EntityFrameworkCore.EntityState.Modified;
+        context.SaveChanges();
+        return NoContent();
+      }
+      catch (Exception ex)
+      {
+        return BadRequest(ex.Message);
+      }
+    }
+
     [HttpPut("BestiarySkill/{BestiarySkillId:int}")]
     public IActionResult BestiarySkill_Update([FromBody] BestiarySkill obj, int BestiarySkillId)
     {
-      var context = PFDAL.GetContext();
-
-      if (obj == null || obj.BestiarySkillId == 0 || obj.BestiarySkillId != BestiarySkillId)
+      if (obj == null || BestiarySkillId == 0 || obj.BestiarySkillId != BestiarySkillId)
         return BadRequest();
+
+      var context = PFDAL.GetContext();
 
       try
       {
@@ -1324,10 +2599,10 @@ namespace PFAPI.Controllers
     [HttpPut("BestiarySubType/{BestiarySubTypeId:int}")]
     public IActionResult BestiarySubType_Update([FromBody] BestiarySubType obj, int BestiarySubTypeId)
     {
-      var context = PFDAL.GetContext();
-
-      if (obj == null || obj.BestiarySubTypeId == 0 || obj.BestiarySubTypeId != BestiarySubTypeId)
+      if (obj == null || BestiarySubTypeId == 0 || obj.BestiarySubTypeId != BestiarySubTypeId)
         return BadRequest();
+
+      var context = PFDAL.GetContext();
 
       try
       {
@@ -1344,10 +2619,10 @@ namespace PFAPI.Controllers
     [HttpPut("BestiaryType/{BestiaryTypeId:int}")]
     public IActionResult BestiaryType_Update([FromBody] BestiaryType obj, int BestiaryTypeId)
     {
-      var context = PFDAL.GetContext();
-
-      if (obj == null || obj.BestiaryTypeId == 0 || obj.BestiaryTypeId != BestiaryTypeId)
+      if (obj == null || BestiaryTypeId == 0 || obj.BestiaryTypeId != BestiaryTypeId)
         return BadRequest();
+
+      var context = PFDAL.GetContext();
 
       try
       {
@@ -1364,10 +2639,10 @@ namespace PFAPI.Controllers
     [HttpPut("Campaign/{CampaignId:int}")]
     public IActionResult Campaign_Update([FromBody] Campaign obj, int CampaignId)
     {
-      var context = PFDAL.GetContext();
-
-      if (obj == null || obj.CampaignId == 0 || obj.CampaignId != CampaignId)
+      if (obj == null || CampaignId == 0 || obj.CampaignId != CampaignId)
         return BadRequest();
+
+      var context = PFDAL.GetContext();
 
       try
       {
@@ -1381,13 +2656,293 @@ namespace PFAPI.Controllers
       }
     }
 
+    [HttpPut("CampaignData/{CampaignId:int}/{CampaignDataKey}")]
+    public IActionResult CampaignData_Update([FromBody] CampaignData obj, int CampaignId, string Key)
+    {
+      if (obj == null || CampaignId == 0 || string.IsNullOrWhiteSpace(Key) || obj.CampaignId != CampaignId || obj.Key != Key)
+        return BadRequest();
+
+      var context = PFDAL.GetContext();
+
+      try
+      {
+        context.CampaignData.Attach(obj).State = Microsoft.EntityFrameworkCore.EntityState.Modified;
+        context.SaveChanges();
+        return NoContent();
+      }
+      catch (Exception ex)
+      {
+        return BadRequest(ex.Message);
+      }
+    }
+
+    [HttpPut("Character/{CharacterId:int}")]
+    public IActionResult Character_Update([FromBody] Character obj, int CharacterId)
+    {
+      if (obj == null || CharacterId == 0 || obj.CharacterId != CharacterId)
+        return BadRequest();
+
+      var context = PFDAL.GetContext();
+
+      try
+      {
+        context.Character.Attach(obj).State = Microsoft.EntityFrameworkCore.EntityState.Modified;
+        context.SaveChanges();
+        return NoContent();
+      }
+      catch (Exception ex)
+      {
+        return BadRequest(ex.Message);
+      }
+    }
+
+    [HttpPut("CharacterClassAbility/{CharacterClassAbilityId:int}")]
+    public IActionResult CharacterClassAbility_Update([FromBody] CharacterClassAbility obj, int CharacterClassAbilityId)
+    {
+      if (obj == null || CharacterClassAbilityId == 0 || obj.CharacterClassAbilityId != CharacterClassAbilityId)
+        return BadRequest();
+
+      var context = PFDAL.GetContext();
+
+      try
+      {
+        context.CharacterClassAbility.Attach(obj).State = Microsoft.EntityFrameworkCore.EntityState.Modified;
+        context.SaveChanges();
+        return NoContent();
+      }
+      catch (Exception ex)
+      {
+        return BadRequest(ex.Message);
+      }
+    }
+
+    [HttpPut("CharacterClassLevel/{CharacterId:int}/{ClassId:int}")]
+    public IActionResult CharacterClassLevel_Update([FromBody] CharacterClassLevel obj, int CharacterId, int ClassId)
+    {
+      if (obj == null || CharacterId == 0 || ClassId == 0 || obj.CharacterId != CharacterId || obj.ClassId != ClassId)
+        return BadRequest();
+
+      var context = PFDAL.GetContext();
+
+      try
+      {
+        context.CharacterClassLevel.Attach(obj).State = Microsoft.EntityFrameworkCore.EntityState.Modified;
+        context.SaveChanges();
+        return NoContent();
+      }
+      catch (Exception ex)
+      {
+        return BadRequest(ex.Message);
+      }
+    }
+
+    [HttpPut("CharacterFeat/{CharacterFeatId:int}")]
+    public IActionResult CharacterFeat_Update([FromBody] CharacterFeat obj, int CharacterFeatId)
+    {
+      if (obj == null || CharacterFeatId == 0 || obj.CharacterFeatId != CharacterFeatId)
+        return BadRequest();
+
+      var context = PFDAL.GetContext();
+
+      try
+      {
+        context.CharacterFeat.Attach(obj).State = Microsoft.EntityFrameworkCore.EntityState.Modified;
+        context.SaveChanges();
+        return NoContent();
+      }
+      catch (Exception ex)
+      {
+        return BadRequest(ex.Message);
+      }
+    }
+
+    [HttpPut("CharacterGear/{CharacterGearId:int}")]
+    public IActionResult CharacterGear_Update([FromBody] CharacterGear obj, int CharacterGearId)
+    {
+      if (obj == null || CharacterGearId == 0 || obj.CharacterGearId != CharacterGearId)
+        return BadRequest();
+
+      var context = PFDAL.GetContext();
+
+      try
+      {
+        context.CharacterGear.Attach(obj).State = Microsoft.EntityFrameworkCore.EntityState.Modified;
+        context.SaveChanges();
+        return NoContent();
+      }
+      catch (Exception ex)
+      {
+        return BadRequest(ex.Message);
+      }
+    }
+
+    [HttpPut("CharacterGearEnchantment/{CharacterGearId:int}/{EnchantmentId:int}")]
+    public IActionResult CharacterGearEnchantment_Update([FromBody] CharacterGearEnchantment obj, int CharacterGearId, int EnchantmentId)
+    {
+      if (obj == null || CharacterGearId == 0 || EnchantmentId == 0 || obj.CharacterGearId != CharacterGearId || obj.EnchantmentId != EnchantmentId)
+        return BadRequest();
+
+      var context = PFDAL.GetContext();
+
+      try
+      {
+        context.CharacterGearEnchantment.Attach(obj).State = Microsoft.EntityFrameworkCore.EntityState.Modified;
+        context.SaveChanges();
+        return NoContent();
+      }
+      catch (Exception ex)
+      {
+        return BadRequest(ex.Message);
+      }
+    }
+
+    [HttpPut("CharacterLanguage/{CharacterId:int}/{LanguageId:int}")]
+    public IActionResult CharacterLanguage_Update([FromBody] CharacterLanguage obj, int CharacterId, int LanguageId)
+    {
+      if (obj == null || CharacterId == 0 || LanguageId == 0 || obj.CharacterId != CharacterId | obj.LanguageId != LanguageId)
+        return BadRequest();
+
+      var context = PFDAL.GetContext();
+
+      try
+      {
+        context.CharacterLanguage.Attach(obj).State = Microsoft.EntityFrameworkCore.EntityState.Modified;
+        context.SaveChanges();
+        return NoContent();
+      }
+      catch (Exception ex)
+      {
+        return BadRequest(ex.Message);
+      }
+    }
+
+    [HttpPut("CharacterMagic/{CharacterMagicId:int}")]
+    public IActionResult CharacterMagic_Update([FromBody] CharacterMagic obj, int CharacterMagicId)
+    {
+      if (obj == null || CharacterMagicId == 0 || obj.CharacterMagicId != CharacterMagicId)
+        return BadRequest();
+
+      var context = PFDAL.GetContext();
+
+      try
+      {
+        context.CharacterMagic.Attach(obj).State = Microsoft.EntityFrameworkCore.EntityState.Modified;
+        context.SaveChanges();
+        return NoContent();
+      }
+      catch (Exception ex)
+      {
+        return BadRequest(ex.Message);
+      }
+    }
+
+    [HttpPut("CharacterRaceAbility/{CharacterId:int}/{RaceAbilityId:int}")]
+    public IActionResult CharacterRaceAbility_Update([FromBody] CharacterRaceAbility obj, int CharacterId, int RaceAbilityId)
+    {
+      if (obj == null || CharacterId == 0 || RaceAbilityId == 0 || obj.CharacterId != CharacterId || obj.RaceAbilityId != RaceAbilityId)
+        return BadRequest();
+
+      var context = PFDAL.GetContext();
+
+      try
+      {
+        context.CharacterRaceAbility.Attach(obj).State = Microsoft.EntityFrameworkCore.EntityState.Modified;
+        context.SaveChanges();
+        return NoContent();
+      }
+      catch (Exception ex)
+      {
+        return BadRequest(ex.Message);
+      }
+    }
+
+    [HttpPut("CharacterSkill/{CharacterId:int}/{SkillId:int}")]
+    public IActionResult CharacterSkill_Update([FromBody] CharacterSkill obj, int CharacterId, int SkillId)
+    {
+      if (obj == null || CharacterId == 0 || SkillId == 0 || obj.CharacterId != CharacterId || obj.SkillId != SkillId)
+        return BadRequest();
+
+      var context = PFDAL.GetContext();
+
+      try
+      {
+        context.CharacterSkill.Attach(obj).State = Microsoft.EntityFrameworkCore.EntityState.Modified;
+        context.SaveChanges();
+        return NoContent();
+      }
+      catch (Exception ex)
+      {
+        return BadRequest(ex.Message);
+      }
+    }
+
+    [HttpPut("Class/{ClassId:int}")]
+    public IActionResult Class_Update([FromBody] Class obj, int ClassId)
+    {
+      if (obj == null || ClassId == 0 || obj.ClassId != ClassId)
+        return BadRequest();
+
+      var context = PFDAL.GetContext();
+
+      try
+      {
+        context.Class.Attach(obj).State = Microsoft.EntityFrameworkCore.EntityState.Modified;
+        context.SaveChanges();
+        return NoContent();
+      }
+      catch (Exception ex)
+      {
+        return BadRequest(ex.Message);
+      }
+    }
+
+    [HttpPut("ClassAbility/{ClassAbilityId:int}")]
+    public IActionResult ClassAbility_Update([FromBody] ClassAbility obj, int ClassAbilityId)
+    {
+      if (obj == null || ClassAbilityId == 0 || obj.ClassAbilityId != ClassAbilityId)
+        return BadRequest();
+
+      var context = PFDAL.GetContext();
+
+      try
+      {
+        context.ClassAbility.Attach(obj).State = Microsoft.EntityFrameworkCore.EntityState.Modified;
+        context.SaveChanges();
+        return NoContent();
+      }
+      catch (Exception ex)
+      {
+        return BadRequest(ex.Message);
+      }
+    }
+
+    [HttpPut("ClassSkill/{ClassId:int}/{SkillId:int}")]
+    public IActionResult ClassSkill_Update([FromBody] ClassSkill obj, int ClassId, int SkillId)
+    {
+      if (obj == null || ClassId == 0 || SkillId == 0 || obj.ClassId != ClassId || obj.SkillId != SkillId)
+        return BadRequest();
+
+      var context = PFDAL.GetContext();
+
+      try
+      {
+        context.ClassSkill.Attach(obj).State = Microsoft.EntityFrameworkCore.EntityState.Modified;
+        context.SaveChanges();
+        return NoContent();
+      }
+      catch (Exception ex)
+      {
+        return BadRequest(ex.Message);
+      }
+    }
+
     [HttpPut("Continent/{ContinentId:int}")]
     public IActionResult Continent_Update([FromBody] Continent obj, int ContinentId)
     {
-      var context = PFDAL.GetContext();
-
-      if (obj == null || obj.ContinentId == 0 || obj.ContinentId != ContinentId)
+      if (obj == null || ContinentId == 0 || obj.ContinentId != ContinentId)
         return BadRequest();
+
+      var context = PFDAL.GetContext();
 
       try
       {
@@ -1401,13 +2956,33 @@ namespace PFAPI.Controllers
       }
     }
 
+    [HttpPut("ContinentEnvironment/{ContinentId:int}/{EnvironmentId:int}")]
+    public IActionResult ContinentEnvironment_Update([FromBody] ContinentEnvironment obj, int ContinentId, int EnvironmentId)
+    {
+      if (obj == null || ContinentId == 0 | EnvironmentId == 0 || obj.ContinentId != ContinentId || obj.EnvironmentId != EnvironmentId)
+        return BadRequest();
+
+      var context = PFDAL.GetContext();
+
+      try
+      {
+        context.ContinentEnvironment.Attach(obj).State = Microsoft.EntityFrameworkCore.EntityState.Modified;
+        context.SaveChanges();
+        return NoContent();
+      }
+      catch (Exception ex)
+      {
+        return BadRequest(ex.Message);
+      }
+    }
+
     [HttpPut("ContinentWeather/{ContinentWeatherId:int}")]
     public IActionResult ContinentWeather_Update([FromBody] ContinentWeather obj, int ContinentWeatherId)
     {
-      var context = PFDAL.GetContext();
-
-      if (obj == null || obj.CWID == 0 || obj.CWID != ContinentWeatherId)
+      if (obj == null || ContinentWeatherId == 0 || obj.CWID != ContinentWeatherId)
         return BadRequest();
+
+      var context = PFDAL.GetContext();
 
       try
       {
@@ -1421,13 +2996,33 @@ namespace PFAPI.Controllers
       }
     }
 
+    [HttpPut("Enchantment/{EnchantmentId:int}")]
+    public IActionResult Enchantment_Update([FromBody] Enchantment obj, int EnchantmentId)
+    {
+      if (obj == null || EnchantmentId == 0 || obj.EnchantmentId != EnchantmentId)
+        return BadRequest();
+
+      var context = PFDAL.GetContext();
+
+      try
+      {
+        context.Enchantment.Attach(obj).State = Microsoft.EntityFrameworkCore.EntityState.Modified;
+        context.SaveChanges();
+        return NoContent();
+      }
+      catch (Exception ex)
+      {
+        return BadRequest(ex.Message);
+      }
+    }
+
     [HttpPut("Environment/{EnvironmentId:int}")]
     public IActionResult Environment_Update([FromBody] DBConnect.DBModels.Environment obj, int EnvironmentId)
     {
-      var context = PFDAL.GetContext();
-
-      if (obj == null || obj.EnvironmentId == 0 || obj.EnvironmentId != EnvironmentId)
+      if (obj == null || EnvironmentId == 0 || obj.EnvironmentId != EnvironmentId)
         return BadRequest();
+
+      var context = PFDAL.GetContext();
 
       try
       {
@@ -1444,10 +3039,10 @@ namespace PFAPI.Controllers
     [HttpPut("Faction/{FactionId:int}")]
     public IActionResult Faction_Update([FromBody] Faction obj, int FactionId)
     {
-      var context = PFDAL.GetContext();
-
-      if (obj == null || obj.FactionId == 0 || obj.FactionId != FactionId)
+      if (obj == null || FactionId == 0 || obj.FactionId != FactionId)
         return BadRequest();
+
+      var context = PFDAL.GetContext();
 
       try
       {
@@ -1461,13 +3056,33 @@ namespace PFAPI.Controllers
       }
     }
 
+    [HttpPut("FavoredClass/{FavoredClassId:int}")]
+    public IActionResult FavoredClass_Update([FromBody] FavoredClass obj, int FavoredClassId)
+    {
+      if (obj == null || FavoredClassId == 0 || obj.FavoredClassId != FavoredClassId)
+        return BadRequest();
+
+      var context = PFDAL.GetContext();
+
+      try
+      {
+        context.FavoredClass.Attach(obj).State = Microsoft.EntityFrameworkCore.EntityState.Modified;
+        context.SaveChanges();
+        return NoContent();
+      }
+      catch (Exception ex)
+      {
+        return BadRequest(ex.Message);
+      }
+    }
+
     [HttpPut("Feat/{FeatId:int}")]
     public IActionResult Feat_Update([FromBody] Feat obj, int FeatId)
     {
-      var context = PFDAL.GetContext();
-
-      if (obj == null || obj.FeatId == 0 || obj.FeatId != FeatId)
+      if (obj == null || FeatId == 0 || obj.FeatId != FeatId)
         return BadRequest();
+
+      var context = PFDAL.GetContext();
 
       try
       {
@@ -1481,13 +3096,33 @@ namespace PFAPI.Controllers
       }
     }
 
+    [HttpPut("Gear/{GearId:int}")]
+    public IActionResult Gear_Update([FromBody] Gear obj, int GearId)
+    {
+      if (obj == null || GearId == 0 || obj.GearId != GearId)
+        return BadRequest();
+
+      var context = PFDAL.GetContext();
+
+      try
+      {
+        context.Gear.Attach(obj).State = Microsoft.EntityFrameworkCore.EntityState.Modified;
+        context.SaveChanges();
+        return NoContent();
+      }
+      catch (Exception ex)
+      {
+        return BadRequest(ex.Message);
+      }
+    }
+
     [HttpPut("Language/{LanguageId:int}")]
     public IActionResult Language_Update([FromBody] Language obj, int LanguageId)
     {
-      var context = PFDAL.GetContext();
-
-      if (obj == null || obj.LanguageId == 0 || obj.LanguageId != LanguageId)
+      if (obj == null || LanguageId == 0 || obj.LanguageId != LanguageId)
         return BadRequest();
+
+      var context = PFDAL.GetContext();
 
       try
       {
@@ -1504,10 +3139,10 @@ namespace PFAPI.Controllers
     [HttpPut("Location/{LocationId:int}")]
     public IActionResult Location_Update([FromBody] Location obj, int LocationId)
     {
-      var context = PFDAL.GetContext();
-
-      if (obj == null || obj.LocationId == 0 || obj.LocationId != LocationId)
+      if (obj == null || LocationId == 0 || obj.LocationId != LocationId)
         return BadRequest();
+
+      var context = PFDAL.GetContext();
 
       try
       {
@@ -1524,10 +3159,10 @@ namespace PFAPI.Controllers
     [HttpPut("MagicItem/{MagicItemId:int}")]
     public IActionResult MagicItem_Update([FromBody] MagicItem obj, int MagicItemId)
     {
-      var context = PFDAL.GetContext();
-
-      if (obj == null || obj.MagicItemId == 0 || obj.MagicItemId != MagicItemId)
+      if (obj == null || MagicItemId == 0 || obj.MagicItemId != MagicItemId)
         return BadRequest();
+
+      var context = PFDAL.GetContext();
 
       try
       {
@@ -1544,10 +3179,10 @@ namespace PFAPI.Controllers
     [HttpPut("MonsterSpawn/{MonsterSpawnId:int}")]
     public IActionResult MonsterSpawn_Update([FromBody] MonsterSpawn obj, int MonsterSpawnId)
     {
-      var context = PFDAL.GetContext();
-
-      if (obj == null || obj.SpawnId == 0 || obj.SpawnId != MonsterSpawnId)
+      if (obj == null || MonsterSpawnId == 0 || obj.SpawnId != MonsterSpawnId)
         return BadRequest();
+
+      var context = PFDAL.GetContext();
 
       try
       {
@@ -1564,10 +3199,10 @@ namespace PFAPI.Controllers
     [HttpPut("Month/{MonthId:int}")]
     public IActionResult Month_Update([FromBody] Month obj, int MonthId)
     {
-      var context = PFDAL.GetContext();
-
-      if (obj == null || obj.MonthId == 0 || obj.MonthId != MonthId)
+      if (obj == null || MonthId == 0 || obj.MonthId != MonthId)
         return BadRequest();
+
+      var context = PFDAL.GetContext();
 
       try
       {
@@ -1581,13 +3216,73 @@ namespace PFAPI.Controllers
       }
     }
 
+    [HttpPut("Npc/{NpcId:int}")]
+    public IActionResult Npc_Update([FromBody] Npc obj, int NpcId)
+    {
+      if (obj == null || NpcId == 0 || obj.Npcid != NpcId)
+        return BadRequest();
+
+      var context = PFDAL.GetContext();
+
+      try
+      {
+        context.Npc.Attach(obj).State = Microsoft.EntityFrameworkCore.EntityState.Modified;
+        context.SaveChanges();
+        return NoContent();
+      }
+      catch (Exception ex)
+      {
+        return BadRequest(ex.Message);
+      }
+    }
+
+    [HttpPut("Npcdetail/{NpcdetailId:int}")]
+    public IActionResult Npcdetail_Update([FromBody] Npcdetail obj, int NpcdetailId)
+    {
+      if (obj == null || NpcdetailId == 0 || obj.Npcid != NpcdetailId)
+        return BadRequest();
+
+      var context = PFDAL.GetContext();
+
+      try
+      {
+        context.Npcdetail.Attach(obj).State = Microsoft.EntityFrameworkCore.EntityState.Modified;
+        context.SaveChanges();
+        return NoContent();
+      }
+      catch (Exception ex)
+      {
+        return BadRequest(ex.Message);
+      }
+    }
+
+    [HttpPut("OverridePrerequisite/{ClassAbilityId:int}/{PrerequisiteId:int}")]
+    public IActionResult OverridePrerequisite_Update([FromBody] OverridePrerequisite obj, int ClassAbilityId, int PrerequisiteId)
+    {
+      if (obj == null || ClassAbilityId == 0 || PrerequisiteId == 0 || obj.ClassAbilityId != ClassAbilityId || obj.PrerequisiteId != PrerequisiteId)
+        return BadRequest();
+
+      var context = PFDAL.GetContext();
+
+      try
+      {
+        context.OverridePrerequisite.Attach(obj).State = Microsoft.EntityFrameworkCore.EntityState.Modified;
+        context.SaveChanges();
+        return NoContent();
+      }
+      catch (Exception ex)
+      {
+        return BadRequest(ex.Message);
+      }
+    }
+
     [HttpPut("Plane/{PlaneId:int}")]
     public IActionResult Plane_Update([FromBody] Plane obj, int PlaneId)
     {
-      var context = PFDAL.GetContext();
-
-      if (obj == null || obj.PlaneId == 0 || obj.PlaneId != PlaneId)
+      if (obj == null || PlaneId == 0 || obj.PlaneId != PlaneId)
         return BadRequest();
+
+      var context = PFDAL.GetContext();
 
       try
       {
@@ -1601,13 +3296,133 @@ namespace PFAPI.Controllers
       }
     }
 
+    [HttpPut("Player/{PlayerId:int}")]
+    public IActionResult Player_Update([FromBody] Player obj, int PlayerId)
+    {
+      if (obj == null || PlayerId == 0 || obj.PlayerId != PlayerId)
+        return BadRequest();
+
+      var context = PFDAL.GetContext();
+
+      try
+      {
+        context.Player.Attach(obj).State = Microsoft.EntityFrameworkCore.EntityState.Modified;
+        context.SaveChanges();
+        return NoContent();
+      }
+      catch (Exception ex)
+      {
+        return BadRequest(ex.Message);
+      }
+    }
+
+    [HttpPut("PlayerCampaign/{PlayerId:int}/{CampaignId:int}")]
+    public IActionResult PlayerCampaign_Update([FromBody] PlayerCampaign obj, int PlayerId, int CampaignId)
+    {
+      if (obj == null || PlayerId == 0 || CampaignId == 0 || obj.PlayerId != PlayerId || obj.CampaignId != CampaignId)
+        return BadRequest();
+
+      var context = PFDAL.GetContext();
+
+      try
+      {
+        context.PlayerCampaign.Attach(obj).State = Microsoft.EntityFrameworkCore.EntityState.Modified;
+        context.SaveChanges();
+        return NoContent();
+      }
+      catch (Exception ex)
+      {
+        return BadRequest(ex.Message);
+      }
+    }
+
+    [HttpPut("Prerequisite/{PrerequisiteId:int}")]
+    public IActionResult Prerequisite_Update([FromBody] Prerequisite obj, int PrerequisiteId)
+    {
+      if (obj == null || PrerequisiteId == 0 || obj.PrerequisiteId != PrerequisiteId)
+        return BadRequest();
+
+      var context = PFDAL.GetContext();
+
+      try
+      {
+        context.Prerequisite.Attach(obj).State = Microsoft.EntityFrameworkCore.EntityState.Modified;
+        context.SaveChanges();
+        return NoContent();
+      }
+      catch (Exception ex)
+      {
+        return BadRequest(ex.Message);
+      }
+    }
+
+    [HttpPut("Race/{RaceId:int}")]
+    public IActionResult Race_Update([FromBody] Race obj, int RaceId)
+    {
+      if (obj == null || RaceId == 0 || obj.RaceId != RaceId)
+        return BadRequest();
+
+      var context = PFDAL.GetContext();
+
+      try
+      {
+        context.Race.Attach(obj).State = Microsoft.EntityFrameworkCore.EntityState.Modified;
+        context.SaveChanges();
+        return NoContent();
+      }
+      catch (Exception ex)
+      {
+        return BadRequest(ex.Message);
+      }
+    }
+
+    [HttpPut("RaceAbility/{RaceAbilityId:int}")]
+    public IActionResult RaceAbility_Update([FromBody] RaceAbility obj, int RaceAbilityId)
+    {
+      if (obj == null || RaceAbilityId == 0 || obj.RaceAbilityId != RaceAbilityId)
+        return BadRequest();
+
+      var context = PFDAL.GetContext();
+
+      try
+      {
+        context.RaceAbility.Attach(obj).State = Microsoft.EntityFrameworkCore.EntityState.Modified;
+        context.SaveChanges();
+        return NoContent();
+      }
+      catch (Exception ex)
+      {
+        return BadRequest(ex.Message);
+      }
+    }
+
+    [HttpPut("RaceSubType/{RaceId:int}/{BestiaryTypeId:int}")]
+    public IActionResult RaceSubType_Update([FromBody] RaceSubType obj, int RaceId, int BestiaryTypeId)
+    {
+      if (obj == null || RaceId == 0 || BestiaryTypeId == 0 || obj.RaceId != RaceId || obj.BestiaryTypeId != BestiaryTypeId)
+        return BadRequest();
+
+      var context = PFDAL.GetContext();
+
+      try
+      {
+        context.RaceSubType.Attach(obj).State = Microsoft.EntityFrameworkCore.EntityState.Modified;
+        context.SaveChanges();
+        return NoContent();
+      }
+      catch (Exception ex)
+      {
+        return BadRequest(ex.Message);
+      }
+    }
+
     [HttpPut("Season/{SeasonId:int}")]
     public IActionResult Season_Update([FromBody] Season obj, int SeasonId)
     {
-      var context = PFDAL.GetContext();
-
-      if (obj == null || obj.SeasonId == 0 || obj.SeasonId != SeasonId)
+      if (obj == null || SeasonId == 0 || obj.SeasonId != SeasonId)
         return BadRequest();
+
+      var context = PFDAL.GetContext();
 
       try
       {
@@ -1624,10 +3439,10 @@ namespace PFAPI.Controllers
     [HttpPut("Skill/{SkillId:int}")]
     public IActionResult Skill_Update([FromBody] Skill obj, int SkillId)
     {
-      var context = PFDAL.GetContext();
-
-      if (obj == null || obj.SkillId == 0 || obj.SkillId != SkillId)
+      if (obj == null || SkillId == 0 || obj.SkillId != SkillId)
         return BadRequest();
+
+      var context = PFDAL.GetContext();
 
       try
       {
@@ -1644,10 +3459,10 @@ namespace PFAPI.Controllers
     [HttpPut("Spell/{SpellId:int}")]
     public IActionResult Spell_Update([FromBody] Spell obj, int SpellId)
     {
-      var context = PFDAL.GetContext();
-
-      if (obj == null || obj.SpellId == 0 || obj.SpellId != SpellId)
+      if (obj == null || SpellId == 0 || obj.SpellId != SpellId)
         return BadRequest();
+
+      var context = PFDAL.GetContext();
 
       try
       {
@@ -1664,10 +3479,10 @@ namespace PFAPI.Controllers
     [HttpPut("SpellDetail/{SpellDetailId:int}")]
     public IActionResult SpellDetail_Update([FromBody] SpellDetail obj, int SpellDetailId)
     {
-      var context = PFDAL.GetContext();
-
-      if (obj == null || obj.SpellId == 0 || obj.SpellId != SpellDetailId)
+      if (obj == null || SpellDetailId == 0 || obj.SpellId != SpellDetailId)
         return BadRequest();
+
+      var context = PFDAL.GetContext();
 
       try
       {
@@ -1681,13 +3496,53 @@ namespace PFAPI.Controllers
       }
     }
 
+    [HttpPut("SpellSchool/{SpellSchoolId:int}")]
+    public IActionResult SpellSchool_Update([FromBody] SpellSchool obj, int SpellSchoolId)
+    {
+      if (obj == null || SpellSchoolId == 0 || obj.SpellSchoolId != SpellSchoolId)
+        return BadRequest();
+
+      var context = PFDAL.GetContext();
+
+      try
+      {
+        context.SpellSchool.Attach(obj).State = Microsoft.EntityFrameworkCore.EntityState.Modified;
+        context.SaveChanges();
+        return NoContent();
+      }
+      catch (Exception ex)
+      {
+        return BadRequest(ex.Message);
+      }
+    }
+
+    [HttpPut("SpellSubSchool/{SpellSubSchoolId:int}")]
+    public IActionResult SpellSubSchool_Update([FromBody] SpellSubSchool obj, int SpellSubSchoolId)
+    {
+      if (obj == null || SpellSubSchoolId == 0 || obj.SpellSubSchoolId != SpellSubSchoolId)
+        return BadRequest();
+
+      var context = PFDAL.GetContext();
+
+      try
+      {
+        context.SpellSubSchool.Attach(obj).State = Microsoft.EntityFrameworkCore.EntityState.Modified;
+        context.SaveChanges();
+        return NoContent();
+      }
+      catch (Exception ex)
+      {
+        return BadRequest(ex.Message);
+      }
+    }
+
     [HttpPut("Terrain/{TerrainId:int}")]
     public IActionResult Terrain_Update([FromBody] Terrain obj, int TerrainId)
     {
-      var context = PFDAL.GetContext();
-
-      if (obj == null || obj.TerrainId == 0 || obj.TerrainId != TerrainId)
+      if (obj == null || TerrainId == 0 || obj.TerrainId != TerrainId)
         return BadRequest();
+
+      var context = PFDAL.GetContext();
 
       try
       {
@@ -1704,10 +3559,10 @@ namespace PFAPI.Controllers
     [HttpPut("Territory/{TerritoryId:int}")]
     public IActionResult Territory_Update([FromBody] Territory obj, int TerritoryId)
     {
-      var context = PFDAL.GetContext();
-
-      if (obj == null || obj.TerritoryId == 0 || obj.TerritoryId != TerritoryId)
+      if (obj == null || TerritoryId == 0 || obj.TerritoryId != TerritoryId)
         return BadRequest();
+
+      var context = PFDAL.GetContext();
 
       try
       {
@@ -1724,10 +3579,10 @@ namespace PFAPI.Controllers
     [HttpPut("Time/{TimeId:int}")]
     public IActionResult Time_Update([FromBody] Time obj, int TimeId)
     {
-      var context = PFDAL.GetContext();
-
-      if (obj == null || obj.TimeId == 0 || obj.TimeId != TimeId)
+      if (obj == null || TimeId == 0 || obj.TimeId != TimeId)
         return BadRequest();
+
+      var context = PFDAL.GetContext();
 
       try
       {
@@ -1744,10 +3599,10 @@ namespace PFAPI.Controllers
     [HttpPut("TrackedEvent/{TrackedEventId:int}")]
     public IActionResult TrackedEvent_Update([FromBody] TrackedEvent obj, int TrackedEventId)
     {
-      var context = PFDAL.GetContext();
-
-      if (obj == null || obj.TrackedEventId == 0 || obj.TrackedEventId != TrackedEventId)
+      if (obj == null || TrackedEventId == 0 || obj.TrackedEventId != TrackedEventId)
         return BadRequest();
+
+      var context = PFDAL.GetContext();
 
       try
       {
@@ -1761,13 +3616,73 @@ namespace PFAPI.Controllers
       }
     }
 
+    [HttpPut("Weapon/{WeaponId:int}")]
+    public IActionResult Weapon_Update([FromBody] Weapon obj, int WeaponId)
+    {
+      if (obj == null || WeaponId == 0 || obj.GearId != WeaponId)
+        return BadRequest();
+
+      var context = PFDAL.GetContext();
+
+      try
+      {
+        context.Weapon.Attach(obj).State = Microsoft.EntityFrameworkCore.EntityState.Modified;
+        context.SaveChanges();
+        return NoContent();
+      }
+      catch (Exception ex)
+      {
+        return BadRequest(ex.Message);
+      }
+    }
+
+    [HttpPut("WeaponAttribute/{WeaponAttributeId:int}")]
+    public IActionResult WeaponAttribute_Update([FromBody] WeaponAttribute obj, int WeaponAttributeId)
+    {
+      if (obj == null || WeaponAttributeId == 0 || obj.WeaponAttributeId != WeaponAttributeId)
+        return BadRequest();
+
+      var context = PFDAL.GetContext();
+
+      try
+      {
+        context.WeaponAttribute.Attach(obj).State = Microsoft.EntityFrameworkCore.EntityState.Modified;
+        context.SaveChanges();
+        return NoContent();
+      }
+      catch (Exception ex)
+      {
+        return BadRequest(ex.Message);
+      }
+    }
+
+    [HttpPut("WeaponAttributeApplied/{GearId:int}/{WeaponAttributeId:int}")]
+    public IActionResult WeaponAttributeApplied_Update([FromBody] WeaponAttributeApplied obj, int GearId, int WeaponAttributeId)
+    {
+      if (obj == null || GearId == 0 || WeaponAttributeId == 0 || obj.GearId != GearId || obj.WeaponAttributeId != WeaponAttributeId)
+        return BadRequest();
+
+      var context = PFDAL.GetContext();
+
+      try
+      {
+        context.WeaponAttributeApplied.Attach(obj).State = Microsoft.EntityFrameworkCore.EntityState.Modified;
+        context.SaveChanges();
+        return NoContent();
+      }
+      catch (Exception ex)
+      {
+        return BadRequest(ex.Message);
+      }
+    }
+
     [HttpPut("Weather/{WeatherId:int}")]
     public IActionResult Weather_Update([FromBody] Weather obj, int WeatherId)
     {
-      var context = PFDAL.GetContext();
-
-      if (obj == null || obj.WeatherId == 0 || obj.WeatherId != WeatherId)
+      if (obj == null || WeatherId == 0 || obj.WeatherId != WeatherId)
         return BadRequest();
+
+      var context = PFDAL.GetContext();
 
       try
       {
@@ -1785,6 +3700,20 @@ namespace PFAPI.Controllers
     #endregion
 
     #region Delete
+
+    [HttpDelete("Armor/{ArmorId:int}")]
+    public IActionResult Armor_Delete(int ArmorId)
+    {
+      var context = PFDAL.GetContext();
+
+      var obj = context.Armor.FirstOrDefault(x => x.GearId == ArmorId);
+      if (obj == null || obj.GearId != ArmorId)
+        return NotFound();
+
+      context.Armor.Remove(obj);
+      context.SaveChanges();
+      return Ok();
+    }
 
     [HttpDelete("Bestiary/{BestiaryId:int}")]
     public IActionResult Bestiary_Delete(int BestiaryId)
@@ -1848,6 +3777,20 @@ namespace PFAPI.Controllers
       return Ok();
     }
 
+    [HttpDelete("BestiaryMagic/{BestiaryMagicId:int}")]
+    public IActionResult BestiaryMagic_Delete(int BestiaryMagicId)
+    {
+      var context = PFDAL.GetContext();
+
+      var obj = context.BestiaryMagic.FirstOrDefault(x => x.BestiaryMagicId == BestiaryMagicId);
+      if (obj == null || obj.BestiaryMagicId != BestiaryMagicId)
+        return NotFound();
+
+      context.BestiaryMagic.Remove(obj);
+      context.SaveChanges();
+      return Ok();
+    }
+
     [HttpDelete("BestiarySkill/{BestiarySkillId:int}")]
     public IActionResult BestiarySkill_Delete(int BestiarySkillId)
     {
@@ -1904,6 +3847,202 @@ namespace PFAPI.Controllers
       return Ok();
     }
 
+    [HttpDelete("CampaignData/{CampaignDataId:int}/{CampaignDataKey}")]
+    public IActionResult CampaignData_Delete(int CampaignId, string Key)
+    {
+      var context = PFDAL.GetContext();
+
+      var obj = context.CampaignData.FirstOrDefault(x => x.CampaignId == CampaignId && x.Key.Equals(Key, StringComparison.InvariantCultureIgnoreCase));
+      if (obj == null || obj.CampaignId != CampaignId)
+        return NotFound();
+
+      context.CampaignData.Remove(obj);
+      context.SaveChanges();
+      return Ok();
+    }
+
+    [HttpDelete("Character/{CharacterId:int}")]
+    public IActionResult Character_Delete(int CharacterId)
+    {
+      var context = PFDAL.GetContext();
+
+      var obj = context.Character.FirstOrDefault(x => x.CharacterId == CharacterId);
+      if (obj == null || obj.CharacterId != CharacterId)
+        return NotFound();
+
+      context.Character.Remove(obj);
+      context.SaveChanges();
+      return Ok();
+    }
+
+    [HttpDelete("CharacterClassAbility/{CharacterClassAbilityId:int}")]
+    public IActionResult CharacterClassAbility_Delete(int CharacterClassAbilityId)
+    {
+      var context = PFDAL.GetContext();
+
+      var obj = context.CharacterClassAbility.FirstOrDefault(x => x.CharacterClassAbilityId == CharacterClassAbilityId);
+      if (obj == null || obj.CharacterClassAbilityId != CharacterClassAbilityId)
+        return NotFound();
+
+      context.CharacterClassAbility.Remove(obj);
+      context.SaveChanges();
+      return Ok();
+    }
+
+    [HttpDelete("CharacterClassLevel/{CharacterId:int}/{ClassId:int}")]
+    public IActionResult CharacterClassLevel_Delete(int CharacterId, int ClassId)
+    {
+      var context = PFDAL.GetContext();
+
+      var obj = context.CharacterClassLevel.FirstOrDefault(x => x.CharacterId == CharacterId && x.ClassId == ClassId);
+      if (obj == null || CharacterId == 0 || ClassId == 0 || obj.CharacterId != CharacterId || obj.ClassId != ClassId)
+        return NotFound();
+
+      context.CharacterClassLevel.Remove(obj);
+      context.SaveChanges();
+      return Ok();
+    }
+
+    [HttpDelete("CharacterFeat/{CharacterFeatId:int}")]
+    public IActionResult CharacterFeat_Delete(int CharacterFeatId)
+    {
+      var context = PFDAL.GetContext();
+
+      var obj = context.CharacterFeat.FirstOrDefault(x => x.CharacterFeatId == CharacterFeatId);
+      if (obj == null || obj.CharacterFeatId != CharacterFeatId)
+        return NotFound();
+
+      context.CharacterFeat.Remove(obj);
+      context.SaveChanges();
+      return Ok();
+    }
+
+    [HttpDelete("CharacterGear/{CharacterGearId:int}")]
+    public IActionResult CharacterGear_Delete(int CharacterGearId)
+    {
+      var context = PFDAL.GetContext();
+
+      var obj = context.CharacterGear.FirstOrDefault(x => x.CharacterGearId == CharacterGearId);
+      if (obj == null || obj.CharacterGearId != CharacterGearId)
+        return NotFound();
+
+      context.CharacterGear.Remove(obj);
+      context.SaveChanges();
+      return Ok();
+    }
+
+    [HttpDelete("CharacterGearEnchantment/{CharacterGearId:int}/{EnchantmentId:int}")]
+    public IActionResult CharacterGearEnchantment_Delete(int CharacterGearId, int EnchantmentId)
+    {
+      var context = PFDAL.GetContext();
+
+      var obj = context.CharacterGearEnchantment.FirstOrDefault(x => x.CharacterGearId == CharacterGearId && x.EnchantmentId == EnchantmentId);
+      if (obj == null || obj.CharacterGearId != CharacterGearId || obj.EnchantmentId != EnchantmentId)
+        return NotFound();
+
+      context.CharacterGearEnchantment.Remove(obj);
+      context.SaveChanges();
+      return Ok();
+    }
+
+    [HttpDelete("CharacterLanguage/{CharacterId:int}/{LanguageId:int}")]
+    public IActionResult CharacterLanguage_Delete(int CharacterId, int LanguageId)
+    {
+      var context = PFDAL.GetContext();
+
+      var obj = context.CharacterLanguage.FirstOrDefault(x => x.CharacterId == CharacterId && x.LanguageId == LanguageId);
+      if (obj == null || obj.CharacterId != CharacterId || obj.LanguageId != LanguageId)
+        return NotFound();
+
+      context.CharacterLanguage.Remove(obj);
+      context.SaveChanges();
+      return Ok();
+    }
+
+    [HttpDelete("CharacterMagic/{CharacterMagicId:int}")]
+    public IActionResult CharacterMagic_Delete(int CharacterMagicId)
+    {
+      var context = PFDAL.GetContext();
+
+      var obj = context.CharacterMagic.FirstOrDefault(x => x.CharacterMagicId == CharacterMagicId);
+      if (obj == null || obj.CharacterMagicId != CharacterMagicId)
+        return NotFound();
+
+      context.CharacterMagic.Remove(obj);
+      context.SaveChanges();
+      return Ok();
+    }
+
+    [HttpDelete("CharacterRaceAbility/{CharacterId:int}/{RaceAbilityId:int}")]
+    public IActionResult CharacterRaceAbility_Delete(int CharacterId, int RaceAbilityId)
+    {
+      var context = PFDAL.GetContext();
+
+      var obj = context.CharacterRaceAbility.FirstOrDefault(x => x.CharacterId == CharacterId && x.RaceAbilityId == RaceAbilityId);
+      if (obj == null || obj.CharacterId != CharacterId || obj.RaceAbilityId != RaceAbilityId)
+        return NotFound();
+
+      context.CharacterRaceAbility.Remove(obj);
+      context.SaveChanges();
+      return Ok();
+    }
+
+    [HttpDelete("CharacterSkill/{CharacterId:int}/{SkillId:int}")]
+    public IActionResult CharacterSkill_Delete(int CharacterId, int SkillId)
+    {
+      var context = PFDAL.GetContext();
+
+      var obj = context.CharacterSkill.FirstOrDefault(x => x.CharacterId == CharacterId && x.SkillId == SkillId);
+      if (obj == null || obj.CharacterId != CharacterId || obj.SkillId != SkillId)
+        return NotFound();
+
+      context.CharacterSkill.Remove(obj);
+      context.SaveChanges();
+      return Ok();
+    }
+
+    [HttpDelete("Class/{ClassId:int}")]
+    public IActionResult Class_Delete(int ClassId)
+    {
+      var context = PFDAL.GetContext();
+
+      var obj = context.Class.FirstOrDefault(x => x.ClassId == ClassId);
+      if (obj == null || obj.ClassId != ClassId)
+        return NotFound();
+
+      context.Class.Remove(obj);
+      context.SaveChanges();
+      return Ok();
+    }
+
+    [HttpDelete("ClassAbility/{ClassAbilityId:int}")]
+    public IActionResult ClassAbility_Delete(int ClassAbilityId)
+    {
+      var context = PFDAL.GetContext();
+
+      var obj = context.ClassAbility.FirstOrDefault(x => x.ClassAbilityId == ClassAbilityId);
+      if (obj == null || obj.ClassAbilityId != ClassAbilityId)
+        return NotFound();
+
+      context.ClassAbility.Remove(obj);
+      context.SaveChanges();
+      return Ok();
+    }
+
+    [HttpDelete("ClassSkill/{ClassId:int}/{SkillId:int}")]
+    public IActionResult ClassSkill_Delete(int ClassId, int SkillId)
+    {
+      var context = PFDAL.GetContext();
+
+      var obj = context.ClassSkill.FirstOrDefault(x => x.ClassId == ClassId && x.SkillId == SkillId);
+      if (obj == null || obj.ClassId != ClassId || obj.SkillId != SkillId)
+        return NotFound();
+
+      context.ClassSkill.Remove(obj);
+      context.SaveChanges();
+      return Ok();
+    }
+
     [HttpDelete("Continent/{ContinentId:int}")]
     public IActionResult Continent_Delete(int ContinentId)
     {
@@ -1918,6 +4057,20 @@ namespace PFAPI.Controllers
       return Ok();
     }
 
+    [HttpDelete("ContinentEnvironment/{ContinentId:int}/{EnvironmentId:int}")]
+    public IActionResult ContinentEnvironment_Delete(int ContinentId, int EnvironmentId)
+    {
+      var context = PFDAL.GetContext();
+
+      var obj = context.ContinentEnvironment.FirstOrDefault(x => x.ContinentId == ContinentId && x.EnvironmentId == EnvironmentId);
+      if (obj == null || obj.ContinentId != ContinentId || obj.EnvironmentId != EnvironmentId)
+        return NotFound();
+
+      context.ContinentEnvironment.Remove(obj);
+      context.SaveChanges();
+      return Ok();
+    }
+
     [HttpDelete("ContinentWeather/{ContinentWeatherId:int}")]
     public IActionResult ContinentWeather_Delete(int ContinentWeatherId)
     {
@@ -1928,6 +4081,20 @@ namespace PFAPI.Controllers
         return NotFound();
 
       context.ContinentWeather.Remove(obj);
+      context.SaveChanges();
+      return Ok();
+    }
+
+    [HttpDelete("Enchantment/{EnchantmentId:int}")]
+    public IActionResult Enchantment_Delete(int EnchantmentId)
+    {
+      var context = PFDAL.GetContext();
+
+      var obj = context.Enchantment.FirstOrDefault(x => x.EnchantmentId == EnchantmentId);
+      if (obj == null || obj.EnchantmentId != EnchantmentId)
+        return NotFound();
+
+      context.Enchantment.Remove(obj);
       context.SaveChanges();
       return Ok();
     }
@@ -1960,6 +4127,20 @@ namespace PFAPI.Controllers
       return Ok();
     }
 
+    [HttpDelete("FavoredClass/{FavoredClassId:int}")]
+    public IActionResult FavoredClass_Delete(int FavoredClassId)
+    {
+      var context = PFDAL.GetContext();
+
+      var obj = context.FavoredClass.FirstOrDefault(x => x.FavoredClassId == FavoredClassId);
+      if (obj == null || obj.FavoredClassId != FavoredClassId)
+        return NotFound();
+
+      context.FavoredClass.Remove(obj);
+      context.SaveChanges();
+      return Ok();
+    }
+
     [HttpDelete("Feat/{FeatId:int}")]
     public IActionResult Feat_Delete(int FeatId)
     {
@@ -1970,6 +4151,20 @@ namespace PFAPI.Controllers
         return NotFound();
 
       context.Feat.Remove(obj);
+      context.SaveChanges();
+      return Ok();
+    }
+
+    [HttpDelete("Gear/{GearId:int}")]
+    public IActionResult Gear_Delete(int GearId)
+    {
+      var context = PFDAL.GetContext();
+
+      var obj = context.Gear.FirstOrDefault(x => x.GearId == GearId);
+      if (obj == null || obj.GearId != GearId)
+        return NotFound();
+
+      context.Gear.Remove(obj);
       context.SaveChanges();
       return Ok();
     }
@@ -2044,6 +4239,48 @@ namespace PFAPI.Controllers
       return Ok();
     }
 
+    [HttpDelete("Npc/{NpcId:int}")]
+    public IActionResult Npc_Delete(int NpcId)
+    {
+      var context = PFDAL.GetContext();
+
+      var obj = context.Npc.FirstOrDefault(x => x.Npcid == NpcId);
+      if (obj == null || obj.Npcid != NpcId)
+        return NotFound();
+
+      context.Npc.Remove(obj);
+      context.SaveChanges();
+      return Ok();
+    }
+
+    [HttpDelete("Npcdetail/{NpcdetailId:int}")]
+    public IActionResult Npcdetail_Delete(int NpcdetailId)
+    {
+      var context = PFDAL.GetContext();
+
+      var obj = context.Npcdetail.FirstOrDefault(x => x.Npcid == NpcdetailId);
+      if (obj == null || obj.Npcid != NpcdetailId)
+        return NotFound();
+
+      context.Npcdetail.Remove(obj);
+      context.SaveChanges();
+      return Ok();
+    }
+
+    [HttpDelete("OverridePrerequisite/{ClassAbilityId:int}/{PrerequisiteId:int}")]
+    public IActionResult OverridePrerequisite_Delete(int ClassAbilityId, int PrerequisiteId)
+    {
+      var context = PFDAL.GetContext();
+
+      var obj = context.OverridePrerequisite.FirstOrDefault(x => x.ClassAbilityId == ClassAbilityId && x.PrerequisiteId == PrerequisiteId);
+      if (obj == null || obj.ClassAbilityId != ClassAbilityId || obj.PrerequisiteId != PrerequisiteId)
+        return NotFound();
+
+      context.OverridePrerequisite.Remove(obj);
+      context.SaveChanges();
+      return Ok();
+    }
+
     [HttpDelete("Plane/{PlaneId:int}")]
     public IActionResult Plane_Delete(int PlaneId)
     {
@@ -2054,6 +4291,90 @@ namespace PFAPI.Controllers
         return NotFound();
 
       context.Plane.Remove(obj);
+      context.SaveChanges();
+      return Ok();
+    }
+
+    [HttpDelete("Player/{PlayerId:int}")]
+    public IActionResult Player_Delete(int PlayerId)
+    {
+      var context = PFDAL.GetContext();
+
+      var obj = context.Player.FirstOrDefault(x => x.PlayerId == PlayerId);
+      if (obj == null || obj.PlayerId != PlayerId)
+        return NotFound();
+
+      context.Player.Remove(obj);
+      context.SaveChanges();
+      return Ok();
+    }
+
+    [HttpDelete("PlayerCampaign/{PlayerId:int}/{CampaignId:int}")]
+    public IActionResult PlayerCampaign_Delete(int PlayerId, int CampaignId)
+    {
+      var context = PFDAL.GetContext();
+
+      var obj = context.PlayerCampaign.FirstOrDefault(x => x.PlayerId == PlayerId && x.CampaignId== CampaignId);
+      if (obj == null || obj.PlayerId != PlayerId || obj.CampaignId != CampaignId)
+        return NotFound();
+
+      context.PlayerCampaign.Remove(obj);
+      context.SaveChanges();
+      return Ok();
+    }
+
+    [HttpDelete("Prerequisite/{PrerequisiteId:int}")]
+    public IActionResult Prerequisite_Delete(int PrerequisiteId)
+    {
+      var context = PFDAL.GetContext();
+
+      var obj = context.Prerequisite.FirstOrDefault(x => x.PrerequisiteId == PrerequisiteId);
+      if (obj == null || obj.PrerequisiteId != PrerequisiteId)
+        return NotFound();
+
+      context.Prerequisite.Remove(obj);
+      context.SaveChanges();
+      return Ok();
+    }
+
+    [HttpDelete("Race/{RaceId:int}")]
+    public IActionResult Race_Delete(int RaceId)
+    {
+      var context = PFDAL.GetContext();
+
+      var obj = context.Race.FirstOrDefault(x => x.RaceId == RaceId);
+      if (obj == null || obj.RaceId != RaceId)
+        return NotFound();
+
+      context.Race.Remove(obj);
+      context.SaveChanges();
+      return Ok();
+    }
+
+    [HttpDelete("RaceAbility/{RaceAbilityId:int}")]
+    public IActionResult RaceAbility_Delete(int RaceAbilityId)
+    {
+      var context = PFDAL.GetContext();
+
+      var obj = context.RaceAbility.FirstOrDefault(x => x.RaceAbilityId == RaceAbilityId);
+      if (obj == null || obj.RaceAbilityId != RaceAbilityId)
+        return NotFound();
+
+      context.RaceAbility.Remove(obj);
+      context.SaveChanges();
+      return Ok();
+    }
+
+    [HttpDelete("RaceSubType/{RaceId:int}/{BestiaryTypeId:int}")]
+    public IActionResult RaceSubType_Delete(int RaceId, int BestiaryTypeId)
+    {
+      var context = PFDAL.GetContext();
+
+      var obj = context.RaceSubType.FirstOrDefault(x => x.RaceId == RaceId && x.BestiaryTypeId == BestiaryTypeId);
+      if (obj == null || obj.RaceId != RaceId || obj.BestiaryTypeId != BestiaryTypeId)
+        return NotFound();
+
+      context.RaceSubType.Remove(obj);
       context.SaveChanges();
       return Ok();
     }
@@ -2190,6 +4511,48 @@ namespace PFAPI.Controllers
       return Ok();
     }
 
+    [HttpDelete("Weapon/{WeaponId:int}")]
+    public IActionResult Weapon_Delete(int WeaponId)
+    {
+      var context = PFDAL.GetContext();
+
+      var obj = context.Weapon.FirstOrDefault(x => x.GearId == WeaponId);
+      if (obj == null || obj.GearId != WeaponId)
+        return NotFound();
+
+      context.Weapon.Remove(obj);
+      context.SaveChanges();
+      return Ok();
+    }
+
+    [HttpDelete("WeaponAttribute/{WeaponAttributeId:int}")]
+    public IActionResult WeaponAttribute_Delete(int WeaponAttributeId)
+    {
+      var context = PFDAL.GetContext();
+
+      var obj = context.WeaponAttribute.FirstOrDefault(x => x.WeaponAttributeId == WeaponAttributeId);
+      if (obj == null || obj.WeaponAttributeId != WeaponAttributeId)
+        return NotFound();
+
+      context.WeaponAttribute.Remove(obj);
+      context.SaveChanges();
+      return Ok();
+    }
+
+    [HttpDelete("WeaponAttributeApplied/{GearId:int}/{WeaponAttributeId:int}")]
+    public IActionResult WeaponAttributeApplied_Delete(int GearId, int WeaponAttributeId)
+    {
+      var context = PFDAL.GetContext();
+
+      var obj = context.WeaponAttributeApplied.FirstOrDefault(x => x.GearId == GearId && x.WeaponAttributeId == WeaponAttributeId);
+      if (obj == null || obj.GearId != GearId || obj.WeaponAttributeId != WeaponAttributeId)
+        return NotFound();
+
+      context.WeaponAttributeApplied.Remove(obj);
+      context.SaveChanges();
+      return Ok();
+    }
+
     [HttpDelete("Weather/{WeatherId:int}")]
     public IActionResult Weather_Delete(int WeatherId)
     {
@@ -2203,6 +4566,7 @@ namespace PFAPI.Controllers
       context.SaveChanges();
       return Ok();
     }
+
 
 
 

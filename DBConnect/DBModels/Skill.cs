@@ -7,6 +7,7 @@ namespace DBConnect.DBModels
   {
     public int SkillId { get; set; }
     public string Name { get; set; }
+    public string Option { get; set; } // e.g. Knowledge (Local) or Knowledge (Dungeoneering)
     public string Description { get; set; }
     public bool TrainedOnly { get; set; }
     public Stat Stat { get; set; }

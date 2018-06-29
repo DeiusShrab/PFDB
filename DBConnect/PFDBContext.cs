@@ -52,6 +52,7 @@ namespace DBConnect
     public DbSet<PlayerCampaign> PlayerCampaign { get; set; }
     public DbSet<Prerequisite> Prerequisite { get; set; }
     public DbSet<Race> Race { get; set; }
+    public DbSet<RaceAbility> RaceAbility { get; set; }
     public DbSet<RaceSubType> RaceSubType { get; set; }
     public DbSet<Season> Season { get; set; }
     public DbSet<Skill> Skill { get; set; }
@@ -904,6 +905,21 @@ namespace DBConnect
         entity.HasMany(e => e.FavoredClasses)
               .WithOne(e => e.Race)
               .HasForeignKey(e => e.RaceId)
+              .OnDelete(DeleteBehavior.Cascade);
+      });
+
+      modelBuilder.Entity<RaceAbility>(entity =>
+      {
+        entity.HasKey(e => e.RaceAbilityId);
+
+        entity.HasOne(e => e.Race)
+              .WithMany(e => e.RaceAbilities)
+              .HasForeignKey(e => e.RaceId)
+              .OnDelete(DeleteBehavior.Cascade);
+
+        entity.HasMany(e => e.CharacterRaceAbilities)
+              .WithOne(e => e.RaceAbility)
+              .HasForeignKey(e => e.RaceAbilityId)
               .OnDelete(DeleteBehavior.Cascade);
       });
 
@@ -1912,6 +1928,10 @@ namespace DBConnect
       {
         entity.HasKey(e => e.SkillId);
 
+        entity.Property(e => e.Option)
+              .HasMaxLength(100)
+              .IsUnicode(false);
+
         entity.Property(e => e.Description)
             .IsRequired()
             .HasMaxLength(500)
@@ -2215,7 +2235,7 @@ namespace DBConnect
 
       modelBuilder.Entity<WeaponAttribute>(entity =>
       {
-        entity.HasKey(e => e.WpnAttId);
+        entity.HasKey(e => e.WeaponAttributeId);
 
         entity.Property(e => e.Name)
               .IsRequired()

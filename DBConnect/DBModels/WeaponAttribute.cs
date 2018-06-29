@@ -6,7 +6,7 @@ namespace DBConnect.DBModels
 {
   public class WeaponAttribute
   {
-    public int WpnAttId { get; set; }
+    public int WeaponAttributeId { get; set; }
     public string Name { get; set; }
     public string Effect { get; set; }
 

@@ -18,6 +18,7 @@ CharacterGear
 CharacterGearEnchantment
 CharacterLanguage
 CharacterMagic
+CharacterRaceAbility
 CharacterSkill
 Class
 ClassAbility
@@ -38,11 +39,13 @@ MonsterSpawn
 Month
 Npc
 Npcdetail
+OverridePrerequisite
 Plane
 Player
 PlayerCampaign
 Prerequisite
 Race
+RaceAbility
 RaceSubType
 Season
 Skill

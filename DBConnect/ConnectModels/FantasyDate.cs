@@ -37,9 +37,10 @@ namespace DBConnect.ConnectModels
 
     public FantasyDate AddDays(int d)
     {
+      Day += d;
+
       if (d >= 0)
       {
-        Day += d;
         while (Day > DaysInMonth)
         {
           Day -= DaysInMonth;
@@ -53,7 +54,6 @@ namespace DBConnect.ConnectModels
       }
       else
       {
-        Day += d;
         while (Day <= 0)
         {
           Day += DaysInMonth;
@@ -68,6 +68,43 @@ namespace DBConnect.ConnectModels
         if (Year < 0)
           Year = 0;
       }
+
+      return this;
+    }
+
+    public FantasyDate AddMonths(int m)
+    {
+      Month += m;
+
+      if (m >= 0)
+      {
+        while (Month > MonthsInYear)
+        {
+          Month -= MonthsInYear;
+          Year++;
+        }
+      }
+      else
+      {
+        while (Month <= 0)
+        {
+          Month += MonthsInYear;
+          Year--;
+        }
+
+        if (Year < 0)
+          Year = 0;
+      }
+
+      return this;
+    }
+
+    public FantasyDate AddYears(int y)
+    {
+      Year += y;
+
+      if (Year < 0)
+        Year = 0;
 
       return this;
     }

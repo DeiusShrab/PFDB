@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Text;
 
@@ -15,6 +16,8 @@ namespace DBConnect.DBModels
 
     public virtual Race Race { get; set; }
     public virtual ICollection<CharacterRaceAbility> CharacterRaceAbilities { get; } = new List<CharacterRaceAbility>();
+
+    [NotMapped]
     public virtual List<int> ReplacesRaceAbilitiesList
     {
       get

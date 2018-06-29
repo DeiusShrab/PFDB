@@ -1083,8 +1083,22 @@ namespace PFHelper
     private void RunLiveEvent(LiveEvent e)
     {
       e.DateLastOccurred = new FantasyDate(e.DateNextOccurring.ShortDate);
-      //e.DateNextOccurring.AddDays(e.ReoccurFreq); // WORKING HERE
-
+      switch (e.EventFrequency)
+      {
+        case TrackedEventFrequency.Days:
+          e.DateNextOccurring.AddDays(e.ReoccurFreq);
+          break;
+        case TrackedEventFrequency.Weeks:
+          e.DateNextOccurring.AddDays(e.ReoccurFreq * 7);
+          break;
+        case TrackedEventFrequency.Months:
+          e.DateNextOccurring.AddMonths(e.ReoccurFreq);
+          break;
+        case TrackedEventFrequency.Years:
+          e.DateNextOccurring.AddYears(e.ReoccurFreq);
+          break;
+      }
+      
       try
       {
         switch (e.EventType)

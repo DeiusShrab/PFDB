@@ -4,8 +4,8 @@ using System.Text;
 
 namespace DBConnect.DBModels
 {
-    public class CharacterSkill
-    {
+  public class CharacterSkill
+  {
     public int CharacterId { get; set; }
     public int SkillId { get; set; }
     public int Ranks { get; set; }

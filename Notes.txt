@@ -41,6 +41,7 @@ Code First Mapping
 	Update-Database <NAME> -Context PFDBContext
 
 TODO AT HOME
+Check DB to see where the Skill Option ended up (Description?)
 Add Titan to LiveDisplay for discord chat integration
 	https://titanembeds.com/
 Strip out home page
