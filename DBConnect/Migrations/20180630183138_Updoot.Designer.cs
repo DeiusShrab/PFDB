@@ -12,8 +12,8 @@ using System;
 namespace DBConnect.Migrations
 {
     [DbContext(typeof(PFDBContext))]
-    [Migration("20180625215106_2018-06-25")]
-    partial class _20180625
+    [Migration("20180630183138_Updoot")]
+    partial class Updoot
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -1985,6 +1985,10 @@ namespace DBConnect.Migrations
                         .HasMaxLength(100)
                         .IsUnicode(false);
 
+                    b.Property<string>("Option")
+                        .HasMaxLength(100)
+                        .IsUnicode(false);
+
                     b.Property<int>("Stat");
 
                     b.Property<bool>("TrainedOnly");
@@ -2385,6 +2389,8 @@ namespace DBConnect.Migrations
 
                     b.Property<string>("TrackedEventData");
 
+                    b.Property<int>("TrackedEventFreq");
+
                     b.Property<int>("TrackedEventType");
 
                     b.HasKey("TrackedEventId");
@@ -2398,7 +2404,7 @@ namespace DBConnect.Migrations
 
             modelBuilder.Entity("DBConnect.DBModels.WeaponAttribute", b =>
                 {
-                    b.Property<int>("WpnAttId")
+                    b.Property<int>("WeaponAttributeId")
                         .ValueGeneratedOnAdd();
 
                     b.Property<string>("Effect")
@@ -2410,7 +2416,7 @@ namespace DBConnect.Migrations
                         .HasMaxLength(100)
                         .IsUnicode(false);
 
-                    b.HasKey("WpnAttId");
+                    b.HasKey("WeaponAttributeId");
 
                     b.ToTable("WeaponAttribute");
                 });
@@ -2626,7 +2632,7 @@ namespace DBConnect.Migrations
                     b.HasOne("DBConnect.DBModels.Race", "Race")
                         .WithMany("Characters")
                         .HasForeignKey("RaceId")
-                        .OnDelete(DeleteBehavior.Cascade);
+                        .OnDelete(DeleteBehavior.Restrict);
                 });
 
             modelBuilder.Entity("DBConnect.DBModels.CharacterClassAbility", b =>
@@ -2941,7 +2947,7 @@ namespace DBConnect.Migrations
             modelBuilder.Entity("DBConnect.DBModels.RaceAbility", b =>
                 {
                     b.HasOne("DBConnect.DBModels.Race", "Race")
-                        .WithMany()
+                        .WithMany("RaceAbilities")
                         .HasForeignKey("RaceId")
                         .OnDelete(DeleteBehavior.Cascade);
                 });

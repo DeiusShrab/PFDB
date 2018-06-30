@@ -2631,7 +2631,7 @@ namespace DBConnect.Migrations
                     b.HasOne("DBConnect.DBModels.Race", "Race")
                         .WithMany("Characters")
                         .HasForeignKey("RaceId")
-                        .OnDelete(DeleteBehavior.Cascade);
+                        .OnDelete(DeleteBehavior.Restrict);
                 });
 
             modelBuilder.Entity("DBConnect.DBModels.CharacterClassAbility", b =>

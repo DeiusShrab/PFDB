@@ -684,6 +684,11 @@ namespace DBConnect
               .HasForeignKey(e => e.CharacterId)
               .OnDelete(DeleteBehavior.Cascade);
 
+        entity.HasMany(e => e.CharacterRaceAbilities)
+              .WithOne(e => e.Character)
+              .HasForeignKey(e => e.CharacterId)
+              .OnDelete(DeleteBehavior.Cascade);
+
         entity.Property(e => e.Name)
               .HasMaxLength(100)
               .IsUnicode(false);
@@ -880,7 +885,7 @@ namespace DBConnect
               .WithMany(e => e.CharacterRaceAbilities)
               .IsRequired()
               .HasForeignKey(e => e.RaceAbilityId)
-              .OnDelete(DeleteBehavior.Cascade);
+              .OnDelete(DeleteBehavior.Restrict);
       });
 
       modelBuilder.Entity<Race>(entity =>
@@ -900,7 +905,7 @@ namespace DBConnect
         entity.HasMany(e => e.Characters)
               .WithOne(e => e.Race)
               .HasForeignKey(e => e.RaceId)
-              .OnDelete(DeleteBehavior.Cascade);
+              .OnDelete(DeleteBehavior.Restrict);
 
         entity.HasMany(e => e.FavoredClasses)
               .WithOne(e => e.Race)

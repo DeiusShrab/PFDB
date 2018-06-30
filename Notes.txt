@@ -42,6 +42,7 @@ Code First Mapping
 
 TODO AT HOME
 Check DB to see where the Skill Option ended up (Description?)
+	It did, but all the Skill bonuses are 0. FIXIT.
 Add Titan to LiveDisplay for discord chat integration
 	https://titanembeds.com/
 Strip out home page

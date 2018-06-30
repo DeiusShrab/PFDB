@@ -4,6 +4,13 @@
     <TargetFramework>netstandard2.0</TargetFramework>
   </PropertyGroup>
   <ItemGroup>
+    <Compile Remove="Migrations\20180625215106_2018-06-25.cs" />
+    <Compile Remove="Migrations\20180629215331_Updoot.cs" />
+    <Compile Remove="Migrations\20180630182652_Updoot.cs" />
+    <Compile Remove="Migrations\20180630182841_Updoot.cs" />
+    <Compile Remove="Migrations\20180630183038_Updoot.cs" />
+  </ItemGroup>
+  <ItemGroup>
     <None Remove="PFConfig.json" />
   </ItemGroup>
   <ItemGroup>

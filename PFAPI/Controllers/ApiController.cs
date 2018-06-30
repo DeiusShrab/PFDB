@@ -19,7 +19,9 @@ namespace PFAPI.Controllers
   [Produces("application/json")]
   [Route("api/v1")]
   [Authorize]
+#if !DEBUG
   [RequireHttps]
+#endif
   public class ApiController : Controller
   {
     private RandomHelper helperRandom;
@@ -68,7 +70,7 @@ namespace PFAPI.Controllers
       return NotFound();
     }
 
-    #region Queries
+#region Queries
 
     [HttpGet("CampaignData/{campaignId:int}")]
     public IActionResult GetCampaignData(int campaignId)
@@ -286,9 +288,9 @@ namespace PFAPI.Controllers
       return new JsonResult(helperQuery.EnvironmentsForContinent(continentId));
     }
 
-    #endregion
+#endregion
 
-    #region All
+#region All
 
     [HttpGet("Armor")]
     public IActionResult Armor_All()
@@ -731,9 +733,9 @@ namespace PFAPI.Controllers
       return new JsonResult(context.Weather.ToList());
     }
 
-    #endregion
+#endregion
 
-    #region Details
+#region Details
 
     [HttpGet("Armor/{ArmorId:int}")]
     public IActionResult Armor_Detail(int ArmorId)
@@ -1176,9 +1178,9 @@ namespace PFAPI.Controllers
       return new JsonResult(context.Weather.FirstOrDefault(x => x.WeatherId == WeatherId));
     }
 
-    #endregion
+#endregion
 
-    #region Create
+#region Create
 
     [HttpPost("Armor")]
     public IActionResult Armor_Create([FromBody] Armor obj)
@@ -2432,9 +2434,9 @@ namespace PFAPI.Controllers
       }
     }
 
-    #endregion
+#endregion
 
-    #region Update
+#region Update
 
     [HttpPut("Armor/{ArmorId:int}")]
     public IActionResult Armor_Update([FromBody] Armor obj, int ArmorId)
@@ -3697,9 +3699,9 @@ namespace PFAPI.Controllers
     }
 
 
-    #endregion
+#endregion
 
-    #region Delete
+#region Delete
 
     [HttpDelete("Armor/{ArmorId:int}")]
     public IActionResult Armor_Delete(int ArmorId)
@@ -4570,9 +4572,9 @@ namespace PFAPI.Controllers
 
 
 
-    #endregion
+#endregion
 
-    #region Private Methods
+#region Private Methods
 
     private string GetTypesForBestiary(int bestiaryId)
     {
@@ -4592,6 +4594,6 @@ namespace PFAPI.Controllers
       return ret;
     }
 
-    #endregion
+#endregion
   }
 }

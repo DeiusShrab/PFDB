@@ -5,10 +5,14 @@ using System.Collections.Generic;
 
 namespace DBConnect.Migrations
 {
-    public partial class _20180625 : Migration
+    public partial class Updoot : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
+            migrationBuilder.DropForeignKey(
+                name: "FK_Character_Race_RaceId",
+                table: "Character");
+
             migrationBuilder.DropForeignKey(
                 name: "FK_Prerequisite_Feat_FeatId",
                 table: "Prerequisite");
@@ -41,11 +45,29 @@ namespace DBConnect.Migrations
                 name: "ReplacesAbilityId",
                 table: "ClassAbility");
 
+            migrationBuilder.RenameColumn(
+                name: "WpnAttId",
+                table: "WeaponAttribute",
+                newName: "WeaponAttributeId");
+
             migrationBuilder.AddColumn<int>(
                 name: "ContinentId",
                 table: "TrackedEvent",
                 nullable: false,
                 defaultValue: 0);
+
+            migrationBuilder.AddColumn<int>(
+                name: "TrackedEventFreq",
+                table: "TrackedEvent",
+                nullable: false,
+                defaultValue: 0);
+
+            migrationBuilder.AddColumn<string>(
+                name: "Option",
+                table: "Skill",
+                unicode: false,
+                maxLength: 100,
+                nullable: true);
 
             migrationBuilder.AddColumn<int>(
                 name: "ForId",
@@ -224,6 +246,14 @@ namespace DBConnect.Migrations
                 column: "RaceId");
 
             migrationBuilder.AddForeignKey(
+                name: "FK_Character_Race_RaceId",
+                table: "Character",
+                column: "RaceId",
+                principalTable: "Race",
+                principalColumn: "RaceId",
+                onDelete: ReferentialAction.Restrict);
+
+            migrationBuilder.AddForeignKey(
                 name: "FK_TrackedEvent_Continent_ContinentId",
                 table: "TrackedEvent",
                 column: "ContinentId",
@@ -234,6 +264,10 @@ namespace DBConnect.Migrations
 
         protected override void Down(MigrationBuilder migrationBuilder)
         {
+            migrationBuilder.DropForeignKey(
+                name: "FK_Character_Race_RaceId",
+                table: "Character");
+
             migrationBuilder.DropForeignKey(
                 name: "FK_TrackedEvent_Continent_ContinentId",
                 table: "TrackedEvent");
@@ -257,6 +291,14 @@ namespace DBConnect.Migrations
             migrationBuilder.DropColumn(
                 name: "ContinentId",
                 table: "TrackedEvent");
+
+            migrationBuilder.DropColumn(
+                name: "TrackedEventFreq",
+                table: "TrackedEvent");
+
+            migrationBuilder.DropColumn(
+                name: "Option",
+                table: "Skill");
 
             migrationBuilder.DropColumn(
                 name: "ForId",
@@ -298,6 +340,11 @@ namespace DBConnect.Migrations
                 name: "LiveDisplayMapPath",
                 table: "Campaign");
 
+            migrationBuilder.RenameColumn(
+                name: "WeaponAttributeId",
+                table: "WeaponAttribute",
+                newName: "WpnAttId");
+
             migrationBuilder.AddColumn<int>(
                 name: "FeatId",
                 table: "Prerequisite",
@@ -328,6 +375,14 @@ namespace DBConnect.Migrations
                 name: "IX_Prerequisite_SkillId",
                 table: "Prerequisite",
                 column: "SkillId");
+
+            migrationBuilder.AddForeignKey(
+                name: "FK_Character_Race_RaceId",
+                table: "Character",
+                column: "RaceId",
+                principalTable: "Race",
+                principalColumn: "RaceId",
+                onDelete: ReferentialAction.Cascade);
 
             migrationBuilder.AddForeignKey(
                 name: "FK_Prerequisite_Feat_FeatId",

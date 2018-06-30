@@ -68,6 +68,8 @@ namespace PFAPI
       app.UseAuthentication();
 
       app.UseMvc();
+
+      Console.WriteLine(DBConnect.PFConfig.APP_MODE);
     }
   }
 }

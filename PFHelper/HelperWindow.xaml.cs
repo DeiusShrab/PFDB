@@ -555,7 +555,9 @@ namespace PFHelper
           campaigns.AddRange(DBClient.GetCampaigns());
 
           ActiveCampaign = DBClient.GetCampaign(int.Parse(PFConfig.CAMPAIGN_ID));
-          CampaignData = DBClient.GetCampaignData();
+          var campaignData = DBClient.GetCampaignData();
+          if (campaignData != null)
+            CampaignData.AddRange(campaignData);
 
           continentList.Clear();
           timeList.Clear();

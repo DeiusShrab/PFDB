@@ -7,17 +7,17 @@ namespace DBConnect
 {
   public static class Extensions
   {
-    public static ObservableCollection<T> AddRange<T>(this ObservableCollection<T> observable, IEnumerable<T> enumerable)
+    public static ICollection<T> AddRange<T>(this ICollection<T> collection, IEnumerable<T> enumerable)
     {
       if (enumerable != null)
       {
         foreach (T item in enumerable)
         {
-          observable.Add(item);
+          collection.Add(item);
         }
       }
 
-      return observable;
+      return collection;
     }
 
     public static string EnumToCommaString(this IEnumerable<object> enumerable)
