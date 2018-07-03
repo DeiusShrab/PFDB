@@ -153,6 +153,7 @@ namespace DBConnect
     Ex = 9,
     Other = 10,
     Familiar = 11,
+    Proficiency = 12,
   }
 
   public enum PrereqType
