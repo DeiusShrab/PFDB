@@ -22,12 +22,6 @@ namespace CommonUI
   /// </summary>
   public partial class ListPopUp : Window
   {
-    private enum ListType
-    {
-      LIR,
-      DR,
-    }
-
     private string SearchText
     {
       get
@@ -36,12 +30,9 @@ namespace CommonUI
       }
     }
 
-    private ObservableCollection<DisplayResult> ObservableDR;
-    private ObservableCollection<ListItemResult> ObservableLIR;
-    private List<DisplayResult> ListDR;
-    private List<ListItemResult> ListLIR;
-    private ListType Type;
-    private bool suppress;
+    private ObservableCollection<DisplayResult> _observable;
+    private List<DisplayResult> _list;
+    private bool _suppress;
 
     public int SelectedResult
     {
@@ -56,48 +47,44 @@ namespace CommonUI
 
     public ListPopUp(IEnumerable<ListItemResult> listContents, string message = "")
     {
-      suppress = true;
+      _suppress = true;
       InitializeComponent();
 
-      Type = ListType.LIR;
+      var newContents = new List<DisplayResult>();
+      foreach (var item in listContents)
+      {
+        newContents.Add(new DisplayResult { Display = item.Name, Result = item.Id });
+      }
 
-      ObservableLIR = new ObservableCollection<ListItemResult>();
-      ObservableLIR.AddRange(listContents);
-      ListLIR = new List<ListItemResult>();
-      ListLIR.AddRange(listContents);
+      Init(newContents, message);
 
-      LbxList.DisplayMemberPath = "Name";
-      LbxList.SelectedValuePath = "Id";
-
-      LbxList.ItemsSource = ObservableLIR;
-
-      if (!string.IsNullOrWhiteSpace(message))
-        LblMessage.Content = message;
-
-      suppress = false;
+      _suppress = false;
     }
 
     public ListPopUp(IEnumerable<DisplayResult> listContents, string message = "")
     {
-      suppress = true;
+      _suppress = true;
       InitializeComponent();
 
-      Type = ListType.DR;
+      Init(listContents, message);
 
-      ObservableDR = new ObservableCollection<DisplayResult>();
-      ObservableDR.AddRange(listContents);
-      ListDR = new List<DisplayResult>();
-      ListDR.AddRange(listContents);
+      _suppress = false;
+    }
+
+    private void Init(IEnumerable<DisplayResult> listContents, string message)
+    {
+      _observable = new ObservableCollection<DisplayResult>();
+      _observable.AddRange(listContents);
+      _list = new List<DisplayResult>();
+      _list.AddRange(listContents);
 
       LbxList.DisplayMemberPath = "Display";
       LbxList.SelectedValuePath = "Result";
 
-      LbxList.ItemsSource = ObservableDR;
+      LbxList.ItemsSource = _observable;
 
       if (!string.IsNullOrWhiteSpace(message))
         LblMessage.Content = message;
-
-      suppress = false;
     }
 
     private void BtnCancel_Click(object sender, RoutedEventArgs e)
@@ -114,34 +101,18 @@ namespace CommonUI
 
     private void TxtSearch_TextChanged(object sender, TextChangedEventArgs e)
     {
-      if (suppress)
+      if (_suppress)
         return;
 
       if (string.IsNullOrWhiteSpace(SearchText))
       {
-        if (Type == ListType.DR)
-        {
-          ObservableDR.Clear();
-          ObservableDR.AddRange(ListDR);
-        }
-        else if (Type == ListType.LIR)
-        {
-          ObservableLIR.Clear();
-          ObservableLIR.AddRange(ListLIR);
-        }
+        _observable.Clear();
+        _observable.AddRange(_list);
       }
       else if (SearchText.Length > 0)
       {
-        if (Type == ListType.DR)
-        {
-          ObservableDR.Clear();
-          ObservableDR.AddRange(ListDR.Where(x => x.Display.ToLower().Contains(SearchText.ToLower())));
-        }
-        else if (Type == ListType.LIR)
-        {
-          ObservableLIR.Clear();
-          ObservableLIR.AddRange(ListLIR.Where(x => x.Name.ToLower().Contains(SearchText.ToLower())));
-        }
+        _observable.Clear();
+        _observable.AddRange(_list.Where(x => x.Display.ToLower().Contains(SearchText.ToLower())));
       }
     }
   }
