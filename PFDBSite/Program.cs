@@ -21,7 +21,7 @@ namespace PFDBSite
               options.Listen(IPAddress.Any, 5555);
               options.Listen(IPAddress.Any, 5565, listenOptions =>
               {
-                listenOptions.UseHttps("certificate.pfx", DBConnect.PFConfig.CERT_PASS);
+                listenOptions.UseHttps("pathfindercertificate.pfx", DBConnect.PFConfig.CERT_PASS);
               });
             })
 #endif
