@@ -22,8 +22,11 @@
           <Setter Property="Background" Value="#FFF"></Setter>
         </Trigger>
         <Trigger Property="ItemsControl.AlternationIndex" Value="1">
-          <Setter Property="Background" Value="#DDD"></Setter>
+          <Setter Property="Background" Value="#DFF"></Setter>
         </Trigger>
+        <DataTrigger Binding="{Binding Init}"  Value="0">
+          <Setter Property="Foreground" Value="#AFF"></Setter>
+        </DataTrigger>
       </Style.Triggers>
     </Style>
   </Window.Resources>
@@ -209,7 +212,8 @@
       <TabItem x:Name="TabCreatureInfo" Header="Creature Info" Margin="-2,-2,-2,0">
         <Grid Background="#FFE5E5E5">
           <WebBrowser x:Name="BrowserCreature" HorizontalAlignment="Left" Height="447" Margin="160,10,0,0" VerticalAlignment="Top" Width="920"/>
-          <ListBox x:Name="LbxCreatureInfo" HorizontalAlignment="Left" Height="447" Margin="10,10,0,0" VerticalAlignment="Top" Width="145" MouseDoubleClick="LbxCreatureInfo_MouseDoubleClick"/>
+          <ListBox x:Name="LbxCreatureInfo" HorizontalAlignment="Left" Height="422" Margin="10,10,0,0" VerticalAlignment="Top" Width="145" MouseDoubleClick="LbxCreatureInfo_MouseDoubleClick"/>
+          <Button x:Name="BtnCreatureInfoAddFromBestiary" Content="Add from Bestiary" HorizontalAlignment="Left" Margin="10,437,0,0" VerticalAlignment="Top" Width="145" TabIndex="199" Click="BtnEncounterAddFromBestiary_Click"/>
         </Grid>
       </TabItem>
       <TabItem x:Name="TabEventTracker" Header="Event Tracker" Margin="-2,-2,-2,0">

@@ -59,6 +59,8 @@ namespace CommonUI
       Init(newContents, message);
 
       _suppress = false;
+
+      TxtSearch.Focus();
     }
 
     public ListPopUp(IEnumerable<DisplayResult> listContents, string message = "")
@@ -114,6 +116,11 @@ namespace CommonUI
         _observable.Clear();
         _observable.AddRange(_list.Where(x => x.Display.ToLower().Contains(SearchText.ToLower())));
       }
+    }
+
+    private void LbxList_MouseDoubleClick(object sender, MouseButtonEventArgs e)
+    {
+      BtnOkay_Click(null, null);
     }
   }
 }

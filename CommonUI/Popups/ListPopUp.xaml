@@ -11,7 +11,7 @@
     <Button x:Name="BtnOkay" Content="OK" HorizontalAlignment="Left" Margin="227,419,0,0" VerticalAlignment="Top" Width="75" Click="BtnOkay_Click"/>
     <Button x:Name="BtnCancel" Content="Cancel" HorizontalAlignment="Left" Margin="10,419,0,0" VerticalAlignment="Top" Width="75" Click="BtnCancel_Click"/>
     <TextBox x:Name="TxtSearch" HorizontalAlignment="Left" Height="23" Margin="10,26,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="292" TextChanged="TxtSearch_TextChanged"/>
-    <ListBox x:Name="LbxList" HorizontalAlignment="Left" Height="360" Margin="10,54,0,0" VerticalAlignment="Top" Width="292"/>
+    <ListBox x:Name="LbxList" HorizontalAlignment="Left" Height="360" Margin="10,54,0,0" VerticalAlignment="Top" Width="292" MouseDoubleClick="LbxList_MouseDoubleClick"/>
 
   </Grid>
 </Window>

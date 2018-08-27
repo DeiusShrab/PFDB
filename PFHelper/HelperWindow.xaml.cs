@@ -1675,7 +1675,7 @@ namespace PFHelper
         CombatGridItems.Add(new CombatGridItem(b));
 
         if (!creatureInfos.Select(x => x.Result).Contains(bItem.Id))
-          creatureInfos.Add(new DisplayResult() { Display = bItem.Name, Result = bItem.Id });
+          creatureInfos.Add(new DisplayResult() { Display = $"{bItem.Name} [{ParseCR(int.Parse(bItem.Notes))}]", Result = bItem.Id });
       }
     }
 
@@ -1852,7 +1852,7 @@ namespace PFHelper
         randomEncounterItems.Add(new DisplayResult() { Display = $"{bItem.Name} [{ParseCR(int.Parse(bItem.Notes))}]", Result = bItem.Id });
 
         if (!creatureInfos.Select(x => x.Result).Contains(bItem.Id))
-          creatureInfos.Add(new DisplayResult() { Display = bItem.Name, Result = bItem.Id });
+          creatureInfos.Add(new DisplayResult() { Display = $"{bItem.Name} [{ParseCR(int.Parse(bItem.Notes))}]", Result = bItem.Id });
       }
     }
 
