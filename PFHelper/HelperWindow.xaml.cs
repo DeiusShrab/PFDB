@@ -6,7 +6,6 @@ using System.Linq;
 using System.Text;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
 using System.Windows.Media;
 using CommonUI;
 using DBConnect;
@@ -404,7 +403,7 @@ namespace PFHelper
     #endregion
 
     #region Data Properties
-    
+
     private ObservableCollection<DisplayResult> randomEncounterItems;
     private ObservableCollection<DisplayResult> continentList;
     private ObservableCollection<DisplayValues> encounterResults;
@@ -701,7 +700,7 @@ namespace PFHelper
 
       saveObject.CombatEffects = CombatEffectItems.ToList();
       saveObject.CombatGridItems = CombatGridItems.ToList();
-      
+
       File.WriteAllText(path, Newtonsoft.Json.JsonConvert.SerializeObject(saveObject));
     }
 
@@ -842,38 +841,18 @@ namespace PFHelper
       LblChanceEncounter.Content = random.Next(100).ToString("D2");
       LblChanceNPC.Content = random.Next(100).ToString("D2");
       if (!int.TryParse(TxtAPL.Text, out int apl))
-        apl = 1;
-
-      apl--;
+        apl = 0;
 
       for (int t = 0; t < 3; t++)
       {
         var CRs = new List<int[]>();
-        for (int i = 0; i < 5; i++)
-        {
-          int r = random.Next(6);
-          switch (r)
-          {
-            case 0:
-              CRs.Add(new int[] { apl });
-              break;
-            case 1:
-              CRs.Add(new int[] { apl - 2, apl - 2 });
-              break;
-            case 2:
-              CRs.Add(new int[] { apl - 4, apl - 4, apl - 4, apl - 4 });
-              break;
-            case 3:
-              CRs.Add(new int[] { apl - 2, apl - 3, apl - 3 });
-              break;
-            case 4:
-              CRs.Add(new int[] { apl - 2, apl - 4, apl - 4, apl - 4 });
-              break;
-            case 5:
-              CRs.Add(new int[] { apl - 5, apl - 5, apl - 5, apl - 5, apl - 5, apl - 5 });
-              break;
-          }
-        }
+        CRs.Add(new int[] { apl });
+        CRs.Add(new int[] { apl - 2, apl - 2 });
+        CRs.Add(new int[] { apl - 4, apl - 4, apl - 4, apl - 4 });
+        CRs.Add(new int[] { apl - 2, apl - 3, apl - 3 });
+        CRs.Add(new int[] { apl - 2, apl - 4, apl - 4, apl - 4 });
+        CRs.Add(new int[] { apl - 5, apl - 5, apl - 5, apl - 5, apl - 5, apl - 5 });
+
         foreach (var cr in CRs)
         {
           var sb = new StringBuilder();
@@ -885,15 +864,19 @@ namespace PFHelper
           sb.Remove(sb.Length - 2, 2);
           encounterResults.Add(new DisplayValues() { Display = difficulty[t] + sb.ToString(), Values = cr });
         }
-        apl++;
+
+        apl += 1;
       }
+
+      int rand = random.Next(30) - 4;
+      encounterResults.Add(new DisplayValues() { Display = "[X] " + rand.ToString(), Values = new int[] { rand } });
     }
 
     private void GenMysterious()
     {
-      if (random.Next(100) == 0)
+      if (random.Next(10000) == 0)
       {
-        var m = random.Next(100);
+        var m = random.Next(10);
 
         if (m == 1)
         {
@@ -905,22 +888,16 @@ namespace PFHelper
           LblChanceMysterious.Foreground = Brushes.Red;
           LblChanceMysterious.Content = "VBD";
         }
-        else if (m <= 10)
+        else if (m <= 5)
         {
           LblChanceMysterious.Foreground = Brushes.Green;
           LblChanceMysterious.Content = "GUD";
         }
-        else if (m >= 90)
+        else
         {
           LblChanceMysterious.Foreground = Brushes.Orange;
           LblChanceMysterious.Content = "BAD";
         }
-        else
-        {
-          LblChanceMysterious.Foreground = Brushes.Black;
-          LblChanceMysterious.Content = "N/A";
-        }
-
       }
       else
       {
@@ -1100,7 +1077,7 @@ namespace PFHelper
           e.DateNextOccurring.AddYears(e.ReoccurFreq);
           break;
       }
-      
+
       try
       {
         switch (e.EventType)
