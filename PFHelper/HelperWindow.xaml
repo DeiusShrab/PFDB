@@ -22,10 +22,10 @@
           <Setter Property="Background" Value="#FFF"></Setter>
         </Trigger>
         <Trigger Property="ItemsControl.AlternationIndex" Value="1">
-          <Setter Property="Background" Value="#DFF"></Setter>
+          <Setter Property="Background" Value="#DDD"></Setter>
         </Trigger>
         <DataTrigger Binding="{Binding Init}"  Value="0">
-          <Setter Property="Foreground" Value="#AFF"></Setter>
+          <Setter Property="Foreground" Value="#999"></Setter>
         </DataTrigger>
       </Style.Triggers>
     </Style>
@@ -154,7 +154,7 @@
           <Button x:Name="BtnCombatNextRound" Content="Next Round ==&gt;" HorizontalAlignment="Left" Margin="144,10,0,0" VerticalAlignment="Top" Width="101" Height="31" Click="BtnCombatNextRound_Click"/>
           <TextBox x:Name="TxtCombatInit" HorizontalAlignment="Left" Height="23" Margin="10,72,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="27" TabIndex="101"/>
           <Label Content="Init" HorizontalAlignment="Left" Margin="10,46,0,0" VerticalAlignment="Top"/>
-          <DataGrid x:Name="DgCombatGrid" HorizontalAlignment="Left" Height="332" Margin="10,100,0,0" VerticalAlignment="Top" Width="755" AutoGenerateColumns="False" CanUserAddRows="False" ItemsSource="{Binding CombatGridItems}" TabIndex="112">
+          <DataGrid x:Name="DgCombatGrid" HorizontalAlignment="Left" Height="332" Margin="10,100,0,0" VerticalAlignment="Top" Width="755" AutoGenerateColumns="False" CanUserAddRows="False" ItemsSource="{Binding CombatGridItems}" TabIndex="112" MouseDoubleClick="DgCombatGrid_MouseDoubleClick" CellEditEnding="DgCombatGrid_CellEditEnding">
             <DataGrid.Columns>
               <DataGridTextColumn Binding="{Binding Init}" Header="Init" Width="30"/>
               <DataGridTextColumn Binding="{Binding Name}" Header="Name" Width="150"/>
@@ -170,7 +170,6 @@
               <DataGridTextColumn Binding="{Binding Fort}" Header="Fort" Width="30"/>
               <DataGridTextColumn Binding="{Binding Ref}" Header="Ref" Width="30"/>
               <DataGridTextColumn Binding="{Binding Will}" Header="Will" Width="30"/>
-              <DataGridTextColumn Binding="{Binding Subd}" Header="Sub" Width="35"/>
               <DataGridTextColumn Binding="{Binding Note}" Header="Note" Width="*"/>
             </DataGrid.Columns>
           </DataGrid>
@@ -204,9 +203,10 @@
           <Button x:Name="BtnCombatAddEffect" Content="Add Effect" HorizontalAlignment="Left" Margin="990,72,0,0" VerticalAlignment="Top" Width="90" Height="23" Click="BtnCombatAddEffect_Click" TabIndex="153"/>
           <Label Content="Effect Name" HorizontalAlignment="Left" Margin="770,43,0,0" VerticalAlignment="Top"/>
           <Label Content="Rounds" HorizontalAlignment="Left" Margin="985,43,0,0" VerticalAlignment="Top"/>
-          <Button x:Name="BtnCombatAddNew" Content="Add" HorizontalAlignment="Left" Margin="709,72,0,0" VerticalAlignment="Top" Width="56" Height="23" Click="BtnCombatAddNew_Click" TabIndex="111"/>
+          <Button x:Name="BtnCombatAddNew" Content="Quick Add" HorizontalAlignment="Left" Margin="664,72,0,0" VerticalAlignment="Top" Width="101" Height="23" Click="BtnCombatAddNew_Click" TabIndex="111"/>
           <TextBox x:Name="TxtCombatHP" HorizontalAlignment="Left" Height="23" Margin="236,72,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="22" TabIndex="104"/>
           <Label Content="HP" HorizontalAlignment="Left" Margin="235,46,0,0" VerticalAlignment="Top"/>
+          <Button x:Name="BtnCombatCreatureInfo" Content="Creature Info" HorizontalAlignment="Left" Margin="664,437,0,0" VerticalAlignment="Top" Width="101" Height="20" TabIndex="111" Click="BtnCombatCreatureInfo_Click"/>
         </Grid>
       </TabItem>
       <TabItem x:Name="TabCreatureInfo" Header="Creature Info" Margin="-2,-2,-2,0">

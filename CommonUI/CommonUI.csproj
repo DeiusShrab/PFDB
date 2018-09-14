@@ -58,12 +58,19 @@
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Page Include="Popups\CombatPopUp.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Popups\ListPopUp.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Popups\CombatPopUp.xaml.cs">
+      <DependentUpon>CombatPopUp.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Popups\ListPopUp.xaml.cs">
       <DependentUpon>ListPopUp.xaml</DependentUpon>
     </Compile>

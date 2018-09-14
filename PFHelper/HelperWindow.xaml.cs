@@ -20,6 +20,12 @@ namespace PFHelper
   /// </summary>
   public partial class HelperWindow : Window
   {
+    #region Static Properties
+
+    public static int TAB_CREATUREINFO = 2;
+
+    #endregion
+
     #region Interface Properties
 
     public bool EncounterGroup
@@ -1438,7 +1444,7 @@ namespace PFHelper
     private void LbxEncounterCreatures_MouseDoubleClick(object sender, System.Windows.Input.MouseButtonEventArgs e)
     {
       AddCreatureToCreatureInfo();
-      HelperTabs.SelectedIndex = 2;
+      HelperTabs.SelectedIndex = TAB_CREATUREINFO;
     }
 
     private void LbxEncounterCRs_MouseDoubleClick(object sender, System.Windows.Input.MouseButtonEventArgs e)
@@ -1486,6 +1492,7 @@ namespace PFHelper
           Ref = CgiRef,
           Will = CgiWill,
           HP = CgiHP,
+          MaxHP = CgiHP,
           Init = CgiInit,
           PC = CgiPC
         };
@@ -1842,6 +1849,48 @@ namespace PFHelper
       {
         if (!EventLocalOnly || item.ContinentId == 0 || item.ContinentId == CurrentContinent.ContinentId)
           LiveEvents.Add(new LiveEvent(item));
+      }
+    }
+
+    private void BtnCombatCreatureInfo_Click(object sender, RoutedEventArgs e)
+    {
+      if (DgCombatGrid.SelectedItem != null)
+      {
+        var selectedItem = DgCombatGrid.SelectedItem as CombatGridItem;
+        if (selectedItem.BestiaryId > 0)
+        {
+          selectedCombatMonsterId = selectedItem.BestiaryId;
+          LoadCreatureInfo();
+          HelperTabs.SelectedIndex = TAB_CREATUREINFO;
+        }
+      }
+    }
+
+    private void DgCombatGrid_MouseDoubleClick(object sender, System.Windows.Input.MouseButtonEventArgs e)
+    {
+      if (DgCombatGrid.SelectedItem != null)
+      {
+        var selectedItem = DgCombatGrid.SelectedItem as CombatGridItem;
+        // Open CombatPopUp window
+      }
+    }
+
+    private void DgCombatGrid_CellEditEnding(object sender, DataGridCellEditEndingEventArgs e)
+    {
+      var oldVal = e.Row.Item as CombatGridItem;
+
+      if (e.Column.Header.Equals(nameof(CombatGridItem.HP)) && e.EditingElement is TextBox)
+      {
+        var editText = e.EditingElement as TextBox;
+        if (editText.Text.StartsWith("-") || editText.Text.StartsWith("+"))
+        {
+          if (int.TryParse(editText.Text, out int i))
+            editText.Text = (oldVal.HP + i).ToString();
+        }
+        else if (editText.Text.StartsWith("M", StringComparison.InvariantCultureIgnoreCase))
+        {
+          editText.Text = oldVal.MaxHP.ToString();
+        }
       }
     }
   }

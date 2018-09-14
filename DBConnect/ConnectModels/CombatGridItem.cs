@@ -12,6 +12,7 @@ namespace DBConnect.ConnectModels
     public string Name { get; set; }
     public bool PC { get; set; }
     public int HP { get; set; }
+    public int MaxHP { get; set; }
     public int AC { get; set; }
     public int ACTouch { get; set; }
     public int ACFlat { get; set; }
@@ -25,6 +26,11 @@ namespace DBConnect.ConnectModels
       get { return $"Touch {ACTouch}\nFlat {ACFlat}"; }
     }
 
+    public string HPTooltip
+    {
+      get { return $"Max {MaxHP}\nSubd {Subd}"; }
+    }
+
     public CombatGridItem() { }
 
     public CombatGridItem(Bestiary b)
@@ -34,6 +40,7 @@ namespace DBConnect.ConnectModels
       Name = b.Name;
       PC = false;
       HP = b.Hp;
+      MaxHP = b.Hp;
       AC = b.Ac;
       ACTouch = b.Actouch;
       ACFlat = b.Acflat;
@@ -51,6 +58,7 @@ namespace DBConnect.ConnectModels
       Name = copy.Name;
       PC = copy.PC;
       HP = copy.HP;
+      MaxHP = copy.MaxHP;
       AC = copy.AC;
       ACTouch = copy.ACTouch;
       ACFlat = copy.ACFlat;
