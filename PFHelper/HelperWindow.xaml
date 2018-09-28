@@ -207,6 +207,8 @@
           <TextBox x:Name="TxtCombatHP" HorizontalAlignment="Left" Height="23" Margin="236,72,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="22" TabIndex="104"/>
           <Label Content="HP" HorizontalAlignment="Left" Margin="235,46,0,0" VerticalAlignment="Top"/>
           <Button x:Name="BtnCombatCreatureInfo" Content="Creature Info" HorizontalAlignment="Left" Margin="664,437,0,0" VerticalAlignment="Top" Width="101" Height="20" TabIndex="111" Click="BtnCombatCreatureInfo_Click"/>
+          <Button x:Name="BtnCombatImport" Content="Import Grid" HorizontalAlignment="Left" Margin="504,437,0,0" VerticalAlignment="Top" Width="75" Click="BtnCombatImport_Click"/>
+          <Button x:Name="BtnCombatExport" Content="Export Grid" HorizontalAlignment="Left" Margin="584,437,0,0" VerticalAlignment="Top" Width="75" Click="BtnCombatExport_Click"/>
         </Grid>
       </TabItem>
       <TabItem x:Name="TabCreatureInfo" Header="Creature Info" Margin="-2,-2,-2,0">

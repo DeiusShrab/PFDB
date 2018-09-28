@@ -8,9 +8,11 @@ using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Media;
 using CommonUI;
+using CommonUI.Popups;
 using DBConnect;
 using DBConnect.ConnectModels;
 using DBConnect.DBModels;
+using Microsoft.Win32;
 using PFHelper.Classes;
 
 namespace PFHelper
@@ -410,6 +412,12 @@ namespace PFHelper
 
     #region Data Properties
 
+    private const string FILENAME_CBDATA = "cbdefault";
+    private const string FILENAME_SAVEDATA = "pfdat";
+    private const string EXT_CBDATA = ".cbdat";
+    private const string EXT_SAVEDATA = ".dat";
+    private readonly string APPLICATIONPATH;
+
     private ObservableCollection<DisplayResult> randomEncounterItems;
     private ObservableCollection<DisplayResult> continentList;
     private ObservableCollection<DisplayValues> encounterResults;
@@ -442,8 +450,6 @@ namespace PFHelper
     private Terrain CurrentTerrain;
     private ContinentWeather CurrentWeatherGroup;
     private Campaign ActiveCampaign;
-    private string saveDataFile = "pfdat";
-    private string saveDataExtension = ".dat";
     private string selectedCombatMonsterHtml;
     private int selectedCombatMonsterId;
     private string[] DayNames = { "Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat" };
@@ -456,6 +462,8 @@ namespace PFHelper
     {
       InitializeComponent();
       this.DataContext = this;
+
+      APPLICATIONPATH = System.Environment.CurrentDirectory;
 
       random = new Random();
       CurrentDate = new FantasyDate();
@@ -676,7 +684,7 @@ namespace PFHelper
     private void SaveDataToDisk(string path = "")
     {
       if (string.IsNullOrWhiteSpace(path))
-        path = Path.Combine(System.Environment.CurrentDirectory, saveDataFile + saveDataExtension);
+        path = Path.Combine(APPLICATIONPATH, FILENAME_SAVEDATA + EXT_SAVEDATA);
 
       var saveObject = new SaveObject();
 
@@ -713,11 +721,11 @@ namespace PFHelper
     private bool LoadDataFromDisk(string path = "")
     {
       if (string.IsNullOrWhiteSpace(path))
-        path = Path.Combine(System.Environment.CurrentDirectory, saveDataFile + saveDataExtension);
+        path = Path.Combine(APPLICATIONPATH, FILENAME_SAVEDATA + EXT_SAVEDATA);
 
       SaveObject saveObject = null;
 
-      if (File.Exists(path) && Path.GetExtension(path).Equals(saveDataExtension, StringComparison.InvariantCultureIgnoreCase))
+      if (File.Exists(path) && Path.GetExtension(path).Equals(EXT_SAVEDATA, StringComparison.InvariantCultureIgnoreCase))
         saveObject = Newtonsoft.Json.JsonConvert.DeserializeObject<SaveObject>(File.ReadAllText(path));
 
       return LoadSavedData(saveObject);
@@ -783,7 +791,7 @@ namespace PFHelper
       }
       catch (Exception ex)
       {
-        File.WriteAllText(Path.Combine(System.Environment.CurrentDirectory, $"Events {DateTime.Now.ToString("yyyyMMdd-hhmmss")}.log"), Newtonsoft.Json.JsonConvert.SerializeObject(LiveEvents));
+        File.WriteAllText(Path.Combine(APPLICATIONPATH, $"Events {DateTime.Now.ToString("yyyyMMdd-hhmmss")}.log"), Newtonsoft.Json.JsonConvert.SerializeObject(LiveEvents));
         MessageBox.Show("Failed to save Events!\n" + ex.Message);
       }
 
@@ -793,7 +801,7 @@ namespace PFHelper
       }
       catch (Exception ex)
       {
-        File.WriteAllText(Path.Combine(System.Environment.CurrentDirectory, $"CampaignData {DateTime.Now.ToString("yyyyMMdd-hhmmss")}.log"), Newtonsoft.Json.JsonConvert.SerializeObject(CampaignData));
+        File.WriteAllText(Path.Combine(APPLICATIONPATH, $"CampaignData {DateTime.Now.ToString("yyyyMMdd-hhmmss")}.log"), Newtonsoft.Json.JsonConvert.SerializeObject(CampaignData));
         MessageBox.Show("Failed to save CampaignData!\n" + ex.Message);
       }
     }
@@ -1351,6 +1359,29 @@ namespace PFHelper
       SaveDataToDB();
     }
 
+    private void ImportCombatGrid(string filename)
+    {
+      if (File.Exists(filename))
+      {
+        var newGrid = Newtonsoft.Json.JsonConvert.DeserializeObject<List<CombatGridItem>>(File.ReadAllText(filename));
+        CombatGridItems.Clear();
+        foreach (var item in newGrid)
+        {
+          CombatGridItems.Add(item);
+        }
+      }
+    }
+
+    private void ExportCombatGrid(string filename)
+    {
+      var saveGrid = new List<CombatGridItem>();
+      foreach (var item in CombatGridItems)
+      {
+        saveGrid.Add(item);
+      }
+      File.WriteAllText(filename, Newtonsoft.Json.JsonConvert.SerializeObject(saveGrid));
+    }
+
     #endregion
 
     #region Events
@@ -1542,13 +1573,27 @@ namespace PFHelper
       if (DgCombatGrid.SelectedItems != null)
       {
         var removeItems = new List<CombatGridItem>();
+        bool removePCs = false;
         foreach (CombatGridItem item in DgCombatGrid.SelectedItems)
         {
           removeItems.Add(item);
         }
+
+        if (removeItems.Any(x => x.PC))
+        {
+          var dialogResult = MessageBox.Show("One or more PCs selected, remove them?", string.Empty, MessageBoxButton.YesNoCancel);
+
+          if (dialogResult == MessageBoxResult.Cancel)
+            return;
+
+          if (dialogResult == MessageBoxResult.Yes)
+          removePCs = true;
+        }
+
         foreach (var item in removeItems)
         {
-          CombatGridItems.Remove(item);
+          if (!item.PC || removePCs)
+            CombatGridItems.Remove(item);
         }
       }
     }
@@ -1556,21 +1601,26 @@ namespace PFHelper
     private void Window_Closing(object sender, System.ComponentModel.CancelEventArgs e)
     {
       SaveDataToDB();
-      var savePath = Path.Combine(System.Environment.CurrentDirectory, saveDataFile + saveDataExtension);
+      var savePath = Path.Combine(APPLICATIONPATH, FILENAME_SAVEDATA + EXT_SAVEDATA);
       SaveDataToDisk(savePath);
     }
 
     private void CommandSave_Executed(object sender, System.Windows.Input.ExecutedRoutedEventArgs e)
     {
       SaveDataToDB();
-      var savePath = Path.Combine(System.Environment.CurrentDirectory, saveDataFile + saveDataExtension);
+      var savePath = Path.Combine(APPLICATIONPATH, FILENAME_SAVEDATA + EXT_SAVEDATA);
       SaveDataToDisk(savePath);
     }
 
     private void BtnCombatClearAll_Click(object sender, RoutedEventArgs e)
     {
-      if (MessageBox.Show("Are you sure you want to Clear All?") == MessageBoxResult.OK)
-      {
+      var dialogResult = MessageBox.Show("Are you sure you want to Clear All?", string.Empty, MessageBoxButton.YesNoCancel);
+
+      if (dialogResult == MessageBoxResult.Cancel)
+        return;
+
+      if (dialogResult == MessageBoxResult.Yes)
+      { 
         CombatEffectItems.Clear();
         CombatGridItems.Clear();
         ClearCombatAdd();
@@ -1840,8 +1890,6 @@ namespace PFHelper
       }
     }
 
-    #endregion
-
     private void CbxEvtShowLocal_Checked(object sender, RoutedEventArgs e)
     {
       LiveEvents.Clear();
@@ -1871,7 +1919,25 @@ namespace PFHelper
       if (DgCombatGrid.SelectedItem != null)
       {
         var selectedItem = DgCombatGrid.SelectedItem as CombatGridItem;
-        // Open CombatPopUp window
+        var popup = new CombatPopUp(selectedItem);
+        popup.ShowDialog();
+        if (popup.DialogResult == true)
+        {
+          selectedItem.BestiaryId = popup.CombatGridItem.BestiaryId;
+          selectedItem.Init = popup.CombatGridItem.Init;
+          selectedItem.Name = popup.CombatGridItem.Name;
+          selectedItem.PC = popup.CombatGridItem.PC;
+          selectedItem.HP = popup.CombatGridItem.HP;
+          selectedItem.MaxHP = popup.CombatGridItem.MaxHP;
+          selectedItem.AC = popup.CombatGridItem.AC;
+          selectedItem.ACTouch = popup.CombatGridItem.ACTouch;
+          selectedItem.ACFlat = popup.CombatGridItem.ACFlat;
+          selectedItem.Fort = popup.CombatGridItem.Fort;
+          selectedItem.Ref = popup.CombatGridItem.Ref;
+          selectedItem.Will = popup.CombatGridItem.Will;
+          selectedItem.Subd = popup.CombatGridItem.Subd;
+          selectedItem.Note = popup.CombatGridItem.Note;
+        }
       }
     }
 
@@ -1893,5 +1959,30 @@ namespace PFHelper
         }
       }
     }
+
+    private void BtnCombatImport_Click(object sender, RoutedEventArgs e)
+    {
+      var dialog = new OpenFileDialog();
+      dialog.DefaultExt = EXT_CBDATA;
+      dialog.InitialDirectory = APPLICATIONPATH;
+      if (dialog.ShowDialog() == true)
+      {
+        ImportCombatGrid(dialog.FileName);
+      }
+    }
+
+    private void BtnCombatExport_Click(object sender, RoutedEventArgs e)
+    {
+      var dialog = new SaveFileDialog();
+      dialog.DefaultExt = EXT_CBDATA;
+      dialog.InitialDirectory = APPLICATIONPATH;
+      dialog.AddExtension = true;
+      if (dialog.ShowDialog() == true)
+      {
+        ExportCombatGrid(dialog.FileName);
+      }
+    }
+
+    #endregion
   }
 }
