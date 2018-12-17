@@ -43,6 +43,8 @@ namespace PFAPI.Controllers
     [Route("test")]
     public IActionResult Test()
     {
+      var data = PFDAL.GetContext().CampaignData;
+      Console.WriteLine($"TESTAPI - {data.Count()} entries in CampaignData");
       return Ok("API is listening!");
     }
 
