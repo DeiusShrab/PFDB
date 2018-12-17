@@ -81,7 +81,7 @@ namespace DBConnect
   public enum TrackedEventType
   {
     CalendarEvent = 1,
-    UpdateCampaignNumber = 2 // Data Format: "Key(string);Operation(char);Amount(decimal)" - ex: "DaysUntilFestival;-;1", "GoblinBankAccount;*;1.0025"
+    UpdateCampaignNumber = 2, // Data Format: "Key(string);Operation(char);Amount(decimal)" - ex: "DaysUntilFestival;-;1", "GoblinBankAccount;*;1.0025"
   }
 
   public enum TrackedEventFrequency
@@ -182,6 +182,7 @@ namespace DBConnect
     PFEditor = 2,
     PFSite = 3,
     PFAPI = 4,
+    PFHelperCombatGrid = 5,
   }
 
   public enum ClassType
@@ -196,5 +197,11 @@ namespace DBConnect
     NPC = 8,
     ThirdParty = 9,
     Custom = 10,
+  }
+
+  public enum PermissionDataType
+  {
+    Int = 1,
+    String = 2,
   }
 }

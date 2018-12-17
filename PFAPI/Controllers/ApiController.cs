@@ -1200,7 +1200,7 @@ namespace PFAPI.Controllers
       }
       catch (Exception ex)
       {
-        return BadRequest(ex.Message);
+        return BadRequest(ex);
       }
     }
 
@@ -1222,7 +1222,7 @@ namespace PFAPI.Controllers
       }
       catch (Exception ex)
       {
-        return BadRequest(ex.Message);
+        return BadRequest(ex);
       }
     }
 
@@ -1244,7 +1244,7 @@ namespace PFAPI.Controllers
       }
       catch (Exception ex)
       {
-        return BadRequest(ex.Message);
+        return BadRequest(ex);
       }
     }
 
@@ -1264,7 +1264,7 @@ namespace PFAPI.Controllers
       }
       catch (Exception ex)
       {
-        return BadRequest(ex.Message);
+        return BadRequest(ex);
       }
     }
 
@@ -1284,7 +1284,7 @@ namespace PFAPI.Controllers
       }
       catch (Exception ex)
       {
-        return BadRequest(ex.Message);
+        return BadRequest(ex);
       }
     }
 
@@ -1304,7 +1304,7 @@ namespace PFAPI.Controllers
       }
       catch (Exception ex)
       {
-        return BadRequest(ex.Message);
+        return BadRequest(ex);
       }
     }
 
@@ -1324,7 +1324,7 @@ namespace PFAPI.Controllers
       }
       catch (Exception ex)
       {
-        return BadRequest(ex.Message);
+        return BadRequest(ex);
       }
     }
 
@@ -1344,7 +1344,7 @@ namespace PFAPI.Controllers
       }
       catch (Exception ex)
       {
-        return BadRequest(ex.Message);
+        return BadRequest(ex);
       }
     }
 
@@ -1364,7 +1364,7 @@ namespace PFAPI.Controllers
       }
       catch (Exception ex)
       {
-        return BadRequest(ex.Message);
+        return BadRequest(ex);
       }
     }
 
@@ -1384,7 +1384,7 @@ namespace PFAPI.Controllers
       }
       catch (Exception ex)
       {
-        return BadRequest(ex.Message);
+        return BadRequest(ex);
       }
     }
 
@@ -1406,7 +1406,7 @@ namespace PFAPI.Controllers
       }
       catch (Exception ex)
       {
-        return BadRequest(ex.Message);
+        return BadRequest(ex);
       }
     }
 
@@ -1426,7 +1426,7 @@ namespace PFAPI.Controllers
       }
       catch (Exception ex)
       {
-        return BadRequest(ex.Message);
+        return BadRequest(ex);
       }
     }
 
@@ -1446,7 +1446,7 @@ namespace PFAPI.Controllers
       }
       catch (Exception ex)
       {
-        return BadRequest(ex.Message);
+        return BadRequest(ex);
       }
     }
 
@@ -1468,7 +1468,7 @@ namespace PFAPI.Controllers
       }
       catch (Exception ex)
       {
-        return BadRequest(ex.Message);
+        return BadRequest(ex);
       }
     }
 
@@ -1488,7 +1488,7 @@ namespace PFAPI.Controllers
       }
       catch (Exception ex)
       {
-        return BadRequest(ex.Message);
+        return BadRequest(ex);
       }
     }
 
@@ -1508,7 +1508,7 @@ namespace PFAPI.Controllers
       }
       catch (Exception ex)
       {
-        return BadRequest(ex.Message);
+        return BadRequest(ex);
       }
     }
 
@@ -1530,7 +1530,7 @@ namespace PFAPI.Controllers
       }
       catch (Exception ex)
       {
-        return BadRequest(ex.Message);
+        return BadRequest(ex);
       }
     }
 
@@ -1552,7 +1552,7 @@ namespace PFAPI.Controllers
       }
       catch (Exception ex)
       {
-        return BadRequest(ex.Message);
+        return BadRequest(ex);
       }
     }
 
@@ -1572,7 +1572,7 @@ namespace PFAPI.Controllers
       }
       catch (Exception ex)
       {
-        return BadRequest(ex.Message);
+        return BadRequest(ex);
       }
     }
 
@@ -1594,7 +1594,7 @@ namespace PFAPI.Controllers
       }
       catch (Exception ex)
       {
-        return BadRequest(ex.Message);
+        return BadRequest(ex);
       }
     }
 
@@ -1616,7 +1616,7 @@ namespace PFAPI.Controllers
       }
       catch (Exception ex)
       {
-        return BadRequest(ex.Message);
+        return BadRequest(ex);
       }
     }
 
@@ -1636,7 +1636,7 @@ namespace PFAPI.Controllers
       }
       catch (Exception ex)
       {
-        return BadRequest(ex.Message);
+        return BadRequest(ex);
       }
     }
 
@@ -1656,7 +1656,7 @@ namespace PFAPI.Controllers
       }
       catch (Exception ex)
       {
-        return BadRequest(ex.Message);
+        return BadRequest(ex);
       }
     }
 
@@ -1678,7 +1678,7 @@ namespace PFAPI.Controllers
       }
       catch (Exception ex)
       {
-        return BadRequest(ex.Message);
+        return BadRequest(ex);
       }
     }
 
@@ -1698,7 +1698,7 @@ namespace PFAPI.Controllers
       }
       catch (Exception ex)
       {
-        return BadRequest(ex.Message);
+        return BadRequest(ex);
       }
     }
 
@@ -1720,7 +1720,7 @@ namespace PFAPI.Controllers
       }
       catch (Exception ex)
       {
-        return BadRequest(ex.Message);
+        return BadRequest(ex);
       }
     }
 
@@ -1740,7 +1740,7 @@ namespace PFAPI.Controllers
       }
       catch (Exception ex)
       {
-        return BadRequest(ex.Message);
+        return BadRequest(ex);
       }
     }
 
@@ -1760,7 +1760,7 @@ namespace PFAPI.Controllers
       }
       catch (Exception ex)
       {
-        return BadRequest(ex.Message);
+        return BadRequest(ex);
       }
     }
 
@@ -1780,7 +1780,7 @@ namespace PFAPI.Controllers
       }
       catch (Exception ex)
       {
-        return BadRequest(ex.Message);
+        return BadRequest(ex);
       }
     }
 
@@ -1800,7 +1800,7 @@ namespace PFAPI.Controllers
       }
       catch (Exception ex)
       {
-        return BadRequest(ex.Message);
+        return BadRequest(ex);
       }
     }
 
@@ -1820,7 +1820,7 @@ namespace PFAPI.Controllers
       }
       catch (Exception ex)
       {
-        return BadRequest(ex.Message);
+        return BadRequest(ex);
       }
     }
 
@@ -1840,7 +1840,7 @@ namespace PFAPI.Controllers
       }
       catch (Exception ex)
       {
-        return BadRequest(ex.Message);
+        return BadRequest(ex);
       }
     }
 
@@ -1860,7 +1860,7 @@ namespace PFAPI.Controllers
       }
       catch (Exception ex)
       {
-        return BadRequest(ex.Message);
+        return BadRequest(ex);
       }
     }
 
@@ -1880,7 +1880,7 @@ namespace PFAPI.Controllers
       }
       catch (Exception ex)
       {
-        return BadRequest(ex.Message);
+        return BadRequest(ex);
       }
     }
 
@@ -1900,7 +1900,7 @@ namespace PFAPI.Controllers
       }
       catch (Exception ex)
       {
-        return BadRequest(ex.Message);
+        return BadRequest(ex);
       }
     }
 
@@ -1920,7 +1920,7 @@ namespace PFAPI.Controllers
       }
       catch (Exception ex)
       {
-        return BadRequest(ex.Message);
+        return BadRequest(ex);
       }
     }
 
@@ -1940,7 +1940,7 @@ namespace PFAPI.Controllers
       }
       catch (Exception ex)
       {
-        return BadRequest(ex.Message);
+        return BadRequest(ex);
       }
     }
 
@@ -1960,7 +1960,7 @@ namespace PFAPI.Controllers
       }
       catch (Exception ex)
       {
-        return BadRequest(ex.Message);
+        return BadRequest(ex);
       }
     }
 
@@ -1980,7 +1980,7 @@ namespace PFAPI.Controllers
       }
       catch (Exception ex)
       {
-        return BadRequest(ex.Message);
+        return BadRequest(ex);
       }
     }
 
@@ -2000,7 +2000,7 @@ namespace PFAPI.Controllers
       }
       catch (Exception ex)
       {
-        return BadRequest(ex.Message);
+        return BadRequest(ex);
       }
     }
 
@@ -2022,7 +2022,7 @@ namespace PFAPI.Controllers
       }
       catch (Exception ex)
       {
-        return BadRequest(ex.Message);
+        return BadRequest(ex);
       }
     }
 
@@ -2042,7 +2042,7 @@ namespace PFAPI.Controllers
       }
       catch (Exception ex)
       {
-        return BadRequest(ex.Message);
+        return BadRequest(ex);
       }
     }
 
@@ -2062,7 +2062,7 @@ namespace PFAPI.Controllers
       }
       catch (Exception ex)
       {
-        return BadRequest(ex.Message);
+        return BadRequest(ex);
       }
     }
 
@@ -2084,7 +2084,7 @@ namespace PFAPI.Controllers
       }
       catch (Exception ex)
       {
-        return BadRequest(ex.Message);
+        return BadRequest(ex);
       }
     }
 
@@ -2104,7 +2104,7 @@ namespace PFAPI.Controllers
       }
       catch (Exception ex)
       {
-        return BadRequest(ex.Message);
+        return BadRequest(ex);
       }
     }
 
@@ -2124,7 +2124,7 @@ namespace PFAPI.Controllers
       }
       catch (Exception ex)
       {
-        return BadRequest(ex.Message);
+        return BadRequest(ex);
       }
     }
 
@@ -2144,7 +2144,7 @@ namespace PFAPI.Controllers
       }
       catch (Exception ex)
       {
-        return BadRequest(ex.Message);
+        return BadRequest(ex);
       }
     }
 
@@ -2166,7 +2166,7 @@ namespace PFAPI.Controllers
       }
       catch (Exception ex)
       {
-        return BadRequest(ex.Message);
+        return BadRequest(ex);
       }
     }
 
@@ -2186,7 +2186,7 @@ namespace PFAPI.Controllers
       }
       catch (Exception ex)
       {
-        return BadRequest(ex.Message);
+        return BadRequest(ex);
       }
     }
 
@@ -2206,7 +2206,7 @@ namespace PFAPI.Controllers
       }
       catch (Exception ex)
       {
-        return BadRequest(ex.Message);
+        return BadRequest(ex);
       }
     }
 
@@ -2228,7 +2228,7 @@ namespace PFAPI.Controllers
       }
       catch (Exception ex)
       {
-        return BadRequest(ex.Message);
+        return BadRequest(ex);
       }
     }
 
@@ -2250,7 +2250,7 @@ namespace PFAPI.Controllers
       }
       catch (Exception ex)
       {
-        return BadRequest(ex.Message);
+        return BadRequest(ex);
       }
     }
 
@@ -2270,7 +2270,7 @@ namespace PFAPI.Controllers
       }
       catch (Exception ex)
       {
-        return BadRequest(ex.Message);
+        return BadRequest(ex);
       }
     }
 
@@ -2290,7 +2290,7 @@ namespace PFAPI.Controllers
       }
       catch (Exception ex)
       {
-        return BadRequest(ex.Message);
+        return BadRequest(ex);
       }
     }
 
@@ -2310,7 +2310,7 @@ namespace PFAPI.Controllers
       }
       catch (Exception ex)
       {
-        return BadRequest(ex.Message);
+        return BadRequest(ex);
       }
     }
 
@@ -2330,7 +2330,7 @@ namespace PFAPI.Controllers
       }
       catch (Exception ex)
       {
-        return BadRequest(ex.Message);
+        return BadRequest(ex);
       }
     }
 
@@ -2350,7 +2350,7 @@ namespace PFAPI.Controllers
       }
       catch (Exception ex)
       {
-        return BadRequest(ex.Message);
+        return BadRequest(ex);
       }
     }
 
@@ -2370,7 +2370,7 @@ namespace PFAPI.Controllers
       }
       catch (Exception ex)
       {
-        return BadRequest(ex.Message);
+        return BadRequest(ex);
       }
     }
 
@@ -2390,7 +2390,7 @@ namespace PFAPI.Controllers
       }
       catch (Exception ex)
       {
-        return BadRequest(ex.Message);
+        return BadRequest(ex);
       }
     }
 
@@ -2412,7 +2412,7 @@ namespace PFAPI.Controllers
       }
       catch (Exception ex)
       {
-        return BadRequest(ex.Message);
+        return BadRequest(ex);
       }
     }
 
@@ -2432,7 +2432,7 @@ namespace PFAPI.Controllers
       }
       catch (Exception ex)
       {
-        return BadRequest(ex.Message);
+        return BadRequest(ex);
       }
     }
 
@@ -2456,7 +2456,7 @@ namespace PFAPI.Controllers
       }
       catch (Exception ex)
       {
-        return BadRequest(ex.Message);
+        return BadRequest(ex);
       }
     }
 
@@ -2476,7 +2476,7 @@ namespace PFAPI.Controllers
       }
       catch (Exception ex)
       {
-        return BadRequest(ex.Message);
+        return BadRequest(ex);
       }
     }
 
@@ -2496,7 +2496,7 @@ namespace PFAPI.Controllers
       }
       catch (Exception ex)
       {
-        return BadRequest(ex.Message);
+        return BadRequest(ex);
       }
     }
 
@@ -2516,7 +2516,7 @@ namespace PFAPI.Controllers
       }
       catch (Exception ex)
       {
-        return BadRequest(ex.Message);
+        return BadRequest(ex);
       }
     }
 
@@ -2536,7 +2536,7 @@ namespace PFAPI.Controllers
       }
       catch (Exception ex)
       {
-        return BadRequest(ex.Message);
+        return BadRequest(ex);
       }
     }
 
@@ -2556,7 +2556,7 @@ namespace PFAPI.Controllers
       }
       catch (Exception ex)
       {
-        return BadRequest(ex.Message);
+        return BadRequest(ex);
       }
     }
 
@@ -2576,7 +2576,7 @@ namespace PFAPI.Controllers
       }
       catch (Exception ex)
       {
-        return BadRequest(ex.Message);
+        return BadRequest(ex);
       }
     }
 
@@ -2596,7 +2596,7 @@ namespace PFAPI.Controllers
       }
       catch (Exception ex)
       {
-        return BadRequest(ex.Message);
+        return BadRequest(ex);
       }
     }
 
@@ -2616,7 +2616,7 @@ namespace PFAPI.Controllers
       }
       catch (Exception ex)
       {
-        return BadRequest(ex.Message);
+        return BadRequest(ex);
       }
     }
 
@@ -2636,7 +2636,7 @@ namespace PFAPI.Controllers
       }
       catch (Exception ex)
       {
-        return BadRequest(ex.Message);
+        return BadRequest(ex);
       }
     }
 
@@ -2656,7 +2656,7 @@ namespace PFAPI.Controllers
       }
       catch (Exception ex)
       {
-        return BadRequest(ex.Message);
+        return BadRequest(ex);
       }
     }
 
@@ -2676,7 +2676,7 @@ namespace PFAPI.Controllers
       }
       catch (Exception ex)
       {
-        return BadRequest(ex.Message);
+        return BadRequest(ex);
       }
     }
 
@@ -2696,7 +2696,7 @@ namespace PFAPI.Controllers
       }
       catch (Exception ex)
       {
-        return BadRequest(ex.Message);
+        return BadRequest(ex);
       }
     }
 
@@ -2716,7 +2716,7 @@ namespace PFAPI.Controllers
       }
       catch (Exception ex)
       {
-        return BadRequest(ex.Message);
+        return BadRequest(ex);
       }
     }
 
@@ -2736,7 +2736,7 @@ namespace PFAPI.Controllers
       }
       catch (Exception ex)
       {
-        return BadRequest(ex.Message);
+        return BadRequest(ex);
       }
     }
 
@@ -2756,7 +2756,7 @@ namespace PFAPI.Controllers
       }
       catch (Exception ex)
       {
-        return BadRequest(ex.Message);
+        return BadRequest(ex);
       }
     }
 
@@ -2776,7 +2776,7 @@ namespace PFAPI.Controllers
       }
       catch (Exception ex)
       {
-        return BadRequest(ex.Message);
+        return BadRequest(ex);
       }
     }
 
@@ -2796,7 +2796,7 @@ namespace PFAPI.Controllers
       }
       catch (Exception ex)
       {
-        return BadRequest(ex.Message);
+        return BadRequest(ex);
       }
     }
 
@@ -2816,7 +2816,7 @@ namespace PFAPI.Controllers
       }
       catch (Exception ex)
       {
-        return BadRequest(ex.Message);
+        return BadRequest(ex);
       }
     }
 
@@ -2836,7 +2836,7 @@ namespace PFAPI.Controllers
       }
       catch (Exception ex)
       {
-        return BadRequest(ex.Message);
+        return BadRequest(ex);
       }
     }
 
@@ -2856,7 +2856,7 @@ namespace PFAPI.Controllers
       }
       catch (Exception ex)
       {
-        return BadRequest(ex.Message);
+        return BadRequest(ex);
       }
     }
 
@@ -2876,7 +2876,7 @@ namespace PFAPI.Controllers
       }
       catch (Exception ex)
       {
-        return BadRequest(ex.Message);
+        return BadRequest(ex);
       }
     }
 
@@ -2896,7 +2896,7 @@ namespace PFAPI.Controllers
       }
       catch (Exception ex)
       {
-        return BadRequest(ex.Message);
+        return BadRequest(ex);
       }
     }
 
@@ -2916,7 +2916,7 @@ namespace PFAPI.Controllers
       }
       catch (Exception ex)
       {
-        return BadRequest(ex.Message);
+        return BadRequest(ex);
       }
     }
 
@@ -2936,7 +2936,7 @@ namespace PFAPI.Controllers
       }
       catch (Exception ex)
       {
-        return BadRequest(ex.Message);
+        return BadRequest(ex);
       }
     }
 
@@ -2956,7 +2956,7 @@ namespace PFAPI.Controllers
       }
       catch (Exception ex)
       {
-        return BadRequest(ex.Message);
+        return BadRequest(ex);
       }
     }
 
@@ -2976,7 +2976,7 @@ namespace PFAPI.Controllers
       }
       catch (Exception ex)
       {
-        return BadRequest(ex.Message);
+        return BadRequest(ex);
       }
     }
 
@@ -2996,7 +2996,7 @@ namespace PFAPI.Controllers
       }
       catch (Exception ex)
       {
-        return BadRequest(ex.Message);
+        return BadRequest(ex);
       }
     }
 
@@ -3016,7 +3016,7 @@ namespace PFAPI.Controllers
       }
       catch (Exception ex)
       {
-        return BadRequest(ex.Message);
+        return BadRequest(ex);
       }
     }
 
@@ -3036,7 +3036,7 @@ namespace PFAPI.Controllers
       }
       catch (Exception ex)
       {
-        return BadRequest(ex.Message);
+        return BadRequest(ex);
       }
     }
 
@@ -3056,7 +3056,7 @@ namespace PFAPI.Controllers
       }
       catch (Exception ex)
       {
-        return BadRequest(ex.Message);
+        return BadRequest(ex);
       }
     }
 
@@ -3076,7 +3076,7 @@ namespace PFAPI.Controllers
       }
       catch (Exception ex)
       {
-        return BadRequest(ex.Message);
+        return BadRequest(ex);
       }
     }
 
@@ -3096,7 +3096,7 @@ namespace PFAPI.Controllers
       }
       catch (Exception ex)
       {
-        return BadRequest(ex.Message);
+        return BadRequest(ex);
       }
     }
 
@@ -3116,7 +3116,7 @@ namespace PFAPI.Controllers
       }
       catch (Exception ex)
       {
-        return BadRequest(ex.Message);
+        return BadRequest(ex);
       }
     }
 
@@ -3136,7 +3136,7 @@ namespace PFAPI.Controllers
       }
       catch (Exception ex)
       {
-        return BadRequest(ex.Message);
+        return BadRequest(ex);
       }
     }
 
@@ -3156,7 +3156,7 @@ namespace PFAPI.Controllers
       }
       catch (Exception ex)
       {
-        return BadRequest(ex.Message);
+        return BadRequest(ex);
       }
     }
 
@@ -3176,7 +3176,7 @@ namespace PFAPI.Controllers
       }
       catch (Exception ex)
       {
-        return BadRequest(ex.Message);
+        return BadRequest(ex);
       }
     }
 
@@ -3196,7 +3196,7 @@ namespace PFAPI.Controllers
       }
       catch (Exception ex)
       {
-        return BadRequest(ex.Message);
+        return BadRequest(ex);
       }
     }
 
@@ -3216,7 +3216,7 @@ namespace PFAPI.Controllers
       }
       catch (Exception ex)
       {
-        return BadRequest(ex.Message);
+        return BadRequest(ex);
       }
     }
 
@@ -3236,7 +3236,7 @@ namespace PFAPI.Controllers
       }
       catch (Exception ex)
       {
-        return BadRequest(ex.Message);
+        return BadRequest(ex);
       }
     }
 
@@ -3256,7 +3256,7 @@ namespace PFAPI.Controllers
       }
       catch (Exception ex)
       {
-        return BadRequest(ex.Message);
+        return BadRequest(ex);
       }
     }
 
@@ -3276,7 +3276,7 @@ namespace PFAPI.Controllers
       }
       catch (Exception ex)
       {
-        return BadRequest(ex.Message);
+        return BadRequest(ex);
       }
     }
 
@@ -3296,7 +3296,7 @@ namespace PFAPI.Controllers
       }
       catch (Exception ex)
       {
-        return BadRequest(ex.Message);
+        return BadRequest(ex);
       }
     }
 
@@ -3316,7 +3316,7 @@ namespace PFAPI.Controllers
       }
       catch (Exception ex)
       {
-        return BadRequest(ex.Message);
+        return BadRequest(ex);
       }
     }
 
@@ -3336,7 +3336,7 @@ namespace PFAPI.Controllers
       }
       catch (Exception ex)
       {
-        return BadRequest(ex.Message);
+        return BadRequest(ex);
       }
     }
 
@@ -3356,7 +3356,7 @@ namespace PFAPI.Controllers
       }
       catch (Exception ex)
       {
-        return BadRequest(ex.Message);
+        return BadRequest(ex);
       }
     }
 
@@ -3376,7 +3376,7 @@ namespace PFAPI.Controllers
       }
       catch (Exception ex)
       {
-        return BadRequest(ex.Message);
+        return BadRequest(ex);
       }
     }
 
@@ -3396,7 +3396,7 @@ namespace PFAPI.Controllers
       }
       catch (Exception ex)
       {
-        return BadRequest(ex.Message);
+        return BadRequest(ex);
       }
     }
 
@@ -3416,7 +3416,7 @@ namespace PFAPI.Controllers
       }
       catch (Exception ex)
       {
-        return BadRequest(ex.Message);
+        return BadRequest(ex);
       }
     }
 
@@ -3436,7 +3436,7 @@ namespace PFAPI.Controllers
       }
       catch (Exception ex)
       {
-        return BadRequest(ex.Message);
+        return BadRequest(ex);
       }
     }
 
@@ -3456,7 +3456,7 @@ namespace PFAPI.Controllers
       }
       catch (Exception ex)
       {
-        return BadRequest(ex.Message);
+        return BadRequest(ex);
       }
     }
 
@@ -3476,7 +3476,7 @@ namespace PFAPI.Controllers
       }
       catch (Exception ex)
       {
-        return BadRequest(ex.Message);
+        return BadRequest(ex);
       }
     }
 
@@ -3496,7 +3496,7 @@ namespace PFAPI.Controllers
       }
       catch (Exception ex)
       {
-        return BadRequest(ex.Message);
+        return BadRequest(ex);
       }
     }
 
@@ -3516,7 +3516,7 @@ namespace PFAPI.Controllers
       }
       catch (Exception ex)
       {
-        return BadRequest(ex.Message);
+        return BadRequest(ex);
       }
     }
 
@@ -3536,7 +3536,7 @@ namespace PFAPI.Controllers
       }
       catch (Exception ex)
       {
-        return BadRequest(ex.Message);
+        return BadRequest(ex);
       }
     }
 
@@ -3556,7 +3556,7 @@ namespace PFAPI.Controllers
       }
       catch (Exception ex)
       {
-        return BadRequest(ex.Message);
+        return BadRequest(ex);
       }
     }
 
@@ -3576,7 +3576,7 @@ namespace PFAPI.Controllers
       }
       catch (Exception ex)
       {
-        return BadRequest(ex.Message);
+        return BadRequest(ex);
       }
     }
 
@@ -3596,7 +3596,7 @@ namespace PFAPI.Controllers
       }
       catch (Exception ex)
       {
-        return BadRequest(ex.Message);
+        return BadRequest(ex);
       }
     }
 
@@ -3616,7 +3616,7 @@ namespace PFAPI.Controllers
       }
       catch (Exception ex)
       {
-        return BadRequest(ex.Message);
+        return BadRequest(ex);
       }
     }
 
@@ -3636,7 +3636,7 @@ namespace PFAPI.Controllers
       }
       catch (Exception ex)
       {
-        return BadRequest(ex.Message);
+        return BadRequest(ex);
       }
     }
 
@@ -3656,7 +3656,7 @@ namespace PFAPI.Controllers
       }
       catch (Exception ex)
       {
-        return BadRequest(ex.Message);
+        return BadRequest(ex);
       }
     }
 
@@ -3676,7 +3676,7 @@ namespace PFAPI.Controllers
       }
       catch (Exception ex)
       {
-        return BadRequest(ex.Message);
+        return BadRequest(ex);
       }
     }
 
@@ -3696,7 +3696,7 @@ namespace PFAPI.Controllers
       }
       catch (Exception ex)
       {
-        return BadRequest(ex.Message);
+        return BadRequest(ex);
       }
     }
 

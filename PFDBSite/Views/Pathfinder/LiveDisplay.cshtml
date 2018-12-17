@@ -1,7 +1,12 @@
-﻿
+﻿@model LiveDisplayModel
+
 @{
   ViewData["Title"] = "LiveDisplay";
 }
+<script>
+  @Html.Raw($"var chatRoomId = {Model.ChatRoom.ChatRoomId};")
+  @Html.Raw($"var playerId = {Model.ActivePlayer.PlayerId};")
+</script>
 
 <h2>LiveDisplay</h2>
 <div class="container-fluid">
@@ -11,7 +16,8 @@
       <canvas id="liveCanvas" class="img-responsive" onload="canvasLoad()"></canvas>
       <img class="hidden" src="~/images/TestMap.png" alt="TestMap" />
     </div>
-    <div class="col-md-3 col-sm-12">
+    <div class="col-md-3 col-sm-12" id="chatBox">
+      Now in chatroom: @Model.ChatRoom.ChatRoomName
       <div class="row" style="min-height:80%">
         <div class="col-12" style="min-height:80%;overflow:scroll">
           <ul id="messagesList"></ul>

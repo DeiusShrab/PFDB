@@ -19,6 +19,7 @@ namespace PFHelper.Classes
     public int CampaignId { get; set; }
     public string Data { get; set; }
     public int ContinentId { get; set; }
+    public bool ActiveEvent { get; set; }
 
     public TrackedEventType EventType { get; set; }
     public TrackedEventFrequency EventFrequency { get; set; }
@@ -46,6 +47,7 @@ namespace PFHelper.Classes
       CampaignId = evt.CampaignId;
       EventType = (TrackedEventType)evt.TrackedEventType;
       Data = evt.TrackedEventData;
+      ActiveEvent = false;
     }
 
     public TrackedEvent Export()

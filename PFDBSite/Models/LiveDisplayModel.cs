@@ -12,5 +12,6 @@ namespace PFDBSite.Models
     public string FantasyDate { get; set; }
     public string MapPath { get; set; }
     public string MapSaveData { get; set; }
+    public ChatRoom ChatRoom { get; set; }
   }
 }

@@ -12,7 +12,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <PackageReference Include="bootstrap" Version="4.1.1" />
+    <PackageReference Include="CodeKicker.BBCode" Version="5.0.0" />
     <PackageReference Include="Microsoft.AspNetCore.All" Version="2.0.8" />
     <PackageReference Include="Microsoft.AspNetCore.Antiforgery" Version="2.0.3" />
     <PackageReference Include="Microsoft.AspNetCore.Http.Extensions" Version="2.1.0" />
@@ -44,6 +44,10 @@
     <Content Update="appsettings.json">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="wwwroot\images\chat\" />
   </ItemGroup>
 
 </Project>

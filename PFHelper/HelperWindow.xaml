@@ -27,6 +27,9 @@
         <DataTrigger Binding="{Binding Init}"  Value="0">
           <Setter Property="Foreground" Value="#999"></Setter>
         </DataTrigger>
+        <DataTrigger Binding="{Binding ActiveEvent}" Value="true">
+          <Setter Property="Foreground" Value="LightGreen" />
+        </DataTrigger>
       </Style.Triggers>
     </Style>
   </Window.Resources>
@@ -154,7 +157,7 @@
           <Button x:Name="BtnCombatNextRound" Content="Next Round ==&gt;" HorizontalAlignment="Left" Margin="144,10,0,0" VerticalAlignment="Top" Width="101" Height="31" Click="BtnCombatNextRound_Click"/>
           <TextBox x:Name="TxtCombatInit" HorizontalAlignment="Left" Height="23" Margin="10,72,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="27" TabIndex="101"/>
           <Label Content="Init" HorizontalAlignment="Left" Margin="10,46,0,0" VerticalAlignment="Top"/>
-          <DataGrid x:Name="DgCombatGrid" HorizontalAlignment="Left" Height="332" Margin="10,100,0,0" VerticalAlignment="Top" Width="755" AutoGenerateColumns="False" CanUserAddRows="False" ItemsSource="{Binding CombatGridItems}" TabIndex="112" MouseDoubleClick="DgCombatGrid_MouseDoubleClick" CellEditEnding="DgCombatGrid_CellEditEnding">
+          <DataGrid x:Name="DgCombatGrid" HorizontalAlignment="Left" Height="332" Margin="10,100,0,0" VerticalAlignment="Top" Width="755" AutoGenerateColumns="False" CanUserAddRows="False" ItemsSource="{Binding CombatGridItems}" TabIndex="112" MouseDoubleClick="DgCombatGrid_MouseDoubleClick" CellEditEnding="DgCombatGrid_CellEditEnding" PreviewKeyDown="DgCombatGrid_PreviewKeyDown">
             <DataGrid.Columns>
               <DataGridTextColumn Binding="{Binding Init}" Header="Init" Width="30"/>
               <DataGridTextColumn Binding="{Binding Name}" Header="Name" Width="150"/>
@@ -226,6 +229,7 @@
               <DataGridTextColumn Binding="{Binding ShortDateNextOccurring}" Header="Date" Width="100" />
               <DataGridTextColumn Binding="{Binding Location}" Header="Location" Width="150" />
               <DataGridTextColumn Binding="{Binding Notes}" Header="Notes" Width="*" />
+              <DataGridCheckBoxColumn Binding="{Binding ActiveEvent}" Visibility="Hidden" />
             </DataGrid.Columns>
           </DataGrid>
           <Label Content="Event Name" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top"/>

@@ -3,9 +3,11 @@ using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.IO;
 using System.Linq;
+using System.Reflection;
 using System.Text;
 using System.Windows;
 using System.Windows.Controls;
+using System.Windows.Data;
 using System.Windows.Media;
 using CommonUI;
 using CommonUI.Popups;
@@ -286,18 +288,6 @@ namespace PFHelper
     {
       get { return TxtEvtLocation.Text; }
       set { TxtEvtLocation.Text = value; }
-    }
-
-    public int EventFrequency
-    {
-      get { return IntEvtFreq.Value ?? 0; }
-      set
-      {
-        if (value > 0)
-          IntEvtFreq.Value = value;
-        else
-          IntEvtFreq.Value = null;
-      }
     }
 
     public int EventTypeId
@@ -1043,6 +1033,10 @@ namespace PFHelper
         AddRations(i * -1);
 
       var activeEventIds = new List<int>();
+      foreach (var evt in LiveEvents.Where(x => x.ActiveEvent))
+      {
+        evt.ActiveEvent = false;
+      }
 
       for (int j = 1; j <= i; j++)
       {
@@ -1051,24 +1045,13 @@ namespace PFHelper
           if (evt.DateNextOccurring == oldDate.AddDays(j))
           {
             RunLiveEvent(evt);
-
-            if (evt.EventFrequency > 0)
-              activeEventIds.Add(evt.EventId);
+            evt.ActiveEvent = true;
           }
         }
       }
 
       if (activeEventIds.Count > 0)
         HelperTabs.SelectedIndex = 3;
-
-      foreach (LiveEvent evt in DgEvt.ItemsSource)
-      {
-        var row = DgEvt.ItemContainerGenerator.ContainerFromItem(evt) as DataGridRow;
-        if (activeEventIds.Contains(evt.EventId))
-          row.Background = Brushes.Green;
-        else
-          row.Background = Brushes.White;
-      }
 
       UpdateCampaignData("CurrentDate", CurrentDate.ToNumDate());
     }
@@ -1290,7 +1273,7 @@ namespace PFHelper
         EventLocation = CurrentEvent.Location;
         EventName = CurrentEvent.Name;
         EventNotes = CurrentEvent.Notes;
-        EventFrequency = CurrentEvent.ReoccurFreq;
+        EventFreqId = CurrentEvent.ReoccurFreq;
         EventContinentId = CurrentEvent.ContinentId;
       }
     }
@@ -1305,7 +1288,7 @@ namespace PFHelper
       CurrentEvent.Location = EventLocation;
       CurrentEvent.Name = EventName;
       CurrentEvent.Notes = EventNotes;
-      CurrentEvent.ReoccurFreq = EventFrequency;
+      CurrentEvent.ReoccurFreq = EventFreqId;
       CurrentEvent.ContinentId = EventContinentId;
     }
 
@@ -1587,7 +1570,7 @@ namespace PFHelper
             return;
 
           if (dialogResult == MessageBoxResult.Yes)
-          removePCs = true;
+            removePCs = true;
         }
 
         foreach (var item in removeItems)
@@ -1620,7 +1603,7 @@ namespace PFHelper
         return;
 
       if (dialogResult == MessageBoxResult.Yes)
-      { 
+      {
         CombatEffectItems.Clear();
         CombatGridItems.Clear();
         ClearCombatAdd();
@@ -1984,5 +1967,14 @@ namespace PFHelper
     }
 
     #endregion
+
+    private void DgCombatGrid_PreviewKeyDown(object sender, System.Windows.Input.KeyEventArgs e)
+    {
+      if (e.Key == System.Windows.Input.Key.Delete)
+      {
+        e.Handled = true;
+        BtnCombatDelete_Click(null, null);
+      }
+    }
   }
 }

@@ -23,11 +23,17 @@ const connection = new signalR.HubConnectionBuilder()
   .withUrl("/liveDisplayHub")
   .build();
 
-connection.on("ReceiveMessage", (user, message) => {
-  const encodedMsg = user + ": " + msg;
-  const li = document.createElement("li");
-  li.textContent = encodedMsg;
-  document.getElementById("messagesList").appendChild(li);
+window.onload(function () {
+  // Get message history
+});
+
+connection.on("ReceiveMessage", (msg) => {
+  if ((msg.ChatRoom == chatRoomId || msg.ChatRoom == 0) && (msg.WhisperTo == playerId || msg.WhisperTo == 0)) {
+    const encodedMsg = msg.User + ": " + msg.Contents;
+    const li = document.createElement("li");
+    li.textContent = encodedMsg;
+    document.getElementById("messagesList").appendChild(li);
+  }
 });
 
 connection.on("ReceiveDrawing", (user, drawObj) => {
