@@ -204,4 +204,10 @@ namespace DBConnect
     Int = 1,
     String = 2,
   }
+
+  public enum CampaignDataGenType
+  {
+    Formula = 1,
+    PFHelper = 2,
+  }
 }

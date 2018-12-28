@@ -45,7 +45,7 @@ namespace PFAPI.Controllers
     {
       var data = PFDAL.GetContext().CampaignData;
       Console.WriteLine($"TESTAPI - {data.Count()} entries in CampaignData");
-      return Ok("API is listening!");
+      return Ok($"API is listening! {data.Count()}");
     }
 
     [HttpPost]

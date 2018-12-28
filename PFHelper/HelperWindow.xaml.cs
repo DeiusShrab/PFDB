@@ -3,11 +3,9 @@ using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.IO;
 using System.Linq;
-using System.Reflection;
 using System.Text;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
 using System.Windows.Media;
 using CommonUI;
 using CommonUI.Popups;
@@ -374,6 +372,21 @@ namespace PFHelper
       set { TxtCampaignDataNew.Text = value; }
     }
 
+    public int CampaignDataGen
+    {
+      get
+      {
+        if (DrpCampaignDataGenerate.SelectedItem != null)
+          return (int)DrpCampaignDataGenerate.SelectedValue;
+
+        return 0;
+      }
+      set
+      {
+        DrpCampaignDataGenerate.SelectedValue = value;
+      }
+    }
+
     public bool WeatherLock
     {
       get { return CbxWeatherLock.IsChecked ?? false; }
@@ -479,11 +492,11 @@ namespace PFHelper
       LbxD20.DisplayMemberPath = LbxD4.DisplayMemberPath = LbxD6.DisplayMemberPath = LbxD8.DisplayMemberPath = LbxD10.DisplayMemberPath = LbxD12.DisplayMemberPath
         = LbxEncounterCreatures.DisplayMemberPath = LbxContinent.DisplayMemberPath = LbxCreatureInfo.DisplayMemberPath = LbxPlane.DisplayMemberPath
         = LbxTime.DisplayMemberPath = LbxEnvironment.DisplayMemberPath = DrpEvtType.DisplayMemberPath = DrpCampaignSelect.DisplayMemberPath
-        = DrpEvtContinent.DisplayMemberPath = DrpEvtFreqSpan.DisplayMemberPath = "Display";
+        = DrpEvtContinent.DisplayMemberPath = DrpEvtFreqSpan.DisplayMemberPath = DrpCampaignDataGenerate.DisplayMemberPath = "Display";
       LbxD20.SelectedValuePath = LbxD4.SelectedValuePath = LbxD6.SelectedValuePath = LbxD8.SelectedValuePath = LbxD10.SelectedValuePath = LbxD12.SelectedValuePath
         = LbxEncounterCreatures.SelectedValuePath = LbxContinent.SelectedValuePath = LbxCreatureInfo.SelectedValuePath = LbxPlane.SelectedValuePath
         = LbxTime.SelectedValuePath = LbxEnvironment.SelectedValuePath = DrpEvtType.SelectedValuePath = DrpCampaignSelect.SelectedValuePath
-        = DrpEvtContinent.SelectedValuePath = DrpEvtFreqSpan.SelectedValuePath = "Result";
+        = DrpEvtContinent.SelectedValuePath = DrpEvtFreqSpan.SelectedValuePath = DrpCampaignDataGenerate.SelectedValuePath = "Result";
 
       LbxEncounterCRs.DisplayMemberPath = "Display";
       LbxEncounterCRs.SelectedValuePath = "Values";
@@ -507,14 +520,19 @@ namespace PFHelper
 
       foreach (TrackedEventType item in Enum.GetValues(typeof(TrackedEventType)))
       {
-        DrpEvtType.Items.Add(new DisplayResult() { Display = item.ToString(), Result = (int)item });
+        DrpEvtType.Items.Add(new DisplayResult { Display = item.ToString(), Result = (int)item });
       }
 
       foreach (TrackedEventFrequency item in Enum.GetValues(typeof(TrackedEventFrequency)))
       {
-        DrpEvtFreqSpan.Items.Add(new DisplayResult() { Display = item.ToString(), Result = (int)item });
+        DrpEvtFreqSpan.Items.Add(new DisplayResult { Display = item.ToString(), Result = (int)item });
       }
       EventFreqId = (int)TrackedEventFrequency.Days;
+
+      foreach (CampaignDataGenType item in Enum.GetValues(typeof(CampaignDataGenType)))
+      {
+        DrpCampaignDataGenerate.Items.Add(new DisplayResult { Display = item.ToString(), Result = (int)item });
+      }
     }
 
     #endregion
@@ -1974,6 +1992,22 @@ namespace PFHelper
       {
         e.Handled = true;
         BtnCombatDelete_Click(null, null);
+      }
+    }
+
+    private void BtnGenerateCampaignData_Click(object sender, RoutedEventArgs e)
+    {
+      if (Enum.IsDefined(typeof(CampaignDataGenType), CampaignDataGen))
+      {
+        switch (CampaignDataGen)
+        {
+          case (int)CampaignDataGenType.Formula:
+            // Formula generation window
+            break;
+          case (int)CampaignDataGenType.PFHelper:
+            // New PFHelper save data popup
+            break;
+        }
       }
     }
   }

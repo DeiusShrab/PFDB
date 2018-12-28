@@ -1,20 +1,11 @@
-﻿using System;
-using System.Security.Claims;
-using System.Text;
-using System.Threading.Tasks;
-using DBConnect;
-using Microsoft.AspNetCore.Authentication.Cookies;
-using Microsoft.AspNetCore.Authentication.JwtBearer;
+﻿using DBConnect;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpOverrides;
 using Microsoft.AspNetCore.Identity;
-using Microsoft.AspNetCore.Mvc;
-using Microsoft.AspNetCore.Rewrite;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
-using Microsoft.IdentityModel.Tokens;
 using PFDBSite.Models;
 using PFDBSite.Services;
 
@@ -41,6 +32,7 @@ namespace PFDBSite
       services.AddDbContext<PFUserContext>(options =>
                 options.UseSqlServer($"Server={PFConfig.UDB_ADDR};Database={PFConfig.UDB_DB};User Id={PFConfig.UDB_USER};Password={PFConfig.UDB_PASS}"));
 
+      // DEBUG
       var a = PFConfig.UDB_ADDR;
       var b = PFConfig.UDB_DB;
       var c = PFConfig.UDB_USER;

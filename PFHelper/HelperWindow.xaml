@@ -280,6 +280,9 @@
           <Button x:Name="BtnCampaignNew" Content="New" HorizontalAlignment="Left" Margin="876,215,0,0" VerticalAlignment="Top" Width="75" Click="BtnCampaignNew_Click"/>
           <Label Content="Campaign ID" HorizontalAlignment="Left" Margin="830,52,0,0" VerticalAlignment="Top"/>
           <Label x:Name="LblCampaignId" Content="000" HorizontalAlignment="Left" Margin="909,52,0,0" VerticalAlignment="Top"/>
+          <Label Content="Generate Data:" HorizontalAlignment="Left" Margin="250,356,0,0" VerticalAlignment="Top"/>
+          <ComboBox x:Name="DrpCampaignDataGenerate" HorizontalAlignment="Left" Margin="255,382,0,0" VerticalAlignment="Top" Width="270"/>
+          <Button x:Name="BtnGenerateCampaignData" Content="Generate" HorizontalAlignment="Left" Margin="450,409,0,0" VerticalAlignment="Top" Width="75" Click="BtnGenerateCampaignData_Click"/>
         </Grid>
       </TabItem>
     </TabControl>

@@ -3,11 +3,13 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using DBConnect;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Rewrite;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
@@ -43,13 +45,21 @@ namespace PFAPI
             ValidateAudience = true,
             ValidateLifetime = true,
             ValidateIssuerSigningKey = true,
-            ValidIssuer = DBConnect.PFConfig.JWT_ISSUER,
-            ValidAudience = DBConnect.PFConfig.JWT_ISSUER,
-            IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(DBConnect.PFConfig.JWT_KEY))
+            ValidIssuer = PFConfig.JWT_ISSUER,
+            ValidAudience = PFConfig.JWT_ISSUER,
+            IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(PFConfig.JWT_KEY))
           };
         });
 
       services.AddMvc();
+
+      services.AddDbContext<PFDBContext>(options =>
+                options.UseSqlServer($"Server={PFConfig.DB_ADDR};Database={PFConfig.DB_DB};User Id={PFConfig.DB_USER};Password={PFConfig.DB_PASS}"));
+
+      using (var context = PFDAL.GetContext())
+      {
+        context.Database.Migrate();
+      }
     }
 
     // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -69,7 +79,7 @@ namespace PFAPI
 
       app.UseMvc();
 
-      Console.WriteLine(DBConnect.PFConfig.APP_MODE);
+      Console.WriteLine(PFConfig.APP_MODE);
     }
   }
 }
