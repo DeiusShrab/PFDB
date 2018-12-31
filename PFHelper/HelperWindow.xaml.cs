@@ -622,14 +622,14 @@ namespace PFHelper
 
       if (CampaignData.ContainsKey(PFConfig.STR_SAVEDATA))
       {
-        var saveObject = Newtonsoft.Json.JsonConvert.DeserializeObject<SaveObject>(CampaignData[PFConfig.STR_SAVEDATA]);
+        var saveObject = Newtonsoft.Json.JsonConvert.DeserializeObject<PFHelperSaveObject>(CampaignData[PFConfig.STR_SAVEDATA]);
         LoadSavedData(saveObject);
       }
 
       return ret;
     }
 
-    private bool LoadSavedData(SaveObject saveObject)
+    private bool LoadSavedData(PFHelperSaveObject saveObject)
     {
       var ret = false;
 
@@ -694,7 +694,7 @@ namespace PFHelper
       if (string.IsNullOrWhiteSpace(path))
         path = Path.Combine(APPLICATIONPATH, FILENAME_SAVEDATA + EXT_SAVEDATA);
 
-      var saveObject = new SaveObject();
+      var saveObject = new PFHelperSaveObject();
 
       if (int.TryParse(TxtAPL.Text, out int apl))
         saveObject.Apl = apl;
@@ -731,17 +731,17 @@ namespace PFHelper
       if (string.IsNullOrWhiteSpace(path))
         path = Path.Combine(APPLICATIONPATH, FILENAME_SAVEDATA + EXT_SAVEDATA);
 
-      SaveObject saveObject = null;
+      PFHelperSaveObject saveObject = null;
 
       if (File.Exists(path) && Path.GetExtension(path).Equals(EXT_SAVEDATA, StringComparison.InvariantCultureIgnoreCase))
-        saveObject = Newtonsoft.Json.JsonConvert.DeserializeObject<SaveObject>(File.ReadAllText(path));
+        saveObject = Newtonsoft.Json.JsonConvert.DeserializeObject<PFHelperSaveObject>(File.ReadAllText(path));
 
       return LoadSavedData(saveObject);
     }
 
     private void SaveCampaignData()
     {
-      var saveObject = new SaveObject();
+      var saveObject = new PFHelperSaveObject();
 
       if (int.TryParse(TxtAPL.Text, out int apl))
         saveObject.Apl = apl;
@@ -2005,7 +2005,7 @@ namespace PFHelper
             // Formula generation window
             break;
           case (int)CampaignDataGenType.PFHelper:
-            // New PFHelper save data popup
+            // Generate new PFHelper save object
             break;
         }
       }

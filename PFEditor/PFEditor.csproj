@@ -101,6 +101,10 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
+    <Page Include="Controls\SaveDataControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Controls\SpellControl.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -157,6 +161,9 @@
     </Compile>
     <Compile Include="Controls\MonsterSpawnControl.xaml.cs">
       <DependentUpon>MonsterSpawnControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\SaveDataControl.xaml.cs">
+      <DependentUpon>SaveDataControl.xaml</DependentUpon>
     </Compile>
     <Compile Include="Controls\SpellControl.xaml.cs">
       <DependentUpon>SpellControl.xaml</DependentUpon>

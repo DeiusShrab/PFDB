@@ -24,7 +24,7 @@ namespace DBConnect.ConnectModels
 
     public FantasyDate(string parseDate, int monthsInYear = 13, int daysInMonth = 28)
     {
-      FromNumDate(parseDate);
+      UpdateFromNumDate(parseDate);
       MonthsInYear = monthsInYear;
       DaysInMonth = daysInMonth;
     }
@@ -118,7 +118,7 @@ namespace DBConnect.ConnectModels
       return ret;
     }
 
-    public FantasyDate FromNumDate(string fromDate)
+    public FantasyDate UpdateFromNumDate(string fromDate)
     {
       if (fromDate.Contains("-"))
       {

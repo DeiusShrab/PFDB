@@ -1,10 +1,9 @@
 ﻿using System.Collections.Generic;
-using DBConnect.ConnectModels;
 using DBConnect.DBModels;
 
-namespace PFHelper.Classes
+namespace DBConnect.ConnectModels
 {
-  class SaveObject
+  public class PFHelperSaveObject
   {
     public RandomWeatherResult WeatherResult { get; set; }
     public List<CombatEffectItem> CombatEffects { get; set; }
