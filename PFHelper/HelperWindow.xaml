@@ -48,7 +48,20 @@
     <Button x:Name="BtnNextDay" Content="NEXT DAY" HorizontalAlignment="Left" Margin="898,80,0,0" VerticalAlignment="Top" Width="75" Height="47" Click="BtnNextDay_Click" TabIndex="1103"/>
     <Button x:Name="BtnAddDays" Content="Add Days" HorizontalAlignment="Left" Margin="818,107,0,0" VerticalAlignment="Top" Width="75" Click="BtnAddDays_Click" TabIndex="1102"/>
     <xctk:IntegerUpDown x:Name="IntAddDays" Value="0" HorizontalAlignment="Left" Margin="818,82,0,0" VerticalAlignment="Top" Width="75" IsTabStop="True" TabIndex="1101" />
-    <ListBox x:Name="LbxD20" HorizontalAlignment="Left" Height="134" Margin="1226,26,0,0" VerticalAlignment="Top" Width="120"/>
+    <ListBox x:Name="LbxD20" HorizontalAlignment="Left" Height="134" Margin="1226,26,0,0" VerticalAlignment="Top" Width="120">
+      <ListBox.ItemContainerStyle>
+        <Style TargetType="{x:Type ListBoxItem}">
+          <Style.Triggers>
+            <DataTrigger Binding="{Binding Path=RawValue}" Value="20">
+              <Setter Property="Foreground" Value="Green"/>
+            </DataTrigger>
+            <DataTrigger Binding="{Binding Path=RawValue}" Value="1">
+              <Setter Property="Foreground" Value="Red"/>
+            </DataTrigger>
+          </Style.Triggers>
+        </Style>
+      </ListBox.ItemContainerStyle>
+    </ListBox>
     <Button x:Name="BtnRollD20" Content="Roll D20s" HorizontalAlignment="Left" Margin="1111,49,0,0" VerticalAlignment="Top" Width="110" Click="BtnRollD20_Click" TabIndex="1004"/>
     <RadioButton x:Name="RadPlusD20" Content="+" HorizontalAlignment="Left" Margin="1111,77,0,0" VerticalAlignment="Top" RenderTransformOrigin="2.826,0.497" GroupName="D20pm" IsChecked="True" TabIndex="1001"/>
     <RadioButton x:Name="RadMinusD20" Content="-" HorizontalAlignment="Left" Margin="1143,77,0,0" VerticalAlignment="Top" RenderTransformOrigin="-2.197,0.729" GroupName="D20pm" TabIndex="1002"/>
@@ -162,7 +175,7 @@
               <DataGridTextColumn Binding="{Binding Init}" Header="Init" Width="30"/>
               <DataGridTextColumn Binding="{Binding Name}" Header="Name" Width="150"/>
               <DataGridTextColumn Binding="{Binding HP}" Header="HP" Width="35"/>
-              <DataGridTemplateColumn Header="AC" Width="30">
+              <DataGridTemplateColumn Header="AC" Width="30" IsReadOnly="True">
                 <DataGridTemplateColumn.CellTemplate>
                   <DataTemplate>
                     <TextBlock Text="{Binding AC}" ToolTip="{Binding ACTooltip}">
@@ -170,9 +183,11 @@
                   </DataTemplate>
                 </DataGridTemplateColumn.CellTemplate>
               </DataGridTemplateColumn>
-              <DataGridTextColumn Binding="{Binding Fort}" Header="Fort" Width="30"/>
-              <DataGridTextColumn Binding="{Binding Ref}" Header="Ref" Width="30"/>
-              <DataGridTextColumn Binding="{Binding Will}" Header="Will" Width="30"/>
+              <DataGridTextColumn Binding="{Binding CMB}" Header="CMB" Width="36" IsReadOnly="True"/>
+              <DataGridTextColumn Binding="{Binding CMD}" Header="CMD" Width="36" IsReadOnly="True"/>
+              <DataGridTextColumn Binding="{Binding Fort}" Header="Fort" Width="30" IsReadOnly="True"/>
+              <DataGridTextColumn Binding="{Binding Ref}" Header="Ref" Width="30" IsReadOnly="True"/>
+              <DataGridTextColumn Binding="{Binding Will}" Header="Will" Width="30" IsReadOnly="True"/>
               <DataGridTextColumn Binding="{Binding Note}" Header="Note" Width="*"/>
             </DataGrid.Columns>
           </DataGrid>
@@ -186,19 +201,19 @@
           <TextBox x:Name="TxtCombatName" HorizontalAlignment="Left" Height="23" Margin="42,72,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="153" TabIndex="102"/>
           <Label Content="Name" HorizontalAlignment="Left" Margin="42,46,0,0" VerticalAlignment="Top"/>
           <Label Content="PC?" HorizontalAlignment="Left" Margin="200,46,0,0" VerticalAlignment="Top"/>
-          <Label Content="Touch" HorizontalAlignment="Left" Margin="294,46,0,0" VerticalAlignment="Top"/>
+          <Label Content="Touch" HorizontalAlignment="Left" Margin="289,46,0,0" VerticalAlignment="Top"/>
           <Label Content="AC" HorizontalAlignment="Left" Margin="264,46,0,0" VerticalAlignment="Top"/>
-          <Label Content="Flat" HorizontalAlignment="Left" Margin="340,46,0,0" VerticalAlignment="Top"/>
-          <Label Content="Fort" HorizontalAlignment="Left" Margin="374,46,0,0" VerticalAlignment="Top"/>
-          <Label Content="Ref" HorizontalAlignment="Left" Margin="410,46,0,0" VerticalAlignment="Top"/>
-          <Label Content="Will" HorizontalAlignment="Left" Margin="442,46,0,0" VerticalAlignment="Top"/>
+          <Label Content="Flat" HorizontalAlignment="Left" Margin="330,46,0,0" VerticalAlignment="Top"/>
+          <Label Content="Fort" HorizontalAlignment="Left" Margin="431,46,0,0" VerticalAlignment="Top"/>
+          <Label Content="Ref" HorizontalAlignment="Left" Margin="462,46,0,0" VerticalAlignment="Top"/>
+          <Label Content="Will" HorizontalAlignment="Left" Margin="492,46,0,0" VerticalAlignment="Top"/>
           <TextBox x:Name="TxtCombatAC" HorizontalAlignment="Left" Height="23" Margin="265,72,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="22" TabIndex="105"/>
           <CheckBox x:Name="CbxCombatPC" Content="" HorizontalAlignment="Left" Margin="206,75,0,0" VerticalAlignment="Top" TabIndex="103"/>
-          <TextBox x:Name="TxtCombatTouch" HorizontalAlignment="Left" Height="23" Margin="304,72,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="22" TabIndex="106"/>
-          <TextBox x:Name="TxtCombatFlat" HorizontalAlignment="Left" Height="23" Margin="343,72,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="22" TabIndex="107"/>
-          <TextBox x:Name="TxtCombatFort" HorizontalAlignment="Left" Height="23" Margin="378,72,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="22" TabIndex="108"/>
-          <TextBox x:Name="TxtCombatRef" HorizontalAlignment="Left" Height="23" Margin="413,72,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="22" TabIndex="109"/>
-          <TextBox x:Name="TxtCombatWill" HorizontalAlignment="Left" Height="23" Margin="446,72,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="22" TabIndex="110"/>
+          <TextBox x:Name="TxtCombatTouch" HorizontalAlignment="Left" Height="23" Margin="301,72,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="22" TabIndex="106"/>
+          <TextBox x:Name="TxtCombatFlat" HorizontalAlignment="Left" Height="23" Margin="335,72,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="22" TabIndex="107"/>
+          <TextBox x:Name="TxtCombatFort" HorizontalAlignment="Left" Height="23" Margin="435,72,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="22" TabIndex="108"/>
+          <TextBox x:Name="TxtCombatRef" HorizontalAlignment="Left" Height="23" Margin="465,72,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="22" TabIndex="109"/>
+          <TextBox x:Name="TxtCombatWill" HorizontalAlignment="Left" Height="23" Margin="496,72,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="22" TabIndex="110"/>
           <Button x:Name="BtnCombatClearAll" Content="CLEAR ALL" HorizontalAlignment="Left" Margin="664,10,0,0" VerticalAlignment="Top" Width="101" Height="31" Click="BtnCombatClearAll_Click"/>
           <Button x:Name="BtnCombatEnd" Content="End Combat" HorizontalAlignment="Left" Margin="558,10,0,0" VerticalAlignment="Top" Width="101" Height="31" Click="BtnCombatEnd_Click"/>
           <TextBox x:Name="TxtCombatEffect" HorizontalAlignment="Left" Height="23" Margin="770,72,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="215" TabIndex="151"/>
@@ -212,6 +227,10 @@
           <Button x:Name="BtnCombatCreatureInfo" Content="Creature Info" HorizontalAlignment="Left" Margin="664,437,0,0" VerticalAlignment="Top" Width="101" Height="20" TabIndex="111" Click="BtnCombatCreatureInfo_Click"/>
           <Button x:Name="BtnCombatImport" Content="Import Grid" HorizontalAlignment="Left" Margin="504,437,0,0" VerticalAlignment="Top" Width="75" Click="BtnCombatImport_Click"/>
           <Button x:Name="BtnCombatExport" Content="Export Grid" HorizontalAlignment="Left" Margin="584,437,0,0" VerticalAlignment="Top" Width="75" Click="BtnCombatExport_Click"/>
+          <Label Content="CMB" HorizontalAlignment="Left" Margin="359,46,0,0" VerticalAlignment="Top"/>
+          <TextBox x:Name="TxtCombatCMB" HorizontalAlignment="Left" Height="23" Margin="367,72,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="22" TabIndex="107"/>
+          <Label Content="CMD" HorizontalAlignment="Left" Margin="394,46,0,0" VerticalAlignment="Top"/>
+          <TextBox x:Name="TxtCombatCMD" HorizontalAlignment="Left" Height="23" Margin="402,72,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="22" TabIndex="107"/>
         </Grid>
       </TabItem>
       <TabItem x:Name="TabCreatureInfo" Header="Creature Info" Margin="-2,-2,-2,0">
@@ -285,13 +304,16 @@
           <Button x:Name="BtnGenerateCampaignData" Content="Generate" HorizontalAlignment="Left" Margin="450,409,0,0" VerticalAlignment="Top" Width="75" Click="BtnGenerateCampaignData_Click"/>
         </Grid>
       </TabItem>
+      <TabItem x:Name="TabShopping" Header="Shopping" Margin="-2,-2,-2,0">
+        <Grid Background="#FFE5E5E5"/>
+      </TabItem>
     </TabControl>
     <Label x:Name="LblTextDate" Content="Wed, Emb 00" HorizontalAlignment="Left" Margin="689,116,0,0" VerticalAlignment="Top" FontSize="16"/>
     <Label x:Name="LblNumericDate" Content="000000 / 00 / 00" HorizontalAlignment="Left" Margin="687,80,0,0" VerticalAlignment="Top" FontSize="16"/>
     <Label Content="High is BAD for party, Low is GOOD for party" HorizontalAlignment="Left" Margin="10,80,0,0" VerticalAlignment="Top" FontSize="10"/>
     <Label Content="#" HorizontalAlignment="Left" Margin="1150,23,0,0" VerticalAlignment="Top"/>
-    <Label Content="Average:" HorizontalAlignment="Left" Margin="1113,94,0,0" VerticalAlignment="Top" FontSize="14"/>
-    <Label x:Name="LblAvgD20" Content="00" HorizontalAlignment="Left" Margin="1196,94,0,0" VerticalAlignment="Top" FontSize="14"/>
+    <Label Content="Pass:" HorizontalAlignment="Left" Margin="1114,127,0,0" VerticalAlignment="Top" FontSize="14"/>
+    <Label x:Name="LblTargetD20" Content="00" HorizontalAlignment="Left" Margin="1196,127,0,0" VerticalAlignment="Top" FontSize="14"/>
     <Menu Height="21" VerticalAlignment="Top">
       <MenuItem Name="MenuFile" Header="File">
         <MenuItem Name="MenuSave" Header="Save" InputGestureText="Ctrl+S" Command="Save" />
@@ -305,6 +327,8 @@
     <Button x:Name="BtnManualWeather" Content="Manual Weather" HorizontalAlignment="Left" Margin="254,80,0,0" VerticalAlignment="Top" Width="100" Click="BtnManualWeather_Click" TabIndex="1202"/>
     <CheckBox x:Name="CbxWeatherLock" Content="Lock Weather" HorizontalAlignment="Left" Margin="359,85,0,0" VerticalAlignment="Top" TabIndex="1203"/>
     <Button x:Name="BtnRandomWeather" Content="Random Weather" HorizontalAlignment="Left" Margin="254,105,0,0" VerticalAlignment="Top" Width="100" TabIndex="1202" Click="BtnRandomWeather_Click"/>
+    <Label Content="Target:" HorizontalAlignment="Left" Margin="1114,96,0,0" VerticalAlignment="Top" FontSize="14"/>
+    <xctk:IntegerUpDown x:Name="IntTargetD20" Value="0" HorizontalAlignment="Left" Margin="1172,101,0,0" VerticalAlignment="Top" Width="49" TabIndex="1000" IsTabStop="True" />
 
   </Grid>
 </Window>

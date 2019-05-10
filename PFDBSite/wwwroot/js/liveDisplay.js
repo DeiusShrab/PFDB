@@ -47,6 +47,10 @@ connection.on("ReceiveDrawing", (user, drawObj) => {
   ctx.closePath();
 });
 
+connection.on("ReceiveDate", (date) => {
+    $("#LiveDate").text(date);
+});
+
 connection.start().catch(err => console.error(err.toString()));
 
 document.getElementById("sendButton").addEventListener("click", event => {

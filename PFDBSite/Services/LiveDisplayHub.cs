@@ -128,6 +128,11 @@ namespace PFDBSite.Services
       await Clients.All.SendAsync("UpdateCombat", combatJson);
     }
 
+    public async Task UpdateDate(string date)
+    {
+      await Clients.All.SendAsync("UpdateDate", date);
+    }
+
     internal class Emoji
     {
       public int Id { get; set; }

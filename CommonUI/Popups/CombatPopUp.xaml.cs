@@ -95,6 +95,24 @@ namespace CommonUI.Popups
       }
       set { TxtACFlat.Text = value.ToString(); }
     }
+    public int CMB
+    {
+      get
+      {
+        int.TryParse(TxtCMB.Text, out int ret);
+        return ret;
+      }
+      set { TxtCMB.Text = value.ToString(); }
+    }
+    public int CMD
+    {
+      get
+      {
+        int.TryParse(TxtCMD.Text, out int ret);
+        return ret;
+      }
+      set { TxtCMD.Text = value.ToString(); }
+    }
     public int Fort
     {
       get
@@ -162,6 +180,8 @@ namespace CommonUI.Popups
       AC = CombatGridItem.AC;
       ACTouch = CombatGridItem.ACTouch;
       ACFlat = CombatGridItem.ACFlat;
+      CMB = CombatGridItem.CMB;
+      CMD = CombatGridItem.CMD;
       Fort = CombatGridItem.Fort;
       Ref = CombatGridItem.Ref;
       Will = CombatGridItem.Will;
@@ -180,6 +200,8 @@ namespace CommonUI.Popups
       CombatGridItem.AC = AC;
       CombatGridItem.ACTouch = ACTouch;
       CombatGridItem.ACFlat = ACFlat;
+      CombatGridItem.CMB = CMB;
+      CombatGridItem.CMD = CMD;
       CombatGridItem.Fort = Fort;
       CombatGridItem.Ref = Ref;
       CombatGridItem.Will = Will;

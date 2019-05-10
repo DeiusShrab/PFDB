@@ -122,6 +122,30 @@ namespace DBConnect.ConnectModels
         }
       }
     }
+    public int CMB
+    {
+      get { return this._cmb; }
+      set
+      {
+        if (value != this._cmb)
+        {
+          this._cmb = value;
+          NotifyPropertyChanged();
+        }
+      }
+    }
+    public int CMD
+    {
+      get { return this._cmd; }
+      set
+      {
+        if (value != this._cmd)
+        {
+          this._cmd = value;
+          NotifyPropertyChanged();
+        }
+      }
+    }
     public int Fort
     {
       get { return this._fort; }
@@ -203,6 +227,8 @@ namespace DBConnect.ConnectModels
     private int _ac;
     private int _actouch;
     private int _acflat;
+    private int _cmb;
+    private int _cmd;
     private int _fort;
     private int _ref;
     private int _will;
@@ -222,6 +248,8 @@ namespace DBConnect.ConnectModels
       AC = b.Ac;
       ACTouch = b.Actouch;
       ACFlat = b.Acflat;
+      CMB = b.Cmb;
+      CMD = b.Cmd;
       Fort = b.Fortitude;
       Ref = b.Reflex;
       Will = b.Will;
@@ -240,6 +268,8 @@ namespace DBConnect.ConnectModels
       AC = copy.AC;
       ACTouch = copy.ACTouch;
       ACFlat = copy.ACFlat;
+      CMB = copy.CMB;
+      CMD = copy.CMD;
       Fort = copy.Fort;
       Ref = copy.Ref;
       Will = copy.Will;

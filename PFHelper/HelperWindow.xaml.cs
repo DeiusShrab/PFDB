@@ -25,6 +25,7 @@ namespace PFHelper
     #region Static Properties
 
     public static int TAB_CREATUREINFO = 2;
+    public static string CD_PFSAVEDATA = "PFSAVEDATA";
 
     #endregion
 
@@ -194,6 +195,26 @@ namespace PFHelper
         return ret;
       }
       set { TxtCombatTouch.Text = value.ToString(); }
+    }
+
+    private int CgiCmb
+    {
+      get
+      {
+        int.TryParse(TxtCombatCMB.Text, out int ret);
+        return ret;
+      }
+      set { TxtCombatCMB.Text = value.ToString(); }
+    }
+
+    private int CgiCmd
+    {
+      get
+      {
+        int.TryParse(TxtCombatCMD.Text, out int ret);
+        return ret;
+      }
+      set { TxtCombatCMD.Text = value.ToString(); }
     }
 
     private int CgiFort
@@ -511,7 +532,14 @@ namespace PFHelper
       DrpCampaignSelect.ItemsSource = campaignList;
       DrpEvtContinent.ItemsSource = continentList;
 
-      LoadDataFromDisk();
+      if (!CampaignData.ContainsKey(PFConfig.STR_SAVEDATA))
+      {
+        if (MessageBox.Show("ERROR - Failed to load campaign data from server. Load from disk instead?", string.Empty, MessageBoxButton.YesNo) == MessageBoxResult.Yes)
+        {
+          LoadDataFromDisk();
+        }
+      }
+
       LoadContinentEnvironments();
 
       UpdateDisplays();
@@ -820,6 +848,8 @@ namespace PFHelper
       TxtCombatAC.Clear();
       TxtCombatFlat.Clear();
       TxtCombatTouch.Clear();
+      TxtCombatCMB.Clear();
+      TxtCombatCMD.Clear();
       TxtCombatFort.Clear();
       TxtCombatRef.Clear();
       TxtCombatWill.Clear();
@@ -834,19 +864,20 @@ namespace PFHelper
       IntCombatEffectRounds.Value = null;
     }
 
-    private List<DisplayResult> DiceRoll(int d, int num, int add, bool addPos)
+    private List<DiceRollDisplayResult> DiceRoll(int d, int num, int add, bool addPos)
     {
-      var ret = new List<DisplayResult>();
+      var ret = new List<DiceRollDisplayResult>();
       string op = addPos ? "+" : "-";
 
       for (int i = 0; i < num; i++)
       {
         var roll = random.Next(d) + 1;
         var result = addPos ? (roll + add) : (roll - add);
-        var itm = new DisplayResult
+        var itm = new DiceRollDisplayResult
         {
           Display = $"{roll} {op} {add} = {result}",
-          Result = result
+          Result = result,
+          RawValue = roll
         };
 
         ret.Add(itm);
@@ -1394,7 +1425,14 @@ namespace PFHelper
         var diceList = DiceRoll(20, IntNumD20.Value ?? 0, IntAddD20.Value ?? 0, RadPlusD20.IsChecked ?? false);
         LbxD20.ItemsSource = diceList;
 
-        LblAvgD20.Content = diceList.Average(x => x.Result);
+        int pass = 0;
+        foreach (var item in diceList)
+        {
+          if (item.Result > (IntTargetD20.Value ?? 0))
+            pass++;
+        }
+
+        LblTargetD20.Content = pass;
       }
     }
 
@@ -1519,6 +1557,8 @@ namespace PFHelper
           AC = CgiAC,
           ACFlat = CgiFlat,
           ACTouch = CgiTouch,
+          CMB = CgiCmb,
+          CMD = CgiCmd,
           BestiaryId = 0,
           Fort = CgiFort,
           Ref = CgiRef,
@@ -1601,16 +1641,12 @@ namespace PFHelper
 
     private void Window_Closing(object sender, System.ComponentModel.CancelEventArgs e)
     {
-      SaveDataToDB();
-      var savePath = Path.Combine(APPLICATIONPATH, FILENAME_SAVEDATA + EXT_SAVEDATA);
-      SaveDataToDisk(savePath);
+      SaveCampaignData();
     }
 
     private void CommandSave_Executed(object sender, System.Windows.Input.ExecutedRoutedEventArgs e)
     {
-      SaveDataToDB();
-      var savePath = Path.Combine(APPLICATIONPATH, FILENAME_SAVEDATA + EXT_SAVEDATA);
-      SaveDataToDisk(savePath);
+      SaveCampaignData();
     }
 
     private void BtnCombatClearAll_Click(object sender, RoutedEventArgs e)
@@ -1933,6 +1969,8 @@ namespace PFHelper
           selectedItem.AC = popup.CombatGridItem.AC;
           selectedItem.ACTouch = popup.CombatGridItem.ACTouch;
           selectedItem.ACFlat = popup.CombatGridItem.ACFlat;
+          selectedItem.CMB = popup.CombatGridItem.CMB;
+          selectedItem.CMD = popup.CombatGridItem.CMD;
           selectedItem.Fort = popup.CombatGridItem.Fort;
           selectedItem.Ref = popup.CombatGridItem.Ref;
           selectedItem.Will = popup.CombatGridItem.Will;
@@ -1984,8 +2022,6 @@ namespace PFHelper
       }
     }
 
-    #endregion
-
     private void DgCombatGrid_PreviewKeyDown(object sender, System.Windows.Input.KeyEventArgs e)
     {
       if (e.Key == System.Windows.Input.Key.Delete)
@@ -2010,5 +2046,7 @@ namespace PFHelper
         }
       }
     }
+
+    #endregion
   }
 }
