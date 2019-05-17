@@ -148,5 +148,70 @@ namespace PFAPI.Helpers
 
       return ret;
     }
+
+    public List<MonsterSpawnEdit> GetMonsterSpawnEdit()
+    {
+      var ret = new List<MonsterSpawnEdit>();
+      var context = PFDAL.GetContext();
+
+      var retList = from ms in context.MonsterSpawn
+                    join b in context.Bestiary on ms.BestiaryId equals b.BestiaryId
+                    join t in context.BestiaryType on b.Type equals t.BestiaryTypeId
+                    select new MonsterSpawnEdit
+                    {
+                      BestiaryId = ms.BestiaryId,
+                      ContinentId = ms.ContinentId,
+                      CR = b.Cr,
+                      Name = b.Name,
+                      PlaneId = ms.PlaneId,
+                      SeasonId = ms.SeasonId,
+                      TimeId = ms.TimeId,
+                      Type = t.Name
+                    };
+
+      foreach (var item in retList)
+      {
+        var types = from st in context.BestiarySubType
+                    join t in context.BestiaryType on st.BestiaryTypeId equals t.BestiaryTypeId
+                    where st.BestiaryId == item.BestiaryId
+                    select t.Name;
+
+        if (types.Count() > 0)
+        {
+          item.Type += " (";
+          foreach (var type in types.OrderBy(x => x))
+          {
+            item.Type += type + ", ";
+          }
+          item.Type.Remove(item.Type.Length - 2);
+          item.Type += ")";
+        }
+      }
+
+      return ret;
+    }
+
+    public void UpdateMonsterSpawn(UpdateMonsterSpawnRequest request)
+    {
+      var context = PFDAL.GetContext();
+
+      var delList = from ms in context.MonsterSpawn
+                    where ms.BestiaryId == request.BestiaryId
+                      && ms.ContinentId == request.ContinentId
+                      && ms.SeasonId == request.SeasonId
+                    select ms;
+
+      foreach (var item in delList)
+      {
+        context.MonsterSpawn.Remove(item);
+      }
+
+      foreach (var item in request.Spawns)
+      {
+        context.MonsterSpawn.Add(item);
+      }
+
+      context.SaveChanges();
+    }
   }
 }

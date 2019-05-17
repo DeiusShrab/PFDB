@@ -1649,6 +1649,18 @@ namespace PFHelper
       SaveCampaignData();
     }
 
+    private void MenuImport_Click(object sender, RoutedEventArgs e)
+    {
+      // Load campaign data from file
+      MessageBox.Show("TEST");
+    }
+
+    private void MenuExport_Click(object sender, RoutedEventArgs e)
+    {
+      // Save campaign data to file
+      MessageBox.Show("TEST");
+    }
+
     private void BtnCombatClearAll_Click(object sender, RoutedEventArgs e)
     {
       var dialogResult = MessageBox.Show("Are you sure you want to Clear All?", string.Empty, MessageBoxButton.YesNoCancel);

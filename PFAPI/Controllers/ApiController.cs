@@ -290,6 +290,26 @@ namespace PFAPI.Controllers
       return new JsonResult(helperQuery.EnvironmentsForContinent(continentId));
     }
 
+    [HttpGet("MonsterSpawnEdit")]
+    public IActionResult GetMonsterSpawnEdit()
+    {
+      return new JsonResult(helperQuery.GetMonsterSpawnEdit());
+    }
+
+    [HttpPost("MonsterSpawnEdit")]
+    public IActionResult UpdateMonsterSpawn([FromBody] UpdateMonsterSpawnRequest request)
+    {
+      if (request == null || request.BestiaryId <= 0 || request.SeasonId <= 0 || request.ContinentId <= 0)
+        return BadRequest();
+
+      if (request.Spawns.Any(x => x.ContinentId != request.ContinentId) || request.Spawns.Any(x => x.BestiaryId != request.BestiaryId) || request.Spawns.Any(x => x.SeasonId != request.SeasonId))
+        return BadRequest();
+
+      helperQuery.UpdateMonsterSpawn(request);
+
+      return Ok();
+    }
+
 #endregion
 
 #region All

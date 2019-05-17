@@ -6,25 +6,21 @@
              xmlns:local="clr-namespace:PFEditor.Controls"
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800" Width="1332" Height="649" Background="#FFDDDDDD">
-    <Grid KeyDown="Grid_KeyDown">
-        <ListBox x:Name="LbxSpawnList" HorizontalAlignment="Left" Height="555" Margin="10,59,0,0" VerticalAlignment="Top" Width="180" MouseDoubleClick="LbxSpawnList_MouseDoubleClick"/>
-        <TextBox x:Name="TxtSearch" HorizontalAlignment="Left" Height="23" Margin="10,10,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="180" TextChanged="TxtSearch_TextChanged"/>
-        <Button x:Name="BtnSortName" Content="Name" HorizontalAlignment="Left" Margin="47,617,0,0" VerticalAlignment="Top" Width="50" Click="BtnSortName_Click"/>
-        <Label Content="Sort" HorizontalAlignment="Left" Margin="10,614,0,0" VerticalAlignment="Top"/>
-        <Button x:Name="BtnSortCr" Content="CR" HorizontalAlignment="Left" Margin="102,617,0,0" VerticalAlignment="Top" Width="50" Click="BtnSortCr_Click"/>
-        <Label Content="Search" HorizontalAlignment="Left" Margin="10,33,0,0" VerticalAlignment="Top"/>
-        <RadioButton x:Name="RadSearchName" Content="Name" HorizontalAlignment="Left" Margin="60,39,0,0" VerticalAlignment="Top" GroupName="MSSearch" IsChecked="True"/>
-        <RadioButton x:Name="RadSearchType" Content="Type" HorizontalAlignment="Left" Margin="116,39,0,0" VerticalAlignment="Top" GroupName="MSSearch"/>
-        <Button x:Name="BtnSave" Content="Save" HorizontalAlignment="Left" Margin="1247,619,0,0" VerticalAlignment="Top" Width="75"/>
-        <TabControl x:Name="TabsMonsterSpawn" HorizontalAlignment="Left" Height="555" Margin="195,59,0,0" VerticalAlignment="Top" Width="1127" ItemsSource="{Binding}">
-            <TabControl.Resources>
-                <DataTemplate x:Key="TabHeader" DataType="TabItem">
-                    <DockPanel>
-                        <DataGrid x:Name="DgItem" DockPanel.Dock="Top" Width="Auto" Height="Auto" ItemsSource="{Binding Mode=TwoWay}"/>
-                    </DockPanel>
-                </DataTemplate>
-            </TabControl.Resources>
-        </TabControl>
+  <Grid KeyDown="Grid_KeyDown">
+    <TextBox x:Name="TxtSearch" HorizontalAlignment="Left" Height="23" Margin="55,10,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="200" TextChanged="TxtSearch_TextChanged"/>
+    <Button x:Name="BtnSortName" Content="Name" HorizontalAlignment="Left" Margin="47,617,0,0" VerticalAlignment="Top" Width="50" Click="BtnSortName_Click"/>
+    <Label Content="Sort" HorizontalAlignment="Left" Margin="10,614,0,0" VerticalAlignment="Top"/>
+    <Button x:Name="BtnSortCr" Content="CR" HorizontalAlignment="Left" Margin="102,617,0,0" VerticalAlignment="Top" Width="50" Click="BtnSortCr_Click"/>
+    <Label Content="Search" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="10,7,0,0"/>
+    <RadioButton x:Name="RadSearchName" Content="Name" HorizontalAlignment="Left" Margin="260,13,0,0" VerticalAlignment="Top" GroupName="MSSearch" IsChecked="True"/>
+    <RadioButton x:Name="RadSearchType" Content="Type" HorizontalAlignment="Left" Margin="316,13,0,0" VerticalAlignment="Top" GroupName="MSSearch"/>
+    <Button x:Name="BtnSave" Content="Save" HorizontalAlignment="Left" Margin="1247,619,0,0" VerticalAlignment="Top" Width="75"/>
+    <Button x:Name="BtnSortType" Content="Type" HorizontalAlignment="Left" Margin="157,617,0,0" VerticalAlignment="Top" Width="50" Click="BtnSortType_Click"/>
+    <DataGrid x:Name="DgMonsterSpawn" HorizontalAlignment="Left" Height="571" Margin="10,38,0,0" VerticalAlignment="Top" Width="1312" ItemsSource="{Binding MonsterSpawnRows_Filter}"/>
+    <ComboBox x:Name="DrpContinent" HorizontalAlignment="Left" Margin="465,10,0,0" VerticalAlignment="Top" Width="150"/>
+    <Label Content="Continent" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="403,7,0,0"/>
+    <ComboBox x:Name="DrpSeason" HorizontalAlignment="Left" Margin="668,10,0,0" VerticalAlignment="Top" Width="150"/>
+    <Label Content="Season" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="620,7,0,0"/>
 
-    </Grid>
+  </Grid>
 </UserControl>

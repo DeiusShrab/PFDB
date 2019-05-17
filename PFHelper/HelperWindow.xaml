@@ -317,6 +317,8 @@
     <Menu Height="21" VerticalAlignment="Top">
       <MenuItem Name="MenuFile" Header="File">
         <MenuItem Name="MenuSave" Header="Save" InputGestureText="Ctrl+S" Command="Save" />
+        <MenuItem Name="MenuImport" Header="Import Data..." Click="MenuImport_Click" />
+        <MenuItem Name="MenuExport" Header="Export Data..." Click="MenuExport_Click" />
       </MenuItem>
       <MenuItem x:Name="MenuEdit" Header="Edit" Height="21" Width="40">
         <MenuItem x:Name="MenuEditConfig" Header="Configuration" Height="21" Margin="0,0,-1,0" Click="MenuEditConfig_Click"/>

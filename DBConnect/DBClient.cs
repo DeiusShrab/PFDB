@@ -224,6 +224,20 @@ namespace DBConnect
       return ret;
     }
 
+    public static List<MonsterSpawnEdit> GetMonsterSpawnsForEdit()
+    {
+      var ret = new List<MonsterSpawnEdit>();
+
+      var response = client.GetAsync($"{API_ADDR}MonsterSpawnEdit").Result;
+      if (response.IsSuccessStatusCode)
+      {
+        var content = response.Content;
+        ret = JsonConvert.DeserializeObject<List<MonsterSpawnEdit>>(content.ReadAsStringAsync().Result);
+      }
+
+      return ret;
+    }
+
     #endregion
 
     #region Details
