@@ -29,10 +29,10 @@ namespace DBConnect
     #region Token
 
     // Called by applications to connect, not needed by PFDBSite
-    public static void ConnectToApi()
+    public static bool ConnectToApi()
     {
       DetailCache = new DBCache<BestiaryDetail>(MAX_CACHE_SIZE);
-      RefreshToken();
+      return RefreshToken();
     }
 
     public static void ReloadConfig(bool reconnectToApi)
@@ -45,24 +45,33 @@ namespace DBConnect
         ConnectToApi();
     }
 
-    private static void RefreshToken()
+    private static bool RefreshToken()
     {
-      var body = "{" + $"'username': '{PFConfig.API_USER}', 'password': '{PFConfig.API_PASS}'" + "}";
-      var response = client.PostAsync(API_ADDR + "GetToken/pls", new StringContent(body, Encoding.UTF8, "application/json")).Result;
-      if (response.IsSuccessStatusCode)
+      var testResponse = client.GetAsync(API_ADDR + "test").Result;
+      if (testResponse.IsSuccessStatusCode)
       {
-        var content = response.Content;
-        var token = JsonConvert.DeserializeObject<JObject>(content.ReadAsStringAsync().Result);
-        if (token.ContainsKey("token") && !string.IsNullOrWhiteSpace(token["token"].Value<string>()))
+        var body = "{" + $"'username': '{PFConfig.API_USER}', 'password': '{PFConfig.API_PASS}'" + "}";
+        var response = client.PostAsync(API_ADDR + "GetToken/pls", new StringContent(body, Encoding.UTF8, "application/json")).Result;
+        if (response.IsSuccessStatusCode)
         {
-          API_TOKEN = token["token"].Value<string>();
-          TOKEN_DATE = System.DateTime.Now;
-          client.DefaultRequestHeaders.Authorization = new System.Net.Http.Headers.AuthenticationHeaderValue("Bearer", API_TOKEN);
-          ApiTimer = new Timer(System.TimeSpan.FromHours(12).TotalMilliseconds);
-          ApiTimer.Elapsed += ApiTimer_Elapsed;
-          ApiTimer.Start();
+
+          var content = response.Content;
+          var token = JsonConvert.DeserializeObject<JObject>(content.ReadAsStringAsync().Result);
+          if (token.ContainsKey("token") && !string.IsNullOrWhiteSpace(token["token"].Value<string>()))
+          {
+            API_TOKEN = token["token"].Value<string>();
+            TOKEN_DATE = System.DateTime.Now;
+            client.DefaultRequestHeaders.Authorization = new System.Net.Http.Headers.AuthenticationHeaderValue("Bearer", API_TOKEN);
+            ApiTimer = new Timer(System.TimeSpan.FromHours(12).TotalMilliseconds);
+            ApiTimer.Elapsed += ApiTimer_Elapsed;
+            ApiTimer.Start();
+          }
+
+          return true;
         }
       }
+
+      return false;
     }
 
     private static void ApiTimer_Elapsed(object sender, ElapsedEventArgs e)

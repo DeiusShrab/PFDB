@@ -593,7 +593,10 @@ namespace PFHelper
       {
         try
         {
-          DBClient.ConnectToApi();
+          if (!DBClient.ConnectToApi())
+          {
+            MessageBox.Show("ERROR - Failed to connect to API");
+          }
 
           continents.AddRange(DBClient.GetContinents());
           seasons.AddRange(DBClient.GetSeasons());
