@@ -655,6 +655,7 @@ namespace PFHelper
       {
         var saveObject = Newtonsoft.Json.JsonConvert.DeserializeObject<PFHelperSaveObject>(CampaignData[PFConfig.STR_SAVEDATA]);
         LoadSavedData(saveObject);
+        UpdateDisplays();
       }
 
       return ret;
@@ -706,7 +707,7 @@ namespace PFHelper
         RationsInfinite = false;
 
         RationsLeft = 60;
-        CurrentDate = new FantasyDate() { Year = 10000, Month = 1, Day = 1 };
+        CurrentDate = new FantasyDate() { Year = 100, Month = 1, Day = 1 };
         CurrentWeather = new Weather();
         CurrentContinent = null;
         CurrentPlane = null;
