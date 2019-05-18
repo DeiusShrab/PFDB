@@ -624,8 +624,7 @@ namespace DBConnect
               .IsUnicode(false);
 
         entity.Property(e => e.Value)
-              .HasMaxLength(500)
-              .IsUnicode(false);
+              .HasColumnType("varchar(MAX)");
 
         entity.HasOne(e => e.Campaign)
               .WithMany(e => e.CampaignData)
@@ -1278,6 +1277,9 @@ namespace DBConnect
         entity.Property(e => e.Name)
               .HasMaxLength(100)
               .IsUnicode(false);
+
+        entity.Property(e => e.Cost)
+              .HasColumnType("decimal(10,2)");
 
         entity.HasMany(e => e.CharacterGear)
               .WithOne(e => e.Gear)
@@ -2147,6 +2149,9 @@ namespace DBConnect
             .HasMaxLength(100)
             .IsUnicode(false);
 
+        entity.Property(e => e.MovementModifier)
+              .HasColumnType("decimal(5,2)");
+
         entity.HasMany(e => e.Locations)
               .WithOne(e => e.Terrain)
               .HasForeignKey(e => e.TerrainId)
@@ -2225,6 +2230,7 @@ namespace DBConnect
         entity.HasOne(e => e.Continent)
               .WithMany(e => e.ContinentEvents)
               .HasForeignKey(e => e.ContinentId)
+              .IsRequired(false)
               .OnDelete(DeleteBehavior.Cascade);
       });
 

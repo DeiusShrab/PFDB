@@ -28,7 +28,7 @@
           <Setter Property="Foreground" Value="#999"></Setter>
         </DataTrigger>
         <DataTrigger Binding="{Binding ActiveEvent}" Value="true">
-          <Setter Property="Foreground" Value="LightGreen" />
+          <Setter Property="Background" Value="LightGreen"></Setter>
         </DataTrigger>
       </Style.Triggers>
     </Style>
@@ -242,12 +242,12 @@
       </TabItem>
       <TabItem x:Name="TabEventTracker" Header="Event Tracker" Margin="-2,-2,-2,0">
         <Grid Background="#FFE5E5E5">
-          <DataGrid x:Name="DgEvt" HorizontalAlignment="Left" Height="422" Margin="414,10,0,0" VerticalAlignment="Top" Width="666" MouseDoubleClick="DgEvt_MouseDoubleClick" ItemsSource="{Binding LiveEvents}" AutoGenerateColumns="False">
+          <DataGrid x:Name="DgEvt" HorizontalAlignment="Left" Height="422" Margin="414,10,0,0" VerticalAlignment="Top" Width="666" MouseDoubleClick="DgEvt_MouseDoubleClick" ItemsSource="{Binding LiveEvents}" AutoGenerateColumns="False" IsReadOnly="True" PreviewKeyDown="DgEvt_PreviewKeyDown">
             <DataGrid.Columns>
-              <DataGridTextColumn Binding="{Binding Name}" Header="Event Name" Width="150" />
-              <DataGridTextColumn Binding="{Binding ShortDateNextOccurring}" Header="Date" Width="100" />
-              <DataGridTextColumn Binding="{Binding Location}" Header="Location" Width="150" />
-              <DataGridTextColumn Binding="{Binding Notes}" Header="Notes" Width="*" />
+              <DataGridTextColumn Binding="{Binding Name}" Header="Event Name" Width="150" IsReadOnly="True" />
+              <DataGridTextColumn Binding="{Binding ShortDateNextOccurring}" Header="Next Date" Width="100" IsReadOnly="True" />
+              <DataGridTextColumn Binding="{Binding Location}" Header="Location" Width="100" IsReadOnly="True" />
+              <DataGridTextColumn Binding="{Binding Notes}" Header="Notes" Width="*" IsReadOnly="True" />
               <DataGridCheckBoxColumn Binding="{Binding ActiveEvent}" Visibility="Hidden" />
             </DataGrid.Columns>
           </DataGrid>
@@ -256,26 +256,27 @@
           <Label Content="Last Occurrence" HorizontalAlignment="Left" Margin="10,62,0,0" VerticalAlignment="Top"/>
           <Label Content="Location" HorizontalAlignment="Left" Margin="10,88,0,0" VerticalAlignment="Top"/>
           <Label Content="Frequency" HorizontalAlignment="Left" Margin="10,114,0,0" VerticalAlignment="Top"/>
-          <Label Content="Event Type" HorizontalAlignment="Left" Margin="10,140,0,0" VerticalAlignment="Top"/>
-          <Label Content="Event Data" HorizontalAlignment="Left" Margin="10,166,0,0" VerticalAlignment="Top"/>
-          <Label Content="Notes" HorizontalAlignment="Left" Margin="10,192,0,0" VerticalAlignment="Top"/>
+          <Label Content="Event Type" HorizontalAlignment="Left" Margin="10,166,0,0" VerticalAlignment="Top"/>
+          <Label Content="Event Data" HorizontalAlignment="Left" Margin="10,192,0,0" VerticalAlignment="Top"/>
+          <Label Content="Notes" HorizontalAlignment="Left" Margin="10,218,0,0" VerticalAlignment="Top"/>
           <TextBox x:Name="TxtEvtLastDate" HorizontalAlignment="Left" Height="23" Margin="109,65,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="300" TabIndex="304"/>
           <TextBox x:Name="TxtEvtDate" HorizontalAlignment="Left" Height="23" Margin="109,39,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="300" TabIndex="302"/>
           <TextBox x:Name="TxtEvtName" HorizontalAlignment="Left" Height="23" Margin="109,13,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="300" TabIndex="301"/>
           <TextBox x:Name="TxtEvtLocation" HorizontalAlignment="Left" Height="23" Margin="109,91,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="300" TabIndex="305"/>
-          <TextBox x:Name="TxtEvtData" HorizontalAlignment="Left" Height="23" Margin="109,169,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="300" TabIndex="310"/>
-          <TextBox x:Name="TxtEvtNotes" HorizontalAlignment="Left" Height="237" Margin="109,195,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="300" TabIndex="311"/>
+          <TextBox x:Name="TxtEvtData" HorizontalAlignment="Left" Height="23" Margin="109,195,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="300" TabIndex="310"/>
+          <TextBox x:Name="TxtEvtNotes" HorizontalAlignment="Left" Height="209" Margin="109,223,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="300" TabIndex="311"/>
           <xctk:IntegerUpDown x:Name="IntEvtFreq" HorizontalAlignment="Left" Margin="109,120,0,0" VerticalAlignment="Top" Width="80" TabIndex="306"/>
-          <ComboBox x:Name="DrpEvtType" HorizontalAlignment="Left" Margin="109,144,0,0" VerticalAlignment="Top" Width="200" TabIndex="309"/>
+          <ComboBox x:Name="DrpEvtType" HorizontalAlignment="Left" Margin="109,170,0,0" VerticalAlignment="Top" Width="200" TabIndex="309"/>
           <Button x:Name="BtnEvtSave" Content="Save" HorizontalAlignment="Left" Margin="315,437,0,0" VerticalAlignment="Top" Width="94" Click="BtnEvtSave_Click" TabIndex="312"/>
-          <Button x:Name="BtnEvtNew" Content="New" HorizontalAlignment="Left" Margin="10,437,0,0" VerticalAlignment="Top" Width="94" Click="BtnEvtNew_Click"/>
+          <Button x:Name="BtnEvtClear" Content="Clear" HorizontalAlignment="Left" Margin="10,437,0,0" VerticalAlignment="Top" Width="94" Click="BtnEvtClear_Click"/>
           <Label Content="Sort by" HorizontalAlignment="Left" Margin="414,434,0,0" VerticalAlignment="Top"/>
           <Button x:Name="BtnEvtSortName" Content="Name" HorizontalAlignment="Left" Margin="462,437,0,0" VerticalAlignment="Top" Width="50" Click="BtnEvtSortName_Click"/>
           <Button x:Name="BtnEvtSortNext" Content="Next" HorizontalAlignment="Left" Margin="517,437,0,0" VerticalAlignment="Top" Width="50" Click="BtnEvtSortNext_Click"/>
-          <ComboBox x:Name="DrpEvtContinent" HorizontalAlignment="Left" Margin="315,120,0,0" VerticalAlignment="Top" Width="94" Height="20" TabIndex="308"/>
-          <Label Content="Local to" HorizontalAlignment="Left" Margin="263,114,0,0" VerticalAlignment="Top"/>
-          <ComboBox x:Name="DrpEvtFreqSpan" HorizontalAlignment="Left" Margin="194,120,0,0" VerticalAlignment="Top" Width="64" Height="20" TabIndex="307"/>
-          <CheckBox x:Name="CbxEvtShowLocal" Content="Local Only?" HorizontalAlignment="Left" Margin="1000,440,0,0" VerticalAlignment="Top" Checked="CbxEvtShowLocal_Checked"/>
+          <ComboBox x:Name="DrpEvtContinent" HorizontalAlignment="Left" Margin="109,145,0,0" VerticalAlignment="Top" Width="200" Height="20" TabIndex="308"/>
+          <Label Content="Local to?" HorizontalAlignment="Left" Margin="10,140,0,0" VerticalAlignment="Top"/>
+          <ComboBox x:Name="DrpEvtFreqSpan" HorizontalAlignment="Left" Margin="194,120,0,0" VerticalAlignment="Top" Width="115" Height="20" TabIndex="307"/>
+          <CheckBox x:Name="CbxEvtShowLocal" Content="Local Only?" HorizontalAlignment="Left" Margin="1000,440,0,0" VerticalAlignment="Top" Checked="CbxEvtShowLocal_Checked" Unchecked="CbxEvtShowLocal_Checked"/>
+          <Button x:Name="BtnEvtDelete" Content="Delete" HorizontalAlignment="Left" Margin="109,437,0,0" VerticalAlignment="Top" Width="94" Click="BtnEvtDelete_Click"/>
         </Grid>
       </TabItem>
       <TabItem x:Name="TabCampaignInfo" Header="Campaign" Margin="-2,-2,-2,0">

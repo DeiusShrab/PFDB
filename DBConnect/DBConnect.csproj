@@ -9,6 +9,7 @@
     <Compile Remove="Migrations\20180630182652_Updoot.cs" />
     <Compile Remove="Migrations\20180630182841_Updoot.cs" />
     <Compile Remove="Migrations\20180630183038_Updoot.cs" />
+    <Compile Remove="Migrations\20190518014727_20190517a.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Remove="PFConfig.json" />

@@ -70,9 +70,7 @@ namespace PFHelper
     {
       get
       {
-        if (LbxTime.SelectedItem != null)
-          return (int)LbxTime.SelectedValue;
-        return 0;
+          return (int)(LbxTime.SelectedValue ?? 0);
       }
       set
       {
@@ -87,9 +85,7 @@ namespace PFHelper
     {
       get
       {
-        if (LbxPlane.SelectedItem != null)
-          return (int)LbxPlane.SelectedValue;
-        return 0;
+        return (int)(LbxPlane.SelectedValue ?? 0);
       }
       set
       {
@@ -104,9 +100,7 @@ namespace PFHelper
     {
       get
       {
-        if (LbxEnvironment.SelectedItem != null)
-          return (int)LbxEnvironment.SelectedValue;
-        return 0;
+        return (int)(LbxEnvironment.SelectedValue ?? 0);
       }
       set
       {
@@ -314,7 +308,7 @@ namespace PFHelper
       get
       {
         if (DrpEvtType.SelectedItem != null)
-          return (int)DrpEvtType.SelectedValue;
+          return (int)(DrpEvtType.SelectedValue ?? 0); 
 
         return 0;
       }
@@ -324,18 +318,30 @@ namespace PFHelper
       }
     }
 
-    public int EventFreqId
+    public int EventFreqSpanId
     {
       get
       {
         if (DrpEvtFreqSpan != null)
-          return (int)DrpEvtFreqSpan.SelectedValue;
+          return (int)(DrpEvtFreqSpan.SelectedValue ?? 0);
 
         return 0;
       }
       set
       {
         DrpEvtFreqSpan.SelectedValue = value;
+      }
+    }
+
+    public int EventFreq
+    {
+      get
+      {
+        return IntEvtFreq.Value ?? 0;
+      }
+      set
+      {
+        IntEvtFreq.Value = value;
       }
     }
 
@@ -397,10 +403,7 @@ namespace PFHelper
     {
       get
       {
-        if (DrpCampaignDataGenerate.SelectedItem != null)
-          return (int)DrpCampaignDataGenerate.SelectedValue;
-
-        return 0;
+        return (int)(DrpCampaignDataGenerate.SelectedValue ?? 0);
       }
       set
       {
@@ -418,10 +421,7 @@ namespace PFHelper
     {
       get
       {
-        if (DrpEvtContinent.SelectedIndex >= 0)
-          return (int)DrpEvtContinent.SelectedValue;
-
-        return 0;
+        return (int)(DrpEvtContinent.SelectedValue ?? 0);
       }
       set
       {
@@ -555,7 +555,6 @@ namespace PFHelper
       {
         DrpEvtFreqSpan.Items.Add(new DisplayResult { Display = item.ToString(), Result = (int)item });
       }
-      EventFreqId = (int)TrackedEventFrequency.Days;
 
       foreach (CampaignDataGenType item in Enum.GetValues(typeof(CampaignDataGenType)))
       {
@@ -607,6 +606,7 @@ namespace PFHelper
           campaigns.AddRange(DBClient.GetCampaigns());
 
           ActiveCampaign = DBClient.GetCampaign(int.Parse(PFConfig.CAMPAIGN_ID));
+          CampaignId = ActiveCampaign.CampaignId;
           var campaignData = DBClient.GetCampaignData();
           if (campaignData != null)
             CampaignData.AddRange(campaignData);
@@ -819,13 +819,6 @@ namespace PFHelper
             DBClient.UpdateTrackedEvent(item.Export());
           else
             DBClient.CreateTrackedEvent(item.Export());
-        }
-
-        trackedEvents = DBClient.GetTrackedEvents();
-        LiveEvents.Clear();
-        foreach (var item in trackedEvents)
-        {
-          LiveEvents.Add(new LiveEvent(item));
         }
       }
       catch (Exception ex)
@@ -1077,27 +1070,28 @@ namespace PFHelper
       BtnEvtSortNext_Click(null, null);
 
       var oldDate = new FantasyDate(CurrentDate.ShortDate);
-      CurrentDate.AddDays(i);
+      CurrentDate.IncrementDays(i);
       NextWeather(i);
       UpdateDateDisplay();
 
       if (!RationsInfinite && i > 0)
         AddRations(i * -1);
 
-      var activeEventIds = new List<int>();
       foreach (var evt in LiveEvents.Where(x => x.ActiveEvent))
       {
         evt.ActiveEvent = false;
       }
 
+      var activeEventIds = new List<int>();
       for (int j = 1; j <= i; j++)
       {
         foreach (var evt in LiveEvents)
         {
-          if (evt.DateNextOccurring == oldDate.AddDays(j))
+          if (evt.DateNextOccurring.DaysSince(oldDate) == j)
           {
             RunLiveEvent(evt);
             evt.ActiveEvent = true;
+            activeEventIds.Add(evt.EventId);
           }
         }
       }
@@ -1114,16 +1108,16 @@ namespace PFHelper
       switch (e.EventFrequency)
       {
         case TrackedEventFrequency.Days:
-          e.DateNextOccurring.AddDays(e.ReoccurFreq);
+          e.DateNextOccurring.IncrementDays(e.ReoccurFreq);
           break;
         case TrackedEventFrequency.Weeks:
-          e.DateNextOccurring.AddDays(e.ReoccurFreq * 7);
+          e.DateNextOccurring.IncrementDays(e.ReoccurFreq * 7);
           break;
         case TrackedEventFrequency.Months:
-          e.DateNextOccurring.AddMonths(e.ReoccurFreq);
+          e.DateNextOccurring.IncrementMonths(e.ReoccurFreq);
           break;
         case TrackedEventFrequency.Years:
-          e.DateNextOccurring.AddYears(e.ReoccurFreq);
+          e.DateNextOccurring.IncrementYears(e.ReoccurFreq);
           break;
       }
 
@@ -1316,7 +1310,7 @@ namespace PFHelper
       WeatherResult = DBClient.GetRandomWeatherList(reqWeather);
     }
 
-    private void LoadTrackedEvent()
+    private void UnpackCurrentEvent()
     {
       if (CurrentEvent != null)
       {
@@ -1325,26 +1319,33 @@ namespace PFHelper
         EventLocation = CurrentEvent.Location;
         EventName = CurrentEvent.Name;
         EventNotes = CurrentEvent.Notes;
-        EventFreqId = CurrentEvent.ReoccurFreq;
+        EventFreqSpanId = (int)CurrentEvent.EventFrequency;
         EventContinentId = CurrentEvent.ContinentId;
+        EventFreq = CurrentEvent.ReoccurFreq;
+        EventTypeId = (int)CurrentEvent.EventType;
+        EventData = CurrentEvent.Data;
       }
     }
 
-    private void SaveTrackedEvent()
+    private void PackCurrentEvent()
     {
       if (CurrentEvent == null)
         CurrentEvent = new LiveEvent();
 
-      CurrentEvent.DateNextOccurring = new FantasyDate(EventDate);
+      CurrentEvent.DateNextOccurring = string.IsNullOrWhiteSpace(EventDate) ? null : new FantasyDate(EventDate);
       CurrentEvent.DateLastOccurred = string.IsNullOrWhiteSpace(EventLastDate) ? null : new FantasyDate(EventLastDate);
       CurrentEvent.Location = EventLocation;
       CurrentEvent.Name = EventName;
       CurrentEvent.Notes = EventNotes;
-      CurrentEvent.ReoccurFreq = EventFreqId;
+      CurrentEvent.ReoccurFreq = EventFreq;
       CurrentEvent.ContinentId = EventContinentId;
+      CurrentEvent.CampaignId = CampaignId;
+      CurrentEvent.EventFrequency = (TrackedEventFrequency)EventFreqSpanId;
+      CurrentEvent.EventType = (TrackedEventType)EventTypeId;
+      CurrentEvent.Data = EventData;
     }
 
-    private void LoadCampaign()
+    private void UnpackCampaign()
     {
       if (ActiveCampaign == null)
         ActiveCampaign = new Campaign();
@@ -1354,7 +1355,7 @@ namespace PFHelper
       CampaignNotes = ActiveCampaign.CampaignNotes;
     }
 
-    private void SaveCampaign()
+    private void PackCampaign()
     {
       if (ActiveCampaign == null)
         ActiveCampaign = new Campaign();
@@ -1779,28 +1780,73 @@ namespace PFHelper
 
     private void BtnEvtSave_Click(object sender, RoutedEventArgs e)
     {
-      SaveTrackedEvent();
+      if (CampaignId == 0)
+      {
+        MessageBox.Show("WARNING - No Campaign active, please select or save Campaign before creating events");
+        return;
+      }
+
+      PackCurrentEvent();
+      if (CurrentEvent.DateNextOccurring == null && CurrentEvent.EventFrequency == TrackedEventFrequency.OneTime && CurrentEvent.ReoccurFreq > 0)
+      {
+        CurrentEvent.DateNextOccurring = new FantasyDate(CurrentDate.ShortDate);
+        CurrentEvent.DateNextOccurring.IncrementDays(CurrentEvent.ReoccurFreq);
+      }
 
       if (CurrentEvent.EventId == 0)
       {
         var createdEvent = DBClient.CreateTrackedEvent(CurrentEvent.Export());
-        CurrentEvent = new LiveEvent(createdEvent ?? CurrentEvent.Export());
+        CurrentEvent = new LiveEvent(createdEvent);
       }
       else
+      {
         DBClient.UpdateTrackedEvent(CurrentEvent.Export());
+      }
 
-      if (CurrentEvent.EventId == 0)
-        MessageBox.Show("WARNING - Event not saved to DB!");
-
-      if (!EventLocalOnly || CurrentEvent.ContinentId == 0 || CurrentEvent.ContinentId == CurrentContinent.ContinentId)
+      if (LiveEvents.Any(x => x.EventId == CurrentEvent.EventId))
+      {
+        var evt = LiveEvents.First(x => x.EventId == CurrentEvent.EventId);
+        LiveEvents.Remove(evt);
         LiveEvents.Add(CurrentEvent);
+      }
+      else if (!EventLocalOnly || CurrentEvent.ContinentId == 0 || CurrentEvent.ContinentId == CurrentContinent.ContinentId)
+      {
+        LiveEvents.Add(CurrentEvent);
+      }
+      
+      var tevt = trackedEvents.FirstOrDefault(x => x.TrackedEventId == CurrentEvent.EventId);
+      if (tevt != null)
+      {
+        trackedEvents.Remove(tevt);
+      }
+
+      trackedEvents.Add(CurrentEvent.Export());
+
+      BtnEvtSortNext_Click(null, null);
+      DgEvt.SelectedItem = LiveEvents.First(x => x.EventId == CurrentEvent.EventId);
+
+      CurrentEvent = new LiveEvent();
+      UnpackCurrentEvent();
     }
 
-    private void BtnEvtNew_Click(object sender, RoutedEventArgs e)
+    private void BtnEvtClear_Click(object sender, RoutedEventArgs e)
     {
       CurrentEvent = new LiveEvent();
+      UnpackCurrentEvent();
+    }
 
-      LoadTrackedEvent();
+    private void BtnEvtDelete_Click(object sender, RoutedEventArgs e)
+    {
+      if (DgEvt.SelectedItem != null)
+      {
+        var eventId = ((LiveEvent)DgEvt.SelectedItem).EventId;
+        if (MessageBox.Show("WARNING - Are you sure you want to delete the selected event?", "WARNING", MessageBoxButton.YesNo) == MessageBoxResult.Yes)
+        {
+          DBClient.DeleteTrackedEvent(eventId);
+          var evt = LiveEvents.First(x => x.EventId == ((LiveEvent)DgEvt.SelectedItem).EventId);
+          LiveEvents.Remove(evt);
+        }
+      }
     }
 
     private void DgEvt_MouseDoubleClick(object sender, System.Windows.Input.MouseButtonEventArgs e)
@@ -1808,7 +1854,16 @@ namespace PFHelper
       if (DgEvt.SelectedItem != null)
       {
         CurrentEvent = LiveEvents.First(x => x.EventId == ((LiveEvent)DgEvt.SelectedItem).EventId);
-        LoadTrackedEvent();
+        UnpackCurrentEvent();
+      }
+    }
+
+    private void DgEvt_PreviewKeyDown(object sender, System.Windows.Input.KeyEventArgs e)
+    {
+      if (e.Key == System.Windows.Input.Key.Delete)
+      {
+        e.Handled = true;
+        BtnEvtDelete_Click(null, null);
       }
     }
 
@@ -1870,7 +1925,7 @@ namespace PFHelper
         TxtCampaignName.BorderBrush = null;
       }
 
-      SaveCampaign();
+      PackCampaign();
 
       if (ActiveCampaign.CampaignId == 0)
         ActiveCampaign = DBClient.CreateCampaign(ActiveCampaign);
@@ -1884,7 +1939,7 @@ namespace PFHelper
         campaignList.Add(new DisplayResult() { Display = item.CampaignName, Result = item.CampaignId });
       }
 
-      LoadCampaign();
+      UnpackCampaign();
     }
 
     private void LbxCampaign_MouseDoubleClick(object sender, System.Windows.Input.MouseButtonEventArgs e)
@@ -1902,7 +1957,7 @@ namespace PFHelper
       if (DrpCampaignSelect.SelectedItem != null)
       {
         ActiveCampaign = DBClient.GetCampaign((int)DrpCampaignSelect.SelectedValue);
-        LoadCampaign();
+        UnpackCampaign();
       }
     }
 
@@ -1950,6 +2005,7 @@ namespace PFHelper
         if (!EventLocalOnly || item.ContinentId == 0 || item.ContinentId == CurrentContinent.ContinentId)
           LiveEvents.Add(new LiveEvent(item));
       }
+      BtnEvtSortNext_Click(null, null);
     }
 
     private void BtnCombatCreatureInfo_Click(object sender, RoutedEventArgs e)

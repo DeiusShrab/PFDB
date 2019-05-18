@@ -4,14 +4,16 @@ using DBConnect;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace DBConnect.Migrations
 {
     [DbContext(typeof(PFDBContext))]
-    partial class PFDBContextModelSnapshot : ModelSnapshot
+    [Migration("20190518015414_20190517a")]
+    partial class _20190517a
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -595,7 +597,8 @@ namespace DBConnect.Migrations
                         .IsUnicode(false);
 
                     b.Property<string>("Value")
-                        .HasColumnType("varchar(MAX)");
+                        .HasMaxLength(500)
+                        .IsUnicode(false);
 
                     b.HasKey("CampaignId", "Key");
 

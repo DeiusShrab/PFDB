@@ -100,37 +100,25 @@ namespace PFAPI.Controllers
       }
 
       var context = PFDAL.GetContext();
-      var oldData = PFDAL.GetContext().CampaignData.Where(x => x.CampaignId == campaignId);
 
-      if (oldData != null)
-      {
-        var removeList = new List<string>();
-        foreach (var key in campaignData.Keys)
-        {
-          var data = oldData.FirstOrDefault(x => x.Key == key);
-          if (data != null)
-          {
-            removeList.Add(key);
-            data.Value = campaignData[key];
-            context.SaveChanges();
-          }
-        }
-
-        foreach (var key in removeList)
-        {
-          campaignData.Remove(key);
-        }
-      }
+      var data = from cd in context.CampaignData
+                 where cd.CampaignId == campaignId
+                 select cd;
 
       foreach (var key in campaignData.Keys)
       {
-        var data = new CampaignData();
-        context.CampaignData.Attach(data);
-        data.CampaignId = campaignId;
-        data.Key = key;
-        data.Value = campaignData[key];
-        context.SaveChanges();
+        var item = data.FirstOrDefault(x => x.Key.Equals(key, StringComparison.InvariantCultureIgnoreCase));
+        if (item != null)
+        {
+          item.Value = campaignData[key];
+        }
+        else
+        {
+          context.CampaignData.Add(new CampaignData { CampaignId = campaignId, Key = key, Value = campaignData[key] });
+        }
       }
+
+      context.SaveChanges();
 
       return Ok();
     }

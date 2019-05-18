@@ -115,7 +115,7 @@ namespace PFEditor.Controls
 
       while (!alterGrid && i < list.Count)
       {
-        if (list[i] != TimeList[i])
+        if (list[i].Id != TimeList[i].Id || list[i].Name != TimeList[i].Name || list[i].Notes != TimeList[i].Notes)
           alterGrid = true;
       }
 

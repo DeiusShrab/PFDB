@@ -1,4 +1,5 @@
-﻿using System;
+﻿using DBConnect.ConnectModels;
+using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Text;
@@ -54,6 +55,36 @@ namespace DBConnect
         sb.Remove(sb.Length - 1, 1);
 
       return sb.ToString();
+    }
+
+    public static FantasyDate AddDays(this FantasyDate date, int d)
+    {
+      var outDate = new FantasyDate(date);
+      outDate.IncrementDays(d);
+      return outDate;
+    }
+
+    public static FantasyDate AddMonths(this FantasyDate date, int m)
+    {
+      var outDate = new FantasyDate(date);
+      outDate.IncrementMonths(m);
+      return outDate;
+    }
+
+    public static FantasyDate AddYears(this FantasyDate date, int y)
+    {
+      var outDate = new FantasyDate(date);
+      outDate.IncrementYears(y);
+      return outDate;
+    }
+
+    public static FantasyDate AddDate(this FantasyDate date, int years, int months, int days)
+    {
+      var outDate = new FantasyDate(date);
+      outDate.IncrementYears(years);
+      outDate.IncrementMonths(months);
+      outDate.IncrementDays(days);
+      return outDate;
     }
   }
 }

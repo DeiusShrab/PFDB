@@ -22,6 +22,15 @@ namespace DBConnect.ConnectModels
       DaysInMonth = 28;
     }
 
+    public FantasyDate(FantasyDate date)
+    {
+      this.Day = date.Day;
+      this.DaysInMonth = date.DaysInMonth;
+      this.Month = date.Month;
+      this.MonthsInYear = date.MonthsInYear;
+      this.Year = date.Year;
+    }
+
     public FantasyDate(string parseDate, int monthsInYear = 13, int daysInMonth = 28)
     {
       UpdateFromNumDate(parseDate);
@@ -35,7 +44,7 @@ namespace DBConnect.ConnectModels
       DaysInMonth = daysInMonth;
     }
 
-    public FantasyDate AddDays(int d)
+    public FantasyDate IncrementDays(int d)
     {
       Day += d;
 
@@ -72,7 +81,7 @@ namespace DBConnect.ConnectModels
       return this;
     }
 
-    public FantasyDate AddMonths(int m)
+    public FantasyDate IncrementMonths(int m)
     {
       Month += m;
 
@@ -99,7 +108,7 @@ namespace DBConnect.ConnectModels
       return this;
     }
 
-    public FantasyDate AddYears(int y)
+    public FantasyDate IncrementYears(int y)
     {
       Year += y;
 
@@ -259,8 +268,10 @@ namespace DBConnect.ConnectModels
 
     public static bool operator ==(FantasyDate d1, FantasyDate d2)
     {
+      if (object.ReferenceEquals(null, d1))
+        return object.ReferenceEquals(null, d2);
       if (object.ReferenceEquals(null, d2))
-        return object.ReferenceEquals(null, d1);
+        return false; // Already checked if d1 was null
       
       if (d1.DaysInMonth != d2.DaysInMonth || d1.MonthsInYear != d2.MonthsInYear)
         throw new ArgumentException("Incompatible date formats! Check MonthsInYear and DaysInMonth");
