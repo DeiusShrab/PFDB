@@ -50,8 +50,6 @@ namespace PFEditor.Controls
 
       DrpContinent.ItemsSource = ContinentList;
       DrpSeason.ItemsSource = SeasonList;
-
-      ReloadData();
     }
 
     private void BuildGrid()
@@ -60,7 +58,8 @@ namespace PFEditor.Controls
 
       DgMonsterSpawn.Columns.Add(new DataGridTextColumn {
         Header = "Name (CR) | Type (Subtypes)",
-        Binding = new Binding("DisplayName")
+        Binding = new Binding("DisplayName"),
+        MinWidth = 360
       });
 
       foreach (var item in TimeList)

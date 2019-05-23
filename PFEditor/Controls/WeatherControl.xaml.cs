@@ -211,6 +211,8 @@ namespace PFEditor.Controls
     private Weather ActiveWeather = new Weather();
     private ContinentWeather ActiveContinentWeather = new ContinentWeather();
 
+    private bool isDirty = false;
+
     #endregion
 
     #region Constructor
@@ -243,7 +245,6 @@ namespace PFEditor.Controls
       DrpParentWeather.ItemsSource = ContinentWeatherList;
       DrpSeason.ItemsSource = SeasonList;
       DrpWeather.ItemsSource = WeatherList;
-
     }
 
     #endregion
@@ -461,19 +462,20 @@ namespace PFEditor.Controls
     {
       if (e.Key == System.Windows.Input.Key.F5)
       {
-        // Reload lists
+        if (!isDirty || MessageBox.Show("WARNING - Unsaved data, proceed?", "WARNING", MessageBoxButton.YesNo) == MessageBoxResult.Yes)
+        {
+          WeatherList.Clear();
+          ContinentList.Clear();
+          SeasonList.Clear();
+          ContinentWeatherList.Clear();
 
-        WeatherList.Clear();
-        ContinentList.Clear();
-        SeasonList.Clear();
-        ContinentWeatherList.Clear();
+          WeatherList.AddRange(DBClient.GetList("Weather").OrderBy(x => x.Name));
+          ContinentList.AddRange(DBClient.GetList("Continent").OrderBy(x => x.Name));
+          SeasonList.AddRange(DBClient.GetList("Season").OrderBy(x => x.Name));
 
-        WeatherList.AddRange(DBClient.GetList("Weather").OrderBy(x => x.Name));
-        ContinentList.AddRange(DBClient.GetList("Continent").OrderBy(x => x.Name));
-        SeasonList.AddRange(DBClient.GetList("Season").OrderBy(x => x.Name));
-
-        if (ContinentId > 0 && SeasonId > 0)
-          ContinentWeatherList.AddRange(DBClient.GetContinentWeathers(ContinentId.Value, SeasonId.Value));
+          if (ContinentId > 0 && SeasonId > 0)
+            ContinentWeatherList.AddRange(DBClient.GetContinentWeathers(ContinentId.Value, SeasonId.Value));
+        }
 
         e.Handled = true;
       }

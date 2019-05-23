@@ -63,6 +63,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="Popups\InputPopUp.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Popups\ListPopUp.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -71,6 +75,9 @@
   <ItemGroup>
     <Compile Include="Popups\CombatPopUp.xaml.cs">
       <DependentUpon>CombatPopUp.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Popups\InputPopUp.xaml.cs">
+      <DependentUpon>InputPopUp.xaml</DependentUpon>
     </Compile>
     <Compile Include="Popups\ListPopUp.xaml.cs">
       <DependentUpon>ListPopUp.xaml</DependentUpon>

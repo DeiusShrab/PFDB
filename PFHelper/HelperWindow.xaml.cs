@@ -1164,6 +1164,81 @@ namespace PFHelper
       if (WeatherLock)
         return;
 
+      // TEMP WEATHER
+      if (CurrentWeatherGroup == null)
+        CurrentWeatherGroup = new ContinentWeather { CWName = "Temp Weather" };
+
+      var rand = random.Next(100);
+      int? seasonOrder = CurrentMonth?.SeasonId;
+      if (seasonOrder.HasValue)
+        seasonOrder = seasons.FirstOrDefault(x => x.SeasonId == seasonOrder.Value)?.SeasonOrder;
+
+      switch(seasonOrder)
+      {
+        case 1: // Fire
+          if (rand <= 70)
+            CurrentWeather = new Weather { Name = "Sunny" };
+          else if (rand <= 85)
+            CurrentWeather = new Weather { Name = "Cloudy" };
+          else if (rand <= 95)
+            CurrentWeather = new Weather { Name = "Rainy" };
+          else
+            CurrentWeather = new Weather { Name = "Thunderstorm" };
+          break;
+        case 2: // Earth
+          if (rand <= 40)
+            CurrentWeather = new Weather { Name = "Sunny" };
+          else if (rand <= 80)
+            CurrentWeather = new Weather { Name = "Cloudy" };
+          else if (rand <= 95)
+            CurrentWeather = new Weather { Name = "Rainy" };
+          else
+            CurrentWeather = new Weather { Name = "Thunderstorm" };
+          break;
+        case 3: // Air
+          if (rand <= 20)
+            CurrentWeather = new Weather { Name = "Sunny" };
+          else if (rand <= 75)
+            CurrentWeather = new Weather { Name = "Cloudy" };
+          else if (rand <= 95)
+            CurrentWeather = new Weather { Name = "Snowing" };
+          else
+            CurrentWeather = new Weather { Name = "Blizzard" };
+          break;
+        case 4: // Water
+          if (rand <= 50)
+            CurrentWeather = new Weather { Name = "Sunny" };
+          else if (rand <= 60)
+            CurrentWeather = new Weather { Name = "Cloudy" };
+          else if (rand <= 90)
+            CurrentWeather = new Weather { Name = "Rainy" };
+          else
+            CurrentWeather = new Weather { Name = "Thunderstorm" };
+          break;
+        case 5: // Stars
+          if (rand <= 75)
+            CurrentWeather = new Weather { Name = "Sunny" };
+          else if (rand <= 80)
+            CurrentWeather = new Weather { Name = "Cloudy" };
+          else if (rand <= 85)
+            CurrentWeather = new Weather { Name = "Rainy" };
+          else if (rand <= 90)
+            CurrentWeather = new Weather { Name = "Snowing" };
+          else if (rand <= 95)
+            CurrentWeather = new Weather { Name = "Thunderstorm" };
+          else if (rand <= 98)
+            CurrentWeather = new Weather { Name = "Reverse Rain" };
+          else
+            CurrentWeather = new Weather { Name = "Magic Storm" };
+          break;
+        default:
+          CurrentWeather = new Weather { Name = "Sunny" };
+          break;
+      }
+
+      UpdateWeatherDisplay();
+      return;
+
       if (WeatherResult == null && CurrentWeather == null && CurrentWeatherGroup == null)// DEBUG
       {
         LblCurrentWeather.Content = random.Next(100);
@@ -1253,6 +1328,12 @@ namespace PFHelper
       }
 
       CurrentMonth = months.FirstOrDefault(x => x.MonthOrder == CurrentDate.Month);
+      if (CurrentMonth == null)
+      {
+        LblGrandDate.Content = "NO DATA";
+        return;
+      }
+
       LblGrandDate.Content = $"YEAR {CurrentDate.Year} AA, Season of {seasons.FirstOrDefault(x => x.SeasonId == CurrentMonth.SeasonId).Name}, Month of {CurrentMonth.Name}, Day {CurrentDate.Day}";
 
       LblNumericDate.Content = $"{CurrentDate.Year} / {CurrentMonth.MonthOrder} / {CurrentDate.Day}";
@@ -2120,5 +2201,15 @@ namespace PFHelper
     }
 
     #endregion
+
+    private void LblNumericDate_MouseDoubleClick(object sender, System.Windows.Input.MouseButtonEventArgs e)
+    {
+      var popup = new InputPopUp("Enter new numeric date:");
+      if (popup.ShowDialog() == true && !string.IsNullOrWhiteSpace(popup.TextResult))
+      {
+        CurrentDate.UpdateFromNumDate(popup.TextResult);
+        UpdateDateDisplay();
+      }
+    }
   }
 }

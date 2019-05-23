@@ -248,7 +248,8 @@ namespace DBConnect
       if (response.IsSuccessStatusCode)
       {
         var content = response.Content;
-        ret = JsonConvert.DeserializeObject<List<MonsterSpawnEdit>>(content.ReadAsStringAsync().Result);
+        var contentString = content.ReadAsStringAsync().Result;
+        ret = JsonConvert.DeserializeObject<List<MonsterSpawnEdit>>(contentString);
       }
 
       return ret;

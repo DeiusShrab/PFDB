@@ -310,7 +310,7 @@
       </TabItem>
     </TabControl>
     <Label x:Name="LblTextDate" Content="Wed, Emb 00" HorizontalAlignment="Left" Margin="689,116,0,0" VerticalAlignment="Top" FontSize="16"/>
-    <Label x:Name="LblNumericDate" Content="000000 / 00 / 00" HorizontalAlignment="Left" Margin="687,80,0,0" VerticalAlignment="Top" FontSize="16"/>
+    <Label x:Name="LblNumericDate" Content="000000 / 00 / 00" HorizontalAlignment="Left" Margin="687,80,0,0" VerticalAlignment="Top" FontSize="16" MouseDoubleClick="LblNumericDate_MouseDoubleClick"/>
     <Label Content="High is BAD for party, Low is GOOD for party" HorizontalAlignment="Left" Margin="10,80,0,0" VerticalAlignment="Top" FontSize="10"/>
     <Label Content="#" HorizontalAlignment="Left" Margin="1150,23,0,0" VerticalAlignment="Top"/>
     <Label Content="Pass:" HorizontalAlignment="Left" Margin="1114,127,0,0" VerticalAlignment="Top" FontSize="14"/>

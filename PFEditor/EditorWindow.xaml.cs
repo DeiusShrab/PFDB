@@ -29,7 +29,10 @@ namespace PFEditor
     {
       try
       {
-        DBClient.ConnectToApi();
+        if (!DBClient.ConnectToApi())
+        {
+          MessageBox.Show("ERROR - Failed to connect to API");
+        }
       }
       catch (System.Exception ex)
       {
