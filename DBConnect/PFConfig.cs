@@ -33,6 +33,8 @@ namespace DBConnect
   {
     public static string STR_FANTASYDATE = "FantasyDate";
     public static string STR_SAVEDATA = "SaveData";
+    public static string STR_LIVEDISPLAYMAP = "LiveDisplayMap";
+    public static string STR_LIVEDISPLAYMAPDATA = "LiveDisplayMapData";
 
     public static string APP_MODE => GetConfig(ConfigValues.APP_MODE);
     public static string JWT_KEY => GetConfig(ConfigValues.JWT_KEY);
