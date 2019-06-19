@@ -48,31 +48,28 @@ namespace PFDBSite.Controllers
       if (campaign == null || campaign.CampaignId == 0)
         return NotFound();
 
+      var model = new LiveDisplayModel()
+      {
+        ActivePlayer = Player,
+        CampaignId = campaignId,
+        FantasyDate = "NO DATE",
+      };
+      
       var campaignData = context.CampaignData.Where(x => x.CampaignId == campaign.CampaignId);
-      var displayDate = "NO DATE";
-      var campaignDate = campaignData.FirstOrDefault(x => x.Key == PFConfig.STR_FANTASYDATE);
-      if (campaignDate != null)
-        displayDate = new FantasyDate(campaignDate.Value).ShortDate;
-
-      var model = new LiveDisplayModel()
+      if (campaignData != null)
       {
-        ActivePlayer = Player,
-      };
-      return View();
-    }
+        var campaignDate = campaignData.FirstOrDefault(x => x.Key == PFConfig.STR_FANTASYDATE);
+        if (campaignDate != null)
+          model.FantasyDate = campaignDate.Value;
 
-    public IActionResult LiveDisplayCombat(int campaignId)
-    {
-      var context = PFDAL.GetContext();
-      var campaign = context.Campaign.Find(campaignId);
+        var displayMap = campaignData.FirstOrDefault(x => x.Key == PFConfig.STR_LIVEDISPLAYMAP);
+        if (displayMap != null)
+          model.MapPath = displayMap.Value;
 
-      if (campaign == null || campaign.CampaignId == 0)
-        return NotFound();
-
-      var model = new LiveDisplayModel()
-      {
-        ActivePlayer = Player,
-      };
+        var mapData = campaignData.FirstOrDefault(x => x.Key == PFConfig.STR_LIVEDISPLAYMAPDATA);
+        if (mapData != null)
+          model.MapSaveData = mapData.Value;
+      }
       return View();
     }
 
