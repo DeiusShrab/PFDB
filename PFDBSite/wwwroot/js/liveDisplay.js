@@ -47,8 +47,11 @@ connection.on("ReceiveDrawing", (user, drawObj) => {
   ctx.closePath();
 });
 
-connection.on("ReceiveDate", (date) => {
-    $("#LiveDate").text(date);
+connection.on("ReceiveDate", (dateObj) => {
+  $("#LiveDate").text(dateObj["date"]);
+  $("#calendarMonthName").text(dateObj["month"]);
+  $("td:calendarActiveDay").removeClass("calendarActiveDay");
+  $("#calendar" + dateObj["day"]).addClass("calendarActiveDay");
 });
 
 connection.start().catch(err => console.error(err.toString()));

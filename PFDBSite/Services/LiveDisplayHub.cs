@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
+using DBConnect;
+using DBConnect.ConnectModels;
 using DBConnect.DBModels;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.SignalR;
@@ -13,10 +15,15 @@ namespace PFDBSite.Services
   public class LiveDisplayHub : Microsoft.AspNetCore.SignalR.Hub
   {
     private IHostingEnvironment _env;
+    private List<Season> _seasons;
+    private List<Month> _months;
 
     public LiveDisplayHub(IHostingEnvironment env)
     {
       _env = env;
+      var context = PFDAL.GetContext();
+      _seasons = context.Season.ToList();
+      _months = context.Month.ToList();
     }
 
     public async Task SendMessage(string user, string message)
@@ -80,7 +87,10 @@ namespace PFDBSite.Services
 
     public async Task UpdateDate(string date)
     {
-      await Clients.All.SendAsync("UpdateDate", date);
+      var CurrentDate = new FantasyDate(date);
+      var CurrentMonth = _months.FirstOrDefault(x => x.MonthOrder == CurrentDate.Month);
+      var grandDate = $"YEAR {CurrentDate.Year} AA, Season of {_seasons.FirstOrDefault(x => x.SeasonId == CurrentMonth.SeasonId)?.Name}, Month of {CurrentMonth?.Name}, Day {CurrentDate.Day}";
+      await Clients.All.SendAsync("UpdateDate", new { grandDate, date, monthName = CurrentMonth.Name, day = CurrentDate.Day });
     }
 
     internal class Emoji

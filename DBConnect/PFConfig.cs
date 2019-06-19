@@ -27,6 +27,7 @@ namespace DBConnect
     UDB_ADDR, // User DB Address
     SITE_ADMIN_EMAIL, // Email Address for the site admin
     COOKIE_PLAYER, // GUID for the Player cookie
+    SITE_ADDR, // Live Display Website Address
   }
 
   public static class PFConfig
@@ -53,6 +54,7 @@ namespace DBConnect
     public static string CERT_PASS => GetConfig(ConfigValues.CERT_PASS);
     public static string SITE_ADMIN_EMAIL => GetConfig(ConfigValues.SITE_ADMIN_EMAIL);
     public static string COOKIE_PLAYER => GetConfig(ConfigValues.COOKIE_PLAYER);
+    public static string SITE_ADDR => GetConfig(ConfigValues.SITE_ADDR);
 
     private static string CONFIG_FILE = "PFConfig.json";
     private static Dictionary<string, string> Configuration;

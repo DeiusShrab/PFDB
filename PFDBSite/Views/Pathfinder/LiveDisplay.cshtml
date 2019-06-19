@@ -17,11 +17,54 @@
     </div>
   <div class="row">&nbsp;</div>
   <div class="row" style="min-height:80%">
-    <div class="col-md-9 hidden-sm-down" id="liveDiv">
+    <div class="col-md-2" id="calendarDiv">
+      <table class="calendarTable">
+        <tr>
+          <th colspan="7"><span id="calendarMonthName"></span></th>
+        </tr>
+        <tr>
+          <td id="calendar1">1</td>
+          <td id="calendar2">2</td>
+          <td id="calendar3">3</td>
+          <td id="calendar4">4</td>
+          <td id="calendar5">5</td>
+          <td id="calendar6">6</td>
+          <td id="calendar7">7</td>
+        </tr>
+        <tr>
+          <td id="calendar8">8</td>
+          <td id="calendar9">9</td>
+          <td id="calendar10">10</td>
+          <td id="calendar11">11</td>
+          <td id="calendar12">12</td>
+          <td id="calendar13">13</td>
+          <td id="calendar14">14</td>
+        </tr>
+        <tr>
+          <td id="calendar15">15</td>
+          <td id="calendar16">16</td>
+          <td id="calendar17">17</td>
+          <td id="calendar18">18</td>
+          <td id="calendar19">19</td>
+          <td id="calendar20">20</td>
+          <td id="calendar21">21</td>
+        </tr>
+        <tr>
+          <td id="calendar22">22</td>
+          <td id="calendar23">23</td>
+          <td id="calendar24">24</td>
+          <td id="calendar25">25</td>
+          <td id="calendar26">26</td>
+          <td id="calendar27">27</td>
+          <td id="calendar28">28</td>
+        </tr>
+      </table>
+    </div>
+    <div class="col-md-7 hidden-sm-down" id="liveDiv">
       <canvas id="liveCanvas" class="img-responsive" onload="canvasLoad()"></canvas>
       <img class="hidden" src="~/images/TestMap.png" alt="TestMap" />
     </div>
-    <div class="col-md-3 col-sm-12" id="chatBox">
+    <div class="col-md-3 col-sm-10" id="chatBox">
       Now in chatroom: @Model.ChatRoom.ChatRoomName
       <div class="row" style="min-height:80%">
         <div class="col-12" style="min-height:80%;overflow:scroll">

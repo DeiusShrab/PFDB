@@ -13,6 +13,7 @@ using DBConnect.DBModels;
 using System.Collections.Generic;
 using Microsoft.Extensions.Configuration;
 using System.IO;
+using Microsoft.AspNet.SignalR.Client;
 
 namespace PFAPI.Controllers
 {
@@ -220,6 +221,17 @@ namespace PFAPI.Controllers
       context.CampaignData.Attach(data);
       data.Value = newDate;
       context.SaveChanges();
+
+      try
+      {
+        var connection = new HubConnection(PFConfig.SITE_ADDR);
+        var proxy = connection.CreateHubProxy("LiveDisplayHub");
+        proxy.Invoke("UpdateDate", newDate);
+      }
+      catch(Exception ex)
+      {
+        Console.WriteLine("This doesn't work yet");
+      }
 
       return Ok();
     }
