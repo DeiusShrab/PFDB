@@ -48,8 +48,9 @@ connection.on("ReceiveDrawing", (user, drawObj) => {
 });
 
 connection.on("ReceiveDate", (dateObj) => {
-  $("#LiveDate").text(dateObj["date"]);
-  $("#calendarMonthName").text(dateObj["month"]);
+  $("#liveDate").text(dateObj["grandDate"]);
+  $("#shortLiveDate").text(dateObj["date"]);
+  $("#calendarMonthName").text(dateObj["monthName"]);
   $("td:calendarActiveDay").removeClass("calendarActiveDay");
   $("#calendar" + dateObj["day"]).addClass("calendarActiveDay");
 });

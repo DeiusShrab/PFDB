@@ -15,15 +15,10 @@ namespace PFDBSite.Services
   public class LiveDisplayHub : Microsoft.AspNetCore.SignalR.Hub
   {
     private IHostingEnvironment _env;
-    private List<Season> _seasons;
-    private List<Month> _months;
 
     public LiveDisplayHub(IHostingEnvironment env)
     {
       _env = env;
-      var context = PFDAL.GetContext();
-      _seasons = context.Season.ToList();
-      _months = context.Month.ToList();
     }
 
     public async Task SendMessage(string user, string message)
@@ -67,7 +62,8 @@ namespace PFDBSite.Services
       }
       else
       {
-        message = message.Replace("&", "&amp;").Replace("<", "&lt;").Replace(">", "&gt;");
+        // NOTE - Test this with "quotes" in strings
+        message = message.Replace("&", "&amp;").Replace("<", "&lt;").Replace(">", "&gt;").Replace("\"", "&quot;").Replace("'", "&apos;");
       }
 
       chatMessage.Contents = message;
@@ -82,15 +78,11 @@ namespace PFDBSite.Services
 
     public async Task UpdateCombat(string combatJson)
     {
-      await Clients.All.SendAsync("UpdateCombat", combatJson);
-    }
+      // Combat update from CLIENT to SERVER
+      // Usually things like HP changes
+      // Permission-based
 
-    public async Task UpdateDate(string date)
-    {
-      var CurrentDate = new FantasyDate(date);
-      var CurrentMonth = _months.FirstOrDefault(x => x.MonthOrder == CurrentDate.Month);
-      var grandDate = $"YEAR {CurrentDate.Year} AA, Season of {_seasons.FirstOrDefault(x => x.SeasonId == CurrentMonth.SeasonId)?.Name}, Month of {CurrentMonth?.Name}, Day {CurrentDate.Day}";
-      await Clients.All.SendAsync("UpdateDate", new { grandDate, date, monthName = CurrentMonth.Name, day = CurrentDate.Day });
+      await Clients.All.SendAsync("UpdateCombat", combatJson);
     }
 
     internal class Emoji

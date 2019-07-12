@@ -1100,7 +1100,7 @@ namespace PFHelper
       if (activeEventIds.Count > 0)
         HelperTabs.SelectedIndex = 3;
 
-      UpdateCampaignData("CurrentDate", CurrentDate.ToNumDate());
+      UpdateCampaignData(PFConfig.STR_FANTASYDATE, CurrentDate.ToNumDate());
     }
 
     private void RunLiveEvent(LiveEvent e)

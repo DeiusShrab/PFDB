@@ -53,6 +53,11 @@ namespace PFDBSite.Controllers
         ActivePlayer = Player,
         CampaignId = campaignId,
         FantasyDate = "NO DATE",
+        ChatRoom = new DBConnect.DBModels.ChatRoom
+        {
+          ChatRoomId = -1,
+          ChatRoomName = "NONE"
+        }
       };
       
       var campaignData = context.CampaignData.Where(x => x.CampaignId == campaign.CampaignId);
@@ -70,7 +75,7 @@ namespace PFDBSite.Controllers
         if (mapData != null)
           model.MapSaveData = mapData.Value;
       }
-      return View();
+      return View("LiveDisplay", model);
     }
 
     [Authorize(Roles = "Player")]
