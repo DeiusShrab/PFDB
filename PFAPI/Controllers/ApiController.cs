@@ -120,6 +120,11 @@ namespace PFAPI.Controllers
 
       context.SaveChanges();
 
+      if (campaignData.Keys.Contains(PFConfig.STR_FANTASYDATE))
+      {
+        LiveDisplayClient.UpdateDate(campaignId);
+      }
+
       return Ok();
     }
 
