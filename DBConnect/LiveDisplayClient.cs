@@ -18,7 +18,7 @@ namespace DBConnect
 
     static LiveDisplayClient()
     {
-      ReloadConfig(false);
+      ReloadConfig(true);
     }
 
     #region Token

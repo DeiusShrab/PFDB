@@ -2,6 +2,7 @@
 using DBConnect.ConnectModels;
 using Microsoft.AspNet.SignalR.Client;
 using Microsoft.AspNet.SignalR.Client.Hubs;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.SignalR;
@@ -16,7 +17,7 @@ namespace PFDBSite.ApiController
 {
   [Produces("application/json")]
   [Route("api/v1/LiveDisplay")]
-  [Authorize]
+  [Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme)]
 #if !DEBUG
   [RequireHttps]
 #endif
@@ -89,7 +90,7 @@ namespace PFDBSite.ApiController
         var CurrentDate = new FantasyDate(date);
         var CurrentMonth = months.FirstOrDefault(x => x.MonthOrder == CurrentDate.Month);
         var grandDate = $"YEAR {CurrentDate.Year} AA, Season of {seasons.FirstOrDefault(x => x.SeasonId == CurrentMonth.SeasonId)?.Name}, Month of {CurrentMonth?.Name}, Day {CurrentDate.Day}";
-        _hubContext.Clients.All.SendAsync("ReceiveDate", new { grandDate, date, monthName = CurrentMonth.Name, day = CurrentDate.Day });
+        _hubContext.Clients.All.SendAsync("ReceiveDate", new { grandDate, date, monthName = CurrentMonth.Name, day = CurrentDate.Day, campaignId });
         // TODO - only send update to clients connected to the campaignId
 
         return Ok();

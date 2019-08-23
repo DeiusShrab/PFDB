@@ -6,13 +6,14 @@
 <script>
   @Html.Raw($"var chatRoomId = {Model.ChatRoom.ChatRoomId};")
   @Html.Raw($"var playerId = {Model.ActivePlayer.PlayerId};")
+  @Html.Raw($"var fantasyDate = {Model.FantasyDate};")
 </script>
 
-<h2>LiveDisplay</h2>
+<h3>@Html.Raw(Model.CampaignName)</h3>
 <div class="container-fluid">
     <div class="row">
         <div class="col-12">
-            <span id="liveDate" class="liveDate"></span>
+            <h1><span id="liveDate" class="liveDate"></span></h1>
         </div>
     </div>
   <div class="row">&nbsp;</div>
@@ -23,17 +24,17 @@
           <th colspan="7"><span id="calendarMonthName"></span></th>
         </tr>
         <tr>
-          <td id="calendar1">1</td>
-          <td id="calendar2">2</td>
-          <td id="calendar3">3</td>
-          <td id="calendar4">4</td>
-          <td id="calendar5">5</td>
-          <td id="calendar6">6</td>
-          <td id="calendar7">7</td>
+          <td id="calendar1">01</td>
+          <td id="calendar2">02</td>
+          <td id="calendar3">03</td>
+          <td id="calendar4">04</td>
+          <td id="calendar5">05</td>
+          <td id="calendar6">06</td>
+          <td id="calendar7">07</td>
         </tr>
         <tr>
-          <td id="calendar8">8</td>
-          <td id="calendar9">9</td>
+          <td id="calendar8">08</td>
+          <td id="calendar9">09</td>
           <td id="calendar10">10</td>
           <td id="calendar11">11</td>
           <td id="calendar12">12</td>
@@ -70,6 +71,7 @@
       <canvas id="liveCanvas" class="img-responsive" onload="canvasLoad()"></canvas>
       <img class="hidden" src="~/images/TestMap.png" alt="TestMap" />
     </div>
+    <!--
     <div class="col-md-3 col-sm-10" id="chatBox">
       Now in chatroom: @Model.ChatRoom.ChatRoomName
       <div class="row" style="min-height:80%">
@@ -94,7 +96,7 @@
       </div>
 
     </div>
-
+    -->
   </div>
 </div>
 <script src="~/lib/signalr/signalr.js"></script>

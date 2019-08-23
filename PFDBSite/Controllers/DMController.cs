@@ -6,6 +6,8 @@ using Microsoft.AspNetCore.Authorization;
 using Newtonsoft.Json.Linq;
 using Microsoft.IdentityModel.Tokens;
 using System.IdentityModel.Tokens.Jwt;
+using Microsoft.AspNetCore.Identity;
+using PFDBSite.Models;
 
 namespace PFDBSite.Controllers
 {
@@ -13,6 +15,11 @@ namespace PFDBSite.Controllers
   [Authorize(Roles = "DM,Admin")]
   public class DMController : PFDBController
   {
+    public DMController(UserManager<ApplicationUser> userManager) : base(userManager)
+    {
+
+    }
+
     #region HTTP Methods
 
     [HttpGet]

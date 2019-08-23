@@ -1,6 +1,6 @@
 ﻿
 @{
-    ViewData["Title"] = "Index";
+  ViewData["Title"] = "Index";
 }
 
 <div class="jumbotron">
@@ -8,8 +8,11 @@
 </div>
 
 <div class="row">
-    <div class="span10">
-        @Html.ActionLink("Maps", "Maps", "Pathfinder")
-    </div>
+  <div class="span10">
+    <ul>
+      <li>@Html.ActionLink("Maps", "Maps", "Pathfinder")</li>
+      <li>@Html.ActionLink("Campaigns", "Campaigns", "Pathfinder", new { redirectToActive = false })</li>
+    </ul>
+  </div>
 </div>
 

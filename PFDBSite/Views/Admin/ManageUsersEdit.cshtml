@@ -90,13 +90,13 @@
     <h4>User Roles</h4>
     @foreach (var role in Model.Roles)
     {
-      @Html.LabelFor(r => role.Item1.Name)
+      <label>@Html.Raw(role.Item1)</label>
       @Html.CheckBoxFor(r => role.Item2)
     }
   </div>
 </div>
 
 <div>
-    <a asp-action="Index">Back to List</a>
+    <a asp-action="ManageUsers">Back to List</a>
 </div>
 

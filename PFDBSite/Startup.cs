@@ -1,4 +1,6 @@
 ﻿using DBConnect;
+using Microsoft.AspNetCore.Authentication.Cookies;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpOverrides;
@@ -8,8 +10,10 @@ using Microsoft.AspNetCore.Rewrite;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using Microsoft.IdentityModel.Tokens;
 using PFDBSite.Models;
 using PFDBSite.Services;
+using System.Text;
 
 namespace PFDBSite
 {
@@ -86,6 +90,25 @@ namespace PFDBSite
       services.AddSession();
 
       services.AddSignalR();
+
+      services.AddAuthentication(options =>
+      {
+        options.DefaultScheme = CookieAuthenticationDefaults.AuthenticationScheme;
+        options.DefaultChallengeScheme = JwtBearerDefaults.AuthenticationScheme;
+      })
+        .AddJwtBearer(options =>
+        {
+          options.TokenValidationParameters = new TokenValidationParameters
+          {
+            ValidateIssuer = true,
+            ValidateAudience = true,
+            ValidateLifetime = true,
+            ValidateIssuerSigningKey = true,
+            ValidIssuer = PFConfig.JWT_ISSUER,
+            ValidAudience = PFConfig.JWT_ISSUER,
+            IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(PFConfig.JWT_KEY))
+          };
+        });
     }
 
     // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

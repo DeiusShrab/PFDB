@@ -7,7 +7,9 @@ using DBConnect.ConnectModels;
 using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
+using Newtonsoft.Json;
 using PFDBSite.Models;
 
 namespace PFDBSite.Controllers
@@ -15,6 +17,11 @@ namespace PFDBSite.Controllers
   [Authorize]
   public class PathfinderController : PFDBController
   {
+    public PathfinderController(UserManager<ApplicationUser> userManager) : base(userManager)
+    {
+
+    }
+
     [AllowAnonymous]
     public IActionResult Index()
     {
@@ -29,14 +36,27 @@ namespace PFDBSite.Controllers
 
     public IActionResult Campaigns(bool redirectToActive = true)
     {
-      if (redirectToActive && Player != null)
+      var model = new CampaignsModel();
+
+      if (Player == null || !Player.PlayerCampaigns.Any(x => x.Campaign.IsActive))
+      {
+        model.CampaignList.Add(-1, "NO ACTIVE CAMPAIGNS");
+      }
+      else if (redirectToActive)
       {
         var campaign = Player.PlayerCampaigns.Where(x => x.Campaign.IsActive).FirstOrDefault()?.CampaignId;
         if (campaign.HasValue)
           return CampaignLiveDisplay(campaign.Value);
       }
+      else
+      {
+        foreach (var campaign in Player.PlayerCampaigns)
+        {
+          model.CampaignList.Add(campaign.CampaignId, campaign.Campaign.CampaignName);
+        }
+      }
 
-      return View();
+      return View(model);
     }
 
     [HttpGet("Campaigns/{campaignId}")]
@@ -52,7 +72,8 @@ namespace PFDBSite.Controllers
       {
         ActivePlayer = Player,
         CampaignId = campaignId,
-        FantasyDate = "NO DATE",
+        CampaignName = campaign.CampaignName,
+        FantasyDate = "{}",
         ChatRoom = new DBConnect.DBModels.ChatRoom
         {
           ChatRoomId = -1,
@@ -65,7 +86,14 @@ namespace PFDBSite.Controllers
       {
         var campaignDate = campaignData.FirstOrDefault(x => x.Key == PFConfig.STR_FANTASYDATE);
         if (campaignDate != null)
-          model.FantasyDate = campaignDate.Value;
+        {
+          var seasons = context.Season.ToList();
+          var months = context.Month.ToList();
+          var CurrentDate = new FantasyDate(campaignDate.Value);
+          var CurrentMonth = months.FirstOrDefault(x => x.MonthOrder == CurrentDate.Month);
+          var grandDate = $"YEAR {CurrentDate.Year} AA, Season of {seasons.FirstOrDefault(x => x.SeasonId == CurrentMonth.SeasonId)?.Name}, Month of {CurrentMonth?.Name}, Day {CurrentDate.Day}";
+          model.FantasyDate = JsonConvert.SerializeObject(new { grandDate, date = campaignDate.Value, monthName = CurrentMonth.Name, day = CurrentDate.Day, campaignId });
+        }
 
         var displayMap = campaignData.FirstOrDefault(x => x.Key == PFConfig.STR_LIVEDISPLAYMAP);
         if (displayMap != null)

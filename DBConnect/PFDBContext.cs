@@ -80,6 +80,9 @@ namespace DBConnect
         //optionsBuilder.UseSqlServer("Server=192.168.1.150;Database=PFDB;User Id=PFDBSite;Password=ayy lmao ayy lmao AYY 1m40");
         //optionsBuilder.UseSqlServer("Server=localhost;Database=PFDB;User Id=PFDBSite;Password=ayy lmao ayy lmao AYY 1m40");
         optionsBuilder.UseSqlServer($"Server={PFConfig.DB_ADDR};Database={PFConfig.DB_DB};User Id={PFConfig.DB_USER};Password={PFConfig.DB_PASS}");
+#if DEBUG
+        optionsBuilder.EnableSensitiveDataLogging();
+#endif
       }
     }
 

@@ -6730,3 +6730,15 @@ button.close {
   max-width: 1024px;
   overflow: scroll;
 }
+
+table.calendarTable {
+
+}
+
+table.calendarTable td {
+  padding: 4px 6px;
+}
+
+  table.calendarTable td.calendarActiveDay {
+    background: #777777;
+  }

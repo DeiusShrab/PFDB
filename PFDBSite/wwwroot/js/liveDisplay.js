@@ -23,21 +23,44 @@ const connection = new signalR.HubConnectionBuilder()
   .withUrl("/liveDisplayHub")
   .build();
 
-window.onload(function () {
+$(window).ready(function () {
   // Get message history
+  receiveDate(fantasyDate);
 });
 
 connection.on("ReceiveMessage", (msg) => {
+  receiveMessage(msg);
+});
+
+connection.on("ReceiveDrawing", (user, drawObj) => {
+  recei(user, drawObj);
+});
+
+connection.on("ReceiveDate", (dateObj) => {
+  receiveDate(dateObj);
+});
+
+connection.start().catch(err => console.error(err.toString()));
+
+/*
+document.getElementById("sendButton").addEventListener("click", event => {
+  const user = document.getElementById("userInput").value;
+  const message = document.getElementById("messageInput").value;
+  connection.invoke("SendMessage", user, message).catch(err => console.error(err.toString()));
+  event.preventDefault();
+});
+
+function receiveMessage(msg) {
   if ((msg.ChatRoom == chatRoomId || msg.ChatRoom == 0) && (msg.WhisperTo == playerId || msg.WhisperTo == 0)) {
     const encodedMsg = msg.User + ": " + msg.Contents;
     const li = document.createElement("li");
     li.textContent = encodedMsg;
     document.getElementById("messagesList").appendChild(li);
   }
-});
+}
+*/
 
-connection.on("ReceiveDrawing", (user, drawObj) => {
-
+function receiveDrawing(user, drawObj) {
   ctx.beginPath();
   ctx.moveTo(drawObj.prevX, drawObj.prevY);
   ctx.lineTo(drawObj.currX, drawObj.currY);
@@ -45,24 +68,15 @@ connection.on("ReceiveDrawing", (user, drawObj) => {
   ctx.lineWidth = drawObj.y;
   ctx.stroke();
   ctx.closePath();
-});
+}
 
-connection.on("ReceiveDate", (dateObj) => {
+function receiveDate(dateObj) {
   $("#liveDate").text(dateObj["grandDate"]);
   $("#shortLiveDate").text(dateObj["date"]);
   $("#calendarMonthName").text(dateObj["monthName"]);
-  $("td:calendarActiveDay").removeClass("calendarActiveDay");
+  $("td.calendarActiveDay").removeClass("calendarActiveDay");
   $("#calendar" + dateObj["day"]).addClass("calendarActiveDay");
-});
-
-connection.start().catch(err => console.error(err.toString()));
-
-document.getElementById("sendButton").addEventListener("click", event => {
-  const user = document.getElementById("userInput").value;
-  const message = document.getElementById("messageInput").value;
-  connection.invoke("SendMessage", user, message).catch(err => console.error(err.toString()));
-  event.preventDefault();
-});
+}
 
 function canvasLoad() {
   canvas = document.getElementById("liveCanvas");
