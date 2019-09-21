@@ -908,7 +908,7 @@ namespace PFHelper
           var sb = new StringBuilder();
           foreach (var c in cr)
           {
-            sb.Append(ParseCR(c));
+            sb.Append(Extensions.CRToString(c));
             sb.Append(", ");
           }
           sb.Remove(sb.Length - 2, 2);
@@ -976,7 +976,7 @@ namespace PFHelper
           var entry = new DisplayResult
           {
             Result = mon.BestiaryId,
-            Display = mon.Name + " [" + ParseCR(mon.Cr) + "]"
+            Display = mon.Name + " [" + Extensions.CRToString(mon.Cr) + "]"
           };
 
           randomEncounterItems.Add(entry);
@@ -984,25 +984,6 @@ namespace PFHelper
       }
       else
         MessageBox.Show("WARNING - Unable to connect to DB for LoadMonsters");
-    }
-
-    private string ParseCR(int cr)
-    {
-      switch (cr)
-      {
-        case (int)CRSpecial.Half:
-          return "1/2";
-        case (int)CRSpecial.Third:
-          return "1/3";
-        case (int)CRSpecial.Fourth:
-          return "1/4";
-        case (int)CRSpecial.Sixth:
-          return "1/6";
-        case (int)CRSpecial.Eighth:
-          return "1/8";
-        default:
-          return cr.ToString();
-      }
     }
 
     private void AddCreatureToCombat()
@@ -1830,7 +1811,7 @@ namespace PFHelper
       var formattedList = new List<DisplayResult>();
       foreach (var item in bList)
       {
-        formattedList.Add(new DisplayResult { Display = $"[{ParseCR(int.Parse(item.Notes))}] {item.Name}", Result = item.Id });
+        formattedList.Add(new DisplayResult { Display = $"[{Extensions.CRToString(int.Parse(item.Notes))}] {item.Name}", Result = item.Id });
       }
 
       var popup = new ListPopUp(bList);
@@ -1844,7 +1825,7 @@ namespace PFHelper
         CombatGridItems.Add(new CombatGridItem(b));
 
         if (!creatureInfos.Select(x => x.Result).Contains(bItem.Id))
-          creatureInfos.Add(new DisplayResult() { Display = $"{bItem.Name} [{ParseCR(int.Parse(bItem.Notes))}]", Result = bItem.Id });
+          creatureInfos.Add(new DisplayResult() { Display = $"{bItem.Name} [{Extensions.CRToString(int.Parse(bItem.Notes))}]", Result = bItem.Id });
       }
     }
 
@@ -2061,7 +2042,7 @@ namespace PFHelper
       var formattedList = new List<DisplayResult>();
       foreach (var item in bList)
       {
-        formattedList.Add(new DisplayResult { Display = $"[{ParseCR(int.Parse(item.Notes))}] {item.Name}", Result = item.Id });
+        formattedList.Add(new DisplayResult { Display = $"[{Extensions.CRToString(int.Parse(item.Notes))}] {item.Name}", Result = item.Id });
       }
 
       var popup = new ListPopUp(bList);
@@ -2072,10 +2053,10 @@ namespace PFHelper
         var bItem = bList.First(x => x.Id == popup.SelectedResult);
 
         var b = DBClient.GetBestiary(bItem.Id);
-        randomEncounterItems.Add(new DisplayResult() { Display = $"{bItem.Name} [{ParseCR(int.Parse(bItem.Notes))}]", Result = bItem.Id });
+        randomEncounterItems.Add(new DisplayResult() { Display = $"{bItem.Name} [{Extensions.CRToString(int.Parse(bItem.Notes))}]", Result = bItem.Id });
 
         if (!creatureInfos.Select(x => x.Result).Contains(bItem.Id))
-          creatureInfos.Add(new DisplayResult() { Display = $"{bItem.Name} [{ParseCR(int.Parse(bItem.Notes))}]", Result = bItem.Id });
+          creatureInfos.Add(new DisplayResult() { Display = $"{bItem.Name} [{Extensions.CRToString(int.Parse(bItem.Notes))}]", Result = bItem.Id });
       }
     }
 

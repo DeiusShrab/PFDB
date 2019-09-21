@@ -86,5 +86,24 @@ namespace DBConnect
       outDate.IncrementDays(days);
       return outDate;
     }
+
+    public static string CRToString(int cr)
+    {
+      switch (cr)
+      {
+        case (int)CRSpecial.Half:
+          return "1/2";
+        case (int)CRSpecial.Third:
+          return "1/3";
+        case (int)CRSpecial.Fourth:
+          return "1/4";
+        case (int)CRSpecial.Sixth:
+          return "1/6";
+        case (int)CRSpecial.Eighth:
+          return "1/8";
+        default:
+          return cr.ToString();
+      }
+    }
   }
 }

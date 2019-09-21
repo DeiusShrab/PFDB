@@ -188,6 +188,9 @@ namespace PFAPI.Helpers
         }
       }
 
+      if (retList != null)
+        ret = retList.ToList();
+
       return ret;
     }
 

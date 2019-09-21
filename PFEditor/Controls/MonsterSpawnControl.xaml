@@ -17,10 +17,11 @@
     <Button x:Name="BtnSave" Content="Save" HorizontalAlignment="Left" Margin="1247,619,0,0" VerticalAlignment="Top" Width="75"/>
     <Button x:Name="BtnSortType" Content="Type" HorizontalAlignment="Left" Margin="157,617,0,0" VerticalAlignment="Top" Width="50" Click="BtnSortType_Click"/>
     <DataGrid x:Name="DgMonsterSpawn" HorizontalAlignment="Left" Height="571" Margin="10,38,0,0" VerticalAlignment="Top" Width="1312" ItemsSource="{Binding MonsterSpawnRows_Filter}"/>
-    <ComboBox x:Name="DrpContinent" HorizontalAlignment="Left" Margin="465,10,0,0" VerticalAlignment="Top" Width="150"/>
+    <ComboBox x:Name="DrpContinent" HorizontalAlignment="Left" Margin="465,10,0,0" VerticalAlignment="Top" Width="150" SelectionChanged="DrpContinent_SelectionChanged"/>
     <Label Content="Continent" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="403,7,0,0"/>
-    <ComboBox x:Name="DrpSeason" HorizontalAlignment="Left" Margin="668,10,0,0" VerticalAlignment="Top" Width="150"/>
+    <ComboBox x:Name="DrpSeason" HorizontalAlignment="Left" Margin="668,10,0,0" VerticalAlignment="Top" Width="150" SelectionChanged="DrpSeason_SelectionChanged"/>
     <Label Content="Season" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="620,7,0,0"/>
+    <Button x:Name="BtnReloadData" Content="Reload Data" HorizontalAlignment="Left" Margin="1247,10,0,0" VerticalAlignment="Top" Width="75" Click="BtnReloadData_Click"/>
 
   </Grid>
 </UserControl>
