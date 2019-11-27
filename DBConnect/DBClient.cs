@@ -90,10 +90,15 @@ namespace DBConnect
 
     #region Queries
 
-    public static Dictionary<string, string> GetCampaignData()
+    public static Dictionary<string, string> GetCampaignData(int campaignId = 0)
     {
       Dictionary<string, string> ret = null;
+
       var campaign = PFConfig.CAMPAIGN_ID;
+      if (campaignId > 0)
+      {
+        campaign = campaignId.ToString();
+      }
 
       if (!string.IsNullOrWhiteSpace(campaign))
       {

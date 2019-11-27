@@ -505,7 +505,7 @@ namespace PFHelper
       campaignList = new ObservableCollection<DisplayResult>();
       environmentList = new ObservableCollection<DisplayResult>();
 
-      if (!LoadDBData())
+      if (!LoadDataFromDB())
       {
         MessageBox.Show("ERROR - Failed to connect to server. Is the config set correctly?");
       }
@@ -536,7 +536,7 @@ namespace PFHelper
       {
         if (MessageBox.Show("ERROR - Failed to load campaign data from server. Load from disk instead?", string.Empty, MessageBoxButton.YesNo) == MessageBoxResult.Yes)
         {
-          LoadDataFromDisk();
+          MenuImport_Click(null, null);
         }
       }
 
@@ -566,7 +566,7 @@ namespace PFHelper
 
     #region Methods
 
-    private bool LoadDBData()
+    private bool LoadDataFromDB()
     {
       var ret = false;
 
@@ -588,15 +588,10 @@ namespace PFHelper
       environments = new List<DBConnect.DBModels.Environment>();
       CampaignData = new Dictionary<string, string>();
 
-      if (PFConfig.ConfigExists())
+      if (PFConfig.ConfigExists() && DBClient.ConnectToApi())
       {
         try
         {
-          if (!DBClient.ConnectToApi())
-          {
-            MessageBox.Show("ERROR - Failed to connect to API");
-          }
-
           continents.AddRange(DBClient.GetContinents());
           seasons.AddRange(DBClient.GetSeasons());
           months.AddRange(DBClient.GetMonths());
@@ -606,7 +601,8 @@ namespace PFHelper
           campaigns.AddRange(DBClient.GetCampaigns());
 
           ActiveCampaign = DBClient.GetCampaign(int.Parse(PFConfig.CAMPAIGN_ID));
-          CampaignId = ActiveCampaign.CampaignId;
+          UnpackCampaign();
+
           var campaignData = DBClient.GetCampaignData();
           if (campaignData != null)
             CampaignData.AddRange(campaignData);
@@ -650,20 +646,25 @@ namespace PFHelper
           Console.WriteLine(ex.Message);
         }
       }
-
-      if (CampaignData.ContainsKey(PFConfig.STR_SAVEDATA))
+      else
       {
-        var saveObject = Newtonsoft.Json.JsonConvert.DeserializeObject<PFHelperSaveObject>(CampaignData[PFConfig.STR_SAVEDATA]);
-        LoadSavedData(saveObject);
-        UpdateDisplays();
+        MessageBox.Show("ERROR - Failed to connect to API, check the config");
       }
 
+      UnpackCampaignData();
+      UpdateDisplays();
       return ret;
     }
 
-    private bool LoadSavedData(PFHelperSaveObject saveObject)
+    private bool UnpackCampaignData()
     {
       var ret = false;
+      PFHelperSaveObject saveObject = null;
+
+      if (CampaignData.ContainsKey(PFConfig.STR_SAVEDATA))
+      {
+        saveObject = Newtonsoft.Json.JsonConvert.DeserializeObject<PFHelperSaveObject>(CampaignData[PFConfig.STR_SAVEDATA]);
+      }
 
       if (saveObject != null && saveObject.Date != null)
       {
@@ -726,36 +727,9 @@ namespace PFHelper
       if (string.IsNullOrWhiteSpace(path))
         path = Path.Combine(APPLICATIONPATH, FILENAME_SAVEDATA + EXT_SAVEDATA);
 
-      var saveObject = new PFHelperSaveObject();
+      PackCampaignData();
 
-      if (int.TryParse(TxtAPL.Text, out int apl))
-        saveObject.Apl = apl;
-
-      saveObject.CbxGroup = EncounterGroup;
-      saveObject.CbxNpc = EncounterNPC;
-      saveObject.CbxTime = EncounterTime;
-      saveObject.CbxZone = EncounterZone;
-      saveObject.CbxInfRations = RationsInfinite;
-      saveObject.EnvironmentId = EnvironmentId;
-      saveObject.PlaneId = PlaneId;
-      saveObject.TimeId = TimeId;
-      saveObject.CombatRound = CombatRound;
-      saveObject.WeatherLock = WeatherLock;
-      saveObject.CbxEvtLocal = EventLocalOnly;
-
-      saveObject.Rations = RationsLeft;
-      saveObject.Date = CurrentDate;
-      saveObject.Weather = CurrentWeather;
-      saveObject.WeatherResult = WeatherResult;
-      saveObject.Continent = CurrentContinent;
-      saveObject.Plane = CurrentPlane;
-      saveObject.Time = CurrentTime;
-      saveObject.Terrain = CurrentTerrain;
-
-      saveObject.CombatEffects = CombatEffectItems.ToList();
-      saveObject.CombatGridItems = CombatGridItems.ToList();
-
-      File.WriteAllText(path, Newtonsoft.Json.JsonConvert.SerializeObject(saveObject));
+      File.WriteAllText(path, Newtonsoft.Json.JsonConvert.SerializeObject(CampaignData));
     }
 
     private bool LoadDataFromDisk(string path = "")
@@ -763,15 +737,13 @@ namespace PFHelper
       if (string.IsNullOrWhiteSpace(path))
         path = Path.Combine(APPLICATIONPATH, FILENAME_SAVEDATA + EXT_SAVEDATA);
 
-      PFHelperSaveObject saveObject = null;
-
       if (File.Exists(path) && Path.GetExtension(path).Equals(EXT_SAVEDATA, StringComparison.InvariantCultureIgnoreCase))
-        saveObject = Newtonsoft.Json.JsonConvert.DeserializeObject<PFHelperSaveObject>(File.ReadAllText(path));
+        CampaignData = Newtonsoft.Json.JsonConvert.DeserializeObject<Dictionary<string, string>>(File.ReadAllText(path));
 
-      return LoadSavedData(saveObject);
+      return UnpackCampaignData();
     }
 
-    private void SaveCampaignData()
+    private void PackCampaignData()
     {
       var saveObject = new PFHelperSaveObject();
 
@@ -805,13 +777,13 @@ namespace PFHelper
         CampaignData.Add(PFConfig.STR_SAVEDATA, string.Empty);
 
       CampaignData[PFConfig.STR_SAVEDATA] = Newtonsoft.Json.JsonConvert.SerializeObject(saveObject);
-
-      SaveDataToDisk();
-      SaveDataToDB();
     }
 
     private void SaveDataToDB()
     {
+      PackCampaign();
+      PackCampaignData();
+
       try
       {
         foreach (var item in LiveEvents)
@@ -836,6 +808,16 @@ namespace PFHelper
       {
         File.WriteAllText(Path.Combine(APPLICATIONPATH, $"CampaignData {DateTime.Now.ToString("yyyyMMdd-hhmmss")}.log"), Newtonsoft.Json.JsonConvert.SerializeObject(CampaignData));
         MessageBox.Show("Failed to save CampaignData!\n" + ex.Message);
+      }
+
+      try
+      {
+        DBClient.UpdateCampaign(ActiveCampaign);
+      }
+      catch (Exception ex)
+      {
+        File.WriteAllText(Path.Combine(APPLICATIONPATH, $"Campaign {DateTime.Now.ToString("yyyyMMdd-hhmmss")}.log"), Newtonsoft.Json.JsonConvert.SerializeObject(ActiveCampaign));
+        MessageBox.Show("Failed to save Campaign Info!\n" + ex.Message);
       }
     }
 
@@ -1708,32 +1690,41 @@ namespace PFHelper
 
     private void Window_Closing(object sender, System.ComponentModel.CancelEventArgs e)
     {
-      SaveCampaignData();
+      SaveDataToDB();
     }
 
     private void CommandSave_Executed(object sender, System.Windows.Input.ExecutedRoutedEventArgs e)
     {
-      SaveCampaignData();
+      SaveDataToDB();
     }
 
     private void MenuImport_Click(object sender, RoutedEventArgs e)
     {
       // Load campaign data from file
-      MessageBox.Show("TEST");
+      var dialog = new OpenFileDialog();
+      dialog.FileName = Path.Combine(APPLICATIONPATH, FILENAME_SAVEDATA + EXT_SAVEDATA);
+
+      if (dialog.ShowDialog() == true)
+      {
+        LoadDataFromDisk(dialog.FileName);
+      }
     }
 
     private void MenuExport_Click(object sender, RoutedEventArgs e)
     {
       // Save campaign data to file
-      MessageBox.Show("TEST");
+      var dialog = new SaveFileDialog();
+      dialog.FileName = Path.Combine(APPLICATIONPATH, FILENAME_SAVEDATA + EXT_SAVEDATA);
+
+      if (dialog.ShowDialog() == true)
+      {
+        SaveDataToDisk(dialog.FileName);
+      }
     }
 
     private void BtnCombatClearAll_Click(object sender, RoutedEventArgs e)
     {
       var dialogResult = MessageBox.Show("Are you sure you want to Clear All?", string.Empty, MessageBoxButton.YesNoCancel);
-
-      if (dialogResult == MessageBoxResult.Cancel)
-        return;
 
       if (dialogResult == MessageBoxResult.Yes)
       {
@@ -1786,7 +1777,7 @@ namespace PFHelper
       if (PFConfig.ConfigExists())
         DBClient.ReloadConfig(true);
 
-      if (!LoadDBData())
+      if (!LoadDataFromDB())
       {
         MessageBox.Show("ERROR - Failed to connect to server. Is the config set correctly?");
       }
@@ -1834,7 +1825,7 @@ namespace PFHelper
       if (e.Key == System.Windows.Input.Key.F5)
       {
         e.Handled = true;
-        if (!LoadDBData())
+        if (!LoadDataFromDB())
         {
           MessageBox.Show("ERROR - Failed to connect to server. Is the config set correctly?");
         }
