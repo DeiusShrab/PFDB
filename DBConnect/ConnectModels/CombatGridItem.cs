@@ -208,6 +208,19 @@ namespace DBConnect.ConnectModels
       }
     }
 
+    public bool ActiveRow
+    {
+      get { return this._activeRow; }
+      set
+      {
+        if (value != this._activeRow)
+        {
+          this._activeRow = value;
+          NotifyPropertyChanged();
+        }
+      }
+    }
+
     public string ACTooltip
     {
       get { return $"Touch {ACTouch}\nFlat {ACFlat}"; }
@@ -234,6 +247,8 @@ namespace DBConnect.ConnectModels
     private int _will;
     private int _subd;
     private string _note;
+
+    private bool _activeRow;
 
     public CombatGridItem() { }
 

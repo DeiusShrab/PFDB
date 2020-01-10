@@ -21,6 +21,7 @@ namespace DBConnect.ConnectModels
     public int PlaneId { get; set; }
     public int EnvironmentId { get; set; }
     public int CombatRound { get; set; }
+    public int CombatTurn { get; set; }
     public bool CbxInfRations { get; set; }
     public bool CbxGroup { get; set; }
     public bool CbxZone { get; set; }

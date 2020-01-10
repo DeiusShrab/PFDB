@@ -118,6 +118,16 @@ namespace PFHelper
     }
     private int _combatRound;
 
+    public int CombatTurn
+    {
+      get { return _combatTurn; }
+      set {
+        _combatTurn = value;
+        UpdateCombatActive();
+      }
+    }
+    private int _combatTurn;
+
     public int RationsLeft
     {
       get { return _rationsLeft; }
@@ -679,6 +689,7 @@ namespace PFHelper
         PlaneId = saveObject.PlaneId;
         EnvironmentId = saveObject.EnvironmentId;
         CombatRound = saveObject.CombatRound;
+        CombatTurn = saveObject.CombatTurn;
         WeatherLock = saveObject.WeatherLock;
         EventLocalOnly = saveObject.CbxEvtLocal;
 
@@ -759,6 +770,7 @@ namespace PFHelper
       saveObject.PlaneId = PlaneId;
       saveObject.TimeId = TimeId;
       saveObject.CombatRound = CombatRound;
+      saveObject.CombatTurn = CombatTurn;
       saveObject.WeatherLock = WeatherLock;
 
       saveObject.Rations = RationsLeft;
@@ -1012,6 +1024,7 @@ namespace PFHelper
     private void CombatNextRound()
     {
       CombatRound++;
+      CombatTurn = 1;
 
       var removeItems = new List<CombatEffectItem>();
 
@@ -1026,6 +1039,37 @@ namespace PFHelper
       foreach (var item in removeItems)
       {
         CombatEffectItems.Remove(item);
+      }
+    }
+
+    private void CombatNextTurn()
+    {
+      var c = CombatTurn;
+      while (c < CombatGridItems.Count)
+      {
+        if (CombatGridItems[c].Init > 0)
+        {
+          CombatTurn = c + 1;
+          return;
+        }
+
+        c++;
+      }
+
+      // No active combatants left in current round
+      CombatNextRound();
+    }
+
+    private void UpdateCombatActive()
+    {
+      foreach (var item in CombatGridItems)
+      {
+        item.ActiveRow = false;
+      }
+
+      if (CombatTurn > 0 && CombatGridItems.Count >= CombatTurn)
+      {
+        CombatGridItems[CombatTurn - 1].ActiveRow = true;
       }
     }
 
@@ -1342,6 +1386,7 @@ namespace PFHelper
       UpdateDateDisplay();
       UpdateWeatherDisplay();
       UpdateLocationDisplay();
+      UpdateCombatActive();
     }
 
     private void ReloadWeatherTable()
@@ -1581,7 +1626,8 @@ namespace PFHelper
 
     private void BtnCombatEnd_Click(object sender, RoutedEventArgs e)
     {
-      CombatRound = 0;
+      CombatRound = 1;
+      CombatTurn = 0;
       CombatEffectItems.Clear();
 
       var removeItems = new List<CombatGridItem>();
@@ -2172,8 +2218,6 @@ namespace PFHelper
       }
     }
 
-    #endregion
-
     private void LblNumericDate_MouseDoubleClick(object sender, System.Windows.Input.MouseButtonEventArgs e)
     {
       var popup = new InputPopUp("Enter new numeric date:");
@@ -2183,5 +2227,12 @@ namespace PFHelper
         UpdateDateDisplay();
       }
     }
+
+    private void BtnCombatNextTurn_Click(object sender, RoutedEventArgs e)
+    {
+      CombatNextTurn();
+    }
+
+    #endregion
   }
 }

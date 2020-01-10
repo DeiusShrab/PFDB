@@ -30,6 +30,9 @@
         <DataTrigger Binding="{Binding ActiveEvent}" Value="true">
           <Setter Property="Background" Value="LightGreen"></Setter>
         </DataTrigger>
+        <DataTrigger Binding="{Binding ActiveRow}" Value="true">
+          <Setter Property="Background" Value="LightGreen"></Setter>
+        </DataTrigger>
       </Style.Triggers>
     </Style>
   </Window.Resources>
@@ -167,7 +170,7 @@
           <Button x:Name="BtnCombatAddFromBestiary" Content="Add from Bestiary..." HorizontalAlignment="Left" Margin="953,437,0,0" VerticalAlignment="Top" Width="127" TabIndex="199" Click="BtnCombatAddFromBestiary_Click"/>
           <Label Content="Round #" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top" FontSize="16"/>
           <Label x:Name="LblCombatRound" Content="01" HorizontalAlignment="Left" Margin="85,10,0,0" VerticalAlignment="Top" FontSize="16" FontWeight="Bold"/>
-          <Button x:Name="BtnCombatNextRound" Content="Next Round ==&gt;" HorizontalAlignment="Left" Margin="144,10,0,0" VerticalAlignment="Top" Width="101" Height="31" Click="BtnCombatNextRound_Click"/>
+          <Button x:Name="BtnCombatNextRound" Content="Next Round ==&gt;" HorizontalAlignment="Left" Margin="417,10,0,0" VerticalAlignment="Top" Width="101" Height="31" Click="BtnCombatNextRound_Click"/>
           <TextBox x:Name="TxtCombatInit" HorizontalAlignment="Left" Height="23" Margin="10,72,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="27" TabIndex="101"/>
           <Label Content="Init" HorizontalAlignment="Left" Margin="10,46,0,0" VerticalAlignment="Top"/>
           <DataGrid x:Name="DgCombatGrid" HorizontalAlignment="Left" Height="332" Margin="10,100,0,0" VerticalAlignment="Top" Width="755" AutoGenerateColumns="False" CanUserAddRows="False" ItemsSource="{Binding CombatGridItems}" TabIndex="112" MouseDoubleClick="DgCombatGrid_MouseDoubleClick" CellEditEnding="DgCombatGrid_CellEditEnding" PreviewKeyDown="DgCombatGrid_PreviewKeyDown">
@@ -231,6 +234,7 @@
           <TextBox x:Name="TxtCombatCMB" HorizontalAlignment="Left" Height="23" Margin="367,72,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="22" TabIndex="107"/>
           <Label Content="CMD" HorizontalAlignment="Left" Margin="394,46,0,0" VerticalAlignment="Top"/>
           <TextBox x:Name="TxtCombatCMD" HorizontalAlignment="Left" Height="23" Margin="402,72,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="22" TabIndex="107"/>
+          <Button x:Name="BtnCombatNextTurn" Content="Next Turn &gt;" HorizontalAlignment="Left" Margin="206,11,0,0" VerticalAlignment="Top" Width="83" Height="31" Click="BtnCombatNextTurn_Click"/>
         </Grid>
       </TabItem>
       <TabItem x:Name="TabCreatureInfo" Header="Creature Info" Margin="-2,-2,-2,0">
