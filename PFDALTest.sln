@@ -3,9 +3,11 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
 VisualStudioVersion = 15.0.27428.2002
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PFDALTest", "PFDALTest\PFDALTest.csproj", "{28AF8AA4-576F-4CE6-A199-1906601D00BC}"
-EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DBConnect", "DBConnect\DBConnect.csproj", "{5068CC5C-F0B3-4023-B4D8-BDD4C5A6EA7A}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PFDBCommon", "PFDBCommon\PFDBCommon.csproj", "{A936F3E4-2A50-4BFE-A913-86B8B9A4F2C6}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PFDALTest", "PFDALTest\PFDALTest.csproj", "{C061E363-EA9D-4A91-A9CE-A07E33A692D0}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -13,14 +15,18 @@ Global
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{28AF8AA4-576F-4CE6-A199-1906601D00BC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{28AF8AA4-576F-4CE6-A199-1906601D00BC}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{28AF8AA4-576F-4CE6-A199-1906601D00BC}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{28AF8AA4-576F-4CE6-A199-1906601D00BC}.Release|Any CPU.Build.0 = Release|Any CPU
 		{5068CC5C-F0B3-4023-B4D8-BDD4C5A6EA7A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{5068CC5C-F0B3-4023-B4D8-BDD4C5A6EA7A}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{5068CC5C-F0B3-4023-B4D8-BDD4C5A6EA7A}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{5068CC5C-F0B3-4023-B4D8-BDD4C5A6EA7A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A936F3E4-2A50-4BFE-A913-86B8B9A4F2C6}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A936F3E4-2A50-4BFE-A913-86B8B9A4F2C6}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A936F3E4-2A50-4BFE-A913-86B8B9A4F2C6}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A936F3E4-2A50-4BFE-A913-86B8B9A4F2C6}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C061E363-EA9D-4A91-A9CE-A07E33A692D0}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C061E363-EA9D-4A91-A9CE-A07E33A692D0}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C061E363-EA9D-4A91-A9CE-A07E33A692D0}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C061E363-EA9D-4A91-A9CE-A07E33A692D0}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

@@ -2,7 +2,7 @@
 using System.Linq;
 using System.Text.RegularExpressions;
 using DBConnect;
-using DBConnect.DBModels;
+using PFDBCommon.DBModels;
 
 namespace PFDALTest
 {

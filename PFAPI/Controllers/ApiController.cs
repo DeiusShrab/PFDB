@@ -2,14 +2,14 @@
 using System.Linq;
 using Microsoft.AspNetCore.Mvc;
 using DBConnect;
-using DBConnect.ConnectModels;
+using PFDBCommon.ConnectModels;
 using PFAPI.Helpers;
 using Microsoft.AspNetCore.Authorization;
 using System.IdentityModel.Tokens.Jwt;
 using Microsoft.IdentityModel.Tokens;
 using System.Text;
 using Newtonsoft.Json.Linq;
-using DBConnect.DBModels;
+using PFDBCommon.DBModels;
 using System.Collections.Generic;
 using Microsoft.Extensions.Configuration;
 using System.IO;
@@ -1787,7 +1787,7 @@ namespace PFAPI.Controllers
     }
 
     [HttpPost("Environment")]
-    public IActionResult Environment_Create([FromBody] DBConnect.DBModels.Environment obj)
+    public IActionResult Environment_Create([FromBody] PFDBCommon.DBModels.Environment obj)
     {
       if (obj == null || obj.EnvironmentId != 0)
         return BadRequest();
@@ -3043,7 +3043,7 @@ namespace PFAPI.Controllers
     }
 
     [HttpPut("Environment/{EnvironmentId:int}")]
-    public IActionResult Environment_Update([FromBody] DBConnect.DBModels.Environment obj, int EnvironmentId)
+    public IActionResult Environment_Update([FromBody] PFDBCommon.DBModels.Environment obj, int EnvironmentId)
     {
       if (obj == null || EnvironmentId == 0 || obj.EnvironmentId != EnvironmentId)
         return BadRequest();

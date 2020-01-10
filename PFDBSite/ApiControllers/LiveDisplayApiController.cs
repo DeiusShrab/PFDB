@@ -1,5 +1,5 @@
 ﻿using DBConnect;
-using DBConnect.ConnectModels;
+using PFDBCommon.ConnectModels;
 using Microsoft.AspNet.SignalR.Client;
 using Microsoft.AspNet.SignalR.Client.Hubs;
 using Microsoft.AspNetCore.Authentication.JwtBearer;

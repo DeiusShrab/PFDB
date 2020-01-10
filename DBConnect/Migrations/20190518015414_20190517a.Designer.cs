@@ -21,7 +21,7 @@ namespace DBConnect.Migrations
                 .HasAnnotation("Relational:MaxIdentifierLength", 128)
                 .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-            modelBuilder.Entity("DBConnect.DBModels.Bestiary", b =>
+            modelBuilder.Entity("PFDBCommon.DBModels.Bestiary", b =>
                 {
                     b.Property<int>("BestiaryId")
                         .ValueGeneratedOnAdd()
@@ -383,7 +383,7 @@ namespace DBConnect.Migrations
                     b.ToTable("Bestiary");
                 });
 
-            modelBuilder.Entity("DBConnect.DBModels.BestiaryDetail", b =>
+            modelBuilder.Entity("PFDBCommon.DBModels.BestiaryDetail", b =>
                 {
                     b.Property<int>("BestiaryId");
 
@@ -406,7 +406,7 @@ namespace DBConnect.Migrations
                     b.ToTable("BestiaryDetail");
                 });
 
-            modelBuilder.Entity("DBConnect.DBModels.BestiaryEnvironment", b =>
+            modelBuilder.Entity("PFDBCommon.DBModels.BestiaryEnvironment", b =>
                 {
                     b.Property<int>("BestiaryEnvironmentId")
                         .ValueGeneratedOnAdd()
@@ -429,7 +429,7 @@ namespace DBConnect.Migrations
                     b.ToTable("BestiaryEnvironment");
                 });
 
-            modelBuilder.Entity("DBConnect.DBModels.BestiaryFeat", b =>
+            modelBuilder.Entity("PFDBCommon.DBModels.BestiaryFeat", b =>
                 {
                     b.Property<int>("BestiaryFeatId")
                         .ValueGeneratedOnAdd()
@@ -452,7 +452,7 @@ namespace DBConnect.Migrations
                     b.ToTable("BestiaryFeat");
                 });
 
-            modelBuilder.Entity("DBConnect.DBModels.BestiaryLanguage", b =>
+            modelBuilder.Entity("PFDBCommon.DBModels.BestiaryLanguage", b =>
                 {
                     b.Property<int>("BestiaryLanguageId")
                         .ValueGeneratedOnAdd()
@@ -475,7 +475,7 @@ namespace DBConnect.Migrations
                     b.ToTable("BestiaryLanguage");
                 });
 
-            modelBuilder.Entity("DBConnect.DBModels.BestiaryMagic", b =>
+            modelBuilder.Entity("PFDBCommon.DBModels.BestiaryMagic", b =>
                 {
                     b.Property<int>("BestiaryMagicId")
                         .ValueGeneratedOnAdd()
@@ -504,7 +504,7 @@ namespace DBConnect.Migrations
                     b.ToTable("BestiaryMagic");
                 });
 
-            modelBuilder.Entity("DBConnect.DBModels.BestiarySkill", b =>
+            modelBuilder.Entity("PFDBCommon.DBModels.BestiarySkill", b =>
                 {
                     b.Property<int>("BestiarySkillId")
                         .ValueGeneratedOnAdd()
@@ -529,7 +529,7 @@ namespace DBConnect.Migrations
                     b.ToTable("BestiarySkill");
                 });
 
-            modelBuilder.Entity("DBConnect.DBModels.BestiarySubType", b =>
+            modelBuilder.Entity("PFDBCommon.DBModels.BestiarySubType", b =>
                 {
                     b.Property<int>("BestiarySubTypeId")
                         .ValueGeneratedOnAdd()
@@ -548,7 +548,7 @@ namespace DBConnect.Migrations
                     b.ToTable("BestiarySubType");
                 });
 
-            modelBuilder.Entity("DBConnect.DBModels.BestiaryType", b =>
+            modelBuilder.Entity("PFDBCommon.DBModels.BestiaryType", b =>
                 {
                     b.Property<int>("BestiaryTypeId")
                         .ValueGeneratedOnAdd()
@@ -564,7 +564,7 @@ namespace DBConnect.Migrations
                     b.ToTable("BestiaryType");
                 });
 
-            modelBuilder.Entity("DBConnect.DBModels.Campaign", b =>
+            modelBuilder.Entity("PFDBCommon.DBModels.Campaign", b =>
                 {
                     b.Property<int>("CampaignId")
                         .ValueGeneratedOnAdd()
@@ -588,7 +588,7 @@ namespace DBConnect.Migrations
                     b.ToTable("Campaign");
                 });
 
-            modelBuilder.Entity("DBConnect.DBModels.CampaignData", b =>
+            modelBuilder.Entity("PFDBCommon.DBModels.CampaignData", b =>
                 {
                     b.Property<int>("CampaignId");
 
@@ -605,7 +605,7 @@ namespace DBConnect.Migrations
                     b.ToTable("CampaignData");
                 });
 
-            modelBuilder.Entity("DBConnect.DBModels.Character", b =>
+            modelBuilder.Entity("PFDBCommon.DBModels.Character", b =>
                 {
                     b.Property<int>("CharacterId")
                         .ValueGeneratedOnAdd()
@@ -642,7 +642,7 @@ namespace DBConnect.Migrations
                     b.ToTable("Character");
                 });
 
-            modelBuilder.Entity("DBConnect.DBModels.CharacterClassAbility", b =>
+            modelBuilder.Entity("PFDBCommon.DBModels.CharacterClassAbility", b =>
                 {
                     b.Property<int>("CharacterClassAbilityId")
                         .ValueGeneratedOnAdd()
@@ -665,7 +665,7 @@ namespace DBConnect.Migrations
                     b.ToTable("CharacterClassAbility");
                 });
 
-            modelBuilder.Entity("DBConnect.DBModels.CharacterClassLevel", b =>
+            modelBuilder.Entity("PFDBCommon.DBModels.CharacterClassLevel", b =>
                 {
                     b.Property<int>("CharacterId");
 
@@ -680,7 +680,7 @@ namespace DBConnect.Migrations
                     b.ToTable("CharacterClassLevel");
                 });
 
-            modelBuilder.Entity("DBConnect.DBModels.CharacterFeat", b =>
+            modelBuilder.Entity("PFDBCommon.DBModels.CharacterFeat", b =>
                 {
                     b.Property<int>("CharacterFeatId")
                         .ValueGeneratedOnAdd()
@@ -703,7 +703,7 @@ namespace DBConnect.Migrations
                     b.ToTable("CharacterFeat");
                 });
 
-            modelBuilder.Entity("DBConnect.DBModels.CharacterGear", b =>
+            modelBuilder.Entity("PFDBCommon.DBModels.CharacterGear", b =>
                 {
                     b.Property<int>("CharacterGearId")
                         .ValueGeneratedOnAdd()
@@ -728,7 +728,7 @@ namespace DBConnect.Migrations
                     b.ToTable("CharacterGear");
                 });
 
-            modelBuilder.Entity("DBConnect.DBModels.CharacterGearEnchantment", b =>
+            modelBuilder.Entity("PFDBCommon.DBModels.CharacterGearEnchantment", b =>
                 {
                     b.Property<int>("CharacterGearId");
 
@@ -741,7 +741,7 @@ namespace DBConnect.Migrations
                     b.ToTable("CharacterGearEnchantment");
                 });
 
-            modelBuilder.Entity("DBConnect.DBModels.CharacterLanguage", b =>
+            modelBuilder.Entity("PFDBCommon.DBModels.CharacterLanguage", b =>
                 {
                     b.Property<int>("CharacterId");
 
@@ -754,7 +754,7 @@ namespace DBConnect.Migrations
                     b.ToTable("CharacterLanguage");
                 });
 
-            modelBuilder.Entity("DBConnect.DBModels.CharacterMagic", b =>
+            modelBuilder.Entity("PFDBCommon.DBModels.CharacterMagic", b =>
                 {
                     b.Property<int>("CharacterMagicId")
                         .ValueGeneratedOnAdd()
@@ -777,7 +777,7 @@ namespace DBConnect.Migrations
                     b.ToTable("CharacterMagic");
                 });
 
-            modelBuilder.Entity("DBConnect.DBModels.CharacterRaceAbility", b =>
+            modelBuilder.Entity("PFDBCommon.DBModels.CharacterRaceAbility", b =>
                 {
                     b.Property<int>("CharacterId");
 
@@ -790,7 +790,7 @@ namespace DBConnect.Migrations
                     b.ToTable("CharacterRaceAbility");
                 });
 
-            modelBuilder.Entity("DBConnect.DBModels.CharacterSkill", b =>
+            modelBuilder.Entity("PFDBCommon.DBModels.CharacterSkill", b =>
                 {
                     b.Property<int>("CharacterId");
 
@@ -805,7 +805,7 @@ namespace DBConnect.Migrations
                     b.ToTable("CharacterSkill");
                 });
 
-            modelBuilder.Entity("DBConnect.DBModels.Class", b =>
+            modelBuilder.Entity("PFDBCommon.DBModels.Class", b =>
                 {
                     b.Property<int>("ClassId")
                         .ValueGeneratedOnAdd()
@@ -840,7 +840,7 @@ namespace DBConnect.Migrations
                     b.ToTable("Class");
                 });
 
-            modelBuilder.Entity("DBConnect.DBModels.ClassAbility", b =>
+            modelBuilder.Entity("PFDBCommon.DBModels.ClassAbility", b =>
                 {
                     b.Property<int>("ClassAbilityId")
                         .ValueGeneratedOnAdd()
@@ -868,7 +868,7 @@ namespace DBConnect.Migrations
                     b.ToTable("ClassAbility");
                 });
 
-            modelBuilder.Entity("DBConnect.DBModels.ClassSkill", b =>
+            modelBuilder.Entity("PFDBCommon.DBModels.ClassSkill", b =>
                 {
                     b.Property<int>("ClassId");
 
@@ -881,7 +881,7 @@ namespace DBConnect.Migrations
                     b.ToTable("ClassSkill");
                 });
 
-            modelBuilder.Entity("DBConnect.DBModels.Continent", b =>
+            modelBuilder.Entity("PFDBCommon.DBModels.Continent", b =>
                 {
                     b.Property<int>("ContinentId")
                         .ValueGeneratedOnAdd()
@@ -908,7 +908,7 @@ namespace DBConnect.Migrations
                     b.ToTable("Continent");
                 });
 
-            modelBuilder.Entity("DBConnect.DBModels.ContinentEnvironment", b =>
+            modelBuilder.Entity("PFDBCommon.DBModels.ContinentEnvironment", b =>
                 {
                     b.Property<int>("ContinentId");
 
@@ -921,7 +921,7 @@ namespace DBConnect.Migrations
                     b.ToTable("ContinentEnvironment");
                 });
 
-            modelBuilder.Entity("DBConnect.DBModels.ContinentWeather", b =>
+            modelBuilder.Entity("PFDBCommon.DBModels.ContinentWeather", b =>
                 {
                     b.Property<int>("CWID")
                         .HasColumnName("CWID");
@@ -960,7 +960,7 @@ namespace DBConnect.Migrations
                     b.ToTable("ContinentWeather");
                 });
 
-            modelBuilder.Entity("DBConnect.DBModels.Enchantment", b =>
+            modelBuilder.Entity("PFDBCommon.DBModels.Enchantment", b =>
                 {
                     b.Property<int>("EnchantmentId")
                         .ValueGeneratedOnAdd()
@@ -987,7 +987,7 @@ namespace DBConnect.Migrations
                     b.ToTable("Enchantment");
                 });
 
-            modelBuilder.Entity("DBConnect.DBModels.Environment", b =>
+            modelBuilder.Entity("PFDBCommon.DBModels.Environment", b =>
                 {
                     b.Property<int>("EnvironmentId")
                         .ValueGeneratedOnAdd()
@@ -1013,7 +1013,7 @@ namespace DBConnect.Migrations
                     b.ToTable("Environment");
                 });
 
-            modelBuilder.Entity("DBConnect.DBModels.Faction", b =>
+            modelBuilder.Entity("PFDBCommon.DBModels.Faction", b =>
                 {
                     b.Property<int>("FactionId")
                         .ValueGeneratedOnAdd()
@@ -1042,7 +1042,7 @@ namespace DBConnect.Migrations
                     b.ToTable("Faction");
                 });
 
-            modelBuilder.Entity("DBConnect.DBModels.FavoredClass", b =>
+            modelBuilder.Entity("PFDBCommon.DBModels.FavoredClass", b =>
                 {
                     b.Property<int>("FavoredClassId")
                         .ValueGeneratedOnAdd()
@@ -1065,7 +1065,7 @@ namespace DBConnect.Migrations
                     b.ToTable("FavoredClass");
                 });
 
-            modelBuilder.Entity("DBConnect.DBModels.Feat", b =>
+            modelBuilder.Entity("PFDBCommon.DBModels.Feat", b =>
                 {
                     b.Property<int>("FeatId")
                         .ValueGeneratedOnAdd()
@@ -1172,7 +1172,7 @@ namespace DBConnect.Migrations
                     b.ToTable("Feat");
                 });
 
-            modelBuilder.Entity("DBConnect.DBModels.Gear", b =>
+            modelBuilder.Entity("PFDBCommon.DBModels.Gear", b =>
                 {
                     b.Property<int>("GearId")
                         .ValueGeneratedOnAdd()
@@ -1199,7 +1199,7 @@ namespace DBConnect.Migrations
                     b.HasDiscriminator<string>("Discriminator").HasValue("Gear");
                 });
 
-            modelBuilder.Entity("DBConnect.DBModels.Language", b =>
+            modelBuilder.Entity("PFDBCommon.DBModels.Language", b =>
                 {
                     b.Property<int>("LanguageId")
                         .ValueGeneratedOnAdd()
@@ -1219,7 +1219,7 @@ namespace DBConnect.Migrations
                     b.ToTable("Language");
                 });
 
-            modelBuilder.Entity("DBConnect.DBModels.Location", b =>
+            modelBuilder.Entity("PFDBCommon.DBModels.Location", b =>
                 {
                     b.Property<int>("LocationId")
                         .ValueGeneratedOnAdd()
@@ -1258,7 +1258,7 @@ namespace DBConnect.Migrations
                     b.ToTable("Location");
                 });
 
-            modelBuilder.Entity("DBConnect.DBModels.MagicItem", b =>
+            modelBuilder.Entity("PFDBCommon.DBModels.MagicItem", b =>
                 {
                     b.Property<int>("MagicItemId")
                         .ValueGeneratedOnAdd()
@@ -1399,7 +1399,7 @@ namespace DBConnect.Migrations
                     b.ToTable("MagicItem");
                 });
 
-            modelBuilder.Entity("DBConnect.DBModels.MonsterSpawn", b =>
+            modelBuilder.Entity("PFDBCommon.DBModels.MonsterSpawn", b =>
                 {
                     b.Property<int>("SpawnId")
                         .ValueGeneratedOnAdd()
@@ -1430,7 +1430,7 @@ namespace DBConnect.Migrations
                     b.ToTable("MonsterSpawn");
                 });
 
-            modelBuilder.Entity("DBConnect.DBModels.Month", b =>
+            modelBuilder.Entity("PFDBCommon.DBModels.Month", b =>
                 {
                     b.Property<int>("MonthId")
                         .ValueGeneratedOnAdd()
@@ -1454,7 +1454,7 @@ namespace DBConnect.Migrations
                     b.ToTable("Month");
                 });
 
-            modelBuilder.Entity("DBConnect.DBModels.Npc", b =>
+            modelBuilder.Entity("PFDBCommon.DBModels.Npc", b =>
                 {
                     b.Property<int>("Npcid")
                         .ValueGeneratedOnAdd()
@@ -1821,7 +1821,7 @@ namespace DBConnect.Migrations
                     b.ToTable("NPC");
                 });
 
-            modelBuilder.Entity("DBConnect.DBModels.Npcdetail", b =>
+            modelBuilder.Entity("PFDBCommon.DBModels.Npcdetail", b =>
                 {
                     b.Property<int>("Npcid")
                         .HasColumnName("NPCID");
@@ -1841,7 +1841,7 @@ namespace DBConnect.Migrations
                     b.ToTable("NPCDetail");
                 });
 
-            modelBuilder.Entity("DBConnect.DBModels.OverridePrerequisite", b =>
+            modelBuilder.Entity("PFDBCommon.DBModels.OverridePrerequisite", b =>
                 {
                     b.Property<int>("ClassAbilityId");
 
@@ -1854,7 +1854,7 @@ namespace DBConnect.Migrations
                     b.ToTable("OverridePrerequisite");
                 });
 
-            modelBuilder.Entity("DBConnect.DBModels.Plane", b =>
+            modelBuilder.Entity("PFDBCommon.DBModels.Plane", b =>
                 {
                     b.Property<int>("PlaneId")
                         .ValueGeneratedOnAdd()
@@ -1870,7 +1870,7 @@ namespace DBConnect.Migrations
                     b.ToTable("Plane");
                 });
 
-            modelBuilder.Entity("DBConnect.DBModels.Player", b =>
+            modelBuilder.Entity("PFDBCommon.DBModels.Player", b =>
                 {
                     b.Property<int>("PlayerId")
                         .ValueGeneratedOnAdd()
@@ -1886,7 +1886,7 @@ namespace DBConnect.Migrations
                     b.ToTable("Player");
                 });
 
-            modelBuilder.Entity("DBConnect.DBModels.PlayerCampaign", b =>
+            modelBuilder.Entity("PFDBCommon.DBModels.PlayerCampaign", b =>
                 {
                     b.Property<int>("PlayerId");
 
@@ -1901,7 +1901,7 @@ namespace DBConnect.Migrations
                     b.ToTable("PlayerCampaign");
                 });
 
-            modelBuilder.Entity("DBConnect.DBModels.Prerequisite", b =>
+            modelBuilder.Entity("PFDBCommon.DBModels.Prerequisite", b =>
                 {
                     b.Property<int>("PrerequisiteId")
                         .ValueGeneratedOnAdd()
@@ -1922,7 +1922,7 @@ namespace DBConnect.Migrations
                     b.ToTable("Prerequisite");
                 });
 
-            modelBuilder.Entity("DBConnect.DBModels.Race", b =>
+            modelBuilder.Entity("PFDBCommon.DBModels.Race", b =>
                 {
                     b.Property<int>("RaceId")
                         .ValueGeneratedOnAdd()
@@ -1953,7 +1953,7 @@ namespace DBConnect.Migrations
                     b.ToTable("Race");
                 });
 
-            modelBuilder.Entity("DBConnect.DBModels.RaceAbility", b =>
+            modelBuilder.Entity("PFDBCommon.DBModels.RaceAbility", b =>
                 {
                     b.Property<int>("RaceAbilityId")
                         .ValueGeneratedOnAdd()
@@ -1974,7 +1974,7 @@ namespace DBConnect.Migrations
                     b.ToTable("RaceAbility");
                 });
 
-            modelBuilder.Entity("DBConnect.DBModels.RaceSubType", b =>
+            modelBuilder.Entity("PFDBCommon.DBModels.RaceSubType", b =>
                 {
                     b.Property<int>("BestiaryTypeId");
 
@@ -1987,7 +1987,7 @@ namespace DBConnect.Migrations
                     b.ToTable("RaceSubType");
                 });
 
-            modelBuilder.Entity("DBConnect.DBModels.Season", b =>
+            modelBuilder.Entity("PFDBCommon.DBModels.Season", b =>
                 {
                     b.Property<int>("SeasonId")
                         .ValueGeneratedOnAdd()
@@ -2005,7 +2005,7 @@ namespace DBConnect.Migrations
                     b.ToTable("Season");
                 });
 
-            modelBuilder.Entity("DBConnect.DBModels.Skill", b =>
+            modelBuilder.Entity("PFDBCommon.DBModels.Skill", b =>
                 {
                     b.Property<int>("SkillId")
                         .ValueGeneratedOnAdd()
@@ -2034,7 +2034,7 @@ namespace DBConnect.Migrations
                     b.ToTable("Skill");
                 });
 
-            modelBuilder.Entity("DBConnect.DBModels.Spell", b =>
+            modelBuilder.Entity("PFDBCommon.DBModels.Spell", b =>
                 {
                     b.Property<int>("SpellId")
                         .ValueGeneratedOnAdd()
@@ -2267,7 +2267,7 @@ namespace DBConnect.Migrations
                     b.ToTable("Spell");
                 });
 
-            modelBuilder.Entity("DBConnect.DBModels.SpellDetail", b =>
+            modelBuilder.Entity("PFDBCommon.DBModels.SpellDetail", b =>
                 {
                     b.Property<int>("SpellId");
 
@@ -2285,7 +2285,7 @@ namespace DBConnect.Migrations
                     b.ToTable("SpellDetail");
                 });
 
-            modelBuilder.Entity("DBConnect.DBModels.SpellSchool", b =>
+            modelBuilder.Entity("PFDBCommon.DBModels.SpellSchool", b =>
                 {
                     b.Property<int>("SpellSchoolId")
                         .ValueGeneratedOnAdd()
@@ -2301,7 +2301,7 @@ namespace DBConnect.Migrations
                     b.ToTable("SpellSchool");
                 });
 
-            modelBuilder.Entity("DBConnect.DBModels.SpellSubSchool", b =>
+            modelBuilder.Entity("PFDBCommon.DBModels.SpellSubSchool", b =>
                 {
                     b.Property<int>("SpellSubSchoolId")
                         .ValueGeneratedOnAdd()
@@ -2321,7 +2321,7 @@ namespace DBConnect.Migrations
                     b.ToTable("SpellSubSchool");
                 });
 
-            modelBuilder.Entity("DBConnect.DBModels.Terrain", b =>
+            modelBuilder.Entity("PFDBCommon.DBModels.Terrain", b =>
                 {
                     b.Property<int>("TerrainId")
                         .ValueGeneratedOnAdd()
@@ -2352,7 +2352,7 @@ namespace DBConnect.Migrations
                     b.ToTable("Terrain");
                 });
 
-            modelBuilder.Entity("DBConnect.DBModels.Territory", b =>
+            modelBuilder.Entity("PFDBCommon.DBModels.Territory", b =>
                 {
                     b.Property<int>("TerritoryId")
                         .ValueGeneratedOnAdd()
@@ -2378,7 +2378,7 @@ namespace DBConnect.Migrations
                     b.ToTable("Territory");
                 });
 
-            modelBuilder.Entity("DBConnect.DBModels.Time", b =>
+            modelBuilder.Entity("PFDBCommon.DBModels.Time", b =>
                 {
                     b.Property<int>("TimeId")
                         .ValueGeneratedOnAdd()
@@ -2398,7 +2398,7 @@ namespace DBConnect.Migrations
                     b.ToTable("Time");
                 });
 
-            modelBuilder.Entity("DBConnect.DBModels.TrackedEvent", b =>
+            modelBuilder.Entity("PFDBCommon.DBModels.TrackedEvent", b =>
                 {
                     b.Property<int>("TrackedEventId")
                         .ValueGeneratedOnAdd()
@@ -2446,7 +2446,7 @@ namespace DBConnect.Migrations
                     b.ToTable("TrackedEvent");
                 });
 
-            modelBuilder.Entity("DBConnect.DBModels.WeaponAttribute", b =>
+            modelBuilder.Entity("PFDBCommon.DBModels.WeaponAttribute", b =>
                 {
                     b.Property<int>("WeaponAttributeId")
                         .ValueGeneratedOnAdd()
@@ -2466,7 +2466,7 @@ namespace DBConnect.Migrations
                     b.ToTable("WeaponAttribute");
                 });
 
-            modelBuilder.Entity("DBConnect.DBModels.WeaponAttributeApplied", b =>
+            modelBuilder.Entity("PFDBCommon.DBModels.WeaponAttributeApplied", b =>
                 {
                     b.Property<int>("GearId");
 
@@ -2481,7 +2481,7 @@ namespace DBConnect.Migrations
                     b.ToTable("WeaponAttributeApplied");
                 });
 
-            modelBuilder.Entity("DBConnect.DBModels.Weather", b =>
+            modelBuilder.Entity("PFDBCommon.DBModels.Weather", b =>
                 {
                     b.Property<int>("WeatherId")
                         .ValueGeneratedOnAdd()
@@ -2523,9 +2523,9 @@ namespace DBConnect.Migrations
                     b.ToTable("Weather");
                 });
 
-            modelBuilder.Entity("DBConnect.DBModels.Armor", b =>
+            modelBuilder.Entity("PFDBCommon.DBModels.Armor", b =>
                 {
-                    b.HasBaseType("DBConnect.DBModels.Gear");
+                    b.HasBaseType("PFDBCommon.DBModels.Gear");
 
                     b.Property<int>("ArmTyp");
 
@@ -2542,9 +2542,9 @@ namespace DBConnect.Migrations
                     b.HasDiscriminator().HasValue("Armor");
                 });
 
-            modelBuilder.Entity("DBConnect.DBModels.Weapon", b =>
+            modelBuilder.Entity("PFDBCommon.DBModels.Weapon", b =>
                 {
-                    b.HasBaseType("DBConnect.DBModels.Gear");
+                    b.HasBaseType("PFDBCommon.DBModels.Gear");
 
                     b.Property<int>("CritMin");
 
@@ -2561,519 +2561,519 @@ namespace DBConnect.Migrations
                     b.HasDiscriminator().HasValue("Weapon");
                 });
 
-            modelBuilder.Entity("DBConnect.DBModels.Bestiary", b =>
+            modelBuilder.Entity("PFDBCommon.DBModels.Bestiary", b =>
                 {
-                    b.HasOne("DBConnect.DBModels.BestiaryType", "BestiaryType")
+                    b.HasOne("PFDBCommon.DBModels.BestiaryType", "BestiaryType")
                         .WithMany("Bestiaries")
                         .HasForeignKey("Type")
                         .OnDelete(DeleteBehavior.Restrict);
                 });
 
-            modelBuilder.Entity("DBConnect.DBModels.BestiaryDetail", b =>
+            modelBuilder.Entity("PFDBCommon.DBModels.BestiaryDetail", b =>
                 {
-                    b.HasOne("DBConnect.DBModels.Bestiary", "Bestiary")
+                    b.HasOne("PFDBCommon.DBModels.Bestiary", "Bestiary")
                         .WithOne("BestiaryDetail")
-                        .HasForeignKey("DBConnect.DBModels.BestiaryDetail", "BestiaryId")
+                        .HasForeignKey("PFDBCommon.DBModels.BestiaryDetail", "BestiaryId")
                         .OnDelete(DeleteBehavior.Cascade);
                 });
 
-            modelBuilder.Entity("DBConnect.DBModels.BestiaryEnvironment", b =>
+            modelBuilder.Entity("PFDBCommon.DBModels.BestiaryEnvironment", b =>
                 {
-                    b.HasOne("DBConnect.DBModels.Bestiary", "Bestiary")
+                    b.HasOne("PFDBCommon.DBModels.Bestiary", "Bestiary")
                         .WithMany("BestiaryEnvironments")
                         .HasForeignKey("BestiaryId")
                         .OnDelete(DeleteBehavior.Cascade);
 
-                    b.HasOne("DBConnect.DBModels.Environment", "Environment")
+                    b.HasOne("PFDBCommon.DBModels.Environment", "Environment")
                         .WithMany("BestiaryEnvironments")
                         .HasForeignKey("EnvironmentId")
                         .OnDelete(DeleteBehavior.Cascade);
                 });
 
-            modelBuilder.Entity("DBConnect.DBModels.BestiaryFeat", b =>
+            modelBuilder.Entity("PFDBCommon.DBModels.BestiaryFeat", b =>
                 {
-                    b.HasOne("DBConnect.DBModels.Bestiary", "Bestiary")
+                    b.HasOne("PFDBCommon.DBModels.Bestiary", "Bestiary")
                         .WithMany("BestiaryFeats")
                         .HasForeignKey("BestiaryId")
                         .OnDelete(DeleteBehavior.Cascade);
 
-                    b.HasOne("DBConnect.DBModels.Feat", "Feat")
+                    b.HasOne("PFDBCommon.DBModels.Feat", "Feat")
                         .WithMany("BestiaryFeats")
                         .HasForeignKey("FeatId")
                         .OnDelete(DeleteBehavior.Cascade);
                 });
 
-            modelBuilder.Entity("DBConnect.DBModels.BestiaryLanguage", b =>
+            modelBuilder.Entity("PFDBCommon.DBModels.BestiaryLanguage", b =>
                 {
-                    b.HasOne("DBConnect.DBModels.Bestiary", "Bestiary")
+                    b.HasOne("PFDBCommon.DBModels.Bestiary", "Bestiary")
                         .WithMany("BestiaryLanguages")
                         .HasForeignKey("BestiaryId")
                         .OnDelete(DeleteBehavior.Cascade);
 
-                    b.HasOne("DBConnect.DBModels.Language", "Language")
+                    b.HasOne("PFDBCommon.DBModels.Language", "Language")
                         .WithMany("BestiaryLanguages")
                         .HasForeignKey("LanguageId")
                         .OnDelete(DeleteBehavior.Cascade);
                 });
 
-            modelBuilder.Entity("DBConnect.DBModels.BestiaryMagic", b =>
+            modelBuilder.Entity("PFDBCommon.DBModels.BestiaryMagic", b =>
                 {
-                    b.HasOne("DBConnect.DBModels.Bestiary", "Bestiary")
+                    b.HasOne("PFDBCommon.DBModels.Bestiary", "Bestiary")
                         .WithMany("BestiaryMagics")
                         .HasForeignKey("BestiaryId")
                         .OnDelete(DeleteBehavior.Cascade);
 
-                    b.HasOne("DBConnect.DBModels.Spell", "Spell")
+                    b.HasOne("PFDBCommon.DBModels.Spell", "Spell")
                         .WithMany("BestiaryMagics")
                         .HasForeignKey("SpellId")
                         .OnDelete(DeleteBehavior.Cascade);
                 });
 
-            modelBuilder.Entity("DBConnect.DBModels.BestiarySkill", b =>
+            modelBuilder.Entity("PFDBCommon.DBModels.BestiarySkill", b =>
                 {
-                    b.HasOne("DBConnect.DBModels.Bestiary", "Bestiary")
+                    b.HasOne("PFDBCommon.DBModels.Bestiary", "Bestiary")
                         .WithMany("BestiarySkills")
                         .HasForeignKey("BestiaryId")
                         .OnDelete(DeleteBehavior.Cascade);
 
-                    b.HasOne("DBConnect.DBModels.Skill", "Skill")
+                    b.HasOne("PFDBCommon.DBModels.Skill", "Skill")
                         .WithMany("BestiarySkills")
                         .HasForeignKey("SkillId")
                         .OnDelete(DeleteBehavior.Cascade);
                 });
 
-            modelBuilder.Entity("DBConnect.DBModels.BestiarySubType", b =>
+            modelBuilder.Entity("PFDBCommon.DBModels.BestiarySubType", b =>
                 {
-                    b.HasOne("DBConnect.DBModels.Bestiary", "Bestiary")
+                    b.HasOne("PFDBCommon.DBModels.Bestiary", "Bestiary")
                         .WithMany("BestiarySubTypes")
                         .HasForeignKey("BestiaryId")
                         .OnDelete(DeleteBehavior.Cascade);
 
-                    b.HasOne("DBConnect.DBModels.BestiaryType", "BestiaryType")
+                    b.HasOne("PFDBCommon.DBModels.BestiaryType", "BestiaryType")
                         .WithMany("BestiarySubTypes")
                         .HasForeignKey("BestiaryTypeId")
                         .OnDelete(DeleteBehavior.Cascade);
                 });
 
-            modelBuilder.Entity("DBConnect.DBModels.CampaignData", b =>
+            modelBuilder.Entity("PFDBCommon.DBModels.CampaignData", b =>
                 {
-                    b.HasOne("DBConnect.DBModels.Campaign", "Campaign")
+                    b.HasOne("PFDBCommon.DBModels.Campaign", "Campaign")
                         .WithMany("CampaignData")
                         .HasForeignKey("CampaignId")
                         .OnDelete(DeleteBehavior.Cascade);
                 });
 
-            modelBuilder.Entity("DBConnect.DBModels.Character", b =>
+            modelBuilder.Entity("PFDBCommon.DBModels.Character", b =>
                 {
-                    b.HasOne("DBConnect.DBModels.Campaign", "Campaign")
+                    b.HasOne("PFDBCommon.DBModels.Campaign", "Campaign")
                         .WithMany("Characters")
                         .HasForeignKey("CampaignId")
                         .OnDelete(DeleteBehavior.SetNull);
 
-                    b.HasOne("DBConnect.DBModels.Player", "Player")
+                    b.HasOne("PFDBCommon.DBModels.Player", "Player")
                         .WithMany("Characters")
                         .HasForeignKey("PlayerId")
                         .OnDelete(DeleteBehavior.SetNull);
 
-                    b.HasOne("DBConnect.DBModels.Race", "Race")
+                    b.HasOne("PFDBCommon.DBModels.Race", "Race")
                         .WithMany("Characters")
                         .HasForeignKey("RaceId")
                         .OnDelete(DeleteBehavior.Restrict);
                 });
 
-            modelBuilder.Entity("DBConnect.DBModels.CharacterClassAbility", b =>
+            modelBuilder.Entity("PFDBCommon.DBModels.CharacterClassAbility", b =>
                 {
-                    b.HasOne("DBConnect.DBModels.Character", "Character")
+                    b.HasOne("PFDBCommon.DBModels.Character", "Character")
                         .WithMany("CharacterClassAbilities")
                         .HasForeignKey("CharacterId")
                         .OnDelete(DeleteBehavior.Cascade);
 
-                    b.HasOne("DBConnect.DBModels.ClassAbility", "ClassAbility")
+                    b.HasOne("PFDBCommon.DBModels.ClassAbility", "ClassAbility")
                         .WithMany("CharacterClassAbilities")
                         .HasForeignKey("ClassAbilityId")
                         .OnDelete(DeleteBehavior.Cascade);
                 });
 
-            modelBuilder.Entity("DBConnect.DBModels.CharacterClassLevel", b =>
+            modelBuilder.Entity("PFDBCommon.DBModels.CharacterClassLevel", b =>
                 {
-                    b.HasOne("DBConnect.DBModels.Character", "Character")
+                    b.HasOne("PFDBCommon.DBModels.Character", "Character")
                         .WithMany("CharacterClassLevels")
                         .HasForeignKey("CharacterId")
                         .OnDelete(DeleteBehavior.Cascade);
 
-                    b.HasOne("DBConnect.DBModels.Class", "Class")
+                    b.HasOne("PFDBCommon.DBModels.Class", "Class")
                         .WithMany("CharacterClassLevels")
                         .HasForeignKey("ClassId")
                         .OnDelete(DeleteBehavior.Cascade);
                 });
 
-            modelBuilder.Entity("DBConnect.DBModels.CharacterFeat", b =>
+            modelBuilder.Entity("PFDBCommon.DBModels.CharacterFeat", b =>
                 {
-                    b.HasOne("DBConnect.DBModels.Character", "Character")
+                    b.HasOne("PFDBCommon.DBModels.Character", "Character")
                         .WithMany("CharacterFeats")
                         .HasForeignKey("CharacterId")
                         .OnDelete(DeleteBehavior.Cascade);
 
-                    b.HasOne("DBConnect.DBModels.Feat", "Feat")
+                    b.HasOne("PFDBCommon.DBModels.Feat", "Feat")
                         .WithMany("CharacterFeats")
                         .HasForeignKey("FeatId")
                         .OnDelete(DeleteBehavior.Cascade);
                 });
 
-            modelBuilder.Entity("DBConnect.DBModels.CharacterGear", b =>
+            modelBuilder.Entity("PFDBCommon.DBModels.CharacterGear", b =>
                 {
-                    b.HasOne("DBConnect.DBModels.Character", "Character")
+                    b.HasOne("PFDBCommon.DBModels.Character", "Character")
                         .WithMany("CharacterGear")
                         .HasForeignKey("CharacterId")
                         .OnDelete(DeleteBehavior.Cascade);
 
-                    b.HasOne("DBConnect.DBModels.Gear", "Gear")
+                    b.HasOne("PFDBCommon.DBModels.Gear", "Gear")
                         .WithMany("CharacterGear")
                         .HasForeignKey("GearId")
                         .OnDelete(DeleteBehavior.Cascade);
                 });
 
-            modelBuilder.Entity("DBConnect.DBModels.CharacterGearEnchantment", b =>
+            modelBuilder.Entity("PFDBCommon.DBModels.CharacterGearEnchantment", b =>
                 {
-                    b.HasOne("DBConnect.DBModels.CharacterGear", "CharacterGear")
+                    b.HasOne("PFDBCommon.DBModels.CharacterGear", "CharacterGear")
                         .WithMany("CharacterGearEnchantments")
                         .HasForeignKey("CharacterGearId")
                         .OnDelete(DeleteBehavior.Cascade);
 
-                    b.HasOne("DBConnect.DBModels.Enchantment", "Enchantment")
+                    b.HasOne("PFDBCommon.DBModels.Enchantment", "Enchantment")
                         .WithMany("CharacterGearEnchantments")
                         .HasForeignKey("EnchantmentId")
                         .OnDelete(DeleteBehavior.Cascade);
                 });
 
-            modelBuilder.Entity("DBConnect.DBModels.CharacterLanguage", b =>
+            modelBuilder.Entity("PFDBCommon.DBModels.CharacterLanguage", b =>
                 {
-                    b.HasOne("DBConnect.DBModels.Character", "Character")
+                    b.HasOne("PFDBCommon.DBModels.Character", "Character")
                         .WithMany("CharacterLanguages")
                         .HasForeignKey("CharacterId")
                         .OnDelete(DeleteBehavior.Cascade);
 
-                    b.HasOne("DBConnect.DBModels.Language", "Language")
+                    b.HasOne("PFDBCommon.DBModels.Language", "Language")
                         .WithMany("CharacterLanguages")
                         .HasForeignKey("LanguageId")
                         .OnDelete(DeleteBehavior.Cascade);
                 });
 
-            modelBuilder.Entity("DBConnect.DBModels.CharacterMagic", b =>
+            modelBuilder.Entity("PFDBCommon.DBModels.CharacterMagic", b =>
                 {
-                    b.HasOne("DBConnect.DBModels.Character", "Character")
+                    b.HasOne("PFDBCommon.DBModels.Character", "Character")
                         .WithMany("CharacterMagics")
                         .HasForeignKey("CharacterId")
                         .OnDelete(DeleteBehavior.Cascade);
 
-                    b.HasOne("DBConnect.DBModels.Spell", "Spell")
+                    b.HasOne("PFDBCommon.DBModels.Spell", "Spell")
                         .WithMany("CharacterMagics")
                         .HasForeignKey("SpellId")
                         .OnDelete(DeleteBehavior.Cascade);
                 });
 
-            modelBuilder.Entity("DBConnect.DBModels.CharacterRaceAbility", b =>
+            modelBuilder.Entity("PFDBCommon.DBModels.CharacterRaceAbility", b =>
                 {
-                    b.HasOne("DBConnect.DBModels.Character", "Character")
+                    b.HasOne("PFDBCommon.DBModels.Character", "Character")
                         .WithMany("CharacterRaceAbilities")
                         .HasForeignKey("CharacterId")
                         .OnDelete(DeleteBehavior.Cascade);
 
-                    b.HasOne("DBConnect.DBModels.RaceAbility", "RaceAbility")
+                    b.HasOne("PFDBCommon.DBModels.RaceAbility", "RaceAbility")
                         .WithMany("CharacterRaceAbilities")
                         .HasForeignKey("RaceAbilityId")
                         .OnDelete(DeleteBehavior.Cascade);
                 });
 
-            modelBuilder.Entity("DBConnect.DBModels.CharacterSkill", b =>
+            modelBuilder.Entity("PFDBCommon.DBModels.CharacterSkill", b =>
                 {
-                    b.HasOne("DBConnect.DBModels.Character", "Character")
+                    b.HasOne("PFDBCommon.DBModels.Character", "Character")
                         .WithMany("CharacterSkills")
                         .HasForeignKey("CharacterId")
                         .OnDelete(DeleteBehavior.Cascade);
 
-                    b.HasOne("DBConnect.DBModels.Skill", "Skill")
+                    b.HasOne("PFDBCommon.DBModels.Skill", "Skill")
                         .WithMany("CharacterSkills")
                         .HasForeignKey("SkillId")
                         .OnDelete(DeleteBehavior.Cascade);
                 });
 
-            modelBuilder.Entity("DBConnect.DBModels.ClassAbility", b =>
+            modelBuilder.Entity("PFDBCommon.DBModels.ClassAbility", b =>
                 {
-                    b.HasOne("DBConnect.DBModels.Class", "Class")
+                    b.HasOne("PFDBCommon.DBModels.Class", "Class")
                         .WithMany("ClassAbilities")
                         .HasForeignKey("ClassId")
                         .OnDelete(DeleteBehavior.Cascade);
                 });
 
-            modelBuilder.Entity("DBConnect.DBModels.ClassSkill", b =>
+            modelBuilder.Entity("PFDBCommon.DBModels.ClassSkill", b =>
                 {
-                    b.HasOne("DBConnect.DBModels.Class", "Class")
+                    b.HasOne("PFDBCommon.DBModels.Class", "Class")
                         .WithMany("ClassSkills")
                         .HasForeignKey("ClassId")
                         .OnDelete(DeleteBehavior.Cascade);
 
-                    b.HasOne("DBConnect.DBModels.Skill", "Skill")
+                    b.HasOne("PFDBCommon.DBModels.Skill", "Skill")
                         .WithMany("ClassSkills")
                         .HasForeignKey("SkillId")
                         .OnDelete(DeleteBehavior.Cascade);
                 });
 
-            modelBuilder.Entity("DBConnect.DBModels.Continent", b =>
+            modelBuilder.Entity("PFDBCommon.DBModels.Continent", b =>
                 {
-                    b.HasOne("DBConnect.DBModels.Language", "PrimaryLanguage")
+                    b.HasOne("PFDBCommon.DBModels.Language", "PrimaryLanguage")
                         .WithMany("ContinentPrimaryLanguages")
                         .HasForeignKey("PrimaryLanguageId")
                         .OnDelete(DeleteBehavior.SetNull);
                 });
 
-            modelBuilder.Entity("DBConnect.DBModels.ContinentEnvironment", b =>
+            modelBuilder.Entity("PFDBCommon.DBModels.ContinentEnvironment", b =>
                 {
-                    b.HasOne("DBConnect.DBModels.Continent", "Continent")
+                    b.HasOne("PFDBCommon.DBModels.Continent", "Continent")
                         .WithMany("ContinentEnvironments")
                         .HasForeignKey("ContinentId")
                         .OnDelete(DeleteBehavior.Cascade);
 
-                    b.HasOne("DBConnect.DBModels.Environment", "Environment")
+                    b.HasOne("PFDBCommon.DBModels.Environment", "Environment")
                         .WithMany("ContinentEnvironments")
                         .HasForeignKey("EnvironmentId")
                         .OnDelete(DeleteBehavior.Cascade);
                 });
 
-            modelBuilder.Entity("DBConnect.DBModels.ContinentWeather", b =>
+            modelBuilder.Entity("PFDBCommon.DBModels.ContinentWeather", b =>
                 {
-                    b.HasOne("DBConnect.DBModels.Continent", "Continent")
+                    b.HasOne("PFDBCommon.DBModels.Continent", "Continent")
                         .WithMany("ContinentWeathers")
                         .HasForeignKey("ContinentId")
                         .OnDelete(DeleteBehavior.Cascade);
 
-                    b.HasOne("DBConnect.DBModels.Season", "Season")
+                    b.HasOne("PFDBCommon.DBModels.Season", "Season")
                         .WithMany("ContinentWeathers")
                         .HasForeignKey("SeasonId")
                         .OnDelete(DeleteBehavior.Cascade);
 
-                    b.HasOne("DBConnect.DBModels.Weather", "Weather")
+                    b.HasOne("PFDBCommon.DBModels.Weather", "Weather")
                         .WithMany("ContinentWeathers")
                         .HasForeignKey("WeatherId")
                         .OnDelete(DeleteBehavior.Cascade);
                 });
 
-            modelBuilder.Entity("DBConnect.DBModels.Faction", b =>
+            modelBuilder.Entity("PFDBCommon.DBModels.Faction", b =>
                 {
-                    b.HasOne("DBConnect.DBModels.Language", "PrimaryLanguage")
+                    b.HasOne("PFDBCommon.DBModels.Language", "PrimaryLanguage")
                         .WithMany("FactionPrimaryLanguages")
                         .HasForeignKey("PrimaryLanguageId")
                         .OnDelete(DeleteBehavior.SetNull);
 
-                    b.HasOne("DBConnect.DBModels.Race", "PrimaryRace")
+                    b.HasOne("PFDBCommon.DBModels.Race", "PrimaryRace")
                         .WithMany("FactionPrimaryRaces")
                         .HasForeignKey("PrimaryRaceId")
                         .OnDelete(DeleteBehavior.SetNull);
                 });
 
-            modelBuilder.Entity("DBConnect.DBModels.FavoredClass", b =>
+            modelBuilder.Entity("PFDBCommon.DBModels.FavoredClass", b =>
                 {
-                    b.HasOne("DBConnect.DBModels.Class", "Class")
+                    b.HasOne("PFDBCommon.DBModels.Class", "Class")
                         .WithMany("FavoredClasses")
                         .HasForeignKey("ClassId")
                         .OnDelete(DeleteBehavior.Cascade);
 
-                    b.HasOne("DBConnect.DBModels.Race", "Race")
+                    b.HasOne("PFDBCommon.DBModels.Race", "Race")
                         .WithMany("FavoredClasses")
                         .HasForeignKey("RaceId")
                         .OnDelete(DeleteBehavior.Cascade);
                 });
 
-            modelBuilder.Entity("DBConnect.DBModels.Location", b =>
+            modelBuilder.Entity("PFDBCommon.DBModels.Location", b =>
                 {
-                    b.HasOne("DBConnect.DBModels.Continent", "Continent")
+                    b.HasOne("PFDBCommon.DBModels.Continent", "Continent")
                         .WithMany("Locations")
                         .HasForeignKey("ContinentId")
                         .OnDelete(DeleteBehavior.SetNull);
 
-                    b.HasOne("DBConnect.DBModels.Environment", "Environment")
+                    b.HasOne("PFDBCommon.DBModels.Environment", "Environment")
                         .WithMany("Locations")
                         .HasForeignKey("EnvironmentId")
                         .OnDelete(DeleteBehavior.SetNull);
 
-                    b.HasOne("DBConnect.DBModels.Faction", "Faction")
+                    b.HasOne("PFDBCommon.DBModels.Faction", "Faction")
                         .WithMany("Locations")
                         .HasForeignKey("FactionId")
                         .OnDelete(DeleteBehavior.SetNull);
 
-                    b.HasOne("DBConnect.DBModels.Terrain", "Terrain")
+                    b.HasOne("PFDBCommon.DBModels.Terrain", "Terrain")
                         .WithMany("Locations")
                         .HasForeignKey("TerrainId")
                         .OnDelete(DeleteBehavior.SetNull);
 
-                    b.HasOne("DBConnect.DBModels.Territory", "Territory")
+                    b.HasOne("PFDBCommon.DBModels.Territory", "Territory")
                         .WithMany("Locations")
                         .HasForeignKey("TerritoryId")
                         .OnDelete(DeleteBehavior.SetNull);
                 });
 
-            modelBuilder.Entity("DBConnect.DBModels.MonsterSpawn", b =>
+            modelBuilder.Entity("PFDBCommon.DBModels.MonsterSpawn", b =>
                 {
-                    b.HasOne("DBConnect.DBModels.Bestiary", "Bestiary")
+                    b.HasOne("PFDBCommon.DBModels.Bestiary", "Bestiary")
                         .WithMany("MonsterSpawns")
                         .HasForeignKey("BestiaryId")
                         .OnDelete(DeleteBehavior.Cascade);
 
-                    b.HasOne("DBConnect.DBModels.Continent", "Continent")
+                    b.HasOne("PFDBCommon.DBModels.Continent", "Continent")
                         .WithMany("MonsterSpawns")
                         .HasForeignKey("ContinentId")
                         .OnDelete(DeleteBehavior.Cascade);
 
-                    b.HasOne("DBConnect.DBModels.Plane", "Plane")
+                    b.HasOne("PFDBCommon.DBModels.Plane", "Plane")
                         .WithMany("MonsterSpawns")
                         .HasForeignKey("PlaneId")
                         .OnDelete(DeleteBehavior.Cascade);
 
-                    b.HasOne("DBConnect.DBModels.Season", "Season")
+                    b.HasOne("PFDBCommon.DBModels.Season", "Season")
                         .WithMany("MonsterSpawns")
                         .HasForeignKey("SeasonId")
                         .OnDelete(DeleteBehavior.Cascade);
 
-                    b.HasOne("DBConnect.DBModels.Time", "Time")
+                    b.HasOne("PFDBCommon.DBModels.Time", "Time")
                         .WithMany("MonsterSpawns")
                         .HasForeignKey("TimeId")
                         .OnDelete(DeleteBehavior.Cascade);
                 });
 
-            modelBuilder.Entity("DBConnect.DBModels.Month", b =>
+            modelBuilder.Entity("PFDBCommon.DBModels.Month", b =>
                 {
-                    b.HasOne("DBConnect.DBModels.Season", "Season")
+                    b.HasOne("PFDBCommon.DBModels.Season", "Season")
                         .WithMany("Months")
                         .HasForeignKey("SeasonId")
                         .OnDelete(DeleteBehavior.SetNull);
                 });
 
-            modelBuilder.Entity("DBConnect.DBModels.Npcdetail", b =>
+            modelBuilder.Entity("PFDBCommon.DBModels.Npcdetail", b =>
                 {
-                    b.HasOne("DBConnect.DBModels.Npc", "Npc")
+                    b.HasOne("PFDBCommon.DBModels.Npc", "Npc")
                         .WithOne("Npcdetail")
-                        .HasForeignKey("DBConnect.DBModels.Npcdetail", "Npcid")
+                        .HasForeignKey("PFDBCommon.DBModels.Npcdetail", "Npcid")
                         .OnDelete(DeleteBehavior.Cascade);
                 });
 
-            modelBuilder.Entity("DBConnect.DBModels.OverridePrerequisite", b =>
+            modelBuilder.Entity("PFDBCommon.DBModels.OverridePrerequisite", b =>
                 {
-                    b.HasOne("DBConnect.DBModels.ClassAbility", "ClassAbility")
+                    b.HasOne("PFDBCommon.DBModels.ClassAbility", "ClassAbility")
                         .WithMany("OverridePrerequisites")
                         .HasForeignKey("ClassAbilityId")
                         .OnDelete(DeleteBehavior.Cascade);
 
-                    b.HasOne("DBConnect.DBModels.Prerequisite", "Prerequisite")
+                    b.HasOne("PFDBCommon.DBModels.Prerequisite", "Prerequisite")
                         .WithMany("OverridePrerequisites")
                         .HasForeignKey("PrerequisiteId")
                         .OnDelete(DeleteBehavior.Cascade);
                 });
 
-            modelBuilder.Entity("DBConnect.DBModels.PlayerCampaign", b =>
+            modelBuilder.Entity("PFDBCommon.DBModels.PlayerCampaign", b =>
                 {
-                    b.HasOne("DBConnect.DBModels.Campaign", "Campaign")
+                    b.HasOne("PFDBCommon.DBModels.Campaign", "Campaign")
                         .WithMany("PlayerCampaigns")
                         .HasForeignKey("CampaignId")
                         .OnDelete(DeleteBehavior.Cascade);
 
-                    b.HasOne("DBConnect.DBModels.Player", "Player")
+                    b.HasOne("PFDBCommon.DBModels.Player", "Player")
                         .WithMany("PlayerCampaigns")
                         .HasForeignKey("PlayerId")
                         .OnDelete(DeleteBehavior.Cascade);
                 });
 
-            modelBuilder.Entity("DBConnect.DBModels.Race", b =>
+            modelBuilder.Entity("PFDBCommon.DBModels.Race", b =>
                 {
-                    b.HasOne("DBConnect.DBModels.Bestiary", "RaceBestiary")
+                    b.HasOne("PFDBCommon.DBModels.Bestiary", "RaceBestiary")
                         .WithMany("BestiaryRaces")
                         .HasForeignKey("RaceTypeId")
                         .OnDelete(DeleteBehavior.Restrict);
                 });
 
-            modelBuilder.Entity("DBConnect.DBModels.RaceAbility", b =>
+            modelBuilder.Entity("PFDBCommon.DBModels.RaceAbility", b =>
                 {
-                    b.HasOne("DBConnect.DBModels.Race", "Race")
+                    b.HasOne("PFDBCommon.DBModels.Race", "Race")
                         .WithMany("RaceAbilities")
                         .HasForeignKey("RaceId")
                         .OnDelete(DeleteBehavior.Cascade);
                 });
 
-            modelBuilder.Entity("DBConnect.DBModels.RaceSubType", b =>
+            modelBuilder.Entity("PFDBCommon.DBModels.RaceSubType", b =>
                 {
-                    b.HasOne("DBConnect.DBModels.BestiaryType", "BestiaryType")
+                    b.HasOne("PFDBCommon.DBModels.BestiaryType", "BestiaryType")
                         .WithMany("RaceSubTypes")
                         .HasForeignKey("BestiaryTypeId")
                         .OnDelete(DeleteBehavior.Cascade);
 
-                    b.HasOne("DBConnect.DBModels.Race", "Race")
+                    b.HasOne("PFDBCommon.DBModels.Race", "Race")
                         .WithMany("RaceSubTypes")
                         .HasForeignKey("RaceId")
                         .OnDelete(DeleteBehavior.Cascade);
                 });
 
-            modelBuilder.Entity("DBConnect.DBModels.Spell", b =>
+            modelBuilder.Entity("PFDBCommon.DBModels.Spell", b =>
                 {
-                    b.HasOne("DBConnect.DBModels.SpellSchool", "SpellSchool")
+                    b.HasOne("PFDBCommon.DBModels.SpellSchool", "SpellSchool")
                         .WithMany("Spells")
                         .HasForeignKey("SchoolId")
                         .OnDelete(DeleteBehavior.SetNull);
 
-                    b.HasOne("DBConnect.DBModels.SpellSubSchool", "SpellSubSchool")
+                    b.HasOne("PFDBCommon.DBModels.SpellSubSchool", "SpellSubSchool")
                         .WithMany("Spells")
                         .HasForeignKey("SubSchoolId")
                         .OnDelete(DeleteBehavior.SetNull);
                 });
 
-            modelBuilder.Entity("DBConnect.DBModels.SpellDetail", b =>
+            modelBuilder.Entity("PFDBCommon.DBModels.SpellDetail", b =>
                 {
-                    b.HasOne("DBConnect.DBModels.Spell", "Spell")
+                    b.HasOne("PFDBCommon.DBModels.Spell", "Spell")
                         .WithOne("SpellDetail")
-                        .HasForeignKey("DBConnect.DBModels.SpellDetail", "SpellId")
+                        .HasForeignKey("PFDBCommon.DBModels.SpellDetail", "SpellId")
                         .OnDelete(DeleteBehavior.Cascade);
                 });
 
-            modelBuilder.Entity("DBConnect.DBModels.SpellSubSchool", b =>
+            modelBuilder.Entity("PFDBCommon.DBModels.SpellSubSchool", b =>
                 {
-                    b.HasOne("DBConnect.DBModels.SpellSchool", "SpellSchool")
+                    b.HasOne("PFDBCommon.DBModels.SpellSchool", "SpellSchool")
                         .WithMany("SpellSubSchools")
                         .HasForeignKey("SpellSchoolId")
                         .OnDelete(DeleteBehavior.Cascade);
                 });
 
-            modelBuilder.Entity("DBConnect.DBModels.Territory", b =>
+            modelBuilder.Entity("PFDBCommon.DBModels.Territory", b =>
                 {
-                    b.HasOne("DBConnect.DBModels.Continent", "Continent")
+                    b.HasOne("PFDBCommon.DBModels.Continent", "Continent")
                         .WithMany("Territories")
                         .HasForeignKey("ContinentId")
                         .OnDelete(DeleteBehavior.SetNull);
 
-                    b.HasOne("DBConnect.DBModels.Faction", "Faction")
+                    b.HasOne("PFDBCommon.DBModels.Faction", "Faction")
                         .WithMany("Territories")
                         .HasForeignKey("FactionId")
                         .OnDelete(DeleteBehavior.SetNull);
                 });
 
-            modelBuilder.Entity("DBConnect.DBModels.TrackedEvent", b =>
+            modelBuilder.Entity("PFDBCommon.DBModels.TrackedEvent", b =>
                 {
-                    b.HasOne("DBConnect.DBModels.Campaign", "Campaign")
+                    b.HasOne("PFDBCommon.DBModels.Campaign", "Campaign")
                         .WithMany("TrackedEvents")
                         .HasForeignKey("CampaignId")
                         .OnDelete(DeleteBehavior.Cascade);
 
-                    b.HasOne("DBConnect.DBModels.Continent", "Continent")
+                    b.HasOne("PFDBCommon.DBModels.Continent", "Continent")
                         .WithMany("ContinentEvents")
                         .HasForeignKey("ContinentId")
                         .OnDelete(DeleteBehavior.Cascade);
                 });
 
-            modelBuilder.Entity("DBConnect.DBModels.WeaponAttributeApplied", b =>
+            modelBuilder.Entity("PFDBCommon.DBModels.WeaponAttributeApplied", b =>
                 {
-                    b.HasOne("DBConnect.DBModels.Weapon", "Weapon")
+                    b.HasOne("PFDBCommon.DBModels.Weapon", "Weapon")
                         .WithMany("WeaponAttributesApplied")
                         .HasForeignKey("GearId")
                         .OnDelete(DeleteBehavior.Cascade);
 
-                    b.HasOne("DBConnect.DBModels.WeaponAttribute", "Attribute")
+                    b.HasOne("PFDBCommon.DBModels.WeaponAttribute", "Attribute")
                         .WithMany("WeaponAttributesApplied")
                         .HasForeignKey("WeaponAttributeId")
                         .OnDelete(DeleteBehavior.Cascade);

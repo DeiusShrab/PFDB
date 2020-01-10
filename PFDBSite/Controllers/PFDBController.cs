@@ -30,7 +30,7 @@ namespace PFDBSite.Controllers
       Configuration = builder.Build();
     }
 
-    protected DBConnect.DBModels.Player Player
+    protected PFDBCommon.DBModels.Player Player
     {
       get
       {
@@ -38,9 +38,9 @@ namespace PFDBSite.Controllers
 
         if (playerBytes == null || playerBytes.Length == 0)
         {
-          DBConnect.DBModels.Player player = null;
+          PFDBCommon.DBModels.Player player = null;
           var tempId = new System.Random().Next(1000, 10000) * -1;
-          player = new DBConnect.DBModels.Player
+          player = new PFDBCommon.DBModels.Player
           {
             PlayerId = tempId,
             DisplayName = "Anonymous" + tempId.ToString(),
@@ -74,7 +74,7 @@ namespace PFDBSite.Controllers
         }
 
         var playerString = Encoding.UTF8.GetString(playerBytes);
-        var _player = JsonConvert.DeserializeObject<DBConnect.DBModels.Player>(playerString);
+        var _player = JsonConvert.DeserializeObject<PFDBCommon.DBModels.Player>(playerString);
         return _player;
       }
     }

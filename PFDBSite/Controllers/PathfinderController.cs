@@ -3,7 +3,7 @@ using System.Linq;
 using System.Security.Claims;
 using System.Threading;
 using DBConnect;
-using DBConnect.ConnectModels;
+using PFDBCommon.ConnectModels;
 using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Authorization;
@@ -74,7 +74,7 @@ namespace PFDBSite.Controllers
         CampaignId = campaignId,
         CampaignName = campaign.CampaignName,
         FantasyDate = "{}",
-        ChatRoom = new DBConnect.DBModels.ChatRoom
+        ChatRoom = new PFDBCommon.DBModels.ChatRoom
         {
           ChatRoomId = -1,
           ChatRoomName = "NONE"

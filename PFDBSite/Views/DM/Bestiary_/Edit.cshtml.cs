@@ -7,7 +7,7 @@ using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using DBConnect;
-using DBConnect.DBModels;
+using PFDBCommon.DBModels;
 
 namespace PFDBSite.Views.DM.Bestiary_
 {

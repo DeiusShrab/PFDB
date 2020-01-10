@@ -1,8 +1,8 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
 using DBConnect;
-using DBConnect.ConnectModels;
-using DBConnect.DBModels;
+using PFDBCommon.ConnectModels;
+using PFDBCommon.DBModels;
 
 namespace PFAPI.Helpers
 {

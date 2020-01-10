@@ -31,6 +31,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\DBConnect\DBConnect.csproj" />
+    <ProjectReference Include="..\PFDBCommon\PFDBCommon.csproj" />
   </ItemGroup>
 
 </Project>
