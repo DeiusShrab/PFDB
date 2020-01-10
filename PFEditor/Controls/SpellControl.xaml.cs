@@ -4,8 +4,9 @@ using System.Collections.ObjectModel;
 using System.Linq;
 using System.Windows.Controls;
 using DBConnect;
-using DBConnect.ConnectModels;
-using DBConnect.DBModels;
+using PFDBCommon;
+using PFDBCommon.ConnectModels;
+using PFDBCommon.DBModels;
 
 namespace PFEditor.Controls
 {

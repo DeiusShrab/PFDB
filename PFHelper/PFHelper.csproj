@@ -276,6 +276,10 @@
       <Project>{0C3CAB3F-CD2E-4EAD-815E-4AE425864D0B}</Project>
       <Name>DBConnect</Name>
     </ProjectReference>
+    <ProjectReference Include="..\PFDBCommon\PFDBCommon.csproj">
+      <Project>{c06106ad-d22a-48aa-ab19-e70ace8ab660}</Project>
+      <Name>PFDBCommon</Name>
+    </ProjectReference>
   </ItemGroup>
   <ItemGroup>
     <BootstrapperPackage Include=".NETFramework,Version=v4.7.1">

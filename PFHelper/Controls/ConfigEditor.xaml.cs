@@ -2,7 +2,7 @@
 using System.Collections.ObjectModel;
 using System.Windows;
 using DBConnect;
-using DBConnect.ConnectModels;
+using PFDBCommon.ConnectModels;
 
 namespace PFHelper.Controls
 {

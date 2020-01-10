@@ -2,7 +2,7 @@
 using System.Linq;
 using Microsoft.EntityFrameworkCore;
 using Moq;
-using DBConnect.DBModels;
+using PFDBCommon.DBModels;
 
 namespace DBConnect
 {

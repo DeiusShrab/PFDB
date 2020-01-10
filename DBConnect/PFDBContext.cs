@@ -1,5 +1,5 @@
 ﻿using Microsoft.EntityFrameworkCore;
-using DBConnect.DBModels;
+using PFDBCommon.DBModels;
 
 namespace DBConnect
 {

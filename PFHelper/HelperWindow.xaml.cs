@@ -10,8 +10,9 @@ using System.Windows.Media;
 using CommonUI;
 using CommonUI.Popups;
 using DBConnect;
-using DBConnect.ConnectModels;
-using DBConnect.DBModels;
+using PFDBCommon;
+using PFDBCommon.ConnectModels;
+using PFDBCommon.DBModels;
 using Microsoft.Win32;
 using PFHelper.Classes;
 
@@ -469,7 +470,7 @@ namespace PFHelper
     private List<Time> times;
     private List<Plane> planes;
     private List<Campaign> campaigns;
-    private List<DBConnect.DBModels.Environment> environments;
+    private List<PFDBCommon.DBModels.Environment> environments;
     private Dictionary<string, string> CampaignData;
 
     private RandomWeatherResult WeatherResult;
@@ -595,7 +596,7 @@ namespace PFHelper
       planes = new List<Plane>();
       trackedEvents = new List<TrackedEvent>();
       campaigns = new List<Campaign>();
-      environments = new List<DBConnect.DBModels.Environment>();
+      environments = new List<PFDBCommon.DBModels.Environment>();
       CampaignData = new Dictionary<string, string>();
 
       if (PFConfig.ConfigExists() && DBClient.ConnectToApi())
@@ -1807,7 +1808,6 @@ namespace PFHelper
     private void SpinRations_Spin(object sender, Xceed.Wpf.Toolkit.SpinEventArgs e)
     {
       AddRations(RationsAdjust * (e.Direction == Xceed.Wpf.Toolkit.SpinDirection.Increase ? 1 : -1));
-      TxtRations.Clear();
     }
 
     private void BtnNextWeather_Click(object sender, RoutedEventArgs e)

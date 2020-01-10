@@ -3,8 +3,8 @@ using System.IO;
 using System.Net.Http;
 using System.Text;
 using System.Timers;
-using DBConnect.ConnectModels;
-using DBConnect.DBModels;
+using PFDBCommon.ConnectModels;
+using PFDBCommon.DBModels;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 

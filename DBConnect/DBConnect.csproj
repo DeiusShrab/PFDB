@@ -34,4 +34,7 @@
     <PackageReference Include="System.Configuration.Abstractions" Version="2.0.2.45" />
     <PackageReference Include="System.Configuration.ConfigurationManager" Version="4.5.0" />
   </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\PFDBCommon\PFDBCommon.csproj" />
+  </ItemGroup>
 </Project>

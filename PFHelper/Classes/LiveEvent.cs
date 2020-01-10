@@ -5,9 +5,9 @@ using System.Linq;
 using System.Runtime.CompilerServices;
 using System.Text;
 using System.Threading.Tasks;
-using DBConnect;
-using DBConnect.ConnectModels;
-using DBConnect.DBModels;
+using PFDBCommon;
+using PFDBCommon.ConnectModels;
+using PFDBCommon.DBModels;
 
 namespace PFHelper.Classes
 {

@@ -76,7 +76,7 @@
     <Button x:Name="BtnNextWeather" Content="Next Weather" HorizontalAlignment="Left" Margin="359,105,0,0" VerticalAlignment="Top" Width="95" Click="BtnNextWeather_Click" TabIndex="1201"/>
     <Label Content="Rations:" HorizontalAlignment="Left" Margin="818,132,0,0" VerticalAlignment="Top"/>
     <Label x:Name="LblRationsLeft" Content="00" HorizontalAlignment="Left" Margin="898,132,0,0" VerticalAlignment="Top" FontSize="18" Height="49" Width="75"/>
-    <TextBox x:Name="TxtRations" HorizontalAlignment="Left" Height="23" Margin="818,158,0,0" TextWrapping="Wrap" Text="000" VerticalAlignment="Top" Width="52" TabIndex="1104"/>
+    <TextBox x:Name="TxtRations" HorizontalAlignment="Left" Height="23" Margin="818,158,0,0" TextWrapping="Wrap" Text="001" VerticalAlignment="Top" Width="52" TabIndex="1104"/>
     <xctk:ButtonSpinner x:Name="SpinRations" HorizontalAlignment="Left" Margin="872,132,0,0" VerticalAlignment="Top" Height="49" Spin="SpinRations_Spin" TabIndex="1105"/>
     <CheckBox x:Name="CbxRationsInfinite" Content="∞" HorizontalAlignment="Left" Margin="902,166,0,0" VerticalAlignment="Top" TabIndex="1106"/>
     <ListBox x:Name="LbxD4" HorizontalAlignment="Left" Height="100" Margin="1226,165,0,0" VerticalAlignment="Top" Width="120"/>

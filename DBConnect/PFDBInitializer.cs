@@ -14,7 +14,7 @@ namespace DBConnect
       if (context.Bestiary.Any())
         return;
 
-      context.Bestiary.Add(new DBModels.Bestiary()
+      context.Bestiary.Add(new PFDBCommon.DBModels.Bestiary()
       {
         BestiaryId = 1,
         Name = "TestBeast",

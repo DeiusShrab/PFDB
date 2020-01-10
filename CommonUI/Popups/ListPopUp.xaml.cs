@@ -12,8 +12,8 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
-using DBConnect;
-using DBConnect.ConnectModels;
+using PFDBCommon;
+using PFDBCommon.ConnectModels;
 
 namespace CommonUI
 {
