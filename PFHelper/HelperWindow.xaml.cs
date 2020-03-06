@@ -64,14 +64,27 @@ namespace PFHelper
 
     public int ContinentId
     {
-      get { return CurrentContinent?.ContinentId ?? 0; }
+      get
+      {
+        return (int)(LbxContinent.SelectedValue ?? -1);
+      }
+      set
+      {
+        if (continentList.Select(x => x.Result).Contains(value))
+        {
+          LbxContinent.SelectedValue = value;
+          SwitchContinents(value);
+        }
+        else
+          LbxContinent.SelectedValue = null;
+      }
     }
 
     public int TimeId
     {
       get
       {
-          return (int)(LbxTime.SelectedValue ?? 0);
+          return (int)(LbxTime.SelectedValue ?? -1);
       }
       set
       {
@@ -86,7 +99,7 @@ namespace PFHelper
     {
       get
       {
-        return (int)(LbxPlane.SelectedValue ?? 0);
+        return (int)(LbxPlane.SelectedValue ?? -1);
       }
       set
       {
@@ -101,7 +114,7 @@ namespace PFHelper
     {
       get
       {
-        return (int)(LbxEnvironment.SelectedValue ?? 0);
+        return (int)(LbxEnvironment.SelectedValue ?? -1);
       }
       set
       {
@@ -618,9 +631,6 @@ namespace PFHelper
           if (campaignData != null)
             CampaignData.AddRange(campaignData);
 
-          continentList.Clear();
-          timeList.Clear();
-          planeList.Clear();
           LiveEvents.Clear();
           campaignList.Clear();
           campaignDataList.Clear();
@@ -958,9 +968,11 @@ namespace PFHelper
         Crs = crs,
         Group = EncounterGroup,
         Npc = EncounterNPC,
-        ContinentId = EncounterZone ? ContinentId : 0,
-        EnvironmentId = EncounterZone ? EnvironmentId : 0,
-        TimeId = EncounterTime ? TimeId : 0
+        ContinentId = EncounterZone ? ContinentId : -1,
+        EnvironmentId = EncounterZone ? EnvironmentId : -1,
+        TimeId = EncounterTime ? TimeId : -1,
+        SeasonId = -1,
+        PlaneId = -1
       };
 
       var result = DBClient.GetEncounters(req);
@@ -1395,7 +1407,7 @@ namespace PFHelper
       var reqWeather = new RandomWeatherRequest()
       {
         ContinentId = ContinentId,
-        SeasonId = CurrentMonth.SeasonId ?? 0
+        SeasonId = CurrentMonth.SeasonId ?? -1
       };
 
       WeatherResult = DBClient.GetRandomWeatherList(reqWeather);
@@ -1458,20 +1470,27 @@ namespace PFHelper
 
     private void SwitchContinents(int continentId)
     {
-      CurrentContinent = DBClient.GetContinent(continentId);
+      if (continentId > 0)
+      {
+        CurrentContinent = DBClient.GetContinent(continentId);
+      }
+      else
+      {
+        CurrentContinent = new Continent { ContinentId = -1, Name = "ALL" };
+      }
+
       UpdateLocationDisplay();
     }
 
     private void LoadContinentEnvironments()
     {
       environmentList.Clear();
+      environmentList.Add(new DisplayResult { Display = "ALL", Result = -1 });
 
       if (ContinentId > 0)
       {
         environments.Clear();
         environments.AddRange(DBClient.GetEnvironmentsForContinent(ContinentId));
-
-        environmentList.Add(new DisplayResult { Display = "ALL", Result = -1 });
 
         foreach (var item in environments.OrderBy(x => x.Name))
         {
@@ -1909,7 +1928,7 @@ namespace PFHelper
         LiveEvents.Remove(evt);
         LiveEvents.Add(CurrentEvent);
       }
-      else if (!EventLocalOnly || CurrentEvent.ContinentId == 0 || CurrentEvent.ContinentId == CurrentContinent.ContinentId)
+      else if (!EventLocalOnly || CurrentEvent.ContinentId <= 0 || CurrentEvent.ContinentId == CurrentContinent.ContinentId)
       {
         LiveEvents.Add(CurrentEvent);
       }
@@ -2102,7 +2121,7 @@ namespace PFHelper
       LiveEvents.Clear();
       foreach (var item in trackedEvents)
       {
-        if (!EventLocalOnly || item.ContinentId == 0 || item.ContinentId == CurrentContinent.ContinentId)
+        if (!EventLocalOnly || item.ContinentId <= 0 || item.ContinentId == CurrentContinent.ContinentId)
           LiveEvents.Add(new LiveEvent(item));
       }
       BtnEvtSortNext_Click(null, null);

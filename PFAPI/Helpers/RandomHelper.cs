@@ -35,7 +35,10 @@ namespace PFAPI.Helpers
         else
         {
           var monList = validSpawns.Where(x => x.Cr == cr || cr == (int)CRSpecial.ALL).ToList();
-          mon = monList.ElementAt(random.Next(monList.Count));
+          if (monList.Count > 0)
+          {
+            mon = monList.ElementAt(random.Next(monList.Count));
+          }
         }
 
         if (mon != null)
