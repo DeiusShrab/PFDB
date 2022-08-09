@@ -1260,7 +1260,7 @@ namespace PFHelper
 
       UpdateWeatherDisplay();
       return;
-
+      /*
       if (WeatherResult == null && CurrentWeather == null && CurrentWeatherGroup == null)// DEBUG
       {
         LblCurrentWeather.Content = random.Next(100);
@@ -1299,6 +1299,7 @@ namespace PFHelper
       }
 
       CurrentWeather = DBClient.GetWeather(CurrentWeatherGroup.WeatherId);
+      */
     }
 
     private ContinentWeather GetRandomWeather(bool onlyParentWeather = true)

@@ -61,7 +61,7 @@ namespace DBConnect
       }
       catch (System.Exception ex)
       {
-
+        System.Console.WriteLine(ex.Message);
       }
 
       return false;
