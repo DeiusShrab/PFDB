@@ -625,7 +625,7 @@ namespace DrWPF.Windows.Data
 
     #region KeyedDictionaryEntryCollection<TKey>
 
-    protected class KeyedDictionaryEntryCollection<TKey> : KeyedCollection<TKey, DictionaryEntry>
+    protected class KeyedDictionaryEntryCollection<TKeyA> : KeyedCollection<TKeyA, DictionaryEntry>
     {
       #region constructors
 
@@ -633,7 +633,7 @@ namespace DrWPF.Windows.Data
 
       public KeyedDictionaryEntryCollection() : base() { }
 
-      public KeyedDictionaryEntryCollection(IEqualityComparer<TKey> comparer) : base(comparer) { }
+      public KeyedDictionaryEntryCollection(IEqualityComparer<TKeyA> comparer) : base(comparer) { }
 
       #endregion public
 
@@ -643,9 +643,9 @@ namespace DrWPF.Windows.Data
 
       #region protected
 
-      protected override TKey GetKeyForItem(DictionaryEntry entry)
+      protected override TKeyA GetKeyForItem(DictionaryEntry entry)
       {
-        return (TKey)entry.Key;
+        return (TKeyA)entry.Key;
       }
 
       #endregion protected
@@ -662,7 +662,7 @@ namespace DrWPF.Windows.Data
     #region Enumerator
 
     [Serializable, StructLayout(LayoutKind.Sequential)]
-    public struct Enumerator<TKey, TValue> : IEnumerator<KeyValuePair<TKey, TValue>>, IDisposable, IDictionaryEnumerator, IEnumerator
+    public struct Enumerator<TKeyA, TValueA> : IEnumerator<KeyValuePair<TKey, TValue>>, IDisposable, IDictionaryEnumerator, IEnumerator
     {
       #region constructors
 
