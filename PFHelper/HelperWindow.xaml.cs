@@ -27,6 +27,7 @@ namespace PFHelper
 
     public static int TAB_CREATUREINFO = 2;
     public static string CD_PFSAVEDATA = "PFSAVEDATA";
+    public static int CAMPAIGNID;
 
     #endregion
 
@@ -593,6 +594,7 @@ namespace PFHelper
     private bool LoadDataFromDB()
     {
       var ret = false;
+      CAMPAIGNID = int.Parse(PFConfig.CAMPAIGN_ID);
 
       continentList.Clear();
       timeList.Clear();
@@ -621,13 +623,13 @@ namespace PFHelper
           months.AddRange(DBClient.GetMonths());
           times.AddRange(DBClient.GetTimes());
           planes.AddRange(DBClient.GetPlanes());
-          trackedEvents.AddRange(DBClient.GetTrackedEvents());
+          trackedEvents.AddRange(DBClient.GetTrackedEventsByCampaignId(CAMPAIGNID));
           campaigns.AddRange(DBClient.GetCampaigns());
 
-          ActiveCampaign = DBClient.GetCampaign(int.Parse(PFConfig.CAMPAIGN_ID));
+          ActiveCampaign = DBClient.GetCampaign(CAMPAIGNID);
           UnpackCampaign();
 
-          var campaignData = DBClient.GetCampaignData();
+          var campaignData = DBClient.GetCampaignData(CAMPAIGNID);
           if (campaignData != null)
             CampaignData.AddRange(campaignData);
 

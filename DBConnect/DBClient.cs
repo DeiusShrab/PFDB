@@ -260,6 +260,20 @@ namespace DBConnect
       return ret;
     }
 
+    public static List<TrackedEvent> GetTrackedEventsByCampaignId(int campaignId)
+    {
+      List<TrackedEvent> ret = new List<TrackedEvent>();
+
+      var response = client.GetAsync(API_ADDR + "TrackedEventByCampaign/" + campaignId.ToString()).Result;
+      if (response.IsSuccessStatusCode)
+      {
+        var content = response.Content;
+        ret = JsonConvert.DeserializeObject<List<TrackedEvent>>(content.ReadAsStringAsync().Result);
+      }
+
+      return ret;
+    }
+
     #endregion
 
     #region Details
