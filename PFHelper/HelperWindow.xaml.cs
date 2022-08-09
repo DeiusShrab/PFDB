@@ -1333,7 +1333,16 @@ namespace PFHelper
       if (CurrentEvent == null)
         CurrentEvent = new LiveEvent();
 
-      CurrentEvent.DateNextOccurring = string.IsNullOrWhiteSpace(EventDate) ? null : new FantasyDate(EventDate);
+      if (EventDate.StartsWith("+"))
+      {
+        int.TryParse(EventDate, out int addDays);
+        CurrentEvent.DateNextOccurring = CurrentDate.AddDays(addDays);
+      }
+      else
+      {
+        CurrentEvent.DateNextOccurring = string.IsNullOrWhiteSpace(EventDate) ? null : new FantasyDate(EventDate);
+      }
+
       CurrentEvent.DateLastOccurred = string.IsNullOrWhiteSpace(EventLastDate) ? null : new FantasyDate(EventLastDate);
       CurrentEvent.Location = EventLocation;
       CurrentEvent.Name = EventName;
