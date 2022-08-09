@@ -1855,6 +1855,11 @@ namespace PFHelper
           DBClient.DeleteTrackedEvent(eventId);
           var evt = LiveEvents.First(x => x.EventId == ((LiveEvent)DgEvt.SelectedItem).EventId);
           LiveEvents.Remove(evt);
+
+          if (CurrentEvent.EventId == eventId)
+          {
+            CurrentEvent = null;
+          }
         }
       }
     }
