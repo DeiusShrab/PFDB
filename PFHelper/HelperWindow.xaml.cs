@@ -1858,7 +1858,8 @@ namespace PFHelper
 
           if (CurrentEvent.EventId == eventId)
           {
-            CurrentEvent = null;
+            CurrentEvent = new LiveEvent();
+            UnpackCurrentEvent();
           }
         }
       }
