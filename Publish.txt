@@ -1,3 +1,0 @@
-Script in ~/PublishPFSite.sh
-
-dotnet publish PFDBSite.sln -c Release -o /var/www/pfdbsite

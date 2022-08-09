@@ -312,7 +312,18 @@ namespace PFAPI.Controllers
       return Ok();
     }
 
-#endregion
+    [HttpGet("TrackedEventByCampaign/{campaignId:int}")]
+    public IActionResult GetTrackedEventsByCampaign(int campaignId)
+    {
+      var data = PFDAL.GetContext().TrackedEvent.Where(x => x.CampaignId == campaignId)?.ToList();
+
+      if (data == null)
+        return NotFound();
+
+      return new JsonResult(data);
+    }
+
+    #endregion
 
 #region All
 

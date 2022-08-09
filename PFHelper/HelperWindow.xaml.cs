@@ -1435,7 +1435,16 @@ namespace PFHelper
       if (CurrentEvent == null)
         CurrentEvent = new LiveEvent();
 
-      CurrentEvent.DateNextOccurring = string.IsNullOrWhiteSpace(EventDate) ? null : new FantasyDate(EventDate);
+      if (EventDate.StartsWith("+"))
+      {
+        int.TryParse(EventDate, out int addDays);
+        CurrentEvent.DateNextOccurring = CurrentDate.AddDays(addDays);
+      }
+      else
+      {
+        CurrentEvent.DateNextOccurring = string.IsNullOrWhiteSpace(EventDate) ? null : new FantasyDate(EventDate);
+      }
+
       CurrentEvent.DateLastOccurred = string.IsNullOrWhiteSpace(EventLastDate) ? null : new FantasyDate(EventLastDate);
       CurrentEvent.Location = EventLocation;
       CurrentEvent.Name = EventName;
@@ -1964,6 +1973,12 @@ namespace PFHelper
           DBClient.DeleteTrackedEvent(eventId);
           var evt = LiveEvents.First(x => x.EventId == ((LiveEvent)DgEvt.SelectedItem).EventId);
           LiveEvents.Remove(evt);
+
+          if (CurrentEvent.EventId == eventId)
+          {
+            CurrentEvent = new LiveEvent();
+            UnpackCurrentEvent();
+          }
         }
       }
     }
