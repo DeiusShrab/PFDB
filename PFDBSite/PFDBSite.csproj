@@ -8,7 +8,10 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Content Remove="wwwroot\lib\signalr\signalr.js" />
+    <Compile Remove="wwwroot\**" />
+    <Content Remove="wwwroot\**" />
+    <EmbeddedResource Remove="wwwroot\**" />
+    <None Remove="wwwroot\**" />
   </ItemGroup>
 
   <ItemGroup>
@@ -44,10 +47,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <None Include="wwwroot\lib\signalr\signalr.js" />
-  </ItemGroup>
-
-  <ItemGroup>
     <ProjectReference Include="..\DBConnect\DBConnect.csproj" />
     <ProjectReference Include="..\PFDBCommon\PFDBCommon.csproj" />
   </ItemGroup>
@@ -56,10 +55,6 @@
     <Content Update="appsettings.json">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-  </ItemGroup>
-
-  <ItemGroup>
-    <Folder Include="wwwroot\images\chat\" />
   </ItemGroup>
 
   <ItemGroup>
