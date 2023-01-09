@@ -12,6 +12,9 @@
     <Content Remove="wwwroot\**" />
     <EmbeddedResource Remove="wwwroot\**" />
     <None Remove="wwwroot\**" />
+    <Content Remove="appsettings.json" />
+    <Content Remove="appsettings.Development.json" />
+    <Content Remove="web.config" />
   </ItemGroup>
 
   <ItemGroup>
