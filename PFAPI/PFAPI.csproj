@@ -7,6 +7,7 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Content Remove="bundleconfig.json" />
     <Content Remove="appsettings.json" />
     <Content Remove="appsettings.Development.json" />
     <Content Remove="web.config" />
