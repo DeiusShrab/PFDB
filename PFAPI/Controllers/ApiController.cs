@@ -230,7 +230,7 @@ namespace PFAPI.Controllers
       {
         // Send a request to the PFDBSite LiveDisplayApiController
       }
-      catch(Exception ex)
+      catch
       {
         Console.WriteLine("This doesn't work yet");
       }
