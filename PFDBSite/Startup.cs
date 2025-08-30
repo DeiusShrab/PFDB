@@ -139,17 +139,17 @@ namespace PFDBSite
 
       app.UseSession();
 
-      app.UseMvc(routes =>
-      {
-        routes.MapRoute(
-                  name: "default",
-                  template: "{controller=Pathfinder}/{action=Index}/{id?}");
-      });
+      //app.UseMvc(routes =>
+      //{
+      //  routes.MapRoute(
+      //            name: "default",
+      //            template: "{controller=Pathfinder}/{action=Index}/{id?}");
+      //});
 
-      app.UseSignalR(routes =>
-      {
-        routes.MapHub<LiveDisplayHub>("/livedisplayhub");
-      });
+      //app.UseSignalR(routes =>
+      //{
+      //  routes.MapHub<LiveDisplayHub>("/livedisplayhub");
+      //});
     }
   }
 }

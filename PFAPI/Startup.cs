@@ -80,7 +80,7 @@ namespace PFAPI
 #endif
       app.UseAuthentication();
 
-      app.UseMvc();
+      //app.UseMvc();
 
       Console.WriteLine(PFConfig.APP_MODE);
     }
