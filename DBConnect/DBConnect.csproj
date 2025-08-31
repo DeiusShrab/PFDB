@@ -35,6 +35,7 @@
     <PackageReference Include="System.Configuration.ConfigurationManager" Version="4.5.0" />
   </ItemGroup>
   <ItemGroup>
+    <PackageReference Include="System.Data.SqlClient" Version="4.8.6" />
     <ProjectReference Include="..\PFDBCommon\PFDBCommon.csproj" />
   </ItemGroup>
 </Project>
